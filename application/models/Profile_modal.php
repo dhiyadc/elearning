@@ -35,7 +35,6 @@ class Profile_modal extends CI_Model {
     public function editAccount()
     {
         $data = [
-            'email' => $this->input->post('email'),
             'password' => $this->input->post('password')
         ];
 

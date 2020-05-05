@@ -12,7 +12,7 @@
             Phone Number: <input type="text" name="no_telp" value="<?= $val['no_telepon']; ?>" required>
         <?php endforeach; ?>
         <?php foreach ($account as $val) : ?>
-            Email: <input type="email" name="email" value="<?= $val['email']; ?>" required>
+            Email:<?= $val['email']; ?>
             Password: <input type="password" name="password" value="<?= $val['password']; ?>" required>
         <?php endforeach; ?>
         <button>Save</button>
