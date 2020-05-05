@@ -36,7 +36,7 @@
       *********************************************************************************************************************************************************** -->
   <div id="login-page">
     <div class="container">
-      <form class="form-login" action="<?= base_url() ?>user/register_process" method="post">
+      <form class="form-login" action="<?= base_url() ?>register/register_process" method="post">
         <h2 class="form-login-heading">Register</h2>
         <div class="login-wrap">
         <?php
@@ -73,6 +73,7 @@
         </div>
         
       </form>
+      <a href="<?= base_url(); ?>login"><h2>Back to login</h2></a>
       <div id="message">
   <h3>Password must contain the following:</h3>
   <p id="letter" class="invalid">A <b>lowercase</b> letter</p>

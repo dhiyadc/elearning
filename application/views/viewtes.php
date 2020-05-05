@@ -7,6 +7,6 @@
 </head>
 <body>
     Tes view
-    <a href="<?= base_url(); ?>user/logout">Logout</a>
+    <a href="<?= base_url(); ?>login/logout">Logout</a>
 </body>
 </html>

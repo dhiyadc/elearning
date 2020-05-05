@@ -35,7 +35,7 @@
       *********************************************************************************************************************************************************** -->
   <div id="login-page">
     <div class="container">
-      <form class="form-login" action="<?= base_url() ?>user/user_login_process" method="post">
+      <form class="form-login" action="<?= base_url() ?>login/user_login_process" method="post">
         <h2 class="form-login-heading">sign in now</h2>
         <div class="login-wrap">
               <?php
@@ -67,7 +67,7 @@
           <button class="btn btn-theme btn-block" value="login" type="submit"><i class="fa fa-lock"></i> SIGN IN</button>
           
           
-          <a href="user/register"><h2>Register</h2></a>
+          <a href="<?= base_url(); ?>register"><h2>Register</h2></a>
         </div>
         
       </form>

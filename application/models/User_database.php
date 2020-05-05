@@ -4,6 +4,7 @@ Class User_database extends CI_Model {
 
 //Login Function
     public function login($data){
+        
         $username = $data['email'];
         $password = $data['password'];
         $hashed = hash('sha256', $password);
@@ -22,12 +23,17 @@ Class User_database extends CI_Model {
 
 // Register Function
 public function register($data){
+    $id_user = $data['user_id'];
     $email = $data['email'];
     $password = $data['password'];
     $hashed = hash('sha256', $password);
-    $sql = "INSERT INTO user (email, password)
-        VALUES ('$email', '$hashed')";
+    $sql = "INSERT INTO user (id_user, email, password)
+        VALUES ('$id_user','$email', '$hashed')";
     return $this->db->query($sql);
+}
+
+public function getIDUser($email){
+
 }
 
 // Read data from database to show data in admin page
