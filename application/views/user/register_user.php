@@ -21,7 +21,9 @@
   <link href="<?= base_url(); ?>assets/css/style_admin.css" rel="stylesheet">
   <link href="<?= base_url(); ?>assets/css/style-responsive.css" rel="stylesheet">
   <link rel="stylesheet" href="<?= base_url(); ?>assets/css/password_verif.css">
-  
+
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
   <!-- =======================================================
     Template Name: Dashio
     Template URL: https://templatemag.com/dashio-bootstrap-admin-template/
@@ -61,19 +63,21 @@
             //echo validation_errors();
             echo "</div>";
           ?>
+          <input type="text" name="nama" placeholder="Full Name" autofocus required>
+          <input type="number" name="no_telepon" id="" placeholder="Phone Number" required>
           <input type="email" class="form-control" name="email" placeholder="Email" oninvalid="this.setCustomValidity('Please enter a valid email address')"
-    oninput="this.setCustomValidity('')" autofocus required>
-          <br>
+    oninput="this.setCustomValidity('')" required>
+          
           <input type="password" class="form-control" id="password" name="password" placeholder="Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required>
           <br>
-          <button class="btn btn-theme btn-block" value="login" type="submit"><i class="fa fa-lock"></i> Register</button>
+          <button class="btn btn-primary" value="login" type="submit"><i class="fa fa-lock"></i> Register</button>
           
           
-          
+          <a href="<?= base_url(); ?>login"><h2>Back to login</h2></a>
         </div>
         
       </form>
-      <a href="<?= base_url(); ?>login"><h2>Back to login</h2></a>
+      
       <div id="message">
   <h3>Password must contain the following:</h3>
   <p id="letter" class="invalid">A <b>lowercase</b> letter</p>

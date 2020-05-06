@@ -77,7 +77,7 @@ class Login extends CI_Controller {
 			'email' => ''
 			);
 			$this->session->unset_userdata('logged_in', $sess_array);
-			redirect('user');
+			redirect('login');
 		} 
 	
 

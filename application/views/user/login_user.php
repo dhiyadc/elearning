@@ -66,7 +66,7 @@
           <br>
           <button class="btn btn-theme btn-block" value="login" type="submit"><i class="fa fa-lock"></i> SIGN IN</button>
           
-          
+          <a href="<?= base_url(); ?>forgot_password"><h3>Forget Password</h3></a>
           <a href="<?= base_url(); ?>register"><h2>Register</h2></a>
         </div>
         

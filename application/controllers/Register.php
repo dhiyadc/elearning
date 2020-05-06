@@ -38,6 +38,7 @@ class Register extends CI_Controller {
 				redirect('home_admin');
 			}
 
+			
 			$email = $this->input->post('email');
 			$emailDB = $this->user_database->read_user_information($email);
 
@@ -64,7 +65,9 @@ class Register extends CI_Controller {
 			$data = array(
 			'user_id' => $user_id,
 			'email' => $this->input->post('email'),
-			'password' => $this->input->post('password')
+			'password' => $this->input->post('password'),
+			'nama' => $this->input->post('nama'),
+			'no_telepon' => $this->input->post('no_telepon')
 			);
 			$this->user_database->register($data);
 			

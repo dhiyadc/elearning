@@ -26,14 +26,28 @@ public function register($data){
     $id_user = $data['user_id'];
     $email = $data['email'];
     $password = $data['password'];
+    $nama = $data['nama'];
+    $no_telepon = $data['no_telepon'];
     $hashed = hash('sha256', $password);
     $sql = "INSERT INTO user (id_user, email, password)
         VALUES ('$id_user','$email', '$hashed')";
+    $this->db->query($sql);
+
+    $sql = "INSERT INTO detail_user (id_user, nama, no_telepon)
+            VALUES ('$id_user','$nama','$no_telepon')";
     return $this->db->query($sql);
 }
 
 public function getIDUser($email){
 
+}
+
+public function setToken($email, $token)
+{
+    $sql = "UPDATE user SET token='$token', 
+            tokenExpire=DATE_ADD(NOW(), INTERVAL 5 MINUTE)
+            WHERE email='$email'";
+    return $this->db->query($sql);
 }
 
 // Read data from database to show data in admin page
