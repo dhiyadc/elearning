@@ -75,7 +75,7 @@ class Forgot_password extends CI_Controller{
         $mail->SMTPSecure = 'tls';
         $mail->Port = 587;
         
-        $mail->setFrom('info@elearning.com', 'no-reply');
+        $mail->setFrom('biawakencer@gmail.com', 'EBiawak');
         //$mail->addReplyTo('info@example.com', 'CodexWorld');
         
         // Add a recipient
