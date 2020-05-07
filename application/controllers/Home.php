@@ -13,8 +13,9 @@ class Home extends CI_Controller{
 
     public function index(){
         //Controller Home
-        if(isset($this->session->userdata['logged_in'])){
+        if(isset($_SESSION['logged_in'])){
         //$this->load->view('layout/header');
+        var_dump($_SESSION['id_user']);
         $this->load->view('viewtes');
         //$this->load->view('layout/footer');
         } else {

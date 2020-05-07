@@ -13,7 +13,7 @@ class Login extends CI_Controller {
 		$this->load->library('form_validation');
 
 		// Load session library
-		$this->load->library('session');
+		//$this->load->library('session');
 
 		// Load database
 		//$this->load->model('admin_login_database');
@@ -24,9 +24,11 @@ class Login extends CI_Controller {
 	
 	// Show login page
 	public function index() {
-		
-		 if(isset($this->session->userdata['logged_in'])){
-		 	redirect('profile');
+
+
+		 if(isset($_SESSION['logged_in'])){
+		 	redirect('home');
+
 		 }else{
 			$this->load->view('user/login_user');
 		}
@@ -39,9 +41,12 @@ class Login extends CI_Controller {
 		$this->form_validation->set_rules('password', 'Password', 'trim|xss_clean');
 		
 		if ($this->form_validation->run() == FALSE) {
-			if(isset($this->session->userdata['logged_in'])){
-				redirect('profile');
+
+			if(isset($_SESSION['logged_in'])){
+				redirect('home');
+
 			}else{
+
 				$this->load->view('user/login_user');
 			}
 		} else {
@@ -53,13 +58,17 @@ class Login extends CI_Controller {
 			if ($result == TRUE) {
 			
 				$email = $this->input->post('email');
-				$user = $this->db->get_where('user', ['email' => $email])->row_array();
-				
-				$this->session->set_userdata('logged_in',TRUE);
-				$this->session->set_userdata('id_user',$user['id_user']);
-				$this->session->set_userdata('email',$email);
 
-				redirect('profile');
+				$id_user = $this->user_database->getIDUser($email);
+
+				
+				// Add user data in session
+				$this->session->set_userdata('logged_in', TRUE);
+				$this->session->set_userdata('id_user', $id_user);
+				$this->session->set_userdata('email' , $email);
+
+				redirect('home');
+
 			} else {
 				$data = array(
 				'error_message' => 'Invalid Username or Password'
@@ -73,12 +82,10 @@ class Login extends CI_Controller {
 		public function logout() {
 		
 			// Removing session data
-			$sess_array = array(
-			'email' => '',
-			'id_user' => '',
-			'logged_in' => TRUE
-			);
-			unset($_SESSION['email'],$_SESSION['id_user'],$_SESSION['logged_in']);
+			$this->session->unset_userdata('email');
+			$this->session->unset_userdata('id_user');
+			$this->session->unset_userdata('logged_in');
+
 			redirect('login');
 		} 
 	

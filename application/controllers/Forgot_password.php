@@ -2,6 +2,10 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+
 class Forgot_password extends CI_Controller{
 
     public function __construct()
@@ -23,6 +27,7 @@ class Forgot_password extends CI_Controller{
 
     public function request()
     {
+        require 'vendor/autoload.php';
 
         $email = $this->input->post('email');
 		$emailDB = $this->user_database->read_user_information($email);
@@ -46,36 +51,26 @@ class Forgot_password extends CI_Controller{
 
         $this->user_database->setToken($email, $token);
 
-        // Load PHPMailer library
-        $this->load->library('phpmailer_lib');
-        
-        // PHPMailer object
-        $mail = $this->phpmailer_lib->load();
-        
-        // SMTP configuration
-        /*$mail->isSMTP();
-        $mail->Host     = 'smtp.example.com';
-        $mail->SMTPAuth = true;
-        $mail->Username = 'user@example.com';
-        $mail->Password = '********';
-        $mail->SMTPSecure = 'ssl';
-        $mail->Port     = 465; */
-
-        //biawakencer@gmail.com
-        //password@12
-
-
+        $mail = new PHPMailer;
     
         // SMTP gmail configuration
         $mail->isSMTP();
+        //$mail->SMTPDebug = 2; ///Untuk melihat pesan dari server dan client
+        $mail->SMTPOptions = array(
+            'ssl' => array(
+            'verify_peer' => false,
+            'verify_peer_name' => false,
+            'allow_self_signed' => true
+            )
+            );
         $mail->Host = 'smtp.gmail.com';
         $mail->SMTPAuth = true;
         $mail->Username = 'biawakencer@gmail.com';
         $mail->Password = 'password@12';
-        $mail->SMTPSecure = 'tls';
-        $mail->Port = 587;
+        $mail->SMTPSecure = 'ssl';
+        $mail->Port = 465;
         
-        $mail->setFrom('biawakencer@gmail.com', 'Please Verify');
+        $mail->setFrom('biawakencer@gmail.com', 'Whuidi Email Masuk Dong');
         //$mail->addReplyTo('info@example.com', 'CodexWorld');
         
         // Add a recipient
@@ -120,13 +115,6 @@ class Forgot_password extends CI_Controller{
         );
         $this->load->view('user/forgot_password', $data);
 
-        /* <?php
-              if (isset($message_display)) {
-              echo "<div class='message'>";
-              echo $message_display;
-              echo "</div>";
-              }
-            ?> */
     }
     
 }

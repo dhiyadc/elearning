@@ -80,10 +80,12 @@ myInput2.onkeyup = function() {
   if(myInput.value == myInput2.value) {
     match.classList.remove("invalid");
     match.classList.add("valid");
+    match.innerHTML = "Matched!";
     submit.disabled = false;
   } else {
     match.classList.remove("valid");
     match.classList.add("invalid");
+    match.innerHTML = "Password doesn't match";
     submit.disabled = true;
   }
 
