@@ -28,7 +28,7 @@ class Forgot_password extends CI_Controller{
     public function request()
     {
         require 'vendor/autoload.php';
-        
+
         $email = $this->input->post('email');
 		$emailDB = $this->user_database->read_user_information($email);
 
@@ -73,12 +73,20 @@ class Forgot_password extends CI_Controller{
     
         // SMTP gmail configuration
         $mail->isSMTP();
+        //$mail->SMTPDebug = 2; ///Untuk melihat pesan dari server dan client
+        $mail->SMTPOptions = array(
+            'ssl' => array(
+            'verify_peer' => false,
+            'verify_peer_name' => false,
+            'allow_self_signed' => true
+            )
+            );
         $mail->Host = 'smtp.gmail.com';
         $mail->SMTPAuth = true;
         $mail->Username = 'biawakencer@gmail.com';
         $mail->Password = 'password@12';
-        $mail->SMTPSecure = 'tls';
-        $mail->Port = 587;
+        $mail->SMTPSecure = 'ssl';
+        $mail->Port = 465;
         
         $mail->setFrom('biawakencer@gmail.com', 'Please Verify');
         //$mail->addReplyTo('info@example.com', 'CodexWorld');
