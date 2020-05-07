@@ -69,8 +69,10 @@
     oninput="this.setCustomValidity('')" required>
           
           <input type="password" class="form-control" id="password" name="password" placeholder="Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required>
-          <br>
-          <button class="btn btn-primary" value="login" type="submit"><i class="fa fa-lock"></i> Register</button>
+         
+          <input type="password" class="form-control" id="password2" name="password2" placeholder="Confirm Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required>
+          
+          <button id="submit" class="btn btn-primary" value="login" type="submit"><i class="fa fa-lock"></i> Register</button>
           
           
           <a href="<?= base_url(); ?>login"><h2>Back to login</h2></a>
@@ -85,6 +87,9 @@
   <p id="number" class="invalid">A <b>number</b></p>
   <p id="length" class="invalid">Minimum <b>8 characters</b></p>
 </div>
+      <div id="message2">
+      <p id="match" class="invalid">Password doesnt match</p>
+      </div>
     </div>
   </div>
   <!-- js placed at the end of the document so the pages load faster -->

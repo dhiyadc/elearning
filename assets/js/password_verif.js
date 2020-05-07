@@ -4,6 +4,14 @@ var capital = document.getElementById("capital");
 var number = document.getElementById("number");
 var length = document.getElementById("length");
 
+var myInput2 = document.getElementById("password2");
+var letter2 = document.getElementById("letter2");
+var capital2 = document.getElementById("capital2");
+var number2 = document.getElementById("number2");
+var length2 = document.getElementById("length2");
+var match = document.getElementById("match");
+var submit = document.getElementById("submit");
+
 // When the user clicks on the password field, show the message box
 myInput.onfocus = function() {
   document.getElementById("message").style.display = "block";
@@ -12,6 +20,15 @@ myInput.onfocus = function() {
 // When the user clicks outside of the password field, hide the message box
 myInput.onblur = function() {
   document.getElementById("message").style.display = "none";
+}
+
+myInput2.onfocus = function() {
+  document.getElementById("message2").style.display = "block";
+}
+
+// When the user clicks outside of the password field, hide the message box
+myInput2.onblur = function() {
+  document.getElementById("message2").style.display = "none";
 }
 
 // When the user starts to type something inside the password field
@@ -54,4 +71,22 @@ myInput.onkeyup = function() {
     length.classList.remove("valid");
     length.classList.add("invalid");
   }
+  
+}
+
+myInput2.onkeyup = function() {
+  
+  //Validate Password #2
+  if(myInput.value == myInput2.value) {
+    match.classList.remove("invalid");
+    match.classList.add("valid");
+    submit.disabled = false;
+  } else {
+    match.classList.remove("valid");
+    match.classList.add("invalid");
+    submit.disabled = true;
+  }
+
+  
+  
 }

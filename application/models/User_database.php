@@ -42,6 +42,7 @@ public function getIDUser($email){
 
 }
 
+//Set token for reset password request
 public function setToken($email, $token)
 {
     $sql = "UPDATE user SET token='$token', 
@@ -50,21 +51,36 @@ public function setToken($email, $token)
     return $this->db->query($sql);
 }
 
-// Read data from database to show data in admin page
+public function getToken($email, $token){
+    $sql = "SELECT id FROM users WHERE
+    email='$email' AND token='$token' AND token<>'' AND tokenExpire > NOW()";
+    $query = $this->db->query($sql);
+    return $query->result();
+}
+
+public function resetPassword($email, $newPassword)
+{
+    $newPasswordHashed = hash('sha256', $newPassword);
+    $sql = "UPDATE users SET token='', password = '$newPasswordHashed'
+    WHERE email='$email'";
+    return $this->db->query($sql);
+}
+
+// Read data from database to show data in any page
 public function read_user_information($email) {
 
-$condition = "email =" . "'" . $email . "'";
-$this->db->select('*');
-$this->db->from('user');
-$this->db->where($condition);
-$this->db->limit(1);
-$query = $this->db->get();
+    $condition = "email =" . "'" . $email . "'";
+    $this->db->select('*');
+    $this->db->from('user');
+    $this->db->where($condition);
+    $this->db->limit(1);
+    $query = $this->db->get();
 
-if ($query->num_rows() == 1) {
-return $query->result();
-} else {
-return false;
-}
+    if ($query->num_rows() == 1) {
+        return $query->result();
+    } else {
+        return false;
+    }
 }
 
 
