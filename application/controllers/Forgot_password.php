@@ -2,6 +2,10 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+
 class Forgot_password extends CI_Controller{
 
     public function __construct()
@@ -23,7 +27,8 @@ class Forgot_password extends CI_Controller{
 
     public function request()
     {
-
+        require 'vendor/autoload.php';
+        
         $email = $this->input->post('email');
 		$emailDB = $this->user_database->read_user_information($email);
 
@@ -47,10 +52,10 @@ class Forgot_password extends CI_Controller{
         $this->user_database->setToken($email, $token);
 
         // Load PHPMailer library
-        $this->load->library('phpmailer_lib');
+        //$this->load->library('phpmailer_lib');
         
         // PHPMailer object
-        $mail = $this->phpmailer_lib->load();
+       // $mail = $this->phpmailer_lib->load();
         
         // SMTP configuration
         /*$mail->isSMTP();
@@ -64,7 +69,7 @@ class Forgot_password extends CI_Controller{
         //biawakencer@gmail.com
         //password@12
 
-
+        $mail = new PHPMailer;
     
         // SMTP gmail configuration
         $mail->isSMTP();
