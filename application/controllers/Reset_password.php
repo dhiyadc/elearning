@@ -12,26 +12,14 @@ class Reset_password extends CI_Controller{
         
 	}
 
-    public function index(){
+    public function index($email, $token){
         //Controller Home
         if(isset($this->session->userdata['logged_in'])){
         //$this->load->view('layout/header');
         $this->load->view('viewtes');
         //$this->load->view('layout/footer');
         } else {
-            $email = $this->uri->segment(2);
-            $token = $this->uri->segment(3);
-            $isValid = $this->user_database->getValidToken($email, $token);
-            if(isValid > 0)
-            {
-                $this->load->view('user/reset_password');
-            } else {
-                $data = array(
-					'error_message' => 'Email is not registered'
-					);
-                $this->load->view('user/reset_password', $data);
-            }
-
+            
         }
 
         /*CATATAN
@@ -39,12 +27,25 @@ class Reset_password extends CI_Controller{
         */
     }
 
-    public function request($email, $token){
+    public function valid($email, $token){
+            $isValid = $this->user_database->getValidToken($email, $token);
+            if($isValid > 0)
+            {
+                $this->load->view('user/reset_password');
+            } else {
+                $data = array(
+					'error_message' => 'Token is not valid / expired'
+					);
+                $this->load->view('user/reset_password', $data);
+            }
+    }
+
+    public function request(){
         $email = $this->input->post('email');
         $token = $this->input->post('token');
         $newPassword = $this->input->post('password');
 
-        $this->user_database->updatePassword();
+        $this->user_database->updatePassword($email, $token);
         $data = array(
             'message_display' => 'Your password has been updated'
             );

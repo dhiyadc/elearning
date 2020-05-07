@@ -61,7 +61,7 @@ public function getValidToken($email, $token){
 public function updatePassword($email, $newPassword)
 {
     $newPasswordHashed = hash('sha256', $newPassword);
-    $sql = "UPDATE users SET token='', password = '$newPasswordHashed'
+    $sql = "UPDATE user SET token='', password = '$newPasswordHashed'
     WHERE email='$email'";
     return $this->db->query($sql);
 }

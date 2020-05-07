@@ -97,8 +97,8 @@ class Forgot_password extends CI_Controller{
 	            
 	            In order to reset your password, please click on the link below:<br>
 	            <a href='
-	            http://localhost/elearning/rese_password/$email/$token
-	            '>http://localhost/elearning/reset_password/$email/$token</a><br><br>
+	            http://localhost/elearning/reset_password/valid/$email/$token
+	            '>http://localhost/elearning/reset_password/valid/$email/$token</a><br><br>
 	            
 	            Kind Regards,<br>
 	            E-Learning
