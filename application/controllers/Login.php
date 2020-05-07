@@ -56,28 +56,11 @@ class Login extends CI_Controller {
 				$email = $this->input->post('email');
 				$id_user = $this->user_database->getIDUser($email);
 
-				/* $session_data = array(
-				'email' => $email,
-				'id_user' => $id_user,
-				'logged_in' => TRUE 
-				); */
+				
 				// Add user data in session
 				$this->session->set_userdata('logged_in', TRUE);
 				$this->session->set_userdata('id_user', $id_user);
 				$this->session->set_userdata('email' , $email);
-
-				//CI 4.0.3
-				/*
-				$session_data = [
-					'email' => $email,
-					'id_user' => $id_user,
-					'logged_in' => TRUE 
-				];
-				$session->set($session_data); */
-
-
-
-
 
 				redirect('home');
 			} else {
