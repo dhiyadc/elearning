@@ -75,7 +75,7 @@ class Forgot_password extends CI_Controller{
         $mail->SMTPSecure = 'tls';
         $mail->Port = 587;
         
-        $mail->setFrom('biawakencer@gmail.com', 'EBiawak');
+        $mail->setFrom('biawakencer@gmail.com', 'Please Verify');
         //$mail->addReplyTo('info@example.com', 'CodexWorld');
         
         // Add a recipient
@@ -86,7 +86,7 @@ class Forgot_password extends CI_Controller{
         //$mail->addBCC('bcc@example.com');
         
         // Email subject
-        $mail->Subject = 'Send Email via SMTP using PHPMailer in CodeIgniter';
+        $mail->Subject = 'Please Verify Your Email to Reset Your Password';
         
         // Set email format to HTML
         $mail->isHTML(true);

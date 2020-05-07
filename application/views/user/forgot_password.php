@@ -29,6 +29,8 @@
                     ?>
                 <input type="email" class="form-control" name="email" placeholder="Your Email Address" autofocus required><br>
                 <button class="btn btn-primary" type="submit">Reset Password</button>
+                <br><br>
+                <a href="<?= base_url(); ?>login">Remember your password? Login Here</a>
                     <?php
                     }
 

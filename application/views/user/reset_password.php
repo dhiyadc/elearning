@@ -37,6 +37,8 @@
           <!-- <button class="btn btn-primary" value="login" type="submit"><i class="fa fa-lock"></i> Register</button> -->
           <br>
                 <button id="submit" class="btn btn-primary" type="submit">Reset Password</button>
+                <br>
+                <a href="<?= base_url(); ?>login">Remember your password? Login Here</a>
                     <?php
                     }
 
