@@ -34,7 +34,7 @@ class Reset_password extends CI_Controller{
                 $this->load->view('user/reset_password');
             } else {
                 $data = array(
-					'error_message' => 'Token is not valid / expired'
+                    'error_message' => 'Token is not valid / expired'
 					);
                 $this->load->view('user/reset_password', $data);
             }
@@ -45,7 +45,7 @@ class Reset_password extends CI_Controller{
         $token = $this->input->post('token');
         $newPassword = $this->input->post('password');
 
-        $this->user_database->updatePassword($email, $token);
+        $this->user_database->updatePassword($email, $newPassword);
         $data = array(
             'message_display' => 'Your password has been updated'
             );
