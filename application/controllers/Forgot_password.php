@@ -51,24 +51,6 @@ class Forgot_password extends CI_Controller{
 
         $this->user_database->setToken($email, $token);
 
-        // Load PHPMailer library
-        //$this->load->library('phpmailer_lib');
-        
-        // PHPMailer object
-       // $mail = $this->phpmailer_lib->load();
-        
-        // SMTP configuration
-        /*$mail->isSMTP();
-        $mail->Host     = 'smtp.example.com';
-        $mail->SMTPAuth = true;
-        $mail->Username = 'user@example.com';
-        $mail->Password = '********';
-        $mail->SMTPSecure = 'ssl';
-        $mail->Port     = 465; */
-
-        //biawakencer@gmail.com
-        //password@12
-
         $mail = new PHPMailer;
     
         // SMTP gmail configuration
@@ -88,7 +70,7 @@ class Forgot_password extends CI_Controller{
         $mail->SMTPSecure = 'ssl';
         $mail->Port = 465;
         
-        $mail->setFrom('biawakencer@gmail.com', 'Please Verify');
+        $mail->setFrom('biawakencer@gmail.com', 'Whuidi Email Masuk Dong');
         //$mail->addReplyTo('info@example.com', 'CodexWorld');
         
         // Add a recipient
@@ -133,13 +115,6 @@ class Forgot_password extends CI_Controller{
         );
         $this->load->view('user/forgot_password', $data);
 
-        /* <?php
-              if (isset($message_display)) {
-              echo "<div class='message'>";
-              echo $message_display;
-              echo "</div>";
-              }
-            ?> */
     }
     
 }

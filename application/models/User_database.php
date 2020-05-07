@@ -39,7 +39,9 @@ public function register($data){
 }
 
 public function getIDUser($email){
-
+    $sql = "SELECT id_user FROM user
+        WHERE email='$email'";
+    return $this->db->query($sql);
 }
 
 //Set token for reset password request

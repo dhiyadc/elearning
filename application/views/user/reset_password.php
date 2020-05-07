@@ -51,7 +51,7 @@
                     <p id="length" class="invalid">Minimum <b>8 characters</b></p>
                 </div>
                 <div id="message2">
-                    <p id="match" class="invalid">Password doesnt <b>match</b></p>
+                    <p id="match" class="invalid">Password doesnt match</p>
                 </div>
             </div>
         </div>
