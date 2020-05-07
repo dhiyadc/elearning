@@ -8,6 +8,7 @@ class Reset_password extends CI_Controller{
     {
         parent::__construct();
         // Load database
+        $this->load->model('user_database');
         
 	}
 
@@ -18,7 +19,19 @@ class Reset_password extends CI_Controller{
         $this->load->view('viewtes');
         //$this->load->view('layout/footer');
         } else {
-            $this->load->view('user/reset_password');
+            $email = $this->uri->segment(2);
+            $token = $this->uri->segment(3);
+            $isValid = $this->user_database->getValidToken($email, $token);
+            if(isValid > 0)
+            {
+                $this->load->view('user/reset_password');
+            } else {
+                $data = array(
+					'error_message' => 'Email is not registered'
+					);
+                $this->load->view('user/reset_password', $data);
+            }
+
         }
 
         /*CATATAN
@@ -31,12 +44,11 @@ class Reset_password extends CI_Controller{
         $token = $this->input->post('token');
         $newPassword = $this->input->post('password');
 
-
-
-
-
-
-
+        $this->user_database->updatePassword();
+        $data = array(
+            'message_display' => 'Your password has been updated'
+            );
+            $this->load->view('user/login_user', $data);
     }
     
 }

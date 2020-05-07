@@ -27,7 +27,7 @@ class Forgot_password extends CI_Controller{
         $email = $this->input->post('email');
 		$emailDB = $this->user_database->read_user_information($email);
 
-			if($emailDB = false){
+			if(!$emailDB){
 				$data = array(
 					'error_message' => 'Email is not registered'
 					);

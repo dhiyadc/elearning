@@ -23,9 +23,9 @@
                     $token = $this->uri->segment(3);
                     ?>
                 <?php
-                    if (isset($message_display)) {
+                    if (isset($error_message)) {
                     echo "<div class='message'>";
-                    echo $message_display;
+                    echo $eror_message;
                     echo "</div>";
                     } else {
                     ?>
@@ -40,12 +40,7 @@
                     <?php
                     }
 
-                    echo "<div class='error_msg'>";
-                    if (isset($error_message)) {
-                    echo $error_message;
-                    }
-                    //echo validation_errors();
-                    echo "</div>";
+                    
                 ?>
                 <!-- <br><br> -->
                 <!-- <p id="response"></p> -->

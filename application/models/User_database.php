@@ -51,14 +51,14 @@ public function setToken($email, $token)
     return $this->db->query($sql);
 }
 
-public function getToken($email, $token){
-    $sql = "SELECT id FROM users WHERE
+public function getValidToken($email, $token){
+    $sql = "SELECT id_user FROM user WHERE
     email='$email' AND token='$token' AND token<>'' AND tokenExpire > NOW()";
     $query = $this->db->query($sql);
-    return $query->result();
+    return $query->num_rows();
 }
 
-public function resetPassword($email, $newPassword)
+public function updatePassword($email, $newPassword)
 {
     $newPasswordHashed = hash('sha256', $newPassword);
     $sql = "UPDATE users SET token='', password = '$newPasswordHashed'
