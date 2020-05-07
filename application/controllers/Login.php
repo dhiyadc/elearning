@@ -17,16 +17,16 @@ class Login extends CI_Controller {
 
 		// Load database
 		//$this->load->model('admin_login_database');
-		$this->load->model('user_database');
+		$this->load->model('User_database');
 
 		$this->load->helper('security');
 	}
 	
 	// Show login page
 	public function index() {
-
+		
 		 if(isset($this->session->userdata['logged_in'])){
-		 	redirect('home');
+		 	redirect('profile');
 		 }else{
 			$this->load->view('user/login_user');
 		}
@@ -40,7 +40,7 @@ class Login extends CI_Controller {
 		
 		if ($this->form_validation->run() == FALSE) {
 			if(isset($this->session->userdata['logged_in'])){
-				redirect('home');
+				redirect('profile');
 			}else{
 				$this->load->view('user/login_user');
 			}
@@ -49,17 +49,17 @@ class Login extends CI_Controller {
 			'email' => $this->input->post('email'),
 			'password' => $this->input->post('password')
 			);
-			$result = $this->user_database->login($data);
+			$result = $this->User_database->login($data);
 			if ($result == TRUE) {
 			
 				$email = $this->input->post('email');
+				$user = $this->db->get_where('user', ['email' => $email])->row_array();
 				
-				$session_data = array(
-				'email' => $email, 
-				);
-				// Add user data in session
-				$this->session->set_userdata('logged_in', $session_data);
-				redirect('home');
+				$this->session->set_userdata('logged_in',TRUE);
+				$this->session->set_userdata('id_user',$user['id_user']);
+				$this->session->set_userdata('email',$email);
+
+				redirect('profile');
 			} else {
 				$data = array(
 				'error_message' => 'Invalid Username or Password'
@@ -74,9 +74,11 @@ class Login extends CI_Controller {
 		
 			// Removing session data
 			$sess_array = array(
-			'email' => ''
+			'email' => '',
+			'id_user' => '',
+			'logged_in' => TRUE
 			);
-			$this->session->unset_userdata('logged_in', $sess_array);
+			unset($_SESSION['email'],$_SESSION['id_user'],$_SESSION['logged_in']);
 			redirect('login');
 		} 
 	

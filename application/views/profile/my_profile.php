@@ -26,5 +26,6 @@
     </table>
     <a href="<?= base_url()?>profile/edit_profile">Edit Profile</a>
     <a href="<?= base_url()?>profile/delete_account">Delete Account</a>
+    <a href="<?= base_url(); ?>login/logout">Logout</a>
 </body>
 </html>

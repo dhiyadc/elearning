@@ -4,44 +4,50 @@ class Profile extends CI_Controller {
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('Profile_modal');
+        $this->load->model('Profile_model');
     }
 
     public function index()
     {
-        $data['profile'] = $this->Profile_modal->getMyProfile();
-        $data['account'] = $this->Profile_modal->getMyAccount();
-        $this->load->view('profile/my_profile',$data);
-    }
-
-    public function complete_profile()
-    {
-        $this->load->view('profile/complete_profile');
-    }
-
-    public function complete_profile_action()
-    {
-        $this->Profile_modal->completeProfile();
-        redirect('profile');
+        if(isset($this->session->userdata['logged_in'])){
+            var_dump($this->session->userdata('id_user'));
+            $data['profile'] = $this->Profile_model->getMyProfile();
+            $data['account'] = $this->Profile_model->getMyAccount();
+            $this->load->view('profile/my_profile',$data);
+        } else {
+            redirect('login');
+        }
     }
 
     public function edit_profile()
     {
-        $data['profile'] = $this->Profile_modal->getMyProfile();
-        $data['account'] = $this->Profile_modal->getMyAccount();
-        $this->load->view('profile/edit_profile',$data);
+        if(isset($this->session->userdata['logged_in'])){
+            $data['profile'] = $this->Profile_model->getMyProfile();
+            $data['account'] = $this->Profile_model->getMyAccount();
+            $this->load->view('profile/edit_profile',$data);
+        } else {
+            redirect('login');
+        }
     }
 
     public function edit_profile_action()
     {
-        $this->Profile_modal->editProfile();
-        $this->Profile_modal->editAccount();
-        redirect('profile');
+        if(isset($this->session->userdata['logged_in'])){
+            $this->Profile_model->editProfile();
+            $this->Profile_model->editAccount();
+            redirect('profile');
+        } else {
+            redirect('login');
+        }
     }
 
     public function delete_account()
     {
-        $this->Profile_modal->deleteAccount();
-        redirect('login');
+        if(isset($this->session->userdata['logged_in'])){
+            $this->Profile_model->deleteAccount();
+            redirect('login');
+        } else {
+            redirect('login');
+        }
     }
 }

@@ -35,7 +35,7 @@ class Register extends CI_Controller {
 	public function register_process()
 	{
 			if(isset($this->session->userdata['logged_in'])){
-				redirect('home_admin');
+				redirect('home');
 			}
 
 			
