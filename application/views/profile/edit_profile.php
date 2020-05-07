@@ -13,7 +13,7 @@
         <?php endforeach; ?>
         <?php foreach ($account as $val) : ?>
             Email:<?= $val['email']; ?>
-            Password: <input type="password" name="password" value="<?= $val['password']; ?>" required>
+            Password: <input type="password" name="password" required>
         <?php endforeach; ?>
         <button>Save</button>
     </form>

@@ -10,7 +10,6 @@ class Profile extends CI_Controller {
     public function index()
     {
         if(isset($this->session->userdata['logged_in'])){
-            var_dump($this->session->userdata('id_user'));
             $data['profile'] = $this->Profile_model->getMyProfile();
             $data['account'] = $this->Profile_model->getMyAccount();
             $this->load->view('profile/my_profile',$data);

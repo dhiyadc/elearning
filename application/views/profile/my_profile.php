@@ -20,7 +20,7 @@
                 <td>Email: <?= $val['email']; ?></td>
             </tr>
             <tr>
-                <td>Password: <?= $val['password']; ?></td>
+                <td>Password: ******</td>
             </tr>
         <?php endforeach; ?>
     </table>
