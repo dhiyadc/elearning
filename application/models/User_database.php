@@ -86,7 +86,6 @@ public function read_user_information($email) {
     }
 }
 
-
 }
 
 ?>

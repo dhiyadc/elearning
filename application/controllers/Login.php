@@ -17,7 +17,7 @@ class Login extends CI_Controller {
 
 		// Load database
 		//$this->load->model('admin_login_database');
-		$this->load->model('user_database');
+		$this->load->model('User_database');
 
 		$this->load->helper('security');
 	}
@@ -25,8 +25,10 @@ class Login extends CI_Controller {
 	// Show login page
 	public function index() {
 
+
 		 if(isset($_SESSION['logged_in'])){
 		 	redirect('home');
+
 		 }else{
 			$this->load->view('user/login_user');
 		}
@@ -39,8 +41,10 @@ class Login extends CI_Controller {
 		$this->form_validation->set_rules('password', 'Password', 'trim|xss_clean');
 		
 		if ($this->form_validation->run() == FALSE) {
+
 			if(isset($_SESSION['logged_in'])){
 				redirect('home');
+
 			}else{
 
 				$this->load->view('user/login_user');
@@ -50,10 +54,11 @@ class Login extends CI_Controller {
 			'email' => $this->input->post('email'),
 			'password' => $this->input->post('password')
 			);
-			$result = $this->user_database->login($data);
+			$result = $this->User_database->login($data);
 			if ($result == TRUE) {
 			
 				$email = $this->input->post('email');
+
 				$id_user = $this->user_database->getIDUser($email);
 
 				
@@ -63,6 +68,7 @@ class Login extends CI_Controller {
 				$this->session->set_userdata('email' , $email);
 
 				redirect('home');
+
 			} else {
 				$data = array(
 				'error_message' => 'Invalid Username or Password'
