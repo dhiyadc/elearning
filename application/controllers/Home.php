@@ -15,7 +15,7 @@ class Home extends CI_Controller{
         //Controller Home
         if(isset($_SESSION['logged_in'])){
         //$this->load->view('layout/header');
-        var_dump($this->session->userdata('id_user'));
+        var_dump($_SESSION['id_user']);
         $this->load->view('viewtes');
         //$this->load->view('layout/footer');
         } else {

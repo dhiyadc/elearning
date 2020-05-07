@@ -93,15 +93,10 @@ class Login extends CI_Controller {
 		public function logout() {
 		
 			// Removing session data
-			$sess_array = array(
-			'email' => '',
-			'id_use' => '',
-			'logged_in' => TRUE
-			);
-			//$this->session->unset_userdata($sess_array);
-			unset($_SESSION['email'],
-					$_SESSION['id_user'],
-					$_SESSION['logged_in']);
+			$this->session->unset_userdata('email');
+			$this->session->unset_userdata('id_user');
+			$this->session->unset_userdata('logged_in');
+
 			redirect('login');
 		} 
 	
