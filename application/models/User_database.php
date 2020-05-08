@@ -39,10 +39,20 @@ public function register($data){
 }
 
 public function getIDUser($email){
-    $sql = "SELECT id_user FROM user
+    /*$sql = "SELECT id_user FROM user
         WHERE email='$email'";
     $query = $this->db->query($sql);
-    return $query->result();
+    return $query->getFirstRow(); */
+    
+    
+    $condition = "email =" . "'" . $email . "'";
+    $this->db->select('id_user');
+    $this->db->from('user');
+    $this->db->where($condition);
+    //$this->db->limit(1);
+    $query = $this->db->get(); 
+
+    return $query->result_array()[0];
 }
 
 //Set token for reset password request

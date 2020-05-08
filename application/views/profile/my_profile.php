@@ -7,6 +7,10 @@
 </head>
 <body>
     <table>
+    <?php   echo implode('', $_SESSION['logged_in']['id_user']);
+            echo "<br>";
+            echo $_SESSION['logged_in']['email'];
+            ?>
         <?php foreach ($profile as $val) : ?>
             <tr>
                 <td>Name: <?= $val['nama']; ?></td>
