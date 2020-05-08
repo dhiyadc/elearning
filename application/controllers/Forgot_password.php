@@ -18,7 +18,7 @@ class Forgot_password extends CI_Controller{
 
     public function index(){
         if(isset($this->session->userdata['logged_in'])){
-            redirect('home');
+            redirect('homepage');
         }else{
             $this->load->view('user/forgot_password');
        }

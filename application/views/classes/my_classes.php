@@ -7,15 +7,14 @@
 </head>
 <body>
     <a href="<?= base_url()?>classes/new_class">Buat Kelas</a>
+    <a href="<?= base_url()?>profile">Back</a>
     <table border="1">
         <th>Judul</th>
         <th>Poster</th>
-        <th>Deskripsi</th>
         <?php foreach ($kelas as $val) : ?>
             <tr>
                 <td><a href="<?= base_url()?>classes/open_class/<?= $val['id_kelas'] ?>"><?= $val['judul_kelas']; ?></a></td>
                 <td><img src="<?= base_url().'images/'.$val['poster_kelas']?>" alt="" height="200px"></td>
-                <td><?= $val['deskripsi_kelas']; ?></td>
             </tr>
         <?php endforeach; ?>
     </table>

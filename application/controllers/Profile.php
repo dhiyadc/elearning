@@ -44,7 +44,7 @@ class Profile extends CI_Controller {
     {
         if(isset($this->session->userdata['logged_in'])){
             $this->Profile_model->deleteAccount();
-            redirect('login');
+            redirect('login/logout');
         } else {
             redirect('login');
         }

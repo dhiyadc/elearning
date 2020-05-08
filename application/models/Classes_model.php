@@ -8,7 +8,7 @@ class Classes_model extends CI_Model {
 
     public function getMyClasses()
     {
-        $this->db->where('pembuat_kelas',1);
+        $this->db->where('pembuat_kelas',$this->session->userdata('id_user'));
         return $this->db->get('kelas')->result_array();
     }
 
@@ -38,6 +38,28 @@ class Classes_model extends CI_Model {
         return $this->db->get('status_kegiatan')->result_array();
     }
 
+    public function getPesertaByUserIdClassId($id)
+    {
+        $this->db->where('id_user',$this->session->userdata('id_user'));
+        $this->db->where('id_kelas',$id);
+        return $this->db->get('peserta')->result_array();
+    }
+
+    public function getPeserta()
+    {
+        return $this->db->get('peserta')->result_array();
+    }
+
+    public function cekPeserta($id)
+    {
+        if ($this->db->get_where('peserta',['id_kelas' => $id])->row_array() == null) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
     private function insertImage() 
     {
         $config['upload_path'] = './images/';
@@ -55,7 +77,7 @@ class Classes_model extends CI_Model {
     {
         $data = [
             'id_kelas' => uniqid(),
-            'pembuat_kelas' => 1,
+            'pembuat_kelas' => $this->session->userdata('id_user'),
             'judul_kelas' => $this->input->post('judul'),
             'deskripsi_kelas' => $this->input->post('deskripsi'),
             'kategori_kelas' => $this->input->post('kategori'),
@@ -162,5 +184,22 @@ class Classes_model extends CI_Model {
 
         $this->db->where('id_kegiatan',$id);
         $this->db->update('jadwal_kegiatan',$data);
+    }
+
+    public function joinClass($id)
+    {
+        $data = [
+            'id_kelas' => $id,
+            'id_user' => $this->session->userdata('id_user')
+        ];
+
+        $this->db->insert('peserta',$data);
+    }
+
+    public function leaveClass($id)
+    {
+        $this->db->where('id_user',$this->session->userdata('id_user'));
+        $this->db->where('id_kelas',$id);
+        $this->db->delete('peserta');
     }
 }

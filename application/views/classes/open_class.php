@@ -40,7 +40,7 @@
                         <?php endif; ?>
                     <?php endforeach; ?>
                     <td>
-                        <?php if ($val['pembuat_kelas'] == 1) : ?>
+                        <?php if ($val['pembuat_kelas'] == $this->session->userdata('id_user')) : ?>
                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editKegiatan<?= $val2['id_kegiatan']; ?>">Edit</button>
                             <div class="modal fade" id="editKegiatan<?= $val2['id_kegiatan']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
@@ -75,8 +75,25 @@
                 </tr>
             <?php endforeach; ?>
         </table>
+        <br>
 
-        <?php if ($val['pembuat_kelas'] != 1) : ?>
+        <?php if ($val['pembuat_kelas'] != $this->session->userdata('id_user')) : ?>
+            <?php if ($cek == true) : ?>
+                <?php if ($val['jenis_kelas'] == 1) : ?>
+                    <a href="<?= base_url()?>classes/join_class/<?= $val['id_kelas']; ?>">Ikut Kelas Ini</a>
+                <?php else : ?>
+                    <a href="<?= base_url()?>classes/pembayaran_kelas/<?= $val['id_kelas']; ?>">Ikut Kelas Ini</a>
+                <?php endif; ?>
+            <?php elseif ($peserta != null) : ?>
+                <p>Anda telah mengikuti kelas ini</p>
+            <?php elseif ($cek == false) : ?>
+                <?php if ($val['jenis_kelas'] == 1) : ?>
+                    <a href="<?= base_url()?>classes/join_class/<?= $val['id_kelas']; ?>">Ikut Kelas Ini</a>
+                <?php else : ?>
+                    <a href="<?= base_url()?>classes/pembayaran_kelas/<?= $val['id_kelas']; ?>">Ikut Kelas Ini</a>
+                <?php endif; ?>
+            <?php endif; ?>
+
             <?php foreach ($status as $val2) : ?>
                 <?php if ($val2['id_status'] == $val['status_kelas']) : ?> 
                     <p>Status: <?= $val2['nama_status']; ?></p>
@@ -84,7 +101,7 @@
             <?php endforeach; ?>
         <?php endif; ?>
 
-        <?php if ($val['pembuat_kelas'] == 1) : ?>
+        <?php if ($val['pembuat_kelas'] == $this->session->userdata('id_user')) : ?>
             <form action="<?= base_url()?>classes/update_status/<?= $val['id_kelas']; ?>" method="POST">
             <label>Status Kelas: </label>
             <select name="status">
@@ -119,8 +136,10 @@
             <br><br>
             <a href="<?= base_url()?>classes/update_class/<?= $val['id_kelas'] ?>">Edit</a>
             <a href="<?= base_url()?>classes/delete_class/<?= $val['id_kelas'] ?>">Hapus</a>
+            <a href="<?= base_url()?>classes">Back</a>
+        <?php else : ?>
+            <a href="<?= base_url()?>">Back</a>
         <?php endif; ?>
-        <a href="<?= base_url()?>classes/">Back</a>
     <?php endforeach; ?>
 </body>
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
