@@ -24,7 +24,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 $config['base_url'] = 'http://localhost/elearning/';
+
 $config['composer_autoload'] = "vendor/autoload.php";
+
 
 /*
 |--------------------------------------------------------------------------
