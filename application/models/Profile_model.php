@@ -6,7 +6,6 @@ class Profile_model extends CI_Model {
         //return $this->db->get_where('detail_user',['id_user' => $this->session->userdata('id_user')])->result_array();
 
         $id_user = implode('', $_SESSION['logged_in']['id_user']);
-        //$id_user = mysqli_real_escape_string($id_user);
         $sql = "SELECT * FROM detail_user
         WHERE id_user='$id_user'";
     $query = $this->db->query($sql);
@@ -18,7 +17,6 @@ class Profile_model extends CI_Model {
         //return $this->db->get_where('user',['id_user' => $this->session->userdata('id_user')])->result_array();
         
         $id_user = implode('', $_SESSION['logged_in']['id_user']);
-        //$id_user = mysqli_real_escape_string($id_user);
         $sql = "SELECT * FROM user
         WHERE id_user='$id_user'";
     $query = $this->db->query($sql);

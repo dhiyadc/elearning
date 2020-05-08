@@ -67,8 +67,6 @@ class Login extends CI_Controller {
 
 				// Add user data in session
 				$this->session->set_userdata('logged_in', $sess_array);
-				//$this->session->set_userdata('id_user', $id_user);
-			    //$this->session->set_userdata('email' , $email);	
 				redirect('profile');
 
 			} else {
@@ -83,17 +81,8 @@ class Login extends CI_Controller {
 		// Logout from user
 		public function logout() {
 		
-			// Removing session data
-			$sess_array = array (
-				'id_user' => '',
-				'email' => '',
-			);
-
+			// Removing session data		
 			unset($_SESSION['logged_in']);
-
-			//$this->session->unset_userdata('email');
-			//$this->session->unset_userdata('id_user');
-			//$this->session->unset_userdata('logged_in');
 
 			redirect('login');
 		} 
