@@ -58,15 +58,13 @@ class Login extends CI_Controller {
 			if ($result == TRUE) {
 			
 				$email = $this->input->post('email');
-
-				$id_user = $this->User_database->getIDUser($email);			
-				$sess_array = array (
-					'id_user' => $id_user,
-					'email' => $email,
-				);
+				$id_user = $this->User_database->getIDUser($email);	
 
 				// Add user data in session
-				$this->session->set_userdata('logged_in', $sess_array);
+				$this->session->set_userdata('logged_in', TRUE);
+				$this->session->set_userdata('id_user', $id_user['id_user']);
+				$this->session->set_userdata('email', $email);
+
 				redirect('profile');
 
 			} else {
@@ -82,7 +80,9 @@ class Login extends CI_Controller {
 		public function logout() {
 		
 			// Removing session data		
-			unset($_SESSION['logged_in']);
+			$this->session->unset_userdata('logged_in');
+			$this->session->unset_userdata('id_user');
+			$this->session->unset_userdata('email');
 
 			redirect('login');
 		} 
