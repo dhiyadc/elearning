@@ -57,7 +57,7 @@
                 <li><a href="<?php echo base_url(); ?>" class="nav-link">Beranda</a></li>
                 <li><a href="Kelas" class="nav-link">Kelas</a></li>
                 <li><a href="#programs-section" class="nav-link">Programs</a></li>
-                <li><a href="#" class="nav-link">Mentor</a></li>
+                <li><a href="#teachers-section" class="nav-link">Mentor</a></li>
                 <li><a href="#contact-section" class="nav-link">Kontak</a></li>
               </ul>
             </nav>
