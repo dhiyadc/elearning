@@ -43,7 +43,7 @@ class Login extends CI_Controller {
 		if ($this->form_validation->run() == FALSE) {
 
 			if(isset($_SESSION['logged_in'])){
-				redirect('home');
+				redirect('profile');
 
 			}else{
 

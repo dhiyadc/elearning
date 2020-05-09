@@ -16,8 +16,8 @@
       *********************************************************************************************************************************************************** -->
   <div id="login-page">
     <div class="container">
-      <form class="form-login" action="<?= base_url() ?>login/user_login_process" method="post">
-        <h2 class="form-login-heading">sign in now</h2>
+      <form class="form-login" action="<?= base_url() ?>admin/admin_login_process" method="post">
+        <h2 class="form-login-heading">Admin login</h2>
         <div class="login-wrap">
               <?php
               if (isset($logout_message)) {
@@ -45,10 +45,8 @@
           <br>
           <input type="password" class="form-control" name="password" placeholder="Password" required>
           <br>
-          <button class="btn btn-theme btn-block" value="login" type="submit"><i class="fa fa-lock"></i> SIGN IN</button>
-          
-          <a href="<?= base_url(); ?>forgot_password"><h3>Forget Password</h3></a>
-          <a href="<?= base_url(); ?>register"><h2>Register</h2></a>
+          <button class="btn btn-theme btn-block" value="login" type="submit"><i class="fa fa-lock"></i> Login</button>
+
         </div>
         
       </form>
