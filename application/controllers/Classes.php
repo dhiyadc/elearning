@@ -48,7 +48,6 @@ class Classes extends CI_Controller {
             $data['status'] = $this->Classes_model->getStatus();
             $data['peserta'] = $this->Classes_model->getPesertaByUserIdClassId($id_kelas);
             $data['cek'] = $this->Classes_model->cekPeserta($id_kelas);
-            var_dump($data['cek']);
             $this->load->view('classes/open_class',$data);
         } else {
             redirect('login');

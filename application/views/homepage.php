@@ -7,7 +7,12 @@
 </head>
 <body>
     <a href="<?= base_url()?>classes/new_class">Buat Kelas</a>
-    <a href="<?= base_url()?>profile">Profile Saya</a>
+    <?php if(isset($_SESSION['logged_in'])) : ?>
+        <a href="<?= base_url()?>profile">Profile Saya</a>
+    <?php endif; ?>
+    <?php if(!isset($_SESSION['logged_in'])) : ?>
+        <a href="<?= base_url()?>login">Login</a>
+    <?php endif; ?>
     <table border="1">
         <th>Judul</th>
         <th>Poster</th>
