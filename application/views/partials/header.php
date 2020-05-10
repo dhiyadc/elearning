@@ -56,17 +56,17 @@
               <ul class="site-menu main-menu js-clone-nav mx-auto d-none d-lg-block  m-0 p-0">
                 <li><a href="<?php echo base_url(); ?>" class="nav-link">Beranda</a></li>
                 <li><a href="Kelas" class="nav-link">Kelas</a></li>
-                <li><a href="#programs-section" class="nav-link">Programs</a></li>
-                <li><a href="#teachers-section" class="nav-link">Mentor</a></li>
-                <li><a href="#contact-section" class="nav-link">Kontak</a></li>
+                <li><a href="#contact-section" class="nav-link">Profile</a></li>
               </ul>
             </nav>
           </div>
 
+          
           <div class="ml-auto w-25">
             <nav class="site-navigation position-relative text-right" role="navigation">
-              <ul class="site-menu main-menu site-menu-dark js-clone-nav mr-auto d-none d-lg-block m-0 p-0">
-                <li class="cta"><a href="<?php echo base_url(); ?>" class="nav-link"><span>Login</span></a></li>
+              <ul class="site-menu main-menu site-menu-white js-clone-nav mr-auto d-none d-lg-block m-0 p-0">
+                <li class="nav-link"><a href="<?php echo base_url(); ?>" class="nav-link"><span>Login</span></a></li>
+                <li class="cta"><a href="" class="nav-link"><span>Daftar</span></a></li>
               </ul>
             </nav>
             <a href="#" class="d-inline-block d-lg-none site-menu-toggle js-menu-toggle text-black float-right"><span class="icon-menu h3"></span></a>

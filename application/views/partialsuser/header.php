@@ -53,8 +53,8 @@
               <ul class="site-menu main-menu js-clone-nav mx-auto d-none d-lg-block  m-0 p-0">
                 <li><a href="#" class="nav-link">Beranda</a></li>
                 <li><a href="#" class="nav-link">Kelas</a></li>
-                <li><a href="#" class="nav-link">Mentor</a></li>
-                <li><a href="#contact-section" class="nav-link">Kontak</a></li>
+                <li><a href="#" class="nav-link">Profile</a></li>
+               
               </ul>
             </nav>
           </div>
