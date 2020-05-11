@@ -31,7 +31,7 @@
                     </div>
                     <div class="form-group mb-4">
                         <input type="password" id="myPassConfirm" class="form-control" name="confirmpassword" placeholder="Masukan Kembali Password" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$" title="Please include at least 1 uppercase character, 1 lowercase character, and 1 number." required>
-                        <small class="form-text text-muted">Ulangi password diatas sekali lagi.</small>
+                        <small class="form-text text-muted mb-2">Ulangi password diatas sekali lagi.</small>
                         <small>
                         <input type="checkbox" class="form-checkbox" onclick="myFunction()"> Show password
                         </small>
