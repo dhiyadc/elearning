@@ -19,13 +19,6 @@
         </select><br>
         Poster: <input type="file" name="poster" accept=".png, .jpg, .jpeg">
         <input type="hidden" name="old_image" value="<?= $val['poster_kelas'] ?>"><br>
-        <label>Jenis: </label>
-        <select name="jenis">
-            <?php foreach ($jenis as $val2) : ?>
-                <?php $selected = ($val['jenis_kelas'] == $val2['id_jenis'])? "selected" : ""; ?>
-                <option value="<?= $val2['id_jenis']; ?>" <?= $selected ?>><?= $val2['nama_jenis']; ?></option>
-            <?php endforeach; ?>
-        </select><br>
         <input type="submit" name="submit" value="Simpan">
     </form>
 <?php endforeach; ?>

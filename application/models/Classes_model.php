@@ -50,6 +50,37 @@ class Classes_model extends CI_Model {
         return $this->db->get('peserta')->result_array();
     }
 
+    public function getIdNewClass()
+    {
+        $this->db->select('id_kelas');
+        $this->db->where('pembuat_kelas',$this->session->userdata('id_user'));
+        $this->db->order_by('id_kelas', 'DESC');
+        $this->db->limit('1');
+        return $this->db->get('kelas')->result_array()[0];
+    }
+    
+    public function getKegiatan($id)
+    {
+        $sql = "SELECT *, DATE_FORMAT(tanggal_kegiatan, '%W, %d %M %Y') as tanggal, DATE_FORMAT(tanggal_kegiatan, '%H:%i') as waktu
+                FROM jadwal_kegiatan
+                WHERE id_kelas = '$id'";
+        return $this->db->query($sql)->result_array();
+    }
+
+    public function getTanggalKegiatan($id)
+    {
+        $data = $this->db->get_where('jadwal_kegiatan',['id_kelas' => $id])->result_array();
+        $selesai = true;
+        foreach ($data as $key => $value) {
+            if($value['tanggal_kegiatan'] > date("Y-m-d")){
+                $selesai = false;
+            break;
+            }
+        }
+
+        $this->updateStatus($id,$selesai);
+    }
+
     public function cekPeserta($id)
     {
         if ($this->db->get_where('peserta',['id_kelas' => $id])->row_array() == null) {
@@ -87,16 +118,30 @@ class Classes_model extends CI_Model {
         ];
 
         $this->db->insert('kelas',$data);
+        
+        if(!empty($this->input->post('addmore'))){
+            $this->setKegiatan($this->getIdNewClass()['id_kelas']);
+        }
     }
 
-    public function updateStatus($id)
+    public function updateStatus($id,$selesai)
     {
-        $data = [
-            'status_kelas' => $this->input->post('status')
-        ];
-
-        $this->db->where('id_kelas',$id);
-        $this->db->update('kelas',$data);
+        if ($selesai == true) {
+            $data = [
+                'status_kelas' => 2
+            ];
+    
+            $this->db->where('id_kelas',$id);
+            $this->db->update('kelas',$data);
+        }
+        else if ($selesai == false) {
+            $data = [
+                'status_kelas' => 1
+            ];
+    
+            $this->db->where('id_kelas',$id);
+            $this->db->update('kelas',$data);
+        }
     }
 
     private function updateImage($id) 
@@ -122,8 +167,7 @@ class Classes_model extends CI_Model {
                 'judul_kelas' => $this->input->post('judul'),
                 'deskripsi_kelas' => $this->input->post('deskripsi'),
                 'kategori_kelas' => $this->input->post('kategori'),
-                'poster_kelas' => $this->updateImage($id),
-                'jenis_kelas' => $this->input->post('jenis')
+                'poster_kelas' => $this->updateImage($id)
             ];
         }
         else {
@@ -131,55 +175,55 @@ class Classes_model extends CI_Model {
                 'judul_kelas' => $this->input->post('judul'),
                 'deskripsi_kelas' => $this->input->post('deskripsi'),
                 'kategori_kelas' => $this->input->post('kategori'),
-                'poster_kelas' => $this->input->post('old_image'),
-                'jenis_kelas' => $this->input->post('jenis')
+                'poster_kelas' => $this->input->post('old_image')
             ];
         }
 
         $this->db->where('id_kelas',$id);
         $this->db->update('kelas',$data);
     }
-
-    public function deleteClass($id)
-    {
-        $data = $this->db->get_where('kelas',['id_kelas' => $id])->row();
-        $deldata = $this->db->delete('kelas',['id_kelas'=>$id]);
-        if($deldata){
-            unlink("images/".$data->poster_kelas);
-        }
-    }
     
-    public function setKegiatan($id)
+    public function setKegiatanByClass($id)
     {
         $data = [
             'id_kegiatan' => uniqid(),
             'id_kelas' => $id,
             'deskripsi_kegiatan' => $this->input->post('deskripsi'),
-            'tanggal_kegiatan' => $this->input->post('tanggal'),
+            'tanggal_kegiatan' => $this->input->post('tanggal') . ":00",
             'status_kegiatan' => 1
         ];
         
         $this->db->insert('jadwal_kegiatan',$data);
     }
 
-    public function getKegiatan($id)
+    public function setKegiatan($id)
     {
-        $this->db->where('id_kelas',$id);
-        return $this->db->get('jadwal_kegiatan')->result_array();
-    }
+        if(!empty($this->input->post('addmore'))){
+            foreach ($this->input->post('addmore') as $key => $value) {
+                $i = $key++;
+                if($i % 2 == 0) {
+                    $deskripsi = $value['deskripsi_kegiatan'];
+                }
+                else {
+                    $tanggal = $value['tanggal_kegiatan'];
+                    $data = [
+                        'id_kegiatan' => uniqid(),
+                        'id_kelas' => $id,
+                        'deskripsi_kegiatan' => $deskripsi,
+                        'tanggal_kegiatan' => $tanggal . ":00",
+                        'status_kegiatan' => 1
+                    ];
 
-    public function deleteKegiatan($id)
-    {
-        $this->db->where('id_kegiatan',$id);
-        $this->db->delete('jadwal_kegiatan');
+                    $this->db->insert('jadwal_kegiatan',$data);
+                }
+            }
+        }
     }
 
     public function updateKegiatan($id)
     {
         $data = [
-            'deskripsi_kegiatan' => $this->input->post('deskripsi'),
-            'tanggal_kegiatan' => $this->input->post('tanggal'),
-            'status_kegiatan' => $this->input->post('status')
+            'deskripsi_kegiatan' => $this->input->post('deskripsi')
         ];
 
         $this->db->where('id_kegiatan',$id);

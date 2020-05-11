@@ -25,15 +25,23 @@
                 <p>Pembuat: <?= $val2['nama']; ?></p>
             <?php endif; ?>
         <?php endforeach; ?>
+        
+        <?php foreach ($status as $val2) : ?>
+            <?php if ($val2['id_status'] == $val['status_kelas']) : ?> 
+                <p>Status: <?= $val2['nama_status']; ?></p>
+            <?php endif; ?>
+        <?php endforeach; ?>
 
         <table border="1">
                 <th>Deskripsi</th>
-                <th>Jadwal</th>
+                <th>Hari/Tanggal</th>
+                <th>Waktu</th>
                 <th>Status</th>
             <?php foreach ($kegiatan as $val2) : ?>
                 <tr>
                     <td><?= $val2['deskripsi_kegiatan']; ?></td>
-                    <td><?= $val2['tanggal_kegiatan']; ?></td>
+                    <td><?= $val2['tanggal']; ?></td>
+                    <td><?= $val2['waktu']; ?></td>
                     <?php foreach ($status as $val3) : ?>
                         <?php if ($val3['id_status'] == $val2['status_kegiatan']) : ?> 
                             <td><?= $val3['nama_status']; ?></td>
@@ -41,7 +49,7 @@
                     <?php endforeach; ?>
                     <td>
                         <?php if ($val['pembuat_kelas'] == $this->session->userdata('id_user')) : ?>
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editKegiatan<?= $val2['id_kegiatan']; ?>">Edit</button>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editKegiatan<?= $val2['id_kegiatan']; ?>">Edit Kegiatan</button>
                             <div class="modal fade" id="editKegiatan<?= $val2['id_kegiatan']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
@@ -53,15 +61,7 @@
                                         </div>
                                         <div class="modal-body">
                                             <form action="<?= base_url()?>classes/edit_kegiatan/<?= $val['id_kelas']; ?>/<?= $val2['id_kegiatan']; ?>" method="POST">
-                                                Deskripsi Kegiatan: <input type="text" name="deskripsi" value="<?= $val2['deskripsi_kegiatan']; ?>" required ><br>
-                                                Tanggal Kegiatan: <input type="datetime" name="tanggal" value="<?= $val2['tanggal_kegiatan']; ?>" required><br>
-                                                <label>Status Kegiatan: </label>
-                                                <select name="status">
-                                                    <?php foreach ($status as $val3) : ?>
-                                                        <?php $selected = ($val2['status_kegiatan'] == $val3['id_status'])? "selected" : ""; ?>
-                                                        <option value="<?= $val3['id_status']; ?>" <?= $selected ?>><?= $val3['nama_status']; ?></option>
-                                                    <?php endforeach; ?>
-                                                </select>
+                                                Deskripsi Kegiatan: <input type="text" name="deskripsi" value="<?= $val2['deskripsi_kegiatan']; ?>" required >
                                                 <br>
                                                 <button>Save</button>
                                             </form>
@@ -69,7 +69,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <a class="btn btn-danger" href="<?= base_url()?>classes/hapus_kegiatan/<?= $val['id_kelas']; ?>/<?= $val2['id_kegiatan']; ?>">Hapus</a>
                         <?php endif; ?>
                     </td>
                 </tr>
@@ -93,26 +92,9 @@
                     <a href="<?= base_url()?>classes/pembayaran_kelas/<?= $val['id_kelas']; ?>">Ikut Kelas Ini</a>
                 <?php endif; ?>
             <?php endif; ?>
-
-            <?php foreach ($status as $val2) : ?>
-                <?php if ($val2['id_status'] == $val['status_kelas']) : ?> 
-                    <p>Status: <?= $val2['nama_status']; ?></p>
-                <?php endif; ?>
-            <?php endforeach; ?>
         <?php endif; ?>
 
         <?php if ($val['pembuat_kelas'] == $this->session->userdata('id_user')) : ?>
-            <form action="<?= base_url()?>classes/update_status/<?= $val['id_kelas']; ?>" method="POST">
-            <label>Status Kelas: </label>
-            <select name="status">
-                <?php foreach ($status as $val2) : ?>
-                    <?php $selected = ($val['status_kelas'] == $val2['id_status'])? "selected" : ""; ?>
-                    <option value="<?= $val2['id_status']; ?>" <?= $selected ?>><?= $val2['nama_status']; ?></option>
-                <?php endforeach; ?>
-            </select>
-            <input type="submit" name="submit" value="Simpan">
-            </form>
-
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#tambahKegiatan">Tambah Jadwal Kegiatan</button>
             <div class="modal fade" id="tambahKegiatan" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
@@ -126,7 +108,7 @@
                         <div class="modal-body">
                             <form action="<?= base_url()?>classes/set_kegiatan/<?= $val['id_kelas'] ?>" method="POST">
                                 Deskripsi Kegiatan: <input type="text" name="deskripsi" required><br>
-                                Tanggal Kegiatan: <input type="datetime" name="tanggal" value="2020/01/01 00:00:00" required><br>
+                                Tanggal Kegiatan: <input type="datetime" name="tanggal" value="<?= date("Y/m/d"); ?> 00:00" required><br>
                                 <button>Save</button>
                             </form>
                         </div>
@@ -134,8 +116,7 @@
                 </div>
             </div>
             <br><br>
-            <a href="<?= base_url()?>classes/update_class/<?= $val['id_kelas'] ?>">Edit</a>
-            <a href="<?= base_url()?>classes/delete_class/<?= $val['id_kelas'] ?>">Hapus</a>
+            <a href="<?= base_url()?>classes/update_class/<?= $val['id_kelas'] ?>">Edit Kelas</a>
             <a href="<?= base_url()?>classes">Back</a>
         <?php else : ?>
             <a href="<?= base_url()?>">Back</a>

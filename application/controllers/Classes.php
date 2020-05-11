@@ -42,6 +42,7 @@ class Classes extends CI_Controller {
     {
         if(isset($this->session->userdata['logged_in'])){
             $data['kegiatan'] = $this->Classes_model->getKegiatan($id_kelas);
+            $data['tanggal'] = $this->Classes_model->getTanggalKegiatan($id_kelas);
             $data['kelas'] = $this->Classes_model->getClassById($id_kelas);
             $data['pembuat'] = $this->Classes_model->getPembuat();
             $data['kategori'] = $this->Classes_model->getKategori();
@@ -49,16 +50,6 @@ class Classes extends CI_Controller {
             $data['peserta'] = $this->Classes_model->getPesertaByUserIdClassId($id_kelas);
             $data['cek'] = $this->Classes_model->cekPeserta($id_kelas);
             $this->load->view('classes/open_class',$data);
-        } else {
-            redirect('login');
-        }
-    }
-
-    public function update_status($id_kelas)
-    {
-        if(isset($this->session->userdata['logged_in'])){
-            $this->Classes_model->updateStatus($id_kelas);
-            redirect('classes/open_class/' . $id_kelas);
         } else {
             redirect('login');
         }
@@ -86,30 +77,10 @@ class Classes extends CI_Controller {
         }
     }
 
-    public function delete_class($id_kelas)
-    {
-        if(isset($this->session->userdata['logged_in'])){
-            $this->Classes_model->deleteClass($id_kelas);
-            redirect('classes');
-        } else {
-            redirect('login');
-        }
-    }
-
     public function set_kegiatan($id_kelas)
     {
         if(isset($this->session->userdata['logged_in'])){
-            $this->Classes_model->setKegiatan($id_kelas);
-            redirect('classes/open_class/' . $id_kelas);
-        } else {
-            redirect('login');
-        }
-    }
-
-    public function hapus_kegiatan($id_kelas,$id_kegiatan)
-    {
-        if(isset($this->session->userdata['logged_in'])){
-            $this->Classes_model->deleteKegiatan($id_kegiatan);
+            $this->Classes_model->setKegiatanByClass($id_kelas);
             redirect('classes/open_class/' . $id_kelas);
         } else {
             redirect('login');
