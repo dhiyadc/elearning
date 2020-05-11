@@ -64,7 +64,7 @@
             echo "</div>";
           ?>
           <input type="text" name="nama" placeholder="Full Name" autofocus required>
-          <input type="number" name="no_telepon" id="" placeholder="Phone Number" required>
+          <input type="tel" name="no_telepon" id="" placeholder="Phone Number" required>
           <input type="email" class="form-control" name="email" placeholder="Email" oninvalid="this.setCustomValidity('Please enter a valid email address')"
     oninput="this.setCustomValidity('')" required>
           
