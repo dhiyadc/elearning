@@ -1006,8 +1006,8 @@ h1, h2, h3, h4, h5,
       margin-top: -246px; } }
 
 .nonloop-block-14 .owl-stage {
-  padding-top: 5rem;
-  padding-bottom: 5rem; }
+  padding-top: 2rem;
+  padding-bottom: 2rem; }
 
 .course {
   -webkit-box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.3);
@@ -1215,3 +1215,25 @@ color: #000;
   background-size:30%;
   border-radius: 6rem,;
 } */
+
+.bannerkelas{
+  background-image: url("../images/banner2.jpg");
+  
+  background-size: cover;
+  background-position: 0 0;
+}
+
+.barbawah{
+  height:400px ;
+  color: black;
+}
+
+.judul-list{
+  border-bottom: 1px solid #dedfe0;
+  padding-top: 2rem;
+  text-transform: uppercase;
+}
+
+.paket position-relative rounded{
+background-color: black;
+}

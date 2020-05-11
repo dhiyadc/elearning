@@ -1,42 +1,57 @@
+<!-- Jumbotron -->
+<div class="card-image bannerkelas">
+  <div class="text-white text-center rgba-stylish-strong py-5 px-4">
+    <div class="py-5">
 
-<!--         
-
-      <div class="p-5 text-black mb-5">
-          <h1 style="font-weight : 500 !important;">Daftar Kelas</h1>
-      </div> -->
-
-
-    
-  <div class="row">   
-    <div class="col-lg-16 bg-dark">
-
+      <div class="col-lg-6 pb-lg-4 pb-sm-3 ">
+      <!-- <h5 class="h5 orange-text"><i class="fa fa-camera-retro"></i>#STAYATHOME</h5> -->
+      <h1 class="card-title h2 my-4 py-5">#STAY AT HOME Upgrade Skill</h1>
+      <p class="mb-4 pb-2 px-md-5 mx-md-5">Dapatkan Penawaran Kursus terbaik dan pengalaman terbaik disaat Pandemi dan Upgrade diri Kamu! .</p>
+      
+      <a  href="register" class="btn btn-black"><i class="fa fa-clone left"></i> Buat Kelas</a>
+      <a class="btn btn-black"><i class="fa fa-clone left"></i> Gabung Kelas</a>
+      
+      </div>
     </div>
   </div>
+</div>
+<!-- Jumbotron -->
+<!-- <div class="col-lg-16">
+  <div class="bg-dark">
+      <div class="col-md-4">
+            <input type="submit">
+      </div>
+  </div>
+</div> -->
 
-        <!-- <div class="row">
-        <div class="container">
+<!-- <div class="col">
+  <div class="container">
+    <div class="row">
+    <div class="col-md-12 mt-5">
+    <div class="position-relative rounded" ">
+    <div class="col-lg-12">
+      <div class="judul-list">
+      <h1 class="text-center"></h1>
+      </div>
+    </div>
+      <div class="container">
         <div class="row">
-            <div class="col-lg-12 col-sm-6" data-aos="fade-up" data-aos-delay="100">
-            <div class="jumbotron card card-image" style="background-image: url(https://mdbootstrap.com/img/Photos/Others/gradient1.jpg);">
-              <div class="text-white py-3 px-4">
-                <div>
-                  <h2 class="card-title h1-responsive pt-3 mb-5 font-bold"><strong>Kelas</strong></h2>
-                  <p class="mx-5 mb-5">Kelas E-Learn yang Tersedia untuk Kalian belum memiliki dasar dalam memulai sesuatu
-                  </p>
-                 
-                </div>
-              </div>
-            </div>
-            </div>
-            
-            
-            </div>
         </div>
-    </div> -->
+        </div>
+         
+        
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</div> -->
 
-    <div class="container">
+
+<section class="isi-menu-kelas"> 
+<div class="container">
       <div class="row mb-5" >
-        <div class="col-lg-3 pb-lg-5 pb-sm-3 mt-5"  data-aos="fade-up" data-aos-delay="100">
+        <!-- <div class="col-lg-3 pb-lg-5 pb-sm-3 mt-5"  data-aos="fade-up" data-aos-delay="100">
             <div class="position-relative rounded" style="box-shadow :0px 0px 11px 4px rgba(0,0,0,0.4);">
               <div class="p-lg-3 p-md-3 p-sm-0">
                   <h5 class="mb-4 d-lg-block d-md-block d-none">Filter</h5>
@@ -49,7 +64,7 @@
                 </div>
               </div>
               
-              <!-- <div class="inner mb-5">
+              <div class="inner mb-5">
               <div class="container-fluid">
              
                 <div class="accordion md-accordion " id="accordionEx" role="tablist" aria-multiselectable="true">
@@ -57,8 +72,8 @@
                
                 <div class="card">
 
-                  <div class="card-header mb-2" role="tab" id="headingOne1">
-                    <a data-toggle="collapse" data-parent="#accordionEx" href="#collapseOne1" aria-expanded="true"
+                  <div class="card-header" role="tab" id="headingOne1">
+                    <a class="collapsed" data-toggle="collapse" data-parent="#accordionEx" href="#collapseOne1" aria-expanded="false"
                       aria-controls="collapseOne1">
                       <p class="mb-0">
                         Kategori<i class="fa fa-angle-down rotate-icon"></i>
@@ -67,9 +82,9 @@
                   </div>
 
                 
-                  <div id="collapseOne1" class="collapse show" role="tabpanel" aria-labelledby="headingOne1" data-parent="#accordionEx">
+                  <div id="collapseOne1" class="collapse" role="tabpanel" aria-labelledby="headingOne1" data-parent="#accordionEx">
                     <div class="card-body">
-                    
+                    <p>SSS</p>
                     </div>
                   </div>
 
@@ -80,11 +95,11 @@
                 <div class="card">
 
                  
-                  <div class="card-header mb-2" role="tab" id="headingTwo2">
+                  <div class="card-header " role="tab" id="headingTwo2">
                     <a class="collapsed" data-toggle="collapse" data-parent="#accordionEx" href="#collapseTwo2"
                       aria-expanded="false" aria-controls="collapseTwo2">
                       <p class="mb-0">
-                        Kategori<i class="fa fa-angle-down rotate-icon"></i>
+                        Urutkan<i class="fa fa-angle-down rotate-icon"></i>
                       </p>
                     </a>
                   </div>
@@ -102,11 +117,11 @@
                 <div class="card">
 
 
-                  <div class="card-header mb-2" role="tab" id="headingThree3">
+                  <div class="card-header" role="tab" id="headingThree3">
                     <a class="collapsed" data-toggle="collapse" data-parent="#accordionEx" href="#collapseThree3"
                       aria-expanded="false" aria-controls="collapseThree3">
                       <p class="mb-0">
-                        Kategori<i class="fa fa-angle-down rotate-icon"></i>
+                        Terfavorit<i class="fa fa-angle-down rotate-icon"></i>
                       </p>
                     </a>
                   </div>
@@ -124,12 +139,12 @@
                 </div>
 
               </div>
-              </div> -->
+              </div>
 
             </div>
-        </div>    
+        </div>     -->
 
-          <div class="col-lg-9">
+          <!-- <div class="col-lg-9">
           <div class="container-fluid"  data-aos="fade-up" data-aos-delay="100">
                 <div class="card-group">
                   <div class="col-lg-6 mb-5 mt-5">
@@ -197,10 +212,8 @@
                   </div>
                 </div>
                 </div>
-              </div>
-          <!--  -->
-          </div>
-            <div class="container">
+
+                <div class="container">
                   <div class="row">
                     <div class="col-lg-6">
                       
@@ -210,20 +223,22 @@
                     </div>
                   </div>
             </div>
+              </div>
+          <!--  -->
+
+    <div class="col-md-12 mt-5">
+    <div class="paket position-relative rounded"" >
+    <div class="col-lg-12">
+      <div class="judul-list">
+      <!-- <h1 class="">Teknologi dan IT</h1> -->
+      <h1 class="text-center" data-aos="fade-up" data-aos-delay="0">IT dan Teknologi</h1>
       </div>
     </div>
-    
-
-
-    <div class="row mb-0 mt-5 justify-content-center">
-          <div class="col-lg-7 mb-0 text-center"  data-aos="fade-up" data-aos-delay="">
-            <h2 class="section-title">Ingin Ikut Kelas Lainnya</h2>
-            <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam repellat aut neque! Doloribus sunt non aut reiciendis, vel recusandae obcaecati hic dicta repudiandae in quas quibusdam ullam, illum sed veniam!</p>
-          </div>
-        </div>
+      <div class="container">
+        <div class="row">
 
           <div class="owl-carousel col-12 nonloop-block-14">
-            
+
             <div class="course bg-white h-100 align-self-stretch">
               <figure class="m-0">
                 <a href="course-single.html"><img src="<?php echo base_url(); ?>assets/images/img_1.jpg" alt="Image" class="img-fluid"></a>
@@ -321,40 +336,277 @@
                 <div class="py-3 px-4 w-25 ml-auto border-left"><span class="icon-chat"></span> 2</div>
               </div>
             </div>
-
           </div>
-
-         
-
+          </div>
         </div>
+         
         <div class="row justify-content-center">
           <div class="col-7 text-center">
             <button class="customPrevBtn btn btn-primary m-1">Prev</button>
             <button class="customNextBtn btn btn-primary m-1">Next</button>
           </div>
         </div>
-     
-
-
-    
-
-   
-
-    <div class="site-section bg-image overlay gambar1">
-      <div class="container">
-        <div class="row justify-content-center align-items-center">
-          <div class="col-md-8 text-center testimony">
-            <img src="<?php echo base_url(); ?>assets/images/person_4.jpg" alt="Image" class="img-fluid w-25 mb-4 rounded-circle">
-            <h3 class="mb-4">Jerome Joker</h3>
-            <blockquote>
-              <p>&ldquo; Lay Lay Lay Lay Lay Lay Lay Lay Lay Lay Lay Lay &rdquo;</p>
-            </blockquote>
-          </div>
         </div>
+        
+      </div>
+
+      <div class="col-md-12 mt-5">
+    <div class="position-relative rounded" >
+    <div class="col-lg-12">
+      <div class="judul-list">
+      <h1 class="text-center">Eknomi dan Bisnis</h1>
       </div>
     </div>
+      <div class="container">
+        <div class="row">
+
+          <div class="owl-carousel col-12 nonloop-block-14">
+
+            <div class="course bg-white h-100 align-self-stretch">
+              <figure class="m-0">
+                <a href="course-single.html"><img src="<?php echo base_url(); ?>assets/images/img_1.jpg" alt="Image" class="img-fluid"></a>
+              </figure>
+              <div class="course-inner-text py-4 px-4">
+                <span class="course-price">$20</span>
+                <div class="meta"><span class="icon-clock-o"></span>4 Lessons / 12 week</div>
+                <h3><a href="#">Study Law of Physics</a></h3>
+                <p>Lorem ipsum dolor sit amet ipsa nulla adipisicing elit. </p>
+              </div>
+              <div class="d-flex border-top stats">
+                <div class="py-3 px-4"><span class="icon-users"></span> 2,193 students</div>
+                <div class="py-3 px-4 w-25 ml-auto border-left"><span class="icon-chat"></span> 2</div>
+              </div>
+            </div>
+
+            <div class="course bg-white h-100 align-self-stretch">
+              <figure class="m-0">
+                <a href="course-single.html"><img src="<?php echo base_url(); ?>assets/images/img_2.jpg" alt="Image" class="img-fluid"></a>
+              </figure>
+              <div class="course-inner-text py-4 px-4">
+                <span class="course-price">$99</span>
+                <div class="meta"><span class="icon-clock-o"></span>4 Lessons / 12 week</div>
+                <h3><a href="#">Logo Design Course</a></h3>
+                <p>Lorem ipsum dolor sit amet ipsa nulla adipisicing elit. </p>
+              </div>
+              <div class="d-flex border-top stats">
+                <div class="py-3 px-4"><span class="icon-users"></span> 2,193 students</div>
+                <div class="py-3 px-4 w-25 ml-auto border-left"><span class="icon-chat"></span> 2</div>
+              </div>
+            </div>
+
+            <div class="course bg-white h-100 align-self-stretch">
+              <figure class="m-0">
+                <a href="course-single.html"><img src="<?php echo base_url(); ?>assets/images/img_3.jpg" alt="Image" class="img-fluid"></a>
+              </figure>
+              <div class="course-inner-text py-4 px-4">
+                <span class="course-price">$99</span>
+                <div class="meta"><span class="icon-clock-o"></span>4 Lessons / 12 week</div>
+                <h3><a href="#">JS Programming Language</a></h3>
+                <p>Lorem ipsum dolor sit amet ipsa nulla adipisicing elit. </p>
+              </div>
+              <div class="d-flex border-top stats">
+                <div class="py-3 px-4"><span class="icon-users"></span> 2,193 students</div>
+                <div class="py-3 px-4 w-25 ml-auto border-left"><span class="icon-chat"></span> 2</div>
+              </div>
+            </div>
 
 
 
+            <div class="course bg-white h-100 align-self-stretch">
+              <figure class="m-0">
+                <a href="course-single.html"><img src="<?php echo base_url(); ?>assets/images/img_4.jpg" alt="Image" class="img-fluid"></a>
+              </figure>
+              <div class="course-inner-text py-4 px-4">
+                <span class="course-price">$20</span>
+                <div class="meta"><span class="icon-clock-o"></span>4 Lessons / 12 week</div>
+                <h3><a href="#">Study Law of Physics</a></h3>
+                <p>Lorem ipsum dolor sit amet ipsa nulla adipisicing elit. </p>
+              </div>
+              <div class="d-flex border-top stats">
+                <div class="py-3 px-4"><span class="icon-users"></span> 2,193 students</div>
+                <div class="py-3 px-4 w-25 ml-auto border-left"><span class="icon-chat"></span> 2</div>
+              </div>
+            </div>
+
+            <div class="course bg-white h-100 align-self-stretch">
+              <figure class="m-0">
+                <a href="course-single.html"><img src="<?php echo base_url(); ?>assets/images/img_5.jpg" alt="Image" class="img-fluid"></a>
+              </figure>
+              <div class="course-inner-text py-4 px-4">
+                <span class="course-price">$99</span>
+                <div class="meta"><span class="icon-clock-o"></span>4 Lessons / 12 week</div>
+                <h3><a href="#">Logo Design Course</a></h3>
+                <p>Lorem ipsum dolor sit amet ipsa nulla adipisicing elit. </p>
+              </div>
+              <div class="d-flex border-top stats">
+                <div class="py-3 px-4"><span class="icon-users"></span> 2,193 students</div>
+                <div class="py-3 px-4 w-25 ml-auto border-left"><span class="icon-chat"></span> 2</div>
+              </div>
+            </div>
+
+            <div class="course bg-white h-100 align-self-stretch">
+              <figure class="m-0">
+                <a href="course-single.html"><img src="<?php echo base_url(); ?>assets/images/img_6.jpg" alt="Image" class="img-fluid"></a>
+              </figure>
+              <div class="course-inner-text py-4 px-4">
+                <span class="course-price">$99</span>
+                <div class="meta"><span class="icon-clock-o"></span>4 Lessons / 12 week</div>
+                <h3><a href="#">JS Programming Language</a></h3>
+                <p>Lorem ipsum dolor sit amet ipsa nulla adipisicing elit. </p>
+              </div>
+              <div class="d-flex border-top stats">
+                <div class="py-3 px-4"><span class="icon-users"></span> 2,193 students</div>
+                <div class="py-3 px-4 w-25 ml-auto border-left"><span class="icon-chat"></span> 2</div>
+              </div>
+            </div>
+          </div>
+          </div>
+        </div>
+         
+        <div class="row justify-content-center">
+          <div class="col-7 text-center">
+            <button class="customPrevBtn btn btn-primary m-1">Prev</button>
+            <button class="customNextBtn btn btn-primary m-1">Next</button>
+          </div>
+        </div>
+        </div>
+        
+      </div>
+
+      <div class="col-md-12 mt-5">
+    <div class="position-relative rounded" >
+    <div class="col-lg-12">
+      <div class="judul-list">
+      <h1 class="text-center">Marketing dan Penjualan</h1>
+      </div>
+    </div>
+      <div class="container">
+        <div class="row">
+
+          <div class="owl-carousel col-12 nonloop-block-14">
+
+            <div class="course bg-white h-100 align-self-stretch">
+              <figure class="m-0">
+                <a href="course-single.html"><img src="<?php echo base_url(); ?>assets/images/img_1.jpg" alt="Image" class="img-fluid"></a>
+              </figure>
+              <div class="course-inner-text py-4 px-4">
+                <span class="course-price">$20</span>
+                <div class="meta"><span class="icon-clock-o"></span>4 Lessons / 12 week</div>
+                <h3><a href="#">Study Law of Physics</a></h3>
+                <p>Lorem ipsum dolor sit amet ipsa nulla adipisicing elit. </p>
+              </div>
+              <div class="d-flex border-top stats">
+                <div class="py-3 px-4"><span class="icon-users"></span> 2,193 students</div>
+                <div class="py-3 px-4 w-25 ml-auto border-left"><span class="icon-chat"></span> 2</div>
+              </div>
+            </div>
+
+            <div class="course bg-white h-100 align-self-stretch">
+              <figure class="m-0">
+                <a href="course-single.html"><img src="<?php echo base_url(); ?>assets/images/img_2.jpg" alt="Image" class="img-fluid"></a>
+              </figure>
+              <div class="course-inner-text py-4 px-4">
+                <span class="course-price">$99</span>
+                <div class="meta"><span class="icon-clock-o"></span>4 Lessons / 12 week</div>
+                <h3><a href="#">Logo Design Course</a></h3>
+                <p>Lorem ipsum dolor sit amet ipsa nulla adipisicing elit. </p>
+              </div>
+              <div class="d-flex border-top stats">
+                <div class="py-3 px-4"><span class="icon-users"></span> 2,193 students</div>
+                <div class="py-3 px-4 w-25 ml-auto border-left"><span class="icon-chat"></span> 2</div>
+              </div>
+            </div>
+
+            <div class="course bg-white h-100 align-self-stretch">
+              <figure class="m-0">
+                <a href="course-single.html"><img src="<?php echo base_url(); ?>assets/images/img_3.jpg" alt="Image" class="img-fluid"></a>
+              </figure>
+              <div class="course-inner-text py-4 px-4">
+                <span class="course-price">$99</span>
+                <div class="meta"><span class="icon-clock-o"></span>4 Lessons / 12 week</div>
+                <h3><a href="#">JS Programming Language</a></h3>
+                <p>Lorem ipsum dolor sit amet ipsa nulla adipisicing elit. </p>
+              </div>
+              <div class="d-flex border-top stats">
+                <div class="py-3 px-4"><span class="icon-users"></span> 2,193 students</div>
+                <div class="py-3 px-4 w-25 ml-auto border-left"><span class="icon-chat"></span> 2</div>
+              </div>
+            </div>
+
+
+
+            <div class="course bg-white h-100 align-self-stretch">
+              <figure class="m-0">
+                <a href="course-single.html"><img src="<?php echo base_url(); ?>assets/images/img_4.jpg" alt="Image" class="img-fluid"></a>
+              </figure>
+              <div class="course-inner-text py-4 px-4">
+                <span class="course-price">$20</span>
+                <div class="meta"><span class="icon-clock-o"></span>4 Lessons / 12 week</div>
+                <h3><a href="#">Study Law of Physics</a></h3>
+                <p>Lorem ipsum dolor sit amet ipsa nulla adipisicing elit. </p>
+              </div>
+              <div class="d-flex border-top stats">
+                <div class="py-3 px-4"><span class="icon-users"></span> 2,193 students</div>
+                <div class="py-3 px-4 w-25 ml-auto border-left"><span class="icon-chat"></span> 2</div>
+              </div>
+            </div>
+
+            <div class="course bg-white h-100 align-self-stretch">
+              <figure class="m-0">
+                <a href="course-single.html"><img src="<?php echo base_url(); ?>assets/images/img_5.jpg" alt="Image" class="img-fluid"></a>
+              </figure>
+              <div class="course-inner-text py-4 px-4">
+                <span class="course-price">$99</span>
+                <div class="meta"><span class="icon-clock-o"></span>4 Lessons / 12 week</div>
+                <h3><a href="#">Logo Design Course</a></h3>
+                <p>Lorem ipsum dolor sit amet ipsa nulla adipisicing elit. </p>
+              </div>
+              <div class="d-flex border-top stats">
+                <div class="py-3 px-4"><span class="icon-users"></span> 2,193 students</div>
+                <div class="py-3 px-4 w-25 ml-auto border-left"><span class="icon-chat"></span> 2</div>
+              </div>
+            </div>
+
+            <div class="course bg-white h-100 align-self-stretch">
+              <figure class="m-0">
+                <a href="course-single.html"><img src="<?php echo base_url(); ?>assets/images/img_6.jpg" alt="Image" class="img-fluid"></a>
+              </figure>
+              <div class="course-inner-text py-4 px-4">
+                <span class="course-price">$99</span>
+                <div class="meta"><span class="icon-clock-o"></span>4 Lessons / 12 week</div>
+                <h3><a href="#">JS Programming Language</a></h3>
+                <p>Lorem ipsum dolor sit amet ipsa nulla adipisicing elit. </p>
+              </div>
+              <div class="d-flex border-top stats">
+                <div class="py-3 px-4"><span class="icon-users"></span> 2,193 students</div>
+                <div class="py-3 px-4 w-25 ml-auto border-left"><span class="icon-chat"></span> 2</div>
+              </div>
+            </div>
+          </div>
+          </div>
+        </div>
+         
+        <div class="row justify-content-center">
+          <div class="col-7 text-center">
+            <button class="customPrevBtn btn btn-primary m-1">Prev</button>
+            <button class="customNextBtn btn btn-primary m-1">Next</button>
+          </div>
+        </div>
+        </div>
+        
+      </div>
     
-     
+
+          </div>
+            <div class="container">
+                  <div class="row">
+                    <div class="col-lg-5">
+                      
+                    </div>
+                    <div class="col-lg-6"  data-aos="fade-up" data-aos-delay="100">
+                        <button class="btn d-flex justify-content-center"> Lebih Banyak</button>
+                    </div>
+                  </div>
+            </div>
+      </div>
+</section>

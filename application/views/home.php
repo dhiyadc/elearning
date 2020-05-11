@@ -9,7 +9,7 @@
                   <h1  data-aos="fade-up" data-aos-delay="100">Pengalaman Adalah Ilmu Terbaik yang semua orang cari</h1>
                   <p class="mb-4"  data-aos="fade-up" data-aos-delay="200">Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime ipsa nulla sed quis rerum amet natus quas necessitatibus.</p>
                   <p data-aos="fade-up" data-aos-delay="300"><a href="Register" class="btn btn-primary py-3 px-5 btn-pill">Daftar Kelas</a></p>
-
+                    
                 </div>
 
                
