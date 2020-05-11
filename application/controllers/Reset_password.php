@@ -21,14 +21,10 @@ class Reset_password extends CI_Controller{
         } else {
             
         }
-
-        /*CATATAN
-            Setelah di klik link akan dilakukan pengecekan token, kalau eligible akan di lanjutkan ke halaman reset password
-        */
     }
 
-    public function valid($email, $token){
-            $isValid = $this->user_database->getValidToken($email, $token);
+    public function valid($id_user, $token){
+            $isValid = $this->user_database->getValidToken($id_user, $token);
             if($isValid > 0)
             {
                 $this->load->view('user/reset_password');
@@ -41,11 +37,11 @@ class Reset_password extends CI_Controller{
     }
 
     public function request(){
-        $email = $this->input->post('email');
+        $id_user = $this->input->post('id_user');
         $token = $this->input->post('token');
         $newPassword = $this->input->post('password');
 
-        $this->user_database->updatePassword($email, $newPassword);
+        $this->user_database->updatePassword($id_user, $newPassword);
         $data = array(
             'message_display' => 'Your password has been updated'
             );

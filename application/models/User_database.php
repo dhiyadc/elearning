@@ -55,27 +55,40 @@ public function getIDUser($email){
     return $query->result_array()[0];
 }
 
+public function getEmailUser($id_user){
+    $condition = "id_user =" . "'" . $id_user . "'";
+    $this->db->select('email');
+    $this->db->from('user');
+    $this->db->where($condition);
+    //$this->db->limit(1);
+    $query = $this->db->get(); 
+
+    return $query->result_array()[0];
+}
+
 //Set token for reset password request
-public function setToken($email, $token)
+public function setToken($id_user, $token)
 {
-    $sql = "UPDATE user SET token='$token', 
-            tokenExpire=DATE_ADD(NOW(), INTERVAL 5 MINUTE)
-            WHERE email='$email'";
+    $sql = "INSERT INTO lupa_password (id_user, token, status_token, expire_date)
+            VALUES ('$id_user','$token',0, DATE_ADD(NOW(), INTERVAL 5 MINUTE))";
     return $this->db->query($sql);
 }
 
-public function getValidToken($email, $token){
-    $sql = "SELECT id_user FROM user WHERE
-    email='$email' AND token='$token' AND token<>'' AND tokenExpire > NOW()";
+public function getValidToken($id_user, $token){
+    $sql = "SELECT id_user FROM lupa_password WHERE
+    id_user='$id_user' AND token='$token' AND token<>'' AND expire_date > NOW()";
     $query = $this->db->query($sql);
     return $query->num_rows();
 }
 
-public function updatePassword($email, $newPassword)
+public function updatePassword($id_user, $newPassword)
 {
     $newPasswordHashed = hash('sha256', $newPassword);
-    $sql = "UPDATE user SET token='', password = '$newPasswordHashed'
-    WHERE email='$email'";
+    $sql = "UPDATE user SET password = '$newPasswordHashed'
+    WHERE id_user='$id_user'";
+    $this->db->query($sql);
+
+    $sql = "DELETE FROM lupa_password WHERE id_user='$id_user'";
     return $this->db->query($sql);
 }
 
