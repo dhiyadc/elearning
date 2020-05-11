@@ -685,10 +685,10 @@ h1, h2, h3, h4, h5,
       padding: 4em 0; } }
 
 .cta a span {
-  border-color: #7971ea;
+  border-color: #3232aa;
   padding: 14px 20px;
   color: #fff;
-  background: #7971ea;
+  background: #3232aa;
   border-radius: 30px;
   font-size: .7rem;
   font-weight: 900;
@@ -700,7 +700,7 @@ h1, h2, h3, h4, h5,
     color: #fff; }
 
 .cta a:hover span {
-  background: #4f45e3;
+  background: black;
   color: #fff; }
 
 .cta a.active {
@@ -968,7 +968,7 @@ h1, h2, h3, h4, h5,
   width: 35px;
   height: 35px;
   border-radius: 50%;
-  background: #7971ea; }
+  background: #3232aa; }
   .custom-icon-wrap .custom-icon-inner .icon {
     display: inline-block;
     position: absolute;
@@ -995,7 +995,7 @@ h1, h2, h3, h4, h5,
 
 .courses-title {
   padding-bottom: 13rem;
-  background: #7971ea; }
+  background: #3232aa; }
   .courses-title .section-title {
     color: #fff; }
 
@@ -1023,7 +1023,7 @@ h1, h2, h3, h4, h5,
   .course .course-price {
     position: absolute;
     padding: 10px 15px;
-    background: #7971ea;
+    background: #3232aa;
     color: #fff;
     top: -20px;
     right: 0;
@@ -1237,3 +1237,4 @@ color: #000;
 .paket position-relative rounded{
 background-color: black;
 }
+

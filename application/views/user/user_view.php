@@ -89,82 +89,11 @@
                 </div>
               </div>
               
-              <!-- <div class="inner mb-5">
-              <div class="container-fluid">
-             
-                <div class="accordion md-accordion " id="accordionEx" role="tablist" aria-multiselectable="true">
-
-               
-                <div class="card">
-
-                  <div class="card-header mb-2" role="tab" id="headingOne1">
-                    <a data-toggle="collapse" data-parent="#accordionEx" href="#collapseOne1" aria-expanded="true"
-                      aria-controls="collapseOne1">
-                      <p class="mb-0">
-                        Kategori<i class="fa fa-angle-down rotate-icon"></i>
-                      </p>
-                    </a>
-                  </div>
-
-                
-                  <div id="collapseOne1" class="collapse show" role="tabpanel" aria-labelledby="headingOne1" data-parent="#accordionEx">
-                    <div class="card-body">
-                    
-                    </div>
-                  </div>
-
-                </div>
-            
-
-              
-                <div class="card">
-
-                 
-                  <div class="card-header mb-2" role="tab" id="headingTwo2">
-                    <a class="collapsed" data-toggle="collapse" data-parent="#accordionEx" href="#collapseTwo2"
-                      aria-expanded="false" aria-controls="collapseTwo2">
-                      <p class="mb-0">
-                        Kategori<i class="fa fa-angle-down rotate-icon"></i>
-                      </p>
-                    </a>
-                  </div>
-
-                  <div id="collapseTwo2" class="collapse" role="tabpanel" aria-labelledby="headingTwo2" data-parent="#accordionEx">
-                    <div class="card-body">
-                    
-                    </div>
-                  </div>
-
-                </div>
- 
-
-
-                <div class="card">
-
-
-                  <div class="card-header mb-2" role="tab" id="headingThree3">
-                    <a class="collapsed" data-toggle="collapse" data-parent="#accordionEx" href="#collapseThree3"
-                      aria-expanded="false" aria-controls="collapseThree3">
-                      <p class="mb-0">
-                        Kategori<i class="fa fa-angle-down rotate-icon"></i>
-                      </p>
-                    </a>
-                  </div>
-
-
-                  <div id="collapseThree3" class="collapse" role="tabpanel" aria-labelledby="headingThree3" data-parent="#accordionEx">
-                    <div class="card-body">
-                    
-                    </div>
-                  </div>
-
-                </div>
-
-
-                </div>
+              <!-- -->
+              <div id="">
 
               </div>
-              </div> -->
+              <!--  -->
 
             </div>
         </div>    

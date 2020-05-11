@@ -56,7 +56,7 @@
               <ul class="site-menu main-menu js-clone-nav mx-auto d-none d-lg-block  m-0 p-0">
                 <li><a href="<?php echo base_url(); ?>" class="nav-link">Beranda</a></li>
                 <li><a href="Kelas" class="nav-link">Kelas</a></li>
-                <li><a href="#contact-section" class="nav-link">Profile</a></li>
+               
               </ul>
             </nav>
           </div>

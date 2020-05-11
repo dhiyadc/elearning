@@ -9,7 +9,7 @@
       <p class="mb-4 pb-2 px-md-5 mx-md-5">Dapatkan Penawaran Kursus terbaik dan pengalaman terbaik disaat Pandemi dan Upgrade diri Kamu! .</p>
       
       <a  href="register" class="btn btn-black"><i class="fa fa-clone left"></i> Buat Kelas</a>
-      <a class="btn btn-black"><i class="fa fa-clone left"></i> Gabung Kelas</a>
+      <a href="register" class="btn btn-black"><i class="fa fa-clone left"></i> Gabung Kelas</a>
       
       </div>
     </div>
