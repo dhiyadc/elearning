@@ -26,7 +26,7 @@ class Register extends CI_Controller {
 	public function index() {
 
 		 if(isset($this->session->userdata['logged_in'])){
-		 	redirect('home');
+		 	redirect('homepage');
 		 }else{
 			$this->load->view('user/register_user');
 		}
@@ -35,7 +35,7 @@ class Register extends CI_Controller {
 	public function register_process()
 	{
 			if(isset($this->session->userdata['logged_in'])){
-				redirect('home');
+				redirect('homepage');
 			}
 
 			

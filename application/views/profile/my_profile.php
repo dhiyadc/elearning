@@ -20,10 +20,12 @@
                 <td>Email: <?= $val['email']; ?></td>
             </tr>
             <tr>
-                <td>Password: <?= $val['password']; ?></td>
+                <td>Password: ******</td>
             </tr>
         <?php endforeach; ?>
     </table>
+    <a href="<?= base_url()?>classes">My Classes</a>
+    <a href="<?= base_url()?>classes/kelas_diikuti">Kelas yang Diikuti</a>
     <a href="<?= base_url()?>profile/edit_profile">Edit Profile</a>
     <a href="<?= base_url()?>profile/delete_account">Delete Account</a>
     <a href="<?= base_url(); ?>login/logout">Logout</a>

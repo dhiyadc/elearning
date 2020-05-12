@@ -11,12 +11,9 @@ class Profile extends CI_Controller {
     public function index()
     {
         if(isset($this->session->userdata['logged_in'])){
-
-
             $email = $_SESSION['email'];
             $id_user = $_SESSION['id_user'];
 
-            //var_dump($this->session->userdata('logged_in'));
             $data['profile'] = $this->Profile_model->getMyProfile();
             $data['account'] = $this->Profile_model->getMyAccount();
             $this->load->view('profile/my_profile',$data);
@@ -51,7 +48,7 @@ class Profile extends CI_Controller {
     {
         if(isset($this->session->userdata['logged_in'])){
             $this->Profile_model->deleteAccount();
-            redirect('login');
+            redirect('login/logout');
         } else {
             redirect('login');
         }
