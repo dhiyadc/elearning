@@ -37,7 +37,7 @@ class Profile extends CI_Controller {
     {
         if(isset($this->session->userdata['logged_in'])){
             $this->Profile_model->editProfile();
-            $this->Profile_model->editAccount();
+            //$this->Profile_model->editAccount();
             redirect('profile');
         } else {
             redirect('login');
@@ -49,6 +49,47 @@ class Profile extends CI_Controller {
         if(isset($this->session->userdata['logged_in'])){
             $this->Profile_model->deleteAccount();
             redirect('login/logout');
+        } else {
+            redirect('login');
+        }
+    }
+
+    public function change_password()
+    {
+        if(isset($this->session->userdata['logged_in'])){
+            $this->load->view('profile/change_password');
+        } else {
+            redirect('login');
+        }
+    }
+
+    public function change_password_action()
+    {
+        if(isset($this->session->userdata['logged_in'])){
+            $oldPass = $this->input->post('old_password');
+            $hashed = hash('sha256', $oldPass);
+            $getPass = $this->Profile_model->getFirstAccount();
+            $getPassword = $getPass['password'];
+
+            if($hashed == $getPassword){
+                $newPassword = $this->input->post('password');
+                $this->Profile_model->updatePassword($newPassword);
+                //nanti pake flashdata
+                //redirect('profile');
+
+
+                $data = array(
+                    'message_display' => 'Password berhasil diubah'
+					);
+			    return $this->load->view('profile/change_password', $data);
+            } else {
+                //nanti pake flashdata
+                $data = array(
+					'error_message' => 'Wrong Password'
+					);
+			    redirect('profile');
+            }
+
         } else {
             redirect('login');
         }

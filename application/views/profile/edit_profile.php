@@ -6,6 +6,21 @@
     <title>Complete My Profile</title>
 </head>
 <body>
+<?php
+              if (isset($message_display)) {
+              echo "<div class='message'>";
+              echo $message_display;
+              echo "</div>";
+              }
+            ?>
+            <?php
+            echo "<div class='error_msg'>";
+            if (isset($error_message)) {
+            echo $error_message;
+            }
+            //echo validation_errors();
+            echo "</div>";
+          ?>
     <form action="<?= base_url()?>profile/edit_profile_action" method="POST">
         <?php foreach ($profile as $val) : ?>
             Name: <input type="text" name="nama" value="<?= $val['nama']; ?>" required>
@@ -13,7 +28,9 @@
         <?php endforeach; ?>
         <?php foreach ($account as $val) : ?>
             Email:<?= $val['email']; ?>
-            Password: <input type="password" name="password" required>
+            <br>
+            <br>
+            
         <?php endforeach; ?>
         <button>Save</button>
     </form>
