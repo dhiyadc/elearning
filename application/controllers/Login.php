@@ -69,7 +69,7 @@ class Login extends CI_Controller {
 
 			} else {
 				$data = array(
-				'error_message' => 'Invalid Username or Password'
+				'error_message' => 'Invalid Email or Password'
 				);
 				$this->load->view('user/login_user', $data);
 			}
@@ -79,10 +79,10 @@ class Login extends CI_Controller {
 		// Logout from user
 		public function logout() {
 		
-			// Removing session data
-			$this->session->unset_userdata('email');
-			$this->session->unset_userdata('id_user');
+			// Removing session data		
 			$this->session->unset_userdata('logged_in');
+			$this->session->unset_userdata('id_user');
+			$this->session->unset_userdata('email');
 
 			redirect('homepage');
 		} 

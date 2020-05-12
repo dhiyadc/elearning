@@ -39,8 +39,8 @@ class Forgot_password extends CI_Controller{
 			    return $this->load->view('user/forgot_password', $data);
 			}
 
-        function generateNewString($len = 10) {
-            $token = "qwertyuiopasdfgzxcvbhjklnm1234567890";
+        function generateNewString($len = 16) {
+            $token = "YUIOPQWERTASDFGZXCVBHJKLNMqwertyuiopasdfgzxcvbhjklnm1234567890";
             $token = str_shuffle($token);
             $token = substr($token, 0, $len);
     
@@ -48,8 +48,8 @@ class Forgot_password extends CI_Controller{
         }
 
         $token = generateNewString();
-
-        $this->user_database->setToken($email, $token);
+        $id_user = $this->user_database->getIDUser($email);
+        $this->user_database->setToken($id_user['id_user'], $token);
 
         $mail = new PHPMailer;
     
@@ -70,7 +70,7 @@ class Forgot_password extends CI_Controller{
         $mail->SMTPSecure = 'ssl';
         $mail->Port = 465;
         
-        $mail->setFrom('biawakencer@gmail.com', 'Whuidi Email Masuk Dong');
+        $mail->setFrom('biawakencer@gmail.com', 'no-reply');
         //$mail->addReplyTo('info@example.com', 'CodexWorld');
         
         // Add a recipient
@@ -86,14 +86,15 @@ class Forgot_password extends CI_Controller{
         // Set email format to HTML
         $mail->isHTML(true);
         
+        $user_id = $id_user['id_user'];
         // Email body content
         $mail->Body = "
 	            Hi,<br><br>
 	            
 	            In order to reset your password, please click on the link below:<br>
 	            <a href='
-	            http://localhost/elearning/reset_password/valid/$email/$token
-	            '>http://localhost/elearning/reset_password/valid/$email/$token</a><br><br>
+	            http://localhost/elearning/reset_password/valid/$token
+	            '>http://localhost/elearning/reset_password/valid/$token</a><br><br>
 	            
 	            Kind Regards,<br>
 	            E-Learning
