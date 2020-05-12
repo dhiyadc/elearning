@@ -50,6 +50,12 @@ class Classes_model extends CI_Model {
         return $this->db->get('peserta')->result_array();
     }
 
+    public function getHarga($id)
+    {
+        $this->db->where('id_kelas',$id);
+        return $this->db->get('harga_kelas')->result_array();
+    }
+
     public function getIdNewClass()
     {
         $this->db->select('id_kelas');
@@ -122,6 +128,7 @@ class Classes_model extends CI_Model {
         if(!empty($this->input->post('addmore'))){
             $this->setKegiatan($this->getIdNewClass()['id_kelas']);
         }
+        $this->setHarga($this->getIdNewClass()['id_kelas']);
     }
 
     public function updateStatus($id,$selesai)
@@ -181,6 +188,24 @@ class Classes_model extends CI_Model {
 
         $this->db->where('id_kelas',$id);
         $this->db->update('kelas',$data);
+    }
+
+    public function setHarga($id)
+    {
+        if(!empty($this->input->post('harga'))) {
+            $data = [
+                'id_kelas' => $id,
+                'harga_kelas' => $this->input->post('harga')
+            ];
+        }
+        else {
+            $data = [
+                'id_kelas' => $id,
+                'harga_kelas' => 'Rp.0,00'
+            ];
+        }
+
+        $this->db->insert('harga_kelas',$data);
     }
     
     public function setKegiatanByClass($id)

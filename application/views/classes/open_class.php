@@ -6,7 +6,9 @@
     <?php foreach ($kelas as $val) : ?>
         <title><?= $val['judul_kelas']; ?></title>
     <?php endforeach; ?>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+    <link href="<?= base_url() ?>assets/datetimepicker/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="<?= base_url() ?>assets/datetimepicker/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
 </head>
 <body>
     <?php foreach ($kelas as $val) : ?>
@@ -23,6 +25,14 @@
         <?php foreach ($pembuat as $val2) : ?>
             <?php if ($val2['id_user'] == $val['pembuat_kelas']) : ?> 
                 <p>Pembuat: <?= $val2['nama']; ?></p>
+            <?php endif; ?>
+        <?php endforeach; ?>
+
+        <?php foreach ($harga as $val2) : ?>
+            <?php if ($val2['harga_kelas'] == 'Rp.0,00') : ?> 
+                <p>Kelas Gratis</p>
+            <?php else : ?>
+                <p>Harga Kelas: <?= $val2['harga_kelas'] ?></p>
             <?php endif; ?>
         <?php endforeach; ?>
         
@@ -108,7 +118,12 @@
                         <div class="modal-body">
                             <form action="<?= base_url()?>classes/set_kegiatan/<?= $val['id_kelas'] ?>" method="POST">
                                 Deskripsi Kegiatan: <input type="text" name="deskripsi" required><br>
-                                Tanggal Kegiatan: <input type="datetime" name="tanggal" value="<?= date("Y/m/d"); ?> 00:00" required><br>
+                                <div class="input-group date form_datetime col-md-3" name="tanggal" data-date-format="dd MM yyyy - hh:ii" data-link-field="dtp_input1">
+                                    <input class="form-control" size="16" type="text" readonly required>
+                                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                                    <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+                                </div>
+                                <input type="hidden" id="dtp_input1"/>
                                 <button>Save</button>
                             </form>
                         </div>
@@ -126,4 +141,41 @@
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<script type="text/javascript" src="<?= base_url() ?>assets/datetimepicker/jquery-1.8.3.min.js" charset="UTF-8"></script>
+<script type="text/javascript" src="<?= base_url() ?>assets/datetimepicker/bootstrap.min.js"></script>
+<script type="text/javascript" src="<?= base_url() ?>assets/datetimepicker/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+<script type="text/javascript" src="<?= base_url() ?>assets/datetimepicker/bootstrap-datetimepicker.id.js" charset="UTF-8"></script>
+<script type="text/javascript">
+    $('.form_datetime').datetimepicker({
+        language:  'id',
+        weekStart: 1,
+        todayBtn:  1,
+		autoclose: 1,
+		todayHighlight: 1,
+		startView: 2,
+		forceParse: 0,
+        showMeridian: 0
+    });
+	$('.form_date').datetimepicker({
+        language:  'id',
+        weekStart: 1,
+        todayBtn:  1,
+		autoclose: 1,
+		todayHighlight: 1,
+		startView: 2,
+		minView: 2,
+		forceParse: 0
+    });
+	$('.form_time').datetimepicker({
+        language:  'id',
+        weekStart: 1,
+        todayBtn:  1,
+		autoclose: 1,
+		todayHighlight: 1,
+		startView: 1,
+		minView: 0,
+		maxView: 1,
+		forceParse: 0
+    });
+</script>
 </html>

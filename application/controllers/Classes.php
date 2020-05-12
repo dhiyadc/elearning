@@ -47,6 +47,7 @@ class Classes extends CI_Controller {
             $data['pembuat'] = $this->Classes_model->getPembuat();
             $data['kategori'] = $this->Classes_model->getKategori();
             $data['status'] = $this->Classes_model->getStatus();
+            $data['harga'] = $this->Classes_model->getHarga($id_kelas);
             $data['peserta'] = $this->Classes_model->getPesertaByUserIdClassId($id_kelas);
             $data['cek'] = $this->Classes_model->cekPeserta($id_kelas);
             $this->load->view('classes/open_class',$data);
