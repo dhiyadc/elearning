@@ -1,379 +1,314 @@
+<section class="user_dashboard">
+<div class="row mt-0">
+  <div class="col-lg-12">
+    <div class="card"> 
+    <div class="container my-5 pt-5 pb-3 px-4 z-depth-1">
+
+
+<!--Section: Block Content-->
+<section>
+
+  <!--Grid row-->
+  <div class="row">
+
+    <!--Grid column-->
+    <div class="col-md-12 mb-4">
+
+      <h5 class="text-center font-weight-bold mb-4">Dashboard Saya</h5>
+
+      <div class="d-flex justify-content-between">
+        <small class="text-muted">Add products to cart</small>
+        <small><span><strong>160</strong></span>/<span></span>200</small>
+      </div>
+      <div class="progress md-progress">
+        <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25"
+          aria-valuemin="0" aria-valuemax="100"></div>
+      </div>
+
+      <div class="d-flex justify-content-between">
+        <small class="text-muted">Complete Purchase</small>
+        <small><span><strong>310</strong></span>/<span></span>400</small>
+      </div>
+      <div class="progress md-progress">
+        <div class="progress-bar bg-info" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0"
+          aria-valuemax="100"></div>
+      </div>
+
+      <div class="d-flex justify-content-between">
+        <small class="text-muted">Visit Premium Page</small>
+        <small><span><strong>480</strong></span>/<span></span>800</small>
+      </div>
+      <div class="progress md-progress">
+        <div class="progress-bar bg-warning" role="progressbar" style="width: 75%" aria-valuenow="75"
+          aria-valuemin="0" aria-valuemax="100"></div>
+      </div>
+
+      <div class="d-flex justify-content-between">
+        <small class="text-muted">Send Inquiries</small>
+        <small><span><strong>250</strong></span>/<span></span>500</small>
+      </div>
+      <div class="progress md-progress">
+        <div class="progress-bar bg-danger" role="progressbar" style="width: 100%" aria-valuenow="100"
+          aria-valuemin="0" aria-valuemax="100"></div>
+      </div>
+
+    </div>
+    <!--Grid column-->
 
     
-    <div class="site-section courses-title" id="courses-section">
-      <div class="container">
-        <div class="row mb-5 justify-content-center">
-          <div class="col-lg-7 text-center" data-aos="fade-up" data-aos-delay="">
-            <h2 class="section-title"></h2>
+  </div>
+  <!--Grid row-->
+
+</section>
+<!--Section: Block Content-->
+
+
+</div>
+    </div>
+  </div>
+</div>
+
+<!-- 
+  <div class="container my-5">
+
+  
+  <!-- Section: Block Content -->
+  <!-- <section>
+
+    <style>
+      .card-list li.page-item {
+        height: 36px;
+      }
+      .card-list .form-check-input[type="checkbox"] + label:before, .form-check-input[type="checkbox"]:not(.filled-in) + label:after, label.btn input[type="checkbox"] + label:before, label.btn input[type="checkbox"]:not(.filled-in) + label:after {
+        margin-top: 0;
+      }
+      .card-list .form-check-input[type="checkbox"] + label, label.btn input[type="checkbox"] + label {
+        height: 15px;
+      }
+      .card-list .form-check {
+        height: 0;
+      }
+      .card-list .badge {
+        height: 18px;
+        margin-top: 3px;
+      }
+    </style>
+    
+    <div class="row">
+      <div class="col-12">
+      	<div class="card card-list">
+          <div class="card-header white d-flex justify-content-between align-items-center py-3">
+            <p class="h5-responsive font-weight-bold mb-0"><i class="fas fa-clipboard-list pr-2"></i>To Do List</p>
+            <nav aria-label="Page navigation example">
+              <ul class="pagination pg-blue mb-0">
+                <li class="page-item">
+                  <a class="border page-link" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                    <span class="sr-only">Previous</span>
+                  </a>
+                </li>
+                <li class="page-item"><a class="border page-link">1</a></li>
+                <li class="page-item"><a class="border page-link">2</a></li>
+                <li class="page-item"><a class="border page-link">3</a></li>
+                <li class="page-item">
+                  <a class="border page-link" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                    <span class="sr-only">Next</span>
+                  </a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+          <div class="card-body">
+            <ul class="list-unstyled mb-0">
+              <li class="d-flex justify-content-between align-items-center py-2 border-bottom">
+                <div class="d-inline-flex">
+                  <div class="form-check pl-0">
+                    <input type="checkbox" class="form-check-input" id="materialChecked2">
+                    <label class="form-check-label" for="materialChecked2"></label>
+                  </div>
+                  <p class="mb-0"><span class="text">Design a nice theme</span></p>
+                  <span class="badge badge-danger ml-3"><i class="far fa-clock pr-1"></i>2 mins</span>
+                </div>
+                <div class="tools">
+                  <a><i class="far fa-edit"></i></a>
+                  <a><i class="far fa-trash-alt"></i></a>
+                </div>
+              </li>
+              <li class="d-flex justify-content-between align-items-center py-2 border-bottom">
+                <div class="d-inline-flex">
+                  <div class="form-check pl-0">
+                    <input type="checkbox" class="form-check-input" id="materialChecked3">
+                    <label class="form-check-label" for="materialChecked3"></label>
+                  </div>
+                  <p class="mb-0"><span class="text">Make the theme responsive</span></p>
+                  <span class="badge badge-info ml-3"><i class="far fa-clock pr-1"></i>4 hours</span>
+                </div>
+                <div class="tools">
+                  <a><i class="far fa-edit"></i></a>
+                  <a><i class="far fa-trash-alt"></i></a>
+                </div>
+              </li>
+              <li class="d-flex justify-content-between align-items-center py-2 border-bottom">
+                <div class="d-inline-flex">
+                  <div class="form-check pl-0">
+                    <input type="checkbox" class="form-check-input" id="materialChecked4">
+                    <label class="form-check-label" for="materialChecked4"></label>
+                  </div>
+                  <p class="mb-0"><span class="text">Let theme shine like a star</span></p>
+                  <span class="badge badge-warning ml-3"><i class="far fa-clock pr-1"></i>1 day</span>
+                </div>
+                <div class="tools">
+                  <a><i class="far fa-edit"></i></a>
+                  <a><i class="far fa-trash-alt"></i></a>
+                </div>
+              </li>
+              <li class="d-flex justify-content-between align-items-center py-2 border-bottom">
+                <div class="d-inline-flex">
+                  <div class="form-check pl-0">
+                    <input type="checkbox" class="form-check-input" id="materialChecked5">
+                    <label class="form-check-label" for="materialChecked5"></label>
+                  </div>
+                  <p class="mb-0"><span class="text">Let theme shine like a star</span></p>
+                  <span class="badge badge-success ml-3"><i class="far fa-clock pr-1"></i>1 week</span>
+                </div>
+                <div class="tools">
+                  <a><i class="far fa-edit"></i></a>
+                  <a><i class="far fa-trash-alt"></i></a>
+                </div>
+              </li>
+              <li class="d-flex justify-content-between align-items-center py-2 border-bottom">
+                <div class="d-inline-flex">
+                  <div class="form-check pl-0">
+                    <input type="checkbox" class="form-check-input" id="materialChecked6">
+                    <label class="form-check-label" for="materialChecked6"></label>
+                  </div>
+                  <p class="mb-0"><span class="text">Check your messages and notifications</span></p>
+                  <span class="badge badge-primary ml-3"><i class="far fa-clock pr-1"></i>1 week</span>
+                </div>
+                <div class="tools">
+                  <a><i class="far fa-edit"></i></a>
+                  <a><i class="far fa-trash-alt"></i></a>
+                </div>
+              </li>
+              <li class="d-flex justify-content-between align-items-center pt-2 pb-1">
+                <div class="d-inline-flex">
+                  <div class="form-check pl-0">
+                    <input type="checkbox" class="form-check-input" id="materialChecked7">
+                    <label class="form-check-label" for="materialChecked7"></label>
+                  </div>
+                  <p class="mb-0"><span class="text">Let theme shine like a star</span></p>
+                  <span class="badge badge-light ml-3"><i class="far fa-clock pr-1"></i>1 month</span>
+                </div>
+                <div class="tools">
+                  <a><i class="far fa-edit"></i></a>
+                  <a><i class="far fa-trash-alt"></i></a>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div class="card-footer white py-3">
+            <div class="text-right">
+              <button class="btn btn-primary btn-md px-3 my-0 mr-0">Add item<i class="fas fa-plus pl-2"></i></button>
+            </div>
           </div>
         </div>
       </div>
     </div>
-    <div class="site-section courses-entry-wrap"  data-aos="fade-up" data-aos-delay="100">
-      <div class="container">
-          <div class="material">
 
-          </div>
+  </section> -->
+  <!-- Section: Block Content -->
 
-        <div class="row">
-        <div class="container">
-        <div class="row">
-            <div class="col-lg-3 col-sm-6" data-aos="fade-up" data-aos-delay="100">
-                <div class="card-box bg-blue">
-                    <div class="inner">
-                        <p> Total Kelas</p>
-                        <h3> 1 Kelas</h3>
-                        <p>Sedang anda ikuti<p>
-                    </div>
-                    <div class="icon">
-                        <i class="fa fa-graduation-cap" aria-hidden="true"></i>
-                    </div>
-                    <a href="#" class="card-box-footer">View More <i class="fa fa-arrow-circle-right"></i></a>
-                </div>
-            </div>
-            
-            <div class="col-lg-3 col-sm-6" data-aos="fade-up" data-aos-delay="100">
-                <div class="card-box bg-green">
-                    <div class="inner">
-                    <p> Total Tugas Selesai</p>
-                        <h3> 1 Materi</h3>
-                        <p>Sudah anda selesaikan<p>
-                    </div>
-                    <div class="icon">
-                        <i class="fa fa-money" aria-hidden="true"></i>
-                    </div>
-                    <a href="#" class="card-box-footer">View More <i class="fa fa-arrow-circle-right"></i></a>
-                </div>
-            </div>
-            <div class="col-lg-3 col-sm-6" data-aos="fade-up" data-aos-delay="100">
-                <div class="card-box bg-orange">
-                    <div class="inner">
-                    <p> Total Tugas Selesai</p>
-                        <h3> 1 Tugas</h3>
-                        <p>Sudah anda selesaikan<p>
-                    </div>
-                    <div class="icon">
-                        <i class="fa fa-user-plus" aria-hidden="true"></i>
-                    </div>
-                    <a href="#" class="card-box-footer">View More <i class="fa fa-arrow-circle-right"></i></a>
-                </div>
-            </div>
-            <div class="col-lg-3 col-sm-6" data-aos="fade-up" data-aos-delay="100">
-                <div class="card-box bg-red">
-                    <div class="inner">
-                    <p> Total Tugas Selesai</p>
-                        <h3> 1 Materi</h3>
-                        <p>Belum anda selesaikan<p>
-                    </div>
-                    <div class="icon">
-                        <i class="fa fa-users"></i>
-                    </div>
-                    <a href="#" class="card-box-footer">View More <i class="fa fa-arrow-circle-right"></i></a>
-                </div>
-            </div>
-        </div>
-    </div>
+  
+</div>
+ -->
 
-    <div class="container">
-      <div class="row mb-5" >
-        <div class="col-lg-3 pb-lg-5 pb-sm-3 mt-5"  data-aos="fade-up" data-aos-delay="100">
-            <div class="position-relative rounded" style="box-shadow :0px 0px 11px 4px rgba(0,0,0,0.4);">
-              <div class="p-lg-3 p-md-3 p-sm-0">
-                  <h5 class="mb-4 d-lg-block d-md-block d-none">Filter</h5>
-                  <div class="input-group md-form form-sm form-2 pl-0">
-                  <input class="form-control my-0 py-1 red-border" type="text" placeholder="Search" aria-label="Search">
-                  <div class="input-group-append">
-                    <span class="input-group-text red lighten-3" id="basic-text1"><i class="fa fa-search text-grey"
-                        aria-hidden="true"></i></span>
-                  </div>
-                </div>
-              </div>
-              
-              <!-- -->
-              <div id="">
 
-              </div>
-              <!--  -->
+<div class="container my-5">
 
-            </div>
-        </div>    
-
-          <div class="col-lg-9">
-          <div class="container-fluid"  data-aos="fade-up" data-aos-delay="100">
-                <div class="card-group">
-                  <div class="col-lg-6 mb-5 mt-5">
-                  <div class="card" style="box-shadow :0px 0px 11px 4px rgba(0,0,0,0.4);">
-                    <img class="card-img-top" src="<?php echo base_url(); ?>assets/images/img_1.jpg" alt="Card image cap">
-                    <div class="card-body">
-                      <h5 class="card-title"> Belajar Menyanyi</h5>
-                      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                        <div class="row">
-                          <button class="btn mr-1">Detail</button> <button class="btn">Gabung Kelas</button>
-                        </div>
-                      </div>
-                    <div class="card-footer">
-                      <small class="text-muted">Last updated 3 mins ago</small>
-                    </div>
-                  </div>
-                  </div>
-                  
-
-                  <div class="col-lg-6 mb-5 mt-5">
-                  <div class="card" style="box-shadow :0px 0px 11px 4px rgba(0,0,0,0.4);">
-                    <img class="card-img-top" src="<?php echo base_url(); ?>assets/images/img_1.jpg" alt="Card image cap">
-                    <div class="card-body">
-                      <h5 class="card-title">Belajar JS</h5>
-                      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                      <div class="row">
-                          <button class="btn mr-1 ">Detail</button> <button class="btn">Gabung Kelas</button>
-                        </div>
-                    </div>
-                    <div class="card-footer">
-                      <small class="text-muted">Last updated 3 mins ago</small>
-                    </div>
-                  </div>
-                  </div>
-
-                  <div class="col-lg-6 mb-5 mt-4">
-                  <div class="card" style="box-shadow :0px 0px 11px 4px rgba(0,0,0,0.4);">
-                    <img class="card-img-top" src="<?php echo base_url(); ?>assets/images/img_1.jpg" alt="Card image cap">
-                    <div class="card-body">
-                      <h5 class="card-title">Pemograman Dasar</h5>
-                      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-                      <div class="row">
-                          <button class="btn mr-1 ">Detail</button> <button class="btn">Gabung Kelas</button>
-                        </div>
-                    </div>
-                    <div class="card-footer">
-                      <small class="text-muted">Last updated 3 mins ago</small>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="col-lg-6 mb-5 mt-4">
-                  <div class="card" style="box-shadow :0px 0px 11px 4px rgba(0,0,0,0.4);">
-                    <img class="card-img-top" src="<?php echo base_url(); ?>assets/images/img_1.jpg" alt="Card image cap">
-                    <div class="card-body">
-                      <h5 class="card-title">Pemograman Dasar</h5>
-                      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-                      <div class="row">
-                          <button class="btn mr-1 ">Detail</button> <button class="btn">Gabung Kelas</button>
-                        </div>
-                    </div>
-                    <div class="card-footer">
-                      <small class="text-muted">Last updated 3 mins ago</small>
-                    </div>
-                  </div>
-                </div>
-                </div>
-              </div>
-          <!--  -->
-          </div>
-            <div class="container">
-                  <div class="row">
-                    <div class="col-lg-6">
-                      
-                    </div>
-                    <div class="col-lg-4"  data-aos="fade-up" data-aos-delay="100">
-                        <button class="btn d-flex justify-content-center"> Lebih Banyak</button>
-                    </div>
-                  </div>
-            </div>
-      </div>
-    </div>
+  
+  <!-- Section: Block Content -->
+  <section>
     
-
-
-    <div class="row mb-0 mt-5 justify-content-center">
-          <div class="col-lg-7 mb-0 text-center"  data-aos="fade-up" data-aos-delay="">
-            <h2 class="section-title">Ingin Ikut Kelas Lainnya</h2>
-            <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam repellat aut neque! Doloribus sunt non aut reiciendis, vel recusandae obcaecati hic dicta repudiandae in quas quibusdam ullam, illum sed veniam!</p>
+    <div class="row">
+      <div class="col">
+      	<div class="card card-list">
+          <div class="card-body">
+            <h2>Progress Belajar</h2>
           </div>
-        </div>
-
-          <div class="owl-carousel col-12 nonloop-block-14">
-            
-            <div class="course bg-white h-100 align-self-stretch">
-              <figure class="m-0">
-                <a href="course-single.html"><img src="<?php echo base_url(); ?>assets/images/img_1.jpg" alt="Image" class="img-fluid"></a>
-              </figure>
-              <div class="course-inner-text py-4 px-4">
-                <span class="course-price">$20</span>
-                <div class="meta"><span class="icon-clock-o"></span>4 Lessons / 12 week</div>
-                <h3><a href="#">Study Law of Physics</a></h3>
-                <p>Lorem ipsum dolor sit amet ipsa nulla adipisicing elit. </p>
-              </div>
-              <div class="d-flex border-top stats">
-                <div class="py-3 px-4"><span class="icon-users"></span> 2,193 students</div>
-                <div class="py-3 px-4 w-25 ml-auto border-left"><span class="icon-chat"></span> 2</div>
-              </div>
-            </div>
-
-            <div class="course bg-white h-100 align-self-stretch">
-              <figure class="m-0">
-                <a href="course-single.html"><img src="<?php echo base_url(); ?>assets/images/img_2.jpg" alt="Image" class="img-fluid"></a>
-              </figure>
-              <div class="course-inner-text py-4 px-4">
-                <span class="course-price">$99</span>
-                <div class="meta"><span class="icon-clock-o"></span>4 Lessons / 12 week</div>
-                <h3><a href="#">Logo Design Course</a></h3>
-                <p>Lorem ipsum dolor sit amet ipsa nulla adipisicing elit. </p>
-              </div>
-              <div class="d-flex border-top stats">
-                <div class="py-3 px-4"><span class="icon-users"></span> 2,193 students</div>
-                <div class="py-3 px-4 w-25 ml-auto border-left"><span class="icon-chat"></span> 2</div>
-              </div>
-            </div>
-
-            <div class="course bg-white h-100 align-self-stretch">
-              <figure class="m-0">
-                <a href="course-single.html"><img src="<?php echo base_url(); ?>assets/images/img_3.jpg" alt="Image" class="img-fluid"></a>
-              </figure>
-              <div class="course-inner-text py-4 px-4">
-                <span class="course-price">$99</span>
-                <div class="meta"><span class="icon-clock-o"></span>4 Lessons / 12 week</div>
-                <h3><a href="#">JS Programming Language</a></h3>
-                <p>Lorem ipsum dolor sit amet ipsa nulla adipisicing elit. </p>
-              </div>
-              <div class="d-flex border-top stats">
-                <div class="py-3 px-4"><span class="icon-users"></span> 2,193 students</div>
-                <div class="py-3 px-4 w-25 ml-auto border-left"><span class="icon-chat"></span> 2</div>
-              </div>
-            </div>
-
-
-
-            <div class="course bg-white h-100 align-self-stretch">
-              <figure class="m-0">
-                <a href="course-single.html"><img src="<?php echo base_url(); ?>assets/images/img_4.jpg" alt="Image" class="img-fluid"></a>
-              </figure>
-              <div class="course-inner-text py-4 px-4">
-                <span class="course-price">$20</span>
-                <div class="meta"><span class="icon-clock-o"></span>4 Lessons / 12 week</div>
-                <h3><a href="#">Study Law of Physics</a></h3>
-                <p>Lorem ipsum dolor sit amet ipsa nulla adipisicing elit. </p>
-              </div>
-              <div class="d-flex border-top stats">
-                <div class="py-3 px-4"><span class="icon-users"></span> 2,193 students</div>
-                <div class="py-3 px-4 w-25 ml-auto border-left"><span class="icon-chat"></span> 2</div>
-              </div>
-            </div>
-
-            <div class="course bg-white h-100 align-self-stretch">
-              <figure class="m-0">
-                <a href="course-single.html"><img src="<?php echo base_url(); ?>assets/images/img_5.jpg" alt="Image" class="img-fluid"></a>
-              </figure>
-              <div class="course-inner-text py-4 px-4">
-                <span class="course-price">$99</span>
-                <div class="meta"><span class="icon-clock-o"></span>4 Lessons / 12 week</div>
-                <h3><a href="#">Logo Design Course</a></h3>
-                <p>Lorem ipsum dolor sit amet ipsa nulla adipisicing elit. </p>
-              </div>
-              <div class="d-flex border-top stats">
-                <div class="py-3 px-4"><span class="icon-users"></span> 2,193 students</div>
-                <div class="py-3 px-4 w-25 ml-auto border-left"><span class="icon-chat"></span> 2</div>
-              </div>
-            </div>
-
-            <div class="course bg-white h-100 align-self-stretch">
-              <figure class="m-0">
-                <a href="course-single.html"><img src="<?php echo base_url(); ?>assets/images/img_6.jpg" alt="Image" class="img-fluid"></a>
-              </figure>
-              <div class="course-inner-text py-4 px-4">
-                <span class="course-price">$99</span>
-                <div class="meta"><span class="icon-clock-o"></span>4 Lessons / 12 week</div>
-                <h3><a href="#">JS Programming Language</a></h3>
-                <p>Lorem ipsum dolor sit amet ipsa nulla adipisicing elit. </p>
-              </div>
-              <div class="d-flex border-top stats">
-                <div class="py-3 px-4"><span class="icon-users"></span> 2,193 students</div>
-                <div class="py-3 px-4 w-25 ml-auto border-left"><span class="icon-chat"></span> 2</div>
-              </div>
-            </div>
-
-          </div>
-
          
+          <div class="card-body">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Kelas</th>
+                  <th scope="col">Progress</th>
+                  <th scope="col">Status</th>
+                  <th scope="col">Aksi</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row"><a class="text-primary">Pemograman Lanjutan IV</a></th>
+                  <td> 
+                  <div class="progress md-progress">
+                    <div class="progress-bar bg-info" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0"
+                      aria-valuemax="100">50%</div>
+                  </div>
+                </td>
+                  <td><span class="badge badge-success">Berbayar</span></td>
+                  <td>
+                    <button class="btn btn-light">Lihat kelas</button>
 
-        </div>
-        <div class="row justify-content-center">
-          <div class="col-7 text-center">
-            <button class="customPrevBtn btn btn-primary m-1">Prev</button>
-            <button class="customNextBtn btn btn-primary m-1">Next</button>
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row"><a class="text-primary">Marketing & Manajeme</a></th>
+                  <td>
+                  <div class="progress md-progress">
+                    <div class="progress-bar bg-info" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0"
+                      aria-valuemax="100">50%</div>
+                  </div>
+                  </td>
+                  <td><span class="badge badge-warning">Pending</span></td>
+                  <td class="pt-2 pb-0"><canvas id="bar1" width="40" height="40"></canvas></td>
+                </tr>
+                <tr>
+                  <th scope="row"><a class="text-primary">Merakit Bom</a></th>
+                  <td>
+                  <div class="progress md-progress">
+                    <div class="progress-bar bg-info" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0"
+                      aria-valuemax="100">50%</div>
+                  </div>
+                  </td>
+                  <td><span class="badge badge-danger">Delivered</span></td>
+                  <td class="pt-2 pb-0"><canvas id="bar2" width="40" height="40"></canvas></td>
+                </tr>
+                <tr>
+                  <th scope="row"><a class="text-primary">Akutansi</a></th>
+                  <td>
+                  <div class="progress md-progress">
+                    <div class="progress-bar bg-info" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0"
+                      aria-valuemax="100">50%</div>
+                  </div>
+                  </td>
+                  <td><span class="badge badge-info">Processing</span></td>
+                  <td class="pt-2 pb-0"><canvas id="bar3" width="40" height="40"></canvas></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="card-footer white py-3 d-flex justify-content-between">
+            <button class="btn btn-light btn-md px-3 my-0 mr-0">Gabung Kelas</button>
+            <button class="btn btn-light btn-md px-3 my-0 ml-0">Lihat Semua Kelas</button>
           </div>
         </div>
       </div>
     </div>
 
+  </section>
+  <!-- Section: Block Content -->
 
-    
-
-   
-
-    <div class="site-section bg-image overlay gambar1">
-      <div class="container">
-        <div class="row justify-content-center align-items-center">
-          <div class="col-md-8 text-center testimony">
-            <img src="<?php echo base_url(); ?>assets/images/person_4.jpg" alt="Image" class="img-fluid w-25 mb-4 rounded-circle">
-            <h3 class="mb-4">Jerome Joker</h3>
-            <blockquote>
-              <p>&ldquo; Lay Lay Lay Lay Lay Lay Lay Lay Lay Lay Lay Lay &rdquo;</p>
-            </blockquote>
-          </div>
-        </div>
-      </div>
-    </div>
-
-
-    <div class="site-section bg-light" id="contact-section">
-      <div class="container">
-
-        <div class="row justify-content-center">
-          <div class="col-md-7">
-
-
-            
-            <h2 class="section-title mb-3">Message Us</h2>
-            <p class="mb-5">Natus totam voluptatibus animi aspernatur ducimus quas obcaecati mollitia quibusdam temporibus culpa dolore molestias blanditiis consequuntur sunt nisi.</p>
-          
-            <form method="post" data-aos="fade">
-              <div class="form-group row">
-                <div class="col-md-6 mb-3 mb-lg-0">
-                  <input type="text" class="form-control" placeholder="First name">
-                </div>
-                <div class="col-md-6">
-                  <input type="text" class="form-control" placeholder="Last name">
-                </div>
-              </div>
-
-              <div class="form-group row">
-                <div class="col-md-12">
-                  <input type="text" class="form-control" placeholder="Subject">
-                </div>
-              </div>
-
-              <div class="form-group row">
-                <div class="col-md-12">
-                  <input type="email" class="form-control" placeholder="Email">
-                </div>
-              </div>
-              <div class="form-group row">
-                <div class="col-md-12">
-                  <textarea class="form-control" id="" cols="30" rows="10" placeholder="Write your message here."></textarea>
-                </div>
-              </div>
-
-              <div class="form-group row">
-                <div class="col-md-6">
-                  
-                  <input type="submit" class="btn btn-primary py-3 px-5 btn-block btn-pill" value="Send Message">
-                </div>
-              </div>
-
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-    
-     
+  
+</div>
+</section>

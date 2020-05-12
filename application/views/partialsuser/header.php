@@ -42,7 +42,7 @@
     </div>
    
     
-    <header class="site-navbar py-4 js-sticky-header site-navbar-target" role="banner">
+    <header class="site-navbar py-4 js-sticky-header site-navbar-target" role="banner" style="height: 80px; background-color: #4141b9" > 
       
       <div class="container-fluid">
         <div class="d-flex align-items-center">

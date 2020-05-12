@@ -51,7 +51,7 @@
 <section class="isi-menu-kelas"> 
 <div class="container">
       <div class="row mb-5" >
-        <!-- <div class="col-lg-3 pb-lg-5 pb-sm-3 mt-5"  data-aos="fade-up" data-aos-delay="100">
+        <div class="col-lg-3 pb-lg-5 pb-sm-3 mt-5"  data-aos="fade-up" data-aos-delay="100" style="padding-top: 100px">
             <div class="position-relative rounded" style="box-shadow :0px 0px 11px 4px rgba(0,0,0,0.4);">
               <div class="p-lg-3 p-md-3 p-sm-0">
                   <h5 class="mb-4 d-lg-block d-md-block d-none">Filter</h5>
@@ -142,7 +142,7 @@
               </div>
 
             </div>
-        </div>     -->
+        </div>    
 
           <!-- <div class="col-lg-9">
           <div class="container-fluid"  data-aos="fade-up" data-aos-delay="100">
@@ -226,7 +226,7 @@
               </div>
           <!--  -->
 
-    <div class="col-md-12 mt-5">
+    <div class="col-md-8 mt-5">
     <div class="paket position-relative rounded"" >
     <div class="col-lg-12">
       <div class="judul-list">
