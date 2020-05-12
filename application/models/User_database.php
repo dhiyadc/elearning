@@ -74,11 +74,17 @@ public function setToken($id_user, $token)
     return $this->db->query($sql);
 }
 
-public function getValidToken($id_user, $token){
-    $sql = "SELECT id_user FROM lupa_password WHERE
-    id_user='$id_user' AND token='$token' AND token<>'' AND expire_date > NOW()";
+public function getValidToken($token){
+    $sql = "SELECT id_user FROM lupa_password WHERE token='$token' AND token<>'' AND expire_date > NOW()";
     $query = $this->db->query($sql);
     return $query->num_rows();
+}
+
+public function getIDbyToken($token){
+    $sql = "SELECT id_user FROM lupa_password WHERE token='$token'";
+    $query = $this->db->query($sql);
+
+    return $query->result_array()[0];
 }
 
 public function updatePassword($id_user, $newPassword)

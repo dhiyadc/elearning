@@ -23,8 +23,8 @@ class Reset_password extends CI_Controller{
         }
     }
 
-    public function valid($id_user, $token){
-            $isValid = $this->user_database->getValidToken($id_user, $token);
+    public function valid($token){
+            $isValid = $this->user_database->getValidToken($token);
             if($isValid > 0)
             {
                 $this->load->view('user/reset_password');
@@ -37,9 +37,11 @@ class Reset_password extends CI_Controller{
     }
 
     public function request(){
-        $id_user = $this->input->post('id_user');
         $token = $this->input->post('token');
         $newPassword = $this->input->post('password');
+
+        $user = $this->user_database->getIDbyToken($token);
+        $id_user = $user['id_user'];
 
         $this->user_database->updatePassword($id_user, $newPassword);
         $data = array(

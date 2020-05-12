@@ -19,7 +19,7 @@
                 <input class="form-control" id="email" placeholder="Your Email Address" required> -->
                 
                     <?php
-                    $id_user = $this->uri->segment(3);
+                    $token = $this->uri->segment(3);
                     ?>
                 <?php
                     if (isset($error_message)) {
@@ -28,7 +28,7 @@
                     echo "</div>";
                     } else {
                     ?>
-            <input type="hidden" name="id_user" value="<?= $id_user; ?>">
+            <input type="hidden" name="token" value="<?= $token; ?>">
           <input type="password" class="form-control" id="password" name="password" placeholder="Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required>
           <br>
           <input type="password" class="form-control" id="password2" name="password2" placeholder="Confirm Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required>
