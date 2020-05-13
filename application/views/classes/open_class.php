@@ -7,7 +7,7 @@
         <title><?= $val['judul_kelas']; ?></title>
     <?php endforeach; ?>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
-    <link href="<?= base_url() ?>assets/datetimepicker/bootstrap.min.css" rel="stylesheet" media="screen">
+    <!-- <link href="<?= base_url() ?>assets/datetimepicker/bootstrap.min.css" rel="stylesheet" media="screen"> -->
     <link href="<?= base_url() ?>assets/datetimepicker/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
 </head>
 <body>
@@ -118,7 +118,7 @@
                         <div class="modal-body">
                             <form action="<?= base_url()?>classes/set_kegiatan/<?= $val['id_kelas'] ?>" method="POST">
                                 Deskripsi Kegiatan: <input type="text" name="deskripsi" required><br>
-                                <div class="input-group date form_datetime col-md-3" name="tanggal" data-date-format="dd MM yyyy - hh:ii" data-link-field="dtp_input1">
+                                <div class="input-group date form_datetime " name="tanggal" data-date-format="dd MM yyyy - hh:ii" data-link-field="dtp_input1">
                                     <input class="form-control" size="16" type="text" readonly required>
                                     <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
                                     <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
