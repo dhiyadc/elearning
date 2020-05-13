@@ -106,7 +106,6 @@
                 forceParse: 0,
                 showMeridian: 0
             });
-            console.log('add more');
         });
         
         $(document).on('click', '.btn_remove', function(){  
