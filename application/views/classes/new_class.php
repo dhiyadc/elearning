@@ -21,7 +21,7 @@
         </select><br>
         Poster: <input type="file" name="poster" accept=".png, .jpg, .jpeg" required><br>
         <label>Jenis: </label><br>
-        <input type="radio" name="jenis" value="1" onclick="hideHarga()">
+        <input type="radio" name="jenis" value="1" required onclick="hideHarga()">
         <label for="vehicle1">Gratis</label><br>
         <input type="radio" name="jenis" value="2" onclick="showHarga()">
         <label for="vehicle2">Berbayar</label><br>
@@ -32,9 +32,9 @@
         <p id="formButton" class="btn btn-success">Tambah Kegiatan</p>
         <div id="form1" style="display: none">
             <div id="kegiatan_field">
-                <input type="text" name="addmore[][deskripsi_kegiatan]" placeholder="Deskripsi Kegiatan"/>
-                <div class="input-group date form_datetime col-md-3" data-date-format="dd MM yyyy - hh:ii" data-link-field="dtp_input1">
-                    <input class="form-control" name="addmore[][tanggal_kegiatan]" size="16" type="text" readonly required>
+                <input type="text" name="addmore[][deskripsi_kegiatan]" placeholder="Deskripsi Kegiatan" />
+                <div class="input-group date form_datetime col-md-3" data-date-format="yyyy/mm/dd hh:ii" data-link-field="dtp_input1">
+                    <input class="form-control" name="addmore[][tanggal_kegiatan]" size="16" type="text" readonly >
                     <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
 					<span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
                 </div>
@@ -65,9 +65,9 @@
         var i=1;  
         // $('#add').click(function(){  
         //     i++;  
-        //     var txt1 = '<tr id="row'+i+'" class="dynamic-added"><td><input type="text" name="addmore[][deskripsi_kegiatan]" placeholder="Deskripsi Kegiatan"/></td><td><div class="input-group date form_datetime col-md-3" data-date-format="dd MM yyyy - hh:ii" data-link-field="dtp_input1"><input class="form-control" name="addmore[][tanggal_kegiatan]" size="16" type="text"readonly><span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span><span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span></div><input type="hidden" id="dtp_input1"/></td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>';
+        //     var txt1 = '<tr id="row'+i+'" class="dynamic-added"><td><input type="text" name="addmore[][deskripsi_kegiatan]" placeholder="Deskripsi Kegiatan" /></td><td><div class="input-group date form_datetime col-md-3" data-date-format="dd MM yyyy - hh:ii" data-link-field="dtp_input1"><input class="form-control" name="addmore[][tanggal_kegiatan]" size="16" type="text"readonly><span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span><span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span></div><input type="hidden" id="dtp_input1"/></td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>';
     
-        //     $('#kegiatan_field2').append(`'<tr id="row'+i+'" class="dynamic-added"><td><input type="text" name="addmore[][deskripsi_kegiatan]" placeholder="Deskripsi Kegiatan"/></td>
+        //     $('#kegiatan_field2').append(`'<tr id="row'+i+'" class="dynamic-added"><td><input type="text" name="addmore[][deskripsi_kegiatan]" placeholder="Deskripsi Kegiatan" /></td>
         //     <td><div class="input-group date form_datetime col-md-3" data-date-format="dd MM yyyy - hh:ii" data-link-field="dtp_input1"><input class="form-control" name="addmore[][tanggal_kegiatan]" size="16" type="text"readonly>
         //     <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span><span class="input-group-addon"><span class="glyphicon glyphicon-th"></span>
         //     </span></div><input type="hidden" id="dtp_input1"/></td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>'`);
@@ -77,11 +77,11 @@
         $(document).on('click', '#add', function(){
             
             i++;  
-            var txt1 = '<tr id="row'+i+'" class="dynamic-added"><td><input type="text" name="addmore[][deskripsi_kegiatan]" placeholder="Deskripsi Kegiatan"/></td><td><div class="input-group date form_datetime col-md-3" data-date-format="dd MM yyyy - hh:ii" data-link-field="dtp_input1"><input class="form-control" name="addmore[][tanggal_kegiatan]" size="16" type="text"readonly><span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span><span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span></div><input type="hidden" id="dtp_input1"/></td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>';
+            var txt1 = '<tr id="row'+i+'" class="dynamic-added"><td><input type="text" name="addmore[][deskripsi_kegiatan]" placeholder="Deskripsi Kegiatan" /></td><td><div class="input-group date form_datetime col-md-3" data-date-format="dd MM yyyy - hh:ii" data-link-field="dtp_input1"><input class="form-control" name="addmore[][tanggal_kegiatan]" size="16" type="text"readonly><span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span><span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span></div><input type="hidden" id="dtp_input1"/></td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>';
            
             $('#kegiatan_field').append(`<div id="row`+i+`">
-            <input type="text" name="addmore[][deskripsi_kegiatan]" placeholder="Deskripsi Kegiatan"/>
-            <div class="input-group date form_datetime col-md-3" data-date-format="dd MM yyyy - hh:ii" data-link-field="dtp_input1">
+            <input type="text" name="addmore[][deskripsi_kegiatan]" placeholder="Deskripsi Kegiatan" />
+            <div class="input-group date form_datetime col-md-3" data-date-format="yyyy/mm/dd hh:ii" data-link-field="dtp_input1">
                 <input class="form-control" name="addmore[][tanggal_kegiatan]" size="16" type="text" readonly>
                 <span class="input-group-addon">
                     <span class="glyphicon glyphicon-remove">

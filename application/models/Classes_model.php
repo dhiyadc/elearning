@@ -125,7 +125,7 @@ class Classes_model extends CI_Model {
 
         $this->db->insert('kelas',$data);
         
-        if(!empty($this->input->post('addmore'))){
+        if($this->input->post('addmore') == 0){
             $this->setKegiatan($this->getIdNewClass()['id_kelas']);
         }
         $this->setHarga($this->getIdNewClass()['id_kelas']);

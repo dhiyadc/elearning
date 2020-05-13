@@ -118,8 +118,8 @@
                         <div class="modal-body">
                             <form action="<?= base_url()?>classes/set_kegiatan/<?= $val['id_kelas'] ?>" method="POST">
                                 Deskripsi Kegiatan: <input type="text" name="deskripsi" required><br>
-                                <div class="input-group date form_datetime " name="tanggal" data-date-format="dd MM yyyy - hh:ii" data-link-field="dtp_input1">
-                                    <input class="form-control" size="16" type="text" readonly required>
+                                <div class="input-group date form_datetime " data-date-format="yyyy/mm/dd hh:ii" data-link-field="dtp_input1">
+                                    <input class="form-control" size="16" type="text" name="tanggal" readonly required>
                                     <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
                                     <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
                                 </div>

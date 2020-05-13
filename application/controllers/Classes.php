@@ -22,7 +22,8 @@ class Classes extends CI_Controller {
     {
         if(isset($this->session->userdata['logged_in'])){
             $this->Classes_model->createClass();
-            redirect('classes');
+            $id = $this->Classes_model->getIdNewClass();
+            redirect('classes/open_class/' . $id);
         } else {
             redirect('login');
         }
