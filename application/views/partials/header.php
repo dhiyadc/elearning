@@ -66,7 +66,7 @@
           <div class="ml-auto w-25">
             <nav class="site-navigation position-relative text-right" role="navigation">
               <ul class="site-menu main-menu site-menu-white js-clone-nav mr-auto d-none d-lg-block m-0 p-0">
-                <li class="nav-link"><a href="<?php echo base_url(); ?>" class="nav-link"><span>Login</span></a></li>
+                <li class="nav-link"><a href=""  data-toggle="modal" data-target="#darkModalForm"><span>Login</span></a></li>
                 <li class="cta"><a href="" class="nav-link"><span>Daftar</span></a></li>
               </ul>
             </nav>
@@ -75,5 +75,7 @@
           
         </div>
       </div>
+
+    
       
     </header>
