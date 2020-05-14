@@ -1,237 +1,200 @@
+<div class="intro-section single-cover" id="home-section">
+      
+      <div class="slide-1 gambar1" data-stellar-background-ratio="0.5">
+        <div class="container">
+          <div class="row align-items-center">
+            <div class="col-12">
+              <div class="row justify-content-center align-items-center text-center">
+                <div class="col-lg-6">
+                  <h1 data-aos="fade-up" data-aos-delay="0">Logo Design Course</h1>
+                  <p data-aos="fade-up" data-aos-delay="100">4 Pertemuan / 12 Minggu &bullet; 2,193 Siswa &bullet; <a href="#" class="text-white">6 comments</a></p>
+                </div>
 
+                
+              </div>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
     
-    <div class="site-section courses-title" id="courses-section">
+    <div class="site-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 mb-5">
+
+            <div class="mb-5">
+              <h3 class="text-black">Detail Kelas</h3>
+              <p class="mb-4">
+                <strong class="text-black mr-3">Jadwal: </strong> Sabtu 9:30 - 11:00
+              </p>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim eum iure voluptatum provident natus, deleniti alias corporis dolorem architecto eligendi consequatur, veniam ratione qui adipisci, doloremque aspernatur? Debitis, quia, praesentium.</p>
+              <p>Molestias sit temporibus ullam voluptatem quibusdam. Accusamus labore perspiciatis similique veritatis ipsum iure quas. Nulla perspiciatis unde eveniet nihil, nesciunt repellat maxime ab libero minima voluptas dolore repudiandae adipisci. Cumque!</p>
+              <p>Enim harum voluptatem, itaque in illum quas temporibus tempore sit tempora quam atque eveniet, non aspernatur dignissimos aliquid praesentium exercitationem delectus, maxime velit saepe! Qui asperiores iure reprehenderit ad voluptas!</p>
+              <div class="row mb-4">
+                <div class="col">
+                  <img src="<?php echo base_url(); ?>assets/images/img_1.jpg" alt="Image" class="img-fluid rounded">
+                </div>
+                <div class="col">
+                  <img src="<?php echo base_url(); ?>assets/images/img_2.jpg" alt="Image" class="img-fluid rounded">
+                </div>
+              </div>
+              <p>Ipsam fuga fugiat vero repudiandae, tenetur a ullam, expedita perspiciatis dolores rem quibusdam numquam dicta sint unde repellat magni recusandae. Id, quibusdam, voluptatum. Amet mollitia ratione, illum animi quia ex?</p>
+              <p>Sint aut repudiandae, in amet nemo. Nobis labore id iure molestias reprehenderit quisquam illo quod cum dolorum aspernatur ut sequi, facere beatae, porro cupiditate magnam laborum laudantium laboriosam ab autem!</p>
+
+              <p class="mt-4"><a href="#" class="btn btn-primary">Gabung Kelas</a></p>
+            </div>
+
+            <div class="pt-5">
+              <h3 class="mb-5">6 Comments</h3>
+              <ul class="comment-list">
+                <li class="comment">
+                  <div class="vcard bio">
+                    <img src="<?php echo base_url(); ?>assets/images/person_1.jpg" alt="Image placeholder">
+                  </div>
+                  <div class="comment-body">
+                    <h3>Jean Doe</h3>
+                    <div class="meta">January 9, 2018 at 2:21pm</div>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
+                    <p><a href="#" class="reply">Reply</a></p>
+                  </div>
+                </li>
+
+                <li class="comment">
+                  <div class="vcard bio">
+                    <img src="<?php echo base_url(); ?>assets/images/person_1.jpg" alt="Image placeholder">
+                  </div>
+                  <div class="comment-body">
+                    <h3>Jean Doe</h3>
+                    <div class="meta">January 9, 2018 at 2:21pm</div>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
+                    <p><a href="#" class="reply">Reply</a></p>
+                  </div>
+
+                  <ul class="children">
+                    <li class="comment">
+                      <div class="vcard bio">
+                        <img src="<?php echo base_url(); ?>assets/images/person_1.jpg" alt="Image placeholder">
+                      </div>
+                      <div class="comment-body">
+                        <h3>Jean Doe</h3>
+                        <div class="meta">January 9, 2018 at 2:21pm</div>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
+                        <p><a href="#" class="reply">Reply</a></p>
+                      </div>
+
+
+                      <ul class="children">
+                        <li class="comment">
+                          <div class="vcard bio">
+                            <img src="<?php echo base_url(); ?>assets/images/person_1.jpg" alt="Image placeholder">
+                          </div>
+                          <div class="comment-body">
+                            <h3>Jean Doe</h3>
+                            <div class="meta">January 9, 2018 at 2:21pm</div>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
+                            <p><a href="#" class="reply">Reply</a></p>
+                          </div>
+
+                            <ul class="children">
+                              <li class="comment">
+                                <div class="vcard bio">
+                                  <img src="<?php echo base_url(); ?>assets/images/person_1.jpg" alt="Image placeholder">
+                                </div>
+                                <div class="comment-body">
+                                  <h3>Jean Doe</h3>
+                                  <div class="meta">January 9, 2018 at 2:21pm</div>
+                                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
+                                  <p><a href="#" class="reply">Reply</a></p>
+                                </div>
+                              </li>
+                            </ul>
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+
+                <li class="comment">
+                  <div class="vcard bio">
+                    <img src="<?php echo base_url(); ?>assets/images/person_1.jpg" alt="Image placeholder">
+                  </div>
+                  <div class="comment-body">
+                    <h3>Jean Doe</h3>
+                    <div class="meta">January 9, 2018 at 2:21pm</div>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
+                    <p><a href="#" class="reply">Reply</a></p>
+                  </div>
+                </li>
+              </ul>
+              <!-- END comment-list -->
+              
+              <div class="comment-form-wrap pt-5">
+                <h3 class="mb-5">Leave a comment</h3>
+                <form action="#" class="p-5 bg-light">
+                  <div class="form-group">
+                    <label for="name">Name *</label>
+                    <input type="text" class="form-control" id="name">
+                  </div>
+                  <div class="form-group">
+                    <label for="email">Email *</label>
+                    <input type="email" class="form-control" id="email">
+                  </div>
+                  <div class="form-group">
+                    <label for="website">Website</label>
+                    <input type="url" class="form-control" id="website">
+                  </div>
+
+                  <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea name="" id="message" cols="30" rows="10" class="form-control"></textarea>
+                  </div>
+                  <div class="form-group">
+                    <input type="submit" value="Post Comment" class="btn btn-primary">
+                  </div>
+
+                </form>
+              </div>
+            </div>
+
+
+
+          </div>
+          <div class="col-lg-4 pl-lg-5">
+
+            <div class="mb-5 text-center border rounded course-instructor">
+              <h3 class="mb-5 text-black text-uppercase h6 border-bottom pb-3">Mentor Kelas</h3>
+              <div class="mb-4 text-center">
+                <img src="<?php echo base_url(); ?>assets/images/person_2.jpg" alt="Image" class="w-25 rounded-circle mb-4">  
+                <h3 class="h5 text-black mb-4">Wakema Ukewwaywa</h3>
+                <p>Lorem ipsum dolor sit amet sectetur adipisicing elit. Ipsa porro expedita libero pariatur vero eos.</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="site-section courses-title bg-dark" id="courses-section">
       <div class="container">
         <div class="row mb-5 justify-content-center">
           <div class="col-lg-7 text-center" data-aos="fade-up" data-aos-delay="">
-            <h2 class="section-title"></h2>
+            <h2 class="section-title">More Courses</h2>
           </div>
         </div>
       </div>
     </div>
-    <div class="site-section courses-entry-wrap"  data-aos="fade-up" data-aos-delay="100">
+    <div class="site-section courses-entry-wrap"  data-aos="fade" data-aos-delay="100">
       <div class="container">
-          <div class="material">
-
-          </div>
-
         <div class="row">
-        <div class="container">
-        <div class="row">
-            <div class="col-lg-3 col-sm-6" data-aos="fade-up" data-aos-delay="100">
-                <div class="card-box bg-blue">
-                    <div class="inner">
-                        <p> Total Kelas</p>
-                        <h3> 1 Kelas</h3>
-                        <p>Sedang anda ikuti<p>
-                    </div>
-                    <div class="icon">
-                        <i class="fa fa-graduation-cap" aria-hidden="true"></i>
-                    </div>
-                    <a href="#" class="card-box-footer">View More <i class="fa fa-arrow-circle-right"></i></a>
-                </div>
-            </div>
-            
-            <div class="col-lg-3 col-sm-6" data-aos="fade-up" data-aos-delay="100">
-                <div class="card-box bg-green">
-                    <div class="inner">
-                    <p> Total Tugas Selesai</p>
-                        <h3> 1 Materi</h3>
-                        <p>Sudah anda selesaikan<p>
-                    </div>
-                    <div class="icon">
-                        <i class="fa fa-money" aria-hidden="true"></i>
-                    </div>
-                    <a href="#" class="card-box-footer">View More <i class="fa fa-arrow-circle-right"></i></a>
-                </div>
-            </div>
-            <div class="col-lg-3 col-sm-6" data-aos="fade-up" data-aos-delay="100">
-                <div class="card-box bg-orange">
-                    <div class="inner">
-                    <p> Total Tugas Selesai</p>
-                        <h3> 1 Tugas</h3>
-                        <p>Sudah anda selesaikan<p>
-                    </div>
-                    <div class="icon">
-                        <i class="fa fa-user-plus" aria-hidden="true"></i>
-                    </div>
-                    <a href="#" class="card-box-footer">View More <i class="fa fa-arrow-circle-right"></i></a>
-                </div>
-            </div>
-            <div class="col-lg-3 col-sm-6" data-aos="fade-up" data-aos-delay="100">
-                <div class="card-box bg-red">
-                    <div class="inner">
-                    <p> Total Tugas Selesai</p>
-                        <h3> 1 Materi</h3>
-                        <p>Belum anda selesaikan<p>
-                    </div>
-                    <div class="icon">
-                        <i class="fa fa-users"></i>
-                    </div>
-                    <a href="#" class="card-box-footer">View More <i class="fa fa-arrow-circle-right"></i></a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="container">
-      <div class="row mb-5" >
-        <div class="col-lg-3 pb-lg-5 pb-sm-3 mt-5"  data-aos="fade-up" data-aos-delay="100">
-            <div class="position-relative rounded" style="box-shadow :0px 0px 11px 4px rgba(0,0,0,0.4);">
-              <div class="p-lg-3 p-md-3 p-sm-0">
-                  <h5 class="mb-4 d-lg-block d-md-block d-none">Filter</h5>
-                  <div class="input-group md-form form-sm form-2 pl-0">
-                  <input class="form-control my-0 py-1 red-border" type="text" placeholder="Search" aria-label="Search">
-                  <div class="input-group-append">
-                    <span class="input-group-text red lighten-3" id="basic-text1"><i class="fa fa-search text-grey"
-                        aria-hidden="true"></i></span>
-                  </div>
-                </div>
-              </div>
-              
-              <!-- <div class="inner mb-5">
-              <div class="container-fluid">
-             
-                <div class="accordion md-accordion " id="accordionEx" role="tablist" aria-multiselectable="true">
-
-               
-                <div class="card">
-
-                  <div class="card-header mb-2" role="tab" id="headingOne1">
-                    <a data-toggle="collapse" data-parent="#accordionEx" href="#collapseOne1" aria-expanded="true"
-                      aria-controls="collapseOne1">
-                      <p class="mb-0">
-                        Kategori<i class="fa fa-angle-down rotate-icon"></i>
-                      </p>
-                    </a>
-                  </div>
-
-                
-                  <div id="collapseOne1" class="collapse show" role="tabpanel" aria-labelledby="headingOne1" data-parent="#accordionEx">
-                    <div class="card-body">
-                    
-                    </div>
-                  </div>
-
-                </div>
-            
-
-              
-                <div class="card">
-
-                 
-                  <div class="card-header mb-2" role="tab" id="headingTwo2">
-                    <a class="collapsed" data-toggle="collapse" data-parent="#accordionEx" href="#collapseTwo2"
-                      aria-expanded="false" aria-controls="collapseTwo2">
-                      <p class="mb-0">
-                        Kategori<i class="fa fa-angle-down rotate-icon"></i>
-                      </p>
-                    </a>
-                  </div>
-
-                  <div id="collapseTwo2" class="collapse" role="tabpanel" aria-labelledby="headingTwo2" data-parent="#accordionEx">
-                    <div class="card-body">
-                    
-                    </div>
-                  </div>
-
-                </div>
- 
-
-
-                <div class="card">
-
-
-                  <div class="card-header mb-2" role="tab" id="headingThree3">
-                    <a class="collapsed" data-toggle="collapse" data-parent="#accordionEx" href="#collapseThree3"
-                      aria-expanded="false" aria-controls="collapseThree3">
-                      <p class="mb-0">
-                        Kategori<i class="fa fa-angle-down rotate-icon"></i>
-                      </p>
-                    </a>
-                  </div>
-
-
-                  <div id="collapseThree3" class="collapse" role="tabpanel" aria-labelledby="headingThree3" data-parent="#accordionEx">
-                    <div class="card-body">
-                    
-                    </div>
-                  </div>
-
-                </div>
-
-
-                </div>
-
-              </div>
-              </div> -->
-
-            </div>
-        </div>    
-
-                <div class="col mb-5 mt-5">
-                  <div class="card" style="box-shadow :0px 0px 11px 4px rgba(0,0,0,0.4);">
-                    <img class="card-img-top" src="<?php echo base_url(); ?>assets/images/img_1.jpg" alt="Card image cap">
-                    <div class="card-body">
-                      <h1 class="card-title">Belajar JS</h1>
-                      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer. SHorewa Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo odio vitae quae quidem molestiae animi debitis cupiditate a explicabo, facere, porro tempore sunt itaque dolorem laboriosam. Alias sint optio culpa deserunt natus repellat beatae sit mollitia quos nihil in ratione ad amet provident, blanditiis adipisci reiciendis modi tempora excepturi nobis.</p>
-                      
-                      <h3 class="juduldetail">Apa Keuntungan Saya Bergabung kelas ini?</h2>
-                      <ul>
-                          <li>Dapat Susu</li>
-                          <li>Kaus Gratis</li>
-                          <li>Mentor Cantik,Segar</li>
-                      </ul>
-
-                      <h3 class="juduldetail">Materi Apa Saja yang akan Saya pelajari</h3>
-                      <ul>
-                          <li>nguli gratis</li>
-                          <li>ngirup cuka pempek pak os</li>
-                          <li>tukang ketik tersertifikasi</li>
-                      </ul>
-                      <div class="row">
-                          <button class="btn mr-2">Gabung Kelas</button> <button class="btn-dark mr-1 "><a href="User">Back</a></button>
-                        </div>
-                    </div>
-                    <div class="card-footer">
-                      <small class="text-muted">Last updated 3 mins ago</small>
-                    </div>
-                  </div>
-                  </div>
-
-                  
-                
-                </div>
-              </div>
-          <!--  -->
-          </div>
-            <div class="container">
-                  <div class="row">
-                    <div class="col-lg-6">
-                      
-                    </div>
-                    <div class="col-lg-4"  data-aos="fade-up" data-aos-delay="100">
-                        <button class="btn d-flex justify-content-center"> Lihat Kelas Lainnya</button>
-                    </div>
-                  </div>
-            </div>
-      </div>
-    </div>
-    
-
-
-    <div class="row mb-0 mt-5 justify-content-center">
-          <div class="col-lg-7 mb-0 text-center"  data-aos="fade-up" data-aos-delay="">
-            <h2 class="section-title">Ingin Ikut Kelas Lainnya</h2>
-            <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam repellat aut neque! Doloribus sunt non aut reiciendis, vel recusandae obcaecati hic dicta repudiandae in quas quibusdam ullam, illum sed veniam!</p>
-          </div>
-        </div>
 
           <div class="owl-carousel col-12 nonloop-block-14">
-            
+
             <div class="course bg-white h-100 align-self-stretch">
               <figure class="m-0">
-                <a href="course-single.html"><img src="<?php echo base_url(); ?>assets/images/img_1.jpg" alt="Image" class="img-fluid"></a>
+                <a href="course-single.html"><img src="images/img_1.jpg" alt="Image" class="img-fluid"></a>
               </figure>
               <div class="course-inner-text py-4 px-4">
                 <span class="course-price">$20</span>
@@ -247,7 +210,7 @@
 
             <div class="course bg-white h-100 align-self-stretch">
               <figure class="m-0">
-                <a href="course-single.html"><img src="<?php echo base_url(); ?>assets/images/img_2.jpg" alt="Image" class="img-fluid"></a>
+                <a href="course-single.html"><img src="images/img_2.jpg" alt="Image" class="img-fluid"></a>
               </figure>
               <div class="course-inner-text py-4 px-4">
                 <span class="course-price">$99</span>
@@ -263,7 +226,7 @@
 
             <div class="course bg-white h-100 align-self-stretch">
               <figure class="m-0">
-                <a href="course-single.html"><img src="<?php echo base_url(); ?>assets/images/img_3.jpg" alt="Image" class="img-fluid"></a>
+                <a href="course-single.html"><img src="images/img_3.jpg" alt="Image" class="img-fluid"></a>
               </figure>
               <div class="course-inner-text py-4 px-4">
                 <span class="course-price">$99</span>
@@ -281,7 +244,7 @@
 
             <div class="course bg-white h-100 align-self-stretch">
               <figure class="m-0">
-                <a href="course-single.html"><img src="<?php echo base_url(); ?>assets/images/img_4.jpg" alt="Image" class="img-fluid"></a>
+                <a href="course-single.html"><img src="images/img_4.jpg" alt="Image" class="img-fluid"></a>
               </figure>
               <div class="course-inner-text py-4 px-4">
                 <span class="course-price">$20</span>
@@ -297,7 +260,7 @@
 
             <div class="course bg-white h-100 align-self-stretch">
               <figure class="m-0">
-                <a href="course-single.html"><img src="<?php echo base_url(); ?>assets/images/img_5.jpg" alt="Image" class="img-fluid"></a>
+                <a href="course-single.html"><img src="images/img_5.jpg" alt="Image" class="img-fluid"></a>
               </figure>
               <div class="course-inner-text py-4 px-4">
                 <span class="course-price">$99</span>
@@ -313,7 +276,7 @@
 
             <div class="course bg-white h-100 align-self-stretch">
               <figure class="m-0">
-                <a href="course-single.html"><img src="<?php echo base_url(); ?>assets/images/img_6.jpg" alt="Image" class="img-fluid"></a>
+                <a href="course-single.html"><img src="images/img_6.jpg" alt="Image" class="img-fluid"></a>
               </figure>
               <div class="course-inner-text py-4 px-4">
                 <span class="course-price">$99</span>
@@ -340,76 +303,3 @@
         </div>
       </div>
     </div>
-
-
-    
-
-   
-
-    <div class="site-section bg-image overlay gambar1">
-      <div class="container">
-        <div class="row justify-content-center align-items-center">
-          <div class="col-md-8 text-center testimony">
-            <img src="<?php echo base_url(); ?>assets/images/person_4.jpg" alt="Image" class="img-fluid w-25 mb-4 rounded-circle">
-            <h3 class="mb-4">Jerome Joker</h3>
-            <blockquote>
-              <p>&ldquo; Lay Lay Lay Lay Lay Lay Lay Lay Lay Lay Lay Lay &rdquo;</p>
-            </blockquote>
-          </div>
-        </div>
-      </div>
-    </div>
-
-
-    <div class="site-section bg-light" id="contact-section">
-      <div class="container">
-
-        <div class="row justify-content-center">
-          <div class="col-md-7">
-
-
-            
-            <h2 class="section-title mb-3">Hubungi Kami</h2>
-            <p class="mb-5">Natus totam voluptatibus animi aspernatur ducimus quas obcaecati mollitia quibusdam temporibus culpa dolore molestias blanditiis consequuntur sunt nisi.</p>
-          
-            <form method="post" data-aos="fade">
-              <div class="form-group row">
-                <div class="col-md-6 mb-3 mb-lg-0">
-                  <input type="text" class="form-control" placeholder="First name">
-                </div>
-                <div class="col-md-6">
-                  <input type="text" class="form-control" placeholder="Last name">
-                </div>
-              </div>
-
-              <div class="form-group row">
-                <div class="col-md-12">
-                  <input type="text" class="form-control" placeholder="Subject">
-                </div>
-              </div>
-
-              <div class="form-group row">
-                <div class="col-md-12">
-                  <input type="email" class="form-control" placeholder="Email">
-                </div>
-              </div>
-              <div class="form-group row">
-                <div class="col-md-12">
-                  <textarea class="form-control" id="" cols="30" rows="10" placeholder="Write your message here."></textarea>
-                </div>
-              </div>
-
-              <div class="form-group row">
-                <div class="col-md-6">
-                  
-                  <input type="submit" class="btn btn-primary py-3 px-5 btn-block btn-pill" value="Send Message">
-                </div>
-              </div>
-
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-    
-     

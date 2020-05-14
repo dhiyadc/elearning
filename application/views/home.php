@@ -42,13 +42,13 @@
                 <a href="course-single.html"><img src="<?php echo base_url(); ?>assets/images/img_1.jpg" alt="Image" class="img-fluid"></a>
               </figure>
               <div class="course-inner-text py-4 px-4">
-                <span class="course-price">$20</span>
-                <div class="meta"><span class="icon-clock-o"></span>4 Lessons / 12 week</div>
-                <h3><a href="#">Study Law of Physics</a></h3>
+                <span class="course-price">Rp.250.000</span>
+                <div class="meta"><span class="icon-clock-o"></span>4 Pertemuan / 12 Minggu</div>
+                <h3><a href="DetailKelas">Study Law of Physics</a></h3>
                 <p>Lorem ipsum dolor sit amet ipsa nulla adipisicing elit. </p>
               </div>
               <div class="d-flex border-top stats">
-                <div class="py-3 px-4"><span class="icon-users"></span> 2,193 students</div>
+                <div class="py-3 px-4"><span class="icon-users"></span> 2,193 siswa</div>
                 <div class="py-3 px-4 w-25 ml-auto border-left"><span class="icon-chat"></span> 2</div>
               </div>
             </div>
@@ -58,13 +58,13 @@
                 <a href="course-single.html"><img src="<?php echo base_url(); ?>assets/images/img_2.jpg" alt="Image" class="img-fluid"></a>
               </figure>
               <div class="course-inner-text py-4 px-4">
-                <span class="course-price">$99</span>
-                <div class="meta"><span class="icon-clock-o"></span>4 Lessons / 12 week</div>
-                <h3><a href="#">Logo Design Course</a></h3>
+                <span class="course-price">Rp.300.000</span>
+                <div class="meta"><span class="icon-clock-o"></span>4 Pertemuan / 12 Minggu</div>
+                <h3><a href="Detailkelas">Logo Design Course</a></h3>
                 <p>Lorem ipsum dolor sit amet ipsa nulla adipisicing elit. </p>
               </div>
               <div class="d-flex border-top stats">
-                <div class="py-3 px-4"><span class="icon-users"></span> 2,193 students</div>
+                <div class="py-3 px-4"><span class="icon-users"></span> 2,193 siswa</div>
                 <div class="py-3 px-4 w-25 ml-auto border-left"><span class="icon-chat"></span> 2</div>
               </div>
             </div>
@@ -74,13 +74,13 @@
                 <a href="course-single.html"><img src="<?php echo base_url(); ?>assets/images/img_3.jpg" alt="Image" class="img-fluid"></a>
               </figure>
               <div class="course-inner-text py-4 px-4">
-                <span class="course-price">$99</span>
-                <div class="meta"><span class="icon-clock-o"></span>4 Lessons / 12 week</div>
-                <h3><a href="#">JS Programming Language</a></h3>
+                <span class="course-price">Rp.400.000</span>
+                <div class="meta"><span class="icon-clock-o"></span>4 Pertemuan / 12 Minggu</div>
+                <h3><a href="Detailkelas">JS Programming Language</a></h3>
                 <p>Lorem ipsum dolor sit amet ipsa nulla adipisicing elit. </p>
               </div>
               <div class="d-flex border-top stats">
-                <div class="py-3 px-4"><span class="icon-users"></span> 2,193 students</div>
+                <div class="py-3 px-4"><span class="icon-users"></span> 2,193 siswa</div>
                 <div class="py-3 px-4 w-25 ml-auto border-left"><span class="icon-chat"></span> 2</div>
               </div>
             </div>
@@ -93,12 +93,12 @@
               </figure>
               <div class="course-inner-text py-4 px-4">
                 <span class="course-price">$20</span>
-                <div class="meta"><span class="icon-clock-o"></span>4 Lessons / 12 week</div>
+                <div class="meta"><span class="icon-clock-o"></span>4 Pertemuan / 12 Minggu</div>
                 <h3><a href="#">Study Law of Physics</a></h3>
                 <p>Lorem ipsum dolor sit amet ipsa nulla adipisicing elit. </p>
               </div>
               <div class="d-flex border-top stats">
-                <div class="py-3 px-4"><span class="icon-users"></span> 2,193 students</div>
+                <div class="py-3 px-4"><span class="icon-users"></span> 2,193 siswa</div>
                 <div class="py-3 px-4 w-25 ml-auto border-left"><span class="icon-chat"></span> 2</div>
               </div>
             </div>
@@ -109,12 +109,12 @@
               </figure>
               <div class="course-inner-text py-4 px-4">
                 <span class="course-price">$99</span>
-                <div class="meta"><span class="icon-clock-o"></span>4 Lessons / 12 week</div>
+                <div class="meta"><span class="icon-clock-o"></span>4 Pertemuan / 12 Minggu</div>
                 <h3><a href="#">Logo Design Course</a></h3>
                 <p>Lorem ipsum dolor sit amet ipsa nulla adipisicing elit. </p>
               </div>
               <div class="d-flex border-top stats">
-                <div class="py-3 px-4"><span class="icon-users"></span> 2,193 students</div>
+                <div class="py-3 px-4"><span class="icon-users"></span> 2,193 siswa</div>
                 <div class="py-3 px-4 w-25 ml-auto border-left"><span class="icon-chat"></span> 2</div>
               </div>
             </div>
@@ -125,7 +125,7 @@
               </figure>
               <div class="course-inner-text py-4 px-4">
                 <span class="course-price">$99</span>
-                <div class="meta"><span class="icon-clock-o"></span>4 Lessons / 12 week</div>
+                <div class="meta"><span class="icon-clock-o"></span>4 Peretmuan / 12 Minggu</div>
                 <h3><a href="#">JS Programming Language</a></h3>
                 <p>Lorem ipsum dolor sit amet ipsa nulla adipisicing elit. </p>
               </div>
@@ -142,8 +142,8 @@
         </div>
         <div class="row justify-content-center">
           <div class="col-7 text-center">
-            <button class="customPrevBtn btn btn-primary m-1">Prev</button>
-            <button class="customNextBtn btn btn-primary m-1">Next</button>
+            <button class="customPrevBtn btn btn-primary m-1">Sebelumnya</button>
+            <button class="customNextBtn btn btn-primary m-1">Selanjutnya</button>
           </div>
         </div>
       </div>
@@ -252,7 +252,7 @@
       <div class="container">
         <div class="row mb-5 justify-content-center" data-aos="fade-up" data-aos-delay="">
           <div class="col-lg-7 text-center">
-            <h2 class="section-title">Why Choose Us</h2>
+            <h2 class="section-title">Kenapa Memilih Kami</h2>
           </div>
         </div>
         <div class="row">

@@ -2,7 +2,7 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class User extends CI_Controller{
+class KelasFilter extends CI_Controller{
 
     public function __construct()
     {
@@ -14,12 +14,13 @@ class User extends CI_Controller{
 
     public function index(){
         //Controller Home
-        $this->load->view('headeruser/dashboardheader');
-        $this->load->view('user/user_view');
-        $this->load->view('partialsuser/footer');
+        $this->load->view('partials/header');
+        $this->load->view('tampilankelas/kelasfilter');
+        $this->load->view('partials/footer');
     }
 
-
+   
+    
 }
 
 ?>
