@@ -19,12 +19,7 @@ class User extends CI_Controller{
         $this->load->view('partialsuser/footer');
     }
 
-    // public function showComment(){
-    //     $data['blog'] = $this->homepage_database->getBlogs();
-    //     $data['comment'] = $this->homepage_database->getComment();
-    //     $comment = $data['blog'];
-    // }
-    
+
 }
 
 ?>

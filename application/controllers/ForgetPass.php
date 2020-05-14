@@ -19,11 +19,7 @@ class ForgetPass extends CI_Controller{
         $this->load->view('partials/footer');
     }
 
-    // public function showComment(){
-    //     $data['blog'] = $this->homepage_database->getBlogs();
-    //     $data['comment'] = $this->homepage_database->getComment();
-    //     $comment = $data['blog'];
-    // }
+  
     
 }
 
