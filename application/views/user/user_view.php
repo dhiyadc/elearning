@@ -16,7 +16,7 @@
 
         <h5 class="text-center font-weight-bold mb-4">Dashboard Saya</h5>
 
-        <div class="d-flex justify-content-between">
+        <!-- <div class="d-flex justify-content-between">
           <small class="text-muted">Add products to cart</small>
           <small><span><strong>160</strong></span>/<span></span>200</small>
         </div>
@@ -50,7 +50,7 @@
         <div class="progress md-progress">
           <div class="progress-bar bg-danger" role="progressbar" style="width: 100%" aria-valuenow="100"
             aria-valuemin="0" aria-valuemax="100"></div>
-        </div>
+        </div> -->
 
       </div>
       <!--Grid column-->
