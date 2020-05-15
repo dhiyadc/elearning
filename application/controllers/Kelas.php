@@ -35,7 +35,7 @@ class Kelas extends CI_Controller{
         } else {
             $this->load->view('partials/header');    
         }
-
+        $data['kategori_text'] = $kategori;
         $data['categories'] = $this->Classes_model->getKategori();
         $data['class'] = $this->Classes_model->getClassesbyCategories($kategori);
         $this->load->view('tampilankelas/kelasfilter', $data);

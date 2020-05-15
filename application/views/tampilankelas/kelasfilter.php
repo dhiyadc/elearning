@@ -77,7 +77,7 @@
 											<!-- <input class="form-check-input" type="checkbox" value=""> -->
 											<span class="form-check-label">
 												<a
-													href="<?= base_url(); ?>categories/<?= $val['nama_kategori']; ?>"><?= $val['nama_kategori']; ?></a>
+													href="<?= base_url(); ?>kelas/categories/<?= $val['nama_kategori']; ?>"><?= $val['nama_kategori']; ?></a>
 											</span>
 										</label> <!-- form-check.// -->
 										<?php endforeach; ?>
@@ -130,7 +130,7 @@
 			<div class="col-lg-9">
 				<div class="col-lg-12">
 					<div class="judul-list">
-						<h1 class="text-center">Kelas Tersedia</h1>
+						<h1 class="text-center">Kelas <?= $kategori_text; ?></h1>
 					</div>
 				</div>
 				<div class="container-fluid" data-aos="fade-up" data-aos-delay="100">

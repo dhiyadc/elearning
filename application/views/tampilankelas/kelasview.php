@@ -77,7 +77,7 @@
 										<label class="form-check">
 											<!-- <input class="form-check-input" type="checkbox" value=""> -->
 											<span class="form-check-label">
-											<a href="<?= base_url(); ?>categories/<?= $val['nama_kategori']; ?>"><?= $val['nama_kategori']; ?></a>	
+											<a href="<?= base_url(); ?>kelas/categories/<?= $val['nama_kategori']; ?>"><?= $val['nama_kategori']; ?></a>	
 											</span>
 										</label> <!-- form-check.// -->
                     <?php endforeach; ?>
