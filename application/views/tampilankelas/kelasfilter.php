@@ -55,14 +55,16 @@
 			<div class="col-lg-3 pb-lg-5 pb-sm-3 mt-5" data-aos="fade-up" data-aos-delay="100" style="padding-top: 100px">
 				<div class="position-relative rounded" style="box-shadow :0px 0px 11px 4px rgba(0,0,0,0.4);">
 					<div class="p-lg-3 p-md-3 p-sm-0">
-						<h5 class="mb-4 d-lg-block d-md-block d-none">Filter</h5>
+            <h5 class="mb-4 d-lg-block d-md-block d-none">Filter</h5>
+            <form action="<?= base_url(); ?>kelas/search" method="post">
 						<div class="input-group md-form form-sm form-2 pl-0">
-							<input class="form-control my-0 py-1 red-border" type="text" placeholder="Search" aria-label="Search">
+							<input class="form-control my-0 py-1 red-border" type="text" name="keyword" placeholder="Search" aria-label="Search">
 							<div class="input-group-append">
 								<span class="input-group-text red lighten-3" id="basic-text1"><i class="fa fa-search text-grey"
 										aria-hidden="true"></i></span>
 							</div>
-						</div>
+            </div>
+            </form>
 					</div>
 					<div class="card">
 						<article class="card-group-item">
@@ -130,7 +132,9 @@
 			<div class="col-lg-9">
 				<div class="col-lg-12">
 					<div class="judul-list">
-						<h1 class="text-center">Kelas <?= $kategori_text; ?></h1>
+						<h1 class="text-center"><?php if(isset($kategori_text)){ ?> Kelas <?= $kategori_text; ?><?php } else { 
+              echo "Hasil pencarian '".$keyword."'";
+            } ?></h1>
 					</div>
 				</div>
 				<div class="container-fluid" data-aos="fade-up" data-aos-delay="100">
