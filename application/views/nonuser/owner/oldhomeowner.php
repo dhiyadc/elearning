@@ -6,13 +6,15 @@
     <title>Document</title>
 </head>
 <body>
-    <h2><?php if(isset($_SESSION['owner_logged_in'])){
+    <h2><?php
         echo 'Owner ';
-        echo $_SESSION['email'];
-    } else {
-        echo 'Admin ';
-        echo $_SESSION['email'];
-    }?></h2>
+        echo $_SESSION['owner_email'];
+    ?></h2>
+    <br>
+    <a href="<?= base_url(); ?>owner/users">Lihat seluruh user</a>
+    <br>
+    <a href="#">Lihat seluruh kelas(blom)</a>
+    <br>
     <br>
     <a href="<?= base_url(); ?>nonuser/logout">Logout</a>
 </body>
