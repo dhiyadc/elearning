@@ -75,16 +75,17 @@
 									<form>
                     <?php foreach($categories as $val) : ?>
 										<label class="form-check">
-											<input class="form-check-input" type="checkbox" value="">
+											<!-- <input class="form-check-input" type="checkbox" value=""> -->
 											<span class="form-check-label">
-												<?= $val['nama_kategori']; ?>
+											<a href="<?= base_url(); ?>categories/<?= $val['nama_kategori']; ?>"><?= $val['nama_kategori']; ?></a>	
 											</span>
 										</label> <!-- form-check.// -->
 										
-										</label> <!-- form-check.// -->
-                  </form>
-                  
+                    </label> <!-- form-check.// -->
                     <?php endforeach; ?>
+                  </form>
+            
+                    
 
 								</div> <!-- card-body.// -->
 							</div>
@@ -149,9 +150,10 @@
 									</figure>
 									<div class="course-inner-text py-4 px-4">
 										<span class="course-price"><?php
-                  if($val['harga_kelas'] = 'Rp.0,00'){
+                  if($val['harga_kelas'] == 'Rp.0,00'){
                     echo "<b>Gratis</b>";
                   } else {
+                    echo "Rp.";
                     echo $val['harga_kelas'];
                   }
                 ?></span>
@@ -206,6 +208,7 @@
                   if($val['harga_kelas'] == 'Rp.0,00'){
                     echo "<b>Gratis</b>";
                   } else {
+                    echo "Rp.";
                     echo $val['harga_kelas'];
                   }
                 ?></span>

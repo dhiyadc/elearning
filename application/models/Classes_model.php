@@ -24,6 +24,26 @@ class Classes_model extends CI_Model {
         return $query->result_array();
     }
 
+    public function getClassesbyCategories($kategori)
+    {
+        $sql = "SELECT kelas.id_kelas, kelas.judul_kelas, kelas.poster_kelas, kelas.deskripsi_kelas, kategori_kelas.nama_kategori, jenis_kelas.nama_jenis, harga_kelas.harga_kelas, COUNT(peserta.id_kelas) as 'peserta', status_kegiatan.nama_status
+        FROM kelas
+        LEFT JOIN kategori_kelas
+                 ON kategori_kelas.id_kategori = kelas.kategori_kelas 
+        LEFT JOIN jenis_kelas
+                 ON jenis_kelas.id_jenis = kelas.jenis_kelas
+        LEFT JOIN harga_kelas
+                 ON harga_kelas.id_kelas = kelas.id_kelas
+        LEFT JOIN peserta
+                 ON peserta.id_kelas = kelas.id_kelas
+        LEFT JOIN status_kegiatan
+            ON status_kegiatan.id_status = kelas.status_kelas
+        WHERE kategori_kelas.nama_kategori = '$kategori'
+        GROUP BY kelas.id_kelas";
+         $query = $this->db->query($sql);
+         return $query->result_array();
+    }
+
     public function getMyClasses()
     {
         $this->db->where('pembuat_kelas',$this->session->userdata('id_user'));
