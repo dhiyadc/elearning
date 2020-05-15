@@ -15,37 +15,7 @@
     </div>
   </div>
 </div>
-<!-- Jumbotron -->
-<!-- <div class="col-lg-16">
-  <div class="bg-dark">
-      <div class="col-md-4">
-            <input type="submit">
-      </div>
-  </div>
-</div> -->
 
-<!-- <div class="col">
-  <div class="container">
-    <div class="row">
-    <div class="col-md-12 mt-5">
-    <div class="position-relative rounded" ">
-    <div class="col-lg-12">
-      <div class="judul-list">
-      <h1 class="text-center"></h1>
-      </div>
-    </div>
-      <div class="container">
-        <div class="row">
-        </div>
-        </div>
-         
-        
-        </div>
-        
-      </div>
-    </div>
-  </div>
-</div> -->
 <section class="buatkelas_sec">
     <div class="row">
         <div class="col">
@@ -92,19 +62,19 @@
                             <label class="form-check">
                                     <input class="form-check-input" type="checkbox" value="">
                                     <span class="form-check-label">
-                                        Laku
+                                        Gratisan
                                     </span>
                                     </label> <!-- form-check.// -->
                                     <label class="form-check">
                                     <input class="form-check-input" type="checkbox" value="">
                                     <span class="form-check-label">
-                                        Ga Laku
+                                       Promoan
                                     </span>
                                     </label>  <!-- form-check.// -->
                                     <label class="form-check">
                                     <input class="form-check-input" type="checkbox" value="">
                                     <span class="form-check-label">
-                                        Keren
+                                        Pensiunan
                                     </span>
                                     </label>  <!-- form-check.// -->
                             </div>
