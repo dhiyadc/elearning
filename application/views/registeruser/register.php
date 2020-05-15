@@ -57,13 +57,15 @@
                 <div class="col-lg-12 ml-auto mt-5 mb-4" data-aos="fade-up" data-aos-delay="500">
                   <form action="" method="post" class="form-box">
                     <h3 class="h4 text-black mb-4 text-center">Formulir Pendaftaran</h3>
-                    <div class="form-group">
+                    <div class="form-row">
+                    <div class="form-group col-md-6">
                       <input type="text" class="form-control" name="username" placeholder="Username" minlength="3" maxlength="20" required>
                       <small class="help-block">Isi Username minimal 3 kata dan maksimal 20 kata</small>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group col-md-6">
                       <input type="text" class="form-control" name="fullname" placeholder="Fullname" minlength="3" maxlength="50" required>
                       <small class="form-text text-muted">isi dengan Nama lengkap asli Anda.</small>
+                    </div>
                     </div>
                     <div class="form-group mb-3">
                       <input type="text" class="form-control" name="email" placeholder="Email" pattern="^([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x22([^\x0d\x22\x5c\x80-\xff]|\x5c[\x00-\x7f])*\x22)(\x2e([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x22([^\x0d\x22\x5c\x80-\xff]|\x5c[\x00-\x7f])*\x22))*\x40([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x5b([^\x0d\x5b-\x5d\x80-\xff]|\x5c[\x00-\x7f])*\x5d)(\x2e([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x5b([^\x0d\x5b-\x5d\x80-\xff]|\x5c[\x00-\x7f])*\x5d))*$" required>
