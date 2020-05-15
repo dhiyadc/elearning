@@ -1,0 +1,110 @@
+<?php $this->load->view('nonuser/admin/header'); ?>
+            <div id="page-wrapper">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h1 class="page-header">Detail Kelas</h1>
+                        </div>
+                        <!-- /.col-lg-12 -->
+                    </div>
+                    <!-- /.row -->
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <?php foreach ($kelas as $val) : ?>
+                                        <center><?= $val['judul_kelas']; ?></center>
+                                    <?php endforeach; ?>
+                                </div>
+                                <!-- /.panel-heading -->
+                                <div class="panel-body">
+                                    <div id="morris-area-chart">
+                                    <?php foreach ($kelas as $val) : ?>
+                                        <center><img src="<?= base_url().'images/'.$val['poster_kelas']?>" alt="" height="400px"></center>
+                                        <br>
+                                        <center><?= $val['deskripsi_kelas']; ?></center>
+                                        <br>
+                                        <?php foreach ($kategori as $val2) : ?>
+                                            <?php if ($val2['id_kategori'] == $val['kategori_kelas']) : ?> 
+                                                <p style="margin-left: 15px"><i class="fa fa-fw" aria-hidden="true">&#xf03a</i> <?= $val2['nama_kategori']; ?></p>
+                                            <?php endif; ?>
+                                        <?php endforeach; ?>
+
+                                        <?php foreach ($pembuat as $val2) : ?>
+                                            <?php if ($val2['id_user'] == $val['pembuat_kelas']) : ?> 
+                                                <p style="margin-left: 15px"><i class="fa fa-fw" aria-hidden="true">&#xf183</i> <?= $val2['nama']; ?></p>
+                                            <?php endif; ?>
+                                        <?php endforeach; ?>
+
+                                        <?php foreach ($harga as $val2) : ?>
+                                            <?php if ($val2['harga_kelas'] == 'Rp.0,00') : ?> 
+                                                <p style="margin-left: 15px"><i class="fa fa-fw" aria-hidden="true">&#xf0d6</i> Gratis</p>
+                                            <?php else : ?>
+                                                <p style="margin-left: 15px"><i class="fa fa-fw" aria-hidden="true">&#xf0d6</i> <?= $val2['harga_kelas'] ?></p>
+                                            <?php endif; ?>
+                                        <?php endforeach; ?>
+                                        
+                                        <?php foreach ($status as $val2) : ?>
+                                            <?php if ($val2['id_status'] == $val['status_kelas']) : ?> 
+                                                <p style="margin-left: 15px"><i class="fa fa-fw" aria-hidden="true">&#xf044</i> <?= $val2['nama_status']; ?></p>
+                                            <?php endif; ?>
+                                        <?php endforeach; ?>
+
+                                        <br>
+                                        <div class="col-lg-8">
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading">
+                                                    Tabel Kegiatan
+                                                </div>
+                                                <!-- /.panel-heading -->
+                                                <div class="panel-body">
+                                                    <div class="table-responsive">
+                                                        <table class="table table-hover">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>#</th>
+                                                                    <th>Deskripsi</th>
+                                                                    <th>Hari/Tanggal</th>
+                                                                    <th>Waktu</th>
+                                                                    <th>Status</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <?php $i = 1; ?>
+                                                                <?php foreach ($kegiatan as $val2) : ?>
+                                                                    <tr>
+                                                                        <td><?= $i; ?></td>
+                                                                        <td><?= $val2['deskripsi_kegiatan']; ?></td>
+                                                                        <td><?= $val2['tanggal']; ?></td>
+                                                                        <td><?= $val2['waktu']; ?></td>
+                                                                        <?php foreach ($status as $val3) : ?>
+                                                                            <?php if ($val3['id_status'] == $val2['status_kegiatan']) : ?> 
+                                                                                <td><?= $val3['nama_status']; ?></td>
+                                                                            <?php endif; ?>
+                                                                        <?php endforeach; ?>
+                                                                        <?php $i++; ?>
+                                                                    </tr>
+                                                                <?php endforeach; ?>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                    <!-- /.table-responsive -->
+                                                </div>
+                                                <!-- /.panel-body -->
+                                            </div>
+                                            <!-- /.panel -->
+                                        </div>
+                                        <br>
+                                    <?php endforeach; ?>
+                                    </div>
+                                </div>
+                                <!-- /.panel-body -->
+                            </div>
+                            <!-- /.panel -->
+                        </div>
+                    </div>
+                    <!-- /.row -->
+                </div>
+                <!-- /.container-fluid -->
+            </div>
+<?php $this->load->view('nonuser/admin/footer'); ?>

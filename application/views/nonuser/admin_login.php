@@ -16,7 +16,7 @@
       *********************************************************************************************************************************************************** -->
   <div id="login-page">
     <div class="container">
-      <form class="form-login" action="<?= base_url() ?>admin/admin_login_process" method="post">
+      <form class="form-login" action="<?= base_url() ?>nonuser/admin_login_process" method="post">
         <h2 class="form-login-heading">Admin login</h2>
         <div class="login-wrap">
               <?php

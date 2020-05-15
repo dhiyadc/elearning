@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Admin extends CI_Controller {
+class Nonuser extends CI_Controller {
 
 	public function __construct()
     {
@@ -25,7 +25,7 @@ class Admin extends CI_Controller {
 	// Show login page
 	public function index() {
 		 if(isset($_SESSION['admin_logged_in'])){
-		 	redirect('home_admin');
+		 	redirect('admin');
 
 		 }else{
 			$this->load->view('nonuser/admin_login');
@@ -35,7 +35,7 @@ class Admin extends CI_Controller {
 	 //User Login Process
 	public function admin_login_process() {
 			if(isset($_SESSION['admin_logged_in'])){
-				redirect('home_admin');
+				redirect('admin');
 
 			}
     
@@ -53,7 +53,7 @@ class Admin extends CI_Controller {
                 $this->session->set_userdata('admin_logged_in', TRUE);
                 $this->session->set_userdata('email', $email);
                 
-                redirect('home_admin');
+                redirect('admin');
             } else {
                 $result = $this->Admin_database->login($data);
                 if ($result == TRUE) {
@@ -62,7 +62,7 @@ class Admin extends CI_Controller {
                     $this->session->set_userdata('admin_logged_in', TRUE);
                     $this->session->set_userdata('email', $email);
 
-                    redirect('home_admin');
+                    redirect('admin');
 
                 } else {
                     $data = array(
@@ -88,7 +88,7 @@ class Admin extends CI_Controller {
 			$this->session->unset_userdata('email');
             }
 
-            redirect('admin');
+            redirect('nonuser');
             
 		} 
 	
