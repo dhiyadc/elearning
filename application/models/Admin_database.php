@@ -130,6 +130,14 @@ Class Admin_database extends CI_Model {
         return $this->db->query($sql)->result_array();
     }
 
+    public function getAllUser()
+    {
+        $sql = "SELECT user.*,detail_user.*
+                FROM user,detail_user
+                WHERE user.id_user = detail_user.id_user";
+        return $this->db->query($sql)->result_array();
+    }
+
     private function updateImage($id) 
     {
         $config['upload_path'] = './images/';
@@ -187,6 +195,7 @@ Class Admin_database extends CI_Model {
     {
         $this->db->delete('kelas',['id_kelas' => $id]);
     }
+
 }
 
 ?>

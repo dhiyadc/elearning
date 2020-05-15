@@ -10,13 +10,13 @@
                     <!-- /.row -->
                     <div class="row">
                         <div class="col-lg-12">
-                            <div class="panel panel-default">
+                            <div class="panel panel-primary">
                                 <div class="panel-heading">
                                     Basic Form Elements
                                 </div>
                                 <div class="panel-body">
                                     <div class="row">
-                                        <div class="col-lg-6">
+                                        <div class="col-lg-12">
                                             <?php foreach ($kelas as $val) : ?>
                                             <form enctype="multipart/form-data" action="<?= base_url()?>admin/edit_kelas_action/<?= $val['id_kelas']; ?>" method="post" role="form">
                                                 <div class="form-group">
@@ -84,7 +84,7 @@
                                                     </div>
                                                     <!-- /.panel -->
                                                 </div>
-                                                <button type="submit" class="btn btn-default">Simpan</button>
+                                                <button type="submit" class="btn btn-primary">Simpan</button>
                                             </form>
                                             <?php endforeach; ?>
                                         </div>

@@ -10,10 +10,10 @@
                     <!-- /.row -->
                     <div class="row">
                         <div class="col-lg-12">
-                            <div class="panel panel-default">
+                            <div class="panel panel-primary">
                                 <div class="panel-heading">
                                     <?php foreach ($kelas as $val) : ?>
-                                        <center><?= $val['judul_kelas']; ?></center>
+                                        <center><b><?= $val['judul_kelas']; ?></b></center>
                                     <?php endforeach; ?>
                                 </div>
                                 <!-- /.panel-heading -->
@@ -51,7 +51,7 @@
                                         <?php endforeach; ?>
 
                                         <br>
-                                        <div class="col-lg-8">
+                                        <div class="col-lg-12">
                                             <div class="panel panel-default">
                                                 <div class="panel-heading">
                                                     Tabel Kegiatan
@@ -94,6 +94,11 @@
                                             </div>
                                             <!-- /.panel -->
                                         </div>
+                                        <br>
+                                        <center>
+                                            <a class="btn btn-primary" href="<?= base_url() ?>admin/edit_kelas/<?= $val['id_kelas']; ?>">Edit</a>
+                                            <a class="btn btn-danger" href="<?= base_url() ?>admin/hapus_kelas/<?= $val['id_kelas']; ?>">Hapus</a>
+                                        </center>
                                         <br>
                                     <?php endforeach; ?>
                                     </div>

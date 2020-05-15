@@ -89,6 +89,19 @@ class Admin extends CI_Controller{
             redirect('nonuser');
         }
     }
+
+    public function list_user()
+    {
+        if(isset($_SESSION['admin_logged_in'])){
+            $data['user'] = $this->Admin_database->getAllUser();
+            $data['kelas'] = $this->Admin_database->getAllClasses();
+            $data['peserta'] = $this->Admin_database->getPeserta();
+            $this->load->view('nonuser/admin/list_user',$data);
+        }
+        else {
+            redirect('nonuser');
+        }
+    }
     
 }
 

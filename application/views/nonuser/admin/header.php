@@ -7,7 +7,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>Startmin - Bootstrap Admin Theme</title>
+        <title>Admin</title>
 
         <!-- Bootstrap Core CSS -->
         <link href="<?= base_url() ?>assets/admin/css/bootstrap.min.css" rel="stylesheet">
@@ -74,7 +74,7 @@
                                 <!-- /input-group -->
                             </li>
                             <li>
-                                <a href="<?= base_url() ?>"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                                <a href="<?= base_url() ?>admin"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                             </li>
                             <li>
                                 <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Data<span class="fa arrow"></span></a>
@@ -83,7 +83,7 @@
                                         <a href="<?= base_url() ?>admin/list_kelas">Kelas</a>
                                     </li>
                                     <li>
-                                        <a href="morris.html">User</a>
+                                        <a href="<?= base_url() ?>admin/list_user">User</a>
                                     </li>
                                 </ul>
                                 <!-- /.nav-second-level -->

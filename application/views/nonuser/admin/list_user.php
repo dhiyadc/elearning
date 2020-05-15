@@ -1,10 +1,9 @@
-<?php if(isset($_SESSION['admin_logged_in'])) : ?>
-    <?php $this->load->view('nonuser/admin/header'); ?>
+<?php $this->load->view('nonuser/admin/header'); ?>
             <div id="page-wrapper">
                 <div class="container-fluid"><div class="row">
                     <div>
                         <div class="col-lg-12">
-                            <h1 class="page-header">Kelas</h1>
+                            <h1 class="page-header">User</h1>
                         </div>
                         <!-- /.col-lg-12 -->
                     </div>
@@ -13,7 +12,7 @@
                         <div class="col-lg-12">
                             <div class="panel panel-primary">
                                 <div class="panel-heading">
-                                    Data Kelas
+                                    Data User
                                 </div>
                                 <!-- /.panel-heading -->
                                 <div class="panel-body">
@@ -22,41 +21,40 @@
                                             <thead>
                                                 <tr>
                                                     <th>No.</th>
-                                                    <th>Nama Kelas</th>
-                                                    <th>Pembuat Kelas</th>
-                                                    <th>Banyak Peserta Yang Join</th>
-                                                    <th>Action</th>
+                                                    <th>Nama</th>
+                                                    <th>No. Telepon</th>
+                                                    <th>Email</th>
+                                                    <th>Kelas yg Dibuat</th>
+                                                    <th>Kelas yg Diikuti</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <?php $i = 1; ?>
-                                                <?php foreach ($kelas as $val) : ?>
+                                                <?php foreach ($user as $val) : ?>
                                                 <tr>
                                                     <td><?= $i; ?></td>
-                                                    <td><?= $val['judul_kelas']; ?></td>
-                                                    <td>
-                                                        <?php foreach ($pembuat as $val2) {
-                                                            if($val['pembuat_kelas'] == $val2['id_user']) {
-                                                                echo $val2['nama'];
-                                                            }
-                                                        } 
-                                                        ?>
-                                                    </td>
-                                                    <td>
-                                                        <?php 
+                                                    <td><?= $val['nama']; ?></td>
+                                                    <td><?= $val['no_telepon']; ?></td>
+                                                    <td><?= $val['email']; ?></td>
+                                                    <td><?php 
                                                         $x = 0;
-                                                        foreach ($peserta as $val2) {
-                                                            if($val['id_kelas'] == $val2['id_kelas']) {
+                                                        foreach ($kelas as $val2) {
+                                                            if($val['id_user'] == $val2['pembuat_kelas']) {
                                                                 $x++;
                                                             }
-                                                        } 
+                                                        }
                                                         echo $x;
                                                         ?>
                                                     </td>
-                                                    <td>
-                                                        <a href="<?= base_url() ?>admin/detail_kelas/<?= $val['id_kelas']; ?>"><i class="fa fa-fw" aria-hidden="true">&#xf06e</i></a>
-                                                        <a href="<?= base_url() ?>admin/edit_kelas/<?= $val['id_kelas']; ?>"><i class="fa fa-fw" aria-hidden="true">&#xf040</i></a>
-                                                        <a href="<?= base_url() ?>admin/hapus_kelas/<?= $val['id_kelas']; ?>"><i class="fa fa-fw" aria-hidden="true">&#xf1f8</i></a>
+                                                    <td><?php 
+                                                        $x = 0;
+                                                        foreach ($peserta as $val2) {
+                                                            if($val['id_user'] == $val2['id_user']) {
+                                                                $x++;
+                                                            }
+                                                        }
+                                                        echo $x;
+                                                        ?>
                                                     </td>
                                                 </tr>
                                                 <?php $i++; ?>
@@ -79,4 +77,4 @@
         </div>
         <!-- /#wrapper -->
     <?php $this->load->view('nonuser/admin/footer'); ?>
-<?php endif; ?>
+
