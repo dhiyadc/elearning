@@ -7,9 +7,11 @@ class Home extends CI_Controller{
     public function __construct()
     {
         parent::__construct();
+
 		// Load database
         // $this->load->model('homepage_database');
         $this->load->helper('url');
+
 	}
 
     public function index(){
@@ -19,7 +21,6 @@ class Home extends CI_Controller{
         $this->load->view('partials/footer');
     }
 
- 
 }
 
 ?>
