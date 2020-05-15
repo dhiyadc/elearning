@@ -28,7 +28,7 @@ class Kelas extends CI_Controller{
         $this->load->view('partials/footer');
     }
 
-    public function categories(){
+    public function categories($kategori){
         if(isset($_SESSION['logged_in'])){
             $this->load->view('partialsuser/header');
             
@@ -36,9 +36,9 @@ class Kelas extends CI_Controller{
             $this->load->view('partials/header');    
         }
 
-        
+        $data['categories'] = $this->Classes_model->getKategori();
         $data['class'] = $this->Classes_model->getClassesbyCategories($kategori);
-        $this->load->view('tampilankelas/kelasview', $data);
+        $this->load->view('tampilankelas/kelasfilter', $data);
         $this->load->view('partials/footer');
     }
 

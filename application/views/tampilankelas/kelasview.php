@@ -80,8 +80,6 @@
 											<a href="<?= base_url(); ?>categories/<?= $val['nama_kategori']; ?>"><?= $val['nama_kategori']; ?></a>	
 											</span>
 										</label> <!-- form-check.// -->
-										
-                    </label> <!-- form-check.// -->
                     <?php endforeach; ?>
                   </form>
             
