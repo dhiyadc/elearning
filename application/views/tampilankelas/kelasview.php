@@ -250,7 +250,8 @@
 
 				</div>
 				<div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
-					<button class="btn d-flex justify-content-center"> Lebih Banyak</button>
+          
+          <button class="btn d-flex justify-content-center"> Lebih Banyak</button>
 				</div>
 			</div>
 		</div>
