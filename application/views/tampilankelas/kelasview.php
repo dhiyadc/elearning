@@ -123,7 +123,7 @@
                                     </label>  <!-- form-check.// -->
                                 </form>
 
-                                <button type="button" class="btn btn-light">Sesuaikan</button>
+                                <a  href="KelasFilter" class="btn btn-light"><i class="fa fa-clone left"></i>Sesuaikan</a>
                                 </div> <!-- card-body.// -->
                             </div>
                         </article> <!-- card-group-item.// -->
