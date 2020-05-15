@@ -33,6 +33,59 @@
 
   </head>
   <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
+    <!-- Modal -->
+    <div class="modal fade" id="elegantModalForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+      aria-hidden="true" style="padding-right: 90px;">
+      <div class="modal-dialog" role="document">
+        <!--Content-->
+        <div class="modal-content form-elegant">
+          <!--Header-->
+          <div class="modal-header text-center">
+            <h3 class="modal-title w-100 dark-grey-text font-weight-bold my-3" id="myModalLabel"><strong>Masuk</strong></h3>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <!--Body-->
+          <div class="modal-body mx-4">
+            <!--Body-->
+            <div class="md-form mb-5">
+              <input type="email" id="Form-email1" class="form-control validate">
+              <label data-error="wrong" data-success="right" for="Form-email1">Masukan email</label>
+            </div>
+
+            <div class="md-form pb-3">
+              <input type="password" id="Form-pass1" class="form-control validate">
+              <label data-error="wrong" data-success="right" for="Form-pass1">Masukan Password</label>
+              <p class="font-small blue-text d-flex justify-content-end">Lupa <a href="ForgetPass" class="blue-text ml-1">
+                  Password?</a></p>
+            </div>
+
+            <div class="text-center mb-3">
+              <button type="button" class="btn blue-gradient btn-block btn-rounded z-depth-1a">Masuk</button>
+            </div>
+          
+
+            
+          </div>
+          <!--Footer-->
+          <div class="modal-footer mx-5 pt-3 mb-1">
+            <p class="font-small grey-text d-flex justify-content-end">Belum ada Akun? <a href="Register" class="blue-text ml-1">
+                Daftar</a></p>
+          </div>
+        </div>
+        <!--/.Content-->
+      </div>
+    </div>
+    <!-- Modal -->
+
+<!-- <div class="text-center">
+  <a href="" class="btn btn-default btn-rounded" data-toggle="modal" data-target="#elegantModalForm">Launch
+    modal Login Form</a>
+</div> -->
+
+
+
   
   <div class="site-wrap">
 
@@ -66,8 +119,8 @@
           <div class="ml-auto w-25">
             <nav class="site-navigation position-relative text-right" role="navigation">
               <ul class="site-menu main-menu site-menu-white js-clone-nav mr-auto d-none d-lg-block m-0 p-0">
-                <li class="nav-link"><a href=""  data-toggle="modal" data-target="#darkModalForm"><span>Login</span></a></li>
-                <li class="cta"><a href="" class="nav-link"><span>Daftar</span></a></li>
+                <li class="nav-link"><a href="" data-toggle="modal" data-target="#elegantModalForm"><span>Masuk</span></a></li>
+                <li class="cta"><a href="Register" class="nav-link"><span>Daftar</span></a></li>
               </ul>
             </nav>
             <a href="#" class="d-inline-block d-lg-none site-menu-toggle js-menu-toggle text-black float-right"><span class="icon-menu h3"></span></a>
