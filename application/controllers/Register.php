@@ -20,6 +20,7 @@ class Register extends CI_Controller {
 		$this->load->model('user_database');
 
 		$this->load->helper('security');
+        $this->load->helper('url');
 	}
 	
 	// Show login page
