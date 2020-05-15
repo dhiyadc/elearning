@@ -17,17 +17,30 @@ class Kelas extends CI_Controller{
         //Controller Home
         if(isset($_SESSION['logged_in'])){
             $this->load->view('partialsuser/header');
-            $data['categories'] = $this->Classes_model->getCategories();
-            $data['class'] = $this->Classes_model->getAllClassesDetail();
-            $this->load->view('tampilankelas/kelasview', $data);
-            $this->load->view('partialsuser/footer');
+            
         } else {
-            $this->load->view('partials/header');
-            $data['categories'] = $this->Classes_model->getCategories();
-            $data['class'] = $this->Classes_model->getAllClassesDetail();
-            $this->load->view('tampilankelas/kelasview', $data);
-            $this->load->view('partials/footer');
+            $this->load->view('partials/header');    
         }
+
+        $data['categories'] = $this->Classes_model->getKategori();
+        $data['class'] = $this->Classes_model->getAllClassesDetail();
+        $this->load->view('tampilankelas/kelasview', $data);
+        $this->load->view('partials/footer');
+    }
+
+    public function filter(){
+        if(isset($_SESSION['logged_in'])){
+            $this->load->view('partialsuser/header');
+            
+        } else {
+            $this->load->view('partials/header');    
+        }
+
+        
+        $data['categories'] = $this->Classes_model->getKategori();
+        $data['class'] = $this->Classes_model->getAllClassesDetail();
+        $this->load->view('tampilankelas/kelasview', $data);
+        $this->load->view('partials/footer');
     }
 
    

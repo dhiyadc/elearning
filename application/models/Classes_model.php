@@ -24,11 +24,6 @@ class Classes_model extends CI_Model {
         return $query->result_array();
     }
 
-    public function getCategories()
-    {
-        return $this->db->get('kategori_kelas')->result_array();
-    }
-
     public function getMyClasses()
     {
         $this->db->where('pembuat_kelas',$this->session->userdata('id_user'));

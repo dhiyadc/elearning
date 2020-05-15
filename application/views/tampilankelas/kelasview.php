@@ -73,25 +73,18 @@
 							<div class="filter-content">
 								<div class="card-body">
 									<form>
+                    <?php foreach($categories as $val) : ?>
 										<label class="form-check">
 											<input class="form-check-input" type="checkbox" value="">
 											<span class="form-check-label">
-												IT & Teknologi
+												<?= $val['nama_kategori']; ?>
 											</span>
 										</label> <!-- form-check.// -->
-										<label class="form-check">
-											<input class="form-check-input" type="checkbox" value="">
-											<span class="form-check-label">
-												Akuntansi
-											</span>
+										
 										</label> <!-- form-check.// -->
-										<label class="form-check">
-											<input class="form-check-input" type="checkbox" value="">
-											<span class="form-check-label">
-												Marekting
-											</span>
-										</label> <!-- form-check.// -->
-									</form>
+                  </form>
+                  
+                    <?php endforeach; ?>
 
 								</div> <!-- card-body.// -->
 							</div>
