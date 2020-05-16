@@ -58,7 +58,7 @@
                     <div class="form-group mb-3">
                         <div id="showHideHarga" style="display: none">
                             <label>Harga Kelas</label>
-                            <input type="text" class="form-control" name="harga" placeholder="Rp.."  required>
+                            <input type="text" class="form-control" name="harga" placeholder="Rp.." >
                         </div>
                     </div>
                     <div class="form-group">
@@ -136,34 +136,40 @@
                 showMeridian: 0
             });
         });
+
+        $(document).ready(function() {
+            $("#formButton").click(function() {
+                $("#form1").toggle();
+            });
+        });
         
         $(document).on('click', '.btn_remove', function(){  
-            var button_id = $(this).attr("id");   
-            $('#row'+button_id+'').remove();  
+                var button_id = $(this).attr("id");   
+                $('#row'+button_id+'').remove();  
+            });  
         });  
-    });  
 
-    function showHarga() {
-        var x = document.getElementById("showHideHarga");
-        if (x.style.display === "none") {
-            x.style.display = "block";
+        function showHarga() {
+            var x = document.getElementById("showHideHarga");
+            if (x.style.display === "none") {
+                x.style.display = "block";
+            }
         }
-    }
 
-    function hideHarga() {
-        var x = document.getElementById("showHideHarga");
-        x.style.display = "none";
-    }
+        function hideHarga() {
+            var x = document.getElementById("showHideHarga");
+            x.style.display = "none";
+        }
 
-    $('.form_datetime').datetimepicker({
-        language: 'id',
-        weekStart: 1,
-        todayBtn:  1,
-		autoclose: 1,
-		todayHighlight: 1,
-		startView: 2,
-		forceParse: 0,
-        showMeridian: 0
-    });
+        $('.form_datetime').datetimepicker({
+            language: 'id',
+            weekStart: 1,
+            todayBtn:  1,
+            autoclose: 1,
+            todayHighlight: 1,
+            startView: 2,
+            forceParse: 0,
+            showMeridian: 0
+        });
 
 </script>

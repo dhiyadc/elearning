@@ -49,7 +49,7 @@
               </p>
               <div class="row mb-4">
                 <div class="col">
-                  <img src="<?= base_url().'images/'.$val['poster_kelas']?>" alt="Image" class="img-fluid rounded">
+                  <img src="<?= base_url().'assets/images/'.$val['poster_kelas']?>" alt="Image" class="img-fluid rounded">
                 </div>
               </div>
               <p><?= $val['deskripsi_kelas']; ?></p>
