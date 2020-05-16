@@ -32,16 +32,6 @@ class Classes extends CI_Controller {
         }
     }
 
-    public function index()
-    {
-        if(isset($this->session->userdata['logged_in'])){
-            $data['kelas'] = $this->Classes_model->getMyClasses();
-            $this->load->view('classes/my_classes',$data);
-        } else {
-            redirect('login');
-        }
-    }
-
     public function open_class($id_kelas)
     {
         $data['seluruh_kelas'] = $this->Classes_model->getAllClasses();
@@ -145,6 +135,16 @@ class Classes extends CI_Controller {
         } else {
             redirect('login');
         }
+    }    
+
+    public function kelas_dibuat()
+    {
+        if(isset($this->session->userdata['logged_in'])){
+            $data['kelas'] = $this->Classes_model->getMyClasses();
+            $this->load->view('classes/my_classes',$data);
+        } else {
+            redirect('login');
+        }
     }
 
     public function leave_class($id_kelas)
@@ -155,5 +155,49 @@ class Classes extends CI_Controller {
         } else {
             redirect('login');
         }
+    }
+
+    public function index(){
+        //Controller Home
+        if(isset($_SESSION['logged_in'])){
+            $this->load->view('partialsuser/header');
+            
+        } else {
+            $this->load->view('partials/header');    
+        }
+
+        
+        $data['categories'] = $this->Classes_model->getKategori();
+        $data['class'] = $this->Classes_model->getAllClassesDetail();
+        $this->load->view('classes/kelasview', $data);
+        $this->load->view('partials/footer');
+    }
+
+    public function categories($kategori){
+        if(isset($_SESSION['logged_in'])){
+            $this->load->view('partialsuser/header');
+            
+        } else {
+            $this->load->view('partials/header');    
+        }
+        $data['kategori_text'] = $kategori;
+        $data['categories'] = $this->Classes_model->getKategori();
+        $data['class'] = $this->Classes_model->getClassesbyCategories($kategori);
+        $this->load->view('classes/kelasfilter', $data);
+        $this->load->view('partials/footer');
+    }
+
+    public function search(){
+        if(isset($_SESSION['logged_in'])){
+            $this->load->view('partialsuser/header');
+            
+        } else {
+            $this->load->view('partials/header');    
+        }
+        $data['keyword'] = $this->input->post('keyword');
+        $data['categories'] = $this->Classes_model->getKategori();
+        $data['class'] = $this->Classes_model->getAllClassesDetail($data['keyword']);
+        $this->load->view('classes/kelasfilter', $data);
+        $this->load->view('partials/footer');
     }
 }

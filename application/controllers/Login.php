@@ -27,7 +27,7 @@ class Login extends CI_Controller {
 
 
 		 if(isset($_SESSION['logged_in'])){
-		 	redirect('homepage');
+		 	redirect('home');
 
 		 }else{
 			$this->load->view('user/login_user');
@@ -43,7 +43,7 @@ class Login extends CI_Controller {
 		if ($this->form_validation->run() == FALSE) {
 
 			if(isset($_SESSION['logged_in'])){
-				redirect('homepage');
+				redirect('home');
 
 			}else{
 
@@ -65,7 +65,7 @@ class Login extends CI_Controller {
 				$this->session->set_userdata('id_user', $id_user['id_user']);
 				$this->session->set_userdata('email' , $email);
 
-				redirect('homepage');
+				redirect('home');
 
 			} else {
 				$data = array(
@@ -84,7 +84,7 @@ class Login extends CI_Controller {
 			$this->session->unset_userdata('id_user');
 			$this->session->unset_userdata('email');
 
-			redirect('homepage');
+			redirect('home');
 		} 
 	
 
