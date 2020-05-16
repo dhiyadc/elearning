@@ -9,6 +9,7 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <body>
+
     <div class="jumbotron" style="height: 600px; background-color:#3232aa; border-radius :0px;">
     <div class="container" style="margin-top: 200px;">
         <form action="<?= base_url(); ?>forgot_password/request" method='post'>
@@ -31,6 +32,7 @@
                 <input type="email" class="form-control" name="email" placeholder="Your Email Address" autofocus required><br>
                 <button class="btn btn-primary" type="submit">Reset Password</button>
                 <br><br>
+
                 <a href="<?= base_url(); ?>login" style="color:white;" >Remember your password? Login Here</a>
                     <?php
                     }
@@ -48,6 +50,7 @@
         </div>
         </form>
     </div>
+
     </div>
     <!-- <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script type="text/javascript">

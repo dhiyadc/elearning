@@ -1,4 +1,5 @@
 <?php
+
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Register extends CI_Controller {
@@ -18,6 +19,8 @@ class Register extends CI_Controller {
 		// Load database
 		//$this->load->model('admin_login_database');
 		$this->load->model('user_database');
+    $this->load->helper('url');
+
 
 		$this->load->helper('security');
 	}
@@ -28,6 +31,7 @@ class Register extends CI_Controller {
 		 if(isset($this->session->userdata['logged_in'])){
 		 	redirect('homepage');
 		 }else{
+
 			$this->load->view('partials/header'); 
 			$this->load->view('register');
 			$this->load->view('partials/footer');
@@ -48,6 +52,7 @@ class Register extends CI_Controller {
 				$data = array(
 					'error_message' => 'Email has been registered'
 					);
+
 			    return $this->load->view('register', $data);
 			}
 
@@ -76,6 +81,7 @@ class Register extends CI_Controller {
 			$data = array(
 			'message_display' => 'Regristation Successfull'
 			);
+
 			$this->load->view('register', $data);
 	}
 

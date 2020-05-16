@@ -49,6 +49,7 @@
           </div>
           <!--Body-->
           <div class="modal-body mx-4">
+
             <!-- Body -->
             <?php
               if (isset($logout_message)) {
@@ -77,10 +78,12 @@
             <div class="md-form mb-3">
               <h5>Email</h5>
               <input type="email" class="form-control validate" name="email" placeholder="Email" autofocus required> 
+
               <label data-error="wrong" data-success="right" for="Form-email1">Masukan email</label>
             </div>
 
             <div class="md-form pb-3">
+
               <h5>Password</h5>
               <input type="password" class="form-control validate" name="password" placeholder="Password" required>
               <label data-error="wrong" data-success="right" for="Form-pass1">Masukan Password</label>
@@ -89,6 +92,7 @@
             </div>
 
             <div class="text-center mb-3">
+
              
             <button class="btn btn-theme btn-block" value="login" type="submit">Masuk</button>
             </form>
@@ -104,6 +108,7 @@
         <!--/.Content-->
       </div>
     </div>
+
     </div>
     <!-- Modal -->
 
@@ -137,7 +142,8 @@
             <nav class="site-navigation position-relative text-right" role="navigation">
               <ul class="site-menu main-menu js-clone-nav mx-auto d-none d-lg-block  m-0 p-0">
                 <li><a href="<?php echo base_url(); ?>" class="nav-link">Beranda</a></li>
-                <li><a href="Kelas" class="nav-link">Kelas</a></li>
+                <li><a href="<?= base_url(); ?>Kelas" class="nav-link">Kelas</a></li>
+
                
               </ul>
             </nav>
