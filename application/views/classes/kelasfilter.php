@@ -56,7 +56,7 @@
 				<div class="position-relative rounded" style="box-shadow :0px 0px 11px 4px rgba(0,0,0,0.4);">
 					<div class="p-lg-3 p-md-3 p-sm-0">
             <h5 class="mb-4 d-lg-block d-md-block d-none">Filter</h5>
-            <form action="<?= base_url(); ?>kelas/search" method="post">
+            <form action="<?= base_url(); ?>classes/search" method="post">
 						<div class="input-group md-form form-sm form-2 pl-0">
 							<input class="form-control my-0 py-1 red-border" type="text" name="keyword" placeholder="Search" aria-label="Search">
 							<div class="input-group-append">
@@ -79,7 +79,7 @@
 											<!-- <input class="form-check-input" type="checkbox" value=""> -->
 											<span class="form-check-label">
 												<a
-													href="<?= base_url(); ?>kelas/categories/<?= $val['nama_kategori']; ?>"><?= $val['nama_kategori']; ?></a>
+													href="<?= base_url(); ?>classes/categories/<?= $val['nama_kategori']; ?>"><?= $val['nama_kategori']; ?></a>
 											</span>
 										</label> <!-- form-check.// -->
 										<?php endforeach; ?>
@@ -148,8 +148,7 @@
 									<h5 class="card-title"> <?= $val['judul_kelas'] ?></h5>
 									<p class="card-text"><?php echo substr($val['deskripsi_kelas'],0,100);  ?></p>
 									<div class="row">
-										<button class="btn btn-dark mr-1"> <a href="Detailkelas">Detail</a></button> <button
-											class="btn">Gabung Kelas</button>
+										<button class="btn btn-dark mr-1"> <a href="<?= base_url() ?>classes/open_class/<?= $val['id_kelas'] ?>">Detail</a></button>
 									</div>
 								</div>
 								<div class="card-footer">

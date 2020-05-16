@@ -56,7 +56,7 @@
 				<div class="position-relative rounded">
 					<div class="p-lg-3 p-md-3 p-sm-0">
             <h5 class="mb-4 d-lg-block d-md-block d-none">Filter</h5>
-            <form action="<?= base_url(); ?>kelas/search" method="post">
+            <form action="<?= base_url(); ?>classes/search" method="post">
 						<div class="input-group md-form form-sm form-2 pl-0">
               <input class="form-control my-0 py-1 red-border" type="text" name="keyword" placeholder="Search" aria-label="Search">
 							<div class="input-group-append">
@@ -79,7 +79,7 @@
 										<label class="form-check">
 											<!-- <input class="form-check-input" type="checkbox" value=""> -->
 											<span class="form-check-label">
-											<a href="<?= base_url(); ?>kelas/categories/<?= $val['nama_kategori']; ?>"><?= $val['nama_kategori']; ?></a>	
+											<a href="<?= base_url(); ?>classes/categories/<?= $val['nama_kategori']; ?>"><?= $val['nama_kategori']; ?></a>	
 											</span>
 										</label> <!-- form-check.// -->
                     <?php endforeach; ?>
@@ -158,7 +158,7 @@
                   }
                 ?></span>
 										<div class="meta"><span class="icon-clock-o"></span>4 Pertemuan / 12 Minggu</div>
-										<h3><a href="DetailKelas"><?= $val['judul_kelas'] ?></a></h3>
+										<h3><a href="<?= base_url() ?>classes/open_class/<?= $val['id_kelas'] ?>"><?= $val['judul_kelas'] ?></a></h3>
 										<p><?php echo substr($val['deskripsi_kelas'],0,100);  ?></p>
 									</div>
 									<div class="d-flex border-top stats">
@@ -213,7 +213,7 @@
                   }
                 ?></span>
 										<div class="meta"><span class="icon-clock-o"></span>4 Pertemuan / 12 Minggu</div>
-										<h3><a href="DetailKelas"><?= $val['judul_kelas'] ?></a></h3>
+										<h3><a href="<?= base_url() ?>classes/open_class/<?= $val['id_kelas'] ?>"><?= $val['judul_kelas'] ?></a></h3>
 										<p><?php echo substr($val['deskripsi_kelas'],0,50);  ?></p>
 									</div>
 									<div class="d-flex border-top stats">
