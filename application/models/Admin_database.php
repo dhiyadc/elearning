@@ -179,15 +179,14 @@ Class Admin_database extends CI_Model {
 
     public function updateKegiatan($id)
     {
-        $id = $this->input->post('id');
-        foreach ($id as $value) {
+        foreach ($this->input->post('id') as $value) {
             $data = [
-                'deskripsi_kegiatan' => $this->input->post('deskripsi' . $value)
+                'deskripsi_kegiatan' => $this->input->post('deskripsi_kegiatan')
             ];
 
+            $this->db->where('id_kelas',$id);
+            $this->db->where('id_kegiatan',$value);
             $this->db->update('jadwal_kegiatan',$data);
-
-            $value++;
         }
     }
 

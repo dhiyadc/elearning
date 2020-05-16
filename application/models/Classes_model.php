@@ -6,6 +6,11 @@ class Classes_model extends CI_Model {
         return $this->db->get('kelas')->result_array();
     }
 
+    public function getAllHarga()
+    {
+        return $this->db->get('harga_kelas')->result_array();
+    }
+
     public function getMyClasses()
     {
         $this->db->where('pembuat_kelas',$this->session->userdata('id_user'));
@@ -41,6 +46,12 @@ class Classes_model extends CI_Model {
     public function getPesertaByUserIdClassId($id)
     {
         $this->db->where('id_user',$this->session->userdata('id_user'));
+        $this->db->where('id_kelas',$id);
+        return $this->db->get('peserta')->result_array();
+    }
+
+    public function getPesertaByClassId($id)
+    {
         $this->db->where('id_kelas',$id);
         return $this->db->get('peserta')->result_array();
     }

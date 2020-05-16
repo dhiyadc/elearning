@@ -42,12 +42,11 @@
                                                     </select>
                                                 </div>
                                                 <br>
-                                                <div class="col-lg-12">
+                                                <!-- <div class="col-lg-12">
                                                     <div class="panel panel-default">
                                                         <div class="panel-heading">
                                                             Tabel Kegiatan
                                                         </div>
-                                                        <!-- /.panel-heading -->
                                                         <div class="panel-body">
                                                             <div class="table-responsive">
                                                                 <table class="table table-hover">
@@ -66,25 +65,22 @@
                                                                                 <td><?= $i; ?></td>
                                                                                 <td>
                                                                                     <div class="form-group">
-                                                                                        <label>Deskripsi</label>
-                                                                                        <!-- <input type="hidden" name="id" value="<?= $id; ?>"> -->
-                                                                                        <textarea name="deskripsi" required class="form-control" rows="3"><?= $val2['deskripsi_kegiatan']; ?></textarea>
-                                                                                    </div>    
+                                                                                        <input type="hidden" name="id" value="<?= $val2['id_kegiatan'] ?>">
+                                                                                        <textarea name="deskripsi_kegiatan" required class="form-control" rows="3"><?= $val2['deskripsi_kegiatan']; ?></textarea>
+                                                                                    </div>
                                                                                 </td>
                                                                                 <td><?= $val2['tanggal']; ?></td>
                                                                                 <td><?= $val2['waktu']; ?></td>
+                                                                                <?php $i++; ?>
                                                                             </tr>
                                                                         <?php endforeach; ?>
                                                                     </tbody>
                                                                 </table>
                                                             </div>
-                                                            <!-- /.table-responsive -->
                                                         </div>
-                                                        <!-- /.panel-body -->
                                                     </div>
-                                                    <!-- /.panel -->
-                                                </div>
-                                                <button type="submit" class="btn btn-primary">Simpan</button>
+                                                </div> -->
+                                                <center><button type="submit" class="btn btn-primary">Simpan</button></center>
                                             </form>
                                             <?php endforeach; ?>
                                         </div>

@@ -26,7 +26,7 @@
                                         <br>
                                         <?php foreach ($kategori as $val2) : ?>
                                             <?php if ($val2['id_kategori'] == $val['kategori_kelas']) : ?> 
-                                                <p style="margin-left: 15px"><i class="fa fa-fw" aria-hidden="true">&#xf03a</i> <?= $val2['nama_kategori']; ?></p>
+                                                <p style="margin-left: 15px"><i class="fa fa-fw" aria-hidden="true">&#xf292</i> <?= $val2['nama_kategori']; ?></p>
                                             <?php endif; ?>
                                         <?php endforeach; ?>
 
