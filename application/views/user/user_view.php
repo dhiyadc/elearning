@@ -250,50 +250,60 @@
               <tbody>
                 <tr>
                   <th scope="row"><a class="text-primary">Pemograman Lanjutan IV</a></th>
-                  <td> 
+                  <td style="padding-top: 20px;"> 
                   <div class="progress md-progress">
                     <div class="progress-bar bg-info" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0"
                       aria-valuemax="100">50%</div>
                   </div>
-                </td>
-                  <td><span class="badge badge-success">Berbayar</span></td>
+                  </td>
+                  <td style="padding-top: 20px;"><span class="badge badge-success">Berbayar</span></td>
                   <td>
-                    <button class="btn btn-light">Lihat kelas</button>
+                    <button class="btn btn-light" style="padding:9px 10px; font-size: 9px; ">Lihat kelas</button>
 
                   </td>
                 </tr>
                 <tr>
                   <th scope="row"><a class="text-primary">Marketing & Manajeme</a></th>
-                  <td>
+                  <td style="padding-top: 20px;">
                   <div class="progress md-progress">
                     <div class="progress-bar bg-info" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0"
                       aria-valuemax="100">50%</div>
                   </div>
                   </td>
-                  <td><span class="badge badge-warning">Pending</span></td>
-                  <td class="pt-2 pb-0"><canvas id="bar1" width="40" height="40"></canvas></td>
+                  <td style="padding-top: 20px;"><span class="badge badge-warning">Pending</span></td>
+                  <td>
+                    <button class="btn btn-light" style="padding:9px 10px; font-size: 9px; ">Lihat kelas</button>
+
+                  </td>
+                  
                 </tr>
                 <tr>
                   <th scope="row"><a class="text-primary">Merakit Bom</a></th>
-                  <td>
+                  <td style="padding-top: 20px;">
                   <div class="progress md-progress">
                     <div class="progress-bar bg-info" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0"
                       aria-valuemax="100">50%</div>
                   </div>
                   </td>
-                  <td><span class="badge badge-danger">Delivered</span></td>
-                  <td class="pt-2 pb-0"><canvas id="bar2" width="40" height="40"></canvas></td>
+                  <td style="padding-top: 20px;"><span class="badge badge-danger">Lunas</span></td>
+                  <td>
+                    <button class="btn btn-light" style="padding:9px 10px; font-size: 9px; ">Lihat kelas</button>
+
+                  </td>
                 </tr>
                 <tr>
                   <th scope="row"><a class="text-primary">Akutansi</a></th>
-                  <td>
+                  <td style="padding-top: 20px;">
                   <div class="progress md-progress">
                     <div class="progress-bar bg-info" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0"
                       aria-valuemax="100">50%</div>
                   </div>
                   </td>
-                  <td><span class="badge badge-info">Processing</span></td>
-                  <td class="pt-2 pb-0"><canvas id="bar3" width="40" height="40"></canvas></td>
+                  <td style="padding-top: 20px;"><span class="badge badge-info">Pembayaran</span></td>
+                  <td>
+                    <button class="btn btn-light" style="padding:9px 10px; font-size: 9px; ">Lihat kelas</button>
+
+                  </td>
                 </tr>
               </tbody>
             </table>

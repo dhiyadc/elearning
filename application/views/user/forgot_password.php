@@ -25,7 +25,7 @@
                       <div class="form-group row">
                             <label class="control-label col-md-2">Email</label>
                               <div class="col-md-8">
-                                  <input class="form-control" type="text" name="email" placeholder="Your Email Address">
+                                  <input class="form-control" type="email" name="email" placeholder="Your Email Address">
                               </div>
                       </div>
                       <div class="form-group text-center">
@@ -76,8 +76,4 @@
             });
         });
     </script> -->
-    
     <?php $this->load->view('partials/footer'); ?>
-
-    
-   

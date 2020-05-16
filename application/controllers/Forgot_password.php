@@ -12,7 +12,9 @@ class Forgot_password extends CI_Controller{
     {
         parent::__construct();
         // Load database
-		$this->load->model('user_database');
+
+        $this->load->model('user_database');
+        $this->load->helper('url');
         
 	}
 
