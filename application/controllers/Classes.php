@@ -5,6 +5,7 @@ class Classes extends CI_Controller {
     {
         parent::__construct();
         $this->load->model('Classes_model');
+        $this->load->helper('url');
     }
 
     public function new_class()
@@ -12,7 +13,9 @@ class Classes extends CI_Controller {
         if(isset($this->session->userdata['logged_in'])){
             $data['kategori'] = $this->Classes_model->getKategori();
             $data['jenis'] = $this->Classes_model->getJenis();
+            $this->load->view('partialsuser/header');
             $this->load->view('classes/new_class',$data);
+            $this->load->view('partialsuser/footer');
         } else {
             redirect('login');
         }
@@ -41,19 +44,29 @@ class Classes extends CI_Controller {
 
     public function open_class($id_kelas)
     {
+        $data['seluruh_kelas'] = $this->Classes_model->getAllClasses();
+        $data['seluruh_harga'] = $this->Classes_model->getAllHarga();
+        $data['kegiatan'] = $this->Classes_model->getKegiatan($id_kelas);
+        $data['tanggal'] = $this->Classes_model->getTanggalKegiatan($id_kelas);
+        $data['kelas'] = $this->Classes_model->getClassById($id_kelas);
+        $data['pembuat'] = $this->Classes_model->getPembuat();
+        $data['peserta_kelas'] = $this->Classes_model->getPesertaByClassId($id_kelas);
+        $data['peserta_seluruh_kelas'] = $this->Classes_model->getPeserta();
+        $data['kategori'] = $this->Classes_model->getKategori();
+        $data['status'] = $this->Classes_model->getStatus();
+        $data['harga'] = $this->Classes_model->getHarga($id_kelas);
+        $data['peserta'] = $this->Classes_model->getPesertaByUserIdClassId($id_kelas);
+        $data['cek'] = $this->Classes_model->cekPeserta($id_kelas);
         if(isset($this->session->userdata['logged_in'])){
-            $data['kegiatan'] = $this->Classes_model->getKegiatan($id_kelas);
-            $data['tanggal'] = $this->Classes_model->getTanggalKegiatan($id_kelas);
-            $data['kelas'] = $this->Classes_model->getClassById($id_kelas);
-            $data['pembuat'] = $this->Classes_model->getPembuat();
-            $data['kategori'] = $this->Classes_model->getKategori();
-            $data['status'] = $this->Classes_model->getStatus();
-            $data['harga'] = $this->Classes_model->getHarga($id_kelas);
-            $data['peserta'] = $this->Classes_model->getPesertaByUserIdClassId($id_kelas);
-            $data['cek'] = $this->Classes_model->cekPeserta($id_kelas);
+            $this->session->set_flashdata('buttonJoin','Anda telah mengikuti kelas ini');
+            $this->load->view('partialsuser/header');
             $this->load->view('classes/open_class',$data);
+            $this->load->view('partialsuser/footer');
         } else {
-            redirect('login');
+            $this->session->set_flashdata('buttonJoin','Anda telah mengikuti kelas ini');
+            $this->load->view('partials/header');
+            $this->load->view('classes/open_class',$data);
+            $this->load->view('partials/footer');
         }
     }
 
@@ -63,7 +76,9 @@ class Classes extends CI_Controller {
             $data['kategori'] = $this->Classes_model->getKategori();
             $data['jenis'] = $this->Classes_model->getJenis();
             $data['kelas'] = $this->Classes_model->getClassById($id_kelas);
+            $this->load->view('partialsuser/header');
             $this->load->view('classes/update_class',$data);
+            $this->load->view('partialsuser/footer');
         } else {
             redirect('login');
         }
@@ -123,7 +138,10 @@ class Classes extends CI_Controller {
         if(isset($this->session->userdata['logged_in'])){
             $data['kelas'] = $this->Classes_model->getAllClasses();
             $data['peserta'] = $this->Classes_model->getPeserta();
+            $data['status'] = $this->Classes_model->getStatus();
+            $this->load->view('partialsuser/header');
             $this->load->view('classes/kelas_diikuti',$data);
+            $this->load->view('partialsuser/footer');
         } else {
             redirect('login');
         }

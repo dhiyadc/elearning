@@ -30,6 +30,7 @@ class Nonuser extends CI_Controller {
              }
              redirect('admin');
 
+
 		 }else{
 			$this->load->view('nonuser/admin_login');
 		}
@@ -38,7 +39,7 @@ class Nonuser extends CI_Controller {
 	 //User Login Process
 	public function admin_login_process() {
 			if(isset($_SESSION['admin_logged_in'])){
-				redirect('home_admin');
+				redirect('admin');
 
 			}
     
@@ -57,6 +58,7 @@ class Nonuser extends CI_Controller {
                 $this->session->set_userdata('owner_email', $email);
                 
                 redirect('owner');
+
             } else {
                 $result = $this->Admin_database->login($data);
                 if ($result == TRUE) {

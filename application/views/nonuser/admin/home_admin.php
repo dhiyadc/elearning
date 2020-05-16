@@ -1,19 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h2><?php if(isset($_SESSION['owner_logged_in'])){
-        echo 'Owner ';
-        echo $_SESSION['email'];
-    } else {
-        echo 'Admin ';
-        echo $_SESSION['email'];
-    }?></h2>
-    <br>
-    <a href="<?= base_url(); ?>nonuser/logout">Logout</a>
-</body>
-</html>
+
+<?php if(isset($_SESSION['admin_logged_in'])) : ?>
+    <?php $this->load->view('nonuser/admin/header'); ?>
+        <!-- Page Content -->
+        <div id="page-wrapper">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h1 class="page-header">Dashboard Admin</h1>
+                        </div>
+                        <!-- /.col-lg-12 -->
+                    </div>
+                    <!-- /.row -->
+                </div>
+                <!-- /.container-fluid -->
+            </div>
+    <?php $this->load->view('nonuser/admin/footer'); ?>
+<?php endif; ?>
