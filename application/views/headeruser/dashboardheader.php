@@ -67,11 +67,21 @@
           <div class="ml-auto w-25">
             <nav class="site-navigation position-relative text-right" role="navigation">
               <ul class="site-menu main-menu site-menu-white js-clone-nav mr-auto d-none d-lg-block m-0 p-0">
-                
-                <li class="cta" ><a href="" class="nav-link"><span>Keluar</span></a></li>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
+                      aria-haspopup="true" aria-expanded="false" style="color: black">Hi,Miskin
+                      <i class="fa fa-user"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right dropdown-default"
+                      aria-labelledby="navbarDropdownMenuLink-333">
+                      <a class="dropdown-item" href="#">Profile</a>
+                      <a class="dropdown-item" href="#">Pengaturan</a>
+                      <a class="dropdown-item" href="#" style="color: cornflowerblue;">Keluar</a>
+                    </div>
+                </li>
               </ul>
             </nav>
-            <a href="#" class="d-inline-block d-lg-none site-menu-toggle js-menu-toggle text-black float-right"><span class="icon-menu h3"></span></a>
+           
           </div>
           
         </div>

@@ -197,13 +197,13 @@
                 <a href="course-single.html"><img src="images/img_1.jpg" alt="Image" class="img-fluid"></a>
               </figure>
               <div class="course-inner-text py-4 px-4">
-                <span class="course-price">$20</span>
-                <div class="meta"><span class="icon-clock-o"></span>4 Lessons / 12 week</div>
-                <h3><a href="#">Study Law of Physics</a></h3>
+                <span class="course-price">Gratis</span>
+                <div class="meta"><span class="icon-clock-o"></span>4 Pertemuan / 12 Minggu</div>
+                <h3><a href="#">Logo Design Course</a></h3>
                 <p>Lorem ipsum dolor sit amet ipsa nulla adipisicing elit. </p>
               </div>
               <div class="d-flex border-top stats">
-                <div class="py-3 px-4"><span class="icon-users"></span> 2,193 students</div>
+                <div class="py-3 px-4"><span class="icon-users"></span> 2,193 siswa</div>
                 <div class="py-3 px-4 w-25 ml-auto border-left"><span class="icon-chat"></span> 2</div>
               </div>
             </div>
@@ -213,13 +213,13 @@
                 <a href="course-single.html"><img src="images/img_2.jpg" alt="Image" class="img-fluid"></a>
               </figure>
               <div class="course-inner-text py-4 px-4">
-                <span class="course-price">$99</span>
-                <div class="meta"><span class="icon-clock-o"></span>4 Lessons / 12 week</div>
+                <span class="course-price">Gratis</span>
+                <div class="meta"><span class="icon-clock-o"></span>4 Pertemuan / 12 Minggu</div>
                 <h3><a href="#">Logo Design Course</a></h3>
                 <p>Lorem ipsum dolor sit amet ipsa nulla adipisicing elit. </p>
               </div>
               <div class="d-flex border-top stats">
-                <div class="py-3 px-4"><span class="icon-users"></span> 2,193 students</div>
+                <div class="py-3 px-4"><span class="icon-users"></span> 2,193 siswa</div>
                 <div class="py-3 px-4 w-25 ml-auto border-left"><span class="icon-chat"></span> 2</div>
               </div>
             </div>
@@ -229,13 +229,13 @@
                 <a href="course-single.html"><img src="images/img_3.jpg" alt="Image" class="img-fluid"></a>
               </figure>
               <div class="course-inner-text py-4 px-4">
-                <span class="course-price">$99</span>
-                <div class="meta"><span class="icon-clock-o"></span>4 Lessons / 12 week</div>
-                <h3><a href="#">JS Programming Language</a></h3>
+                <span class="course-price">Gratis</span>
+                <div class="meta"><span class="icon-clock-o"></span>4 Pertemuan / 12 Minggu</div>
+                <h3><a href="#">Logo Design Course</a></h3>
                 <p>Lorem ipsum dolor sit amet ipsa nulla adipisicing elit. </p>
               </div>
               <div class="d-flex border-top stats">
-                <div class="py-3 px-4"><span class="icon-users"></span> 2,193 students</div>
+                <div class="py-3 px-4"><span class="icon-users"></span> 2,193 siswa</div>
                 <div class="py-3 px-4 w-25 ml-auto border-left"><span class="icon-chat"></span> 2</div>
               </div>
             </div>
@@ -247,13 +247,13 @@
                 <a href="course-single.html"><img src="images/img_4.jpg" alt="Image" class="img-fluid"></a>
               </figure>
               <div class="course-inner-text py-4 px-4">
-                <span class="course-price">$20</span>
-                <div class="meta"><span class="icon-clock-o"></span>4 Lessons / 12 week</div>
-                <h3><a href="#">Study Law of Physics</a></h3>
+                <span class="course-price">Gratis</span>
+                <div class="meta"><span class="icon-clock-o"></span>4 Pertemuan / 12 Minggu</div>
+                <h3><a href="#">Logo Design Course</a></h3>
                 <p>Lorem ipsum dolor sit amet ipsa nulla adipisicing elit. </p>
               </div>
               <div class="d-flex border-top stats">
-                <div class="py-3 px-4"><span class="icon-users"></span> 2,193 students</div>
+                <div class="py-3 px-4"><span class="icon-users"></span> 2,193 siswa</div>
                 <div class="py-3 px-4 w-25 ml-auto border-left"><span class="icon-chat"></span> 2</div>
               </div>
             </div>
@@ -263,13 +263,13 @@
                 <a href="course-single.html"><img src="images/img_5.jpg" alt="Image" class="img-fluid"></a>
               </figure>
               <div class="course-inner-text py-4 px-4">
-                <span class="course-price">$99</span>
-                <div class="meta"><span class="icon-clock-o"></span>4 Lessons / 12 week</div>
+                <span class="course-price">Gratis</span>
+                <div class="meta"><span class="icon-clock-o"></span>4 Pertemuan / 12 Minggu</div>
                 <h3><a href="#">Logo Design Course</a></h3>
                 <p>Lorem ipsum dolor sit amet ipsa nulla adipisicing elit. </p>
               </div>
               <div class="d-flex border-top stats">
-                <div class="py-3 px-4"><span class="icon-users"></span> 2,193 students</div>
+                <div class="py-3 px-4"><span class="icon-users"></span> 2,193 siswa</div>
                 <div class="py-3 px-4 w-25 ml-auto border-left"><span class="icon-chat"></span> 2</div>
               </div>
             </div>
@@ -279,13 +279,13 @@
                 <a href="course-single.html"><img src="images/img_6.jpg" alt="Image" class="img-fluid"></a>
               </figure>
               <div class="course-inner-text py-4 px-4">
-                <span class="course-price">$99</span>
-                <div class="meta"><span class="icon-clock-o"></span>4 Lessons / 12 week</div>
+                <span class="course-price">Gratis</span>
+                <div class="meta"><span class="icon-clock-o"></span>4 Pertemuan / 12 Minggu</div>
                 <h3><a href="#">JS Programming Language</a></h3>
                 <p>Lorem ipsum dolor sit amet ipsa nulla adipisicing elit. </p>
               </div>
               <div class="d-flex border-top stats">
-                <div class="py-3 px-4"><span class="icon-users"></span> 2,193 students</div>
+                <div class="py-3 px-4"><span class="icon-users"></span> 2,193 siswa</div>
                 <div class="py-3 px-4 w-25 ml-auto border-left"><span class="icon-chat"></span> 2</div>
               </div>
             </div>
@@ -297,8 +297,8 @@
         </div>
         <div class="row justify-content-center">
           <div class="col-7 text-center">
-            <button class="customPrevBtn btn btn-primary m-1">Prev</button>
-            <button class="customNextBtn btn btn-primary m-1">Next</button>
+            <button class="customPrevBtn btn btn-primary m-1">Sebelumnya</button>
+            <button class="customNextBtn btn btn-primary m-1">Selanjutnya</button>
           </div>
         </div>
       </div>
