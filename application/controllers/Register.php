@@ -21,6 +21,7 @@ class Register extends CI_Controller {
 		$this->load->model('user_database');
     $this->load->helper('url');
 
+
 		$this->load->helper('security');
 	}
 	
@@ -30,9 +31,10 @@ class Register extends CI_Controller {
 		 if(isset($this->session->userdata['logged_in'])){
 		 	redirect('homepage');
 		 }else{
-       $this->load->view('partials/header');
-        $this->load->view('registeruser/register');
-        $this->load->view('partials/footer');
+
+			$this->load->view('partials/header'); 
+			$this->load->view('register');
+			$this->load->view('partials/footer');
 		}
 	}
 
@@ -50,7 +52,8 @@ class Register extends CI_Controller {
 				$data = array(
 					'error_message' => 'Email has been registered'
 					);
-			    return $this->load->view('user/register_user', $data);
+
+			    return $this->load->view('register', $data);
 			}
 
 
@@ -78,7 +81,8 @@ class Register extends CI_Controller {
 			$data = array(
 			'message_display' => 'Regristation Successfull'
 			);
-			$this->load->view('user/login_user', $data);
+
+			$this->load->view('register', $data);
 	}
 
 }

@@ -34,6 +34,7 @@
   </head>
   <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
     <!-- Modal -->
+    <div id="login-page">
     <div class="modal fade" id="elegantModalForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
       aria-hidden="true" style="padding-right: 90px;">
       <div class="modal-dialog" role="document">
@@ -48,23 +49,53 @@
           </div>
           <!--Body-->
           <div class="modal-body mx-4">
-            <!--Body-->
-            <div class="md-form mb-5">
-              <input type="email" id="Form-email1" class="form-control validate">
+
+            <!-- Body -->
+            <?php
+              if (isset($logout_message)) {
+              echo "<div class='message'>";
+              echo $logout_message;
+              echo "</div>";
+              }
+            ?>
+            <?php
+              if (isset($message_display)) {
+              echo "<div class='message'>";
+              echo $message_display;
+              echo "</div>";
+              }
+            ?>
+            <?php
+            echo "<div class='error_msg'>";
+            if (isset($error_message)) {
+            echo $error_message;
+            }
+            //echo validation_errors();
+            echo "</div>";
+          ?>
+            <!--  -->
+            <form class="form-login" action="<?= base_url() ?>login/user_login_process" method="post">
+            <div class="md-form mb-3">
+              <h5>Email</h5>
+              <input type="email" class="form-control validate" name="email" placeholder="Email" autofocus required> 
+
               <label data-error="wrong" data-success="right" for="Form-email1">Masukan email</label>
             </div>
 
             <div class="md-form pb-3">
-              <input type="password" id="Form-pass1" class="form-control validate">
+
+              <h5>Password</h5>
+              <input type="password" class="form-control validate" name="password" placeholder="Password" required>
               <label data-error="wrong" data-success="right" for="Form-pass1">Masukan Password</label>
-              <p class="font-small blue-text d-flex justify-content-end">Lupa <a href="ForgetPass" class="blue-text ml-1">
+              <p class="font-small blue-text d-flex justify-content-end">Lupa <a href="Forgot_password" class="blue-text ml-1">
                   Password?</a></p>
             </div>
 
             <div class="text-center mb-3">
-              <button type="button" class="btn blue-gradient btn-block btn-rounded z-depth-1a">Masuk</button>
-            </div>
-          
+
+             
+            <button class="btn btn-theme btn-block" value="login" type="submit">Masuk</button>
+            </form>
 
             
           </div>
@@ -76,6 +107,8 @@
         </div>
         <!--/.Content-->
       </div>
+    </div>
+
     </div>
     <!-- Modal -->
 
@@ -110,6 +143,7 @@
               <ul class="site-menu main-menu js-clone-nav mx-auto d-none d-lg-block  m-0 p-0">
                 <li><a href="<?php echo base_url(); ?>" class="nav-link">Beranda</a></li>
                 <li><a href="<?= base_url(); ?>Kelas" class="nav-link">Kelas</a></li>
+
                
               </ul>
             </nav>
