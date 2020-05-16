@@ -1,25 +1,18 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Forgot Password System</title>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-</head>
-<body>
 
-    <div class="jumbotron" style="height: 600px; background-color:#3232aa; border-radius :0px;">
-    <div class="container" style="margin-top: 200px;">
-        <form action="<?= base_url(); ?>forgot_password/request" method='post'>
-        <div class="row justify-content-center">
-            <div class="col-md-6 col-md-offset-3" align="center">
-<!-- 
-                <input class="form-control" id="email" placeholder="Your Email Address" required> -->
+<?php $this->load->view('partials/header'); ?>
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
+<div class="intro-section" id="home-section">
+      
+      <div class="slide-1 gambar1" data-stellar-background-ratio="0.5">
+        <div class="container">
+          <div class="row align-items-center">
+            <div class="col-12">
+              <div class="row align-items-center">
                 
-
-                <?php
+              <div class="col-lg-12 ml-auto mt-5 mb-4" data-aos="fade-up" data-aos-delay="500">
+                  <form action="<?= base_url(); ?>forgot_password/request" method="post" class="form-box">
+                    <h3 class="h4 text-black mb-4 text-center">Reset Password</h3>
+                    <?php
                     if (isset($message_display)) {
                     echo "<div class='message'>";
                     echo $message_display;
@@ -29,28 +22,32 @@
                     <?php
                     } else {
                     ?>
-                <input type="email" class="form-control" name="email" placeholder="Your Email Address" autofocus required><br>
-                <button class="btn btn-primary" type="submit">Reset Password</button>
-                <br><br>
+                      <div class="form-group row">
+                            <label class="control-label col-md-2">Email</label>
+                              <div class="col-md-8">
+                                  <input class="form-control" type="email" name="email" placeholder="Your Email Address">
+                              </div>
+                      </div>
+                      <div class="form-group text-center">
+                      
+                        <button class="btn btn-primary shadow btn-pill" type="submit">Kirim Permintaan</button>
+                        <a href="<?= base_url(); ?>login" class="btn btn-light btn-pill">Back</a>
+                        <?php
+                        }
 
-                <a href="<?= base_url(); ?>login" style="color:white;" >Remember your password? Login Here</a>
-                    <?php
-                    }
-
-                    echo "<div class='error_msg'>";
-                    if (isset($error_message)) {
-                    echo $error_message;
-                    }
-                    //echo validation_errors();
-                    echo "</div>";
+                        echo "<div class='error_msg'>";
+                        if (isset($error_message)) {
+                        echo $error_message;
+                        }
+                        echo "</div>";
                 ?>
-                <!-- <br><br> -->
-                <!-- <p id="response"></p> -->
+                      </div>
+              </div>
             </div>
+            
+          </div>
         </div>
-        </form>
-    </div>
-
+      </div>
     </div>
     <!-- <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script type="text/javascript">
@@ -79,5 +76,4 @@
             });
         });
     </script> -->
-</body>
-</html>
+    <?php $this->load->view('partials/footer'); ?>

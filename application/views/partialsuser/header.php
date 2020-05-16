@@ -70,7 +70,7 @@
             <nav class="site-navigation position-relative text-right" role="navigation">
               <ul class="site-menu main-menu site-menu-white js-clone-nav mr-auto d-none d-lg-block m-0 p-0">
                 
-                <li class="cta" ><a href="" class="nav-link"><span>Keluar</span></a></li>
+                <li class="cta" ><a href="<?php echo base_url(); ?>login/logout" class="nav-link"><span>Keluar</span></a></li>
               </ul>
             </nav>
            

@@ -9,7 +9,6 @@ class BuatKelas extends CI_Controller{
         parent::__construct();
 		// Load database
         // $this->load->model('homepage_database');
-        $this->load->helper('url');
 	}
 
     public function index(){

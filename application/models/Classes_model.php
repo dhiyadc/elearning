@@ -6,6 +6,10 @@ class Classes_model extends CI_Model {
         return $this->db->get('kelas')->result_array();
     }
 
+    public function getAllHarga()
+    {
+        return $this->db->get('harga_kelas')->result_array();
+      
     public function getAllClassesDetail($keyword = null){
         if($keyword){
             $sql = "SELECT kelas.id_kelas, kelas.judul_kelas, kelas.poster_kelas, kelas.deskripsi_kelas, kategori_kelas.nama_kategori, jenis_kelas.nama_jenis, harga_kelas.harga_kelas, COUNT(peserta.id_kelas) as 'peserta', status_kegiatan.nama_status
@@ -102,6 +106,12 @@ class Classes_model extends CI_Model {
         return $this->db->get('peserta')->result_array();
     }
 
+    public function getPesertaByClassId($id)
+    {
+        $this->db->where('id_kelas',$id);
+        return $this->db->get('peserta')->result_array();
+    }
+
     public function getPeserta()
     {
         return $this->db->get('peserta')->result_array();
@@ -157,7 +167,6 @@ class Classes_model extends CI_Model {
     private function insertImage() 
     {
         $config['upload_path'] = './assets/images/';
-
         $config['allowed_types'] = 'jpg|png|jpeg';
         $config['max_size'] = '3000';
         $config['remove_space'] = true;
@@ -212,7 +221,6 @@ class Classes_model extends CI_Model {
     private function updateImage($id) 
     {
         $config['upload_path'] = './assets/images/';
-
         $config['allowed_types'] = 'jpg|png|jpeg';
         $config['max_size'] = '3000';
         $config['remove_space'] = true;
