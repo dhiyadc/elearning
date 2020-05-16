@@ -77,7 +77,8 @@ class Register extends CI_Controller {
 			'message_display' => 'Regristation Successfull'
 			);
 
-			$this->load->view('register', $data);
+			//$this->load->view('register', $data);
+			redirect('register');
 	}
 
 }

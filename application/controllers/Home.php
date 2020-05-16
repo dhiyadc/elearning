@@ -16,7 +16,12 @@ class Home extends CI_Controller{
 	}
 
     public function index(){
-        $this->load->view('partials/header');
+        if(isset($_SESSION['logged_in'])){
+            $this->load->view('partialsuser/header');
+            
+        } else {
+            $this->load->view('partials/header');    
+        }
         $data['class'] = $this->Classes_model->getAllClassesDetail();
         $this->load->view('home', $data);
         $this->load->view('partials/footer');
