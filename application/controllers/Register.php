@@ -29,7 +29,7 @@ class Register extends CI_Controller {
 		 	redirect('home');
 		 }else{
 			$this->load->view('partials/header'); 
-			$this->load->view('register');
+			$this->load->view('user/register_user');
 			$this->load->view('partials/footer');
 		}
 	}
@@ -48,7 +48,7 @@ class Register extends CI_Controller {
 				$data = array(
 					'error_message' => 'Email has been registered'
 					);
-			    return $this->load->view('register', $data);
+			    return $this->load->view('user/register_user', $data);
 			}
 
 

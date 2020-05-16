@@ -137,11 +137,14 @@ class Classes extends CI_Controller {
         }
     }    
 
-    public function kelas_dibuat()
+    public function my_classes()
     {
         if(isset($this->session->userdata['logged_in'])){
             $data['kelas'] = $this->Classes_model->getMyClasses();
+            $data['status'] = $this->Classes_model->getStatus();
+            $this->load->view('partialsuser/header');
             $this->load->view('classes/my_classes',$data);
+            $this->load->view('partialsuser/footer');
         } else {
             redirect('login');
         }

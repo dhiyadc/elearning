@@ -9,7 +9,7 @@
 				<p class="mb-4 pb-2 px-md-5 mx-md-5">Dapatkan Penawaran Kursus terbaik dan pengalaman terbaik disaat Pandemi dan
 					Upgrade diri Kamu! .</p>
 
-				<a href="register" class="btn btn-black"><i class="fa fa-clone left"></i> Buat Kelas</a>
+				<a href="<?=base_url()?>classes/new_class" class="btn btn-black"><i class="fa fa-clone left"></i> Buat Kelas</a>
 				<a href="register" class="btn btn-black"><i class="fa fa-clone left"></i> Gabung Kelas</a>
 
 			</div>
@@ -145,7 +145,7 @@
 								<?php foreach ($class as $val) : ?>
 								<div class="course bg-white h-100 align-self-stretch">
 									<figure class="m-0">
-										<a href="course-single.html"><img src="<?= base_url().'assets/images/'.$val['poster_kelas']?>"
+										<a href="<?=base_url()?>classes/open_class/<?= $val['id_kelas'] ?>"><img src="<?= base_url().'assets/images/'.$val['poster_kelas']?>"
 												alt="Image" class="img-fluid"></a>
 									</figure>
 									<div class="course-inner-text py-4 px-4">

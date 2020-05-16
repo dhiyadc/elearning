@@ -9,7 +9,7 @@
 				<p class="mb-4 pb-2 px-md-5 mx-md-5">Dapatkan Penawaran Kursus terbaik dan pengalaman terbaik disaat Pandemi dan
 					Upgrade diri Kamu! .</p>
 
-				<a href="register" class="btn btn-black"><i class="fa fa-clone left"></i> Buat Kelas</a>
+				<a href="<?=base_url()?>classes/new_class" class="btn btn-black"><i class="fa fa-clone left"></i> Buat Kelas</a>
 				<a href="register" class="btn btn-black"><i class="fa fa-clone left"></i> Gabung Kelas</a>
 
 			</div>
@@ -147,12 +147,10 @@
 								<div class="card-body">
 									<h5 class="card-title"> <?= $val['judul_kelas'] ?></h5>
 									<p class="card-text"><?php echo substr($val['deskripsi_kelas'],0,100);  ?></p>
-									<div class="row">
-										<button class="btn btn-dark mr-1"> <a href="<?= base_url() ?>classes/open_class/<?= $val['id_kelas'] ?>">Detail</a></button>
-									</div>
+									<center><a class="btn btn-dark mr-1" href="<?= base_url() ?>classes/open_class/<?= $val['id_kelas'] ?>">Detail</a></center>
 								</div>
 								<div class="card-footer">
-									<small class="text-muted">Last updated 3 mins ago</small>
+									
 								</div>
 							</div>
             </div>

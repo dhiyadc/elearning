@@ -60,29 +60,31 @@
                 <?php endif; ?>
             <?php endforeach; ?>
 
-            <?php if ($val['pembuat_kelas'] != $this->session->userdata('id_user')) : ?>
+            <?php if(isset($this->session->userdata['logged_in'])) : ?>
+              <?php if ($val['pembuat_kelas'] != $this->session->userdata('id_user')) : ?>
                 <?php if ($cek == true) : ?>
                     <?php if ($val['jenis_kelas'] == 1) : ?>
-                        <p class="mt-4"><a href="<?= base_url()?>classes/join_class/<?= $val['id_kelas']; ?>" class="btn btn-primary">Gabung Kelas</a></p>
+                        <p class="mt-4"><a href="<?= base_url()?>classes/join_class/<?= $val['id_kelas']; ?>" class="btn btn-dark mr-1">Gabung Kelas</a></p>
                     <?php else : ?>
-                        <p class="mt-4"><a href="<?= base_url()?>classes/pembayaran_kelas/<?= $val['id_kelas']; ?>" class="btn btn-primary">Gabung Kelas</a></p>
+                        <p class="mt-4"><a href="<?= base_url()?>classes/pembayaran_kelas/<?= $val['id_kelas']; ?>" class="btn btn-dark mr-1">Gabung Kelas</a></p>
                     <?php endif; ?>
                 <?php elseif ($peserta != null) : ?>
                     <div class="alert alert-primary" role="alert">
-					    <center><?= $this->session->flashdata('buttonJoin') ?></center>
-					</div>
+                        <center><?= $this->session->flashdata('buttonJoin') ?></center>
+                    </div>
                 <?php elseif ($cek == false) : ?>
                     <?php if ($val['jenis_kelas'] == 1) : ?>
-                        <p class="mt-4"><a href="<?= base_url()?>classes/join_class/<?= $val['id_kelas']; ?>" class="btn btn-primary">Gabung Kelas</a></p>
+                        <p class="mt-4"><a href="<?= base_url()?>classes/join_class/<?= $val['id_kelas']; ?>" class="btn btn-dark mr-1">Gabung Kelas</a></p>
                     <?php else : ?>
-                        <p class="mt-4"><a href="<?= base_url()?>classes/pembayaran_kelas/<?= $val['id_kelas']; ?>" class="btn btn-primary">Gabung Kelas</a></p>
+                        <p class="mt-4"><a href="<?= base_url()?>classes/pembayaran_kelas/<?= $val['id_kelas']; ?>" class="btn btn-dark mr-1">Gabung Kelas</a></p>
                     <?php endif; ?>
                 <?php endif; ?>
+            <?php endif; ?>
             <?php endif; ?>
             <br>
             <button onclick="showHideJadwal()" class="btn btn-light">Lihat Jadwal Kegiatan Kelas</button>
             <?php if ($val['pembuat_kelas'] == $this->session->userdata('id_user')) : ?>
-              <a class="btn btn-light" href="<?= base_url()?>classes/update_class/<?= $val['id_kelas'] ?>"><span class="icon-pencil"></span> Edit Kelas</a>
+              <a class="btn btn-dark mr-1" href="<?= base_url()?>classes/update_class/<?= $val['id_kelas'] ?>"><span class="icon-pencil"></span> Edit Kelas</a>
             <?php endif; ?>
             <br><br>
             <section>
