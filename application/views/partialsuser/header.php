@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/fonts/icomoon/style.css">
 
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/bootstrap.min.css">
+    <!-- <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous"> -->
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/jquery-ui.css">
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/owl.carousel.min.css">
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/owl.theme.default.min.css">
@@ -59,7 +60,7 @@
               <ul class="site-menu main-menu js-clone-nav mx-auto d-none d-lg-block  m-0 p-0">
                 <li><a href="<?php echo base_url(); ?>" class="nav-link">Beranda</a></li>
                 <li><a href="<?= base_url(); ?>classes" class="nav-link">Kelas</a></li>
-                <li><a href="" class="nav-link">Profile</a></li>
+                <li><a href="<?= base_url(); ?>profile" class="nav-link">Profile</a></li>
                
               </ul>
             </nav>
@@ -86,9 +87,9 @@
                     </a>
                     <div class="dropdown-menu dropdown-menu-right dropdown-default"
                       aria-labelledby="navbarDropdownMenuLink-333">
-                      <a class="dropdown-item" href="#">Profile</a>
+                      <a class="dropdown-item" href="<?= base_url(); ?>profile">Profile</a>
                       <a class="dropdown-item" href="#">Pengaturan</a>
-                      <a class="dropdown-item" href="#" style="color: cornflowerblue;">Keluar</a>
+                      <a class="dropdown-item" href="<?= base_url(); ?>login/logout" style="color: cornflowerblue;">Keluar</a>
                     </div>
                 </li>
               </ul>

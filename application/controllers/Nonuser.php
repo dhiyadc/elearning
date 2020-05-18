@@ -24,8 +24,12 @@ class Nonuser extends CI_Controller {
 	
 	// Show login page
 	public function index() {
-		 if(isset($_SESSION['admin_logged_in'])){
-		 	redirect('admin');
+		 if(isset($_SESSION['admin_logged_in'])){      
+             if(isset($_SESSION['owner_logged_in'])){
+                redirect('owner');
+             }
+             redirect('admin');
+
 
 		 }else{
 			$this->load->view('nonuser/admin_login');
@@ -50,17 +54,18 @@ class Nonuser extends CI_Controller {
 
                 // Add user data in session if owner is login
                 $this->session->set_userdata('owner_logged_in', TRUE);
-                $this->session->set_userdata('admin_logged_in', TRUE);
-                $this->session->set_userdata('email', $email);
+                // $this->session->set_userdata('admin_logged_in', TRUE);
+                $this->session->set_userdata('owner_email', $email);
                 
-                redirect('admin');
+                redirect('owner');
+
             } else {
                 $result = $this->Admin_database->login($data);
                 if ($result == TRUE) {
                 
                     // Add user data in session
                     $this->session->set_userdata('admin_logged_in', TRUE);
-                    $this->session->set_userdata('email', $email);
+                    $this->session->set_userdata('admin_email', $email);
 
                     redirect('admin');
 
@@ -80,7 +85,7 @@ class Nonuser extends CI_Controller {
             if(isset($_SESSION['owner_logged_in'])){
                 // Remove Session data if owner is logout
                 $this->session->unset_userdata('owner_logged_in');
-                $this->session->unset_userdata('admin_logged_in');
+                // $this->session->unset_userdata('admin_logged_in');
 			    $this->session->unset_userdata('email');
             } else {
 			// Removing session data		

@@ -13,6 +13,7 @@ class Admin extends CI_Controller{
     public function index()
     {
         if(isset($_SESSION['admin_logged_in'])){
+
             $data['kelas'] = $this->Admin_database->getAllClasses();
             $data['pembuat'] = $this->Admin_database->getPembuat();
             $data['peserta'] = $this->Admin_database->getPeserta();

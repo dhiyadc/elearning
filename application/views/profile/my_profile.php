@@ -24,7 +24,7 @@
             </tr>
         <?php endforeach; ?>
     </table>
-    <a href="<?= base_url()?>classes">My Classes</a>
+    <a href="<?= base_url()?>classes/my_classes">My Classes</a>
     <a href="<?= base_url()?>classes/kelas_diikuti">Kelas yang Diikuti</a>
     <a href="<?= base_url()?>profile/edit_profile">Edit Profile</a>
     <a href="<?= base_url()?>profile/delete_account">Delete Account</a>

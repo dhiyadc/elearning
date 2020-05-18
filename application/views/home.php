@@ -41,7 +41,7 @@
           <?php foreach ($class as $val) : ?>
             <div class="course bg-white h-100 align-self-stretch">
               <figure class="m-0">
-                <a href="course-single.html"><img src="<?= base_url().'assets/images/'.$val['poster_kelas']?>" alt="Image" class="img-fluid"></a>
+                <a href="<?=base_url()?>classes/open_class/<?= $val['id_kelas'] ?>"><img src="<?= base_url().'assets/images/'.$val['poster_kelas']?>" alt="Image" class="img-fluid"></a>
               </figure>
               <div class="course-inner-text py-4 px-4">
                 <span class="course-price"><?php
@@ -52,7 +52,7 @@
                   }
                 ?></span>
                 <div class="meta"><span class="icon-clock-o"></span>4 Pertemuan / 12 Minggu</div>
-                <h3><a href="DetailKelas"><?= $val['judul_kelas'] ?></a></h3>
+                <h3><a href="<?=base_url()?>classes/open_class/<?= $val['id_kelas'] ?>"><?= $val['judul_kelas'] ?></a></h3>
                 <p><?php echo substr($val['deskripsi_kelas'],0,100);  ?></p>
               </div>
               <div class="d-flex border-top stats">
