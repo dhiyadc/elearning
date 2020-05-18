@@ -172,6 +172,7 @@ class Classes extends CI_Controller {
         
         $data['categories'] = $this->Classes_model->getKategori();
         $data['class'] = $this->Classes_model->getAllClassesDetail();
+        $data['classNum'] = count($this->Classes_model->getAllClassesDetail());
         $this->load->view('classes/kelasview', $data);
         $this->load->view('partials/footer');
     }
