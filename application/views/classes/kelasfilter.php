@@ -100,27 +100,25 @@
 
 						<article class="card-group-item">
 							<header class="card-header">
-								<h6 class="title">Berdasarkan Kategori </h6>
+								<h6 class="title">Berdasarkan Urutan </h6>
 							</header>
 							<div class="filter-content">
 								<div class="card-body">
 									<form>
+									<label class="form-check">
+											<span class="form-check-label">
+												<a href="<?= base_url(); ?>classes/sort/terbaik">Terbaik</a>
+											</span>
+										</label> <!-- form-check.// -->
 										<label class="form-check">
-											<input class="form-check-input" type="checkbox" value="">
+											<span class="form-check-label">
+												<a href="<?= base_url(); ?>classes/sort/terbaru">Terbaru</a>
+											</span>
+										</label> <!-- form-check.// -->
+										<label class="form-check">
+											<!-- <input class="form-check-input" type="checkbox" value=""> -->
 											<span class="form-check-label">
 												Harga
-											</span>
-										</label> <!-- form-check.// -->
-										<label class="form-check">
-											<input class="form-check-input" type="checkbox" value="">
-											<span class="form-check-label">
-												Terbaik
-											</span>
-										</label> <!-- form-check.// -->
-										<label class="form-check">
-											<input class="form-check-input" type="checkbox" value="">
-											<span class="form-check-label">
-												Promo
 											</span>
 										</label> <!-- form-check.// -->
 									</form>
