@@ -80,9 +80,8 @@
                         <p class="mt-4"><a href="<?= base_url()?>classes/pembayaran_kelas/<?= $val['id_kelas']; ?>" class="btn btn-dark mr-1">Gabung Kelas</a></p>
                     <?php endif; ?>
                 <?php endif; ?>
+              <?php endif; ?>
             <?php endif; ?>
-            <?php endif; ?>
-            <br>
             <button onclick="showHideJadwal()" class="btn btn-light">Lihat Jadwal Kegiatan Kelas</button>
             <?php if ($val['pembuat_kelas'] == $this->session->userdata('id_user')) : ?>
               <a class="btn btn-dark mr-1" href="<?= base_url()?>classes/update_class/<?= $val['id_kelas'] ?>"><span class="icon-pencil"></span> Edit Kelas</a>
@@ -105,7 +104,13 @@
                             <th scope="col">Hari/Tanggal</th>
                             <th scope="col">Waktu</th>
                             <th scope="col">Status</th>
-                            <?php if ($val['pembuat_kelas'] == $this->session->userdata('id_user')) : ?>
+                            <?php if ($val['pembuat_kelas'] != $this->session->userdata('id_user')) : ?>
+                              <?php if ($cek == true) : ?>
+                              <?php elseif ($peserta != null) : ?>
+                                <th scope="col">Aksi</th>
+                              <?php elseif ($cek == false) : ?>
+                              <?php endif; ?>
+                            <?php else : ?>
                               <th scope="col">Aksi</th>
                             <?php endif; ?>
                           </tr>
@@ -126,8 +131,15 @@
                                   <?php endif; ?>
                               <?php endforeach; ?>
                               <td>
-                                  <?php if ($val['pembuat_kelas'] == $this->session->userdata('id_user')) : ?>
-                                      <button type="button" class="btn btn-light" data-toggle="modal" data-target="#editKegiatan<?= $val2['id_kegiatan']; ?>">Edit</button>
+                                  <?php if ($val['pembuat_kelas'] != $this->session->userdata('id_user')) : ?>
+                                    <?php if ($cek == true) : ?>
+                                    <?php elseif ($peserta != null) : ?>
+                                      <button type="button" class="btn btn-dark mr-1">Ikut</button>
+                                    <?php elseif ($cek == false) : ?>
+                                    <?php endif; ?>
+                                  <?php else : ?>
+                                      <button type="button" class="btn btn-light" data-toggle="modal" data-target="#editKegiatan<?= $val2['id_kegiatan']; ?>">Edit</button><br>
+                                      <button type="button" class="btn btn-dark mr-1">Mulai</button>
                                       <div class="modal fade" id="editKegiatan<?= $val2['id_kegiatan']; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="padding-right: 90px;">
                                         <div class="modal-dialog" role="document">
                                           <!--Content-->
