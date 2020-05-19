@@ -269,7 +269,7 @@ class Classes_model extends CI_Model {
         else {
             $data = [
                 'id_kelas' => $id,
-                'harga_kelas' => 'Rp.0,00'
+                'harga_kelas' => '0'
             ];
         }
 

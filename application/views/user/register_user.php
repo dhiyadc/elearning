@@ -133,7 +133,7 @@
                     <div class="col-sm-3 col-sm-9">
                         <div class="checkbox">
                                 <label>
-                                <input name="term_of_use"type="checkbox" required>Saya Menyetujui aturan pakai yang berlaku
+                                <input name="term_of_use"type="checkbox" required> Saya Menyetujui aturan pakai yang berlaku
                                 </label>
                         </div>
                     </div>
