@@ -73,6 +73,9 @@
             //echo validation_errors();
             echo "</div>";
           ?>
+          <?php if ($this->session->flashdata('invalid')) { ?>
+    <div class="alert alert-danger"> <?= $this->session->flashdata('invalid') ?> </div>
+<?php } ?>
             <!--  -->
             <form class="form-login" action="<?= base_url() ?>login/user_login_process" method="post">
             <div class="md-form mb-3">
@@ -166,3 +169,15 @@
     
       
     </header>
+
+    
+      <?php if ($this->session->flashdata('invalid')) { ?>
+        <script src="<?php echo base_url(); ?>assets/js/jquery-3.3.1.min.js"></script>
+      <script type="text/javascript">
+      $(window).on('load',function(){
+          $('#elegantModalForm').modal('show');
+          console.log('ready');
+      });
+      
+      </script>
+      <?php } ?>
