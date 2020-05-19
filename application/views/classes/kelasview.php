@@ -106,13 +106,13 @@
 										<label class="form-check">
 											<input class="form-check-input" type="checkbox" value="">
 											<span class="form-check-label">
-												Harga
+												<a href="<?= base_url(); ?>classes">Terbaik</a>
 											</span>
 										</label> <!-- form-check.// -->
 										<label class="form-check">
 											<input class="form-check-input" type="checkbox" value="">
 											<span class="form-check-label">
-												Terbaik
+												Harga
 											</span>
 										</label> <!-- form-check.// -->
 										<label class="form-check">
