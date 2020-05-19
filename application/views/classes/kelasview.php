@@ -159,18 +159,15 @@
 									</figure>
 									<div class="course-inner-text py-4 px-4">
 										<span class="course-price"><?php
-										if($val['harga_kelas'] == 'Rp.0,00'){
-											echo "<b>Gratis</b>";
-										} else {
-											echo "Rp.";
-											echo $val['harga_kelas'];
-										}
-										?></span>
-										<div class="meta"><span class="icon-clock-o"></span>4 Pertemuan / 12 Minggu
-										</div>
-										<h3><a
-												href="<?= base_url() ?>classes/open_class/<?= $val['id_kelas'] ?>"><?= $val['judul_kelas'] ?></a>
-										</h3>
+                  if($val['harga_kelas'] == '0'){
+                    echo "<b>Gratis</b>";
+                  } else {
+					$hasil_rupiah = "Rp." . number_format($val['harga_kelas'],2,',','.');
+					echo $hasil_rupiah;
+                  }
+                ?></span>
+										<div class="meta"><span class="icon-clock-o"></span>4 Pertemuan / 12 Minggu</div>
+										<h3><a href="<?= base_url() ?>classes/open_class/<?= $val['id_kelas'] ?>"><?= $val['judul_kelas'] ?></a></h3>
 										<p><?php echo substr($val['deskripsi_kelas'],0,100);  ?></p>
 									</div>
 									<div class="d-flex border-top stats">
@@ -218,20 +215,16 @@
 									</figure>
 									<div class="course-inner-text py-4 px-4">
 										<span class="course-price"><?php
-										if($val['harga_kelas'] == 'Rp.0,00'){
-											echo "<b>Gratis</b>";
-										} else {
-											echo "Rp.";
-											echo $val['harga_kelas'];
-										}
-										?></span>
-										<div class="meta"><span class="icon-clock-o"></span>4 Pertemuan / 12 Minggu
-										</div>
-										<h3><a
-												href="<?= base_url() ?>classes/open_class/<?= $val['id_kelas'] ?>"><?= $val['judul_kelas'] ?></a>
-										</h3>
-										<p style="text-align: justify; line-height: 1.5;">
-											<?php echo substr($val['deskripsi_kelas'],0,300);  ?></p>
+                  if($val['harga_kelas'] == '0'){
+                    echo "<b>Gratis</b>";
+                  } else {
+					$hasil_rupiah = "Rp." . number_format($val['harga_kelas'],2,',','.');
+					echo $hasil_rupiah;
+                  }
+                ?></span>
+										<div class="meta"><span class="icon-clock-o"></span>4 Pertemuan / 12 Minggu</div>
+										<h3><a href="<?= base_url() ?>classes/open_class/<?= $val['id_kelas'] ?>"><?= $val['judul_kelas'] ?></a></h3>
+										<p><?php echo substr($val['deskripsi_kelas'],0,50);  ?></p>
 									</div>
 									<div class="d-flex border-top stats">
 										<div class="py-3 px-4"><span class="icon-users"></span> <?= $val['peserta'] ?>
