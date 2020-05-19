@@ -113,7 +113,7 @@
             <div class="form-group">
                 <label>Jadwal Kegiatan</label>
                 <div class="input-group date form_datetime " data-date-format="yyyy/mm/dd hh:ii" data-link-field="dtp_input1">
-                    <input class="form-control" size="16" type="text" name="addmore[][tanggal_kegiatan]" readonly required>
+                    <input class="form-control" id="inputdatetimepicker" size="16" type="text" name="addmore[][tanggal_kegiatan]" readonly required>
                     <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
                     <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
                 </div>
