@@ -22,6 +22,23 @@ class Profile extends CI_Controller {
         }
     }
 
+    public function complete_profile()
+    {
+        $data = $this->Profile_model->getFotoDeskripsi();
+        if($data['foto'] == null || $data['deskripsi'] == null) {
+            $this->load->view('profile/complete_profile');
+        }
+        else{
+            redirect('home');
+        }
+    }
+
+    public function complete_profile_action()
+    {
+        $this->Profile_model->insertFotoDeskripsi();
+        redirect('home');
+    }
+
     public function edit_profile()
     {
         if(isset($this->session->userdata['logged_in'])){

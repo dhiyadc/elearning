@@ -171,7 +171,8 @@ class Classes extends CI_Controller {
 
         
         $data['categories'] = $this->Classes_model->getKategori();
-        $data['class'] = $this->Classes_model->getAllClassesDetail();
+        $data['class'] = $this->Classes_model->getAllRandomClasses();
+        $data['classNum'] = count($this->Classes_model->getAllClassesDetail());
         $this->load->view('classes/kelasview', $data);
         $this->load->view('partials/footer');
     }
@@ -186,6 +187,22 @@ class Classes extends CI_Controller {
         $data['kategori_text'] = $kategori;
         $data['categories'] = $this->Classes_model->getKategori();
         $data['class'] = $this->Classes_model->getClassesbyCategories($kategori);
+        $data['classNum'] = count($this->Classes_model->getAllClassesDetail());
+        $this->load->view('classes/kelasfilter', $data);
+        $this->load->view('partials/footer');
+    }
+
+    public function sort($sorting){
+        if(isset($_SESSION['logged_in'])){
+            $this->load->view('partialsuser/header');
+            
+        } else {
+            $this->load->view('partials/header');    
+        }
+        $data['kategori_text'] = $sorting;
+        $data['categories'] = $this->Classes_model->getKategori();
+        $data['class'] = $this->Classes_model->getClassesbySorting($sorting);
+        $data['classNum'] = count($this->Classes_model->getAllClassesDetail());
         $this->load->view('classes/kelasfilter', $data);
         $this->load->view('partials/footer');
     }
@@ -200,6 +217,7 @@ class Classes extends CI_Controller {
         $data['keyword'] = $this->input->post('keyword');
         $data['categories'] = $this->Classes_model->getKategori();
         $data['class'] = $this->Classes_model->getAllClassesDetail($data['keyword']);
+        $data['classNum'] = count($this->Classes_model->getAllClassesDetail($data['keyword']));
         $this->load->view('classes/kelasfilter', $data);
         $this->load->view('partials/footer');
     }

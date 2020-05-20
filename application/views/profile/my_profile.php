@@ -9,11 +9,23 @@
     <table>
         <?php foreach ($profile as $val) : ?>
             <tr>
-                <td>Name: <?= $val['nama']; ?></td>
+                <td>Nama: <?= $val['nama']; ?></td>
             </tr>
             <tr>
-                <td>Phone Number: <?= $val['no_telepon']; ?></td>
+                <td>No. Telepon: <?= $val['no_telepon']; ?></td>
             </tr>
+            <tr>
+                <td>Foto Profil: <img src="<?= base_url().'assets/images/'.$val['foto']?>" alt="No Image" height="200px" class="img-fluid rounded"></td>
+            </tr>
+            <?php if ($val['deskripsi'] != null) : ?>
+                <tr>
+                    <td>Deskripsi Singkat: <?= $val['deskripsi']; ?></td>
+                </tr>
+            <?php else : ?> 
+                <tr>
+                    <td>Deskripsi Singkat: No Desc</td>
+                </tr>
+            <?php endif; ?>
         <?php endforeach; ?>
         <?php foreach ($account as $val) : ?>
             <tr>

@@ -26,7 +26,7 @@
       <div class="container">
         <div class="row mb-5 justify-content-center">
           <div class="col-lg-7 text-center" data-aos="fade-up" data-aos-delay="">
-            <h2 class="section-title">Kelas</h2>
+            <h2 class="section-title">Kelas Terbaik</h2>
           </div>
         </div>
       </div>
@@ -45,10 +45,11 @@
               </figure>
               <div class="course-inner-text py-4 px-4">
                 <span class="course-price"><?php
-                  if($val['harga_kelas'] == 'Rp.0,00'){
+                  if($val['harga_kelas'] == '0'){
                     echo "<b>Gratis</b>";
                   } else {
-                    echo $val['harga_kelas'];
+                    $hasil_rupiah = "Rp." . number_format($val['harga_kelas'],2,',','.');
+                    echo $hasil_rupiah;
                   }
                 ?></span>
                 <div class="meta"><span class="icon-clock-o"></span>4 Pertemuan / 12 Minggu</div>
@@ -66,15 +67,19 @@
 
           </div>
 
-         
+          <a class="carousel-control-prev" href="#myCarousel" data-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+    </a>
+    <a class="carousel-control-next" href="#myCarousel" data-slide="next">
+        <span class="carousel-control-next-icon"></span>
+    </a>
 
         </div>
-        <div class="row justify-content-center">
+        <!-- <div class="row justify-content-center">
           <div class="col-7 text-center">
-            <button class="customPrevBtn btn btn-primary m-1">Sebelumnya</button>
-            <button class="customNextBtn btn btn-primary m-1">Selanjutnya</button>
+          
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
 

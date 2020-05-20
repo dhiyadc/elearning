@@ -58,7 +58,7 @@
                     <div class="form-group mb-3">
                         <div id="showHideHarga" style="display: none">
                             <label>Harga Kelas</label>
-                            <input type="text" class="form-control" name="harga" placeholder="Rp.." >
+                            <input type="text" id="rupiah" class="form-control" name="harga" placeholder="Masukkan nominal..." >
                         </div>
                     </div>
                     <div class="form-group">
@@ -113,7 +113,7 @@
             <div class="form-group">
                 <label>Jadwal Kegiatan</label>
                 <div class="input-group date form_datetime " data-date-format="yyyy/mm/dd hh:ii" data-link-field="dtp_input1">
-                    <input class="form-control" size="16" type="text" name="addmore[][tanggal_kegiatan]" readonly required>
+                    <input class="form-control" id="inputdatetimepicker" size="16" type="text" name="addmore[][tanggal_kegiatan]" readonly required>
                     <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
                     <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
                 </div>
@@ -173,3 +173,30 @@
         });
 
 </script>
+<script type="text/javascript">
+		
+		var rupiah = document.getElementById('rupiah');
+		rupiah.addEventListener('keyup', function(e){
+			// tambahkan 'Rp.' pada saat form di ketik
+			// gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
+			rupiah.value = formatRupiah(this.value, 'Rp. ');
+		});
+ 
+		/* Fungsi formatRupiah */
+		function formatRupiah(angka, prefix){
+			var number_string = angka.replace(/[^,\d]/g, '').toString(),
+			split   		= number_string.split(','),
+			sisa     		= split[0].length % 3,
+			rupiah     		= split[0].substr(0, sisa),
+			ribuan     		= split[0].substr(sisa).match(/\d{3}/gi);
+ 
+			// tambahkan titik jika yang di input sudah menjadi angka ribuan
+			if(ribuan){
+				separator = sisa ? '.' : '';
+				rupiah += separator + ribuan.join('.');
+			}
+ 
+			rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
+			return prefix == undefined ? rupiah : (rupiah ? 'Rp. ' + rupiah : '');
+		}
+	</script>
