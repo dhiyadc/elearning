@@ -17,7 +17,7 @@
   </div>
 </div>
 
-<section class="buatkelas_sec">
+<section class="buatkelas_sec" style="color: black;">
     <div class="row">
         <div class="col">
         <div class="col-lg-12 ml-auto mt-5 mb-4" data-aos="fade-up" data-aos-delay="500">
@@ -32,6 +32,7 @@
                         <label>Deskripsi Kelas</label>
                         <textarea  class="form-control" name="deskripsi" required></textarea>
                     </div>
+                    
                     <div class="form-group mb-3">
                         <div class="row">
                             <div class="col-md-4">
@@ -45,7 +46,11 @@
                                     <span class="form-check-label">Berbayar</span>
                                 </label>
                             </div>
-                            <div class="col-md-4">
+                          
+                        </div>
+                    </div>
+                    <div class="form-group">
+                    <div class="col-md-4">
                                 <label>Kategori Kelas</label>
                                 <select name="kategori">
                                     <?php foreach ($kategori as $val) : ?>
@@ -53,7 +58,6 @@
                                     <?php endforeach; ?>
                                 </select>
                             </div>
-                        </div>
                     </div>
                     <div class="form-group mb-3">
                         <div id="showHideHarga" style="display: none">
