@@ -1,6 +1,6 @@
 <section class="user_dashboard">
 <div class="row mt-0">
-  <div class="col-lg-12">
+  <div class="col-lg-12" style="background-color: aquamarine;" >
     <div class="card"> 
     <div class="container my-5 pt-5 pb-3 px-4 z-depth-1">
 
