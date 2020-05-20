@@ -1,6 +1,6 @@
 <section class="user_dashboard">
 <div class="row mt-0">
-  <div class="col-lg-12">
+  <div class="col-lg-12" style="background-color: aquamarine;" >
     <div class="card"> 
     <div class="container my-5 pt-5 pb-3 px-4 z-depth-1">
 
@@ -88,7 +88,7 @@
             </table>
           </div>
           <div class="card-footer white py-3 d-flex justify-content-between">
-            <a href="<?= base_url()?>classes/new_class" class="btn btn-light btn-md px-3 my-0 ml-0">Buat Kelas</a>
+            
           </div>
         </div>
       </div>
