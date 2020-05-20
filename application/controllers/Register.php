@@ -48,7 +48,8 @@ class Register extends CI_Controller {
 				$data = array(
 					'error_message' => 'Email has been registered'
 					);
-			    return $this->load->view('user/register_user', $data);
+				$this->session->set_flashdata('registered', 'Email has been registered');
+				redirect('register');
 			}
 
 
@@ -79,7 +80,8 @@ class Register extends CI_Controller {
 
 			//$this->load->view('register', $data);
 			//flashdata
-			redirect('register');
+			$this->session->set_flashdata('success', 'Regristration Successfull, Please login');
+			redirect('home');
 	}
 
 }
