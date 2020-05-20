@@ -76,7 +76,7 @@
                       aria-labelledby="navbarDropdownMenuLink-333">
                       <a class="dropdown-item" href="#">Profile</a>
                       <a class="dropdown-item" href="#">Pengaturan</a>
-                      <a class="dropdown-item" href="#" style="color: cornflowerblue;">Keluar</a>
+                      <a class="dropdown-item" href="#">Keluar</a>
                     </div>
                     
                 </li>
