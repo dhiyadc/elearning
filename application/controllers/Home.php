@@ -22,7 +22,7 @@ class Home extends CI_Controller{
         } else {
             $this->load->view('partials/header');    
         }
-        $data['class'] = $this->Classes_model->getAllClassesDetail();
+        $data['class'] = $this->Classes_model->getAllTopClasses();
         $this->load->view('home', $data);
         $this->load->view('partials/footer');
     }

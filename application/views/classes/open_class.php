@@ -40,10 +40,11 @@
               <h3 class="text-black">Detail Kelas</h3>
               <p class="mb-4">
                 <?php foreach ($harga as $val2) : ?>
-                <?php if ($val2['harga_kelas'] == 'Rp.0,00') : ?> 
+                <?php if ($val2['harga_kelas'] == '0') : ?> 
                     <p>Gratis</p>
                 <?php else : ?>
-                    <p><strong class="text-black mr-3">Harga: </strong><?= $val2['harga_kelas'] ?></p>
+                    <?php $hasil_rupiah = "Rp." . number_format($val2['harga_kelas'],2,',','.'); ?>
+                    <p><strong class="text-black mr-3">Harga: </strong><?= $hasil_rupiah; ?></p>
                 <?php endif; ?>
             <?php endforeach; ?>
               </p>
@@ -79,9 +80,8 @@
                         <p class="mt-4"><a href="<?= base_url()?>classes/pembayaran_kelas/<?= $val['id_kelas']; ?>" class="btn btn-dark mr-1">Gabung Kelas</a></p>
                     <?php endif; ?>
                 <?php endif; ?>
+              <?php endif; ?>
             <?php endif; ?>
-            <?php endif; ?>
-            <br>
             <button onclick="showHideJadwal()" class="btn btn-light">Lihat Jadwal Kegiatan Kelas</button>
             <?php if ($val['pembuat_kelas'] == $this->session->userdata('id_user')) : ?>
               <a class="btn btn-dark mr-1" href="<?= base_url()?>classes/update_class/<?= $val['id_kelas'] ?>"><span class="icon-pencil"></span> Edit Kelas</a>
@@ -104,7 +104,13 @@
                             <th scope="col">Hari/Tanggal</th>
                             <th scope="col">Waktu</th>
                             <th scope="col">Status</th>
-                            <?php if ($val['pembuat_kelas'] == $this->session->userdata('id_user')) : ?>
+                            <?php if ($val['pembuat_kelas'] != $this->session->userdata('id_user')) : ?>
+                              <?php if ($cek == true) : ?>
+                              <?php elseif ($peserta != null) : ?>
+                                <th scope="col">Aksi</th>
+                              <?php elseif ($cek == false) : ?>
+                              <?php endif; ?>
+                            <?php else : ?>
                               <th scope="col">Aksi</th>
                             <?php endif; ?>
                           </tr>
@@ -125,8 +131,15 @@
                                   <?php endif; ?>
                               <?php endforeach; ?>
                               <td>
-                                  <?php if ($val['pembuat_kelas'] == $this->session->userdata('id_user')) : ?>
-                                      <button type="button" class="btn btn-light" data-toggle="modal" data-target="#editKegiatan<?= $val2['id_kegiatan']; ?>">Edit</button>
+                                  <?php if ($val['pembuat_kelas'] != $this->session->userdata('id_user')) : ?>
+                                    <?php if ($cek == true) : ?>
+                                    <?php elseif ($peserta != null) : ?>
+                                      <button type="button" class="btn btn-dark mr-1">Ikut</button>
+                                    <?php elseif ($cek == false) : ?>
+                                    <?php endif; ?>
+                                  <?php else : ?>
+                                      <button type="button" class="btn btn-light" data-toggle="modal" data-target="#editKegiatan<?= $val2['id_kegiatan']; ?>">Edit</button><br>
+                                      <button type="button" class="btn btn-dark mr-1">Mulai</button>
                                       <div class="modal fade" id="editKegiatan<?= $val2['id_kegiatan']; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="padding-right: 90px;">
                                         <div class="modal-dialog" role="document">
                                           <!--Content-->
@@ -217,7 +230,13 @@
               <div class="mb-4 text-center"> 
                 <?php foreach ($pembuat as $val2) : ?>
                     <?php if ($val2['id_user'] == $val['pembuat_kelas']) : ?> 
+                      <?php if ($val2['foto'] == 'default_pic.png') : ?>
+                        <img src="<?php echo base_url(); ?>assets/images/default_pic.png" alt="Image" class="rounded-circle mb-4" style="object-fit: cover; width:100px">
+                        <?php else : ?>
+                        <img src="<?php echo base_url(); ?>assets/images/<?= $val2['foto']; ?>" alt="Image" class="w-25 rounded-circle mb-4" style="object-fit: cover;">
+                      <?php endif; ?>
                         <h3 class="h5 text-black mb-4"><?= $val2['nama']; ?></h3>
+                        <p><?= $val2['deskripsi']; ?></p>
                     <?php endif; ?>
                 <?php endforeach; ?>
               </div>
@@ -252,10 +271,11 @@
                 <?php foreach ($seluruh_harga as $val2) : ?>
                     <?php if($val['id_kelas'] == $val2['id_kelas']) : ?>
                         <span class="course-price">
-                            <?php if ($val2['harga_kelas'] == 'Rp.0,00') : ?> 
+                            <?php if ($val2['harga_kelas'] == '0') : ?> 
                                 Gratis
                             <?php else : ?>
-                                <?= $val2['harga_kelas'] ?>
+                              <?php $hasil_rupiah = "Rp." . number_format($val2['harga_kelas'],2,',','.'); ?>
+                                <?= $hasil_rupiah; ?>
                             <?php endif; ?>
                         </span>
                     <?php endif; ?>
@@ -346,3 +366,30 @@
         }
     }
 </script>
+<script type="text/javascript">
+		
+		var rupiah = document.getElementById('rupiah');
+		rupiah.addEventListener('keyup', function(e){
+			// tambahkan 'Rp.' pada saat form di ketik
+			// gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
+			rupiah.value = formatRupiah(this.value, 'Rp. ');
+		});
+ 
+		/* Fungsi formatRupiah */
+		function formatRupiah(angka, prefix){
+			var number_string = angka.replace(/[^,\d]/g, '').toString(),
+			split   		= number_string.split(','),
+			sisa     		= split[0].length % 3,
+			rupiah     		= split[0].substr(0, sisa),
+			ribuan     		= split[0].substr(sisa).match(/\d{3}/gi);
+ 
+			// tambahkan titik jika yang di input sudah menjadi angka ribuan
+			if(ribuan){
+				separator = sisa ? '.' : '';
+				rupiah += separator + ribuan.join('.');
+			}
+ 
+			rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
+			return prefix == undefined ? rupiah : (rupiah ? 'Rp. ' + rupiah : '');
+		}
+	</script>

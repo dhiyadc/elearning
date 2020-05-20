@@ -58,31 +58,12 @@
                 <div id="login-page">
                 <form class="form-login form-box" action="<?= base_url() ?>register/register_process" method="post">
                 <!--  -->
-                <?php
-                    if (isset($logout_message)) {
-                    echo "<div class='message'>";
-                    echo $logout_message;
-                    echo "</div>";
-                    }
-                  ?>
-                  <?php
-                    if (isset($message_display)) {
-                    echo "<div class='message'>";
-                    echo $message_display;
-                    echo "</div>";
-                    }
-                  ?>
-                  <?php
-                  echo "<div class='error_msg'>";
-                  if (isset($error_message)) {
-                  echo $error_message;
-                  }
-                  //echo validation_errors();
-                  echo "</div>";
-                ?>
+                
                 <!--  -->
                     <h3 class="h4 text-black mb-4 text-center">Formulir Pendaftaran</h3>
-                   
+                    <?php if ($this->session->flashdata('registered')) { ?>
+                        <div class="alert alert-danger" style="text-align: center;"><p></p> <?= $this->session->flashdata('registered') ?> </div>
+                    <?php } ?>
                     
                     <div class="form-group">
                       <input type="text" class="form-control" name="nama" placeholder="Fullname" minlength="3" maxlength="50" autofocus required>
@@ -133,7 +114,7 @@
                     <div class="col-sm-3 col-sm-9">
                         <div class="checkbox">
                                 <label>
-                                <input name="term_of_use"type="checkbox" required>Saya Menyetujui aturan pakai yang berlaku
+                                <input name="term_of_use"type="checkbox" required> Saya Menyetujui aturan pakai yang berlaku
                                 </label>
                         </div>
                     </div>
