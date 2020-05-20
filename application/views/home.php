@@ -66,15 +66,19 @@
 
           </div>
 
-         
+          <a class="carousel-control-prev" href="#myCarousel" data-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+    </a>
+    <a class="carousel-control-next" href="#myCarousel" data-slide="next">
+        <span class="carousel-control-next-icon"></span>
+    </a>
 
         </div>
-        <div class="row justify-content-center">
+        <!-- <div class="row justify-content-center">
           <div class="col-7 text-center">
-            <button class="customPrevBtn btn btn-primary m-1">Sebelumnya</button>
-            <button class="customNextBtn btn btn-primary m-1">Selanjutnya</button>
+          
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
 
