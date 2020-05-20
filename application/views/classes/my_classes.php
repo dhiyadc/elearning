@@ -88,7 +88,7 @@
             </table>
           </div>
           <div class="card-footer white py-3 d-flex justify-content-between">
-            <a href="<?= base_url()?>classes/new_class" class="btn btn-light btn-md px-3 my-0 ml-0">Buat Kelas</a>
+            
           </div>
         </div>
       </div>
