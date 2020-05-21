@@ -172,7 +172,7 @@
                                                                     <label>Password</label>
                                                                 </div>
                                                                 <div class="col-md-6">
-                                                                    <p>**** <a href="">ubah password?</a></p>
+                                                                    <p>**** <span><i class="fa fa-cog"><a href="#" (click)="clearModal()" data-toggle="modal" data-target="#gantipass">Ganti</a></i></span></p>
                                                                 </div>
                                                             </div>
                                                             <div class="row">
@@ -250,6 +250,41 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
                     <button type="button" class="btn btn-primary" (click)="openModal()" data-dismiss="modal">Gabung</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="contact" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="gantipass">Ubah Password</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <p for="msj">Silahkan Masukan Password Baru Anda</p>
+                    </div>
+                    <div class="form-group">
+                        <label for="txtFullname">Password Lama</label>
+                        <input type="text" id="txtFullname" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="txtEmail">Password Baru</label>
+                        <input type="text" id="txtEmail" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="txtPhone">Konfirmasi Password</label>
+                        <input type="text" id="txtPhone" class="form-control">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                    <button type="button" class="btn btn-primary" (click)="openModal()" data-dismiss="modal">Konfirmasi</button>
                 </div>
             </div>
         </div>
