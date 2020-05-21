@@ -107,7 +107,7 @@
                           </div>    
                           <div class="col-lg-8 col-sm-8 col-8">
                             <strong class="text-info">David John</strong>
-                            <div><a href="">Kelas Pemograman Android Sedang Dimulai</a>
+                            <div><a href="#" (click)="clearModal()" data-toggle="modal" data-target="#contact">Kelas Pemograman Android Sedang Dimulai</a>
                           
                             </div>
                             <small class="text-warning">27.11.2015, 15:00</small>
@@ -122,7 +122,7 @@
                           <div class="col-lg-8 col-sm-8 col-8">
                             <strong class="text-info">David John</strong>
                             <div>
-                            <div><a href="">Kelas Pemograman Java Sedang Dimulai</a>
+                            <div><a href="#" (click)="clearModal()" data-toggle="modal" data-target="#contact">Kelas Pemograman Java Sedang Dimulai</a>
                             </div>
                             <small class="text-warning">27.11.2015, 15:00</small>
                           </div>    
@@ -136,7 +136,7 @@
                           <div class="col-lg-8 col-sm-8 col-8">
                             <strong class="text-info">David John</strong>
                             <div>
-                            <div><a href="">Kelas Maling Sedang Dimulai</a>
+                            <div><a href="#" (click)="clearModal()" data-toggle="modal" data-target="#contact">Kelas Maling Sedang Dimulai</a>
                             </div>
                             <small class="text-warning">27.11.2015, 15:00</small>
                           </div>    

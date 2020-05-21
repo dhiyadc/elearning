@@ -92,12 +92,12 @@
 				</a>
 				
 				<a class="item dropdown">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-444" data-toggle="dropdown"
+                    <a class="nav-link dropdown-toggle" id="kategori2" data-toggle="dropdown"
                       aria-haspopup="true" aria-expanded="false">Urutkan
                      
                     </a>
                     <div class="dropdown-menu dropdown-menu-right dropdown-default"
-                      aria-labelledby="navbarDropdownMenuLink-444">
+                      aria-labelledby="kategori2">
                       <a class="dropdown-item" href="#">Favorite</a>
                       <a class="dropdown-item" href="#">Terbaik</a>
                       <a class="dropdown-item" href="#">Bulan ini</a>
