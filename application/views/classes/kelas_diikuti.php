@@ -127,10 +127,10 @@
                                                             </div>
                                                             <div class="row">
                                                                 <div class="col-md-2">
-                                                                    <label>No Telepon</label>
+                                                                    <label>Kontak</label>
                                                                 </div>
                                                                 <div class="col-md-6">
-                                                                    <p>12345678</p>
+                                                                    <p>081995753939</p>
                                                                 </div>
                                                             </div>
                                                             <!-- <div class="row">
