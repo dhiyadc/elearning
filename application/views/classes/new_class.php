@@ -16,7 +16,7 @@
     </div>
   </div>
 </div>
-
+<!-- 
 <section class="buatkelas_sec" style="color: black;">
     <div class="row">
         <div class="col">
@@ -83,8 +83,173 @@
             </div>
         </div>
     </div>
-</section>
+</section> -->
 
+<div class="container">
+    <form class="form-horizontal" role="form" method="POST" action="/register">
+        <div class="row">
+            <div class="col-md-3 mb-3 mt-5"><h2>Buat Kelas</h2><hr></div>
+            <div class="col-md-6">
+                
+            
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 field-label-responsive mb-3">
+                <label for="passwordnow">Nama Author</label>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                        <label for="">Tiansyah Pratama</label>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-control-feedback">
+                        <span class="text-danger align-middle">
+                            <!-- Put name validation error messages here -->
+                        </span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 field-label-responsive mb-3">
+                <label for="passwordnow">Poster Kelas</label>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                    <input type="file" name="poster" accept=".png, .jpg, .jpeg" class="form-control-file" required id="exampleFormControlFile1">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-control-feedback">
+                        <span class="text-danger align-middle">
+                            <!-- Put name validation error messages here -->
+                        </span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 field-label-responsive">
+                <label for="namaclasss">Nama Kelas</label>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                      
+                        <input type="text" name="namakelas" class="form-control" id="nameclass"
+                               placeholder="" required autofocus>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-control-feedback">
+                        <span class="text-danger align-middle">
+                            <!-- Put e-mail validation error messages here -->
+                        </span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 field-label-responsive">
+                <label for="password">Kategori Kelas</label>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                            <select name="kategori">
+                                    <?php foreach ($kategori as $val) : ?>
+                                        <option class="col-md-4" value="<?= $val['id_kategori']; ?>"><?= $val['nama_kategori']; ?></option>
+                                    <?php endforeach; ?>
+                            </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 field-label-responsive">
+                <label for="newpassword1">Jenis Kelas</label>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group has-danger">
+                             <div class="col-md-4">
+                                
+                                <label class="form-check">
+                                    <input class="form-check-input" type="radio" name="jenis" value="1" required onclick="hideHarga()">
+                                    <span class="form-check-label">Gratis</span>
+                                </label>
+                                <label class="form-check">
+                                    <input class="form-check-input" type="radio" name="jenis" value="2" onclick="showHarga()">
+                                    <span class="form-check-label">Berbayar</span>
+                                </label>
+                            </div>
+                </div>
+            </div>
+            <!-- <div class="col-md-3">
+                <div class="form-control-feedback">
+                        <span class="text-danger align-middle">
+                            <i class="fa fa-close"> Sandi Anda tidak cocok</i>
+                        </span>
+                </div>
+            </div> -->
+        </div>
+        <div class="row">
+            <div class="col-md-3 field-label-responsive">
+                <label for="password">Harga Kelas</label>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                            <input type="text" id="rupiah" class="form-control" name="harga" placeholder="Masukkan nominal..." >
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-3 field-label-responsive">
+                <label for="password">Deskripsi Kelas</label>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                    <textarea  class="form-control" name="deskripsi" required style="height: 200px;"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-3 field-label-responsive">
+                <label for="password">Jadwal Kelas</label>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                    <div id="kegiatan_field">
+                        <div class="form-group">
+                            <button type="button" name="add" id="add" class="btn btn-primary" style="background-color: darkcyan;">Tambah Jadwal</button>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <button type="submit" class="btn btn-primary"><i class="fa fa-user-plus"></i>Buat Kelas</button>
+                <button type="submit" class="btn btn-blue-gradient"></i>Kembali</button>
+            </div>
+        </div>
+    </form>
+</div>
+</section>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
 
@@ -117,9 +282,9 @@
             <div class="form-group">
                 <label>Jadwal Kegiatan</label>
                 <div class="input-group date form_datetime " data-date-format="yyyy/mm/dd hh:ii" data-link-field="dtp_input1">
-                    <input class="form-control" id="inputdatetimepicker" size="16" type="text" name="addmore[][tanggal_kegiatan]" readonly required>
-                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
-                    <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+                    <input class="form-control" id="inputdatetimepicker" size="16" type="text" name="addmore[][tanggal_kegiatan]" readonly required">
+                    <span class="input-group-addon" style="width:40px;"><span class="glyphicon glyphicon-remove"></span></span>
+                    <span class="input-group-addon" style="width:40px;"><span class="glyphicon glyphicon-th"></span></span>
                 </div>
             </div>
             <input type="hidden" id="dtp_input1"/>
