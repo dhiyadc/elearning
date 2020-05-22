@@ -47,26 +47,26 @@
 
 <div class="container main-secction">
   <div class="profileuser">
+    <?php foreach ($profile as $val) : ?>
         <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12 image-section">
-                <img src="<?=base_url()?>/images/17580.jpg">
+                <img src="<?=base_url()?>/assets/images/17580.jpg">
             </div>
             <div class="row user-left-part">
                 <div class="col-md-3 col-sm-3 col-xs-12 user-profil-part pull-left">
                     <div class="row ">
                         <div class="col-md-12 col-md-12-sm-12 col-xs-12 user-image text-center">
-                            <img src="https://www.jamf.com/jamf-nation/img/default-avatars/generic-user-purple.png" class="rounded-circle">
+                            <img src="<?= base_url().'assets/images/'.$val['foto']?>" class="rounded-circle" style="object-fit: cover;">
                         </div>
                         <div class="col-md-12 col-sm-12 col-xs-12 user-detail-section1 text-center">
                             <button id="btn-contact" (click)="clearModal()" data-toggle="modal" data-target="#contact" class="btn btn-primary btn-block follow">Gabung Kelas</button> 
-                            <a href="<?=base_url()?>classes/new_class" class="btn btn-block" style="background-color: darkcyan; color: white;">Buat</a></button>   
+                            <a href="<?=base_url()?>classes/new_class" class="btn btn-block" style="background-color: darkcyan; color: white;">Buat Kelas</a></button>   
                                                         
                         </div>
                      
                        
                     </div>
                 </div>
-                <?php foreach ($profile as $val) : ?>
                 <div class="col-md-9 col-sm-9 col-xs-12 pull-right profile-right-section">
                     <div class="row profile-right-section-row">
                         <div class="col-md-12 profile-header">
@@ -200,11 +200,11 @@
                         </div>
                     </div>
                 </div>
-                <?php endforeach; ?>
             </div>
         </div>
     </div>
-    </div>
+    <?php endforeach; ?>
+</div>
 
     <div class="modal fade" id="contact" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
