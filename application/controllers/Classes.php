@@ -127,6 +127,7 @@ class Classes extends CI_Controller {
     {
         if(isset($this->session->userdata['logged_in'])){
             $data['kelas'] = $this->Classes_model->getAllClasses();
+            $data['kegiatan'] = $this->Classes_model->getAllKegiatan();
             $data['peserta'] = $this->Classes_model->getPeserta();
             $data['status'] = $this->Classes_model->getStatus();
             $this->load->view('partialsuser/header');
@@ -141,7 +142,10 @@ class Classes extends CI_Controller {
     {
         if(isset($this->session->userdata['logged_in'])){
             $data['kelas'] = $this->Classes_model->getMyClasses();
+            $data['kegiatan'] = $this->Classes_model->getAllKegiatan();
             $data['status'] = $this->Classes_model->getStatus();
+            $data['profile'] = $this->Classes_model->getProfile();
+            $data['peserta'] = $this->Classes_model->getPeserta();
             $this->load->view('partialsuser/header');
             $this->load->view('classes/my_classes',$data);
             $this->load->view('partialsuser/footer');
