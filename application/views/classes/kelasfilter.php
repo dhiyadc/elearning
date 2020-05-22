@@ -115,15 +115,8 @@
 												<a href="<?= base_url(); ?>classes/sort/terbaru">Terbaru</a>
 											</span>
 										</label> <!-- form-check.// -->
-										<label class="form-check">
-											<!-- <input class="form-check-input" type="checkbox" value=""> -->
-											<span class="form-check-label">
-												Harga
-											</span>
-										</label> <!-- form-check.// -->
 									</form>
 
-									<button type="button" class="btn btn-light">Sesuaikan</button>
 								</div> <!-- card-body.// -->
 							</div>
 						</article> <!-- card-group-item.// -->

@@ -65,44 +65,47 @@
 			
 		
 			<div class="row">
-                  <a class="item dropdown">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
-                      aria-haspopup="true" aria-expanded="false">Kategori
-                     
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right dropdown-default"
-                      aria-labelledby="navbarDropdownMenuLink-333">
-                      <a class="dropdown-item" href="<?= base_url(); ?>profile">Profile</a>
-                      <a class="dropdown-item" href="#">Pengaturan</a>
-                      <a class="dropdown-item" href="<?= base_url(); ?>login/logout" style="color: cornflowerblue;">Keluar</a>
-                    </div>
-				</a>
+                  <ul class="item dropdown">
+						<a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
+						aria-haspopup="true" aria-expanded="false">Kategori
+						
+						</a>
+						<div class="dropdown-menu dropdown-menu-right dropdown-default"
+						aria-labelledby="navbarDropdownMenuLink-333">
+						<!-- <a class="dropdown-item" href="<?= base_url(); ?>profile">tesT</a>
+						<a class="dropdown-item" href="#">Pengaturan</a>
+						<a class="dropdown-item" href="<?= base_url(); ?>login/logout" style="color: cornflowerblue;">Keluar</a> -->
+							<?php foreach($categories as $val) : ?>								
+								<a class="dropdown-item" href="<?= base_url(); ?>classes/categories/<?= $val['nama_kategori']; ?>"><?= $val['nama_kategori']; ?></a>
+							<?php endforeach; ?>
+						</div>
+					</ul>
 
-				<a class="item dropdown">
-                    <a class="nav-link dropdown-toggle"  data-toggle="dropdown"
+				<!--
+					<li class="item dropdown" style="list-style: none;">
+                    <a class="nav-link dropdown-toggle" id="filterBy" data-toggle="dropdown"
                       aria-haspopup="true" aria-expanded="false">Filter By
                      
                     </a>
                     <div class="dropdown-menu dropdown-menu-right dropdown-default"
-                      aria-labelledby="navbarDropdownMenuLink-333">
-                      <a class="dropdown-item" href="<?= base_url(); ?>profile">Harga</a>
-                      <a class="dropdown-item" href="#">Terbaru</a>
-                      <a class="dropdown-item" href="#">Terlama </a>
+                      aria-labelledby="filterBy">
+                      <a class="dropdown-item" href="<?= base_url(); ?>profile" aria-labelledby="filterBy">Harga</a>
+                      <a class="dropdown-item" href="#" aria-labelledby="filterBy">Terbaru</a>
+                      <a class="dropdown-item" href="#" aria-labelledby="filterBy">Terlama </a>
                     </div>
-				</a>
+				</li> -->
 				
-				<a class="item dropdown">
+				<ul class="item dropdown">
                     <a class="nav-link dropdown-toggle" id="kategori2" data-toggle="dropdown"
                       aria-haspopup="true" aria-expanded="false">Urutkan
                      
                     </a>
                     <div class="dropdown-menu dropdown-menu-right dropdown-default"
                       aria-labelledby="kategori2">
-                      <a class="dropdown-item" href="#">Favorite</a>
-                      <a class="dropdown-item" href="#">Terbaik</a>
-                      <a class="dropdown-item" href="#">Bulan ini</a>
+                      <a class="dropdown-item" href="<?= base_url(); ?>classes/sort/terbaik">Terbaik</a>
+                      <a class="dropdown-item" href="<?= base_url(); ?>classes/sort/terbaru">Terbaru</a>
                     </div>
-				</a>
+				</ul>
 				
 					
 			</div>
@@ -110,7 +113,16 @@
 		<div class="ml-auto w-25">
             <nav class="site-navigation position-relative text-right" role="navigation">
               <ul class="site-menu  mr-auto d-none d-lg-block m-0 p-0">
-			<a class="btn btn-success" href="" style="background-color: #3333ab ; color: white"><i class="fa fa-plus" style="margin-right: 5px;"></i>Buat Kelas</a>
+
+			<?php if(isset($_SESSION['logged_in'])) { ?>
+				<a href="<?=base_url()?>classes/new_class" class="btn btn-success" style="background-color: #3333ab ; color: white"><i class="fa fa-plus" style="margin-right: 5px;"></i> Buat
+					Kelas</a>
+				<?php } else { ?>
+					<a href="" class="btn btn-success" data-toggle="modal" data-target="#elegantModalForm" style="background-color: #3333ab ; color: white"><i class="fa fa-plus" style="margin-right: 5px;"></i> Buat
+					Kelas</a>
+				<?php } ?>
+
+
               </ul>
             </nav>
            
@@ -127,12 +139,12 @@
 			<div class="col-md-12 mt-5">
 				<div class="paket position-relative rounded">
 					<div class="col-lg-12">
-						<!-- <div class="judul-list">
+						<!-- <div class="judul-list"> -->
 
 							<!-- <h1 class="text-center" data-aos="fade-up" data-aos-delay="0">Seluruh Kelas</h1> -->
 						</div>
 					</div>
-					<div class="container">
+					<!-- <div class="container">
 						<div class="row">
 
 							<div class="owl-carousel col-12 nonloop-block-14">
@@ -177,7 +189,7 @@
 							
 						</div>
 						
-					</div>
+					</div> -->
 
 				</div>
 
@@ -185,11 +197,11 @@
 
 			<div class="col-md-12 mt-5">
 				<div class="position-relative rounded">
-					<div class="col-lg-12">
+					<!-- <div class="col-lg-12">
 						<div class="judul-list">
 							<h1 class="text-center">Semua</h1>
 						</div>
-					</div>
+					</div> -->
 					<div class="container">
 						<div class="row">
 
