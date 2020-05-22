@@ -41,7 +41,7 @@
 
 
   
-</div>
+
  
 <div class="container my-5">
 
@@ -113,7 +113,7 @@
             </div>
         </div>
     </div>
-<section>
+
     
     <div class="row mt-5">
       <div class="col">
@@ -255,7 +255,7 @@
 
 
 
-  </section>
+
 </div>
 </section>
 
