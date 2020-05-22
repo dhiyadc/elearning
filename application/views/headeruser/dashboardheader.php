@@ -158,7 +158,7 @@
                     <div class="dropdown-menu dropdown-menu-right dropdown-default"
                       aria-labelledby="navbarDropdownMenuLink-333">
                       <a class="dropdown-item" href="<?= base_url(); ?>profile">Profile</a>
-                      <a class="dropdown-item" href="#">Pengaturan</a>
+                      <a class="dropdown-item" href="#">Ubah Password</a>
                       <a class="dropdown-item" href="<?= base_url(); ?>login/logout" style="color: cornflowerblue;">Keluar</a>
                     </div>
                 </li>

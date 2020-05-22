@@ -87,13 +87,13 @@
               <ul class="site-menu main-menu site-menu-white js-clone-nav mr-auto d-none d-lg-block m-0 p-0">
               
               <li class="nav-item dropdown ">
-                    <a class="nav-link dropdown-toggle" id="ayam123" data-toggle="dropdown"
+                    <a class="nav-link dropdown-toggle" id="notifis" data-toggle="dropdown"
                       aria-haspopup="true" aria-expanded="false"><i class="fa fa-bell"></i>
                       
                     </a>
                     <div class="notif">
                     <ul class="dropdown-menu">
-                      <li class="head text-light" style="background-color: #3d3db5">
+                      <li class="head text-light" style="background-color: darkcyan;">
                         <div class="row">
                           <div class="col-lg-12 col-sm-12 col-12">
                             <span>Pemberitahuan (3)</span>
@@ -142,7 +142,7 @@
                           </div>    
                         </div>
                       </li>
-                      <li class="footer text-center" style="background-color: #3d3db5">
+                      <li class="footer text-center" style="background-color: darkcyan;">
                         <a href="" class="text-light">View All</a>
                       </li>
                     </ul>
@@ -158,7 +158,7 @@
                     <div class="dropdown-menu dropdown-menu-right dropdown-default"
                       aria-labelledby="navbarDropdownMenuLink-333">
                       <a class="dropdown-item" href="<?= base_url(); ?>profile">Profile</a>
-                      <a class="dropdown-item" href="#">Pengaturan</a>
+                      <a class="dropdown-item" href="#">Ubah Password</a>
                       <a class="dropdown-item" href="<?= base_url(); ?>login/logout" style="color: cornflowerblue;">Keluar</a>
                     </div>
                 </li>
