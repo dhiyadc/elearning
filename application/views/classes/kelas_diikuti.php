@@ -172,7 +172,7 @@
                                                                     <label>Password</label>
                                                                 </div>
                                                                 <div class="col-md-6">
-                                                                    <p>**** <span><i class="fa fa-cog"><a href="#" (click)="clearModal()" data-toggle="modal" data-target="#gantipass">Ganti</a></i></span></p>
+                                                                    <p>**** <span><i class="fa fa-cog"><a href="<?= base_url(); ?>UbahPassword" data-target="#gantipass">Ganti?</a></i></span></p>
                                                                 </div>
                                                             </div>
                                                             <div class="row">

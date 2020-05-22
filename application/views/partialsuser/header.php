@@ -93,7 +93,7 @@
                     </a>
                     <div class="notif">
                     <ul class="dropdown-menu">
-                      <li class="head text-light" style="background-color: darkcyan;">
+                      <li class="head text-light" style="background-color: forestgreen;">
                         <div class="row">
                           <div class="col-lg-12 col-sm-12 col-12">
                             <span>Pemberitahuan (3)</span>
@@ -142,7 +142,7 @@
                           </div>    
                         </div>
                       </li>
-                      <li class="footer text-center" style="background-color: darkcyan;">
+                      <li class="footer text-center" style="background-color: forestgreen;">
                         <a href="" class="text-light">View All</a>
                       </li>
                     </ul>
