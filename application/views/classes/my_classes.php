@@ -50,7 +50,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="contact">Kontak</h5>
+                    <h5 class="modal-title" id="contact">Gabung Kelas</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
@@ -67,14 +67,11 @@
                         <label for="txtEmail">Password Kelas</label>
                         <input type="text" id="txtEmail" class="form-control">
                     </div>
-                    <div class="form-group">
-                        <label for="txtPhone">Konfirmasi Password</label>
-                        <input type="text" id="txtPhone" class="form-control">
-                    </div>
+                    
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
                     <button type="button" class="btn btn-primary" (click)="openModal()" data-dismiss="modal">Gabung</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
                 </div>
             </div>
         </div>
