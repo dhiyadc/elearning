@@ -68,11 +68,11 @@
           </div>
 
           <a class="carousel-control-prev" href="#myCarousel" data-slide="prev">
-        <span class="carousel-control-prev-icon"></span>
-    </a>
-    <a class="carousel-control-next" href="#myCarousel" data-slide="next">
-        <span class="carousel-control-next-icon"></span>
-    </a>
+              <span class="carousel-control-prev-icon"></span>
+          </a>
+          <a class="carousel-control-next" href="#myCarousel" data-slide="next">
+              <span class="carousel-control-next-icon"></span>
+          </a>
 
         </div>
         <!-- <div class="row justify-content-center">

@@ -64,9 +64,19 @@
                             <tr>
                                 <th scope="row"><a class="text-primary"><?= $val['judul_kelas']; ?></a></th>
                                 <td style="padding-top: 20px;"> 
+                                <?php $total = 0; $selesai = 0;
+                                foreach ($kegiatan as $val3) {
+                                  if ($val2['id_kelas'] == $val3['id_kelas']){
+                                    $total++; 
+                                    if ($val3['status_kegiatan'] == 2) {
+                                      $selesai++; 
+                                    } 
+                                  }
+                                }
+                                $proses = ($selesai / $total) * 100; ?>
                                     <div class="progress md-progress">
-                                        <div class="progress-bar bg-info" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0"
-                                        aria-valuemax="100">50%</div>
+                                        <div class="progress-bar bg-info" role="progressbar" style="width: <?= $proses; ?>%" aria-valuenow="<?= $proses; ?>" aria-valuemin="0"
+                                        aria-valuemax="100"><?= $proses; ?>%</div>
                                     </div>
                                 </td>
                                 <td style="padding-top:20px">

@@ -214,6 +214,15 @@ class Classes_model extends CI_Model {
         $this->db->limit('1');
         return $this->db->get('kelas')->result_array()[0];
     }
+
+    public function getProfile()
+    {
+        $id = $this->session->userdata('id_user');
+        $sql = "SELECT user.*,detail_user.*
+                FROM user,detail_user
+                WHERE user.id_user = '$id' AND detail_user.id_user = '$id'";
+        return $this->db->query($sql)->result_array();
+    }
     
     public function getKegiatan($id)
     {
@@ -223,15 +232,25 @@ class Classes_model extends CI_Model {
         return $this->db->query($sql)->result_array();
     }
 
+    public function getAllKegiatan()
+    {
+        return $this->db->get('jadwal_kegiatan')->result_array();
+    }
+
     public function getTanggalKegiatan($id)
     {
         $data = $this->db->get_where('jadwal_kegiatan',['id_kelas' => $id])->result_array();
-        $selesai = true;
-        foreach ($data as $key => $value) {
-            if($value['tanggal_kegiatan'] > date("Y-m-d")){
-                $selesai = false;
-            break;
+        if ($data != null){
+            $selesai = true;
+            foreach ($data as $key => $value) {
+                if($value['status_kegiatan'] == 1){
+                    $selesai = false;
+                break;
+                }
             }
+        }
+        else {
+            $selesai = false;
         }
 
         $this->updateStatus($id,$selesai);

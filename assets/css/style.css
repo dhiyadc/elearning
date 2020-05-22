@@ -1011,6 +1011,8 @@ h1, h2, h3, h4, h5,
   padding-top: 2rem;
   padding-bottom: 2rem; }
 
+  
+
 .course {
   -webkit-box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.3);
   box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.3);
@@ -1031,6 +1033,7 @@ h1, h2, h3, h4, h5,
     right: 0;
     border-top-left-radius: 4px;
     border-bottom-left-radius: 4px; }
+    
   .course .meta {
     font-size: .9rem;
     display: block;
@@ -1243,3 +1246,190 @@ background-color: black;
 .buttonclass a{
   padding: 10px 6px;
 }
+
+.no-margin{
+  margin: 0px;
+}
+
+
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link{
+  background-color: #17A2B8;
+}
+
+.notif .dropdown-menu{
+  top: 60px;
+  right: 0px;
+  left: unset;
+  width: 460px;
+  box-shadow: 0px 5px 7px -1px auto;
+  padding-bottom: 0px;
+  padding: 0px;
+}
+.notif .dropdown-menu:before{
+  content: "";
+  position: absolute;
+  top: -20px;
+  right: 290px;
+  border:10px solid #343A40;
+  border-color: transparent transparent #343A40 transparent;
+}
+
+.notif a{
+  color: black;
+}
+.head{
+  padding:5px 15px;
+  border-radius: 3px 3px 0px 0px;
+}
+.footer{
+  padding:5px 15px;
+  border-radius: 0px 0px 3px 3px; 
+}
+.notification-box{
+  padding: 10px 0px; 
+}
+.bg-gray{
+  background-color: #eee;
+}
+@media (max-width: 640px) {
+    .dropdown-menu{
+      top: 50px;
+      left: -16px;  
+      width: 290px;
+    } 
+    .nav{
+      display: block;
+    }
+    .nav .nav-item,.nav .nav-item a{
+      padding-left: 0px;
+    }
+    .message{
+      font-size: 13px;
+    }
+}
+
+.primarywarna{
+  background-color: #3838b0;
+}
+
+
+ 
+    .profileuser .border{
+      border-bottom:1px solid #F1F1F1;
+      margin-bottom:10px;
+    }
+    .profileuser .main-secction{
+      box-shadow: 10px 10px 10px;
+    }
+    .profileuser .image-section{
+      padding: 0px;
+    }
+    .profileuser .image-section img{
+      width: 100%;
+      height:250px;
+      position: relative;
+    }
+    .profileuser .user-image{
+      position: absolute;
+      margin-top:-50px;
+    }
+    .profileuser .user-left-part{
+      margin: 0px;
+    }
+    .profileuser .user-image img{
+      width:100px;
+      height:100px;
+    }
+    .profileuser.user-profil-part{
+      padding-bottom:30px;
+      background-color:#FAFAFA;
+    }
+    .profileuser .follow{    
+      margin-top:70px;   
+    }
+    .profileuser .user-detail-row{
+      margin:0px; 
+    }
+    .profileuser .user-detail-section2 p{
+      font-size:12px;
+      padding: 0px;
+      margin: 0px;
+    }
+    .profileuser .user-detail-section2{
+      margin-top:10px;
+    }
+    .profileuser .user-detail-section2 span{
+      color:#7CBBC3;
+      font-size: 20px;
+    }
+    .profileuser .user-detail-section2 small{
+      font-size:12px;
+      color:#D3A86A;
+    }
+    .profile-right-section{
+      padding: 20px 0px 10px 15px;
+      background-color: #FFFFFF;  
+    }
+    .profile-right-section-row{
+      margin: 0px;
+    }
+    .profile-header-section1 h1{
+      font-size: 25px;
+      margin: 0px;
+    }
+    .profile-header-section1 h5{
+      color: #0062cc;
+    }
+    .req-btn{
+      height:30px;
+      font-size:12px;
+    }
+    .profile-tag{
+      padding: 10px;
+      border:1px solid #F6F6F6;
+    }
+    .profile-tag p{
+      font-size: 12px;
+      color:black;
+    }
+    .profile-tag i{
+      color:#ADADAD;
+      font-size: 20px;
+    }
+    .image-right-part{
+      background-color: #FCFCFC;
+      margin: 0px;
+      padding: 5px;
+    }
+    .img-main-rightPart{
+      background-color: #FCFCFC;
+      margin-top: auto;
+    }
+    .image-right-detail{
+      padding: 0px;
+    }
+    .image-right-detail p{
+      font-size: 12px;
+    }
+    .image-right-detail a:hover{
+      text-decoration: none;
+    }
+    .image-right img{
+      width: 100%;
+    }
+    .image-right-detail-section2{
+      margin: 0px;
+    }
+    .image-right-detail-section2 p{
+      color:#38ACDF;
+      margin:0px;
+    }
+    .image-right-detail-section2 span{
+      color:#7F7F7F;
+    }
+  
+    .profileuser .nav-link{
+      font-size: 1.2em;    
+    }
+    
