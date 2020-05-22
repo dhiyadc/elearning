@@ -264,10 +264,10 @@
                         </div>
                         <div class="form-group">
                             <label for="txtPhone">Konfirmasi Password</label>
-                            <input type="password" id="password2" name="password2" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" class="form-control" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required>
+                            <input type="password" id="password2" name="password2" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" class="form-control" title="Password doesn't match" required>
                         </div>
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                        <button type="submit" class="btn btn-primary" (click)="openModal()" data-dismiss="modal">Konfirmasi</button>
+                        <button type="submit" class="btn btn-primary" (click)="openModal()">Konfirmasi</button>
                     </form>
                 </div>
             </div>
