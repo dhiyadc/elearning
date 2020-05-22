@@ -66,6 +66,7 @@
                        
                     </div>
                 </div>
+                <?php foreach ($profile as $val) : ?>
                 <div class="col-md-9 col-sm-9 col-xs-12 pull-right profile-right-section">
                     <div class="row profile-right-section-row">
                         <div class="col-md-12 profile-header">
@@ -101,28 +102,12 @@
                                               <!-- Tab panes -->
                                               <div class="tab-content">
                                                 <div role="tabpanel" class="tab-pane fade show active" id="profile" style="margin-top: 20px;">
-                                                        <div class="row">
-                                                                <div class="col-md-2">
-                                                                    <label>ID</label>
-                                                                </div>
-                                                                <div class="col-md-6">
-                                                                    <p>509230671</p>
-                                                                </div>
-                                                            </div>
                                                             <div class="row">
                                                                 <div class="col-md-2">
                                                                     <label>Nama</label>
                                                                 </div>
                                                                 <div class="col-md-6">
-                                                                    <p>User</p>
-                                                                </div>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="col-md-2">
-                                                                    <label>Email</label>
-                                                                </div>
-                                                                <div class="col-md-6">
-                                                                    <p>user@gmail.com</p>
+                                                                    <p><?= $val['nama']; ?></p>
                                                                 </div>
                                                             </div>
                                                             <div class="row">
@@ -130,25 +115,39 @@
                                                                     <label>No Telepon</label>
                                                                 </div>
                                                                 <div class="col-md-6">
-                                                                    <p>12345678</p>
+                                                                    <p><?= $val['no_telepon']; ?></p>
                                                                 </div>
                                                             </div>
-                                                            <!-- <div class="row">
+                                                            <div class="row">
                                                                 <div class="col-md-2">
-                                                                    <label>Profesi</label>
+                                                                    <label>Deskripsi</label>
                                                                 </div>
                                                                 <div class="col-md-6">
-                                                                    <p>Developer</p>
+                                                                    <p><?= $val['deskripsi']; ?></p>
                                                                 </div>
-                                                            </div> -->
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-2">
+                                                                    <label>Email</label>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <p><?= $val['email']; ?></p>
+                                                                </div>
+                                                            </div>
                                                 </div>
                                                 <div role="tabpanel" class="tab-pane fade" id="buzz" style="margin-top: 20px;">
                                                         <div class="row">
+                                                            <?php $total_diikuti = 0;
+                                                            foreach ($peserta as $val2) {
+                                                                if ($val2['id_user'] == $this->session->userdata('id_user')) {
+                                                                    $total_diikuti++;
+                                                                }
+                                                            } ?>
                                                                 <div class="col-md-6">
-                                                                    <label>Kelas Diikuti</label>
+                                                                   <label>Kelas Diikuti</label>
                                                                 </div>
                                                                 <div class="col-md-6">
-                                                                    <p>0 Kelas</p>
+                                                                    <p><?= $total_diikuti; ?> Kelas</p>
                                                                 </div>
                                                             </div>
                                                             <div class="row">
@@ -156,7 +155,7 @@
                                                                     <label>Total Kelas Dibuat</label>
                                                                 </div>
                                                                 <div class="col-md-6">
-                                                                    <p>0 Kelas</p>
+                                                                    <p><?= count($kelas); ?> Kelas</p>
                                                                 </div>
                                                             </div>
                                                             <div class="row">
@@ -164,7 +163,7 @@
                                                                     <label>Email Akun</label>
                                                                 </div>
                                                                 <div class="col-md-6">
-                                                                    <p class="hidden">user@gmail.com</p>
+                                                                    <p class="hidden"><?= $val['email']; ?></p>
                                                                 </div>
                                                             </div>
                                                             <div class="row">
@@ -172,24 +171,9 @@
                                                                     <label>Password</label>
                                                                 </div>
                                                                 <div class="col-md-6">
-                                                                    <p>**** <span><i class="fa fa-cog"><a href="#" (click)="clearModal()" data-toggle="modal" data-target="#gantipass">Ganti</a></i></span></p>
+                                                                    <p>******** <span><i class="fa fa-cog"><a href="#" (click)="clearModal()" data-toggle="modal" data-target="#gantipass"> Ganti</a></i></span></p>
                                                                 </div>
                                                             </div>
-                                                            <div class="row">
-                                                                <div class="col-md-6">
-                                                                    <label>Bergabung</label>
-                                                                </div>
-                                                                <div class="col-md-6">
-                                                                    <p>6 Juli 2019</p>
-                                                                </div>
-                                                            </div>
-                                                            <!-- <div class="row">
-                                                                <div class="col-md-12">
-                                                                    <label>Your Bio</label>
-                                                                    <br/>
-                                                                    <p>Saya Jokowi</p>
-                                                                </div>
-                                                            </div> -->
                                                 </div>
                                                 
                                               </div>
@@ -216,6 +200,7 @@
                         </div>
                     </div>
                 </div>
+                <?php endforeach; ?>
             </div>
         </div>
     </div>
@@ -256,35 +241,34 @@
     </div>
 
 
-    <div class="modal fade" id="contact" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="gantipass" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="gantipass">Ubah Password</h5>
+                <div class="modal-header">Ubah Password</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <div class="form-group">
-                        <p for="msj">Silahkan Masukan Password Baru Anda</p>
-                    </div>
-                    <div class="form-group">
-                        <label for="txtFullname">Password Lama</label>
-                        <input type="text" id="txtFullname" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="txtEmail">Password Baru</label>
-                        <input type="text" id="txtEmail" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="txtPhone">Konfirmasi Password</label>
-                        <input type="text" id="txtPhone" class="form-control">
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                    <button type="button" class="btn btn-primary" (click)="openModal()" data-dismiss="modal">Konfirmasi</button>
+                    <form action="<?= base_url()?>profile/change_password_action" method="POST">
+                        <div class="form-group">
+                            <p for="msj">Silahkan Masukan Password Baru Anda</p>
+                        </div>
+                        <div class="form-group">
+                            <label for="txtFullname">Password Lama</label>
+                            <input type="password" id="txtFullname" name="old_password" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="txtEmail">Password Baru</label>
+                            <input type="password" id="password" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" class="form-control" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="txtPhone">Konfirmasi Password</label>
+                            <input type="password" id="password2" name="password2" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" class="form-control" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required>
+                        </div>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                        <button type="submit" class="btn btn-primary" (click)="openModal()" data-dismiss="modal">Konfirmasi</button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -313,9 +297,24 @@
                             <tr>
                                 <th scope="row"><a class="text-primary"><?= $val['judul_kelas']; ?></a></th>
                                 <td> 
+                                    <?php $total = 0; $selesai = 0;
+                                    foreach ($kegiatan as $val2) {
+                                        if ($val['id_kelas'] == $val2['id_kelas']){
+                                            $total++; 
+                                            if ($val2['status_kegiatan'] == 2) {
+                                                $selesai++; 
+                                            } 
+                                        }
+                                    }
+                                    if ($total == 0) {
+                                        $proses = 0;
+                                    }
+                                    else {
+                                        $proses = ($selesai / $total) * 100; 
+                                    }?>
                                     <div class="progress md-progress">
-                                        <div class="progress-bar bg-info" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0"
-                                        aria-valuemax="100">50%</div>
+                                        <div class="progress-bar bg-info" role="progressbar" style="width: <?= $proses; ?>%" aria-valuenow="<?= $proses; ?>" aria-valuemin="0"
+                                        aria-valuemax="100"><?= $proses; ?>%</div>
                                     </div>
                                 </td>
                                 <td>
@@ -345,68 +344,10 @@
       </div>
     </div>
 
-    <div class="row">
-      <div class="col">
-      	<div class="card card-list">
-          <div class="card-body">
-            <h2>Progress Belajar</h2>
-          </div>
-         
-          <div class="card-body">
-            <table class="table">
-              <thead>
-                <tr>
-                  <th scope="col">Kelas</th>
-                  <th scope="col">Progress</th>
-                  <th scope="col">Status</th>
-                  <th scope="col">Aksi</th>
-                </tr>
-              </thead>
-              <tbody>
-                <?php foreach ($kelas as $val) : ?>
-                    <?php foreach ($peserta as $val2) : ?>
-                        <?php if ($val2['id_kelas'] == $val['id_kelas'] && $val2['id_user'] == $this->session->userdata('id_user')) : ?>
-                            <tr>
-                                <th scope="row"><a class="text-primary"><?= $val['judul_kelas']; ?></a></th>
-                                <td style="padding-top: 20px;"> 
-                                    <div class="progress md-progress">
-                                        <div class="progress-bar bg-info" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0"
-                                        aria-valuemax="100">50%</div>
-                                    </div>
-                                </td>
-                                <td style="padding-top:20px">
-                                    <?php foreach ($status as $val3) : ?>
-                                        <?php if ($val['status_kelas'] == $val3['id_status']) : ?>
-                                            <?php if ($val3['nama_status'] == "Selesai") : ?>
-                                                <span class="badge badge-success"><?= $val3['nama_status'] ?></span>
-                                            <?php else : ?>
-                                                <span class="badge badge-warning"><?= $val3['nama_status'] ?></span>
-                                            <?php endif; ?>
-                                        <?php endif; ?>
-                                    <?php endforeach; ?>
-                                </td>
-                                <td>
-                                  <div class="buttonclass">
-                                    <a href="<?= base_url()?>classes/open_class/<?= $val['id_kelas'] ?>" class="btn btn-light">Lihat kelas</a>
-                                    <a href="<?= base_url()?>classes/leave_class/<?= $val['id_kelas'] ?>" class="btn btn-danger">Tinggalkan</a>
-                                  </div>
-                                  </td>
-                            </tr>
-                        <?php endif; ?>
-                    <?php endforeach; ?>
-                <?php endforeach; ?>
-              </tbody>
-            </table>
-          </div>
-          <div class="card-footer white py-3 d-flex justify-content-between">
-          
-          </div>
-        </div>
-      </div>
-    </div>
-
 
 
   </section>
 </div>
 </section>
+
+<script type="text/javascript" src="<?= base_url(); ?>assets/js/password_verif.js"></script>
