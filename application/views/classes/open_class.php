@@ -36,24 +36,42 @@
         <div class="row">
         <?php foreach ($kelas as $val) : ?>
           <div class="col-lg-8 mb-5">
+            <section class="pt-5 pb-5">
+  <div class="container">
+    <article class="row card  border-0 flex-md-row justify-content-between align-items-center card-top">
+        <a class="col-md-5  order-md-2 order-1 w-md-25" href="#">
+            <img class="img-fluid" src="<?= base_url().'assets/images/'.$val['poster_kelas']?>" srcset="https://via.placeholder.com/1110x1000/5fa9f8/ffffff 2x" alt="Pic 8">
+        </a>
+        <div class="card-body order-2 order-md-1 col-md-7">
+            <div class=" text-uppercase font-weight-bold mb-4 text-warning">Detail Kelas</div>
+            <h2 class="card-title display-4 font-weight-bold">
+                <a href="#" class="text-dark" title="Blog title">Pemograman Dasar II</a>
+              </h2>
+            <div class="card-text mb-4">
+                <p class="lead">Samlekom Mamank , saya lord garox</p>
+            </div>
+            <div class="mt-auto d-flex align-items-center pt-2">
+                <!-- <div class="mr-3">
+                    <img class="d-block img-fluid rounded-circle" src="https://via.placeholder.com/40x40/5fa9f8/ffffff " srcset="https://via.placeholder.com/120x120/5fa9f8/ffffff 2x" alt="user">
+                </div> -->
+                <!-- <div class="d-block">
+                    <div class="font-weight-bold">User Name</div>
+                    <div class="text-grey">Dec 14 · 15 min read</div>
+                </div> -->
+            </div>
+        </div>
+    </article>
+</div>
+</section>
             <div class="mb-5">
-              <h3 class="text-black">Detail Kelas</h3>
-              <p class="mb-4">
-                <?php foreach ($harga as $val2) : ?>
-                <?php if ($val2['harga_kelas'] == '0') : ?> 
-                    <p>Gratis</p>
-                <?php else : ?>
-                    <?php $hasil_rupiah = "Rp." . number_format($val2['harga_kelas'],2,',','.'); ?>
-                    <p><strong class="text-black mr-3">Harga: </strong><?= $hasil_rupiah; ?></p>
-                <?php endif; ?>
-            <?php endforeach; ?>
-              </p>
+              <!-- <h3 class="text-black">Detail Kelas</h3> -->
+             
               <div class="row mb-4">
                 <div class="col">
-                  <img src="<?= base_url().'assets/images/'.$val['poster_kelas']?>" alt="Image" class="img-fluid rounded">
+                  <!-- <img src="<?= base_url().'assets/images/'.$val['poster_kelas']?>" alt="Image" class="img-fluid rounded"> -->
                 </div>
               </div>
-              <p><?= $val['deskripsi_kelas']; ?></p>
+              <p>Hi Alo,<?= $val['deskripsi_kelas']; ?></p>
             
             <?php foreach ($status as $val2) : ?>
                 <?php if ($val2['id_status'] == $val['status_kelas']) : ?> 
@@ -224,7 +242,7 @@
 
             </div>
           </div>
-          <div class="col-lg-4 pl-lg-5">
+          <div class="col-lg-4 pl-lg-5" style="padding-top: 80px;">
             <div class="mb-5 text-center border rounded course-instructor">
               <h3 class="mb-5 text-black text-uppercase h6 border-bottom pb-3">Mentor Kelas</h3>
               <div class="mb-4 text-center"> 
@@ -240,8 +258,8 @@
                     <?php endif; ?>
                 <?php endforeach; ?>
                 <div class="col-lg-12 col-md-8">
-                <button type="button" class="btn btn-primary btn-block">Gabung Kelas</button>
-                <button type="button" onclick="showHideJadwal()" class="btn btn-primary btn-block">Jadwal Kelas</button>
+                <button type="button" class="btn btn-primary btn-block"  style="background-color: cornflowerblue; border-color: white">Gabung Kelas</button>
+                <button type="button" onclick="showHideJadwal()" class="btn btn-primary btn-block" style="background-color: crimson; border-color: white">Jadwal Kelas</button>
                 </div>
               </div>
             </div>
