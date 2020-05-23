@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 20, 2020 at 06:04 AM
+-- Generation Time: May 23, 2020 at 10:30 AM
 -- Server version: 10.4.11-MariaDB
--- PHP Version: 7.4.1
+-- PHP Version: 7.4.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -60,8 +60,9 @@ CREATE TABLE `detail_user` (
 --
 
 INSERT INTO `detail_user` (`id_user`, `nama`, `no_telepon`, `foto`, `deskripsi`) VALUES
-('3H43Iy6yCF7T3daHmv7Ydkk6Gcc9NFejhn8SXp2aOfptQXNDv5mCDKjgnKApVBsh', 'Arya Pradata', '081278220370', 'default_pic.png', ''),
+('3H43Iy6yCF7T3daHmv7Ydkk6Gcc9NFejhn8SXp2aOfptQXNDv5mCDKjgnKApVBsh', 'Arya Pradata', '081278220370', '1147426.jpg', 'Professional Web Developer'),
 ('5xUR4mnMETQZ8OmWsYwkDw1NBH2z0cTVLsO8DLuRkpXSQoUKQu8Q4uWyeUUox2EJ', 'Aaron Cranston', '1284831983', 'default_pic.png', ''),
+('83pkWMxfc32osQdX158Ddc6cUFTtS3ZMKW8dWFWOSkAcni4lcPr86aPHQ8K1r9Sm', 'User Test', '081234567890', 'default_pic.png', NULL),
 ('AORFhHgQkBDCZiJZcSTxQxPVgAsnrcvI32rfqZT11YM5N7WG2dfFybRCcF0YwD6o', 'Ricardo Adocicados', '983228390', 'default_pic.png', ''),
 ('b0D4Q4pX6NCibfO2SRag3BdN6tpOugQkilV5LbBHgSVFO9gD5VDCnuqU2oGWyLz9', 'Dice', '0812', 'default_pic.png', NULL),
 ('jybs0xGSI5ZWrRLnjb34qSf7PsxSHp2fMAghq4y9MA8j20E48bB6xUj9jPfTXdwI', 'Hanari Carnes', '982302831039', 'default_pic.png', ''),
@@ -96,7 +97,11 @@ INSERT INTO `harga_kelas` (`id_kelas`, `harga_kelas`) VALUES
 ('5ebfff829cf5d', '0'),
 ('5ec0000979ed7', '0'),
 ('5ec00363a7372', '0'),
-('5ec004a41a8e9', '100000');
+('5ec004a41a8e9', '100000'),
+('5ec8dcf14e506', '0'),
+('5ec8dd58ab63a', '0'),
+('5ec8deee4538b', '0'),
+('5ec8df14082db', '0');
 
 -- --------------------------------------------------------
 
@@ -130,7 +135,11 @@ INSERT INTO `jadwal_kegiatan` (`id_kegiatan`, `id_kelas`, `deskripsi_kegiatan`, 
 ('5ebfe3cd62b8c', '5ebfd9f07b9e3', 'kegiatan satu', '2020-05-14 02:45:00', 1),
 ('5ec0000991ac7', '5ec0000979ed7', 'kegiatan 1', '2020-05-21 02:45:00', 1),
 ('5ec00363beebb', '5ec00363a7372', 'kegiatan 1', '2020-05-06 22:25:00', 1),
-('5ec004a43ad93', '5ec004a41a8e9', '1', '2020-05-26 05:40:00', 1);
+('5ec004a43ad93', '5ec004a41a8e9', '1', '2020-05-26 05:40:00', 1),
+('5ec8dcf157a7d', '5ec8dcf14e506', 'dasdasd', '2020-05-23 08:21:00', 1),
+('5ec8dd58aec6f', '5ec8dd58ab63a', 'dsda', '2020-05-23 08:22:00', 1),
+('5ec8deee48cb9', '5ec8deee4538b', 'desc', '2020-05-23 08:29:00', 1),
+('5ec8df140b85c', '5ec8df14082db', 'desc 2', '2020-05-23 23:50:00', 1);
 
 -- --------------------------------------------------------
 
@@ -213,17 +222,21 @@ CREATE TABLE `kelas` (
 --
 
 INSERT INTO `kelas` (`id_kelas`, `pembuat_kelas`, `judul_kelas`, `deskripsi_kelas`, `kategori_kelas`, `poster_kelas`, `jenis_kelas`, `status_kelas`) VALUES
-('5ebb7cc297b3d', '3H43Iy6yCF7T3daHmv7Ydkk6Gcc9NFejhn8SXp2aOfptQXNDv5mCDKjgnKApVBsh', 'PTI', 'Kelas pti', 1, 'Mustang.jpg', 1, 2),
+('5ebb7cc297b3d', '3H43Iy6yCF7T3daHmv7Ydkk6Gcc9NFejhn8SXp2aOfptQXNDv5mCDKjgnKApVBsh', 'PTI', 'Kelas pti', 1, 'Mustang.jpg', 1, 1),
 ('5ebba0beda10c', '3H43Iy6yCF7T3daHmv7Ydkk6Gcc9NFejhn8SXp2aOfptQXNDv5mCDKjgnKApVBsh', 'ddddasdasd', 'sdsd', 1, 'Most_Wanted.jpg', 1, 2),
-('5ebba0d1b8a50', '3H43Iy6yCF7T3daHmv7Ydkk6Gcc9NFejhn8SXp2aOfptQXNDv5mCDKjgnKApVBsh', 'ddasdasdd', 'dddd', 1, 'Flying_Evo_2.jpg', 1, 2),
-('5ebbb8094dfbe', '3H43Iy6yCF7T3daHmv7Ydkk6Gcc9NFejhn8SXp2aOfptQXNDv5mCDKjgnKApVBsh', 'ddd', 'fff', 1, 'its_GTR.jpg', 1, 2),
+('5ebba0d1b8a50', '3H43Iy6yCF7T3daHmv7Ydkk6Gcc9NFejhn8SXp2aOfptQXNDv5mCDKjgnKApVBsh', 'ddasdasdd', 'dddd', 1, 'Flying_Evo_2.jpg', 1, 1),
+('5ebbb8094dfbe', '3H43Iy6yCF7T3daHmv7Ydkk6Gcc9NFejhn8SXp2aOfptQXNDv5mCDKjgnKApVBsh', 'ddd', 'fff', 1, 'its_GTR.jpg', 1, 1),
 ('5ebbb83bef31e', '3H43Iy6yCF7T3daHmv7Ydkk6Gcc9NFejhn8SXp2aOfptQXNDv5mCDKjgnKApVBsh', 'supra', 'suprio', 1, 'its_supra.jpg', 1, 2),
 ('5ebfd9f07b9e3', 'ZNccBYZWWc5fKV5B5bF951jPLLfWUOqKtlAvHJroogkhmNCEXVqUzU3l5i2U1QXb', 'kelas satu', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro consectetur ut hic ipsum et veritatis corrupti. Itaque eius soluta optio dolorum temporibus in, atque, quos fugit sunt sit quaerat dicta.', 1, 'No__1.jpg', 2, 2),
 ('5ebffb1f05953', 'ZNccBYZWWc5fKV5B5bF951jPLLfWUOqKtlAvHJroogkhmNCEXVqUzU3l5i2U1QXb', 'Sistem Operasi', 'bukan dani metiu', 1, '4_(ebook_page_330).png', 1, 2),
 ('5ebfff829cf5d', 'ZNccBYZWWc5fKV5B5bF951jPLLfWUOqKtlAvHJroogkhmNCEXVqUzU3l5i2U1QXb', 'Algoritma dan Pemrograman', 'bukan megah mulya', 1, '6_(ebook_page_86)1.png', 1, 2),
 ('5ec0000979ed7', 'ZNccBYZWWc5fKV5B5bF951jPLLfWUOqKtlAvHJroogkhmNCEXVqUzU3l5i2U1QXb', 'Teori Bahasa Otomata', 'hbsdj', 1, 'blog_rl.jpeg', 1, 1),
-('5ec00363a7372', 'ZNccBYZWWc5fKV5B5bF951jPLLfWUOqKtlAvHJroogkhmNCEXVqUzU3l5i2U1QXb', 'Alpro', 'alpro', 1, 'blog_rd.jpeg', 1, 2),
-('5ec004a41a8e9', 'ZNccBYZWWc5fKV5B5bF951jPLLfWUOqKtlAvHJroogkhmNCEXVqUzU3l5i2U1QXb', 'Alpro 2', 'alpro 2', 1, 'blog_u.jpeg', 2, 1);
+('5ec00363a7372', 'ZNccBYZWWc5fKV5B5bF951jPLLfWUOqKtlAvHJroogkhmNCEXVqUzU3l5i2U1QXb', 'Alpro', 'alpro', 1, 'blog_rd.jpeg', 1, 1),
+('5ec004a41a8e9', 'ZNccBYZWWc5fKV5B5bF951jPLLfWUOqKtlAvHJroogkhmNCEXVqUzU3l5i2U1QXb', 'Alpro 2', 'alpro 2', 1, 'blog_u.jpeg', 2, 1),
+('5ec8dcf14e506', '3H43Iy6yCF7T3daHmv7Ydkk6Gcc9NFejhn8SXp2aOfptQXNDv5mCDKjgnKApVBsh', 'Dope Mustang', 'dsadasd', 2, 'Garasi_Drift.jpg', 1, 1),
+('5ec8dd58ab63a', '3H43Iy6yCF7T3daHmv7Ydkk6Gcc9NFejhn8SXp2aOfptQXNDv5mCDKjgnKApVBsh', 'ddasdasdd', 'sadda', 1, 'birthday.png', 1, 1),
+('5ec8deee4538b', '83pkWMxfc32osQdX158Ddc6cUFTtS3ZMKW8dWFWOSkAcni4lcPr86aPHQ8K1r9Sm', 'Test Kelas', 'kelas desc', 1, 'Forza.jpg', 1, 1),
+('5ec8df14082db', '83pkWMxfc32osQdX158Ddc6cUFTtS3ZMKW8dWFWOSkAcni4lcPr86aPHQ8K1r9Sm', 'Kelas test1', 'desc 1', 1, 'Vanquish_2.jpg', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -391,6 +404,7 @@ CREATE TABLE `user` (
 INSERT INTO `user` (`id_user`, `email`, `password`) VALUES
 ('3H43Iy6yCF7T3daHmv7Ydkk6Gcc9NFejhn8SXp2aOfptQXNDv5mCDKjgnKApVBsh', 'zemitvector@gmail.com', '54680bd183bb915f1a4d0745b8e3660841ed6ecc30871431e24a451ae4894edb'),
 ('5xUR4mnMETQZ8OmWsYwkDw1NBH2z0cTVLsO8DLuRkpXSQoUKQu8Q4uWyeUUox2EJ', 'cranston@gmail.com', '54680bd183bb915f1a4d0745b8e3660841ed6ecc30871431e24a451ae4894edb'),
+('83pkWMxfc32osQdX158Ddc6cUFTtS3ZMKW8dWFWOSkAcni4lcPr86aPHQ8K1r9Sm', 'usertest@gmail.com', 'e95a4da7289aee50d63dfdb1e807d62f662cb55cde2d38dfcab2a0d9d020fc04'),
 ('87CGFHbDtTjpzSQhmx20FPDzl3gehtFUSixLXrn9QnR85BCBJMpCl1ZTi1tnFtwy', 'isan@gmail.com', '799cecdfabfc9c61fb2670372ddef1ec3f421172c69037e38768352372187adb'),
 ('AORFhHgQkBDCZiJZcSTxQxPVgAsnrcvI32rfqZT11YM5N7WG2dfFybRCcF0YwD6o', 'ricar@gmail.com', '54680bd183bb915f1a4d0745b8e3660841ed6ecc30871431e24a451ae4894edb'),
 ('b0D4Q4pX6NCibfO2SRag3BdN6tpOugQkilV5LbBHgSVFO9gD5VDCnuqU2oGWyLz9', 'dice@gmail.com', '82ecd2972f1fac44447c233d24f0efb96dea42fc6bda8e18b3f780e9c370a7ed'),
