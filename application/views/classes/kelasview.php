@@ -106,12 +106,20 @@
                       <a class="dropdown-item" href="<?= base_url(); ?>classes/sort/terbaru">Terbaru</a>
                     </div>
 				</ul>
-				
-					
+				<!-- <div class="col-5">
+				<form class="form-inline active-purple-4">
+				<input class="form-control form-control-sm mr-3 w-75" type="text" placeholder="Search"
+					aria-label="Search">
+				<i class="fa fa-search" aria-hidden="true"></i>
+				</form>
+				</div> -->
+									
 			</div>
 		</div>
+		
 		<div class="ml-auto w-25">
-            <nav class="site-navigation position-relative text-right" role="navigation">
+			
+            <!-- <nav class="site-navigation position-relative text-right" role="navigation">
               <ul class="site-menu  mr-auto d-none d-lg-block m-0 p-0">
 
 			<?php if(isset($_SESSION['logged_in'])) { ?>
@@ -124,7 +132,12 @@
 
 
               </ul>
-            </nav>
+			</nav> -->
+			<form class="form-inline active-purple-4">
+				<input class="form-control form-control-sm mr-3 w-75" type="text" placeholder="Cari Kelas"
+					aria-label="Search">
+				<i class="fa fa-search" aria-hidden="true"></i>
+				</form>
            
           </div>
 	</div>
