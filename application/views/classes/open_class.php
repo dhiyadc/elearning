@@ -65,9 +65,9 @@
               <?php if ($val['pembuat_kelas'] != $this->session->userdata('id_user')) : ?>
                 <?php if ($cek == true) : ?>
                     <?php if ($val['jenis_kelas'] == 1) : ?>
-                        <p class="mt-4"><a href="<?= base_url()?>classes/join_class/<?= $val['id_kelas']; ?>" class="btn btn-dark mr-1">Gabung Kelas</a></p>
+                        <!-- <p class="mt-4"><a href="<?= base_url()?>classes/join_class/<?= $val['id_kelas']; ?>" class="btn btn-dark mr-1">Gabung Kelas</a></p> -->
                     <?php else : ?>
-                        <p class="mt-4"><a href="<?= base_url()?>classes/pembayaran_kelas/<?= $val['id_kelas']; ?>" class="btn btn-dark mr-1">Gabung Kelas</a></p>
+                        <!-- <p class="mt-4"><a href="<?= base_url()?>classes/pembayaran_kelas/<?= $val['id_kelas']; ?>" class="btn btn-dark mr-1">Gabung Kelas</a></p> -->
                     <?php endif; ?>
                 <?php elseif ($peserta != null) : ?>
                     <div class="alert alert-primary" role="alert">
@@ -75,14 +75,14 @@
                     </div>
                 <?php elseif ($cek == false) : ?>
                     <?php if ($val['jenis_kelas'] == 1) : ?>
-                        <p class="mt-4"><a href="<?= base_url()?>classes/join_class/<?= $val['id_kelas']; ?>" class="btn btn-dark mr-1">Gabung Kelas</a></p>
+                        <!-- <p class="mt-4"><a href="<?= base_url()?>classes/join_class/<?= $val['id_kelas']; ?>" class="btn btn-dark mr-1">Gabung Kelas</a></p> -->
                     <?php else : ?>
-                        <p class="mt-4"><a href="<?= base_url()?>classes/pembayaran_kelas/<?= $val['id_kelas']; ?>" class="btn btn-dark mr-1">Gabung Kelas</a></p>
+                        <!-- <p class="mt-4"><a href="<?= base_url()?>classes/pembayaran_kelas/<?= $val['id_kelas']; ?>" class="btn btn-dark mr-1">Gabung Kelas</a></p> -->
                     <?php endif; ?>
                 <?php endif; ?>
               <?php endif; ?>
             <?php endif; ?>
-            <button onclick="showHideJadwal()" class="btn btn-light">Lihat Jadwal Kegiatan Kelas</button>
+            <!-- <button onclick="showHideJadwal()" class="btn btn-light">Lihat Jadwal Kegiatan Kelas</button> -->
             <?php if ($val['pembuat_kelas'] == $this->session->userdata('id_user')) : ?>
               <a class="btn btn-dark mr-1" href="<?= base_url()?>classes/update_class/<?= $val['id_kelas'] ?>"><span class="icon-pencil"></span> Edit Kelas</a>
             <?php endif; ?>
@@ -239,8 +239,18 @@
                         <p><?= $val2['deskripsi']; ?></p>
                     <?php endif; ?>
                 <?php endforeach; ?>
+                <div class="col-lg-12 col-md-8">
+                <button type="button" class="btn btn-primary btn-block">Gabung Kelas</button>
+                <button type="button" onclick="showHideJadwal()" class="btn btn-primary btn-block">Jadwal Kelas</button>
+                </div>
               </div>
             </div>
+            <!-- <div class="row">
+                <div class="col-lg-12 col-md-8">
+                <button type="button" class="btn btn-primary btn-block">Gabung Kelas</button>
+                <button type="button" class="btn btn-primary btn-block">Kembali</button>
+                </div>
+            </div> -->
           </div>
           <?php endforeach; ?>
         </div>
@@ -307,9 +317,12 @@
 
         </div>
         <div class="row justify-content-center">
-          <div class="col-7 text-center">
-            <button class="customPrevBtn btn btn-primary m-1">Prev</button>
-            <button class="customNextBtn btn btn-primary m-1">Next</button>
+        <a class="carousel-control-prev" href="#myCarousel" data-slide="prev">
+              <span class="carousel-control-prev-icon"></span>
+          </a>
+          <a class="carousel-control-next" href="#myCarousel" data-slide="next">
+              <span class="carousel-control-next-icon"></span>
+          </a>
           </div>
         </div>
       </div>
