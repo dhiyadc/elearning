@@ -136,7 +136,7 @@
 			<form class="form-inline active-purple-4">
 				<input class="form-control form-control-sm mr-3 w-75" type="text" placeholder="Cari Kelas"
 					aria-label="Search">
-				<i class="fa fa-search" aria-hidden="true"></i>
+				<i class="fa fa-search" aria-hidden="true" onclick=""></i>
 				</form>
            
           </div>

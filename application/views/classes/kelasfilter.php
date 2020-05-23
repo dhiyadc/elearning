@@ -9,8 +9,7 @@
 				<p class="mb-4 pb-2 px-md-5 mx-md-5">Dapatkan Penawaran Kursus terbaik dan pengalaman terbaik disaat
 					Pandemi dan
 					Upgrade diri Kamu! .</p>
-
-					<?php if(isset($_SESSION['logged_in'])) { ?>
+				<?php if(isset($_SESSION['logged_in'])) { ?>
 				<a href="<?=base_url()?>classes/new_class" class="btn btn-black"><i class="fa fa-clone left"></i> Buat
 					Kelas</a>
 				<?php } else { ?>
@@ -55,199 +54,243 @@
   </div>
 </div> -->
 
+<section class="menutop">
+	<div class="container">
+	<div class="row mt-5" style="padding-bottom :15px; border-bottom: 1px solid #dedfe0;">
+		<div class="col-xs-2">
+			<div class="col-md-2"><button class="btn btn-primary" style="background-color: dimgrey; border-color: white">Kelas</button>
+			</div>
+		</div>
+		<div class="col-xs-10 no-margin">
+			
+		
+			<div class="row">
+                  <ul class="item dropdown">
+						<a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
+						aria-haspopup="true" aria-expanded="false">Kategori
+						
+						</a>
+						<div class="dropdown-menu dropdown-menu-right dropdown-default"
+						aria-labelledby="navbarDropdownMenuLink-333">
+						<!-- <a class="dropdown-item" href="<?= base_url(); ?>profile">tesT</a>
+						<a class="dropdown-item" href="#">Pengaturan</a>
+						<a class="dropdown-item" href="<?= base_url(); ?>login/logout" style="color: cornflowerblue;">Keluar</a> -->
+							<?php foreach($categories as $val) : ?>								
+								<a class="dropdown-item" href="<?= base_url(); ?>classes/categories/<?= $val['nama_kategori']; ?>"><?= $val['nama_kategori']; ?></a>
+							<?php endforeach; ?>
+						</div>
+					</ul>
+
+				<!--
+					<li class="item dropdown" style="list-style: none;">
+                    <a class="nav-link dropdown-toggle" id="filterBy" data-toggle="dropdown"
+                      aria-haspopup="true" aria-expanded="false">Filter By
+                     
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right dropdown-default"
+                      aria-labelledby="filterBy">
+                      <a class="dropdown-item" href="<?= base_url(); ?>profile" aria-labelledby="filterBy">Harga</a>
+                      <a class="dropdown-item" href="#" aria-labelledby="filterBy">Terbaru</a>
+                      <a class="dropdown-item" href="#" aria-labelledby="filterBy">Terlama </a>
+                    </div>
+				</li> -->
+				
+				<ul class="item dropdown">
+                    <a class="nav-link dropdown-toggle" id="kategori2" data-toggle="dropdown"
+                      aria-haspopup="true" aria-expanded="false">Urutkan
+                     
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right dropdown-default"
+                      aria-labelledby="kategori2">
+                      <a class="dropdown-item" href="<?= base_url(); ?>classes/sort/terbaik">Terbaik</a>
+                      <a class="dropdown-item" href="<?= base_url(); ?>classes/sort/terbaru">Terbaru</a>
+                    </div>
+				</ul>
+				<!-- <div class="col-5">
+				<form class="form-inline active-purple-4">
+				<input class="form-control form-control-sm mr-3 w-75" type="text" placeholder="Search"
+					aria-label="Search">
+				<i class="fa fa-search" aria-hidden="true"></i>
+				</form>
+				</div> -->
+									
+			</div>
+		</div>
+		
+		<div class="ml-auto w-25">
+			
+            <!-- <nav class="site-navigation position-relative text-right" role="navigation">
+              <ul class="site-menu  mr-auto d-none d-lg-block m-0 p-0">
+
+			<?php if(isset($_SESSION['logged_in'])) { ?>
+				<a href="<?=base_url()?>classes/new_class" class="btn btn-success" style="background-color: #3333ab ; color: white"><i class="fa fa-plus" style="margin-right: 5px;"></i> Buat
+					Kelas</a>
+				<?php } else { ?>
+					<a href="" class="btn btn-success" data-toggle="modal" data-target="#elegantModalForm" style="background-color: #3333ab ; color: white"><i class="fa fa-plus" style="margin-right: 5px;"></i> Buat
+					Kelas</a>
+				<?php } ?>
+
+
+              </ul>
+			</nav> -->
+			<form class="form-inline active-purple-4">
+				<input class="form-control form-control-sm mr-3 w-75" type="text" placeholder="Cari Kelas"
+					aria-label="Search">
+				<i class="fa fa-search" aria-hidden="true"></i>
+				</form>
+           
+          </div>
+	</div>
+	</div>
+</section>
 
 <section class="isi-menu-kelas">
 	<div class="container">
 		<div class="row mb-5">
-			<div class="col-lg-3 pb-lg-5 pb-sm-3 mt-5" data-aos="fade-up" data-aos-delay="100"
-				style="padding-top: 100px">
-				<div class="position-relative rounded" style="box-shadow :0px 0px 11px 4px rgba(0,0,0,0.4);">
-					<div class="p-lg-3 p-md-3 p-sm-0">
-						<h5 class="mb-4 d-lg-block d-md-block d-none">Filter</h5>
-						<form action="<?= base_url(); ?>classes/search" method="post">
-							<div class="input-group md-form form-sm form-2 pl-0">
-								<input class="form-control my-0 py-1 red-border" type="text" name="keyword"
-									placeholder="Search" aria-label="Search">
-								<div class="input-group-append">
-									<span class="input-group-text red lighten-3" id="basic-text1"><i
-											class="fa fa-search text-grey" aria-hidden="true"></i></span>
+			
+
+			<div class="col-md-12 mt-5">
+				<div class="paket position-relative rounded">
+					<div class="col-lg-12">
+						<!-- <div class="judul-list"> -->
+
+							<!-- <h1 class="text-center" data-aos="fade-up" data-aos-delay="0">Seluruh Kelas</h1> -->
+						</div>
+					</div>
+					<!-- <div class="container">
+						<div class="row">
+
+							<div class="owl-carousel col-12 nonloop-block-14">
+
+								<?php foreach ($class as $val) : ?>
+								<div class="course bg-white h-100 align-self-stretch">
+									<figure class="m-0">
+										<a href="<?=base_url()?>classes/open_class/<?= $val['id_kelas'] ?>"><img
+												src="<?= base_url().'assets/images/'.$val['poster_kelas']?>" alt="Image"
+												class="img-fluid"></a>
+									</figure>
+									<div class="course-inner-text py-4 px-4">
+										<span class="course-price"><?php
+										if($val['harga_kelas'] == '0'){
+											echo "<b>Gratis</b>";
+										} else {
+											$hasil_rupiah = "Rp." . number_format($val['harga_kelas'],2,',','.');
+											echo $hasil_rupiah;
+										}
+										?></span>
+										<div class="meta"><span class="icon-clock-o"></span>4 Pertemuan / 12 Minggu</div>
+										<h3><a href="<?= base_url() ?>classes/open_class/<?= $val['id_kelas'] ?>"><?= $val['judul_kelas'] ?></a></h3>
+										<p><?php echo substr($val['deskripsi_kelas'],0,100);  ?></p>
+									</div>
+									<div class="d-flex border-top stats">
+										<div class="py-3 px-4"><span class="icon-users"></span> <?= $val['peserta'] ?>
+											peserta</div>
+										<div class="py-3 px-4 w-25 ml-auto border-left"><span class="icon-chat"></span>
+											2</div>
+									</div>
+								</div>
+								<?php endforeach; ?>
+				  				
+							</div>
+							<a class="carousel-control-prev" href="#myCarousel" data-slide="prev">
+								<span class="carousel-control-prev-icon"></span>
+							</a>
+							<a class="carousel-control-next" href="#myCarousel" data-slide="next">
+								<span class="carousel-control-next-icon"></span>
+							</a>
+
+							
+						</div>
+						
+					</div> -->
+
+				</div>
+
+			</div>
+
+			<div class="col-md-12 mt-5">
+				<div class="position-relative rounded">
+					<!-- <div class="col-lg-12">
+						<div class="judul-list">
+							<h1 class="text-center">Semua</h1>
+						</div>
+					</div> -->
+					<div class="container">
+						<div class="row">
+
+							<!-- <div class="owl-carousel col-12 nonloop-block-14"> -->
+
+							<?php foreach ($class as $val) : ?>
+							<div class="col-lg-4 mt-5 mb-5 classBox moreBox" style="display: none;">
+								<div class="course bg-white h-100 align-self-stretch">
+									<figure class="m-0">
+										<a href="course-single.html"><img
+												src="<?= base_url().'assets/images/'.$val['poster_kelas']?>" alt="Image"
+												class="img-fluid"></a>
+									</figure>
+									<div class="course-inner-text py-4 px-4">
+										<span class="course-price"><?php
+                  if($val['harga_kelas'] == '0'){
+                    echo "<b>Gratis</b>";
+                  } else {
+					$hasil_rupiah = "Rp." . number_format($val['harga_kelas'],2,',','.');
+					echo $hasil_rupiah;
+                  }
+                ?></span>
+										<div class="meta"><span class="icon-clock-o"></span>4 Pertemuan / 12 Minggu</div>
+										<h3><a href="<?= base_url() ?>classes/open_class/<?= $val['id_kelas'] ?>"><?= $val['judul_kelas'] ?></a></h3>
+										<p><?php echo substr($val['deskripsi_kelas'],0,50);  ?></p>
+									</div>
+									<div class="d-flex border-top stats">
+										<div class="py-3 px-4"><span class="icon-users"></span> <?= $val['peserta'] ?>
+											peserta</div>
+										<div class="py-3 px-4 w-25 ml-auto border-left"><span class="icon-chat"></span>
+											2</div>
+									</div>
 								</div>
 							</div>
-						</form>
+							<?php endforeach; ?>
+
+							<!-- </div> -->
+						</div>
 					</div>
-					<div class="card">
-						<article class="card-group-item">
-							<header class="card-header">
-								<h6 class="title">Berdasarkan Kategori </h6>
-							</header>
-							<div class="filter-content">
-								<div class="card-body">
-									<form>
-										<?php foreach($categories as $val) : ?>
-										<label class="form-check">
-											<!-- <input class="form-check-input" type="checkbox" value=""> -->
-											<span class="form-check-label">
-												<a
-													href="<?= base_url(); ?>classes/categories/<?= $val['nama_kategori']; ?>"><?= $val['nama_kategori']; ?></a>
-											</span>
-										</label> <!-- form-check.// -->
-										<?php endforeach; ?>
-									</form>
 
-								</div> <!-- card-body.// -->
-							</div>
-						</article> <!-- card-group-item.// -->
-
-						<article class="card-group-item">
-							<header class="card-header">
-								<h6 class="title">Berdasarkan Urutan </h6>
-							</header>
-							<div class="filter-content">
-								<div class="card-body">
-									<form>
-									<label class="form-check">
-											<span class="form-check-label">
-												<a href="<?= base_url(); ?>classes/sort/terbaik">Terbaik</a>
-											</span>
-										</label> <!-- form-check.// -->
-										<label class="form-check">
-											<span class="form-check-label">
-												<a href="<?= base_url(); ?>classes/sort/terbaru">Terbaru</a>
-											</span>
-										</label> <!-- form-check.// -->
-									</form>
-
-								</div> <!-- card-body.// -->
-							</div>
-						</article> <!-- card-group-item.// -->
-
-
-					</div> <!-- card.// -->
-					<!--  -->
-
-
+					<!-- <div class="row justify-content-center">
+						<div class="col-7 text-center">
+							<button class="customPrevBtn btn btn-primary m-1">Prev</button>
+							<button class="customNextBtn btn btn-primary m-1">Next</button>
+						</div>
+					</div> -->
 				</div>
 			</div>
 
-			<div class="col-lg-9">
-				<div class="col-lg-12">
-					<div class="judul-list">
-						<h1 class="text-center"><?php if(isset($kategori_text)){ ?> Kelas <?= $kategori_text; ?><?php } else { 
-              echo "Hasil pencarian '".$keyword."'";
-            } ?></h1>
-					</div>
-				</div>
-				<div class="container-fluid" data-aos="fade-up" data-aos-delay="100">
-					<div class="card-group" style="padding-top: 10px;">
-
-						<?php foreach($class as $val) : ?>
-						<div class="col-lg-6 mb-5 mt-5 moreBox classBox" style="display: none;">
-							<div class="card" style="box-shadow :0px 0px 11px 4px rgba(0,0,0,0.4);">
-								<img class="card-img-top" src="<?= base_url().'assets/images/'.$val['poster_kelas']?>"
-									alt="Card image cap">
-								<div class="card-body">
-									<h5 class="card-title"> <?= $val['judul_kelas'] ?></h5>
-									<p class="card-text"><?php echo substr($val['deskripsi_kelas'],0,100);  ?></p>
-									<center><a class="btn btn-dark mr-1"
-											href="<?= base_url() ?>classes/open_class/<?= $val['id_kelas'] ?>">Detail</a>
-									</center>
-								</div>
-								<div class="card-footer">
-
-								</div>
-							</div>
-						</div>
-						<?php endforeach; ?>
-						<!-- 
-
-						<div class="col-lg-6 mb-5 mt-5">
-							<div class="card" style="box-shadow :0px 0px 11px 4px rgba(0,0,0,0.4);">
-								<img class="card-img-top" src="<?php echo base_url(); ?>assets/images/img_1.jpg" alt="Card image cap">
-								<div class="card-body">
-									<h5 class="card-title">Belajar JS</h5>
-									<p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-										additional content. This content is a little bit longer.</p>
-									<div class="row">
-										<button class="btn btn-dark mr-1"> <a href="Detailkelas">Detail</a></button> <button
-											class="btn">Gabung Kelas</button>
-									</div>
-								</div>
-								<div class="card-footer">
-									<small class="text-muted">Last updated 3 mins ago</small>
-								</div>
-							</div>
-						</div>
-
-						<div class="col-lg-6 mb-5 mt-5">
-							<div class="card" style="box-shadow :0px 0px 11px 4px rgba(0,0,0,0.4);">
-								<img class="card-img-top" src="<?php echo base_url(); ?>assets/images/img_1.jpg" alt="Card image cap">
-								<div class="card-body">
-									<h5 class="card-title">Pemograman Dasar</h5>
-									<p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-										additional content. This card has even longer content than the first to show that equal height
-										action.</p>
-									<div class="row">
-										<button class="btn btn-dark mr-1"> <a href="Detailkelas">Detail</a></button> <button
-											class="btn">Gabung Kelas</button>
-									</div>
-								</div>
-								<div class="card-footer">
-									<small class="text-muted">Last updated 3 mins ago</small>
-								</div>
-							</div>
-						</div>
-
-						<div class="col-lg-6 mb-5 mt-5">
-							<div class="card" style="box-shadow :0px 0px 11px 4px rgba(0,0,0,0.4);">
-								<img class="card-img-top" src="<?php echo base_url(); ?>assets/images/img_1.jpg" alt="Card image cap">
-								<div class="card-body">
-									<h5 class="card-title">Pemograman Dasar</h5>
-									<p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-										additional content. This card has even longer content than the first to show that equal height
-										action.</p>
-									<div class="row">
-										<button class="btn btn-dark mr-1"> <a href="Detailkelas">Detail</a></button> <button
-											class="btn">Gabung Kelas</button>
-									</div>
-								</div>
-								<div class="card-footer">
-									<small class="text-muted">Last updated 3 mins ago</small>
-								</div>
-							</div>
-						</div>
-					</div> -->
 
 
-					</div>
 
 
+		</div>
+
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-5">
 
 				</div>
+				<div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
 
-				<div class="container">
-					<div class="row">
-						<div class="col-lg-6">
-
-						</div>
-						<div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
-							<?php if(empty($class)) {
-								echo "<p>Pencarian tidak ketemu</p>";
-							} else {?>
-
-							<?php if($classNum > 4 ):  ?>
-							<div id="loadMore">
-								<button class="btn d-flex justify-content-center"> Lebih Banyak</button>
-							</div>
-						</div>
-							<?php endif; ?>
-							<?php if(($classNum < 4 )) : ?>
-							<?= "" ?>
-							<?php endif; ?>
-							<?php } ?>
+					<?php if($classNum > 4 ):  ?>
+					<div id="loadMore">
+						<button class="btn d-flex justify-content-center"> Lebih Banyak</button>
 					</div>
 				</div>
+				<?php endif; ?>
+				<?php if(($classNum < 4 )) : ?>
+				<?= "" ?>
+				<?php endif; ?>
+
+			</div>
+		</div>
+	</div>
 </section>
-
 <script src="<?php echo base_url(); ?>assets/js/jquery-3.3.1.min.js"></script>
 <script>
 	$(document).ready(function () {
