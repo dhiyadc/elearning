@@ -149,7 +149,7 @@
 		<div class="row mb-5">
 			
 
-			<div class="col-md-12 mt-5">
+			<div class="col-md-12 mt-0">
 				<div class="paket position-relative rounded">
 					<div class="col-lg-12">
 						<!-- <div class="judul-list"> -->
