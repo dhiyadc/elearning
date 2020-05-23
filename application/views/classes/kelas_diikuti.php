@@ -58,8 +58,8 @@
                             <img src="https://www.jamf.com/jamf-nation/img/default-avatars/generic-user-purple.png" class="rounded-circle">
                         </div>
                         <div class="col-md-12 col-sm-12 col-xs-12 user-detail-section1 text-center">
-                            <button id="btn-contact" (click)="clearModal()" data-toggle="modal" data-target="#contact" class="btn btn-primary btn-block follow">Gabung Kelas</button> 
-                            <a href="<?=base_url()?>classes/new_class" class="btn btn-block" style="background-color: darkcyan; color: white;">Buat</a></button>   
+                            <button id="btn-contact" (click)="clearModal()" data-toggle="modal" data-target="" class="btn btn-primary btn-block follow">Gabung Kelas</button> 
+                            <a href="<?=base_url()?>classes/new_class" class="btn btn-block" style="background-color: darkcyan; color: white;">Buat Kelas</a></button>   
                                                         
                         </div>
                      
@@ -72,7 +72,7 @@
                             <div class="row">
                                 <div class="col-md-8 col-sm-6 col-xs-6 profile-header-section1 pull-left">
                                     <h1>User</h1>
-                                    <h5>Developer</h5>
+                                    <h5>Pengguna</h5>
                                 </div>
                                 <div class="col-md-4 col-sm-6 col-xs-6 profile-header-section1 text-right pull-rigth">
                                     <!-- <a href="/search" class="btn btn-primary btn-block">Buat Kelas</a> -->
