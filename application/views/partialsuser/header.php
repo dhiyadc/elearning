@@ -37,6 +37,66 @@
   </head>
   <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
 
+  <div class="modal fade" id="contact" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="contact">Info Kelas</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <!-- <p for="msj">Info Kelas</p> -->
+
+                    </div>
+                  <div class="row">
+                      <div class="col-md-4">
+                          <label>Nama Kelas</label>
+                      </div>
+                      <div class="col-md-6">
+                          <p>Pemograman Dasar</p>
+                      </div>
+                  </div>
+                  
+                  <div class="row">
+                      <div class="col-md-4">
+                          <label>Mulai</label>
+                      </div>
+                      <div class="col-md-6">
+                          <p>14.00-16.00</p>
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="col-md-4">
+                          <label>Nama Author</label>
+                      </div>
+                      <div class="col-md-6">
+                          <p>Arya Pradata</p>
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="col-md-4">
+                          <label>Status Kelas</label>
+                      </div>
+                      <div class="col-md-6">
+                      <span class="badge badge-warning">Sedang Berlangsung</span>
+                      </div>
+                  </div>
+                   
+                   
+                </div>
+                <div class="modal-footer">
+                    <a href="<?= base_url(); ?>Iframe" class="btn btn-primary">Gabung</a>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                    
+                    <!-- <a href="" class="btn btn-primary">Gabung</a> -->
+                </div>
+            </div>
+        </div>
+    </div>
+
   
   
   <div class="site-wrap">
@@ -62,7 +122,7 @@
               <ul class="site-menu main-menu js-clone-nav mx-auto d-none d-lg-block  m-0 p-0">
                 <li><a href="<?php echo base_url(); ?>" class="nav-link">Beranda</a></li>
                 <li><a href="<?= base_url(); ?>classes" class="nav-link">Kelas</a></li>
-                <li><a href="<?= base_url(); ?>profile" class="nav-link">Akademik</a></li>
+                <li><a href="<?= base_url(); ?>classes/my_classes" class="nav-link">Akademik</a></li>
                
               </ul>
             </nav>
@@ -87,13 +147,13 @@
               <ul class="site-menu main-menu site-menu-white js-clone-nav mr-auto d-none d-lg-block m-0 p-0">
               
               <li class="nav-item dropdown ">
-                    <a class="nav-link dropdown-toggle" id="ayam123" data-toggle="dropdown"
+                    <a class="nav-link dropdown-toggle" id="notifis" data-toggle="dropdown"
                       aria-haspopup="true" aria-expanded="false"><i class="fa fa-bell"></i>
                       
                     </a>
                     <div class="notif">
                     <ul class="dropdown-menu">
-                      <li class="head text-light" style="background-color: #3d3db5">
+                      <li class="head text-light" style="background-color: forestgreen;">
                         <div class="row">
                           <div class="col-lg-12 col-sm-12 col-12">
                             <span>Pemberitahuan (3)</span>
@@ -142,7 +202,7 @@
                           </div>    
                         </div>
                       </li>
-                      <li class="footer text-center" style="background-color: #3d3db5">
+                      <li class="footer text-center" style="background-color: forestgreen;">
                         <a href="" class="text-light">View All</a>
                       </li>
                     </ul>
@@ -157,8 +217,8 @@
                     </a>
                     <div class="dropdown-menu dropdown-menu-right dropdown-default"
                       aria-labelledby="navbarDropdownMenuLink-333">
-                      <a class="dropdown-item" href="<?= base_url(); ?>profile">Profile</a>
-                      <a class="dropdown-item" href="#">Pengaturan</a>
+                      <a class="dropdown-item" href="<?= base_url(); ?>User/profile">Profile</a>
+                      <a class="dropdown-item" href="<?= base_url(); ?>UbahPassword">Ubah Password</a>
                       <a class="dropdown-item" href="<?= base_url(); ?>login/logout" style="color: cornflowerblue;">Keluar</a>
                     </div>
                 </li>

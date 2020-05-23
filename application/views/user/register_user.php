@@ -122,7 +122,7 @@
                     
                     <div class="form-group text-center">
                       
-                      <button id="submit" class="btn btn-dark btn-pill" value="login" type="submit"><i class="fa fa-lock"></i> Daftar</button>
+                      <button id="submit" class="btn btn-dark btn-pill" value="login" type="submit"> Daftar</button>
                       <input type="submit" class="btn btn-light btn-pill" value="Back">
                     </div>
                         <div class="modal-footer mx-5 pt-3 mb-1">

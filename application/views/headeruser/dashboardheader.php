@@ -62,7 +62,7 @@
               <ul class="site-menu main-menu js-clone-nav mx-auto d-none d-lg-block  m-0 p-0">
                 <li><a href="<?php echo base_url(); ?>" class="nav-link">Beranda</a></li>
                 <li><a href="<?= base_url(); ?>classes" class="nav-link">Kelas</a></li>
-                <li><a href="<?= base_url(); ?>profile" class="nav-link">Akademik</a></li>
+                <li><a href="<?= base_url(); ?>classes/my_classes" class="nav-link">Akademik</a></li>
                
               </ul>
             </nav>
@@ -93,7 +93,7 @@
                     </a>
                     <div class="notif">
                     <ul class="dropdown-menu">
-                      <li class="head text-light" style="background-color: #3d3db5">
+                      <li class="head text-light" style="background-color: forestgreen;">
                         <div class="row">
                           <div class="col-lg-12 col-sm-12 col-12">
                             <span>Pemberitahuan (3)</span>
@@ -142,7 +142,7 @@
                           </div>    
                         </div>
                       </li>
-                      <li class="footer text-center" style="background-color: #3d3db5">
+                      <li class="footer text-center" style="background-color: forestgreen;">
                         <a href="" class="text-light">View All</a>
                       </li>
                     </ul>
@@ -157,8 +157,8 @@
                     </a>
                     <div class="dropdown-menu dropdown-menu-right dropdown-default"
                       aria-labelledby="navbarDropdownMenuLink-333">
-                      <a class="dropdown-item" href="<?= base_url(); ?>profile">Profile</a>
-                      <a class="dropdown-item" href="#">Pengaturan</a>
+                      <a class="dropdown-item" href="<?= base_url(); ?>User/profile">Profile</a>
+                      <a class="dropdown-item" href="<?= base_url(); ?>UbahPassword">Ubah Password</a>
                       <a class="dropdown-item" href="<?= base_url(); ?>login/logout" style="color: cornflowerblue;">Keluar</a>
                     </div>
                 </li>

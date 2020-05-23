@@ -19,6 +19,14 @@ class User extends CI_Controller{
         $this->load->view('partialsuser/footer');
     }
 
+    public function profile(){
+        $this->load->view('headeruser/dashboardheader');
+        $this->load->view('classes/kelas_diikuti');
+        $this->load->view('partialsuser/footer');
+    }
+
+    
+
 
 }
 
