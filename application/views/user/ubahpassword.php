@@ -75,7 +75,7 @@
         </div>
         <div class="row">
             <div class="col-md-3 field-label-responsive">
-                <label for="newpassword">Password Baru</label>
+                <label for="newpassword">Password Sekarang</label>
             </div>
             <div class="col-md-6">
                 <div class="form-group">
@@ -96,7 +96,7 @@
         </div>
         <div class="row">
             <div class="col-md-3 field-label-responsive">
-                <label for="newpassword1">Konfimarsi Password</label>
+                <label for="newpassword1">Password Baru</label>
             </div>
             <div class="col-md-6">
                 <div class="form-group has-danger">
@@ -109,9 +109,9 @@
             </div>
             <div class="col-md-3">
                 <div class="form-control-feedback">
-                        <span class="text-danger align-middle">
+                        <!-- <span class="text-danger align-middle">
                             <i class="fa fa-close"> Sandi Anda tidak cocok</i>
-                        </span>
+                        </span> -->
                 </div>
             </div>
         </div>

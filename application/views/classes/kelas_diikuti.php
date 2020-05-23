@@ -58,7 +58,8 @@
                             <img src="https://www.jamf.com/jamf-nation/img/default-avatars/generic-user-purple.png" class="rounded-circle">
                         </div>
                         <div class="col-md-12 col-sm-12 col-xs-12 user-detail-section1 text-center">
-                            <button id="btn-contact" (click)="clearModal()" data-toggle="modal" data-target="" class="btn btn-primary btn-block follow">Gabung Kelas</button> 
+                            <!-- <button id="btn-contact" (click)="clearModal()" data-toggle="modal" data-target="" class="btn btn-primary btn-block follow">Gabung Kelas</button>  -->
+                            <a href="<?=base_url()?>classes" class="btn btn-primary btn-block follow" style= "color: white;">Gabung Kelas</a></button>   
                             <a href="<?=base_url()?>classes/new_class" class="btn btn-block" style="background-color: darkcyan; color: white;">Buat Kelas</a></button>   
                                                         
                         </div>
