@@ -41,31 +41,57 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="contact">Gabung Kelas</h5>
+                    <h5 class="modal-title" id="contact">Info Kelas</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        <p for="msj">Silahkan Masukan Kode Kelas</p>
+                        <!-- <p for="msj">Info Kelas</p> -->
+
                     </div>
-                    <div class="form-group">
-                        <label for="txtFullname">Kode Kelas</label>
-                        <input type="text" id="txtFullname" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="txtEmail">Password Kelas</label>
-                        <input type="text" id="txtEmail" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="txtPhone">Konfirmasi Password</label>
-                        <input type="text" id="txtPhone" class="form-control">
-                    </div>
+                  <div class="row">
+                      <div class="col-md-4">
+                          <label>Nama Kelas</label>
+                      </div>
+                      <div class="col-md-6">
+                          <p>Pemograman Dasar</p>
+                      </div>
+                  </div>
+                  
+                  <div class="row">
+                      <div class="col-md-4">
+                          <label>Mulai</label>
+                      </div>
+                      <div class="col-md-6">
+                          <p>14.00-16.00</p>
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="col-md-4">
+                          <label>Nama Author</label>
+                      </div>
+                      <div class="col-md-6">
+                          <p>Arya Pradata</p>
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="col-md-4">
+                          <label>Status Kelas</label>
+                      </div>
+                      <div class="col-md-6">
+                      <span class="badge badge-warning">Sedang Berlangsung</span>
+                      </div>
+                  </div>
+                   
+                   
                 </div>
                 <div class="modal-footer">
+                    <a href="<?= base_url(); ?>Iframe" class="btn btn-primary">Gabung</a>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                    <button type="button" class="btn btn-primary" (click)="openModal()" data-dismiss="modal">Gabung</button>
+                    
+                    <!-- <a href="" class="btn btn-primary">Gabung</a> -->
                 </div>
             </div>
         </div>
