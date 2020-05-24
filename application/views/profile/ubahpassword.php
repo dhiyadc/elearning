@@ -46,7 +46,7 @@
 <div class="container my-5">
 
 <div class="container">
-    <form class="form-horizontal" role="form" method="POST" action="/register">
+    <form class="form-horizontal" role="form" method="POST" action="<?= base_url()?>profile/change_password_action">
         <div class="row">
             <div class="col-md-3 mb-3"><h2>Ganti Password</h2><hr></div>
             <div class="col-md-6">
@@ -61,7 +61,7 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-                        <label for="">Tiansyahjr11@gmail.com</label>
+                        <label for=""><?= $_SESSION['email']; ?></label>
                     </div>
                 </div>
             </div>
@@ -81,7 +81,7 @@
                 <div class="form-group">
                     <div class="input-group mb-2 mr-sm-2 mb-sm-0">
                       
-                        <input type="password" name="newpass" class="form-control" id="newpassword"
+                        <input type="password" name="old_password" class="form-control" id="newpassword"
                                placeholder="" required autofocus>
                     </div>
                 </div>
@@ -102,8 +102,8 @@
                 <div class="form-group has-danger">
                     <div class="input-group mb-2 mr-sm-2 mb-sm-0">
                         
-                        <input type="password" name="password" class="form-control" id="newpassword1"
-                               placeholder="Password" required>
+                        <input type="password" id="password" name="password" class="form-control" 
+                               placeholder="Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required>
                     </div>
                 </div>
             </div>
@@ -115,7 +115,7 @@
                 </div>
             </div>
         </div>
-        <div class="row">
+        <!-- <div class="row">
             <div class="col-md-3 field-label-responsive">
                 <label for="password">Konfirmasi Password</label>
             </div>
@@ -123,18 +123,21 @@
                 <div class="form-group">
                     <div class="input-group mb-2 mr-sm-2 mb-sm-0">
                       
-                        <input type="password" name="password-confirmation" class="form-control"
-                               id="password-confirm" placeholder="Password" required>
+                        <input type="password" id="password2" name="password2" class="form-control"
+                               placeholder="Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Password doesn't match" required>
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
         <div class="row">
             <div class="col-md-3"></div>
             <div class="col-md-6">
-                <button type="submit" class="btn btn-primary"><i class="fa fa-user-plus"></i>Ubah Password</button>
+                <button type="submit" id="submit" class="btn btn-primary"><i class="fa fa-user-plus"></i>Ubah Password</button>
             </div>
         </div>
     </form>
 </div>
+<script type="text/javascript" src="<?= base_url(); ?>assets/js/password_verif.js"></script>
 </section>
+
+
