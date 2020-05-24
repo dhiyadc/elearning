@@ -6,6 +6,13 @@
     <title>My Profile</title>
 </head>
 <body>
+<?php if($this->session->flashdata('invalid_pass')) { ?>
+<?=  $this->session->flashdata('invalid_pass') ?>
+<?php } ?>
+<?php if($this->session->flashdata('pass')) { ?>
+<?=  $this->session->flashdata('pass') ?>
+<?php } ?>
+
     <table>
         <?php foreach ($profile as $val) : ?>
             <tr>

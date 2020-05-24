@@ -95,15 +95,12 @@ class Profile extends CI_Controller {
                 //redirect('profile');
 
 
-                $data = array(
-                    'message_display' => 'Password berhasil diubah'
-					);
-			    return $this->load->view('profile/change_password', $data);
+                
+                    $this->session->set_flashdata('pass', 'Password berhasil diubah');
+			    redirect('profile');
             } else {
-                //nanti pake flashdata
-                $data = array(
-					'error_message' => 'Wrong Password'
-					);
+                
+                    $this->session->set_flashdata('invalid_pass', 'Password lama yang anda input salah');
 			    redirect('profile');
             }
 
