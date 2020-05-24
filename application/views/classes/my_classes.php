@@ -167,46 +167,47 @@
                 </tr>
               </thead>
               <tbody>
-                <?php foreach ($kelas as $val) : ?>
+              <?php foreach ($seluruh_kelas as $val) : ?>
+                    <?php foreach ($peserta as $val2) : ?>
+                        <?php if ($val2['id_kelas'] == $val['id_kelas'] && $val2['id_user'] == $this->session->userdata('id_user')) : ?>
                             <tr>
                                 <th scope="row"><a class="text-primary"><?= $val['judul_kelas']; ?></a></th>
-                                <td> 
-                                    <?php $total = 0; $selesai = 0;
-                                    foreach ($kegiatan as $val2) {
-                                        if ($val['id_kelas'] == $val2['id_kelas']){
-                                            $total++; 
-                                            if ($val2['status_kegiatan'] == 2) {
-                                                $selesai++; 
-                                            } 
-                                        }
-                                    }
-                                    if ($total == 0) {
-                                        $proses = 0;
-                                    }
-                                    else {
-                                        $proses = ($selesai / $total) * 100; 
-                                    }?>
+                                <td style="padding-top: 20px;"> 
+                                <?php $total = 0; $selesai = 0;
+                                foreach ($kegiatan as $val3) {
+                                  if ($val2['id_kelas'] == $val3['id_kelas']){
+                                    $total++; 
+                                    if ($val3['status_kegiatan'] == 2) {
+                                      $selesai++; 
+                                    } 
+                                  }
+                                }
+                                $proses = ($selesai / $total) * 100; ?>
                                     <div class="progress md-progress">
                                         <div class="progress-bar bg-info" role="progressbar" style="width: <?= $proses; ?>%" aria-valuenow="<?= $proses; ?>" aria-valuemin="0"
                                         aria-valuemax="100"><?= $proses; ?>%</div>
                                     </div>
                                 </td>
-                                <td>
-                                    <?php foreach ($status as $val2) : ?>
-                                        <?php if ($val['status_kelas'] == $val2['id_status']) : ?>
-                                            <?php if ($val2['nama_status'] == "Selesai") : ?>
-                                                <span class="badge badge-success"><?= $val2['nama_status'] ?></span>
+                                <td style="padding-top:20px">
+                                    <?php foreach ($status as $val3) : ?>
+                                        <?php if ($val['status_kelas'] == $val3['id_status']) : ?>
+                                            <?php if ($val3['nama_status'] == "Selesai") : ?>
+                                                <span class="badge badge-success"><?= $val3['nama_status'] ?></span>
                                             <?php else : ?>
-                                                <span class="badge badge-warning"><?= $val2['nama_status'] ?></span>
+                                                <span class="badge badge-warning"><?= $val3['nama_status'] ?></span>
                                             <?php endif; ?>
                                         <?php endif; ?>
                                     <?php endforeach; ?>
                                 </td>
                                 <td>
+                                  <div class="buttonclass">
                                     <a href="<?= base_url()?>classes/open_class/<?= $val['id_kelas'] ?>" class="btn btn-light">Lihat kelas</a>
-                                    <a class="btn btn-dark mr-1" href="<?= base_url()?>classes/update_class/<?= $val['id_kelas'] ?>">Edit Kelas</a>
-                                </td>
+                                    <a href="<?= base_url()?>classes/leave_class/<?= $val['id_kelas'] ?>" class="btn btn-danger">Tinggalkan</a>
+                                  </div>
+                                  </td>
                             </tr>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
                 <?php endforeach; ?>
               </tbody>
             </table>
