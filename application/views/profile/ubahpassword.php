@@ -115,7 +115,7 @@
                 </div>
             </div>
         </div>
-        <div class="row">
+        <!-- <div class="row">
             <div class="col-md-3 field-label-responsive">
                 <label for="password">Konfirmasi Password</label>
             </div>
@@ -128,7 +128,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
         <div class="row">
             <div class="col-md-3"></div>
             <div class="col-md-6">
