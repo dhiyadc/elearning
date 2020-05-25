@@ -58,7 +58,7 @@
 	<div class="container">
 	<div class="row mt-5" style="padding-bottom :15px; border-bottom: 1px solid #dedfe0;">
 		<div class="col-xs-2">
-			<div class="col-md-2"><button class="btn btn-primary" style="background-color: dimgrey; border-color: white">Kelas</button>
+			<div class="col-md-2"><button class="btn btn-primary" style="background-color: dimgrey; border-color: white">Kelas Terbaru</button>
 			</div>
 		</div>
 		<div class="col-xs-10 no-margin">
@@ -133,11 +133,18 @@
 
               </ul>
 			</nav> -->
-			<form class="form-inline active-purple-4">
+			<!-- <form class="form-inline active-purple-4">
 				<input class="form-control form-control-sm mr-3 w-75" type="text" placeholder="Cari Kelas"
 					aria-label="Search">
 				<i class="fa fa-search" aria-hidden="true" onclick=""></i>
-				</form>
+				</form> -->
+			
+				<div class="input-group mb-3">
+				<input class="form-control form-control-sm mr-0 w-0" type="text" placeholder="Cari Kelas"aria-label="Search">
+					<div class="input-group-append">
+					<button class="btn" type="button"><i class="fa fa-search" aria-hidden="true" onclick=""></i></button>
+					</div>
+				</div>
            
           </div>
 	</div>
@@ -152,10 +159,10 @@
 			<div class="col-md-12 mt-0">
 				<div class="paket position-relative rounded">
 					<div class="col-lg-12">
-						<!-- <div class="judul-list"> -->
+						<!-- <div class="judul-list">
 
-							<!-- <h1 class="text-center" data-aos="fade-up" data-aos-delay="0">Seluruh Kelas</h1> -->
-						</div>
+							<h1 class="text-center" data-aos="fade-up" data-aos-delay="0">Terbaru</h1>
+						</div> -->
 					</div>
 					<!-- <div class="container">
 						<div class="row">
