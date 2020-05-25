@@ -133,11 +133,24 @@
 
               </ul>
 			</nav> -->
-			<form class="form-inline active-purple-4">
-				<input class="form-control form-control-sm mr-3 w-75" type="text" placeholder="Cari Kelas"
-					aria-label="Search">
-				<i class="fa fa-search" aria-hidden="true" onclick=""></i>
+				<!-- <div class="row">
+					
+				<form class="form-inline active-purple-4">
+				<div class="col-md-12">
+				<input class="form-control form-control-sm mr-3 w-75" type="text" placeholder="Cari Kelas"aria-label="Search">
+				</div>
+				<div class="col-md-3">
+				<button class="btn"><i class="fa fa-search" aria-hidden="true" onclick=""></i></button>
+				</div>
 				</form>
+				</div> -->
+
+				<div class="input-group mb-3">
+				<input class="form-control form-control-sm mr-0 w-0" type="text" placeholder="Cari Kelas"aria-label="Search">
+					<div class="input-group-append">
+					<button class="btn" type="button"><i class="fa fa-search" aria-hidden="true" onclick=""></i></button>
+					</div>
+				</div>
            
           </div>
 	</div>
