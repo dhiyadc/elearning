@@ -58,21 +58,21 @@
                     <ul role="tablist" class="nav bg-light nav-pills rounded-pill nav-fill mb-3">
                     <li class="nav-item">
                         <a data-toggle="pill" href="#nav-tab-card" class="nav-link active rounded-pill">
-                                            <i class="fa fa-credit-card"></i>
-                                            Credit Card
-                                        </a>
+                            <i class="fa fa-credit-card"></i>
+                            Credit Card
+                        </a>
                     </li>
                     <li class="nav-item">
                         <a data-toggle="pill" href="#nav-tab-paypal" class="nav-link rounded-pill">
-                                            <i class="fa fa-paypal"></i>
-                                            OVO/Gopay
-                                        </a>
+                            <i class="fa fa-paypal"></i>
+                            OVO/Gopay
+                        </a>
                     </li>
                     <li class="nav-item">
                         <a data-toggle="pill" href="#nav-tab-bank" class="nav-link rounded-pill">
-                                            <i class="fa fa-university"></i>
-                                            Bank Transfer
-                                        </a>
+                            <i class="fa fa-university"></i>
+                            Bank Transfer
+                        </a>
                     </li>
                     </ul>
                     <!-- End -->
@@ -83,7 +83,7 @@
 
                     <!-- credit card info-->
                     <div id="nav-tab-card" class="tab-pane fade show active">
-                        <p class="alert alert-success">Some text success or error</p>
+                        <p class="alert alert-success">Transaksi Berhasil</p>
                         <form role="form">
                         <div class="form-group">
                             <label for="username">Nama Lengkapmu</label>
@@ -105,7 +105,7 @@
                         <div class="row">
                             <div class="col-sm-8">
                             <div class="form-group">
-                                <label><span class="hidden-xs">Expiration</span></label>
+                                <label><span class="hidden-xs">Masa Habis</span></label>
                                 <div class="input-group">
                                 <input type="number" placeholder="MM" name="" class="form-control" required>
                                 <input type="number" placeholder="YY" name="" class="form-control" required>
