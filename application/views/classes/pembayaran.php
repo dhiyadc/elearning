@@ -20,7 +20,7 @@
     <!--Grid column-->
     <div class="col-md-12 mb-4">
 
-        <h5 class="text-center font-weight-bold mb-4" style="color: white">Pengaturan Akun</h5>
+        <h5 class="text-center font-weight-bold mb-4" style="color: white">Opsi Pembayaran</h5>
 
 
       </div>
@@ -144,8 +144,8 @@
         <div class="row">
             <div class="col-md-3"></div>
             <div class="col-md-6">
-                <button type="submit" id="submit" class="btn btn-primary" style="background-color: red; border-radius: 5px; border-color: white;" required><i class="fa fa-user-plus"></i>Ambil Paket</button>
-                <button type="submit" id="submit" class="btn btn-primary" style=" border-radius: 5px; border-color: white;" required><i class="fa fa-user-plus"></i>Kembali</button>
+                <button type="submit" id="submit" class="btn btnred" ><i class="fa fa-user-plus"></i>Ambil Paket</button>
+                <a class="btn btn-primary btncyan" href="Clasess">Kembali</a>
             </div>
         </div>
     </form>
