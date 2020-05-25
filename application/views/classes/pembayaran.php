@@ -150,7 +150,7 @@
         </div>
     </form>
 </div>
-<script type="text/javascript" src="<?= base_url(); ?>assets/js/password_verif.js"></script>
+
 </section>
 
 
