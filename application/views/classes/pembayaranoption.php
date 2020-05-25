@@ -86,7 +86,7 @@
                         <p class="alert alert-success">Transaksi Berhasil</p>
                         <form role="form">
                         <div class="form-group">
-                            <label for="username">Nama Lengkapmu</label>
+                            <label for="username">Nama Lengkap</label>
                             <input type="text" name="username" placeholder="Jason Doe" required class="form-control">
                         </div>
                         <div class="form-group">
@@ -124,7 +124,13 @@
 
 
                         </div>
-                        <button type="button" class="subscribe btn btn-primary btn-block rounded-pill shadow-sm"> Confirm  </button>
+                        <div class="row">
+                          <div class="col-md-4"></div>
+                          <div class="col-md-6">
+                            <button type="button" class="subscribe btn btn-primary btncyan rounded-pill shadow-sm"> Konfirmasi</button>
+                            <button type="button" class="subscribe btn btn-primary btnred rounded-pill shadow-sm"> Batal</button>
+                          </div>
+                        </div>
                         </form>
                     </div>
                     <!-- End -->
@@ -145,14 +151,14 @@
                         <h6>Bank account details</h6>
                         <dl>
                         <dt>Bank</dt>
-                        <dd> THE WORLD BANK</dd>
+                        <dd> BNI</dd>
                         </dl>
                         <dl>
-                        <dt>Account number</dt>
+                        <dt>No Rekening</dt>
                         <dd>7775877975</dd>
                         </dl>
                         <dl>
-                        <dt>IBAN</dt>
+                        <dt>Arya Pamungkas</dt>
                         <dd>CZ7775877975656</dd>
                         </dl>
                         <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
