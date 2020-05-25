@@ -5,6 +5,7 @@ class Profile extends CI_Controller {
     {
         parent::__construct();
         $this->load->model('Profile_model');
+        $this->load->model('Classes_model');
         $this->load->model('User_database');
     }
 
@@ -14,37 +15,24 @@ class Profile extends CI_Controller {
             $email = $_SESSION['email'];
             $id_user = $_SESSION['id_user'];
 
-            $data['profile'] = $this->Profile_model->getMyProfile();
-            $data['account'] = $this->Profile_model->getMyAccount();
+            $data['profile'] = $this->Profile_model->getProfile();
+            $data['peserta'] = $this->Classes_model->getPeserta();
+            $data['kelas'] = $this->Classes_model->getMyClasses();
+            $this->load->view('partialsuser/header');
             $this->load->view('profile/my_profile',$data);
+            $this->load->view('partialsuser/footer');
         } else {
             redirect('login');
         }
     }
 
-    public function complete_profile()
-    {
-        $data = $this->Profile_model->getFotoDeskripsi();
-        if($data['foto'] == null || $data['deskripsi'] == null) {
-            $this->load->view('profile/complete_profile');
-        }
-        else{
-            redirect('home');
-        }
-    }
-
-    public function complete_profile_action()
-    {
-        $this->Profile_model->insertFotoDeskripsi();
-        redirect('home');
-    }
-
     public function edit_profile()
     {
         if(isset($this->session->userdata['logged_in'])){
-            $data['profile'] = $this->Profile_model->getMyProfile();
-            $data['account'] = $this->Profile_model->getMyAccount();
+            $data['profile'] = $this->Profile_model->getProfile();
+            $this->load->view('partialsuser/header');
             $this->load->view('profile/edit_profile',$data);
+            $this->load->view('partialsuser/footer');
         } else {
             redirect('login');
         }
@@ -95,15 +83,12 @@ class Profile extends CI_Controller {
                 //redirect('profile');
 
 
-                $data = array(
-                    'message_display' => 'Password berhasil diubah'
-					);
-			    return $this->load->view('profile/change_password', $data);
+                
+                    $this->session->set_flashdata('pass', 'Password berhasil diubah');
+			    redirect('profile');
             } else {
-                //nanti pake flashdata
-                $data = array(
-					'error_message' => 'Wrong Password'
-					);
+                
+                    $this->session->set_flashdata('invalid_pass', 'Password lama yang anda input salah');
 			    redirect('profile');
             }
 

@@ -215,15 +215,6 @@ class Classes_model extends CI_Model {
         return $this->db->get('kelas')->result_array()[0];
     }
 
-    public function getProfile()
-    {
-        $id = $this->session->userdata('id_user');
-        $sql = "SELECT user.*,detail_user.*
-                FROM user,detail_user
-                WHERE user.id_user = '$id' AND detail_user.id_user = '$id'";
-        return $this->db->query($sql)->result_array();
-    }
-    
     public function getKegiatan($id)
     {
         $sql = "SELECT *, DATE_FORMAT(tanggal_kegiatan, '%W, %d %M %Y') as tanggal, DATE_FORMAT(tanggal_kegiatan, '%H:%i') as waktu

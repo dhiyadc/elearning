@@ -86,7 +86,7 @@
 </section> -->
 
 <div class="container">
-    <form class="form-horizontal" role="form" method="POST" action="/register">
+    <form enctype="multipart/form-data" action="<?= base_url()?>classes/new_class_action" method="post" class="form-horizontal">
         <div class="row">
             <div class="col-md-3 mb-3 mt-5"><h2>Buat Kelas</h2><hr></div>
             <div class="col-md-6">
@@ -140,7 +140,7 @@
                 <div class="form-group">
                     <div class="input-group mb-2 mr-sm-2 mb-sm-0">
                       
-                        <input type="text" name="namakelas" class="form-control" id="nameclass"
+                        <input type="text" name="judul" class="form-control" id="nameclass"
                                placeholder="" required autofocus>
                     </div>
                 </div>
@@ -190,18 +190,20 @@
             </div>
             
         </div>
-        <!-- <div class="row">
-            <div class="col-md-3 field-label-responsive">
-                <label for="password">Harga Kelas</label>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-                            <input type="text" id="rupiah" class="form-control" name="harga" placeholder="Masukkan nominal..." >
+        <div id="showHideHarga" style="display: none">
+            <div class="row">
+                <div class="col-md-3 field-label-responsive">
+                    <label for="password">Harga Kelas</label>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                                <input type="text" id="rupiah" class="form-control" name="harga" placeholder="Masukkan nominal..." >
+                        </div>
                     </div>
                 </div>
             </div>
-        </div> -->
+        </div>
         
         <div class="row">
             <div class="col-md-3 field-label-responsive">

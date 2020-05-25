@@ -248,9 +248,9 @@
               <div class="mb-4 text-center"> 
                 <?php foreach ($pembuat as $val2) : ?>
                     <?php if ($val2['id_user'] == $val['pembuat_kelas']) : ?> 
-                      <?php if ($val2['foto'] == 'default_pic.png') : ?>
-                        <img src="<?php echo base_url(); ?>assets/images/default_pic.png" alt="Image" class="rounded-circle mb-4" style="object-fit: cover; width:100px">
-                        <?php else : ?>
+                      <?php if ($val2['foto'] == null) : ?>
+                        <img src="https://www.jamf.com/jamf-nation/img/default-avatars/generic-user-purple.png" class="rounded-circle w-50 mb-4">
+                      <?php else : ?>
                         <img src="<?php echo base_url(); ?>assets/images/<?= $val2['foto']; ?>" alt="Image" class="w-50 rounded-circle mb-4" style="object-fit: cover;">
                       <?php endif; ?>
                         <h3 class="h5 text-black mb-4"><?= $val2['nama']; ?></h3>

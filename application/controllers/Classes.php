@@ -123,28 +123,13 @@ class Classes extends CI_Controller {
         }
     }
 
-    public function kelas_diikuti()
-    {
-        if(isset($this->session->userdata['logged_in'])){
-            $data['kelas'] = $this->Classes_model->getAllClasses();
-            $data['kegiatan'] = $this->Classes_model->getAllKegiatan();
-            $data['peserta'] = $this->Classes_model->getPeserta();
-            $data['status'] = $this->Classes_model->getStatus();
-            $this->load->view('partialsuser/header');
-            $this->load->view('classes/kelas_diikuti',$data);
-            $this->load->view('partialsuser/footer');
-        } else {
-            redirect('login');
-        }
-    }    
-
     public function my_classes()
     {
         if(isset($this->session->userdata['logged_in'])){
+            $data['seluruh_kelas'] = $this->Classes_model->getAllClasses();
             $data['kelas'] = $this->Classes_model->getMyClasses();
             $data['kegiatan'] = $this->Classes_model->getAllKegiatan();
             $data['status'] = $this->Classes_model->getStatus();
-            $data['profile'] = $this->Classes_model->getProfile();
             $data['peserta'] = $this->Classes_model->getPeserta();
             $this->load->view('partialsuser/header');
             $this->load->view('classes/my_classes',$data);

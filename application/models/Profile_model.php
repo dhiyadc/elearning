@@ -1,28 +1,15 @@
 <?php
 
 class Profile_model extends CI_Model {
-    public function getMyProfile()
+    public function getProfile()
     {
-        //return $this->db->get_where('detail_user',['id_user' => $this->session->userdata('id_user')])->result_array();
-
-        $id_user = $_SESSION['id_user'];
-        $sql = "SELECT * FROM detail_user
-        WHERE id_user='$id_user'";
-    $query = $this->db->query($sql);
-    return $query->result_array();
+        $id = $this->session->userdata('id_user');
+        $sql = "SELECT user.*,detail_user.*
+                FROM user,detail_user
+                WHERE user.id_user = '$id' AND detail_user.id_user = '$id'";
+        return $this->db->query($sql)->result_array();
     }
-
-    public function getMyAccount()
-    {
-        //return $this->db->get_where('user',['id_user' => $this->session->userdata('id_user')])->result_array();
-        
-        $id_user = $_SESSION['id_user'];
-        $sql = "SELECT * FROM user
-        WHERE id_user='$id_user'";
-    $query = $this->db->query($sql);
-    return $query->result_array();
-    }
-
+    
     public function getFirstAccount()
     {
         //return $this->db->get_where('user',['id_user' => $this->session->userdata('id_user')])->result_array();
