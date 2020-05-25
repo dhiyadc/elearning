@@ -103,8 +103,8 @@
               <tbody>
                 <?php foreach ($kelas as $val) : ?>
                             <tr>
-                                <th scope="row"><a class="text-primary"><?= $val['judul_kelas']; ?></a></th>
-                                <td> 
+                                <th scope="row" style="width: 300px;"><a class="text-primary"><?= $val['judul_kelas']; ?></a></th>
+                                <td style="padding-top: 20px;"> 
                                     <?php $total = 0; $selesai = 0;
                                     foreach ($kegiatan as $val2) {
                                         if ($val['id_kelas'] == $val2['id_kelas']){
@@ -125,7 +125,7 @@
                                         aria-valuemax="100"><?= $proses; ?>%</div>
                                     </div>
                                 </td>
-                                <td>
+                                <td style="padding-top: 20px;"> 
                                     <?php foreach ($status as $val2) : ?>
                                         <?php if ($val['status_kelas'] == $val2['id_status']) : ?>
                                             <?php if ($val2['nama_status'] == "Selesai") : ?>
@@ -136,10 +136,12 @@
                                         <?php endif; ?>
                                     <?php endforeach; ?>
                                 </td>
-                                <td>
+                                <td style="padding-top: 20px;"> 
+                                <div class="buttonclass">
                                     <a href="<?= base_url()?>classes/open_class/<?= $val['id_kelas'] ?>" class="btn btn-light">Lihat kelas</a>
                                     <a class="btn btn-dark mr-1" href="<?= base_url()?>classes/update_class/<?= $val['id_kelas'] ?>">Edit Kelas</a>
                                 </td>
+                                </div>
                             </tr>
                 <?php endforeach; ?>
               </tbody>
@@ -191,7 +193,7 @@
                     <?php foreach ($peserta as $val2) : ?>
                         <?php if ($val2['id_kelas'] == $val['id_kelas'] && $val2['id_user'] == $this->session->userdata('id_user')) : ?>
                             <tr>
-                                <th scope="row"><a class="text-primary"><?= $val['judul_kelas']; ?></a></th>
+                                <th scope="row" style="width: 300px;"><a class="text-primary"><?= $val['judul_kelas']; ?></a></th>
                                 <td style="padding-top: 20px;"> 
                                 <?php $total = 0; $selesai = 0;
                                 foreach ($kegiatan as $val3) {
