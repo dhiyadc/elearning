@@ -35,7 +35,8 @@
       <div class="container">
         <div class="row">
 
-          <div class="owl-carousel col-12 nonloop-block-14">
+          <div class="owl-carousel col-12 nonloop-block-14" id="owl-demo">
+            
           <!-- FOR FIXED IMAGE 
           style="object-fit: cover; height: 300px" -->
           <?php foreach ($class as $val) : ?>
@@ -66,22 +67,68 @@
 
 
           </div>
-
-          <a class="carousel-control-prev" href="#myCarousel" data-slide="prev">
-              <span class="carousel-control-prev-icon"></span>
+          <!-- <button class="customPrevBtn btn"> <span class="carousel-control-prev-icon" aria-hidden="true"></span></button> -->
+          <a class="carousel-control-prev customPrevBtn" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
           </a>
-          <a class="carousel-control-next" href="#myCarousel" data-slide="next">
-              <span class="carousel-control-next-icon"></span>
+          <a class="carousel-control-next customNextBtn" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
           </a>
+        
 
-        </div>
-        <!-- <div class="row justify-content-center">
-          <div class="col-7 text-center">
-          
+            <script>
+              var owl = $('.owl-carousel');
+              owl.owlCarousel();
+              // Go to the next item
+              $('.customNextBtn').click(function() {
+                  owl.trigger('owl.prev');
+              })
+              // Go to the previous item
+              $('.customPrevBtn').click(function() {
+                  owl.trigger('owl.next');
+              })
+            </script>
+           <!--  -->
           </div>
-        </div> -->
+        </div> 
       </div>
     </div>
+
+    <script>
+      
+
+    $(document).ready(function() {
+     
+     var owl = $("#owl-demo");
+    
+     owl.owlCarousel({
+         items : 10, //10 items above 1000px browser width
+         itemsDesktop : [1000,5], //5 items between 1000px and 901px
+         itemsDesktopSmall : [900,3], // betweem 900px and 601px
+         itemsTablet: [600,2], //2 items between 600 and 0
+         itemsMobile : false // itemsMobile disabled - inherit from itemsTablet option
+     });
+    
+     // Custom Navigation Events
+     $(".next").click(function(){
+       owl.trigger('owl.next');
+     })
+     $(".prev").click(function(){
+       owl.trigger('owl.prev');
+     })
+     $(".play").click(function(){
+       owl.trigger('owl.play',1000); //owl.play event accept autoPlay speed as second parameter
+     })
+     $(".stop").click(function(){
+       owl.trigger('owl.stop');
+     })
+    
+   });
+
+
+    </script>
 
 
     <div class="site-section" id="programs-section">
