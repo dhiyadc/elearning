@@ -144,7 +144,7 @@
         <div class="row">
             <div class="col-md-3"></div>
             <div class="col-md-6">
-                <button type="submit" id="submit" class="btn btnred" ><i class="fa fa-user-plus"></i>Ambil Paket</button>
+                <a class="btn btn-primary btnred" href="<?= base_url(); ?>pembayaran/bayaroption">Ambil Kelas</a>
                 <a class="btn btn-primary btncyan" href="Clasess">Kembali</a>
             </div>
         </div>

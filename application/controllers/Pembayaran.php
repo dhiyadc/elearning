@@ -20,6 +20,12 @@ class Pembayaran extends CI_Controller{
         $this->load->view('classes/pembayaran');
         $this->load->view('partialsuser/footer');
     }
+
+    public function bayaroption(){
+        $this->load->view('partialsuser/header');
+        $this->load->view('classes/pembayaranoption');
+        $this->load->view('partialsuser/footer');
+    }
 }
 
 ?>
