@@ -23,6 +23,7 @@ class Home extends CI_Controller{
             $this->load->view('partials/header');    
         }
         $data['class'] = $this->Classes_model->getAllTopClasses();
+        $data['kategori'] = $this->Classes_model->getKategori();
         $this->load->view('home', $data);
         $this->load->view('partials/footer');
     }

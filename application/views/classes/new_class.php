@@ -101,7 +101,7 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-                        <label for="">Tiansyah Pratama</label>
+                        <label for=""><?= $pembuat['nama']; ?></label>
                     </div>
                 </div>
             </div>

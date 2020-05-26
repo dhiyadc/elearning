@@ -16,7 +16,7 @@
                   <h1 data-aos="fade-up" data-aos-delay="0"><?= $val['judul_kelas']; ?></h1>
                   <?php foreach ($kategori as $val2) : ?>
                     <?php if ($val['kategori_kelas'] == $val2['id_kategori']) : ?>
-                      <p data-aos="fade-up" data-aos-delay="100"> &bullet; <?= count ($peserta_kelas); ?> Siswa &bullet; <a href="#" class="text-white"># <?= $val2['nama_kategori']; ?></a></p>
+                      <p data-aos="fade-up" data-aos-delay="100"> &bullet; <?= count ($peserta_kelas); ?> Siswa <span class="text-white"># <?= $val2['nama_kategori']; ?></span></p>
                     <?php endif; ?>
                   <?php endforeach; ?>
                  <?php endforeach; ?>
@@ -36,43 +36,25 @@
         <div class="row">
         <?php foreach ($kelas as $val) : ?>
           <div class="col-lg-8 mb-5">
-            <section class="pt-5 pb-5">
-  <div class="container">
-    <article class="row card  border-0 flex-md-row justify-content-between align-items-center card-top">
-        <a class="col-md-5  order-md-2 order-1 w-md-25" href="#">
-            <img class="img-fluid" src="<?= base_url().'assets/images/'.$val['poster_kelas']?>" srcset="https://via.placeholder.com/1110x1000/5fa9f8/ffffff 2x" alt="Pic 8">
-        </a>
-        <div class="card-body order-2 order-md-1 col-md-7">
-            <div class=" text-uppercase font-weight-bold mb-4 text-warning">Detail Kelas</div>
-            <h2 class="card-title display-4 font-weight-bold">
-                <a href="#" class="text-dark" title="Blog title">Pemograman Dasar II</a>
-              </h2>
-            <div class="card-text mb-4">
-                <p class="lead">Samlekom Mamank , saya lord garox</p>
-            </div>
-            <div class="mt-auto d-flex align-items-center pt-2">
-                <!-- <div class="mr-3">
-                    <img class="d-block img-fluid rounded-circle" src="https://via.placeholder.com/40x40/5fa9f8/ffffff " srcset="https://via.placeholder.com/120x120/5fa9f8/ffffff 2x" alt="user">
-                </div> -->
-                <!-- <div class="d-block">
-                    <div class="font-weight-bold">User Name</div>
-                    <div class="text-grey">Dec 14 · 15 min read</div>
-                </div> -->
-            </div>
-        </div>
-    </article>
-</div>
-</section>
             <div class="mb-5">
-              <!-- <h3 class="text-black">Detail Kelas</h3> -->
-             
+              <h3 class="text-black">Detail Kelas</h3>
+              <p class="mb-4">
+                <?php foreach ($harga as $val2) : ?>
+                <?php if ($val2['harga_kelas'] == '0') : ?> 
+                    <p>Gratis</p>
+                <?php else : ?>
+                    <?php $hasil_rupiah = "Rp." . number_format($val2['harga_kelas'],2,',','.'); ?>
+                    <p><strong class="text-black mr-3">Harga: </strong><?= $hasil_rupiah; ?></p>
+                <?php endif; ?>
+            <?php endforeach; ?>
+              </p>
               <div class="row mb-4">
                 <div class="col">
-                  <!-- <img src="<?= base_url().'assets/images/'.$val['poster_kelas']?>" alt="Image" class="img-fluid rounded"> -->
+                  <img src="<?= base_url().'assets/images/'.$val['poster_kelas']?>" alt="Image" class="img-fluid rounded" style="width: 500px">
                 </div>
               </div>
-              <p>Hi Alo,<?= $val['deskripsi_kelas']; ?></p>
-            
+              <p><?= $val['deskripsi_kelas']; ?></p>
+            <br>
             <?php foreach ($status as $val2) : ?>
                 <?php if ($val2['id_status'] == $val['status_kelas']) : ?> 
                     <p>Status: <?= $val2['nama_status']; ?></p>
@@ -83,9 +65,9 @@
               <?php if ($val['pembuat_kelas'] != $this->session->userdata('id_user')) : ?>
                 <?php if ($cek == true) : ?>
                     <?php if ($val['jenis_kelas'] == 1) : ?>
-                        <!-- <p class="mt-4"><a href="<?= base_url()?>classes/join_class/<?= $val['id_kelas']; ?>" class="btn btn-dark mr-1">Gabung Kelas</a></p> -->
+                        <p class="mt-4"><a href="<?= base_url()?>classes/join_class/<?= $val['id_kelas']; ?>" class="btn btn-dark mr-1">Gabung Kelas</a></p>
                     <?php else : ?>
-                        <!-- <p class="mt-4"><a href="<?= base_url()?>classes/pembayaran_kelas/<?= $val['id_kelas']; ?>" class="btn btn-dark mr-1">Gabung Kelas</a></p> -->
+                        <p class="mt-4"><a href="<?= base_url()?>classes/pembayaran_kelas/<?= $val['id_kelas']; ?>" class="btn btn-dark mr-1">Gabung Kelas</a></p>
                     <?php endif; ?>
                 <?php elseif ($peserta != null) : ?>
                     <div class="alert alert-primary" role="alert">
@@ -93,14 +75,14 @@
                     </div>
                 <?php elseif ($cek == false) : ?>
                     <?php if ($val['jenis_kelas'] == 1) : ?>
-                        <!-- <p class="mt-4"><a href="<?= base_url()?>classes/join_class/<?= $val['id_kelas']; ?>" class="btn btn-dark mr-1">Gabung Kelas</a></p> -->
+                        <p class="mt-4"><a href="<?= base_url()?>classes/join_class/<?= $val['id_kelas']; ?>" class="btn btn-dark mr-1">Gabung Kelas</a></p>
                     <?php else : ?>
-                        <!-- <p class="mt-4"><a href="<?= base_url()?>classes/pembayaran_kelas/<?= $val['id_kelas']; ?>" class="btn btn-dark mr-1">Gabung Kelas</a></p> -->
+                        <p class="mt-4"><a href="<?= base_url()?>classes/pembayaran_kelas/<?= $val['id_kelas']; ?>" class="btn btn-dark mr-1">Gabung Kelas</a></p>
                     <?php endif; ?>
                 <?php endif; ?>
               <?php endif; ?>
             <?php endif; ?>
-            <!-- <button onclick="showHideJadwal()" class="btn btn-light">Lihat Jadwal Kegiatan Kelas</button> -->
+            <button onclick="showHideJadwal()" class="btn btn-light">Lihat Jadwal Kegiatan Kelas</button>
             <?php if ($val['pembuat_kelas'] == $this->session->userdata('id_user')) : ?>
               <a class="btn btn-dark mr-1" href="<?= base_url()?>classes/update_class/<?= $val['id_kelas'] ?>"><span class="icon-pencil"></span> Edit Kelas</a>
             <?php endif; ?>
@@ -242,40 +224,29 @@
 
             </div>
           </div>
-          <div class="col-lg-4 pl-lg-5" style="padding-top: 80px;">
+          <div class="col-lg-4 pl-lg-5">
             <div class="mb-5 text-center border rounded course-instructor">
               <h3 class="mb-5 text-black text-uppercase h6 border-bottom pb-3">Mentor Kelas</h3>
               <div class="mb-4 text-center"> 
                 <?php foreach ($pembuat as $val2) : ?>
                     <?php if ($val2['id_user'] == $val['pembuat_kelas']) : ?> 
                       <?php if ($val2['foto'] == null) : ?>
-                        <img src="https://www.jamf.com/jamf-nation/img/default-avatars/generic-user-purple.png" class="rounded-circle w-50 mb-4">
+                        <img src="https://www.jamf.com/jamf-nation/img/default-avatars/generic-user-purple.png" class="rounded-circle mb-4" style="width: 100px">
                       <?php else : ?>
-                        <img src="<?php echo base_url(); ?>assets/images/<?= $val2['foto']; ?>" alt="Image" class="w-50 rounded-circle mb-4" style="object-fit: cover;">
+                        <img src="<?php echo base_url(); ?>assets/images/<?= $val2['foto']; ?>" alt="Image" class="w-25 rounded-circle mb-4" style="object-fit: cover;">
                       <?php endif; ?>
                         <h3 class="h5 text-black mb-4"><?= $val2['nama']; ?></h3>
                         <p><?= $val2['deskripsi']; ?></p>
                     <?php endif; ?>
                 <?php endforeach; ?>
-                <div class="col-lg-12 col-md-8">
-                <button type="button" class="btn btn-primary btn-block"  style="background-color: cornflowerblue; border-color: white">Gabung Kelas</button>
-                <button type="button" onclick="showHideJadwal()" class="btn btn-primary btn-block" style="background-color: crimson; border-color: white">Jadwal Kelas</button>
-                </div>
               </div>
             </div>
-            <!-- <div class="row">
-                <div class="col-lg-12 col-md-8">
-                <button type="button" class="btn btn-primary btn-block">Gabung Kelas</button>
-                <button type="button" class="btn btn-primary btn-block">Kembali</button>
-                </div>
-            </div> -->
           </div>
           <?php endforeach; ?>
         </div>
     </div>
 
-    
-    <div class="site-section courses-title bg-dark" id="courses-section">
+      <div class="site-section courses-title bg-dark" id="courses-section">
       <div class="container">
         <div class="row mb-5 justify-content-center">
           <div class="col-lg-7 text-center" data-aos="fade-up" data-aos-delay="">
@@ -293,7 +264,7 @@
           <?php foreach ($seluruh_kelas as $val) : ?>
             <div class="course bg-white h-100 align-self-stretch">
               <figure class="m-0">
-                <a href="<?= base_url() ?>classes/open_class/<?= $val['id_kelas']; ?>"><img src="images/img_4.jpg" alt="Image" class="img-fluid"></a>
+                <a href="<?=base_url()?>classes/open_class/<?= $val['id_kelas'] ?>"><img src="<?= base_url().'assets/images/'.$val['poster_kelas']?>" alt="Image" class="img-fluid" style="height: 180px; object-fit: cover;"></a>
               </figure>
               <div class="course-inner-text py-4 px-4">
                 <?php foreach ($seluruh_harga as $val2) : ?>
@@ -336,10 +307,10 @@
         </div>
         <div class="row justify-content-center">
         <a class="carousel-control-prev" href="#myCarousel" data-slide="prev">
-              <span class="carousel-control-prev-icon"></span>
+              <span class="customPrevBtn carousel-control-prev-icon"></span>
           </a>
           <a class="carousel-control-next" href="#myCarousel" data-slide="next">
-              <span class="carousel-control-next-icon"></span>
+              <span class="customNextBtn carousel-control-next-icon"></span>
           </a>
           </div>
         </div>

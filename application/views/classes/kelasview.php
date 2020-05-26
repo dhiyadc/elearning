@@ -237,19 +237,19 @@
 							<div class="col-lg-4 mt-5 mb-5 classBox moreBox" style="display: none;">
 								<div class="course bg-white h-100 align-self-stretch">
 									<figure class="m-0">
-										<a href="course-single.html"><img
+										<a href="<?= base_url() ?>classes/open_class/<?= $val['id_kelas']?>"><img
 												src="<?= base_url().'assets/images/'.$val['poster_kelas']?>" alt="Image"
 												class="img-fluid"></a>
 									</figure>
 									<div class="course-inner-text py-4 px-4">
 										<span class="course-price"><?php
-                  if($val['harga_kelas'] == '0'){
-                    echo "<b>Gratis</b>";
-                  } else {
-					$hasil_rupiah = "Rp." . number_format($val['harga_kelas'],2,',','.');
-					echo $hasil_rupiah;
-                  }
-                ?></span>
+										if($val['harga_kelas'] == '0'){
+											echo "<b>Gratis</b>";
+										} else {
+											$hasil_rupiah = "Rp." . number_format($val['harga_kelas'],2,',','.');
+											echo $hasil_rupiah;
+										}
+										?></span>
 										<div class="meta"><span class="icon-clock-o"></span>4 Pertemuan / 12 Minggu</div>
 										<h3><a href="<?= base_url() ?>classes/open_class/<?= $val['id_kelas'] ?>"><?= $val['judul_kelas'] ?></a></h3>
 										<p><?php echo substr($val['deskripsi_kelas'],0,50);  ?></p>

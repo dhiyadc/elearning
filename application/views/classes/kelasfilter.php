@@ -231,7 +231,7 @@
 							<div class="col-lg-4 mt-5 mb-5 classBox moreBox" style="display: none;">
 								<div class="course bg-white h-100 align-self-stretch">
 									<figure class="m-0">
-										<a href="course-single.html"><img
+										<a href="<?= base_url() ?>classes/open_class/<?= $val['id_kelas']?>"><img
 												src="<?= base_url().'assets/images/'.$val['poster_kelas']?>" alt="Image"
 												class="img-fluid"></a>
 									</figure>

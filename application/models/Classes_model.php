@@ -167,6 +167,13 @@ class Classes_model extends CI_Model {
         return $this->db->get('detail_user')->result_array();
     }
 
+    public function getMyName()
+    {
+        $this->db->select('nama');
+        $this->db->where('id_user',$this->session->userdata('id_user'));
+        return $this->db->get('detail_user')->result_array()[0];
+    }
+
     public function getKategori()
     {
         return $this->db->get('kategori_kelas')->result_array();

@@ -13,6 +13,7 @@ class Classes extends CI_Controller {
         if(isset($this->session->userdata['logged_in'])){
             $data['kategori'] = $this->Classes_model->getKategori();
             $data['jenis'] = $this->Classes_model->getJenis();
+            $data['pembuat'] = $this->Classes_model->getMyName();
             $this->load->view('partialsuser/header');
             $this->load->view('classes/new_class',$data);
             $this->load->view('partialsuser/footer');
@@ -66,6 +67,7 @@ class Classes extends CI_Controller {
             $data['kategori'] = $this->Classes_model->getKategori();
             $data['jenis'] = $this->Classes_model->getJenis();
             $data['kelas'] = $this->Classes_model->getClassById($id_kelas);
+            $data['pembuat'] = $this->Classes_model->getMyName();
             $this->load->view('partialsuser/header');
             $this->load->view('classes/update_class',$data);
             $this->load->view('partialsuser/footer');
