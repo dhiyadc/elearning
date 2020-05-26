@@ -22,7 +22,7 @@ class Profile extends CI_Controller {
             $this->load->view('profile/my_profile',$data);
             $this->load->view('partialsuser/footer');
         } else {
-            redirect('login');
+            redirect('home');
         }
     }
 
@@ -34,7 +34,7 @@ class Profile extends CI_Controller {
             $this->load->view('profile/edit_profile',$data);
             $this->load->view('partialsuser/footer');
         } else {
-            redirect('login');
+            redirect('home');
         }
     }
 
@@ -45,7 +45,7 @@ class Profile extends CI_Controller {
             //$this->Profile_model->editAccount();
             redirect('profile');
         } else {
-            redirect('login');
+            redirect('home');
         }
     }
 
@@ -55,7 +55,7 @@ class Profile extends CI_Controller {
             $this->Profile_model->deleteAccount();
             redirect('login/logout');
         } else {
-            redirect('login');
+            redirect('home');
         }
     }
 
@@ -64,7 +64,7 @@ class Profile extends CI_Controller {
         if(isset($this->session->userdata['logged_in'])){
             $this->load->view('profile/change_password');
         } else {
-            redirect('login');
+            redirect('home');
         }
     }
 
@@ -93,7 +93,7 @@ class Profile extends CI_Controller {
             }
 
         } else {
-            redirect('login');
+            redirect('home');
         }
     }
 }

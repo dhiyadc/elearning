@@ -18,7 +18,7 @@ class Classes extends CI_Controller {
             $this->load->view('classes/new_class',$data);
             $this->load->view('partialsuser/footer');
         } else {
-            redirect('login');
+            redirect('home');
         }
     }
 
@@ -29,7 +29,7 @@ class Classes extends CI_Controller {
             $id = $this->Classes_model->getIdNewClass();
             redirect('classes/open_class/' . $id['id_kelas']);
         } else {
-            redirect('login');
+            redirect('home');
         }
     }
 
@@ -72,7 +72,7 @@ class Classes extends CI_Controller {
             $this->load->view('classes/update_class',$data);
             $this->load->view('partialsuser/footer');
         } else {
-            redirect('login');
+            redirect('home');
         }
     }
 
@@ -82,7 +82,7 @@ class Classes extends CI_Controller {
             $this->Classes_model->updateClass($id_kelas);
             redirect('classes/open_class/' . $id_kelas);
         } else {
-            redirect('login');
+            redirect('home');
         }
     }
 
@@ -92,7 +92,7 @@ class Classes extends CI_Controller {
             $this->Classes_model->setKegiatanByClass($id_kelas);
             redirect('classes/open_class/' . $id_kelas);
         } else {
-            redirect('login');
+            redirect('home');
         }
     }
 
@@ -102,7 +102,7 @@ class Classes extends CI_Controller {
             $this->Classes_model->updateKegiatan($id_kegiatan);
             redirect('classes/open_class/' . $id_kelas);
         } else {
-            redirect('login');
+            redirect('home');
         }
     }
 
@@ -112,7 +112,7 @@ class Classes extends CI_Controller {
             $this->Classes_model->joinClass($id_kelas);
             redirect('classes/open_class/' . $id_kelas);
         } else {
-            redirect('login');
+            redirect('home');
         }
     }
 
@@ -121,7 +121,7 @@ class Classes extends CI_Controller {
         if(isset($this->session->userdata['logged_in'])){
             $this->load->view('classes/pembayaran',$id_kelas);
         } else {
-            redirect('login');
+            redirect('home');
         }
     }
 
@@ -137,7 +137,7 @@ class Classes extends CI_Controller {
             $this->load->view('classes/my_classes',$data);
             $this->load->view('partialsuser/footer');
         } else {
-            redirect('login');
+            redirect('home');
         }
     }
 
@@ -147,7 +147,7 @@ class Classes extends CI_Controller {
             $this->Classes_model->leaveClass($id_kelas);
             redirect('classes/kelas_diikuti');
         } else {
-            redirect('login');
+            redirect('home');
         }
     }
 

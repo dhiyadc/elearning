@@ -1466,4 +1466,20 @@ background-color: black;
       opacity: 1;
   }
 
-  
+  .selectkelas p{
+    font-size: 300px;
+  }
+
+  .btnred{
+    background-color: red;
+    border-color: white;
+    color: white;
+    border-radius: 5px;
+  }
+
+  .btncyan{
+    background-color: darkcyan;
+    border-color:white;
+    color: white;
+    border-radius: 5px;
+  }
