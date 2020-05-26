@@ -42,7 +42,7 @@
           <?php foreach ($class as $val) : ?>
             <div class="course bg-white h-100 align-self-stretch">
               <figure class="m-0">
-                <a href="<?=base_url()?>classes/open_class/<?= $val['id_kelas'] ?>"><img src="<?= base_url().'assets/images/'.$val['poster_kelas']?>" alt="Image" class="img-fluid"></a>
+                <a href="<?=base_url()?>classes/open_class/<?= $val['id_kelas'] ?>"><img src="<?= base_url().'assets/images/'.$val['poster_kelas']?>" alt="Image" class="img-fluid" style="height: 180px; object-fit: cover;"></a>
               </figure>
               <div class="course-inner-text py-4 px-4">
                 <span class="course-price"><?php
@@ -53,13 +53,14 @@
                     echo $hasil_rupiah;
                   }
                 ?></span>
-                <div class="meta"><span class="icon-clock-o"></span>4 Pertemuan / 12 Minggu</div>
+                <div class="meta">
+                      <div class="meta"># <?= $val['nama_kategori']; ?></div>
+                </div>
                 <h3><a href="<?=base_url()?>classes/open_class/<?= $val['id_kelas'] ?>"><?= $val['judul_kelas'] ?></a></h3>
                 <p><?php echo substr($val['deskripsi_kelas'],0,100);  ?></p>
               </div>
               <div class="d-flex border-top stats">
                 <div class="py-3 px-4"><span class="icon-users"></span> <?= $val['peserta'] ?> peserta</div>
-                <div class="py-3 px-4 w-25 ml-auto border-left"><span class="icon-chat"></span> 2</div>
               </div>
             </div>
           <?php endforeach; ?>
@@ -67,14 +68,12 @@
 
 
           </div>
-          <!-- <button class="customPrevBtn btn"> <span class="carousel-control-prev-icon" aria-hidden="true"></span></button> -->
-          <a class="carousel-control-prev customPrevBtn" href="#carouselExampleIndicators" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
+
+          <a class="carousel-control-prev" href="#myCarousel" data-slide="prev">
+              <span class="customPrevBtn carousel-control-prev-icon"></span>
           </a>
-          <a class="carousel-control-next customNextBtn" href="#carouselExampleIndicators" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
+          <a class="carousel-control-next" href="#myCarousel" data-slide="next">
+              <span class="customNextBtn carousel-control-next-icon"></span>
           </a>
         
 
