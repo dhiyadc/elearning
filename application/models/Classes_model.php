@@ -438,6 +438,11 @@ class Classes_model extends CI_Model {
         $this->db->update('jadwal_kegiatan',$data);
     }
 
+    public function updateKegiatanStatus($activityId, $status) {
+        $this->db->set('status_kegiatan', $status)->where('id_kegiatan', $activityId);
+        return $this->db->update('jadwal_kegiatan');
+    }
+
     public function joinClass($id)
     {
         $data = [

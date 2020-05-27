@@ -62,6 +62,12 @@ class Classes extends CI_Controller {
     }
 
     public function startClass($classId, $activityId) {
+        // Check if update class status to start has succeed
+        if (!$this->Classes_model->updateKegiatanStatus($activityId, CLASS_STARTED)) {
+            $this->session->set_flashdata('message', 'Failed to start the class!');
+            redirect("classes/open_class/$classId");
+        }
+
         $classDetail = $this->Classes_model->getClassById($classId)[0];
         $classActivity = $this->Classes_model->getKegiatanByIdKegiatan($activityId)[0];
         $classMember = $this->Classes_model->getPesertaByClassId($classId);
@@ -84,7 +90,7 @@ class Classes extends CI_Controller {
                 'activityStatus' => $classActivity['status_kegiatan']
             ]
         ];
-        
+
         $this->load->view('iframe/elearning', $data);
     }
 
