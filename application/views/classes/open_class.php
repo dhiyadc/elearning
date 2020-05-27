@@ -139,7 +139,7 @@
                                     <?php endif; ?>
                                   <?php else : ?>
                                       <button type="button" class="btn btn-light" data-toggle="modal" data-target="#editKegiatan<?= $val2['id_kegiatan']; ?>">Edit</button><br>
-                                      <a href="<?= base_url('classes/startClass/') ?><?=$this->uri->segment(3)?>" class="btn btn-dark mr-1">Mulai</a>
+                                      <a href="<?= base_url('classes/startClass/') ?><?= $val['id_kelas'] ?>/<?= $val2['id_kegiatan']; ?>" class="btn btn-dark mr-1">Mulai</a>
                                       <div class="modal fade" id="editKegiatan<?= $val2['id_kegiatan']; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="padding-right: 90px;">
                                         <div class="modal-dialog" role="document">
                                           <!--Content-->
