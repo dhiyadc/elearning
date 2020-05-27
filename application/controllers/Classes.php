@@ -107,7 +107,7 @@ class Classes extends CI_Controller {
         $isUserHasThisClass = $this->Classes_model->getPesertaByUserIdClassId($classId);
     
         if (!$isUserHasThisClass) {
-            $this->session->set_flashdata('message', 'Register to this class first!');
+            $this->session->set_flashdata('message', "You're not a member of this class!");
             redirect("classes/open_class/$classId");
         }
 
