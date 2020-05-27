@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 23, 2020 at 10:30 AM
+-- Generation Time: May 27, 2020 at 06:20 PM
 -- Server version: 10.4.11-MariaDB
--- PHP Version: 7.4.3
+-- PHP Version: 7.4.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -51,7 +51,7 @@ CREATE TABLE `detail_user` (
   `id_user` varchar(64) NOT NULL,
   `nama` varchar(100) NOT NULL,
   `no_telepon` varchar(100) NOT NULL,
-  `foto` text DEFAULT 'default_pic.png',
+  `foto` text DEFAULT NULL,
   `deskripsi` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -60,15 +60,14 @@ CREATE TABLE `detail_user` (
 --
 
 INSERT INTO `detail_user` (`id_user`, `nama`, `no_telepon`, `foto`, `deskripsi`) VALUES
-('3H43Iy6yCF7T3daHmv7Ydkk6Gcc9NFejhn8SXp2aOfptQXNDv5mCDKjgnKApVBsh', 'Arya Pradata', '081278220370', '1147426.jpg', 'Professional Web Developer'),
-('5xUR4mnMETQZ8OmWsYwkDw1NBH2z0cTVLsO8DLuRkpXSQoUKQu8Q4uWyeUUox2EJ', 'Aaron Cranston', '1284831983', 'default_pic.png', ''),
-('83pkWMxfc32osQdX158Ddc6cUFTtS3ZMKW8dWFWOSkAcni4lcPr86aPHQ8K1r9Sm', 'User Test', '081234567890', 'default_pic.png', NULL),
-('AORFhHgQkBDCZiJZcSTxQxPVgAsnrcvI32rfqZT11YM5N7WG2dfFybRCcF0YwD6o', 'Ricardo Adocicados', '983228390', 'default_pic.png', ''),
-('b0D4Q4pX6NCibfO2SRag3BdN6tpOugQkilV5LbBHgSVFO9gD5VDCnuqU2oGWyLz9', 'Dice', '0812', 'default_pic.png', NULL),
-('jybs0xGSI5ZWrRLnjb34qSf7PsxSHp2fMAghq4y9MA8j20E48bB6xUj9jPfTXdwI', 'Hanari Carnes', '982302831039', 'default_pic.png', ''),
-('pTithyQiH1fYF5fOjETFtMblWqqsfbv9V56o3pC4JFNM617ULFmTchAfK7JCMbDp', 'Wilman Kala', '231231233', 'default_pic.png', ''),
-('s4blnpXLSs4GWELe5YM6GrJV4m6r7m8fUCsEZq8zuqXpDNnnDwniMLKt1si675HC', 'Ernst Handel', '8723827382', 'default_pic.png', ''),
-('upDwiQ8hLclcFG3pvaNQNIbnTtzIq7V8ZXQj5xjtqBjq2eh4mvUOYzBVTRMszlTZ', 'fbgfv', '24', 'default_pic.png', ''),
+('3H43Iy6yCF7T3daHmv7Ydkk6Gcc9NFejhn8SXp2aOfptQXNDv5mCDKjgnKApVBsh', 'Arya Pradata', '081278220370', '', ''),
+('5xUR4mnMETQZ8OmWsYwkDw1NBH2z0cTVLsO8DLuRkpXSQoUKQu8Q4uWyeUUox2EJ', 'Aaron Cranston', '1284831983', '', ''),
+('AORFhHgQkBDCZiJZcSTxQxPVgAsnrcvI32rfqZT11YM5N7WG2dfFybRCcF0YwD6o', 'Ricardo Adocicados', '983228390', '', ''),
+('b0D4Q4pX6NCibfO2SRag3BdN6tpOugQkilV5LbBHgSVFO9gD5VDCnuqU2oGWyLz9', 'Dice', '0812', '71779706_448094602754019_6167635517203967163_n.jpg', 'nama saya isan'),
+('jybs0xGSI5ZWrRLnjb34qSf7PsxSHp2fMAghq4y9MA8j20E48bB6xUj9jPfTXdwI', 'Hanari Carnes', '982302831039', '', ''),
+('pTithyQiH1fYF5fOjETFtMblWqqsfbv9V56o3pC4JFNM617ULFmTchAfK7JCMbDp', 'Wilman Kala', '231231233', '', ''),
+('s4blnpXLSs4GWELe5YM6GrJV4m6r7m8fUCsEZq8zuqXpDNnnDwniMLKt1si675HC', 'Ernst Handel', '8723827382', '', ''),
+('upDwiQ8hLclcFG3pvaNQNIbnTtzIq7V8ZXQj5xjtqBjq2eh4mvUOYzBVTRMszlTZ', 'fbgfv', '24', '', ''),
 ('ZNccBYZWWc5fKV5B5bF951jPLLfWUOqKtlAvHJroogkhmNCEXVqUzU3l5i2U1QXb', 'Dhiya Calista', '0812', 'WhatsApp_Image_2020-01-30_at_21_00_32.jpeg', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro consectetur ut hic ipsum et veritatis corrupti. Itaque eius soluta optio dolorum temporibus in, atque, quos fugit sunt sit quaerat.');
 
 -- --------------------------------------------------------
@@ -98,10 +97,8 @@ INSERT INTO `harga_kelas` (`id_kelas`, `harga_kelas`) VALUES
 ('5ec0000979ed7', '0'),
 ('5ec00363a7372', '0'),
 ('5ec004a41a8e9', '100000'),
-('5ec8dcf14e506', '0'),
-('5ec8dd58ab63a', '0'),
-('5ec8deee4538b', '0'),
-('5ec8df14082db', '0');
+('5eca8fcd66d7d', '0'),
+('5ece92d86656c', 'Rp. 100.000');
 
 -- --------------------------------------------------------
 
@@ -123,23 +120,21 @@ CREATE TABLE `jadwal_kegiatan` (
 
 INSERT INTO `jadwal_kegiatan` (`id_kegiatan`, `id_kelas`, `deskripsi_kegiatan`, `tanggal_kegiatan`, `status_kegiatan`) VALUES
 ('5ebb7cc2a60e9', '5ebb7cc297b3d', 'sdsd', '2020-05-13 09:02:59', 1),
-('5ebba0bf0edf9', '5ebba0beda10c', '', '0000-00-00 00:00:00', 1),
+('5ebba0bf0edf9', '5ebba0beda10c', '', '2020-05-22 08:00:37', 2),
 ('5ebba0d1c1169', '5ebba0d1b8a50', '', '0000-00-00 00:00:00', 1),
-('5ebba0f5ddfb1', '5ebba0beda10c', 'd', '0000-00-00 00:00:00', 1),
+('5ebba0f5ddfb1', '5ebba0beda10c', 'd', '2020-05-22 08:00:37', 2),
 ('5ebbb7dabd8b1', '5ebb7cc297b3d', 'baru', '0000-00-00 00:00:00', 1),
-('5ebbb7ec4e2fe', '5ebb7cc297b3d', 'ddd', '0000-00-00 00:00:00', 1),
+('5ebbb7ec4e2fe', '5ebb7cc297b3d', 'ddd', '2020-05-22 08:00:37', 2),
 ('5ebbb8095c36b', '5ebbb8094dfbe', 'dd', '0000-00-00 00:00:00', 1),
-('5ebbb8095dab4', '5ebbb8094dfbe', 'dd', '0000-00-00 00:00:00', 1),
+('5ebbb8095dab4', '5ebbb8094dfbe', 'dd', '2020-05-22 08:00:37', 2),
 ('5ebbb828400bd', '5ebb7cc297b3d', 'asdasdas', '0000-00-00 00:00:00', 1),
-('5ebbb83bf36c0', '5ebbb83bef31e', '', '0000-00-00 00:00:00', 1),
+('5ebbb83bf36c0', '5ebbb83bef31e', '', '2020-05-22 08:00:37', 2),
 ('5ebfe3cd62b8c', '5ebfd9f07b9e3', 'kegiatan satu', '2020-05-14 02:45:00', 1),
-('5ec0000991ac7', '5ec0000979ed7', 'kegiatan 1', '2020-05-21 02:45:00', 1),
+('5ec0000991ac7', '5ec0000979ed7', 'kegiatan 1', '2020-05-22 08:00:38', 2),
 ('5ec00363beebb', '5ec00363a7372', 'kegiatan 1', '2020-05-06 22:25:00', 1),
-('5ec004a43ad93', '5ec004a41a8e9', '1', '2020-05-26 05:40:00', 1),
-('5ec8dcf157a7d', '5ec8dcf14e506', 'dasdasd', '2020-05-23 08:21:00', 1),
-('5ec8dd58aec6f', '5ec8dd58ab63a', 'dsda', '2020-05-23 08:22:00', 1),
-('5ec8deee48cb9', '5ec8deee4538b', 'desc', '2020-05-23 08:29:00', 1),
-('5ec8df140b85c', '5ec8df14082db', 'desc 2', '2020-05-23 23:50:00', 1);
+('5ec004a43ad93', '5ec004a41a8e9', '1', '2020-05-22 08:00:38', 2),
+('5eca8fcd81c24', '5eca8fcd66d7d', 'satu', '2020-04-29 15:05:00', 1),
+('5ecb5b55a9e2c', '5ebfff829cf5d', 'satu', '2020-05-05 22:25:00', 1);
 
 -- --------------------------------------------------------
 
@@ -227,16 +222,14 @@ INSERT INTO `kelas` (`id_kelas`, `pembuat_kelas`, `judul_kelas`, `deskripsi_kela
 ('5ebba0d1b8a50', '3H43Iy6yCF7T3daHmv7Ydkk6Gcc9NFejhn8SXp2aOfptQXNDv5mCDKjgnKApVBsh', 'ddasdasdd', 'dddd', 1, 'Flying_Evo_2.jpg', 1, 1),
 ('5ebbb8094dfbe', '3H43Iy6yCF7T3daHmv7Ydkk6Gcc9NFejhn8SXp2aOfptQXNDv5mCDKjgnKApVBsh', 'ddd', 'fff', 1, 'its_GTR.jpg', 1, 1),
 ('5ebbb83bef31e', '3H43Iy6yCF7T3daHmv7Ydkk6Gcc9NFejhn8SXp2aOfptQXNDv5mCDKjgnKApVBsh', 'supra', 'suprio', 1, 'its_supra.jpg', 1, 2),
-('5ebfd9f07b9e3', 'ZNccBYZWWc5fKV5B5bF951jPLLfWUOqKtlAvHJroogkhmNCEXVqUzU3l5i2U1QXb', 'kelas satu', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro consectetur ut hic ipsum et veritatis corrupti. Itaque eius soluta optio dolorum temporibus in, atque, quos fugit sunt sit quaerat dicta.', 1, 'No__1.jpg', 2, 2),
-('5ebffb1f05953', 'ZNccBYZWWc5fKV5B5bF951jPLLfWUOqKtlAvHJroogkhmNCEXVqUzU3l5i2U1QXb', 'Sistem Operasi', 'bukan dani metiu', 1, '4_(ebook_page_330).png', 1, 2),
-('5ebfff829cf5d', 'ZNccBYZWWc5fKV5B5bF951jPLLfWUOqKtlAvHJroogkhmNCEXVqUzU3l5i2U1QXb', 'Algoritma dan Pemrograman', 'bukan megah mulya', 1, '6_(ebook_page_86)1.png', 1, 2),
-('5ec0000979ed7', 'ZNccBYZWWc5fKV5B5bF951jPLLfWUOqKtlAvHJroogkhmNCEXVqUzU3l5i2U1QXb', 'Teori Bahasa Otomata', 'hbsdj', 1, 'blog_rl.jpeg', 1, 1),
+('5ebfd9f07b9e3', 'ZNccBYZWWc5fKV5B5bF951jPLLfWUOqKtlAvHJroogkhmNCEXVqUzU3l5i2U1QXb', 'kelas satu', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro consectetur ut hic ipsum et veritatis corrupti. Itaque eius soluta optio dolorum temporibus in, atque, quos fugit sunt sit quaerat dicta.', 1, 'No__1.jpg', 2, 1),
+('5ebffb1f05953', 'ZNccBYZWWc5fKV5B5bF951jPLLfWUOqKtlAvHJroogkhmNCEXVqUzU3l5i2U1QXb', 'Sistem Operasi', 'bukan dani metiu', 1, '4_(ebook_page_330).png', 1, 1),
+('5ebfff829cf5d', 'ZNccBYZWWc5fKV5B5bF951jPLLfWUOqKtlAvHJroogkhmNCEXVqUzU3l5i2U1QXb', 'Algoritma dan Pemrograman', 'bukan megah mulya', 2, 'lat_10_2_cal.jpeg', 1, 1),
+('5ec0000979ed7', 'ZNccBYZWWc5fKV5B5bF951jPLLfWUOqKtlAvHJroogkhmNCEXVqUzU3l5i2U1QXb', 'Teori Bahasa Otomata', 'hbsdj', 1, 'blog_rl.jpeg', 1, 2),
 ('5ec00363a7372', 'ZNccBYZWWc5fKV5B5bF951jPLLfWUOqKtlAvHJroogkhmNCEXVqUzU3l5i2U1QXb', 'Alpro', 'alpro', 1, 'blog_rd.jpeg', 1, 1),
-('5ec004a41a8e9', 'ZNccBYZWWc5fKV5B5bF951jPLLfWUOqKtlAvHJroogkhmNCEXVqUzU3l5i2U1QXb', 'Alpro 2', 'alpro 2', 1, 'blog_u.jpeg', 2, 1),
-('5ec8dcf14e506', '3H43Iy6yCF7T3daHmv7Ydkk6Gcc9NFejhn8SXp2aOfptQXNDv5mCDKjgnKApVBsh', 'Dope Mustang', 'dsadasd', 2, 'Garasi_Drift.jpg', 1, 1),
-('5ec8dd58ab63a', '3H43Iy6yCF7T3daHmv7Ydkk6Gcc9NFejhn8SXp2aOfptQXNDv5mCDKjgnKApVBsh', 'ddasdasdd', 'sadda', 1, 'birthday.png', 1, 1),
-('5ec8deee4538b', '83pkWMxfc32osQdX158Ddc6cUFTtS3ZMKW8dWFWOSkAcni4lcPr86aPHQ8K1r9Sm', 'Test Kelas', 'kelas desc', 1, 'Forza.jpg', 1, 1),
-('5ec8df14082db', '83pkWMxfc32osQdX158Ddc6cUFTtS3ZMKW8dWFWOSkAcni4lcPr86aPHQ8K1r9Sm', 'Kelas test1', 'desc 1', 1, 'Vanquish_2.jpg', 1, 1);
+('5ec004a41a8e9', 'ZNccBYZWWc5fKV5B5bF951jPLLfWUOqKtlAvHJroogkhmNCEXVqUzU3l5i2U1QXb', 'Alpro 2', 'alpro 2', 1, 'blog_u.jpeg', 2, 2),
+('5eca8fcd66d7d', 'b0D4Q4pX6NCibfO2SRag3BdN6tpOugQkilV5LbBHgSVFO9gD5VDCnuqU2oGWyLz9', 'satu', 'satu', 1, 'blog_v_rl2.jpeg', 1, 1),
+('5ece92d86656c', 'b0D4Q4pX6NCibfO2SRag3BdN6tpOugQkilV5LbBHgSVFO9gD5VDCnuqU2oGWyLz9', 'kelas 2', '2', 1, 'blog_v_rl3.jpeg', 2, 1);
 
 -- --------------------------------------------------------
 
@@ -303,9 +296,11 @@ CREATE TABLE `peserta` (
 INSERT INTO `peserta` (`id_kelas`, `id_user`) VALUES
 ('5ebb7cc297b3d', 'ZNccBYZWWc5fKV5B5bF951jPLLfWUOqKtlAvHJroogkhmNCEXVqUzU3l5i2U1QXb'),
 ('5ebba0beda10c', 'ZNccBYZWWc5fKV5B5bF951jPLLfWUOqKtlAvHJroogkhmNCEXVqUzU3l5i2U1QXb'),
+('5ebba0d1b8a50', 'b0D4Q4pX6NCibfO2SRag3BdN6tpOugQkilV5LbBHgSVFO9gD5VDCnuqU2oGWyLz9'),
 ('5ebba0d1b8a50', 'ZNccBYZWWc5fKV5B5bF951jPLLfWUOqKtlAvHJroogkhmNCEXVqUzU3l5i2U1QXb'),
 ('5ebbb8094dfbe', 'ZNccBYZWWc5fKV5B5bF951jPLLfWUOqKtlAvHJroogkhmNCEXVqUzU3l5i2U1QXb'),
-('5ebbb83bef31e', 'ZNccBYZWWc5fKV5B5bF951jPLLfWUOqKtlAvHJroogkhmNCEXVqUzU3l5i2U1QXb');
+('5ebbb83bef31e', 'ZNccBYZWWc5fKV5B5bF951jPLLfWUOqKtlAvHJroogkhmNCEXVqUzU3l5i2U1QXb'),
+('5ebffb1f05953', 'b0D4Q4pX6NCibfO2SRag3BdN6tpOugQkilV5LbBHgSVFO9gD5VDCnuqU2oGWyLz9');
 
 -- --------------------------------------------------------
 
@@ -404,7 +399,6 @@ CREATE TABLE `user` (
 INSERT INTO `user` (`id_user`, `email`, `password`) VALUES
 ('3H43Iy6yCF7T3daHmv7Ydkk6Gcc9NFejhn8SXp2aOfptQXNDv5mCDKjgnKApVBsh', 'zemitvector@gmail.com', '54680bd183bb915f1a4d0745b8e3660841ed6ecc30871431e24a451ae4894edb'),
 ('5xUR4mnMETQZ8OmWsYwkDw1NBH2z0cTVLsO8DLuRkpXSQoUKQu8Q4uWyeUUox2EJ', 'cranston@gmail.com', '54680bd183bb915f1a4d0745b8e3660841ed6ecc30871431e24a451ae4894edb'),
-('83pkWMxfc32osQdX158Ddc6cUFTtS3ZMKW8dWFWOSkAcni4lcPr86aPHQ8K1r9Sm', 'usertest@gmail.com', 'e95a4da7289aee50d63dfdb1e807d62f662cb55cde2d38dfcab2a0d9d020fc04'),
 ('87CGFHbDtTjpzSQhmx20FPDzl3gehtFUSixLXrn9QnR85BCBJMpCl1ZTi1tnFtwy', 'isan@gmail.com', '799cecdfabfc9c61fb2670372ddef1ec3f421172c69037e38768352372187adb'),
 ('AORFhHgQkBDCZiJZcSTxQxPVgAsnrcvI32rfqZT11YM5N7WG2dfFybRCcF0YwD6o', 'ricar@gmail.com', '54680bd183bb915f1a4d0745b8e3660841ed6ecc30871431e24a451ae4894edb'),
 ('b0D4Q4pX6NCibfO2SRag3BdN6tpOugQkilV5LbBHgSVFO9gD5VDCnuqU2oGWyLz9', 'dice@gmail.com', '82ecd2972f1fac44447c233d24f0efb96dea42fc6bda8e18b3f780e9c370a7ed'),
@@ -503,7 +497,7 @@ ALTER TABLE `pembayaran`
 -- Indexes for table `peserta`
 --
 ALTER TABLE `peserta`
-  ADD PRIMARY KEY (`id_kelas`),
+  ADD PRIMARY KEY (`id_kelas`,`id_user`),
   ADD KEY `id_kelas` (`id_kelas`,`id_user`),
   ADD KEY `id_user` (`id_user`);
 
