@@ -62,7 +62,24 @@ class Classes extends CI_Controller {
     }
 
     public function startClass($classId) {
-        $this->load->view('iframe/elearning');
+        $classDetail = $this->Classes_model->getClassById($classId)[0];
+        $classActivity = $this->Classes_model->getKegiatan($classId);
+        $classMember = $this->Classes_model->getPesertaByClassId($classId);
+        $data = [
+            'classId' => $classDetail['id_kelas'],
+            'classOwner' => $classDetail['pembuat_kelas'],
+            'classTitle' => $classDetail['judul_kelas'],
+            'classStatus' => $classDetail['status_kelas'],
+            'classMember' => array_map(function($data) { return $data['id_user']; }, $classMember),
+            'classActivity' => array_map(function($data) { return [
+                'activityId' => $data['id_kegiatan'],
+                'activityDescription' => $data['deskripsi_kegiatan'],
+                'activityDateTime' => "$data[tanggal], $data[waktu]",
+                'activityStatus' => $data['status_kegiatan']
+            ]; }, $classActivity)
+        ];
+
+        $this->load->view('iframe/elearning', $data);
     }
 
     public function update_class($id_kelas)
