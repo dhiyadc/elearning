@@ -17,9 +17,33 @@
 </head>
 
 <body>
+	<?php if ($this->session->flashdata('message')): ?>
+	<div class="modal fade" id="modalNotif" tabindex="-1" role="dialog">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Information</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<?=$this->session->flashdata('message');?>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<?php endif?>
+
     <div id="root" class="h-100"></div>
     
 	<script src='https://meet.jit.si/external_api.js'></script>
+	<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+	<script src="<?= base_url('assets/js/script.js') ?>"></script>
 	<script>
 		const username = '<?= $userName ?>'
 		const email = '<?= $userEmail ?>'
