@@ -61,7 +61,7 @@ class Classes extends CI_Controller {
         }
     }
 
-    public function startClass($classId, $activityId) {
+    public function startClassActivity($classId, $activityId) {
         // Check if update class status to start has succeed
         if (!$this->Classes_model->updateKegiatanStatus($activityId, CLASS_STARTED)) {
             $this->session->set_flashdata('message', 'Failed to start the class!');
