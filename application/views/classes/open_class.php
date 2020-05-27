@@ -133,7 +133,7 @@
                               <td>
                                   <?php if ($val['pembuat_kelas'] != $this->session->userdata('id_user')) : ?>
                                     <?php if ($cek == true) : ?>
-                                    <?php elseif ($peserta != null) : ?>
+                                    <?php elseif ($peserta != null && $val2['status_kegiatan'] == CLASS_STARTED) : ?>
                                       <button type="button" class="btn btn-dark mr-1">Ikut</button>
                                     <?php elseif ($cek == false) : ?>
                                     <?php endif; ?>
