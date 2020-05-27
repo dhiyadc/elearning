@@ -21,18 +21,20 @@
     
 	<script src='https://meet.jit.si/external_api.js'></script>
 	<script>
-		const username = '<?= $classOwner['ownerUsername'] ?>'
-		const email = '<?= $classOwner['ownerEmail'] ?>'
+		const username = '<?= $userName ?>'
+		const email = '<?= $userEmail ?>'
 
 		const isGuest = isUserGuest()
 		const { domain, options} = getJitsiConfig(username, email)
 		const roomSubject = '<?= $classActivity['activityDescription'] ?>'
-		const roomPassword = '<?= sha1("$classId $classOwner[ownerId] $classActivity[activityId]") ?>'
+		const roomPassword = '<?= sha1("$classId $ownerId $classActivity[activityId]") ?>'
 
 		const api = new JitsiMeetExternalAPI(domain, options)
 		api.addListener('readyToClose', () => {
 			if (!isGuest) {
 				window.location.replace("<?= base_url("classes/closeClassActivity/$classId/$classActivity[activityId]") ?>");
+			} else {
+				window.location.replace("<?= base_url("classes/open_class/$classId") ?>");
 			}
 			api.dispose()
 		}).addListener('participantKickedOut', ({kicked}) => {
@@ -96,7 +98,7 @@
 		}
 
 		function isUserGuest() {
-			return <?= $classOwner['ownerId'] != $this->session->userdata('id_user')?>
+			return <?= $ownerId != $this->session->userdata('id_user')?>
 		}
 
 	</script>

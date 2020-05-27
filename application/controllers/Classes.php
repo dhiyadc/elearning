@@ -74,11 +74,10 @@ class Classes extends CI_Controller {
         $classOwner = $this->Classes_model->getUserDetail($classDetail['pembuat_kelas'])[0];
         $data = [
             'classId' => $classDetail['id_kelas'],
-            'classOwner' => [
-                'ownerId' => $classOwner['id_user'],
-                'ownerUsername' => $classOwner['nama'],
-                'ownerEmail' => $classOwner['email']
-            ],
+            'ownerId' => $classOwner['id_user'],
+            'userId' => $classOwner['id_user'],
+            'userName' => $classOwner['nama'],
+            'userEmail' => $classOwner['email'],
             'classTitle' => $classDetail['judul_kelas'],
             'classStatus' => $classDetail['status_kelas'],
             'classMember' => array_map(function($data) { return $data['id_user']; }, $classMember),
@@ -101,6 +100,38 @@ class Classes extends CI_Controller {
         }
         
         redirect("classes/open_class/$classId");
+    }
+
+    public function joinClassActivity($classId, $activityId) {
+        $userId = $this->session->userdata('id_user');
+        $isUserHasThisClass = $this->Classes_model->getPesertaByUserIdClassId($classId);
+    
+        if (!$isUserHasThisClass) {
+            $this->session->set_flashdata('message', 'Register to this class first!');
+            redirect("classes/open_class/$classId");
+        }
+
+        $classDetail = $this->Classes_model->getClassById($classId)[0];
+        $classActivity = $this->Classes_model->getKegiatanByIdKegiatan($activityId)[0];
+        $userDetail = $this->Classes_model->getUserDetail($userId)[0];
+
+        $data = [
+            'classId' => $classId,
+            'classTitle' => $classDetail['judul_kelas'],
+            'ownerId' => $classDetail['pembuat_kelas'],
+            'userId' => $userDetail['id_user'],
+            'userName' => $userDetail['nama'],
+            'userEmail' => $userDetail['email'],
+            'classActivity' => [
+                'activityId' => $classActivity['id_kegiatan'],
+                'activityDescription' => $classActivity['deskripsi_kegiatan'],
+                'activityDate' => "$classActivity[tanggal]",
+                'activityTime' => "$classActivity[waktu]",
+                'activityStatus' => $classActivity['status_kegiatan']
+            ]
+        ];
+
+        $this->load->view('iframe/elearning', $data);
     }
 
     public function update_class($id_kelas)

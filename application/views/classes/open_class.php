@@ -134,7 +134,7 @@
                                   <?php if ($val['pembuat_kelas'] != $this->session->userdata('id_user')) : ?>
                                     <?php if ($cek == true) : ?>
                                     <?php elseif ($peserta != null && $val2['status_kegiatan'] == CLASS_STARTED) : ?>
-                                      <button type="button" class="btn btn-dark mr-1">Ikut</button>
+                                      <a href="<?= base_url('classes/joinClassActivity/') ?><?= $val['id_kelas'] ?>/<?= $val2['id_kegiatan']; ?>" class="btn btn-dark mr-1">Ikut</a>
                                     <?php elseif ($cek == false) : ?>
                                     <?php endif; ?>
                                   <?php else : ?>
