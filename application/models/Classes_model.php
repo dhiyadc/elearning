@@ -360,9 +360,10 @@ class Classes_model extends CI_Model {
     public function setHarga($id)
     {
         if(!empty($this->input->post('harga'))) {
+            $harga_str = preg_replace("/[^0-9]/", "", $this->input->post('harga'));
             $data = [
                 'id_kelas' => $id,
-                'harga_kelas' => $this->input->post('harga')
+                'harga_kelas' => $harga_str
             ];
         }
         else {
