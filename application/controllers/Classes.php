@@ -94,6 +94,15 @@ class Classes extends CI_Controller {
         $this->load->view('iframe/elearning', $data);
     }
 
+    public function closeClassActivity($classId, $activityId) {
+        if (!$this->Classes_model->updateKegiatanStatus($activityId, CLASS_FINISHED)) {
+            $this->session->set_flashdata('message', 'Failed to end the class!');
+            redirect("classes/startClass/$classId/$activityId");
+        }
+        
+        redirect("classes/open_class/$classId");
+    }
+
     public function update_class($id_kelas)
     {
         if(isset($this->session->userdata['logged_in'])){

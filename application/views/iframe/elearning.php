@@ -32,7 +32,7 @@
 		const api = new JitsiMeetExternalAPI(domain, options)
 		api.addListener('readyToClose', () => {
 			if (!isGuest) {
-				console.log('Room Master Left!')
+				window.location.replace("<?= base_url("classes/closeClassActivity/$classId/$classActivity[activityId]") ?>");
 			}
 			api.dispose()
 		}).addListener('participantKickedOut', ({kicked}) => {
