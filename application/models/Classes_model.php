@@ -230,6 +230,14 @@ class Classes_model extends CI_Model {
         return $this->db->query($sql)->result_array();
     }
 
+    public function getKegiatanByIdKegiatan($activityId) {
+        $this->db->select("*, DATE_FORMAT(tanggal_kegiatan, '%W, %d %M %Y') as tanggal, DATE_FORMAT(tanggal_kegiatan, '%H:%i') as waktu")
+            ->from('jadwal_kegiatan')
+            ->where('id_kegiatan', $activityId);
+
+        return $this->db->get()->result_array();
+    }
+
     public function getAllKegiatan()
     {
         return $this->db->get('jadwal_kegiatan')->result_array();
