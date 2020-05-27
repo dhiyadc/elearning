@@ -61,6 +61,10 @@ class Classes extends CI_Controller {
         }
     }
 
+    public function startClass($classId) {
+        $this->load->view('iframe/elearning');
+    }
+
     public function update_class($id_kelas)
     {
         if(isset($this->session->userdata['logged_in'])){
