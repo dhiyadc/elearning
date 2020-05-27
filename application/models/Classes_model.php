@@ -189,6 +189,14 @@ class Classes_model extends CI_Model {
         return $this->db->get('status_kegiatan')->result_array();
     }
 
+    public function getUserDetail($userId) {
+        $this->db->select('*')
+            ->from('user')
+            ->join('detail_user', 'user.id_user = detail_user.id_user')
+            ->where('user.id_user', $userId);
+        return $this->db->get()->result_array();
+    }
+
     public function getPesertaByUserIdClassId($id)
     {
         $this->db->where('id_user',$this->session->userdata('id_user'));

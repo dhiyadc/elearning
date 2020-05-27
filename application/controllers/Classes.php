@@ -65,9 +65,14 @@ class Classes extends CI_Controller {
         $classDetail = $this->Classes_model->getClassById($classId)[0];
         $classActivity = $this->Classes_model->getKegiatanByIdKegiatan($activityId)[0];
         $classMember = $this->Classes_model->getPesertaByClassId($classId);
+        $classOwner = $this->Classes_model->getUserDetail($classDetail['pembuat_kelas'])[0];
         $data = [
             'classId' => $classDetail['id_kelas'],
-            'classOwner' => $classDetail['pembuat_kelas'],
+            'classOwner' => [
+                'ownerId' => $classOwner['id_user'],
+                'ownerUsername' => $classOwner['nama'],
+                'ownerEmail' => $classOwner['email']
+            ],
             'classTitle' => $classDetail['judul_kelas'],
             'classStatus' => $classDetail['status_kelas'],
             'classMember' => array_map(function($data) { return $data['id_user']; }, $classMember),
@@ -79,7 +84,7 @@ class Classes extends CI_Controller {
                 'activityStatus' => $classActivity['status_kegiatan']
             ]
         ];
-
+        
         $this->load->view('iframe/elearning', $data);
     }
 
