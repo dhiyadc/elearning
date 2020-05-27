@@ -4,7 +4,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Jitsi</title>
+	<title><?= $classTitle ?></title>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
 	<style>
 		html,
@@ -17,23 +17,17 @@
 </head>
 
 <body>
-	<div id="root" class="h-100"></div>
-
-	<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <div id="root" class="h-100"></div>
+    
 	<script src='https://meet.jit.si/external_api.js'></script>
 	<script>
-		const random = Math.round((Math.random() * 100))
-		const username = `user_${random}`
-		const email = `user_${random}@example.com`
+		const username = '<?= $classOwner['ownerUsername'] ?>'
+		const email = '<?= $classOwner['ownerEmail'] ?>'
 
 		const isGuest = isUserGuest()
-		const {
-			domain,
-			options
-		} = getJitsiConfig(username, email)
-		const roomSubject = 'Important Meetings!'
-		const roomPassword = 'w0RKh4rdPlAYh4rd!'
+		const { domain, options} = getJitsiConfig(username, email)
+		const roomSubject = '<?= $classActivity['activityDescription'] ?>'
+		const roomPassword = '<?= sha1("$classId $classOwner[ownerId] $classActivity[activityId]") ?>'
 
 		const api = new JitsiMeetExternalAPI(domain, options)
 		api.addListener('readyToClose', () => {
@@ -41,9 +35,7 @@
 				console.log('Room Master Left!')
 			}
 			api.dispose()
-		}).addListener('participantKickedOut', ({
-			kicked
-		}) => {
+		}).addListener('participantKickedOut', ({kicked}) => {
 			if (api._myUserID == kicked.id) {
 				api.executeCommand('hangup')
 			}
@@ -55,13 +47,13 @@
 			})
 		} else {
 			api.addListener('videoConferenceJoined', () => {
-				api.executeCommand('subject', roomSubject);
+				api.executeCommand('subject', roomSubject)
 				api.executeCommand('password', roomPassword)
 			})
 		}
 
 		function getJitsiConfig(username, email) {
-			const roomName = 'MyRoomId12!@'
+			const roomName = '<?= sha1("$classId $classActivity[activityDescription]") ?>'
 			const domain = 'meet.jit.si'
 			const options = {
 				roomName: roomName,
@@ -104,7 +96,7 @@
 		}
 
 		function isUserGuest() {
-			return Math.round(Math.random() * 1)
+			return <?= $classOwner['ownerId'] != $this->session->userdata('id_user')?>
 		}
 
 	</script>
