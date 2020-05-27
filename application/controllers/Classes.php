@@ -61,9 +61,9 @@ class Classes extends CI_Controller {
         }
     }
 
-    public function startClass($classId) {
+    public function startClass($classId, $activityId) {
         $classDetail = $this->Classes_model->getClassById($classId)[0];
-        $classActivity = $this->Classes_model->getKegiatan($classId);
+        $classActivity = $this->Classes_model->getKegiatanByIdKegiatan($activityId)[0];
         $classMember = $this->Classes_model->getPesertaByClassId($classId);
         $data = [
             'classId' => $classDetail['id_kelas'],
@@ -71,12 +71,13 @@ class Classes extends CI_Controller {
             'classTitle' => $classDetail['judul_kelas'],
             'classStatus' => $classDetail['status_kelas'],
             'classMember' => array_map(function($data) { return $data['id_user']; }, $classMember),
-            'classActivity' => array_map(function($data) { return [
-                'activityId' => $data['id_kegiatan'],
-                'activityDescription' => $data['deskripsi_kegiatan'],
-                'activityDateTime' => "$data[tanggal], $data[waktu]",
-                'activityStatus' => $data['status_kegiatan']
-            ]; }, $classActivity)
+            'classActivity' => [
+                'activityId' => $classActivity['id_kegiatan'],
+                'activityDescription' => $classActivity['deskripsi_kegiatan'],
+                'activityDate' => "$classActivity[tanggal]",
+                'activityTime' => "$classActivity[waktu]",
+                'activityStatus' => $classActivity['status_kegiatan']
+            ]
         ];
 
         $this->load->view('iframe/elearning', $data);
