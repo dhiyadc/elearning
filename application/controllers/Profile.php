@@ -62,7 +62,9 @@ class Profile extends CI_Controller {
     public function change_password()
     {
         if(isset($this->session->userdata['logged_in'])){
+            $this->load->view('partialsuser/header');
             $this->load->view('profile/change_password');
+            $this->load->view('partialsuser/footer');
         } else {
             redirect('home');
         }
