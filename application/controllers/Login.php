@@ -24,38 +24,23 @@ class Login extends CI_Controller {
 	
 	// Show login page
 	public function index() {
-
-
-		 if(isset($_SESSION['logged_in'])){
 		 	redirect('home');
-
-		 }else{
-			$this->load->view('user/login_user');
-		}
 	}
 	
 	 //User Login Process
 	public function user_login_process() {
 	
-		$this->form_validation->set_rules('email', 'Email', 'trim|xss_clean');
-		$this->form_validation->set_rules('password', 'Password', 'trim|xss_clean');
-		
-		if ($this->form_validation->run() == FALSE) {
-
 			if(isset($_SESSION['logged_in'])){
 				redirect('home');
 
-			}else{
-
-				$this->load->view('user/login_user');
 			}
-		} else {
-			$data = array(
-			'email' => $this->input->post('email'),
-			'password' => $this->input->post('password')
-			);
-			$result = $this->User_database->login($data);
-			if ($result == TRUE) {
+	
+			$email = $this->input->post('email');
+			$oldPass = $this->input->post('password');
+            $hashed = hash('sha256', $oldPass);
+			$getPass = $this->User_database->getFirstAccount($email);
+            $getPassword = $getPass['password'];
+			if ($hashed == $getPassword) {
 			
 				$email = $this->input->post('email');
 				$id_user = $this->db->get_where('user', ['email' => $email])->row_array();
@@ -68,14 +53,11 @@ class Login extends CI_Controller {
 				redirect('home');
 
 			} else {
-				// $data = array(
-				// 'error_message' => 'Invalid Email or Password'
-				// );
-				// $this->load->view('user/login_user', $data);
+				
 				$this->session->set_flashdata('invalid', 'Invalid Email or Password');
 				redirect('home');
 			}
-		}
+		
 	}
 		
 		// Logout from user
