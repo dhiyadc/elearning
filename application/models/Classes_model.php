@@ -144,7 +144,7 @@ class Classes_model extends CI_Model {
                 ON status_kegiatan.id_status = kelas.status_kelas
             GROUP BY kelas.id_kelas
             ORDER BY COUNT(peserta.id_kelas) DESC
-            LIMIT 10";
+            LIMIT 12";
             $query = $this->db->query($sql);
             return $query->result_array();
         }

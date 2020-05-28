@@ -178,7 +178,7 @@ class Classes extends CI_Controller {
         $data['kategori_text'] = $kategori;
         $data['categories'] = $this->Classes_model->getKategori();
         $data['class'] = $this->Classes_model->getClassesbyCategories($kategori);
-        $data['classNum'] = count($this->Classes_model->getAllClassesDetail());
+        $data['classNum'] = count($this->Classes_model->getClassesbyCategories($kategori));
         $this->load->view('classes/kelasfilter', $data);
         $this->load->view('partials/footer');
     }
@@ -193,7 +193,7 @@ class Classes extends CI_Controller {
         $data['kategori_text'] = $sorting;
         $data['categories'] = $this->Classes_model->getKategori();
         $data['class'] = $this->Classes_model->getClassesbySorting($sorting);
-        $data['classNum'] = count($this->Classes_model->getAllClassesDetail());
+        $data['classNum'] = count($this->Classes_model->getClassesbySorting($sorting));
         $this->load->view('classes/kelasfilter', $data);
         $this->load->view('partials/footer');
     }
@@ -205,10 +205,15 @@ class Classes extends CI_Controller {
         } else {
             $this->load->view('partials/header');    
         }
+
+        $data['kategori_text'] = "Yang Dicari";
         $data['keyword'] = $this->input->post('keyword');
         $data['categories'] = $this->Classes_model->getKategori();
         $data['class'] = $this->Classes_model->getAllClassesDetail($data['keyword']);
         $data['classNum'] = count($this->Classes_model->getAllClassesDetail($data['keyword']));
+        if($data['classNum'] == 0){
+            $data['tidak_ketemu'] = "Kelas yang anda cari tidak ada.";
+        }
         $this->load->view('classes/kelasfilter', $data);
         $this->load->view('partials/footer');
     }
