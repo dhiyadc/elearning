@@ -119,7 +119,9 @@ class Classes extends CI_Controller {
     public function pembayaran_kelas($id_kelas)
     {
         if(isset($this->session->userdata['logged_in'])){
+            $this->load->view('partialsuser/header');
             $this->load->view('classes/pembayaran',$id_kelas);
+            $this->load->view('partialsuser/footer');
         } else {
             redirect('home');
         }
@@ -216,5 +218,10 @@ class Classes extends CI_Controller {
         }
         $this->load->view('classes/kelasfilter', $data);
         $this->load->view('partials/footer');
+    }
+
+    public function iframe()
+    {
+        $this->load->view('iframe/elearning');
     }
 }
