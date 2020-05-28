@@ -54,7 +54,26 @@
             
             </div>
         </div>
+        <?php if($this->session->flashdata('invalid_pass')){ ?>
+        <div class="alert alert-danger" role="alert">
+            <?= $this->session->flashdata('invalid_pass'); ?>
+        </div>
+        <?php } ?>
+
+        <?php if($this->session->flashdata('pass')){ ?>
+        <div class="alert alert-success" role="alert">
+            <?= $this->session->flashdata('pass'); ?>
+        </div>
+        <?php } ?>
+
+        <?php if($this->session->flashdata('same_pass')){ ?>
+        <div class="alert alert-warning" role="alert">
+            <?= $this->session->flashdata('same_pass'); ?>
+        </div>
+        <?php } ?>
+        
         <div class="row">
+            
             <div class="col-md-3 field-label-responsive mb-3">
                 <label for="passwordnow">Email User</label>
             </div>
@@ -115,7 +134,7 @@
                 </div>
             </div>
         </div>
-        <!-- <div class="row">
+        <div class="row">
             <div class="col-md-3 field-label-responsive">
                 <label for="password">Konfirmasi Password</label>
             </div>
@@ -123,16 +142,16 @@
                 <div class="form-group">
                     <div class="input-group mb-2 mr-sm-2 mb-sm-0">
                       
-                        <input type="password" id="password2" name="password2" class="form-control"
-                               placeholder="Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Password doesn't match" required>
+                        <input id="password2" type="password" name="password2" class="form-control"
+                               placeholder="Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Password doesn't match" onkeyup="matchFunc()" required>
                     </div>
                 </div>
             </div>
-        </div> -->
+        </div>
         <div class="row">
             <div class="col-md-3"></div>
             <div class="col-md-6">
-                <button type="submit" id="submit" class="btn btn-primary"><i class="fa fa-user-plus"></i>Ubah Password</button>
+                <button type="submit" id="submit" class="btn btn-primary">Ubah Password</button>
             </div>
         </div>
     </form>
