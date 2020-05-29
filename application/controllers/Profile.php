@@ -62,7 +62,9 @@ class Profile extends CI_Controller {
     public function change_password()
     {
         if(isset($this->session->userdata['logged_in'])){
+            $this->load->view('partialsuser/header');
             $this->load->view('profile/change_password');
+            $this->load->view('partialsuser/footer');
         } else {
             redirect('home');
         }
@@ -76,20 +78,26 @@ class Profile extends CI_Controller {
             $getPass = $this->Profile_model->getFirstAccount();
             $getPassword = $getPass['password'];
 
+            $newPassword = $this->input->post('password');
+            $hashedNewPass = hash('sha256', $newPassword);
             if($hashed == $getPassword){
-                $newPassword = $this->input->post('password');
+
+                if($getPassword == $hashedNewPass){
+                    $this->session->set_flashdata('same_pass', 'Password baru yang anda input sama dengan password lama anda');
+                    redirect('profile/change_password');
+                } 
+
                 $this->Profile_model->updatePassword($newPassword);
                 //nanti pake flashdata
                 //redirect('profile');
 
 
                 
-                    $this->session->set_flashdata('pass', 'Password berhasil diubah');
-			    redirect('profile');
-            } else {
-                
-                    $this->session->set_flashdata('invalid_pass', 'Password lama yang anda input salah');
-			    redirect('profile');
+                $this->session->set_flashdata('pass', 'Password berhasil diubah');
+			    redirect('profile/change_password');
+            } else {   
+                $this->session->set_flashdata('invalid_pass', 'Password lama yang anda input salah');
+			    redirect('profile/change_password');
             }
 
         } else {

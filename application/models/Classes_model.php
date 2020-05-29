@@ -144,7 +144,7 @@ class Classes_model extends CI_Model {
                 ON status_kegiatan.id_status = kelas.status_kelas
             GROUP BY kelas.id_kelas
             ORDER BY COUNT(peserta.id_kelas) DESC
-            LIMIT 10";
+            LIMIT 12";
             $query = $this->db->query($sql);
             return $query->result_array();
         }
@@ -257,7 +257,7 @@ class Classes_model extends CI_Model {
         if ($data != null){
             $selesai = true;
             foreach ($data as $key => $value) {
-                if($value['status_kegiatan'] == 1){
+                if($value['status_kegiatan'] == 1 || $value['status_kegiatan'] == 3){
                     $selesai = false;
                 break;
                 }
@@ -376,9 +376,10 @@ class Classes_model extends CI_Model {
     public function setHarga($id)
     {
         if(!empty($this->input->post('harga'))) {
+            $harga_str = preg_replace("/[^0-9]/", "", $this->input->post('harga'));
             $data = [
                 'id_kelas' => $id,
-                'harga_kelas' => $this->input->post('harga')
+                'harga_kelas' => $harga_str
             ];
         }
         else {
@@ -398,7 +399,7 @@ class Classes_model extends CI_Model {
             'id_kelas' => $id,
             'deskripsi_kegiatan' => $this->input->post('deskripsi'),
             'tanggal_kegiatan' => $this->input->post('tanggal') . ":00",
-            'status_kegiatan' => 1
+            'status_kegiatan' => 3
         ];
         
         $this->db->insert('jadwal_kegiatan',$data);
@@ -419,7 +420,7 @@ class Classes_model extends CI_Model {
                         'id_kelas' => $id,
                         'deskripsi_kegiatan' => $deskripsi,
                         'tanggal_kegiatan' => $tanggal . ":00",
-                        'status_kegiatan' => 1
+                        'status_kegiatan' => 3
                     ];
 
                     $this->db->insert('jadwal_kegiatan',$data);

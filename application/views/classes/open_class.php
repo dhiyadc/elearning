@@ -146,6 +146,8 @@
                                   <?php if ($val3['id_status'] == $val2['status_kegiatan']) : ?> 
                                     <?php if ($val3['nama_status'] == "Selesai") : ?>
                                       <td><span class="badge badge-primary"><?= $val3['nama_status']; ?></span></td>
+                                    <?php elseif ($val3['nama_status'] == "Belum Mulai") : ?>
+                                      <td><span class="badge badge-danger"><?= $val3['nama_status']; ?></span></td>
                                     <?php else : ?>
                                       <td><span class="badge badge-warning"><?= $val3['nama_status']; ?></span></td>
                                     <?php endif; ?>
@@ -223,9 +225,9 @@
                           <div class="form-group">
                             <label>Jadwal Kegiatan</label>
                             <div class="input-group date form_datetime " data-date-format="yyyy/mm/dd hh:ii" data-link-field="dtp_input1">
-                              <input class="form-control" size="16" type="text" name="tanggal" readonly required>
-                              <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
-                              <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+                              <input class="form-control" id="inputdatetimepicker" size="16" type="text" name="tanggal" readonly required>
+                              <span class="input-group-addon" style="width:40px;"><span class="glyphicon glyphicon-remove"></span></span>
+                              <span class="input-group-addon" style="width:40px;"><span class="glyphicon glyphicon-th"></span></span>
                             </div>
                           </div>
                         <input type="hidden" id="dtp_input1"/>

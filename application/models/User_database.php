@@ -21,6 +21,15 @@ Class User_database extends CI_Model {
         }
     }
 
+    public function getFirstAccount($email)
+    {
+        
+        $sql = "SELECT * FROM user
+        WHERE email='$email'";
+    $query = $this->db->query($sql);
+    return $query->result_array()[0];
+    }
+
 // Register Function
 public function register($data){
     $id_user = $data['user_id'];

@@ -58,7 +58,7 @@
 	<div class="container">
 	<div class="row mt-5" style="padding-bottom :15px; border-bottom: 1px solid #dedfe0;">
 		<div class="col-xs-2">
-			<div class="col-md-2"><button class="btn btn-primary" style="background-color: dimgrey; border-color: white">Kelas Terbaru</button>
+			<div class="col-md-2"><button class="btn btn-primary" style="background-color: dimgrey; border-color: white">Kelas <?= $kategori_text; ?></button>
 			</div>
 		</div>
 		<div class="col-xs-10 no-margin">
@@ -138,14 +138,14 @@
 					aria-label="Search">
 				<i class="fa fa-search" aria-hidden="true" onclick=""></i>
 				</form> -->
-			
+				<form action="<?= base_url(); ?>Classes/search" method="post">
 				<div class="input-group mb-3">
-				<input class="form-control form-control-sm mr-0 w-0" type="text" placeholder="Cari Kelas"aria-label="Search">
+				<input class="form-control form-control-sm mr-0 w-0" type="text" name="keyword" placeholder="Cari Kelas"aria-label="Search">
 					<div class="input-group-append">
 					<button class="btn" type="button"><i class="fa fa-search" aria-hidden="true" onclick=""></i></button>
 					</div>
-				</div>
-           
+				</div> 
+				</form>          
           </div>
 	</div>
 	</div>
@@ -271,10 +271,6 @@
 				</div>
 			</div>
 
-
-
-
-
 		</div>
 
 		<div class="container">
@@ -284,15 +280,22 @@
 				</div>
 				<div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
 
-					<?php if($classNum > 4 ):  ?>
+					<?php if($classNum > 6 ){  ?>
 					<div id="loadMore">
 						<button class="btn d-flex justify-content-center"> Lebih Banyak</button>
 					</div>
 				</div>
-				<?php endif; ?>
-				<?php if(($classNum < 4 )) : ?>
-				<?= "" ?>
-				<?php endif; ?>
+				<?php } else if($classNum <= 6 ) {
+					if(isset($tidak_ketemu)){ ?>
+
+						<div class="alert alert-danger" role="alert">
+						<?= $tidak_ketemu; ?>
+						</div>
+					  
+				<?php } else {
+						echo "";
+					}
+				}?>
 
 			</div>
 		</div>

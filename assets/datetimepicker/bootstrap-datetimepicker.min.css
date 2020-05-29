@@ -1371,5 +1371,5 @@ textarea.input-group-sm>.input-group-btn>.btn {
 /* end of input group addon */
 
 #inputdatetimepicker {
-    max-width: 20%;
+    max-width: 100%;
   }
