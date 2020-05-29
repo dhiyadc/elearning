@@ -3,6 +3,27 @@
 <!-- <link href="<?= base_url() ?>assets/datetimepicker/bootstrap.min.css" rel="stylesheet" media="screen"> -->
 <link href="<?= base_url() ?>assets/datetimepicker/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
 
+<?php if ($this->session->flashdata('message')): ?>
+		<div class="modal fade" id="modalNotif" tabindex="-1" role="dialog">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Information</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<?=$this->session->flashdata('message');?>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+<?php endif?>
+
 <section>
 <div class="intro-section single-cover" id="home-section">
       
@@ -135,13 +156,13 @@
                               <td>
                                   <?php if ($val['pembuat_kelas'] != $this->session->userdata('id_user')) : ?>
                                     <?php if ($cek == true) : ?>
-                                    <?php elseif ($peserta != null) : ?>
-                                      <button type="button" class="btn btn-dark mr-1">Ikut</button>
+                                    <?php elseif ($peserta != null && $val2['status_kegiatan'] == CLASS_STARTED) : ?>
+                                      <a href="<?= base_url('classes/joinClassActivity/') ?><?= $val['id_kelas'] ?>/<?= $val2['id_kegiatan']; ?>" class="btn btn-dark mr-1">Ikut</a>
                                     <?php elseif ($cek == false) : ?>
                                     <?php endif; ?>
-                                  <?php else : ?>
+                                  <?php elseif ($val2['status_kegiatan'] != CLASS_FINISHED) : ?>
                                       <button type="button" class="btn btn-light" data-toggle="modal" data-target="#editKegiatan<?= $val2['id_kegiatan']; ?>">Edit</button><br>
-                                      <a href="<?= base_url() ?>classes/iframe" class="btn btn-dark mr-1">Mulai</a>
+                                      <a href="<?= base_url('classes/startClassActivity/') ?><?= $val['id_kelas'] ?>/<?= $val2['id_kegiatan']; ?>" class="btn btn-dark mr-1">Mulai</a>
                                       <div class="modal fade" id="editKegiatan<?= $val2['id_kegiatan']; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="padding-right: 90px;">
                                         <div class="modal-dialog" role="document">
                                           <!--Content-->
@@ -323,6 +344,7 @@
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<script src="<?= base_url('assets/js/script.js') ?>"></script>
 <script type="text/javascript" src="<?= base_url() ?>assets/datetimepicker/jquery-1.8.3.min.js" charset="UTF-8"></script>
 <script type="text/javascript" src="<?= base_url() ?>assets/datetimepicker/bootstrap.min.js"></script>
 <script type="text/javascript" src="<?= base_url() ?>assets/datetimepicker/bootstrap-datetimepicker.js" charset="UTF-8"></script>

@@ -189,6 +189,14 @@ class Classes_model extends CI_Model {
         return $this->db->get('status_kegiatan')->result_array();
     }
 
+    public function getUserDetail($userId) {
+        $this->db->select('*')
+            ->from('user')
+            ->join('detail_user', 'user.id_user = detail_user.id_user')
+            ->where('user.id_user', $userId);
+        return $this->db->get()->result_array();
+    }
+
     public function getPesertaByUserIdClassId($id)
     {
         $this->db->where('id_user',$this->session->userdata('id_user'));
@@ -228,6 +236,14 @@ class Classes_model extends CI_Model {
                 FROM jadwal_kegiatan
                 WHERE id_kelas = '$id'";
         return $this->db->query($sql)->result_array();
+    }
+
+    public function getKegiatanByIdKegiatan($activityId) {
+        $this->db->select("*, DATE_FORMAT(tanggal_kegiatan, '%W, %d %M %Y') as tanggal, DATE_FORMAT(tanggal_kegiatan, '%H:%i') as waktu")
+            ->from('jadwal_kegiatan')
+            ->where('id_kegiatan', $activityId);
+
+        return $this->db->get()->result_array();
     }
 
     public function getAllKegiatan()
@@ -421,6 +437,11 @@ class Classes_model extends CI_Model {
 
         $this->db->where('id_kegiatan',$id);
         $this->db->update('jadwal_kegiatan',$data);
+    }
+
+    public function updateKegiatanStatus($activityId, $status) {
+        $this->db->set('status_kegiatan', $status)->where('id_kegiatan', $activityId);
+        return $this->db->update('jadwal_kegiatan');
     }
 
     public function joinClass($id)
