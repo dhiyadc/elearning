@@ -125,6 +125,8 @@
                                   <?php if ($val3['id_status'] == $val2['status_kegiatan']) : ?> 
                                     <?php if ($val3['nama_status'] == "Selesai") : ?>
                                       <td><span class="badge badge-primary"><?= $val3['nama_status']; ?></span></td>
+                                    <?php elseif ($val3['nama_status'] == "Belum Mulai") : ?>
+                                      <td><span class="badge badge-danger"><?= $val3['nama_status']; ?></span></td>
                                     <?php else : ?>
                                       <td><span class="badge badge-warning"><?= $val3['nama_status']; ?></span></td>
                                     <?php endif; ?>
@@ -139,7 +141,7 @@
                                     <?php endif; ?>
                                   <?php else : ?>
                                       <button type="button" class="btn btn-light" data-toggle="modal" data-target="#editKegiatan<?= $val2['id_kegiatan']; ?>">Edit</button><br>
-                                      <button type="button" class="btn btn-dark mr-1">Mulai</button>
+                                      <a href="<?= base_url() ?>classes/iframe" class="btn btn-dark mr-1">Mulai</a>
                                       <div class="modal fade" id="editKegiatan<?= $val2['id_kegiatan']; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="padding-right: 90px;">
                                         <div class="modal-dialog" role="document">
                                           <!--Content-->

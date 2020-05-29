@@ -241,7 +241,7 @@ class Classes_model extends CI_Model {
         if ($data != null){
             $selesai = true;
             foreach ($data as $key => $value) {
-                if($value['status_kegiatan'] == 1){
+                if($value['status_kegiatan'] == 1 || $value['status_kegiatan'] == 3){
                     $selesai = false;
                 break;
                 }
@@ -383,7 +383,7 @@ class Classes_model extends CI_Model {
             'id_kelas' => $id,
             'deskripsi_kegiatan' => $this->input->post('deskripsi'),
             'tanggal_kegiatan' => $this->input->post('tanggal') . ":00",
-            'status_kegiatan' => 1
+            'status_kegiatan' => 3
         ];
         
         $this->db->insert('jadwal_kegiatan',$data);
@@ -404,7 +404,7 @@ class Classes_model extends CI_Model {
                         'id_kelas' => $id,
                         'deskripsi_kegiatan' => $deskripsi,
                         'tanggal_kegiatan' => $tanggal . ":00",
-                        'status_kegiatan' => 1
+                        'status_kegiatan' => 3
                     ];
 
                     $this->db->insert('jadwal_kegiatan',$data);
