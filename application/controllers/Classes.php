@@ -281,7 +281,7 @@ class Classes extends CI_Controller {
             $this->load->view('partials/header');    
         }
 
-        $data['kategori_text'] = "Yang Dicari";
+        $data['kategori_text'] = "Pencarian";
         $data['keyword'] = $this->input->post('keyword');
         $data['categories'] = $this->Classes_model->getKategori();
         $data['class'] = $this->Classes_model->getAllClassesDetail($data['keyword']);
