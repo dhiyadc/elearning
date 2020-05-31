@@ -204,7 +204,12 @@
                                     } 
                                   }
                                 }
-                                $proses = ($selesai / $total) * 100; ?>
+                                if ($total == 0) {
+                                  $proses = 0;
+                                }
+                                else {
+                                $proses = ($selesai / $total) * 100; 
+                                } ?>
                                     <div class="progress md-progress">
                                         <div class="progress-bar bg-info" role="progressbar" style="width: <?= $proses; ?>%" aria-valuenow="<?= $proses; ?>" aria-valuemin="0"
                                         aria-valuemax="100"><?= $proses; ?>%</div>

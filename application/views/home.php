@@ -95,7 +95,7 @@
       </div>
     </div>
 
-    <script>
+    <!-- <script>
       
 
     $(document).ready(function() {
@@ -127,7 +127,7 @@
    });
 
 
-    </script>
+    </script> -->
 
 
     <div class="site-section" id="programs-section">
