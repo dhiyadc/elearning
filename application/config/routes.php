@@ -53,3 +53,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['default_controller'] = 'home';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
+
+$route['class/(:any)'] = 'classes/open_class/$1';
+$route['class/(:any)/(:any)'] = 'classes/validateUserClass/$1/$2';
+$route['class/(:any)/(:any)/close'] = 'classes/closeClassActivity/$1/$2';
