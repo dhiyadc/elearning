@@ -56,22 +56,20 @@
 		const api = new JitsiMeetExternalAPI(domain, options)
 		api.addListener('readyToClose', () => {
 			if (!isGuest) {
-				window.location.replace("<?= base_url("classes/closeClassActivity/$classId/$classActivity[activityId]") ?>");
+				window.location.replace("<?= base_url("class/$classId/$classActivity[activityId]/close") ?>");
 			} else {
-				window.location.replace("<?= base_url("classes/open_class/$classId") ?>");
+				window.location.replace("<?= base_url("class/$classId") ?>");
 			}
 			api.dispose()
 		}).addListener('participantKickedOut', ({kicked}) => {
 			if (api._myUserID == kicked.id) {
 				api.executeCommand('hangup')
 			}
+		}).addListener('passwordRequired', () => {
+			api.executeCommand('password', roomPassword)
 		})
 
-		if (isGuest) {
-			api.addListener('passwordRequired', () => {
-				api.executeCommand('password', roomPassword)
-			})
-		} else {
+		if (!isGuest) {
 			api.addListener('videoConferenceJoined', () => {
 				api.executeCommand('subject', roomSubject)
 				api.executeCommand('password', roomPassword)

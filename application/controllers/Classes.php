@@ -61,15 +61,48 @@ class Classes extends CI_Controller {
         }
     }
 
-    public function startClassActivity($classId, $activityId) {
-        // Check if update class status to start has succeed
-        if (!$this->Classes_model->updateKegiatanStatus($activityId, CLASS_STARTED)) {
-            $this->session->set_flashdata('message', 'Failed to start the class!');
-            redirect("classes/open_class/$classId");
+    /**
+     * Controller for handling user session and role 
+     * before starting or joining the class.
+     * 
+     * @param String $classId id of the class
+     * @param String $activityId id of the activity you want to start
+     */
+    public function validateUserClass($classId, $activityId) {
+        $userId = $this->session->userdata('id_user');
+        $isUserLoggedIn = $this->session->userdata('logged_in') && $userId;
+        
+        if (!$isUserLoggedIn) {
+            $this->session->set_flashdata('message', "Please log in first!");
+            redirect("class/$classId");
         }
 
         $classDetail = $this->Classes_model->getClassById($classId)[0];
+        $isClassOwner = $classDetail['pembuat_kelas'] == $userId;
+        $isClassMember = $this->Classes_model->getPesertaByUserIdClassId($classId);
+        
+        if (!$isClassOwner && !$isClassMember) {
+            $this->session->set_flashdata('message', "You're not a member of this class!");
+            redirect("class/$classId");
+        }
+
         $classActivity = $this->Classes_model->getKegiatanByIdKegiatan($activityId)[0];
+        if ($isClassOwner) {
+            $this->startClassActivity($classDetail, $classActivity);
+        } else {
+            $this->joinClassActivity($classDetail, $classActivity);
+        }
+    }
+
+    public function startClassActivity($classDetail, $classActivity) {
+        $classId = $classDetail['id_kelas'];
+        $activityId = $classActivity['id_kegiatan'];
+        
+        if (!$this->Classes_model->updateKegiatanStatus($activityId, CLASS_STARTED)) {
+            $this->session->set_flashdata('message', 'Failed to start the class!');
+            redirect("class/$classId");
+        }
+        
         $classMember = $this->Classes_model->getPesertaByClassId($classId);
         $classOwner = $this->Classes_model->getUserDetail($classDetail['pembuat_kelas'])[0];
         $data = [
@@ -94,29 +127,29 @@ class Classes extends CI_Controller {
     }
 
     public function closeClassActivity($classId, $activityId) {
+        $userId = $this->session->userdata('id_user');
+        $classDetail = $this->Classes_model->getClassById($classId)[0];
+        $isClassOwner = $classDetail['pembuat_kelas'] == $userId;
+
+        if (!$isClassOwner) {
+            $this->session->set_flashdata('message', "You're not the owner of this class!");
+            redirect("class/$classId/$activityId");
+        }
+
         if (!$this->Classes_model->updateKegiatanStatus($activityId, CLASS_FINISHED)) {
             $this->session->set_flashdata('message', 'Failed to end the class!');
-            redirect("classes/startClass/$classId/$activityId");
+            redirect("class/$classId/$activityId");
         }
         
-        redirect("classes/open_class/$classId");
+        redirect("class/$classId");
     }
 
-    public function joinClassActivity($classId, $activityId) {
+    public function joinClassActivity($classDetail, $classActivity) {
         $userId = $this->session->userdata('id_user');
-        $isUserHasThisClass = $this->Classes_model->getPesertaByUserIdClassId($classId);
-    
-        if (!$isUserHasThisClass) {
-            $this->session->set_flashdata('message', "You're not a member of this class!");
-            redirect("classes/open_class/$classId");
-        }
-
-        $classDetail = $this->Classes_model->getClassById($classId)[0];
-        $classActivity = $this->Classes_model->getKegiatanByIdKegiatan($activityId)[0];
         $userDetail = $this->Classes_model->getUserDetail($userId)[0];
 
         $data = [
-            'classId' => $classId,
+            'classId' => $classDetail['id_kelas'],
             'classTitle' => $classDetail['judul_kelas'],
             'ownerId' => $classDetail['pembuat_kelas'],
             'userId' => $userDetail['id_user'],
