@@ -17,7 +17,8 @@ class Home extends CI_Controller{
 
     public function index(){
         if(isset($_SESSION['logged_in'])){
-            $this->load->view('partialsuser/header');
+            $nama['nama'] = explode (" ",$this->Classes_model->getMyName()['nama']);
+            $this->load->view('partialsuser/header',$nama);
             
         } else {
             $this->load->view('partials/header');    

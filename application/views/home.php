@@ -50,7 +50,7 @@
               </figure>
               <div class="course-inner-text py-4 px-4">
                 <span class="course-price"><?php
-                  if($val['harga_kelas'] == '0'){
+                  if($val['harga_kelas'] == '0' || $val['harga_kelas'] == null){
                     echo "<b>Gratis</b>";
                   } else {
                     $hasil_rupiah = "Rp." . number_format($val['harga_kelas'],2,',','.');
