@@ -61,7 +61,7 @@
               <h3 class="text-black">Detail Kelas</h3>
               <p class="mb-4">
                 <?php foreach ($harga as $val2) : ?>
-                <?php if ($val2['harga_kelas'] == '0') : ?> 
+                <?php if ($val2['harga_kelas'] == '0' || $val2['harga_kelas'] == null) : ?> 
                     <p>Gratis</p>
                 <?php else : ?>
                     <?php $hasil_rupiah = "Rp." . number_format($val2['harga_kelas'],2,',','.'); ?>
@@ -292,7 +292,7 @@
               </figure>
               <div class="course-inner-text py-4 px-4">
                 <span class="course-price"><?php
-                  if($val['harga_kelas'] == '0'){
+                  if($val['harga_kelas'] == '0' || $val['harga_kelas'] == null){
                     echo "<b>Gratis</b>";
                   } else {
                     $hasil_rupiah = "Rp." . number_format($val['harga_kelas'],2,',','.');

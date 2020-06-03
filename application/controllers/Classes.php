@@ -14,7 +14,8 @@ class Classes extends CI_Controller {
             $data['kategori'] = $this->Classes_model->getKategori();
             $data['jenis'] = $this->Classes_model->getJenis();
             $data['pembuat'] = $this->Classes_model->getMyName();
-            $this->load->view('partialsuser/header');
+            $nama['nama'] = explode (" ",$this->Classes_model->getMyName()['nama']);
+            $this->load->view('partialsuser/header',$nama);
             $this->load->view('classes/new_class',$data);
             $this->load->view('partialsuser/footer');
         } else {
@@ -50,7 +51,8 @@ class Classes extends CI_Controller {
         $data['cek'] = $this->Classes_model->cekPeserta($id_kelas);
         if(isset($this->session->userdata['logged_in'])){
             $this->session->set_flashdata('buttonJoin','Anda telah mengikuti kelas ini');
-            $this->load->view('partialsuser/header');
+            $nama['nama'] = explode (" ",$this->Classes_model->getMyName()['nama']);
+            $this->load->view('partialsuser/header',$nama);
             $this->load->view('classes/open_class',$data);
             $this->load->view('partialsuser/footer');
         } else {
@@ -174,7 +176,8 @@ class Classes extends CI_Controller {
             $data['jenis'] = $this->Classes_model->getJenis();
             $data['kelas'] = $this->Classes_model->getClassById($id_kelas);
             $data['pembuat'] = $this->Classes_model->getMyName();
-            $this->load->view('partialsuser/header');
+            $nama['nama'] = explode (" ",$this->Classes_model->getMyName()['nama']);
+            $this->load->view('partialsuser/header',$nama);
             $this->load->view('classes/update_class',$data);
             $this->load->view('partialsuser/footer');
         } else {
@@ -225,7 +228,8 @@ class Classes extends CI_Controller {
     public function pembayaran_kelas($id_kelas)
     {
         if(isset($this->session->userdata['logged_in'])){
-            $this->load->view('partialsuser/header');
+            $nama['nama'] = explode (" ",$this->Classes_model->getMyName()['nama']);
+            $this->load->view('partialsuser/header',$nama);
             $this->load->view('classes/pembayaran',$id_kelas);
             $this->load->view('partialsuser/footer');
         } else {
@@ -241,7 +245,8 @@ class Classes extends CI_Controller {
             $data['kegiatan'] = $this->Classes_model->getAllKegiatan();
             $data['status'] = $this->Classes_model->getStatus();
             $data['peserta'] = $this->Classes_model->getPeserta();
-            $this->load->view('partialsuser/header');
+            $nama['nama'] = explode (" ",$this->Classes_model->getMyName()['nama']);
+            $this->load->view('partialsuser/header',$nama);
             $this->load->view('classes/my_classes',$data);
             $this->load->view('partialsuser/footer');
         } else {
@@ -261,7 +266,8 @@ class Classes extends CI_Controller {
 
     public function index(){
         if(isset($_SESSION['logged_in'])){
-            $this->load->view('partialsuser/header');
+            $nama['nama'] = explode (" ",$this->Classes_model->getMyName()['nama']);
+            $this->load->view('partialsuser/header',$nama);
             
         } else {
             $this->load->view('partials/header');    
@@ -277,7 +283,8 @@ class Classes extends CI_Controller {
 
     public function categories($kategori){
         if(isset($_SESSION['logged_in'])){
-            $this->load->view('partialsuser/header');
+            $nama['nama'] = explode (" ",$this->Classes_model->getMyName()['nama']);
+            $this->load->view('partialsuser/header',$nama);
             
         } else {
             $this->load->view('partials/header');    
@@ -292,7 +299,8 @@ class Classes extends CI_Controller {
 
     public function sort($sorting){
         if(isset($_SESSION['logged_in'])){
-            $this->load->view('partialsuser/header');
+            $nama['nama'] = explode (" ",$this->Classes_model->getMyName()['nama']);
+            $this->load->view('partialsuser/header',$nama);
             
         } else {
             $this->load->view('partials/header');    
@@ -307,7 +315,8 @@ class Classes extends CI_Controller {
 
     public function search(){
         if(isset($_SESSION['logged_in'])){
-            $this->load->view('partialsuser/header');
+            $nama['nama'] = explode (" ",$this->Classes_model->getMyName()['nama']);
+            $this->load->view('partialsuser/header',$nama);
             
         } else {
             $this->load->view('partials/header');    
