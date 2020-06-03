@@ -274,11 +274,11 @@
 		</div>
 
 		<div class="container">
-			<!-- <div class="row">
+			<div class="row">
 				<div class="col-lg-5">
 
 				</div>
-				<div class="col-lg-6" data-aos="fade-up" data-aos-delay="100"> -->
+				<div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
 
 					<?php if($classNum > 6 ){  ?>
 					<div id="loadMore">
@@ -297,8 +297,8 @@
 					}
 				}?>
 
-			<!-- </div>
-		</div> -->
+			</div>
+		</div>
 	</div>
 </section>
 <script src="<?php echo base_url(); ?>assets/js/jquery-3.3.1.min.js"></script>
