@@ -302,7 +302,8 @@ class Classes_model extends CI_Model {
             'deskripsi_kelas' => $this->input->post('deskripsi'),
             'kategori_kelas' => $this->input->post('kategori'),
             'poster_kelas' => $this->insertImage(),
-            'jenis_kelas' => $this->input->post('jenis'),
+            // 'jenis_kelas' => $this->input->post('jenis'),
+            'jenis_kelas' => 1,
             'status_kelas' => 1
         ];
 

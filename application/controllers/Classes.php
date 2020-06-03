@@ -35,7 +35,7 @@ class Classes extends CI_Controller {
 
     public function open_class($id_kelas)
     {
-        $data['seluruh_kelas'] = $this->Classes_model->getAllClasses();
+        $data['seluruh_kelas'] = $this->Classes_model->getAllTopClasses();
         $data['seluruh_harga'] = $this->Classes_model->getAllHarga();
         $data['kegiatan'] = $this->Classes_model->getKegiatan($id_kelas);
         $data['tanggal'] = $this->Classes_model->getTanggalKegiatan($id_kelas);
@@ -260,7 +260,6 @@ class Classes extends CI_Controller {
     }
 
     public function index(){
-        //Controller Home
         if(isset($_SESSION['logged_in'])){
             $this->load->view('partialsuser/header');
             

@@ -2,7 +2,7 @@
       <div class="container">
         <div class="row">
           <div class="col-md-4">
-            <h3>Tentang El-Learn.</h3>
+            <h3>Tentang Classic.</h3>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro consectetur ut hic ipsum et veritatis corrupti. Itaque eius soluta optio dolorum temporibus in, atque, quos fugit sunt sit quaerat dicta.</p>
           </div>
 

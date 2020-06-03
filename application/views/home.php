@@ -8,8 +8,12 @@
                 <div class="col-lg-6 mb-4 mt-5">
                   <h1  data-aos="fade-up" data-aos-delay="100">Pengalaman Adalah Ilmu Terbaik yang semua orang cari</h1>
                   <p class="mb-4"  data-aos="fade-up" data-aos-delay="200">Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime ipsa nulla sed quis rerum amet natus quas necessitatibus.</p>
-                  <p data-aos="fade-up" data-aos-delay="300"><a href="Register" class="btn btn text-white py-3 px-5 btn-pill" style="background-color: #3232aa">Daftar Kelas</a></p>
-                    
+				          <?php if(isset($_SESSION['logged_in'])) : ?>
+                    <p data-aos="fade-up" data-aos-delay="300"><a href="<?= base_url() ?>classes/new_class" class="btn btn text-white py-3 px-5 btn-pill" style="background-color: #3232aa">Buat Kelas</a></p>
+                  <?php else : ?>
+                    <p data-aos="fade-up" data-aos-delay="300"><a data-toggle="modal" data-target="#elegantModalForm" class="btn btn text-white py-3 px-5 btn-pill" style="background-color: #3232aa">Buat Kelas</a></p>
+                  <?php endif; ?>  
+
                 </div>
 
                
