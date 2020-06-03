@@ -102,14 +102,15 @@
                     <?php endif; ?>
                 <?php endif; ?>
               <?php endif; ?>
+            <?php else : ?>
+              <p class="mt-4"><a href="" class="btn btn-dark mr-1" data-toggle="modal" data-target="#elegantModalForm"><i class="fa fa-clone left"></i>Gabung Kelas</a></p>
             <?php endif; ?>
-            <button onclick="showHideJadwal()" class="btn btn-light">Lihat Jadwal Kegiatan Kelas</button>
+            <!-- <button onclick="showHideJadwal()" class="btn btn-light">Lihat Jadwal Kegiatan Kelas</button> -->
             <?php if ($val['pembuat_kelas'] == $this->session->userdata('id_user')) : ?>
               <a class="btn btn-dark mr-1" href="<?= base_url()?>classes/update_class/<?= $val['id_kelas'] ?>"><span class="icon-pencil"></span> Edit Kelas</a>
             <?php endif; ?>
             <br><br>
             <section>
-            <div id="showHideJadwal" style="display: none">
               <div class="row">
                 <div class="col">
                   <div class="card card-list">
@@ -290,34 +291,22 @@
                 <a href="<?=base_url()?>classes/open_class/<?= $val['id_kelas'] ?>"><img src="<?= base_url().'assets/images/'.$val['poster_kelas']?>" alt="Image" class="img-fluid" style="height: 180px; object-fit: cover;"></a>
               </figure>
               <div class="course-inner-text py-4 px-4">
-                <?php foreach ($seluruh_harga as $val2) : ?>
-                    <?php if($val['id_kelas'] == $val2['id_kelas']) : ?>
-                        <span class="course-price">
-                            <?php if ($val2['harga_kelas'] == '0') : ?> 
-                                Gratis
-                            <?php else : ?>
-                              <?php $hasil_rupiah = "Rp." . number_format($val2['harga_kelas'],2,',','.'); ?>
-                                <?= $hasil_rupiah; ?>
-                            <?php endif; ?>
-                        </span>
-                    <?php endif; ?>
-                <?php endforeach; ?>
-                <?php foreach ($kategori as $val2) : ?>
-                    <?php if ($val['kategori_kelas'] == $val2['id_kategori']) : ?>
-                      <div class="meta"># <?= $val2['nama_kategori']; ?></div>
-                    <?php endif; ?>
-                  <?php endforeach; ?>
-                <h3><a href="<?= base_url() ?>classes/open_class/<?= $val['id_kelas'] ?>"><?= $val['judul_kelas'] ?></a></h3>
-                <p><?= substr($val['deskripsi_kelas'],0 ,100); ?>...</p>
+                <span class="course-price"><?php
+                  if($val['harga_kelas'] == '0'){
+                    echo "<b>Gratis</b>";
+                  } else {
+                    $hasil_rupiah = "Rp." . number_format($val['harga_kelas'],2,',','.');
+                    echo $hasil_rupiah;
+                  }
+                ?></span>
+                <div class="meta">
+                      <div class="meta"># <?= $val['nama_kategori']; ?></div>
+                </div>
+                <h3><a href="<?=base_url()?>classes/open_class/<?= $val['id_kelas'] ?>"><?= $val['judul_kelas'] ?></a></h3>
+                <p><?php echo substr($val['deskripsi_kelas'],0,100);  ?></p>
               </div>
               <div class="d-flex border-top stats">
-                <?php $i = 0; ?>
-                <?php foreach ($peserta_seluruh_kelas as $val2) : ?>
-                  <?php if ($val2['id_kelas'] == $val['id_kelas']) : ?>
-                    <?php $i++; ?>
-                  <?php endif; ?>
-                <?php endforeach; ?>
-                <div class="py-3 px-4"><span class="icon-users"></span> <?= $i; ?> Siswa</div>
+                <div class="py-3 px-4"><span class="icon-users"></span> <?= $val['peserta'] ?> peserta</div>
               </div>
             </div>
           <?php endforeach; ?>
@@ -382,15 +371,15 @@
 		forceParse: 0
     });
 
-    function showHideJadwal() {
-        var x = document.getElementById("showHideJadwal");
-        if (x.style.display === "none") {
-            x.style.display = "block";
-        }
-        else {
-            x.style.display = "none";
-        }
-    }
+    // function showHideJadwal() {
+    //     var x = document.getElementById("showHideJadwal");
+    //     if (x.style.display === "none") {
+    //         x.style.display = "block";
+    //     }
+    //     else {
+    //         x.style.display = "none";
+    //     }
+    // }
 </script>
 <script type="text/javascript">
 		

@@ -169,7 +169,7 @@
                 </div>
             </div>
         </div>
-        <div class="row">
+        <!-- <div class="row">
             <div class="col-md-3 field-label-responsive">
                 <label for="newpassword1">Jenis Kelas</label>
             </div>
@@ -188,8 +188,7 @@
                             </div>
                 </div>
             </div>
-            
-        </div>
+        </div> -->
         <div id="showHideHarga" style="display: none">
             <div class="row">
                 <div class="col-md-3 field-label-responsive">
