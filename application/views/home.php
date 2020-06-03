@@ -1,3 +1,7 @@
+<?php 
+  $_SESSION['url_login'] = "home";
+?>
+
 <div class="intro-section" id="home-section">
       
       <div class="slide-1 gambar1" data-stellar-background-ratio="0.5">

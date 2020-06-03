@@ -3,6 +3,11 @@
 <!-- <link href="<?= base_url() ?>assets/datetimepicker/bootstrap.min.css" rel="stylesheet" media="screen"> -->
 <link href="<?= base_url() ?>assets/datetimepicker/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
 
+<?php 
+  $_SESSION['url_login'] = "open_class";
+  $_SESSION['url_login_open_class'] = $this->uri->segment(3);
+?>
+
 <?php if ($this->session->flashdata('message')): ?>
 		<div class="modal fade" id="modalNotif" tabindex="-1" role="dialog">
 		<div class="modal-dialog" role="document">
