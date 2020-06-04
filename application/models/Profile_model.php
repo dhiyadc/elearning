@@ -43,30 +43,6 @@ class Profile_model extends CI_Model {
         }
     }
 
-    public function insertFotoDeskripsi()
-    {
-
-        $config['upload_path'] = './assets/images/';
-        $config['allowed_types'] = 'jpg|png|jpeg';
-        $config['max_size'] = '3000';
-        $config['remove_space'] = true;
-
-        $this->load->library('upload', $config);
-        if ($this->upload->do_upload('foto')) {
-            $file_name = $this->upload->data('file_name');
-            
-            $data = [
-                'foto' => $file_name,
-                'deskripsi' => $this->input->post('deskripsi')
-            ];
-
-            $this->db->where('id_user',$this->session->userdata('id_user'));
-            $this->db->update('detail_user',$data);
-        } else {
-            return "fail";
-        }
-    }
-
     private function updateImage() 
     {
         $config['upload_path'] = './assets/images/';
