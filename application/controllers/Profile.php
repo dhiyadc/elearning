@@ -43,7 +43,11 @@ class Profile extends CI_Controller {
     public function edit_profile_action()
     {
         if(isset($this->session->userdata['logged_in'])){
-            $this->Profile_model->editProfile();
+            $edit_profile = $this->Profile_model->editProfile();
+            if($edit_profile == "fail"){
+                $this->session->set_flashdata("invalidImage", "Invalid Image Size (Max Size: 3 MB)");
+                redirect("profile/edit_profile");
+            }
             redirect('profile');
         } else {
             redirect('home');

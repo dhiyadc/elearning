@@ -295,24 +295,38 @@ class Classes_model extends CI_Model {
 
     public function createClass()
     {
-        $data = [
-            'id_kelas' => uniqid(),
-            'pembuat_kelas' => $this->session->userdata('id_user'),
-            'judul_kelas' => $this->input->post('judul'),
-            'deskripsi_kelas' => $this->input->post('deskripsi'),
-            'kategori_kelas' => $this->input->post('kategori'),
-            'poster_kelas' => $this->insertImage(),
-            // 'jenis_kelas' => $this->input->post('jenis'),
-            'jenis_kelas' => 1,
-            'status_kelas' => 1
-        ];
+        $config['upload_path'] = './assets/images/';
+        $config['allowed_types'] = 'jpg|png|jpeg';
+        $config['max_size'] = '3000';
+        $config['remove_space'] = true;
 
-        $this->db->insert('kelas',$data);
-        
-        if(!empty($this->input->post('addmore'))){
-            $this->setKegiatan($this->getIdNewClass()['id_kelas']);
+        $this->load->library('upload', $config);
+        if ($this->upload->do_upload('poster')) {
+            $file_name = $this->upload->data('file_name');
+
+            $data = [
+                'id_kelas' => uniqid(),
+                'pembuat_kelas' => $this->session->userdata('id_user'),
+                'judul_kelas' => $this->input->post('judul'),
+                'deskripsi_kelas' => $this->input->post('deskripsi'),
+                'kategori_kelas' => $this->input->post('kategori'),
+                'poster_kelas' => $file_name,
+                // 'jenis_kelas' => $this->input->post('jenis'),
+                'jenis_kelas' => 1,
+                'status_kelas' => 1
+            ];
+    
+            $this->db->insert('kelas',$data);
+            
+            if(!empty($this->input->post('addmore'))){
+                $this->setKegiatan($this->getIdNewClass()['id_kelas']);
+            }
+            $this->setHarga($this->getIdNewClass()['id_kelas']);
+        } else {
+            return "fail";
         }
-        $this->setHarga($this->getIdNewClass()['id_kelas']);
+
+        
     }
 
     public function updateStatus($id,$selesai)
@@ -354,12 +368,29 @@ class Classes_model extends CI_Model {
     public function updateClass($id)
     {
         if(!empty($_FILES['poster']['name'])) {
-            $data = [
-                'judul_kelas' => $this->input->post('judul'),
-                'deskripsi_kelas' => $this->input->post('deskripsi'),
-                'kategori_kelas' => $this->input->post('kategori'),
-                'poster_kelas' => $this->updateImage($id)
-            ];
+            $config['upload_path'] = './assets/images/';
+            $config['allowed_types'] = 'jpg|png|jpeg';
+            $config['max_size'] = '3000';
+            $config['remove_space'] = true;
+
+            
+
+            $this->load->library('upload', $config);
+            if ($this->upload->do_upload('poster')) {
+                $data = $this->db->get_where('kelas',['id_kelas' => $id])->row();
+                unlink("images/".$data->poster_kelas);
+
+                $file_name = $this->upload->data('file_name');
+                $data = [
+                    'judul_kelas' => $this->input->post('judul'),
+                    'deskripsi_kelas' => $this->input->post('deskripsi'),
+                    'kategori_kelas' => $this->input->post('kategori'),
+                    'poster_kelas' => $file_name
+                ];
+            } else {
+                return "fail";
+            }
+           
         }
         else {
             $data = [

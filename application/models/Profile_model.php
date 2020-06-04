@@ -45,13 +45,26 @@ class Profile_model extends CI_Model {
 
     public function insertFotoDeskripsi()
     {
-        $data = [
-            'foto' => $this->insertImage(),
-            'deskripsi' => $this->input->post('deskripsi')
-        ];
 
-        $this->db->where('id_user',$this->session->userdata('id_user'));
-        $this->db->update('detail_user',$data);
+        $config['upload_path'] = './assets/images/';
+        $config['allowed_types'] = 'jpg|png|jpeg';
+        $config['max_size'] = '3000';
+        $config['remove_space'] = true;
+
+        $this->load->library('upload', $config);
+        if ($this->upload->do_upload('foto')) {
+            $file_name = $this->upload->data('file_name');
+            
+            $data = [
+                'foto' => $file_name,
+                'deskripsi' => $this->input->post('deskripsi')
+            ];
+
+            $this->db->where('id_user',$this->session->userdata('id_user'));
+            $this->db->update('detail_user',$data);
+        } else {
+            return "fail";
+        }
     }
 
     private function updateImage() 
@@ -73,12 +86,29 @@ class Profile_model extends CI_Model {
     public function editProfile()
     {
         if(!empty($_FILES['foto']['name'])) {
-            $data = [
-                'nama' => $this->input->post('nama'),
-                'no_telepon' => $this->input->post('no_telp'),
-                'foto' => $this->updateImage(),
-                'deskripsi' => $this->input->post('deskripsi')
-            ];
+            $config['upload_path'] = './assets/images/';
+            $config['allowed_types'] = 'jpg|png|jpeg';
+            $config['max_size'] = '3000';
+            $config['remove_space'] = true;
+
+            
+
+            $this->load->library('upload', $config);
+            if ($this->upload->do_upload('foto')) {
+                $data = $this->db->get_where('detail_user',['id_user' => $this->session->userdata('id_user')])->row();
+                unlink("./assets/images/".$data->foto);
+
+                $file_name = $this->upload->data('file_name');
+
+                $data = [
+                    'nama' => $this->input->post('nama'),
+                    'no_telepon' => $this->input->post('no_telp'),
+                    'foto' => $file_name,
+                    'deskripsi' => $this->input->post('deskripsi')
+                ];
+            } else {
+                return "fail";
+            }
         }
         else {
             $data = [

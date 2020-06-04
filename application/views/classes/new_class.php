@@ -94,6 +94,13 @@
             
             </div>
         </div>
+
+        <?php if($this->session->flashdata("invalidImage")){ ?>
+        <div class="alert alert-danger" role="alert">
+        <?php echo $this->session->flashdata("invalidImage"); ?>
+        </div>
+        <?php } ?>
+        
         <div class="row">
             <div class="col-md-3 field-label-responsive mb-3">
                 <label for="passwordnow">Nama Author</label>

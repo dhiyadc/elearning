@@ -26,7 +26,11 @@ class Classes extends CI_Controller {
     public function new_class_action()
     {
         if(isset($this->session->userdata['logged_in'])){
-            $this->Classes_model->createClass();
+            $newClass = $this->Classes_model->createClass();
+            if($newClass == "fail"){
+                $this->session->set_flashdata("invalidImage", "Invalid Image Size (Max Size: 3 MB)");
+                redirect("classes/new_class");
+            }
             $id = $this->Classes_model->getIdNewClass();
             redirect('classes/open_class/' . $id['id_kelas']);
         } else {
@@ -188,7 +192,11 @@ class Classes extends CI_Controller {
     public function update_class_action($id_kelas)
     {
         if(isset($this->session->userdata['logged_in'])){
-            $this->Classes_model->updateClass($id_kelas);
+            $updateClass = $this->Classes_model->updateClass($id_kelas);
+            if($updateClass == "fail"){
+                $this->session->set_flashdata("invalidImage", "Invalid Image Size (Max Size: 3 MB)");
+                redirect("classes/update_class/".$id_kelas);
+            }
             redirect('classes/open_class/' . $id_kelas);
         } else {
             redirect('home');
