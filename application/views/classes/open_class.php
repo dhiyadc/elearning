@@ -219,6 +219,13 @@
                           <span aria-hidden="true">&times;</span>
                         </button>
                       </div>
+
+                      <?php if($this->session->flashdata("invalidFile")){ ?>
+                      <div class="alert alert-danger" role="alert">
+                        <?php echo $this->session->flashdata("invalidFile"); ?>
+                      </div>
+                      <?php } ?>
+
                       <!--Body-->
                       <div class="modal-body mx-4">
                         <!--Body-->
@@ -236,6 +243,10 @@
                             </div>
                           </div>
                         <input type="hidden" id="dtp_input1"/>
+                        <div class="form-group">
+                          <label for="exampleFormControlFile1">Materi (Opsional)</label>
+                          <input type="file" name="materi" accept=".doc, .docx, .ppt, .pptx, .pdf" class="form-control-file" id="exampleFormControlFile1">
+                        </div>
                         <div class="text-center mb-3">
                           <button type="submit" class="btn btn-light blue-gradient btn-block btn-rounded z-depth-1a">Simpan</button>
                         </div>

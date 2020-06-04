@@ -394,15 +394,55 @@ class Classes_model extends CI_Model {
     
     public function setKegiatanByClass($id)
     {
-        $data = [
-            'id_kegiatan' => uniqid(),
-            'id_kelas' => $id,
-            'deskripsi_kegiatan' => $this->input->post('deskripsi'),
-            'tanggal_kegiatan' => $this->input->post('tanggal') . ":00",
-            'status_kegiatan' => 3
-        ];
         
-        $this->db->insert('jadwal_kegiatan',$data);
+
+        if(!empty($this->input->post('materi'))) {
+            $config['upload_path'] = './assets/docs/';
+            $config['allowed_types'] = 'docx|pdf|pptx|doc|ppt';
+            $config['max_size'] = '100000';
+            $config['remove_space'] = true;
+
+            $this->load->library('upload', $config);
+            if ($this->upload->do_upload('materi')) {
+                $file_name = $this->upload->data('file_name');
+
+                $id_kegiatan_uniq = uniqid();
+                $data = [
+                    'id_kegiatan' => $id_kegiatan_uniq,
+                    'id_kelas' => $id,
+                    'deskripsi_kegiatan' => $this->input->post('deskripsi'),
+                    'tanggal_kegiatan' => $this->input->post('tanggal') . ":00",
+                    'status_kegiatan' => 3
+                ];
+                
+                $this->db->insert('jadwal_kegiatan',$data);
+
+                $data = [
+                    'id_materi' => uniqid(),
+                    'url_materi' => $file_name,
+                    'id_kelas' => $id,
+                    'id_kegiatan' => $id_kegiatan_uniq
+                ];
+                
+                $this->db->insert('materi',$data);
+            } else {
+                return $this->upload->display_errors();
+            }
+        }
+        else {
+            $id_kegiatan_uniq = uniqid();
+                $data = [
+                    'id_kegiatan' => $id_kegiatan_uniq,
+                    'id_kelas' => $id,
+                    'deskripsi_kegiatan' => $this->input->post('deskripsi'),
+                    'tanggal_kegiatan' => $this->input->post('tanggal') . ":00",
+                    'status_kegiatan' => 3
+                ];
+                
+                $this->db->insert('jadwal_kegiatan',$data);
+                return "tes";
+        }
+        
     }
 
     public function setKegiatan($id)
