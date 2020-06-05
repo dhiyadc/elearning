@@ -344,10 +344,11 @@ class Classes extends CI_Controller {
     {
         if(isset($this->session->userdata['logged_in'])){
             $data['tugas'] = $this->Classes_model->getTugas($id_kelas);
+            $data['kelas'] = $this->Classes_model->getClassById($id_kelas);
             $nama['nama'] = explode (" ",$this->Classes_model->getMyName()['nama']);
-            $this->load->view('partialsuser/header',$nama);
+            // $this->load->view('partialsuser/header',$nama);
             $this->load->view('classes/list_assignment',$data);
-            $this->load->view('partialsuser/footer');
+            // $this->load->view('partialsuser/footer');
         } else {
             redirect('home');
         }
@@ -371,7 +372,7 @@ class Classes extends CI_Controller {
     {
         if(isset($this->session->userdata['logged_in'])){
             $this->Classes_model->createAssignment($id_kelas);
-            redirect('classes/open_class/' . $id_kelas);
+            redirect('classes/list_assignment/' . $id_kelas);
         } else {
             redirect('home');
         }
