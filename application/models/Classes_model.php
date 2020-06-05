@@ -394,12 +394,10 @@ class Classes_model extends CI_Model {
     
     public function setKegiatanByClass($id)
     {
-        
-
-        if(!empty($this->input->post('materi'))) {
+        if(!empty($_FILES['materi']['name'])) {
             $config['upload_path'] = './assets/docs/';
             $config['allowed_types'] = 'docx|pdf|pptx|doc|ppt';
-            $config['max_size'] = '100000';
+            $config['max_size'] = '25000';
             $config['remove_space'] = true;
 
             $this->load->library('upload', $config);

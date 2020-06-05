@@ -198,15 +198,8 @@ class Classes extends CI_Controller {
             $kegiatan = $this->Classes_model->setKegiatanByClass($id_kelas);
             if($kegiatan == "fail"){
                 $this->session->set_flashdata("invalidFile", "Something went really fucking wrong (only pdf, doc, ppt)");
-                redirect('classes/open_class/' . $id_kelas);
-            } else {
-                var_dump($kegiatan);
             }
-            
-
-           
-            // redirect('classes/open_class/' . $id_kelas);
-
+            redirect('classes/open_class/' . $id_kelas);
         } else {
             redirect('home');
         }

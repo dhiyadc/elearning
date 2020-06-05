@@ -229,7 +229,7 @@
                       <!--Body-->
                       <div class="modal-body mx-4">
                         <!--Body-->
-                        <form action="<?= base_url()?>classes/set_kegiatan/<?= $val['id_kelas'] ?>" method="POST">
+                        <form enctype="multipart/form-data" action="<?= base_url()?>classes/set_kegiatan/<?= $val['id_kelas'] ?>" method="POST">
                           <div class="form-group">
                             <label>Deskripsi Kegiatan</label>
                               <textarea class="form-control" name="deskripsi" required></textarea>
