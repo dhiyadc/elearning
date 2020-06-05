@@ -6,6 +6,7 @@ class Classes extends CI_Controller {
         parent::__construct();
         $this->load->model('Classes_model');
         $this->load->helper('url');
+        $this->load->helper('download');
     }
 
     public function new_class()
@@ -48,6 +49,8 @@ class Classes extends CI_Controller {
         $data['harga'] = $this->Classes_model->getHarga($id_kelas);
         $data['peserta'] = $this->Classes_model->getPesertaByUserIdClassId($id_kelas);
         $data['cek'] = $this->Classes_model->cekPeserta($id_kelas);
+        $data['materi'] = $this->Classes_model->getMateri($id_kelas);
+        $data['materiKegiatan'] = $this->Classes_model->getMateribyKegiatan();
         if(isset($this->session->userdata['logged_in'])){
             $this->session->set_flashdata('buttonJoin','Anda telah mengikuti kelas ini');
             $this->load->view('partialsuser/header');
@@ -197,7 +200,7 @@ class Classes extends CI_Controller {
         if(isset($this->session->userdata['logged_in'])){
             $kegiatan = $this->Classes_model->setKegiatanByClass($id_kelas);
             if($kegiatan == "fail"){
-                $this->session->set_flashdata("invalidFile", "Something went really fucking wrong (only pdf, doc, ppt)");
+                $this->session->set_flashdata("invalidFile", "Something went wrong (only pdf, doc, ppt) Max Size : 25MB");
             }
             redirect('classes/open_class/' . $id_kelas);
         } else {
@@ -208,7 +211,10 @@ class Classes extends CI_Controller {
     public function edit_kegiatan($id_kelas,$id_kegiatan)
     {
         if(isset($this->session->userdata['logged_in'])){
-            $this->Classes_model->updateKegiatan($id_kegiatan);
+            $this->Classes_model->updateKegiatan($id_kelas, $id_kegiatan);
+            if($kegiatan == "fail"){
+                $this->session->set_flashdata("invalidFileEdit", "Something went wrong (only pdf, doc, ppt) Max Size : 25MB");
+            }
             redirect('classes/open_class/' . $id_kelas);
         } else {
             redirect('home');
@@ -332,5 +338,21 @@ class Classes extends CI_Controller {
     public function iframe()
     {
         $this->load->view('iframe/elearning');
+    }
+
+    public function download_materi($url_materi)
+    {
+        if(isset($_SESSION['logged_in'])){
+            force_download('./assets/docs/'.$url_materi ,NULL);
+        } else {
+            redirect('home');   
+        }
+        
+    }
+
+    public function hapus_materi($id_kelas, $url_materi)
+    {
+        $this->Classes_model->delMateri($url_materi);
+        redirect('classes/open_class/'.$id_kelas);
     }
 }

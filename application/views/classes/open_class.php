@@ -134,11 +134,16 @@
                               <?php if ($cek == true) : ?>
                               <?php elseif ($peserta != null) : ?>
                                 <th scope="col">Aksi</th>
+                                <th scope="col">Materi</th>
                               <?php elseif ($cek == false) : ?>
                               <?php endif; ?>
                             <?php else : ?>
                               <th scope="col">Aksi</th>
+                              <th scope="col">Materi</th>
                             <?php endif; ?>
+
+                            
+
                           </tr>
                         </thead>
                         <tbody>
@@ -182,11 +187,32 @@
                                             <!--Body-->
                                             <div class="modal-body mx-4">
                                               <!--Body-->
-                                              <form action="<?= base_url()?>classes/edit_kegiatan/<?= $val['id_kelas'] ?>/<?= $val2['id_kegiatan'] ?>" method="POST">
+                                              <form enctype="multipart/form-data" action="<?= base_url()?>classes/edit_kegiatan/<?= $val['id_kelas'] ?>/<?= $val2['id_kegiatan'] ?>" method="POST">
                                                 <div class="form-group">
                                                   <label>Deskripsi Kegiatan</label>
                                                     <textarea class="form-control" name="deskripsi" required><?= $val2['deskripsi_kegiatan'] ?></textarea>
                                                 </div>
+
+                                               
+                                                <div class="form-group">
+                                                <?php $tambah = 0; ?>
+                                                <?php foreach ($materi as $val4) : ?>
+                                                <?php if ($val2['id_kegiatan'] == $val4['id_kegiatan']) : 
+                                                  $tambah++; ?>
+     
+                                                      <a href="<?= base_url(); ?>classes/hapus_materi/<?= $val4['id_kelas'] ?>/<?= $val4['url_materi'] ?>"><button type="button" class="btn btn-danger">Hapus Materi</button></a>
+                                                                                    
+                                                    <?php endif; ?>
+                                                    
+                                                <?php endforeach; ?>
+                                                
+                                                <?php if($tambah < 1){ ?>
+                                                <label for="exampleFormControlFile1">Tambah Materi</label>
+                                                <input type="file" name="materi" accept=".doc, .docx, .ppt, .pptx, .pdf" class="form-control-file" id="exampleFormControlFile1"> 
+                                                <?php } ?>
+                                                </div>
+
+
                                               <div class="text-center mb-3">
                                                 <button type="submit" class="btn btn-light blue-gradient btn-block btn-rounded z-depth-1a">Simpan</button>
                                               </div>
@@ -197,6 +223,31 @@
                                     </div>
                                   <?php endif; ?>
                               </td>
+                              
+                              <?php if ($val['pembuat_kelas'] != $this->session->userdata('id_user')) : ?>
+                                <?php if ($cek == true) : ?>
+                                <?php elseif ($peserta != null) : ?>
+                                    <td>
+                                    <?php foreach ($materi as $val4) : ?>
+                                    <?php if ($val2['id_kegiatan'] == $val4['id_kegiatan']) : ?>
+                                        <a href="<?= base_url(); ?>classes/download_materi/<?= $val4['url_materi'] ?>">Download Materi</a>
+                                        <?php else : ?>
+                                        <?php endif; ?>
+                                    <?php endforeach; ?>
+                                    </td>
+                                <?php elseif ($cek == false) : ?>
+                                <?php endif; ?>
+                              <?php else : ?>
+                                  <td>
+                                  <?php foreach ($materi as $val4) : ?>
+                                  <?php if ($val2['id_kegiatan'] == $val4['id_kegiatan']) : ?>
+                                      <a href="<?= base_url(); ?>classes/download_materi/<?= $val4['url_materi'] ?>">Download Materi</a>
+                                      <?php else : ?>
+                                      <?php endif; ?>
+                                  <?php endforeach; ?>
+                                  </td>
+                              <?php endif; ?>
+
                           </tr>
                       <?php endforeach; ?>
                         </tbody>

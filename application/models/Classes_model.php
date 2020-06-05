@@ -424,7 +424,7 @@ class Classes_model extends CI_Model {
                 
                 $this->db->insert('materi',$data);
             } else {
-                return $this->upload->display_errors();
+                return "fail";
             }
         }
         else {
@@ -438,7 +438,6 @@ class Classes_model extends CI_Model {
                 ];
                 
                 $this->db->insert('jadwal_kegiatan',$data);
-                return "tes";
         }
         
     }
@@ -467,14 +466,48 @@ class Classes_model extends CI_Model {
         }
     }
 
-    public function updateKegiatan($id)
+    public function updateKegiatan($id_kelas, $id_kegiatan)
     {
-        $data = [
-            'deskripsi_kegiatan' => $this->input->post('deskripsi')
-        ];
+        if(!empty($_FILES['materi']['name'])) {
+            $config['upload_path'] = './assets/docs/';
+            $config['allowed_types'] = 'docx|pdf|pptx|doc|ppt';
+            $config['max_size'] = '25000';
+            $config['remove_space'] = true;
 
-        $this->db->where('id_kegiatan',$id);
-        $this->db->update('jadwal_kegiatan',$data);
+            $this->load->library('upload', $config);
+            if ($this->upload->do_upload('materi')) {
+                $file_name = $this->upload->data('file_name');
+
+                $id_kegiatan_uniq = $id_kegiatan;
+                $data = [
+                    'deskripsi_kegiatan' => $this->input->post('deskripsi'),
+                    
+                ];
+                
+                $this->db->where('id_kegiatan',$id_kegiatan);
+                $this->db->update('jadwal_kegiatan',$data);
+
+                $data = [
+                    'id_materi' => uniqid(),
+                    'url_materi' => $file_name,
+                    'id_kelas' => $id_kelas,
+                    'id_kegiatan' => $id_kegiatan_uniq
+                ];
+                
+                $this->db->insert('materi',$data);
+            } else {
+                return "fail";
+            }
+        }
+        else {
+            $data = [
+                'deskripsi_kegiatan' => $this->input->post('deskripsi'),
+                
+            ];
+            
+            $this->db->where('id_kegiatan',$id_kegiatan);
+            $this->db->update('jadwal_kegiatan',$data);
+        }
     }
 
     public function updateKegiatanStatus($activityId, $status) {
@@ -497,5 +530,33 @@ class Classes_model extends CI_Model {
         $this->db->where('id_user',$this->session->userdata('id_user'));
         $this->db->where('id_kelas',$id);
         $this->db->delete('peserta');
+    }
+
+    public function getMateri($id_kelas)
+    {
+        $sql = "SELECT * FROM materi WHERE id_kelas = '$id_kelas'";
+        return $this->db->query($sql)->result_array();
+    }
+
+    public function getMateribyKegiatan()
+    {
+        $sql = "SELECT materi.id_materi, jadwal_kegiatan.id_kegiatan
+        FROM materi 
+        LEFT JOIN jadwal_kegiatan
+            ON materi.id_kegiatan = jadwal_kegiatan.id_kegiatan";
+
+        return $this->db->query($sql)->result_array();
+    }
+
+    public function delMateri($url_materi)
+    {
+        
+
+        unlink("assets/docs/".$url_materi);
+
+        $sql = "DELETE FROM materi WHERE url_materi = '$url_materi'";
+
+        return $this->db->query($sql);
+
     }
 }
