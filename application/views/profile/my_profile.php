@@ -44,7 +44,7 @@
     <?php foreach ($profile as $val) : ?>
         <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12 image-section">
-                <img src="<?=base_url()?>/images/17580.jpg">
+                <img src="<?=base_url()?>/assets/images/17580.jpg">
             </div>
             <div class="row user-left-part">
                 <div class="col-md-3 col-sm-3 col-xs-12 user-profil-part pull-left">

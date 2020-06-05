@@ -373,8 +373,6 @@ class Classes_model extends CI_Model {
             $config['max_size'] = '3000';
             $config['remove_space'] = true;
 
-            
-
             $this->load->library('upload', $config);
             if ($this->upload->do_upload('poster')) {
                 $data = $this->db->get_where('kelas',['id_kelas' => $id])->row();
