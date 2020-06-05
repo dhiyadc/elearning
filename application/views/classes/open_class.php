@@ -94,6 +94,7 @@
                     <div class="alert alert-primary" role="alert">
                         <center><?= $this->session->flashdata('buttonJoin') ?></center>
                     </div>
+                    <a class="btn btn-dark mr-1" href="<?= base_url()?>classes/list_assignment/<?= $val['id_kelas'] ?>"><span class="icon-list"></span> Lihat Tugas</a>
                 <?php elseif ($cek == false) : ?>
                     <?php if ($val['jenis_kelas'] == 1) : ?>
                         <p class="mt-4"><a href="<?= base_url()?>classes/join_class/<?= $val['id_kelas']; ?>" class="btn btn-dark mr-1">Gabung Kelas</a></p>

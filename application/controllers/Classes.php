@@ -49,7 +49,6 @@ class Classes extends CI_Controller {
         $data['harga'] = $this->Classes_model->getHarga($id_kelas);
         $data['peserta'] = $this->Classes_model->getPesertaByUserIdClassId($id_kelas);
         $data['cek'] = $this->Classes_model->cekPeserta($id_kelas);
-        $data['tugas'] = $this->Classes_model->getTugas($id_kelas);
         if(isset($this->session->userdata['logged_in'])){
             $this->session->set_flashdata('buttonJoin','Anda telah mengikuti kelas ini');
             $nama['nama'] = explode (" ",$this->Classes_model->getMyName()['nama']);
@@ -259,7 +258,7 @@ class Classes extends CI_Controller {
     {
         if(isset($this->session->userdata['logged_in'])){
             $this->Classes_model->leaveClass($id_kelas);
-            redirect('classes/kelas_diikuti');
+            redirect('classes/my_classes');
         } else {
             redirect('home');
         }
@@ -343,7 +342,8 @@ class Classes extends CI_Controller {
     public function list_assignment($id_kelas)
     {
         if(isset($this->session->userdata['logged_in'])){
-            $data['tugas'] = $this->Classes_model->getTugas($id_kelas);
+            $data['tugas'] = $this->Classes_model->getTugasByClassId($id_kelas);
+            $data['submit'] = $this->Classes_model->getSubmit($id_kelas);
             $data['kelas'] = $this->Classes_model->getClassById($id_kelas);
             $nama['nama'] = explode (" ",$this->Classes_model->getMyName()['nama']);
             // $this->load->view('partialsuser/header',$nama);
