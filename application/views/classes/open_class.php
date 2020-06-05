@@ -108,11 +108,12 @@
             <!-- <button onclick="showHideJadwal()" class="btn btn-light">Lihat Jadwal Kegiatan Kelas</button> -->
             <?php if ($val['pembuat_kelas'] == $this->session->userdata('id_user')) : ?>
               <a class="btn btn-dark mr-1" href="<?= base_url()?>classes/update_class/<?= $val['id_kelas'] ?>"><span class="icon-pencil"></span> Edit Kelas</a>
+              <a class="btn btn-light mr-1" href="<?= base_url()?>classes/list_assignment/<?= $val['id_kelas'] ?>"><span class="icon-list"></span> Lihat Tugas</a>
             <?php endif; ?>
             <br><br>
             <section>
               <div class="row">
-                <div class="col">
+                <div class="col"> 
                   <div class="card card-list">
                     <div class="card-body">
                       <h2>Jadwal Kegiatan Kelas</h2>
@@ -218,7 +219,7 @@
                       <!--Body-->
                       <div class="modal-body mx-4">
                         <!--Body-->
-                        <form action="<?= base_url()?>classes/set_kegiatan/<?= $val['id_kelas'] ?>" method="POST">
+                        <form enctype="multipart/form-data" action="<?= base_url()?>classes/set_kegiatan/<?= $val['id_kelas'] ?>" method="POST">
                           <div class="form-group">
                             <label>Deskripsi Kegiatan</label>
                               <textarea class="form-control" name="deskripsi" required></textarea>
