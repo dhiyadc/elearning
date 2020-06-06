@@ -25,11 +25,12 @@
 
         <h5 class="text-center font-weight-bold mb-4" style="color: white">Dashboard Saya</h5>
         <div class="container my-5">
-        <!-- <div class="row d-flex justify-content-center container">
+        <div class="row d-flex justify-content-center container">
     <div class="col-md-12">
         <div class="card-hover-shadow-2x mb-3 card">
             <div class="card-header-tab card-header">
-                <div class="card-header-title font-size-lg text-capitalize font-weight-normal"><i class="fa fa-tasks"></i>&nbsp;Task Lists</div>
+                <div class="card-header-title font-size-lg text-capitalize font-weight-normal"><i class="fa fa-tasks"></i>&nbsp;To do List</div>
+               
             </div>
             <div class="scroll-area-sm">
                 <perfect-scrollbar class="ps-show-limits">
@@ -48,7 +49,7 @@
                                                 </div>
                                                 <div class="widget-subheading"><i>By Arya Pradata</i></div>
                                             </div>
-                                            <div class="widget-content-right"> <button class="border-0 btn-transition btn btn-outline-success"> <i class="fa fa-check"></i></button> <button class="border-0 btn-transition btn btn-outline-danger"> <i class="fa fa-trash"></i> </button> </div>
+                                            <div class="widget-content-right"> <button class="border-0 btn-transition btn btn-outline-success"> <i class="fa fa-check"></i></button> <button class="border-0 btn-transition btn btn-outline-danger"> <i class="fa fa-times"></i> </button> </div>
                                         </div>
                                     </div>
                                 </li>
@@ -66,7 +67,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="widget-content-right"> <button class="border-0 btn-transition btn btn-outline-success"> <i class="fa fa-check"></i></button> <button class="border-0 btn-transition btn btn-outline-danger"> <i class="fa fa-trash"></i> </button> </div>
+                                            <div class="widget-content-right"> <button class="border-0 btn-transition btn btn-outline-success"> <i class="fa fa-check"></i></button> <button class="border-0 btn-transition btn btn-outline-danger"> <i class="fa fa-times"></i> </button> </div>
                                         </div>
                                     </div>
                                 </li>
@@ -83,7 +84,7 @@
                                                 </div>
                                                 <div class="widget-subheading">By Bambang!</div>
                                             </div>
-                                            <div class="widget-content-right"> <button class="border-0 btn-transition btn btn-outline-success"> <i class="fa fa-check"></i></button> <button class="border-0 btn-transition btn btn-outline-danger"> <i class="fa fa-trash"></i> </button> </div>
+                                            <div class="widget-content-right"> <button class="border-0 btn-transition btn btn-outline-success"> <i class="fa fa-check"></i></button> <button class="border-0 btn-transition btn btn-outline-danger"> <i class="fa fa-times"></i> </button> </div>
                                         </div>
                                     </div>
                                 </li>
@@ -98,7 +99,7 @@
                                                 <div class="widget-heading">Quiz Basis Data Telah Tersedia</div>
                                                 <div class="widget-subheading">By Tzamaniyah</div>
                                             </div>
-                                            <div class="widget-content-right"> <button class="border-0 btn-transition btn btn-outline-success"> <i class="fa fa-check"></i></button> <button class="border-0 btn-transition btn btn-outline-danger"> <i class="fa fa-trash"></i> </button> </div>
+                                            <div class="widget-content-right"> <button class="border-0 btn-transition btn btn-outline-success"> <i class="fa fa-check"></i></button> <button class="border-0 btn-transition btn btn-outline-danger"> <i class="fa fa-times"></i> </button> </div>
                                         </div>
                                     </div>
                                 </li>
@@ -114,7 +115,7 @@
                                                 <div class="widget-heading">Quiz Basis Data Telah Tersedia</div>
                                                 <div class="widget-subheading">By Aereon</div>
                                             </div>
-                                            <div class="widget-content-right"> <button class="border-0 btn-transition btn btn-outline-success"> <i class="fa fa-check"></i></button> <button class="border-0 btn-transition btn btn-outline-danger"> <i class="fa fa-trash"></i> </button> </div>
+                                            <div class="widget-content-right"> <button class="border-0 btn-transition btn btn-outline-success"> <i class="fa fa-check"></i></button> <button class="border-0 btn-transition btn btn-outline-danger"> <i class="fa fa-times"></i> </button> </div>
                                         </div>
                                     </div>
                                 </li>
@@ -129,7 +130,7 @@
                                                 <div class="widget-heading">Quiz Basis Statistik Telah Tersedia</div>
                                                 <div class="widget-subheading">By CEO</div>
                                             </div>
-                                            <div class="widget-content-right"> <button class="border-0 btn-transition btn btn-outline-success"> <i class="fa fa-check"></i></button> <button class="border-0 btn-transition btn btn-outline-danger"> <i class="fa fa-trash"></i> </button> </div>
+                                            <div class="widget-content-right"> <button class="border-0 btn-transition btn btn-outline-success"> <i class="fa fa-check"></i></button> <button class="border-0 btn-transition btn btn-outline-danger"> <i class="fa fa-times"></i> </button> </div>
                                         </div>
                                     </div>
                                 </li>
@@ -138,8 +139,8 @@
                     </div>
                 </perfect-scrollbar>
             </div>
-            <div class="d-block text-right card-footer"><button class="btn btn-primary">Lihat Semua Tugas</button><button class="mr-2 btn btn-link btn-sm">Batal</button></div>
-        </div> -->
+            <div class="d-block text-right card-footer"><button class="btn btn-primary">Konfirmasi</button><button class="mr-2 btn btn-link btn-sm">Batal</button></div>
+        </div>
     </div>
 </div>
 
