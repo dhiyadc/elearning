@@ -159,7 +159,7 @@
                                     <?php elseif ($val3['nama_status'] == "Belum Mulai") : ?>
                                       <td><span class="badge badge-danger"><?= $val3['nama_status']; ?></span></td>
                                     <?php else : ?>
-                                      <td><span class="badge badge-warning"><?= $val3['nama_status']; ?></span></td>
+                                      <td><span class="badge badge-danger"><?= $val3['nama_status']; ?></span></td>
                                     <?php endif; ?>
                                   <?php endif; ?>
                               <?php endforeach; ?>
