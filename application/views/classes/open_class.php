@@ -58,7 +58,16 @@
         <?php foreach ($kelas as $val) : ?>
           <div class="col-lg-8 mb-5">
             <div class="mb-5">
-              <h3 class="text-black">Detail Kelas</h3>
+            <ul class="nav nav-tabs" role="tablist" style="font-weight: bolder;">
+              <li class="nav-item">
+                <a class="nav-link active" href="#profile" role="tab" data-toggle="tab"><i class="fa fa-user-circle"></i> Detail Kelas</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#buzz" role="tab" data-toggle="tab"><i class="fa fa-info-circle"></i> Tugas Kelas</a>
+              </li>                                                
+            </ul>
+            <div class="tab-content">
+              <div role="tabpanel" class="tab-pane fade show active" id="profile" style="margin-top: 20px;">
               <p class="mb-4">
                 <?php foreach ($harga as $val2) : ?>
                 <?php if ($val2['harga_kelas'] == '0' || $val2['harga_kelas'] == null) : ?> 
@@ -247,6 +256,16 @@
             </section>
 
             </div>
+          </div>
+          <div class="tab-content">
+              <div role="tabpanel" class="tab-pane fade show active" id="#buzz" style="margin-top: 20px;">
+                      
+              </div>
+          </div>
+        </div>
+
+        <!--  -->
+        
           </div>
           <div class="col-lg-4 pl-lg-5">
             <div class="mb-5 text-center border rounded course-instructor">
