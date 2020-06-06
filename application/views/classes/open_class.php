@@ -91,10 +91,14 @@
                         <p class="mt-4"><a href="<?= base_url()?>classes/pembayaran_kelas/<?= $val['id_kelas']; ?>" class="btn btn-dark mr-1">Gabung Kelas</a></p>
                     <?php endif; ?>
                 <?php elseif ($peserta != null) : ?>
-                    <div class="alert alert-primary" role="alert">
-                        <center><?= $this->session->flashdata('buttonJoin') ?></center>
-                    </div>
+                  <div class="row">
                     <a class="btn btn-dark mr-1" href="<?= base_url()?>classes/list_assignment/<?= $val['id_kelas'] ?>"><span class="icon-list"></span> Lihat Tugas</a>
+                    <div class="col">
+                      <div class="alert alert-dark" role="alert">
+                          <center><?= $this->session->flashdata('buttonJoin') ?></center>
+                      </div>
+                    </div>
+                  </div>
                 <?php elseif ($cek == false) : ?>
                     <?php if ($val['jenis_kelas'] == 1) : ?>
                         <p class="mt-4"><a href="<?= base_url()?>classes/join_class/<?= $val['id_kelas']; ?>" class="btn btn-dark mr-1">Gabung Kelas</a></p>
@@ -185,6 +189,7 @@
                                                   <label>Deskripsi Kegiatan</label>
                                                     <textarea class="form-control" name="deskripsi" required><?= $val2['deskripsi_kegiatan'] ?></textarea>
                                                 </div>
+                                                <input type="hidden" name="tanggal" value="<?= $val2['tanggal_kegiatan'] ?>">
                                               <div class="text-center mb-3">
                                                 <button type="submit" class="btn btn-light blue-gradient btn-block btn-rounded z-depth-1a">Simpan</button>
                                               </div>

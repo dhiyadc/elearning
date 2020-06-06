@@ -433,7 +433,8 @@ class Classes_model extends CI_Model {
     public function updateKegiatan($id)
     {
         $data = [
-            'deskripsi_kegiatan' => $this->input->post('deskripsi')
+            'deskripsi_kegiatan' => $this->input->post('deskripsi'),
+            'tanggal_kegiatan' => $this->input->post('tanggal')
         ];
 
         $this->db->where('id_kegiatan',$id);
@@ -483,11 +484,16 @@ class Classes_model extends CI_Model {
         return $query->result_array();
     }
 
-    public function getSubmit($id)
+    public function getTugasByTugasId($id)
     {
-        $sql = "SELECT tugas_kuis.*, submit_assignment.*, detail_user.nama, status_tugas.status_tugas as status, DATE_FORMAT(submit_assignment.tanggal_submit, '%W, %d %M %Y (%H:%i)') as tanggal_submit
-                FROM submit_assignment, detail_user, status_tugas, tugas_kuis
-                WHERE tugas_kuis.id_kelas = '$id' AND status_tugas.id = submit_assignment.status_tugas AND submit_assignment.id_user = detail_user.id_user AND submit_assignment.id_tugas = tugas_kuis.id_tugas";
+        return $this->db->get_where('tugas_kuis',['id_tugas' => $id])->result_array();
+    }
+
+    public function getSubmit()
+    {
+        $sql = "SELECT submit_assignment.*, detail_user.nama, status_tugas.status_tugas as status, DATE_FORMAT(submit_assignment.tanggal_submit, '%W, %d %M %Y (%H:%i)') as tanggal_submit
+                FROM submit_assignment, detail_user, status_tugas
+                WHERE status_tugas.id = submit_assignment.status_tugas AND submit_assignment.id_user = detail_user.id_user";
 
         $query = $this->db->query($sql);
         return $query->result_array();
@@ -520,7 +526,6 @@ class Classes_model extends CI_Model {
 
             if (date('Y-m-d H:i:s') > $deadline) {
                 $data = [
-                    'id_submit' => uniqid(),
                     'id_tugas' => $id_tugas,
                     'url_file' => $filename,
                     'nilai_tugas' => 0,
@@ -549,5 +554,50 @@ class Classes_model extends CI_Model {
         else {
             return "failed";
         }
+    }
+
+    public function updateAssignment($id)
+    {
+        $data = [
+            'judul_tugas' => $this->input->post('judul'),
+            'deskripsi_tugas' => $this->input->post('deskripsi'),
+            'kategori_tugas' => $this->input->post('kategori'),
+            'batas_pengiriman_tugas' => $this->input->post('deadline')
+        ];
+
+        $this->db->where('id_tugas',$id);
+        $this->db->update('tugas_kuis',$data);
+    }
+
+    public function deleteAssignment($id)
+    {
+        $this->db->where('id_tugas',$id);
+        $this->db->delete('tugas_kuis');
+    }
+    
+    public function updateNilai($id)
+    {
+        $data = [
+            'nilai_tugas' => $this->input->post('nilai')
+        ];
+
+        $this->db->where('id_submit',$id);
+        $this->db->update('submit_assignment',$data);
+    }
+
+    public function deleteJawaban($id)
+    {
+        $data = $this->db->get_where('submit_assignment',['id_submit' => $id])->row();
+        $deldata = $this->db->delete('submit_assignment',['id_submit'=>$id]);
+        if($deldata){
+            unlink("assets/docs/".$data->url_file);
+        }
+    }
+
+    public function cekTugas($id)
+    {
+        $this->db->where('id_tugas',$id);
+        $this->db->where('id_user',$this->session->userdata('id_user'));
+        return $this->db->get('submit_assignment')->result_array();
     }
 }
