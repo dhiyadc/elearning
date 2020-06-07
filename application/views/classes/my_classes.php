@@ -65,9 +65,6 @@
     <li class="nav-item">
         <a class="nav-link" data-toggle="tab" href="#tab4" role="tab" aria-expanded="false">Tugas</a>
     </li>
-    <li class="nav-item">
-        <a class="nav-link" data-toggle="tab" href="#tab5" role="tab" aria-expanded="false">Materi</a>
-    </li>
 </ul>
  
 <!-- Tab panes -------------- -->
@@ -535,7 +532,7 @@
                                 <td>
                                   <div class="buttonclass">
                                     <a href="<?= base_url()?>classes/open_class/<?= $val['id_kelas'] ?>" class="btn btn-light">Lihat Tugas</a>
-                                    <a href="<?= base_url()?>classes/leave_class/<?= $val['id_kelas'] ?>" class="btn btncyan">Serahkan</a>
+                                    <a href="<?= base_url()?>classes/leave_class/<?= $val['id_kelas'] ?>" class="btn btncyan" style="color: white;">Serahkan</a>
                                   </div>
                                 </td>
                             </tr>
