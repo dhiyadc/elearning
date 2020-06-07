@@ -210,6 +210,13 @@ class Classes_model extends CI_Model {
         return $this->db->get('peserta')->result_array();
     }
 
+    public function getPesertaByUserId()
+    {
+        $this->db->select('id_kelas');
+        $this->db->where('id_user',$this->session->userdata('id_user'));
+        return $this->db->get('peserta')->result_array();
+    }
+
     public function getPeserta()
     {
         return $this->db->get('peserta')->result_array();
@@ -221,13 +228,21 @@ class Classes_model extends CI_Model {
         return $this->db->get('harga_kelas')->result_array();
     }
 
+    public function getKelasKegiatan($id)
+    {
+        $sql = "SELECT detail_user.nama, kelas.id_kelas, kelas.judul_kelas, kelas.poster_kelas, DATE_FORMAT(jadwal_kegiatan.tanggal_kegiatan, '%W, %d %M %Y (%H:%i)') as tanggal
+                FROM jadwal_kegiatan, kelas, detail_user
+                WHERE kelas.id_kelas = '$id' AND jadwal_kegiatan.id_kelas = kelas.id_kelas AND jadwal_kegiatan.status_kegiatan = 1 AND kelas.pembuat_kelas = detail_user.id_user";
+        return $this->db->query($sql)->result_array();
+    }
+
     public function getIdNewClass()
     {
         $this->db->select('id_kelas');
         $this->db->where('pembuat_kelas',$this->session->userdata('id_user'));
         $this->db->order_by('id_kelas', 'DESC');
         $this->db->limit('1');
-        return $this->db->get('kelas')->result_array()[0];
+        return $this->db->get('kelas')->reswe9w3337yrult_array()[0];
     }
 
     public function getKegiatan($id)

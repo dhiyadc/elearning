@@ -63,7 +63,7 @@
                 <a class="nav-link active" href="#profile" role="tab" data-toggle="tab"><i class="fa fa-user-circle"></i> Detail Kelas</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#buzz" role="tab" data-toggle="tab"><i class="fa fa-info-circle"></i> Tugas Kelas</a>
+                <a class="nav-link" href="<?= base_url()?>classes/list_assignment/<?= $val['id_kelas'] ?>" role="tab" ><i class="fa fa-info-circle"></i> Tugas Kelas</a>
               </li>                                                
             </ul>
             <div class="tab-content">
@@ -101,7 +101,7 @@
                     <?php endif; ?>
                 <?php elseif ($peserta != null) : ?>
                   <div class="row" style="margin-left: 0px;">
-                    <a class="btn btn-dark mr-1" style="margin-bottom: 14px;" href="<?= base_url()?>classes/list_assignment/<?= $val['id_kelas'] ?>"><span class="icon-list"></span> Lihat Tugas</a>
+                    <a class="btn btn-dark mr-1" style="margin-bottom: 14px;" href="<?= base_url()?>classes/list_assignment/<?= $val['id_kelas'] ?>"><span class="icon-list"></span>Lihat Tugas</a>
                     <div class="col">
                       <div class="alert alert-dark" role="alert">
                           <center><?= $this->session->flashdata('buttonJoin') ?></center>
@@ -122,7 +122,7 @@
             <!-- <button onclick="showHideJadwal()" class="btn btn-light">Lihat Jadwal Kegiatan Kelas</button> -->
             <?php if ($val['pembuat_kelas'] == $this->session->userdata('id_user')) : ?>
               <a class="btn btn-dark mr-1" href="<?= base_url()?>classes/update_class/<?= $val['id_kelas'] ?>"><span class="icon-pencil"></span> Edit Kelas</a>
-              <a class="btn btn-light mr-1" href="<?= base_url()?>classes/list_assignment/<?= $val['id_kelas'] ?>"><span class="icon-list"></span> Lihat Tugas</a>
+              <!-- <a class="btn btn-light mr-1" href="<?= base_url()?>classes/list_assignment/<?= $val['id_kelas'] ?>"><span class="icon-list"></span> Lihat Tugas</a> -->
             <?php endif; ?>
             <br><br>
             <section>

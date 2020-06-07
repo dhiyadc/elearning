@@ -15,8 +15,17 @@ class Classes extends CI_Controller {
             $data['kategori'] = $this->Classes_model->getKategori();
             $data['jenis'] = $this->Classes_model->getJenis();
             $data['pembuat'] = $this->Classes_model->getMyName();
-            $nama['nama'] = explode (" ",$this->Classes_model->getMyName()['nama']);
-            $this->load->view('partialsuser/header',$nama);
+            $header['nama'] = explode (" ",$this->Classes_model->getMyName()['nama']);
+            $notif = $this->Classes_model->getPesertaByUserId();
+            $datanotif = array();
+            foreach ($notif as $value) {
+                $cek = $this->Classes_model->getKelasKegiatan($value['id_kelas']);
+                if($cek != null) {
+                    $datanotif[] = $cek;
+                }
+            }
+            $header['notif'] = $datanotif;
+            $this->load->view('partialsuser/header',$header);
             $this->load->view('classes/new_class',$data);
             $this->load->view('partialsuser/footer');
         } else {
@@ -56,8 +65,17 @@ class Classes extends CI_Controller {
         $data['cek'] = $this->Classes_model->cekPeserta($id_kelas);
         if(isset($this->session->userdata['logged_in'])){
             $this->session->set_flashdata('buttonJoin','Anda telah mengikuti kelas ini');
-            $nama['nama'] = explode (" ",$this->Classes_model->getMyName()['nama']);
-            $this->load->view('partialsuser/header',$nama);
+            $header['nama'] = explode (" ",$this->Classes_model->getMyName()['nama']);
+            $notif = $this->Classes_model->getPesertaByUserId();
+            $datanotif = array();
+            foreach ($notif as $value) {
+                $cek = $this->Classes_model->getKelasKegiatan($value['id_kelas']);
+                if($cek != null) {
+                    $datanotif[] = $cek;
+                }
+            }
+            $header['notif'] = $datanotif;
+            $this->load->view('partialsuser/header',$header);
             $this->load->view('classes/open_class',$data);
             $this->load->view('partialsuser/footer');
         } else {
@@ -181,8 +199,17 @@ class Classes extends CI_Controller {
             $data['jenis'] = $this->Classes_model->getJenis();
             $data['kelas'] = $this->Classes_model->getClassById($id_kelas);
             $data['pembuat'] = $this->Classes_model->getMyName();
-            $nama['nama'] = explode (" ",$this->Classes_model->getMyName()['nama']);
-            $this->load->view('partialsuser/header',$nama);
+            $header['nama'] = explode (" ",$this->Classes_model->getMyName()['nama']);
+            $notif = $this->Classes_model->getPesertaByUserId();
+            $datanotif = array();
+            foreach ($notif as $value) {
+                $cek = $this->Classes_model->getKelasKegiatan($value['id_kelas']);
+                if($cek != null) {
+                    $datanotif[] = $cek;
+                }
+            }
+            $header['notif'] = $datanotif;
+            $this->load->view('partialsuser/header',$header);
             $this->load->view('classes/update_class',$data);
             $this->load->view('partialsuser/footer');
         } else {
@@ -237,8 +264,17 @@ class Classes extends CI_Controller {
     public function pembayaran_kelas($id_kelas)
     {
         if(isset($this->session->userdata['logged_in'])){
-            $nama['nama'] = explode (" ",$this->Classes_model->getMyName()['nama']);
-            $this->load->view('partialsuser/header',$nama);
+            $header['nama'] = explode (" ",$this->Classes_model->getMyName()['nama']);
+            $notif = $this->Classes_model->getPesertaByUserId();
+            $datanotif = array();
+            foreach ($notif as $value) {
+                $cek = $this->Classes_model->getKelasKegiatan($value['id_kelas']);
+                if($cek != null) {
+                    $datanotif[] = $cek;
+                }
+            }
+            $header['notif'] = $datanotif;
+            $this->load->view('partialsuser/header',$header);
             $this->load->view('classes/pembayaran',$id_kelas);
             $this->load->view('partialsuser/footer');
         } else {
@@ -254,8 +290,17 @@ class Classes extends CI_Controller {
             $data['kegiatan'] = $this->Classes_model->getAllKegiatan();
             $data['status'] = $this->Classes_model->getStatus();
             $data['peserta'] = $this->Classes_model->getPeserta();
-            $nama['nama'] = explode (" ",$this->Classes_model->getMyName()['nama']);
-            $this->load->view('partialsuser/header',$nama);
+            $header['nama'] = explode (" ",$this->Classes_model->getMyName()['nama']);
+            $notif = $this->Classes_model->getPesertaByUserId();
+            $datanotif = array();
+            foreach ($notif as $value) {
+                $cek = $this->Classes_model->getKelasKegiatan($value['id_kelas']);
+                if($cek != null) {
+                    $datanotif[] = $cek;
+                }
+            }
+            $header['notif'] = $datanotif;
+            $this->load->view('partialsuser/header',$header);
             $this->load->view('classes/my_classes',$data);
             $this->load->view('partialsuser/footer');
         } else {
@@ -275,8 +320,17 @@ class Classes extends CI_Controller {
 
     public function index(){
         if(isset($_SESSION['logged_in'])){
-            $nama['nama'] = explode (" ",$this->Classes_model->getMyName()['nama']);
-            $this->load->view('partialsuser/header',$nama);
+            $header['nama'] = explode (" ",$this->Classes_model->getMyName()['nama']);
+            $notif = $this->Classes_model->getPesertaByUserId();
+            $datanotif = array();
+            foreach ($notif as $value) {
+                $cek = $this->Classes_model->getKelasKegiatan($value['id_kelas']);
+                if($cek != null) {
+                    $datanotif[] = $cek;
+                }
+            }
+            $header['notif'] = $datanotif;
+            $this->load->view('partialsuser/header',$header);
             
         } else {
             $this->load->view('partials/header');    
@@ -292,8 +346,17 @@ class Classes extends CI_Controller {
 
     public function categories($kategori){
         if(isset($_SESSION['logged_in'])){
-            $nama['nama'] = explode (" ",$this->Classes_model->getMyName()['nama']);
-            $this->load->view('partialsuser/header',$nama);
+            $header['nama'] = explode (" ",$this->Classes_model->getMyName()['nama']);
+            $notif = $this->Classes_model->getPesertaByUserId();
+            $datanotif = array();
+            foreach ($notif as $value) {
+                $cek = $this->Classes_model->getKelasKegiatan($value['id_kelas']);
+                if($cek != null) {
+                    $datanotif[] = $cek;
+                }
+            }
+            $header['notif'] = $datanotif;
+            $this->load->view('partialsuser/header',$header);
             
         } else {
             $this->load->view('partials/header');    
@@ -308,8 +371,17 @@ class Classes extends CI_Controller {
 
     public function sort($sorting){
         if(isset($_SESSION['logged_in'])){
-            $nama['nama'] = explode (" ",$this->Classes_model->getMyName()['nama']);
-            $this->load->view('partialsuser/header',$nama);
+            $header['nama'] = explode (" ",$this->Classes_model->getMyName()['nama']);
+            $notif = $this->Classes_model->getPesertaByUserId();
+            $datanotif = array();
+            foreach ($notif as $value) {
+                $cek = $this->Classes_model->getKelasKegiatan($value['id_kelas']);
+                if($cek != null) {
+                    $datanotif[] = $cek;
+                }
+            }
+            $header['notif'] = $datanotif;
+            $this->load->view('partialsuser/header',$header);
             
         } else {
             $this->load->view('partials/header');    
@@ -324,8 +396,17 @@ class Classes extends CI_Controller {
 
     public function search(){
         if(isset($_SESSION['logged_in'])){
-            $nama['nama'] = explode (" ",$this->Classes_model->getMyName()['nama']);
-            $this->load->view('partialsuser/header',$nama);
+            $header['nama'] = explode (" ",$this->Classes_model->getMyName()['nama']);
+            $notif = $this->Classes_model->getPesertaByUserId();
+            $datanotif = array();
+            foreach ($notif as $value) {
+                $cek = $this->Classes_model->getKelasKegiatan($value['id_kelas']);
+                if($cek != null) {
+                    $datanotif[] = $cek;
+                }
+            }
+            $header['notif'] = $datanotif;
+            $this->load->view('partialsuser/header',$header);
             
         } else {
             $this->load->view('partials/header');    
@@ -365,8 +446,17 @@ class Classes extends CI_Controller {
             $data['cek'] = $datacek;
             $data['submit'] = $this->Classes_model->getSubmit();
             $data['kelas'] = $this->Classes_model->getClassById($id_kelas);
-            $nama['nama'] = explode (" ",$this->Classes_model->getMyName()['nama']);
-            // $this->load->view('partialsuser/header',$nama);
+            $header['nama'] = explode (" ",$this->Classes_model->getMyName()['nama']);
+            $notif = $this->Classes_model->getPesertaByUserId();
+            $datanotif = array();
+            foreach ($notif as $value) {
+                $cek = $this->Classes_model->getKelasKegiatan($value['id_kelas']);
+                if($cek != null) {
+                    $datanotif[] = $cek;
+                }
+            }
+            $header['notif'] = $datanotif;
+            // $this->load->view('partialsuser/header',$header);
             $this->load->view('classes/list_assignment',$data);
             // $this->load->view('partialsuser/footer');
         } else {
@@ -379,8 +469,17 @@ class Classes extends CI_Controller {
         if(isset($this->session->userdata['logged_in'])){
             $data['kategori'] = $this->Classes_model->getKategoriTugas();
             $data['id'] = $id_kelas;
-            $nama['nama'] = explode (" ",$this->Classes_model->getMyName()['nama']);
-            $this->load->view('partialsuser/header',$nama);
+            $header['nama'] = explode (" ",$this->Classes_model->getMyName()['nama']);
+            $notif = $this->Classes_model->getPesertaByUserId();
+            $datanotif = array();
+            foreach ($notif as $value) {
+                $cek = $this->Classes_model->getKelasKegiatan($value['id_kelas']);
+                if($cek != null) {
+                    $datanotif[] = $cek;
+                }
+            }
+            $header['notif'] = $datanotif;
+            $this->load->view('partialsuser/header',$header);
             $this->load->view('classes/new_assignment',$data);
             $this->load->view('partialsuser/footer');
         } else {
@@ -433,8 +532,17 @@ class Classes extends CI_Controller {
             $data['kategori'] = $this->Classes_model->getKategoriTugas();
             $data['tugas'] = $this->Classes_model->getTugasByTugasId($id_tugas);
             $data['id'] = $id_kelas;
-            $nama['nama'] = explode (" ",$this->Classes_model->getMyName()['nama']);
-            $this->load->view('partialsuser/header',$nama);
+            $header['nama'] = explode (" ",$this->Classes_model->getMyName()['nama']);
+            $notif = $this->Classes_model->getPesertaByUserId();
+            $datanotif = array();
+            foreach ($notif as $value) {
+                $cek = $this->Classes_model->getKelasKegiatan($value['id_kelas']);
+                if($cek != null) {
+                    $datanotif[] = $cek;
+                }
+            }
+            $header['notif'] = $datanotif;
+            $this->load->view('partialsuser/header',$header);
             $this->load->view('classes/edit_assignment',$data);
             $this->load->view('partialsuser/footer');
         } else {
