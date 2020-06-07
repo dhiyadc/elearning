@@ -393,7 +393,9 @@
                   <th scope="col">Kelas</th>
                   <th scope="col">Progress</th>
                   <th scope="col">Status</th>
+                  <th scope="col">Materi</th>
                   <th scope="col">Aksi</th>
+                  
                 </tr>
               </thead>
               <tbody>
@@ -436,10 +438,16 @@
                                 </td>
                                 <td>
                                   <div class="buttonclass">
+                                  <a href="<?= base_url()?>classes/open_class/<?= $val['id_kelas'] ?>" class="btn btn-white" style="color: darkcyan;">Lihat Materi</a>
+                                  </div>
+                                </td>
+                                <td>
+                                  <div class="buttonclass">
                                     <a href="<?= base_url()?>classes/open_class/<?= $val['id_kelas'] ?>" class="btn btn-light">Lihat Kelas</a>
                                     <a href="<?= base_url()?>classes/leave_class/<?= $val['id_kelas'] ?>" class="btn btn-danger">Tinggalkan</a>
                                   </div>
-                                  </td>
+                                </td>
+                                
                             </tr>
                         <?php endif; ?>
                     <?php endforeach; ?>
@@ -529,7 +537,7 @@
                                     <a href="<?= base_url()?>classes/open_class/<?= $val['id_kelas'] ?>" class="btn btn-light">Lihat Tugas</a>
                                     <a href="<?= base_url()?>classes/leave_class/<?= $val['id_kelas'] ?>" class="btn btncyan">Serahkan</a>
                                   </div>
-                                  </td>
+                                </td>
                             </tr>
                         <?php endif; ?>
                     <?php endforeach; ?>
