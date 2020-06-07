@@ -63,7 +63,7 @@
                 <a class="nav-link active" href="#profile" role="tab" data-toggle="tab"><i class="fa fa-user-circle"></i> Detail Kelas</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="<?= base_url()?>classes/<?= $val['id_kelas'] ?>" role="tab" ><i class="fa fa-tasks"></i> Tugas Kelas</a>
+                <a class="nav-link" href="<?= base_url()?>classes/listkelas" role="tab" ><i class="fa fa-tasks"></i> Tugas Kelas</a>
               </li>                                                
             </ul>
             <div class="tab-content">
