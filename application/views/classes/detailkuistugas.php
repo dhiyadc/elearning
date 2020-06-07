@@ -85,7 +85,7 @@
             <!-- <div class="comments"><i class="fa fa-comment-o"></i>20</div> -->
             <div class="project-progress">
               <div class="time">
-                <div class="nilai">0/100</span></div>
+                <div class="nilai">0/100 Poin</span></div>
               
               </div>
             </div>
