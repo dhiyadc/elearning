@@ -92,6 +92,13 @@
 					SHOW_JITSI_WATERMARK: false,
 					SHOW_WATERMARK_FOR_GUESTS: false,
 					DISABLE_VIDEO_BACKGROUND: true,
+					TOOLBAR_BUTTONS: [
+						'microphone', 'camera', 'closedcaptions', 'desktop', 'fullscreen',
+						'fodeviceselection', 'hangup', 'profile', 'chat', 'etherpad', 'feedback',
+						'settings', 'raisehand',  'videoquality', 'filmstrip', 'invite', 'security',
+						'tileview', 'videobackgroundblur', 'download', 'help', 'mute-everyone',
+						'e2ee', 'recording'
+					],
 				}
 			}
 
