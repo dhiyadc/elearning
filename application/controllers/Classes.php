@@ -579,4 +579,63 @@ class Classes extends CI_Controller {
             redirect('home');
         }
     }
+    // temporary
+
+    public function listkelas(){
+        // $this->load->view('partialsuser/header');
+        // $this->load->view('classes/listtugas');
+        // $this->load->view('partialsuser/footer');
+        if(isset($this->session->userdata['logged_in'])){
+            $data['seluruh_kelas'] = $this->Classes_model->getAllClasses();
+            $data['kelas'] = $this->Classes_model->getMyClasses();
+            $data['kegiatan'] = $this->Classes_model->getAllKegiatan();
+            $data['status'] = $this->Classes_model->getStatus();
+            $data['peserta'] = $this->Classes_model->getPeserta();
+            $header['nama'] = explode (" ",$this->Classes_model->getMyName()['nama']);
+            $notif = $this->Classes_model->getPesertaByUserId();
+            $datanotif = array();
+            foreach ($notif as $value) {
+                $cek = $this->Classes_model->getKelasKegiatan($value['id_kelas']);
+                if($cek != null) {
+                    $datanotif[] = $cek;
+                }
+            }
+            $header['notif'] = $datanotif;
+            $this->load->view('partialsuser/header',$header);
+            $this->load->view('classes/listtugas',$data);
+            $this->load->view('partialsuser/footer');
+        } else {
+            redirect('home');
+        }
+    
+    }
+
+    public function detailtugaskuis(){
+        // $this->load->view('partialsuser/header');
+        // $this->load->view('classes/listtugas');
+        // $this->load->view('partialsuser/footer');
+        if(isset($this->session->userdata['logged_in'])){
+            $data['seluruh_kelas'] = $this->Classes_model->getAllClasses();
+            $data['kelas'] = $this->Classes_model->getMyClasses();
+            $data['kegiatan'] = $this->Classes_model->getAllKegiatan();
+            $data['status'] = $this->Classes_model->getStatus();
+            $data['peserta'] = $this->Classes_model->getPeserta();
+            $header['nama'] = explode (" ",$this->Classes_model->getMyName()['nama']);
+            $notif = $this->Classes_model->getPesertaByUserId();
+            $datanotif = array();
+            foreach ($notif as $value) {
+                $cek = $this->Classes_model->getKelasKegiatan($value['id_kelas']);
+                if($cek != null) {
+                    $datanotif[] = $cek;
+                }
+            }
+            $header['notif'] = $datanotif;
+            $this->load->view('partialsuser/header',$header);
+            $this->load->view('classes/detailkuistugas',$data);
+            $this->load->view('partialsuser/footer');
+        } else {
+            redirect('home');
+        }
+    
+    }
 }
