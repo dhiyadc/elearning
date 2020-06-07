@@ -177,8 +177,8 @@
                                     <?php elseif ($cek == false) : ?>
                                     <?php endif; ?>
                                   <?php elseif ($val2['status_kegiatan'] != CLASS_FINISHED) : ?>
-                                      <button type="button" class="btn btn-light" data-toggle="modal" data-target="#editKegiatan<?= $val2['id_kegiatan']; ?>">Edit</button><br>
-                                      <a href="<?= base_url('class/') ?><?= $val['id_kelas'] ?>/<?= $val2['id_kegiatan']; ?>" class="btn btn-dark mr-1">Mulai</a>
+                                      <button type="button" class="btn btn-light btn-block" data-toggle="modal" data-target="#editKegiatan<?= $val2['id_kegiatan']; ?>">Edit</button><br>
+                                      <a href="<?= base_url('class/') ?><?= $val['id_kelas'] ?>/<?= $val2['id_kegiatan']; ?>" class="btn btn-dark mr-1 btn-block">Mulai</a>
                                       <div class="modal fade" id="editKegiatan<?= $val2['id_kegiatan']; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="padding-right: 90px;">
                                         <div class="modal-dialog" role="document">
                                           <!--Content-->
