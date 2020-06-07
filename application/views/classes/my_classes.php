@@ -469,7 +469,7 @@
       <div class="col">
       	<div class="card card-list">
           <div class="card-body">
-            <h2>Tugas</h2>
+            <h2>Kelas Diikuti</h2>
           </div>
          
           <div class="card-body">
