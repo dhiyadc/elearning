@@ -17,8 +17,17 @@ class Home extends CI_Controller{
 
     public function index(){
         if(isset($_SESSION['logged_in'])){
-            $nama['nama'] = explode (" ",$this->Classes_model->getMyName()['nama']);
-            $this->load->view('partialsuser/header',$nama);
+            $header['nama'] = explode (" ",$this->Classes_model->getMyName()['nama']);
+            $notif = $this->Classes_model->getPesertaByUserId();
+            $datanotif = array();
+            foreach ($notif as $value) {
+                $cek = $this->Classes_model->getKelasKegiatan($value['id_kelas']);
+                if($cek != null) {
+                    $datanotif[] = $cek;
+                }
+            }
+            $header['notif'] = $datanotif;
+            $this->load->view('partialsuser/header',$header);
             
         } else {
             $this->load->view('partials/header');    

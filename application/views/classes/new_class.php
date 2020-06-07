@@ -122,7 +122,7 @@
         </div>
         <div class="row">
             <div class="col-md-3 field-label-responsive mb-3">
-                <label for="passwordnow">Poster Kelas</label>
+                <label for="passwordnow">Poster Kelas (max. 3 MB)</label>
             </div>
             <div class="col-md-6">
                 <div class="form-group">

@@ -63,7 +63,7 @@
                 <a class="nav-link active" href="#profile" role="tab" data-toggle="tab"><i class="fa fa-user-circle"></i> Detail Kelas</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#buzz" role="tab" data-toggle="tab"><i class="fa fa-info-circle"></i> Tugas Kelas</a>
+                <a class="nav-link" href="<?= base_url()?>classes/list_assignment/<?= $val['id_kelas'] ?>" role="tab" ><i class="fa fa-info-circle"></i> Tugas Kelas</a>
               </li>                                                
             </ul>
             <div class="tab-content">
@@ -100,9 +100,14 @@
                         <p class="mt-4"><a href="<?= base_url()?>classes/pembayaran_kelas/<?= $val['id_kelas']; ?>" class="btn btn-dark mr-1">Gabung Kelas</a></p>
                     <?php endif; ?>
                 <?php elseif ($peserta != null) : ?>
-                    <div class="alert alert-primary" role="alert">
-                        <center><?= $this->session->flashdata('buttonJoin') ?></center>
+                  <div class="row" style="margin-left: 0px;">
+                    <a class="btn btn-dark mr-1" style="margin-bottom: 14px;" href="<?= base_url()?>classes/list_assignment/<?= $val['id_kelas'] ?>"><span class="icon-list"></span>Lihat Tugas</a>
+                    <div class="col">
+                      <div class="alert alert-dark" role="alert">
+                          <center><?= $this->session->flashdata('buttonJoin') ?></center>
+                      </div>
                     </div>
+                  </div>
                 <?php elseif ($cek == false) : ?>
                     <?php if ($val['jenis_kelas'] == 1) : ?>
                         <p class="mt-4"><a href="<?= base_url()?>classes/join_class/<?= $val['id_kelas']; ?>" class="btn btn-dark mr-1">Gabung Kelas</a></p>
@@ -117,11 +122,12 @@
             <!-- <button onclick="showHideJadwal()" class="btn btn-light">Lihat Jadwal Kegiatan Kelas</button> -->
             <?php if ($val['pembuat_kelas'] == $this->session->userdata('id_user')) : ?>
               <a class="btn btn-dark mr-1" href="<?= base_url()?>classes/update_class/<?= $val['id_kelas'] ?>"><span class="icon-pencil"></span> Edit Kelas</a>
+              <!-- <a class="btn btn-light mr-1" href="<?= base_url()?>classes/list_assignment/<?= $val['id_kelas'] ?>"><span class="icon-list"></span> Lihat Tugas</a> -->
             <?php endif; ?>
             <br><br>
             <section>
               <div class="row">
-                <div class="col">
+                <div class="col"> 
                   <div class="card card-list">
                     <div class="card-body">
                       <h2>Jadwal Kegiatan Kelas</h2>
@@ -192,6 +198,7 @@
                                                   <label>Deskripsi Kegiatan</label>
                                                     <textarea class="form-control" name="deskripsi" required><?= $val2['deskripsi_kegiatan'] ?></textarea>
                                                 </div>
+                                                <input type="hidden" name="tanggal" value="<?= $val2['tanggal_kegiatan'] ?>">
                                               <div class="text-center mb-3">
                                                 <button type="submit" class="btn btn-light blue-gradient btn-block btn-rounded z-depth-1a">Simpan</button>
                                               </div>
@@ -227,7 +234,7 @@
                       <!--Body-->
                       <div class="modal-body mx-4">
                         <!--Body-->
-                        <form action="<?= base_url()?>classes/set_kegiatan/<?= $val['id_kelas'] ?>" method="POST">
+                        <form enctype="multipart/form-data" action="<?= base_url()?>classes/set_kegiatan/<?= $val['id_kelas'] ?>" method="POST">
                           <div class="form-group">
                             <label>Deskripsi Kegiatan</label>
                               <textarea class="form-control" name="deskripsi" required></textarea>
