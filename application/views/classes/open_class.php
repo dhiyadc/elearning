@@ -193,23 +193,10 @@
                                                     <textarea class="form-control" name="deskripsi" required><?= $val2['deskripsi_kegiatan'] ?></textarea>
                                                 </div>
 
-                                               
-                                                <div class="form-group">
-                                                <?php $tambah = 0; ?>
-                                                <?php foreach ($materi as $val4) : ?>
-                                                <?php if ($val2['id_kegiatan'] == $val4['id_kegiatan']) : 
-                                                  $tambah++; ?>
-     
-                                                      <a href="<?= base_url(); ?>classes/hapus_materi/<?= $val4['id_kelas'] ?>/<?= $val4['url_materi'] ?>"><button type="button" class="btn btn-danger">Hapus Materi</button></a>
-                                                                                    
-                                                    <?php endif; ?>
-                                                    
-                                                <?php endforeach; ?>
                                                 
-                                                <?php if($tambah < 1){ ?>
                                                 <label for="exampleFormControlFile1">Tambah Materi</label>
                                                 <input type="file" name="materi" accept=".doc, .docx, .ppt, .pptx, .pdf" class="form-control-file" id="exampleFormControlFile1"> 
-                                                <?php } ?>
+                                                
                                                 </div>
 
 
@@ -241,7 +228,8 @@
                                   <td>
                                   <?php foreach ($materi as $val4) : ?>
                                   <?php if ($val2['id_kegiatan'] == $val4['id_kegiatan']) : ?>
-                                      <a href="<?= base_url(); ?>classes/download_materi/<?= $val4['url_materi'] ?>">Download Materi</a>
+                                      <a href="<?= base_url(); ?>classes/download_materi/<?= $val4['url_materi'] ?>">Materi</a>
+                                      <a href="<?= base_url(); ?>classes/hapus_materi/<?= $val4['id_kelas'] ?>/<?= $val4['url_materi'] ?>"><i>Hapus</i></a>
                                       <?php else : ?>
                                       <?php endif; ?>
                                   <?php endforeach; ?>
