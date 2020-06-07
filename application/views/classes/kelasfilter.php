@@ -233,7 +233,7 @@
 									<figure class="m-0">
 										<a href="<?= base_url() ?>classes/open_class/<?= $val['id_kelas']?>"><img
 												src="<?= base_url().'assets/images/'.$val['poster_kelas']?>" alt="Image"
-												class="img-fluid" style="height: 180px; width: 330px; object-fit: cover;"></a>
+												class="img-fluid" style="height: 180px; width: 340px; object-fit: cover;"></a>
 									</figure>
 									<div class="course-inner-text py-4 px-4">
 										<span class="course-price"><?php
