@@ -469,7 +469,7 @@
       <div class="col">
       	<div class="card card-list">
           <div class="card-body">
-            <h2>Kelas Diikuti</h2>
+            <h2>Tugas</h2>
           </div>
          
           <div class="card-body">
@@ -559,7 +559,93 @@
     
     </div>
     <div class="tab-pane" id="tab4" role="tabpanel" aria-expanded="false">
-        Tab 4 content goes here. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+    <div class="row mt-5">
+      <div class="col">
+      	<div class="card card-list">
+          <div class="card-body">
+            <h2>Tugas</h2>
+          </div>
+         
+          <div class="card-body">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Kelas</th>
+                  <th scope="col">Progress</th>
+                  <th scope="col">Deadline</th>
+                  <th scope="col">Aksi</th>
+                </tr>
+              </thead>
+              <tbody>
+              <?php foreach ($seluruh_kelas as $val) : ?>
+                    <?php foreach ($peserta as $val2) : ?>
+                        <?php if ($val2['id_kelas'] == $val['id_kelas'] && $val2['id_user'] == $this->session->userdata('id_user')) : ?>
+                            <tr>
+                                <th scope="row" style="width: 300px;"><a class="text-primary"><?= $val['judul_kelas']; ?></a></th>
+                                <td style="padding-top: 20px;"> 
+                                <?php $total = 0; $selesai = 0;
+                                foreach ($kegiatan as $val3) {
+                                  if ($val2['id_kelas'] == $val3['id_kelas']){
+                                    $total++; 
+                                    if ($val3['status_kegiatan'] == 2) {
+                                      $selesai++; 
+                                    } 
+                                  }
+                                }
+                                if ($total == 0) {
+                                  $proses = 0;
+                                }
+                                else {
+                                $proses = ($selesai / $total) * 100; 
+                                } ?>
+                                    <div class="progress md-progress">
+                                        <div class="progress-bar bg-info" role="progressbar" style="width: <?= $proses; ?>%" aria-valuenow="<?= $proses; ?>" aria-valuemin="0"
+                                        aria-valuemax="100"><?= $proses; ?>%</div>
+                                    </div>
+                                </td>
+                                <td style="padding-top:20px">
+                                    
+                                                <span class="badge">14 Mar 14:00</span>
+                                           
+                                               
+                                           
+                                </td>
+                                <td>
+                                  <div class="buttonclass">
+                                    <a href="<?= base_url()?>classes/open_class/<?= $val['id_kelas'] ?>" class="btn btn-light">Lihat Tugas</a>
+                                    <a href="<?= base_url()?>classes/leave_class/<?= $val['id_kelas'] ?>" class="btn btncyan">Serahkan</a>
+                                  </div>
+                                  </td>
+                            </tr>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
+                <?php endforeach; ?>
+              </tbody>
+            </table>
+          </div>
+          <div class="card-footer white py-3 d-flex justify-content-center">
+          <ul class="pagination">
+            <li class="page-item">
+              <a class="page-link" href="#" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+                <span class="sr-only">Previous</span>
+              </a>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item">
+              <a class="page-link" href="#" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+                <span class="sr-only">Next</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+          </div>
+        </div>
+      </div>
+    </div>
     </div>
 </div>
 
