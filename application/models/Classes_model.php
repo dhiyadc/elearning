@@ -242,7 +242,7 @@ class Classes_model extends CI_Model {
         $this->db->where('pembuat_kelas',$this->session->userdata('id_user'));
         $this->db->order_by('id_kelas', 'DESC');
         $this->db->limit('1');
-        return $this->db->get('kelas')->reswe9w3337yrult_array()[0];
+        return $this->db->get('kelas')->result_array()[0];
     }
 
     public function getKegiatan($id)
