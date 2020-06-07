@@ -462,7 +462,8 @@ class Classes_model extends CI_Model {
     public function updateKegiatan($id)
     {
         $data = [
-            'deskripsi_kegiatan' => $this->input->post('deskripsi')
+            'deskripsi_kegiatan' => $this->input->post('deskripsi'),
+            'tanggal_kegiatan' => $this->input->post('tanggal')
         ];
 
         $this->db->where('id_kegiatan',$id);
@@ -489,5 +490,143 @@ class Classes_model extends CI_Model {
         $this->db->where('id_user',$this->session->userdata('id_user'));
         $this->db->where('id_kelas',$id);
         $this->db->delete('peserta');
+    }
+
+    public function getKategoriTugas()
+    {
+        return $this->db->get('kategori_tugas')->result_array();
+    }
+
+    public function getDeadlineTugas($id)
+    {
+        $this->db->select('batas_pengiriman_tugas');
+        return $this->db->get_where('tugas_kuis',['id_tugas' => $id])->result_array()[0];
+    }
+
+    public function getTugasByClassId($id)
+    {
+        $sql = "SELECT tugas_kuis.*, kategori_tugas.kategori_tugas as kategori, DATE_FORMAT(tugas_kuis.batas_pengiriman_tugas, '%W, %d %M %Y (%H:%i)') as deadline
+                FROM tugas_kuis, kategori_tugas
+                WHERE tugas_kuis.id_kelas = '$id' AND tugas_kuis.kategori_tugas = kategori_tugas.id";
+
+        $query = $this->db->query($sql);
+        return $query->result_array();
+    }
+
+    public function getTugasByTugasId($id)
+    {
+        return $this->db->get_where('tugas_kuis',['id_tugas' => $id])->result_array();
+    }
+
+    public function getSubmit()
+    {
+        $sql = "SELECT submit_assignment.*, detail_user.nama, status_tugas.status_tugas as status, DATE_FORMAT(submit_assignment.tanggal_submit, '%W, %d %M %Y (%H:%i)') as tanggal_submit
+                FROM submit_assignment, detail_user, status_tugas
+                WHERE status_tugas.id = submit_assignment.status_tugas AND submit_assignment.id_user = detail_user.id_user";
+
+        $query = $this->db->query($sql);
+        return $query->result_array();
+    }
+
+    public function createAssignment($id)
+    {
+        $data = [
+            'id_tugas' => uniqid(),
+            'judul_tugas' => $this->input->post('judul'),
+            'deskripsi_tugas' => $this->input->post('deskripsi'),
+            'id_kelas' => $id,
+            'kategori_tugas' => $this->input->post('kategori'),
+            'batas_pengiriman_tugas' => $this->input->post('deadline')
+        ];
+
+        $this->db->insert('tugas_kuis',$data);
+    }
+
+    public function collectAssignment($id_tugas,$deadline)
+    {
+        $config['upload_path'] = './assets/docs/';
+        $config['allowed_types'] = 'pdf|doc|docx';
+        $config['max_size'] = '25000';
+        $config['remove_space'] = true;
+
+        $this->load->library('upload', $config);
+        if ($this->upload->do_upload('assignment')) {
+            $filename = $this->upload->data('file_name');
+
+            if (date('Y-m-d H:i:s') > $deadline) {
+                $data = [
+                    'id_tugas' => $id_tugas,
+                    'url_file' => $filename,
+                    'nilai_tugas' => 0,
+                    'status_tugas' => 2,
+                    'id_user' => $this->session->userdata('id_user'),
+                    'subjek_tugas' => $this->input->post('subjek'),
+                    'tanggal_submit' => date('Y-m-d H:i:s')
+                ];
+        
+                $this->db->insert('submit_assignment',$data);
+            }
+            else {
+                $data = [
+                    'id_tugas' => $id_tugas,
+                    'url_file' => $filename,
+                    'nilai_tugas' => 0,
+                    'status_tugas' => 1,
+                    'id_user' => $this->session->userdata('id_user'),
+                    'subjek_tugas' => $this->input->post('subjek'),
+                    'tanggal_submit' => date('Y-m-d H:i:s')
+                ];
+        
+                $this->db->insert('submit_assignment',$data);
+            }
+        }
+        else {
+            return "failed";
+        }
+    }
+
+    public function updateAssignment($id)
+    {
+        $data = [
+            'judul_tugas' => $this->input->post('judul'),
+            'deskripsi_tugas' => $this->input->post('deskripsi'),
+            'kategori_tugas' => $this->input->post('kategori'),
+            'batas_pengiriman_tugas' => $this->input->post('deadline')
+        ];
+
+        $this->db->where('id_tugas',$id);
+        $this->db->update('tugas_kuis',$data);
+    }
+
+    public function deleteAssignment($id)
+    {
+        $this->db->where('id_tugas',$id);
+        $this->db->delete('tugas_kuis');
+    }
+    
+    public function updateNilai($id)
+    {
+        $data = [
+            'nilai_tugas' => $this->input->post('nilai')
+        ];
+
+        $this->db->where('id_submit',$id);
+        $this->db->update('submit_assignment',$data);
+    }
+
+    public function deleteJawaban($id)
+    {
+        $data = $this->db->get_where('submit_assignment',['id_submit' => $id])->row();
+        $deldata = $this->db->delete('submit_assignment',['id_submit'=>$id]);
+        if($deldata){
+            unlink("assets/docs/".$data->url_file);
+        }
+    }
+
+    public function cekTugas($id)
+    {
+        $this->db->where('id_tugas',$id);
+        $this->db->where('id_user',$this->session->userdata('id_user'));
+        return $this->db->get('submit_assignment')->result_array();
     }
 }
