@@ -228,6 +228,14 @@ class Classes_model extends CI_Model {
         return $this->db->get('harga_kelas')->result_array();
     }
 
+    public function getMateriByClassId($id)
+    {
+        $sql = "SELECT kelas.id_kelas, kelas.judul_kelas, materi.*, jadwal_kegiatan.deskripsi_kegiatan
+                FROM materi, kelas, jadwal_kegiatan
+                WHERE kelas.id_kelas = '$id' AND materi.id_kelas = kelas.id_kelas AND materi.id_kegiatan = jadwal_kegiatan.id_kegiatan AND kelas.id_kelas = jadwal_kegiatan.id_kelas";
+        return $this->db->query($sql)->result_array();
+    }
+
     public function getKelasKegiatan($id)
     {
         $sql = "SELECT detail_user.nama, kelas.id_kelas, kelas.judul_kelas, kelas.poster_kelas, DATE_FORMAT(jadwal_kegiatan.tanggal_kegiatan, '%W, %d %M %Y (%H:%i)') as tanggal
