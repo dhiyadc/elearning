@@ -60,9 +60,12 @@
     <li class="nav-item">
         <a class="nav-link" data-toggle="tab" href="#tab2" role="tab" aria-expanded="false" style="font-size: 22px;">Quiz</a>
     </li>
-    <!-- <li class="nav-item ml-auto">
-    <div class="title font-size-lg text-capitalize font-weight-normal">Buat Kelas<i class="fa fa-plus-square"></i></div>
-    </li>     -->
+    <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#tab2" role="tab" aria-expanded="false" style="font-size: 22px;">Anggota</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#tab2" role="tab" aria-expanded="false" style="font-size: 22px;">Nilai</a>
+    </li>  
 </ul>
  
 <!-- Tab panes -------------- -->
