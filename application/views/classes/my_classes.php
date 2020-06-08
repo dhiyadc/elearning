@@ -65,9 +65,6 @@
     <li class="nav-item">
         <a class="nav-link" data-toggle="tab" href="#tab4" role="tab" aria-expanded="false">Tugas</a>
     </li>
-    <li class="nav-item">
-        <a class="nav-link" data-toggle="tab" href="#tab5" role="tab" aria-expanded="false">Materi</a>
-    </li>
 </ul>
  
 <!-- Tab panes -------------- -->
@@ -393,7 +390,9 @@
                   <th scope="col">Kelas</th>
                   <th scope="col">Progress</th>
                   <th scope="col">Status</th>
+                  <th scope="col">Materi</th>
                   <th scope="col">Aksi</th>
+                  
                 </tr>
               </thead>
               <tbody>
@@ -436,10 +435,16 @@
                                 </td>
                                 <td>
                                   <div class="buttonclass">
+                                  <a href="<?= base_url()?>classes/open_class/<?= $val['id_kelas'] ?>" class="btn btn-white" style="color: darkcyan;">Lihat Materi</a>
+                                  </div>
+                                </td>
+                                <td>
+                                  <div class="buttonclass">
                                     <a href="<?= base_url()?>classes/open_class/<?= $val['id_kelas'] ?>" class="btn btn-light">Lihat Kelas</a>
                                     <a href="<?= base_url()?>classes/leave_class/<?= $val['id_kelas'] ?>" class="btn btn-danger">Tinggalkan</a>
                                   </div>
-                                  </td>
+                                </td>
+                                
                             </tr>
                         <?php endif; ?>
                     <?php endforeach; ?>
@@ -661,7 +666,7 @@
                                   <div class="buttonclass">
                                     <a href="<?= base_url()?>classes/download_materi/<?= $val2['url_materi'] ?>" class="btn btn-success">Download</a>
                                   </div>
-                                  </td>
+                                </td>
                             </tr>
                     <?php endforeach; ?>
                 <?php endforeach; ?>
