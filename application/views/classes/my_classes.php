@@ -345,6 +345,7 @@
                                 <div class="buttonclass">
                                     <a href="<?= base_url()?>classes/open_class/<?= $val['id_kelas'] ?>" class="btn btn-light">Lihat kelas</a>
                                     <a class="btn btn-dark mr-1" href="<?= base_url()?>classes/update_class/<?= $val['id_kelas'] ?>">Edit Kelas</a>
+                                    
                                 </td>
                                 </div>
                             </tr>

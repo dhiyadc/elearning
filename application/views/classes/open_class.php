@@ -64,7 +64,10 @@
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="<?= base_url()?>classes/listkelas" role="tab" ><i class="fa fa-tasks"></i> Tugas Kelas</a>
-              </li>                                                
+              </li>          
+              <li class="nav-item">
+                <a class="nav-link" href="<?= base_url()?>classes/mentorkelas" role="tab" ><i class="fa fa-tasks"></i>Atur Kelas</a>
+              </li>                                        
             </ul>
             <div class="tab-content">
               <div role="tabpanel" class="tab-pane fade show active" id="profile" style="margin-top: 20px;">

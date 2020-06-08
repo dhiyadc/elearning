@@ -23,7 +23,7 @@
     <!--Grid column-->
     <div class="col-md-12 mb-4">
 
-        <h5 class="text-center font-weight-bold mb-4" style="color: white">Tugas Saya</h5>
+        <h5 class="text-center font-weight-bold mb-4" style="color: white">Kelas Saya</h5>
         <div class="container my-5">
 
 
@@ -60,7 +60,9 @@
     <li class="nav-item">
         <a class="nav-link" data-toggle="tab" href="#tab2" role="tab" aria-expanded="false" style="font-size: 22px;">Quiz</a>
     </li>
-    
+    <!-- <li class="nav-item ml-auto">
+    <div class="title font-size-lg text-capitalize font-weight-normal">Buat Kelas<i class="fa fa-plus-square"></i></div>
+    </li>     -->
 </ul>
  
 <!-- Tab panes -------------- -->
@@ -87,7 +89,7 @@
             <!-- <div class="comments"><i class="fa fa-comment-o"></i>20</div> -->
             <div class="project-progress">
               <div class="time">
-                <div class="nilai">0/100</span></div>
+                <div class="nilai">1/100 Siswa</span></div>
               
               </div>
             </div>
@@ -112,7 +114,7 @@
         
             <!-- <div class="comments"><i class="fa fa-comment-o"></i>20</div> -->
             <div class="project-progress">
-            <div class="nilai">0/100</span></div>
+            <div class="nilai">1/50 Siswa</span></div>
             </div>
             <div class="time"><i class="fa fa-clock-o"></i>Tenggat Kam 12:00  </div>
           </div>
@@ -135,7 +137,7 @@
         
             <!-- <div class="comments"><i class="fa fa-comment-o"></i>20</div> -->
             <div class="project-progress">
-            <div class="nilai">0/100</span></div>
+            <div class="nilai">0/100 Siswa</span></div>
             </div>
             <div class="time"><i class="fa fa-clock-o"></i>Tenggat Kam 12:00  </div>
           </div>
@@ -158,7 +160,7 @@
         
             <!-- <div class="comments"><i class="fa fa-comment-o"></i>20</div> -->
             <div class="project-progress">
-            <div class="nilai">0/100</span></div>
+            <div class="nilai">0/100 siswa</span></div>
             </div>
             <div class="time"><i class="fa fa-clock-o"></i>Tenggat Kam 12:00  </div>
           </div>
@@ -190,7 +192,7 @@
         <!-- <div class="comments"><i class="fa fa-comment-o"></i>20</div> -->
         <div class="project-progress">
           <div class="time">
-            <div class="nilai">0/100</span></div>
+            <div class="nilai">0/100 Siswa</span></div>
            
           </div>
         </div>
