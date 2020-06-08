@@ -61,10 +61,10 @@
         <a class="nav-link" data-toggle="tab" href="#tab2" role="tab" aria-expanded="false" style="font-size: 22px;">Quiz</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" data-toggle="tab" href="#tab2" role="tab" aria-expanded="false" style="font-size: 22px;">Anggota</a>
+        <a class="nav-link" data-toggle="tab" href="#tab3" role="tab" aria-expanded="false" style="font-size: 22px;">Anggota</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" data-toggle="tab" href="#tab2" role="tab" aria-expanded="false" style="font-size: 22px;">Nilai</a>
+        <a class="nav-link" data-toggle="tab" href="#tab4" role="tab" aria-expanded="false" style="font-size: 22px;">Nilai</a>
     </li>  
 </ul>
  
