@@ -194,8 +194,8 @@
                                                 </div>
 
                                                 
-                                                <label for="exampleFormControlFile1">Tambah Materi</label>
-                                                <input type="file" name="materi" accept=".doc, .docx, .ppt, .pptx, .pdf" class="form-control-file" id="exampleFormControlFile1"> 
+                                                <label for="materiForm">Tambah Materi</label>
+                                                <input type="file" name="materi[]" accept=".doc, .docx, .ppt, .pptx, .pdf" class="form-control-file" id="materiForm" multiple> 
                                                 
                                                 </div>
 
@@ -283,8 +283,8 @@
                           </div>
                         <input type="hidden" id="dtp_input1"/>
                         <div class="form-group">
-                          <label for="exampleFormControlFile1">Materi (Opsional)</label>
-                          <input type="file" name="materi" accept=".doc, .docx, .ppt, .pptx, .pdf" class="form-control-file" id="exampleFormControlFile1">
+                          <label for="materiForm">Materi (Opsional)</label>
+                          <input type="file" name="materi[]" accept=".doc, .docx, .ppt, .pptx, .pdf" class="form-control-file" id="materiForm" multiple>
                         </div>
                         <div class="text-center mb-3">
                           <button type="submit" class="btn btn-light blue-gradient btn-block btn-rounded z-depth-1a">Simpan</button>

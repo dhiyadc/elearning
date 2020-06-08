@@ -202,6 +202,8 @@ class Classes extends CI_Controller {
             if($kegiatan == "fail"){
                 $this->session->set_flashdata("invalidFile", "Something went wrong (only pdf, doc, ppt) Max Size : 25MB");
             }
+
+           
             redirect('classes/open_class/' . $id_kelas);
         } else {
             redirect('home');
@@ -211,7 +213,7 @@ class Classes extends CI_Controller {
     public function edit_kegiatan($id_kelas,$id_kegiatan)
     {
         if(isset($this->session->userdata['logged_in'])){
-            $this->Classes_model->updateKegiatan($id_kelas, $id_kegiatan);
+            $kegiatan = $this->Classes_model->insertFile($id_kelas, $id_kegiatan);
             if($kegiatan == "fail"){
                 $this->session->set_flashdata("invalidFileEdit", "Something went wrong (only pdf, doc, ppt) Max Size : 25MB");
             }
