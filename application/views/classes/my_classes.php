@@ -65,6 +65,9 @@
     <li class="nav-item">
         <a class="nav-link" data-toggle="tab" href="#tab4" role="tab" aria-expanded="false">Tugas</a>
     </li>
+    <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#tab5" role="tab" aria-expanded="false">Materi</a>
+    </li>
 </ul>
  
 <!-- Tab panes -------------- -->
@@ -434,9 +437,13 @@
                                     <?php endforeach; ?>
                                 </td>
                                 <td>
-                                  <div class="buttonclass">
-                                  <a href="<?= base_url()?>classes/open_class/<?= $val['id_kelas'] ?>" class="btn btn-white" style="color: darkcyan;">Lihat Materi</a>
-                                  </div>
+                                  <?php foreach ($materi as $val3) : ?>
+                                    <?php if ($val2['id_kelas'] == $val3[0]['id_kelas']) : ?>
+                                      <div class="buttonclass">
+                                        <a href="<?= base_url()?>classes/open_class/<?= $val3[0]['id_kelas'] ?>" class="btn btn-white" style="color: darkcyan;">Lihat Materi</a>
+                                      </div>
+                                    <?php endif; ?>
+                                  <?php endforeach; ?>
                                 </td>
                                 <td>
                                   <div class="buttonclass">
