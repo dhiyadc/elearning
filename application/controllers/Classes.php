@@ -292,14 +292,44 @@ class Classes extends CI_Controller {
             $data['peserta'] = $this->Classes_model->getPeserta();
             $header['nama'] = explode (" ",$this->Classes_model->getMyName()['nama']);
             $notif = $this->Classes_model->getPesertaByUserId();
-            $datanotif = array();
+            $datanotif = array(); $datatugas = array(); $datakelas = array(); $datamateri = array();
             foreach ($notif as $value) {
                 $cek = $this->Classes_model->getKelasKegiatan($value['id_kelas']);
+                $tugas = $this->Classes_model->getTugasByClassId($value['id_kelas']);
+                $kelas = $this->Classes_model->getClassById($value['id_kelas']);
+                $materi = $this->Classes_model->getMateriByClassId($value['id_kelas']);
                 if($cek != null) {
                     $datanotif[] = $cek;
                 }
+                if ($tugas != null) {
+                    $datatugas[] = $tugas;
+                }
+                if ($kelas != null) {
+                    $datakelas[] = $kelas;
+                }
+                if ($materi != null) {
+                    $datamateri[] = $materi;
+                }
             }
             $header['notif'] = $datanotif;
+            $data['tugas'] = $datatugas;
+            $data['kelas_tugas'] = $datakelas;
+            $data['materi'] = $datamateri;
+            $datacek = array(); $i = 0;
+            foreach ($data['tugas'] as $value) {
+                foreach ($value as $value2) {
+                    $cek = $this->Classes_model->cekTugas($value2['id_tugas']);
+                    if($cek == null) {
+                        $datacek[] = null;
+                    }
+                    else {
+                        $datacek[] = $cek;
+                    }
+                    $i++;
+                }
+            }
+            $data['cek'] = $datacek;
+            $data['submit'] = $this->Classes_model->getSubmit();
             $this->load->view('partialsuser/header',$header);
             $this->load->view('classes/my_classes',$data);
             $this->load->view('partialsuser/footer');
@@ -491,7 +521,7 @@ class Classes extends CI_Controller {
     {
         if(isset($this->session->userdata['logged_in'])){
             $this->Classes_model->createAssignment($id_kelas);
-            redirect('classes/list_assignment/' . $id_kelas);
+            redirect('classes/open_class/' . $id_kelas);
         } else {
             redirect('home');
         }
@@ -505,7 +535,7 @@ class Classes extends CI_Controller {
             if ($status == "failed") {
 				$this->session->set_flashdata('failedInputFile', 'Kapasitas file yang Anda input melebihi 25 MB');
             }
-            redirect('classes/list_assignment/' . $id_kelas);
+            redirect('classes/my_classes/');
         } else {
             redirect('home');
         }
@@ -523,7 +553,7 @@ class Classes extends CI_Controller {
     public function hapus_jawaban($id_kelas,$id_submit)
     {
         $this->Classes_model->deleteJawaban($id_submit);
-        redirect('classes/list_assignment/' . $id_kelas);
+        redirect('classes/my_classes/');
     }
 
     public function edit_assignment($id_kelas,$id_tugas)
@@ -554,7 +584,7 @@ class Classes extends CI_Controller {
     {
         if(isset($this->session->userdata['logged_in'])){
             $this->Classes_model->updateAssignment($id_tugas);
-            redirect('classes/list_assignment/' . $id_kelas);
+            redirect('classes/open_class/' . $id_kelas);
         } else {
             redirect('home');
         }
@@ -564,7 +594,7 @@ class Classes extends CI_Controller {
     {
         if(isset($this->session->userdata['logged_in'])){
             $this->Classes_model->deleteAssignment($id_tugas);
-            redirect('classes/list_assignment/' . $id_kelas);
+            redirect('classes/open_class/' . $id_kelas);
         } else {
             redirect('home');
         }
@@ -574,7 +604,7 @@ class Classes extends CI_Controller {
     {
         if(isset($this->session->userdata['logged_in'])){
             $this->Classes_model->updateNilai($id_submit);
-            redirect('classes/list_assignment/' . $id_kelas);
+            redirect('classes/open_class/' . $id_kelas);
         } else {
             redirect('home');
         }

@@ -101,7 +101,7 @@
                     <?php endif; ?>
                 <?php elseif ($peserta != null) : ?>
                   <div class="row" style="margin-left: 0px;">
-                    <a class="btn btn-dark mr-1" style="margin-bottom: 14px;" href="<?= base_url()?>classes/list_assignment/<?= $val['id_kelas'] ?>"><span class="icon-list"></span>Lihat Tugas</a>
+                    <a class="btn btn-dark mr-1" style="margin-bottom: 14px;" href="<?= base_url()?>classes/list_assignment/<?= $val['id_kelas'] ?>"><span class="icon-list"></span> Lihat Tugas</a>
                     <div class="col">
                       <div class="alert alert-dark" role="alert">
                           <center><?= $this->session->flashdata('buttonJoin') ?></center>
