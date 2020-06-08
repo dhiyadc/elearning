@@ -66,7 +66,7 @@
                 <a class="nav-link" href="<?= base_url()?>classes/listkelas" role="tab" ><i class="fa fa-tasks"></i> Tugas Kelas</a>
               </li>          
               <li class="nav-item">
-                <a class="nav-link" href="<?= base_url()?>classes/mentorkelas" role="tab" ><i class="fa fa-tasks"></i>Atur Kelas</a>
+                <a class="nav-link" href="<?= base_url()?>classes/mentorkelas" role="tab" ><i class="fa fa-cog"></i>Atur Kelas</a>
               </li>                                        
             </ul>
             <div class="tab-content">
