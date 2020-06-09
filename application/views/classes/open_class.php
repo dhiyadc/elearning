@@ -108,13 +108,8 @@
                         <p class="mt-4"><a href="<?= base_url()?>classes/pembayaran_kelas/<?= $val['id_kelas']; ?>" class="btn btn-dark mr-1">Gabung Kelas</a></p>
                     <?php endif; ?>
                 <?php elseif ($peserta != null) : ?>
-                  <div class="row" style="margin-left: 0px;">
-                    <a class="btn btn-dark mr-1" style="margin-bottom: 14px;" href="<?= base_url()?>classes/list_assignment/<?= $val['id_kelas'] ?>"><span class="icon-list"></span> Lihat Tugas</a>
-                    <div class="col">
-                      <div class="alert alert-dark" role="alert">
-                          <center><?= $this->session->flashdata('buttonJoin') ?></center>
-                      </div>
-                    </div>
+                  <div class="alert alert-dark" role="alert">
+                    <center><?= $this->session->flashdata('buttonJoin') ?></center>
                   </div>
                 <?php elseif ($cek == false) : ?>
                     <?php if ($val['jenis_kelas'] == 1) : ?>
