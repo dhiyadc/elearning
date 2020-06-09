@@ -62,12 +62,18 @@
               <li class="nav-item">
                 <a class="nav-link active" href="#profile" role="tab" data-toggle="tab"><i class="fa fa-user-circle"></i> Detail Kelas</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="<?= base_url()?>classes/listkelas" role="tab" ><i class="fa fa-tasks"></i> Tugas Kelas</a>
-              </li>          
+              <?php if ($val['pembuat_kelas'] != $this->session->userdata('id_user')) : ?>
+                <?php if ($peserta != null) : ?>
+                  <li class="nav-item">
+                    <a class="nav-link" href="<?= base_url()?>classes/listkelas" role="tab" ><i class="fa fa-tasks"></i> Tugas Kelas</a>
+                  </li>
+                <?php endif; ?>
+              <?php endif; ?>
+              <?php if($val['pembuat_kelas'] == $this->session->userdata('id_user')) : ?>     
               <li class="nav-item">
                 <a class="nav-link" href="<?= base_url()?>classes/mentorkelas" role="tab" ><i class="fa fa-cog"></i>Atur Kelas</a>
-              </li>                                        
+              </li>             
+              <?php endif; ?>                           
             </ul>
             <div class="tab-content">
               <div role="tabpanel" class="tab-pane fade show active" id="profile" style="margin-top: 20px;">
@@ -164,11 +170,11 @@
                               <?php foreach ($status as $val3) : ?>
                                   <?php if ($val3['id_status'] == $val2['status_kegiatan']) : ?> 
                                     <?php if ($val3['nama_status'] == "Selesai") : ?>
-                                      <td><span class="badge badge-primary"><?= $val3['nama_status']; ?></span></td>
+                                      <td><span class="badge badge-success"><?= $val3['nama_status']; ?></span></td>
                                     <?php elseif ($val3['nama_status'] == "Belum Mulai") : ?>
                                       <td><span class="badge badge-danger"><?= $val3['nama_status']; ?></span></td>
                                     <?php else : ?>
-                                      <td><span class="badge badge-danger"><?= $val3['nama_status']; ?></span></td>
+                                      <td><span class="badge badge-warning"><?= $val3['nama_status']; ?></span></td>
                                     <?php endif; ?>
                                   <?php endif; ?>
                               <?php endforeach; ?>
