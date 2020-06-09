@@ -200,7 +200,11 @@ class Classes extends CI_Controller {
         if(isset($this->session->userdata['logged_in'])){
             $kegiatan = $this->Classes_model->setKegiatanByClass($id_kelas);
             if($kegiatan == "fail"){
-                $this->session->set_flashdata("invalidFile", "Something went wrong (only pdf, doc, ppt) Max Size : 25MB");
+                $this->session->set_flashdata("invalidFile", "Jadwal kegiatan anda gagal di upload (hanya pdf, doc, ppt). Ukuran Maksimal : 25MB");
+            }
+
+            if($kegiatan == "success"){
+                $this->session->set_flashdata("success", "Jadwal Kegiatan anda berhasil di tambah!");
             }
 
            
@@ -213,9 +217,13 @@ class Classes extends CI_Controller {
     public function edit_kegiatan($id_kelas,$id_kegiatan)
     {
         if(isset($this->session->userdata['logged_in'])){
-            $kegiatan = $this->Classes_model->insertFile($id_kelas, $id_kegiatan);
+            $kegiatan = $this->Classes_model->updateKegiatan($id_kelas, $id_kegiatan);
             if($kegiatan == "fail"){
-                $this->session->set_flashdata("invalidFileEdit", "Something went wrong (only pdf, doc, ppt) Max Size : 25MB");
+                $this->session->set_flashdata("invalidFile", "Materi anda gagal di upload (hanya pdf, doc, ppt). Ukuran Maksimal : 25MB");
+            }
+
+            if($kegiatan == "success"){
+                $this->session->set_flashdata("success", "Jadwal Kegiatan anda berhasil di update!");
             }
             redirect('classes/open_class/' . $id_kelas);
         } else {

@@ -64,6 +64,17 @@
           <div class="col-lg-8 mb-5">
             <div class="mb-5">
               <h3 class="text-black">Detail Kelas</h3>
+              <?php if($this->session->flashdata("invalidFile")){ ?>
+                      <div class="alert alert-danger" role="alert">
+                        <?php echo $this->session->flashdata("invalidFile"); ?>
+                      </div>
+              <?php } ?>
+              <?php if($this->session->flashdata("success")){ ?>
+                      <div class="alert alert-success" role="alert">
+                        <?php echo $this->session->flashdata("success"); ?>
+                      </div>
+                <?php } ?>
+              
               <p class="mb-4">
                 <?php foreach ($harga as $val2) : ?>
                 <?php if ($val2['harga_kelas'] == '0') : ?> 
@@ -259,11 +270,7 @@
                         </button>
                       </div>
 
-                      <?php if($this->session->flashdata("invalidFile")){ ?>
-                      <div class="alert alert-danger" role="alert">
-                        <?php echo $this->session->flashdata("invalidFile"); ?>
-                      </div>
-                      <?php } ?>
+                     
 
                       <!--Body-->
                       <div class="modal-body mx-4">
