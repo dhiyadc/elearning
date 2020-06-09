@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 27, 2020 at 06:20 PM
+-- Generation Time: Jun 02, 2020 at 04:14 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.1
 
@@ -68,7 +68,7 @@ INSERT INTO `detail_user` (`id_user`, `nama`, `no_telepon`, `foto`, `deskripsi`)
 ('pTithyQiH1fYF5fOjETFtMblWqqsfbv9V56o3pC4JFNM617ULFmTchAfK7JCMbDp', 'Wilman Kala', '231231233', '', ''),
 ('s4blnpXLSs4GWELe5YM6GrJV4m6r7m8fUCsEZq8zuqXpDNnnDwniMLKt1si675HC', 'Ernst Handel', '8723827382', '', ''),
 ('upDwiQ8hLclcFG3pvaNQNIbnTtzIq7V8ZXQj5xjtqBjq2eh4mvUOYzBVTRMszlTZ', 'fbgfv', '24', '', ''),
-('ZNccBYZWWc5fKV5B5bF951jPLLfWUOqKtlAvHJroogkhmNCEXVqUzU3l5i2U1QXb', 'Dhiya Calista', '0812', 'WhatsApp_Image_2020-01-30_at_21_00_32.jpeg', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro consectetur ut hic ipsum et veritatis corrupti. Itaque eius soluta optio dolorum temporibus in, atque, quos fugit sunt sit quaerat.');
+('ZNccBYZWWc5fKV5B5bF951jPLLfWUOqKtlAvHJroogkhmNCEXVqUzU3l5i2U1QXb', 'Dhiya Calista', '0812', 'WhatsApp_Image_2020-01-30_at_21_00_32.jpeg', 'nama saya dhiya');
 
 -- --------------------------------------------------------
 
@@ -97,8 +97,7 @@ INSERT INTO `harga_kelas` (`id_kelas`, `harga_kelas`) VALUES
 ('5ec0000979ed7', '0'),
 ('5ec00363a7372', '0'),
 ('5ec004a41a8e9', '100000'),
-('5eca8fcd66d7d', '0'),
-('5ece92d86656c', 'Rp. 100.000');
+('5eca8fcd66d7d', '0');
 
 -- --------------------------------------------------------
 
@@ -134,7 +133,8 @@ INSERT INTO `jadwal_kegiatan` (`id_kegiatan`, `id_kelas`, `deskripsi_kegiatan`, 
 ('5ec00363beebb', '5ec00363a7372', 'kegiatan 1', '2020-05-06 22:25:00', 1),
 ('5ec004a43ad93', '5ec004a41a8e9', '1', '2020-05-22 08:00:38', 2),
 ('5eca8fcd81c24', '5eca8fcd66d7d', 'satu', '2020-04-29 15:05:00', 1),
-('5ecb5b55a9e2c', '5ebfff829cf5d', 'satu', '2020-05-05 22:25:00', 1);
+('5ecb5b55a9e2c', '5ebfff829cf5d', 'satu', '2020-05-05 22:25:00', 1),
+('5ed86de456255', '5ed7a15754008', 'satu', '2020-06-04 23:30:00', 3);
 
 -- --------------------------------------------------------
 
@@ -198,6 +198,25 @@ INSERT INTO `kategori_kelas` (`id_kategori`, `nama_kategori`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `kategori_tugas`
+--
+
+CREATE TABLE `kategori_tugas` (
+  `id` int(11) NOT NULL,
+  `kategori_tugas` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `kategori_tugas`
+--
+
+INSERT INTO `kategori_tugas` (`id`, `kategori_tugas`) VALUES
+(1, 'Tugas'),
+(2, 'Kuis');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `kelas`
 --
 
@@ -226,10 +245,10 @@ INSERT INTO `kelas` (`id_kelas`, `pembuat_kelas`, `judul_kelas`, `deskripsi_kela
 ('5ebffb1f05953', 'ZNccBYZWWc5fKV5B5bF951jPLLfWUOqKtlAvHJroogkhmNCEXVqUzU3l5i2U1QXb', 'Sistem Operasi', 'bukan dani metiu', 1, '4_(ebook_page_330).png', 1, 1),
 ('5ebfff829cf5d', 'ZNccBYZWWc5fKV5B5bF951jPLLfWUOqKtlAvHJroogkhmNCEXVqUzU3l5i2U1QXb', 'Algoritma dan Pemrograman', 'bukan megah mulya', 2, 'lat_10_2_cal.jpeg', 1, 1),
 ('5ec0000979ed7', 'ZNccBYZWWc5fKV5B5bF951jPLLfWUOqKtlAvHJroogkhmNCEXVqUzU3l5i2U1QXb', 'Teori Bahasa Otomata', 'hbsdj', 1, 'blog_rl.jpeg', 1, 2),
-('5ec00363a7372', 'ZNccBYZWWc5fKV5B5bF951jPLLfWUOqKtlAvHJroogkhmNCEXVqUzU3l5i2U1QXb', 'Alpro', 'alpro', 1, 'blog_rd.jpeg', 1, 1),
+('5ec00363a7372', 'ZNccBYZWWc5fKV5B5bF951jPLLfWUOqKtlAvHJroogkhmNCEXVqUzU3l5i2U1QXb', 'Alpro', 'alpro', 3, 'blog_rd.jpeg', 1, 1),
 ('5ec004a41a8e9', 'ZNccBYZWWc5fKV5B5bF951jPLLfWUOqKtlAvHJroogkhmNCEXVqUzU3l5i2U1QXb', 'Alpro 2', 'alpro 2', 1, 'blog_u.jpeg', 2, 2),
 ('5eca8fcd66d7d', 'b0D4Q4pX6NCibfO2SRag3BdN6tpOugQkilV5LbBHgSVFO9gD5VDCnuqU2oGWyLz9', 'satu', 'satu', 1, 'blog_v_rl2.jpeg', 1, 1),
-('5ece92d86656c', 'b0D4Q4pX6NCibfO2SRag3BdN6tpOugQkilV5LbBHgSVFO9gD5VDCnuqU2oGWyLz9', 'kelas 2', '2', 1, 'blog_v_rl3.jpeg', 2, 1);
+('5ed7a15754008', 'ZNccBYZWWc5fKV5B5bF951jPLLfWUOqKtlAvHJroogkhmNCEXVqUzU3l5i2U1QXb', 'kelas 3', 'tiga', 1, 'blog_rd2.jpeg', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -243,6 +262,19 @@ CREATE TABLE `lupa_password` (
   `token` varchar(16) NOT NULL,
   `status_token` int(11) NOT NULL,
   `expire_date` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `materi`
+--
+
+CREATE TABLE `materi` (
+  `id_materi` varchar(64) NOT NULL,
+  `url_materi` varchar(200) NOT NULL,
+  `id_kelas` varchar(64) NOT NULL,
+  `id_kegiatan` varchar(64) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -319,7 +351,8 @@ CREATE TABLE `status_kegiatan` (
 
 INSERT INTO `status_kegiatan` (`id_status`, `nama_status`) VALUES
 (1, 'Sedang Berlangsung'),
-(2, 'Selesai');
+(2, 'Selesai'),
+(3, 'Belum Mulai');
 
 -- --------------------------------------------------------
 
@@ -363,6 +396,25 @@ INSERT INTO `status_token` (`id_status`, `nama_status`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `status_tugas`
+--
+
+CREATE TABLE `status_tugas` (
+  `id` int(11) NOT NULL,
+  `status_tugas` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `status_tugas`
+--
+
+INSERT INTO `status_tugas` (`id`, `status_tugas`) VALUES
+(1, 'Tepat Waktu'),
+(2, 'Terlambat');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `status_withdraw`
 --
 
@@ -379,6 +431,38 @@ INSERT INTO `status_withdraw` (`id_status`, `nama_status`) VALUES
 (0, 'Pending'),
 (1, 'Success'),
 (2, 'Failed');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `submit_assignment`
+--
+
+CREATE TABLE `submit_assignment` (
+  `id_submit` bigint(11) NOT NULL,
+  `id_tugas` varchar(64) NOT NULL,
+  `url_file` varchar(200) NOT NULL,
+  `nilai_tugas` int(11) NOT NULL,
+  `status_tugas` int(11) NOT NULL,
+  `id_user` varchar(64) NOT NULL,
+  `subjek_tugas` varchar(100) NOT NULL,
+  `tanggal_submit` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tugas_kuis`
+--
+
+CREATE TABLE `tugas_kuis` (
+  `id_tugas` varchar(64) NOT NULL,
+  `judul_tugas` varchar(100) NOT NULL,
+  `deskripsi_tugas` text NOT NULL,
+  `id_kelas` varchar(64) NOT NULL,
+  `kategori_tugas` int(11) NOT NULL,
+  `batas_pengiriman_tugas` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -466,6 +550,12 @@ ALTER TABLE `kategori_kelas`
   ADD PRIMARY KEY (`id_kategori`);
 
 --
+-- Indexes for table `kategori_tugas`
+--
+ALTER TABLE `kategori_tugas`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `kelas`
 --
 ALTER TABLE `kelas`
@@ -482,6 +572,14 @@ ALTER TABLE `lupa_password`
   ADD PRIMARY KEY (`id_lupa_password`),
   ADD KEY `id_user` (`id_user`),
   ADD KEY `status_token` (`status_token`);
+
+--
+-- Indexes for table `materi`
+--
+ALTER TABLE `materi`
+  ADD PRIMARY KEY (`id_materi`),
+  ADD KEY `id_kelas` (`id_kelas`,`id_kegiatan`),
+  ADD KEY `id_kegiatan` (`id_kegiatan`);
 
 --
 -- Indexes for table `pembayaran`
@@ -520,6 +618,29 @@ ALTER TABLE `status_token`
   ADD PRIMARY KEY (`id_status`);
 
 --
+-- Indexes for table `status_tugas`
+--
+ALTER TABLE `status_tugas`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `submit_assignment`
+--
+ALTER TABLE `submit_assignment`
+  ADD PRIMARY KEY (`id_submit`),
+  ADD KEY `id_tugas` (`id_tugas`),
+  ADD KEY `id_user` (`id_user`),
+  ADD KEY `status_tugas` (`status_tugas`);
+
+--
+-- Indexes for table `tugas_kuis`
+--
+ALTER TABLE `tugas_kuis`
+  ADD PRIMARY KEY (`id_tugas`),
+  ADD KEY `id_kelas` (`id_kelas`,`kategori_tugas`),
+  ADD KEY `kategori_tugas` (`kategori_tugas`);
+
+--
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
@@ -555,6 +676,12 @@ ALTER TABLE `kategori_kelas`
   MODIFY `id_kategori` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT for table `kategori_tugas`
+--
+ALTER TABLE `kategori_tugas`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `lupa_password`
 --
 ALTER TABLE `lupa_password`
@@ -564,13 +691,19 @@ ALTER TABLE `lupa_password`
 -- AUTO_INCREMENT for table `status_kegiatan`
 --
 ALTER TABLE `status_kegiatan`
-  MODIFY `id_status` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_status` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `status_pembayaran`
 --
 ALTER TABLE `status_pembayaran`
   MODIFY `id_status` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `status_tugas`
+--
+ALTER TABLE `status_tugas`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables
@@ -612,6 +745,13 @@ ALTER TABLE `lupa_password`
   ADD CONSTRAINT `lupa_password_ibfk_2` FOREIGN KEY (`status_token`) REFERENCES `status_token` (`id_status`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
+-- Constraints for table `materi`
+--
+ALTER TABLE `materi`
+  ADD CONSTRAINT `materi_ibfk_1` FOREIGN KEY (`id_kelas`) REFERENCES `kelas` (`id_kelas`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `materi_ibfk_2` FOREIGN KEY (`id_kegiatan`) REFERENCES `jadwal_kegiatan` (`id_kegiatan`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Constraints for table `pembayaran`
 --
 ALTER TABLE `pembayaran`
@@ -626,6 +766,21 @@ ALTER TABLE `pembayaran`
 ALTER TABLE `peserta`
   ADD CONSTRAINT `peserta_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `peserta_ibfk_2` FOREIGN KEY (`id_kelas`) REFERENCES `kelas` (`id_kelas`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `submit_assignment`
+--
+ALTER TABLE `submit_assignment`
+  ADD CONSTRAINT `submit_assignment_ibfk_1` FOREIGN KEY (`status_tugas`) REFERENCES `status_tugas` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `submit_assignment_ibfk_2` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `submit_assignment_ibfk_3` FOREIGN KEY (`id_tugas`) REFERENCES `tugas_kuis` (`id_tugas`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `tugas_kuis`
+--
+ALTER TABLE `tugas_kuis`
+  ADD CONSTRAINT `tugas_kuis_ibfk_1` FOREIGN KEY (`id_kelas`) REFERENCES `kelas` (`id_kelas`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `tugas_kuis_ibfk_2` FOREIGN KEY (`kategori_tugas`) REFERENCES `kategori_tugas` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `withdraw`

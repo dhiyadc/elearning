@@ -21,6 +21,13 @@
             <div class="col-md-6">
             </div>
         </div>
+
+        <?php if($this->session->flashdata("invalidImage")){ ?>
+        <div class="alert alert-danger" role="alert">
+        <?php echo $this->session->flashdata("invalidImage"); ?>
+        </div>
+        <?php } ?>
+
         <div class="row">
             <div class="col-md-3 field-label-responsive mb-3">
                 <label for="passwordnow">Nama Author</label>
@@ -35,7 +42,7 @@
         </div>
         <div class="row">
             <div class="col-md-3 field-label-responsive mb-3">
-                <label for="passwordnow">Poster Kelas</label>
+                <label for="passwordnow">Poster Kelas (max. 3 MB)</label>
             </div>
             <div class="col-md-6">
                 <div class="form-group">
@@ -94,7 +101,7 @@
             <div class="col-md-3"></div>
             <div class="col-md-6">
                 <button type="submit" class="btn btn-primary"><i class="fa fa-user-plus"></i>Edit Kelas</button>
-                <button type="submit" class="btn btn-blue-gradient"></i>Kembali</button>
+                <a href="<?= base_url()?>classes/open_class/<?= $val['id_kelas'] ?>" class="btn btn-blue-gradient"></i>Kembali</a>
             </div>
         </div>
     </form>

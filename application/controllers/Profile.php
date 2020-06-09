@@ -18,7 +18,17 @@ class Profile extends CI_Controller {
             $data['profile'] = $this->Profile_model->getProfile();
             $data['peserta'] = $this->Classes_model->getPeserta();
             $data['kelas'] = $this->Classes_model->getMyClasses();
-            $this->load->view('partialsuser/header');
+            $header['nama'] = explode (" ",$this->Classes_model->getMyName()['nama']);
+            $notif = $this->Classes_model->getPesertaByUserId();
+            $datanotif = array();
+            foreach ($notif as $value) {
+                $cek = $this->Classes_model->getKelasKegiatan($value['id_kelas']);
+                if($cek != null) {
+                    $datanotif[] = $cek;
+                }
+            }
+            $header['notif'] = $datanotif;
+            $this->load->view('partialsuser/header',$header);
             $this->load->view('profile/my_profile',$data);
             $this->load->view('partialsuser/footer');
         } else {
@@ -30,7 +40,17 @@ class Profile extends CI_Controller {
     {
         if(isset($this->session->userdata['logged_in'])){
             $data['profile'] = $this->Profile_model->getProfile();
-            $this->load->view('partialsuser/header');
+            $header['nama'] = explode (" ",$this->Classes_model->getMyName()['nama']);
+            $notif = $this->Classes_model->getPesertaByUserId();
+            $datanotif = array();
+            foreach ($notif as $value) {
+                $cek = $this->Classes_model->getKelasKegiatan($value['id_kelas']);
+                if($cek != null) {
+                    $datanotif[] = $cek;
+                }
+            }
+            $header['notif'] = $datanotif;
+            $this->load->view('partialsuser/header',$header);
             $this->load->view('profile/edit_profile',$data);
             $this->load->view('partialsuser/footer');
         } else {
@@ -41,8 +61,11 @@ class Profile extends CI_Controller {
     public function edit_profile_action()
     {
         if(isset($this->session->userdata['logged_in'])){
-            $this->Profile_model->editProfile();
-            //$this->Profile_model->editAccount();
+            $edit_profile = $this->Profile_model->editProfile();
+            if($edit_profile == "fail"){
+                $this->session->set_flashdata("invalidImage", "Invalid Image Size (Max Size: 3 MB)");
+                redirect("profile/edit_profile");
+            }
             redirect('profile');
         } else {
             redirect('home');
@@ -62,7 +85,17 @@ class Profile extends CI_Controller {
     public function change_password()
     {
         if(isset($this->session->userdata['logged_in'])){
-            $this->load->view('partialsuser/header');
+            $header['nama'] = explode (" ",$this->Classes_model->getMyName()['nama']);
+            $notif = $this->Classes_model->getPesertaByUserId();
+            $datanotif = array();
+            foreach ($notif as $value) {
+                $cek = $this->Classes_model->getKelasKegiatan($value['id_kelas']);
+                if($cek != null) {
+                    $datanotif[] = $cek;
+                }
+            }
+            $header['notif'] = $datanotif;
+            $this->load->view('partialsuser/header',$header);
             $this->load->view('profile/change_password');
             $this->load->view('partialsuser/footer');
         } else {

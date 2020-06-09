@@ -63,6 +63,7 @@
         <?php foreach ($kelas as $val) : ?>
           <div class="col-lg-8 mb-5">
             <div class="mb-5">
+
               <h3 class="text-black">Detail Kelas</h3>
               <?php if($this->session->flashdata("invalidFile")){ ?>
                       <div class="alert alert-danger" role="alert">
@@ -75,9 +76,30 @@
                       </div>
                 <?php } ?>
               
+
+            <ul class="nav nav-tabs" role="tablist" style="font-weight: bolder;">
+              <li class="nav-item">
+                <a class="nav-link active" href="#profile" role="tab" data-toggle="tab"><i class="fa fa-user-circle"></i> Detail Kelas</a>
+              </li>
+              <?php if ($val['pembuat_kelas'] != $this->session->userdata('id_user')) : ?>
+                <?php if ($peserta != null) : ?>
+                  <li class="nav-item">
+                    <a class="nav-link" href="<?= base_url()?>classes/listkelas" role="tab" ><i class="fa fa-tasks"></i> Tugas Kelas</a>
+                  </li>
+                <?php endif; ?>
+              <?php endif; ?>
+              <?php if($val['pembuat_kelas'] == $this->session->userdata('id_user')) : ?>     
+              <li class="nav-item">
+                <a class="nav-link" href="<?= base_url()?>classes/mentorkelas" role="tab" ><i class="fa fa-cog"></i>Atur Kelas</a>
+              </li>             
+              <?php endif; ?>                           
+            </ul>
+            <div class="tab-content">
+              <div role="tabpanel" class="tab-pane fade show active" id="profile" style="margin-top: 20px;">
+
               <p class="mb-4">
                 <?php foreach ($harga as $val2) : ?>
-                <?php if ($val2['harga_kelas'] == '0') : ?> 
+                <?php if ($val2['harga_kelas'] == '0' || $val2['harga_kelas'] == null) : ?> 
                     <p>Gratis</p>
                 <?php else : ?>
                     <?php $hasil_rupiah = "Rp." . number_format($val2['harga_kelas'],2,',','.'); ?>
@@ -107,9 +129,14 @@
                         <p class="mt-4"><a href="<?= base_url()?>classes/pembayaran_kelas/<?= $val['id_kelas']; ?>" class="btn btn-dark mr-1">Gabung Kelas</a></p>
                     <?php endif; ?>
                 <?php elseif ($peserta != null) : ?>
-                    <div class="alert alert-primary" role="alert">
-                        <center><?= $this->session->flashdata('buttonJoin') ?></center>
+                  <div class="row" style="margin-left: 0px;">
+                    <a class="btn btn-dark mr-1" style="margin-bottom: 14px;" href="<?= base_url()?>classes/list_assignment/<?= $val['id_kelas'] ?>"><span class="icon-list"></span> Lihat Tugas</a>
+                    <div class="col">
+                      <div class="alert alert-dark" role="alert">
+                          <center><?= $this->session->flashdata('buttonJoin') ?></center>
+                      </div>
                     </div>
+                  </div>
                 <?php elseif ($cek == false) : ?>
                     <?php if ($val['jenis_kelas'] == 1) : ?>
                         <p class="mt-4"><a href="<?= base_url()?>classes/join_class/<?= $val['id_kelas']; ?>" class="btn btn-dark mr-1">Gabung Kelas</a></p>
@@ -118,16 +145,18 @@
                     <?php endif; ?>
                 <?php endif; ?>
               <?php endif; ?>
+            <?php else : ?>
+              <p class="mt-4"><a href="" class="btn btn-dark mr-1" data-toggle="modal" data-target="#elegantModalForm"><i class="fa fa-clone left"></i>Gabung Kelas</a></p>
             <?php endif; ?>
-            <button onclick="showHideJadwal()" class="btn btn-light">Lihat Jadwal Kegiatan Kelas</button>
+            <!-- <button onclick="showHideJadwal()" class="btn btn-light">Lihat Jadwal Kegiatan Kelas</button> -->
             <?php if ($val['pembuat_kelas'] == $this->session->userdata('id_user')) : ?>
               <a class="btn btn-dark mr-1" href="<?= base_url()?>classes/update_class/<?= $val['id_kelas'] ?>"><span class="icon-pencil"></span> Edit Kelas</a>
+              <!-- <a class="btn btn-light mr-1" href="<?= base_url()?>classes/list_assignment/<?= $val['id_kelas'] ?>"><span class="icon-list"></span> Lihat Tugas</a> -->
             <?php endif; ?>
             <br><br>
             <section>
-            <div id="showHideJadwal" style="display: none">
               <div class="row">
-                <div class="col">
+                <div class="col"> 
                   <div class="card card-list">
                     <div class="card-body">
                       <h2>Jadwal Kegiatan Kelas</h2>
@@ -166,7 +195,7 @@
                               <?php foreach ($status as $val3) : ?>
                                   <?php if ($val3['id_status'] == $val2['status_kegiatan']) : ?> 
                                     <?php if ($val3['nama_status'] == "Selesai") : ?>
-                                      <td><span class="badge badge-primary"><?= $val3['nama_status']; ?></span></td>
+                                      <td><span class="badge badge-success"><?= $val3['nama_status']; ?></span></td>
                                     <?php elseif ($val3['nama_status'] == "Belum Mulai") : ?>
                                       <td><span class="badge badge-danger"><?= $val3['nama_status']; ?></span></td>
                                     <?php else : ?>
@@ -182,8 +211,8 @@
                                     <?php elseif ($cek == false) : ?>
                                     <?php endif; ?>
                                   <?php elseif ($val2['status_kegiatan'] != CLASS_FINISHED) : ?>
-                                      <button type="button" class="btn btn-light" data-toggle="modal" data-target="#editKegiatan<?= $val2['id_kegiatan']; ?>">Edit</button><br>
-                                      <a href="<?= base_url('class/') ?><?= $val['id_kelas'] ?>/<?= $val2['id_kegiatan']; ?>" class="btn btn-dark mr-1">Mulai</a>
+                                      <button type="button" class="btn btn-light btn-block" data-toggle="modal" data-target="#editKegiatan<?= $val2['id_kegiatan']; ?>">Edit</button><br>
+                                      <a href="<?= base_url('class/') ?><?= $val['id_kelas'] ?>/<?= $val2['id_kegiatan']; ?>" class="btn btn-dark mr-1 btn-block">Mulai</a>
                                       <div class="modal fade" id="editKegiatan<?= $val2['id_kegiatan']; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="padding-right: 90px;">
                                         <div class="modal-dialog" role="document">
                                           <!--Content-->
@@ -204,12 +233,16 @@
                                                     <textarea class="form-control" name="deskripsi" required><?= $val2['deskripsi_kegiatan'] ?></textarea>
                                                 </div>
 
+
                                                 
                                                 <label for="materiForm">Tambah Materi</label>
                                                 <input type="file" name="materi[]" accept=".doc, .docx, .ppt, .pptx, .pdf" class="form-control-file" id="materiForm" multiple> 
                                                 
                                                 </div>
 
+
+
+                                                <input type="hidden" name="tanggal" value="<?= $val2['tanggal_kegiatan'] ?>">
 
                                               <div class="text-center mb-3">
                                                 <button type="submit" class="btn btn-light blue-gradient btn-block btn-rounded z-depth-1a">Simpan</button>
@@ -309,6 +342,16 @@
 
             </div>
           </div>
+          <div class="tab-content">
+              <div role="tabpanel" class="tab-pane fade show active" id="#buzz" style="margin-top: 20px;">
+                      
+              </div>
+          </div>
+        </div>
+
+        <!--  -->
+        
+          </div>
           <div class="col-lg-4 pl-lg-5">
             <div class="mb-5 text-center border rounded course-instructor">
               <h3 class="mb-5 text-black text-uppercase h6 border-bottom pb-3">Mentor Kelas</h3>
@@ -352,34 +395,22 @@
                 <a href="<?=base_url()?>classes/open_class/<?= $val['id_kelas'] ?>"><img src="<?= base_url().'assets/images/'.$val['poster_kelas']?>" alt="Image" class="img-fluid" style="height: 180px; object-fit: cover;"></a>
               </figure>
               <div class="course-inner-text py-4 px-4">
-                <?php foreach ($seluruh_harga as $val2) : ?>
-                    <?php if($val['id_kelas'] == $val2['id_kelas']) : ?>
-                        <span class="course-price">
-                            <?php if ($val2['harga_kelas'] == '0') : ?> 
-                                Gratis
-                            <?php else : ?>
-                              <?php $hasil_rupiah = "Rp." . number_format($val2['harga_kelas'],2,',','.'); ?>
-                                <?= $hasil_rupiah; ?>
-                            <?php endif; ?>
-                        </span>
-                    <?php endif; ?>
-                <?php endforeach; ?>
-                <?php foreach ($kategori as $val2) : ?>
-                    <?php if ($val['kategori_kelas'] == $val2['id_kategori']) : ?>
-                      <div class="meta"># <?= $val2['nama_kategori']; ?></div>
-                    <?php endif; ?>
-                  <?php endforeach; ?>
-                <h3><a href="<?= base_url() ?>classes/open_class/<?= $val['id_kelas'] ?>"><?= $val['judul_kelas'] ?></a></h3>
-                <p><?= substr($val['deskripsi_kelas'],0 ,100); ?>...</p>
+                <span class="course-price"><?php
+                  if($val['harga_kelas'] == '0' || $val['harga_kelas'] == null){
+                    echo "<b>Gratis</b>";
+                  } else {
+                    $hasil_rupiah = "Rp." . number_format($val['harga_kelas'],2,',','.');
+                    echo $hasil_rupiah;
+                  }
+                ?></span>
+                <div class="meta">
+                      <div class="meta"># <?= $val['nama_kategori']; ?></div>
+                </div>
+                <h3><a href="<?=base_url()?>classes/open_class/<?= $val['id_kelas'] ?>"><?= $val['judul_kelas'] ?></a></h3>
+                <p><?php echo substr($val['deskripsi_kelas'],0,100);  ?></p>
               </div>
               <div class="d-flex border-top stats">
-                <?php $i = 0; ?>
-                <?php foreach ($peserta_seluruh_kelas as $val2) : ?>
-                  <?php if ($val2['id_kelas'] == $val['id_kelas']) : ?>
-                    <?php $i++; ?>
-                  <?php endif; ?>
-                <?php endforeach; ?>
-                <div class="py-3 px-4"><span class="icon-users"></span> <?= $i; ?> Siswa</div>
+                <div class="py-3 px-4"><span class="icon-users"></span> <?= $val['peserta'] ?> peserta</div>
               </div>
             </div>
           <?php endforeach; ?>
@@ -444,15 +475,15 @@
 		forceParse: 0
     });
 
-    function showHideJadwal() {
-        var x = document.getElementById("showHideJadwal");
-        if (x.style.display === "none") {
-            x.style.display = "block";
-        }
-        else {
-            x.style.display = "none";
-        }
-    }
+    // function showHideJadwal() {
+    //     var x = document.getElementById("showHideJadwal");
+    //     if (x.style.display === "none") {
+    //         x.style.display = "block";
+    //     }
+    //     else {
+    //         x.style.display = "none";
+    //     }
+    // }
 </script>
 <script type="text/javascript">
 		

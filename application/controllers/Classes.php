@@ -15,7 +15,17 @@ class Classes extends CI_Controller {
             $data['kategori'] = $this->Classes_model->getKategori();
             $data['jenis'] = $this->Classes_model->getJenis();
             $data['pembuat'] = $this->Classes_model->getMyName();
-            $this->load->view('partialsuser/header');
+            $header['nama'] = explode (" ",$this->Classes_model->getMyName()['nama']);
+            $notif = $this->Classes_model->getPesertaByUserId();
+            $datanotif = array();
+            foreach ($notif as $value) {
+                $cek = $this->Classes_model->getKelasKegiatan($value['id_kelas']);
+                if($cek != null) {
+                    $datanotif[] = $cek;
+                }
+            }
+            $header['notif'] = $datanotif;
+            $this->load->view('partialsuser/header',$header);
             $this->load->view('classes/new_class',$data);
             $this->load->view('partialsuser/footer');
         } else {
@@ -26,7 +36,11 @@ class Classes extends CI_Controller {
     public function new_class_action()
     {
         if(isset($this->session->userdata['logged_in'])){
-            $this->Classes_model->createClass();
+            $newClass = $this->Classes_model->createClass();
+            if($newClass == "fail"){
+                $this->session->set_flashdata("invalidImage", "Invalid Image Size (Max Size: 3 MB)");
+                redirect("classes/new_class");
+            }
             $id = $this->Classes_model->getIdNewClass();
             redirect('classes/open_class/' . $id['id_kelas']);
         } else {
@@ -36,7 +50,7 @@ class Classes extends CI_Controller {
 
     public function open_class($id_kelas)
     {
-        $data['seluruh_kelas'] = $this->Classes_model->getAllClasses();
+        $data['seluruh_kelas'] = $this->Classes_model->getAllTopClasses();
         $data['seluruh_harga'] = $this->Classes_model->getAllHarga();
         $data['kegiatan'] = $this->Classes_model->getKegiatan($id_kelas);
         $data['tanggal'] = $this->Classes_model->getTanggalKegiatan($id_kelas);
@@ -53,7 +67,17 @@ class Classes extends CI_Controller {
         $data['materiKegiatan'] = $this->Classes_model->getMateribyKegiatan();
         if(isset($this->session->userdata['logged_in'])){
             $this->session->set_flashdata('buttonJoin','Anda telah mengikuti kelas ini');
-            $this->load->view('partialsuser/header');
+            $header['nama'] = explode (" ",$this->Classes_model->getMyName()['nama']);
+            $notif = $this->Classes_model->getPesertaByUserId();
+            $datanotif = array();
+            foreach ($notif as $value) {
+                $cek = $this->Classes_model->getKelasKegiatan($value['id_kelas']);
+                if($cek != null) {
+                    $datanotif[] = $cek;
+                }
+            }
+            $header['notif'] = $datanotif;
+            $this->load->view('partialsuser/header',$header);
             $this->load->view('classes/open_class',$data);
             $this->load->view('partialsuser/footer');
         } else {
@@ -177,7 +201,17 @@ class Classes extends CI_Controller {
             $data['jenis'] = $this->Classes_model->getJenis();
             $data['kelas'] = $this->Classes_model->getClassById($id_kelas);
             $data['pembuat'] = $this->Classes_model->getMyName();
-            $this->load->view('partialsuser/header');
+            $header['nama'] = explode (" ",$this->Classes_model->getMyName()['nama']);
+            $notif = $this->Classes_model->getPesertaByUserId();
+            $datanotif = array();
+            foreach ($notif as $value) {
+                $cek = $this->Classes_model->getKelasKegiatan($value['id_kelas']);
+                if($cek != null) {
+                    $datanotif[] = $cek;
+                }
+            }
+            $header['notif'] = $datanotif;
+            $this->load->view('partialsuser/header',$header);
             $this->load->view('classes/update_class',$data);
             $this->load->view('partialsuser/footer');
         } else {
@@ -188,7 +222,11 @@ class Classes extends CI_Controller {
     public function update_class_action($id_kelas)
     {
         if(isset($this->session->userdata['logged_in'])){
-            $this->Classes_model->updateClass($id_kelas);
+            $updateClass = $this->Classes_model->updateClass($id_kelas);
+            if($updateClass == "fail"){
+                $this->session->set_flashdata("invalidImage", "Invalid Image Size (Max Size: 3 MB)");
+                redirect("classes/update_class/".$id_kelas);
+            }
             redirect('classes/open_class/' . $id_kelas);
         } else {
             redirect('home');
@@ -244,7 +282,17 @@ class Classes extends CI_Controller {
     public function pembayaran_kelas($id_kelas)
     {
         if(isset($this->session->userdata['logged_in'])){
-            $this->load->view('partialsuser/header');
+            $header['nama'] = explode (" ",$this->Classes_model->getMyName()['nama']);
+            $notif = $this->Classes_model->getPesertaByUserId();
+            $datanotif = array();
+            foreach ($notif as $value) {
+                $cek = $this->Classes_model->getKelasKegiatan($value['id_kelas']);
+                if($cek != null) {
+                    $datanotif[] = $cek;
+                }
+            }
+            $header['notif'] = $datanotif;
+            $this->load->view('partialsuser/header',$header);
             $this->load->view('classes/pembayaran',$id_kelas);
             $this->load->view('partialsuser/footer');
         } else {
@@ -260,7 +308,46 @@ class Classes extends CI_Controller {
             $data['kegiatan'] = $this->Classes_model->getAllKegiatan();
             $data['status'] = $this->Classes_model->getStatus();
             $data['peserta'] = $this->Classes_model->getPeserta();
-            $this->load->view('partialsuser/header');
+            $header['nama'] = explode (" ",$this->Classes_model->getMyName()['nama']);
+            $notif = $this->Classes_model->getPesertaByUserId();
+            $datanotif = array(); $datatugas = array(); $datakelas = array(); $datamateri = array();
+            foreach ($notif as $value) {
+                $cek = $this->Classes_model->getKelasKegiatan($value['id_kelas']);
+                $tugas = $this->Classes_model->getTugasByClassId($value['id_kelas']);
+                $kelas = $this->Classes_model->getClassById($value['id_kelas']);
+                $materi = $this->Classes_model->getMateriByClassId($value['id_kelas']);
+                if($cek != null) {
+                    $datanotif[] = $cek;
+                }
+                if ($tugas != null) {
+                    $datatugas[] = $tugas;
+                }
+                if ($kelas != null) {
+                    $datakelas[] = $kelas;
+                }
+                if ($materi != null) {
+                    $datamateri[] = $materi;
+                }
+            }
+            $header['notif'] = $datanotif;
+            $data['tugas'] = $datatugas;
+            $data['kelas_tugas'] = $datakelas;
+            $data['materi'] = $datamateri;
+            $datacek = array();
+            foreach ($data['tugas'] as $value) {
+                foreach ($value as $value2) {
+                    $cek = $this->Classes_model->cekTugas($value2['id_tugas']);
+                    if($cek == null) {
+                        $datacek[] = true;
+                    }
+                    else {
+                        $datacek[] = false;
+                    }
+                }
+            }
+            $data['cek'] = $datacek;
+            $data['submit'] = $this->Classes_model->getSubmit();
+            $this->load->view('partialsuser/header',$header);
             $this->load->view('classes/my_classes',$data);
             $this->load->view('partialsuser/footer');
         } else {
@@ -272,16 +359,25 @@ class Classes extends CI_Controller {
     {
         if(isset($this->session->userdata['logged_in'])){
             $this->Classes_model->leaveClass($id_kelas);
-            redirect('classes/kelas_diikuti');
+            redirect('classes/my_classes');
         } else {
             redirect('home');
         }
     }
 
     public function index(){
-        //Controller Home
         if(isset($_SESSION['logged_in'])){
-            $this->load->view('partialsuser/header');
+            $header['nama'] = explode (" ",$this->Classes_model->getMyName()['nama']);
+            $notif = $this->Classes_model->getPesertaByUserId();
+            $datanotif = array();
+            foreach ($notif as $value) {
+                $cek = $this->Classes_model->getKelasKegiatan($value['id_kelas']);
+                if($cek != null) {
+                    $datanotif[] = $cek;
+                }
+            }
+            $header['notif'] = $datanotif;
+            $this->load->view('partialsuser/header',$header);
             
         } else {
             $this->load->view('partials/header');    
@@ -297,7 +393,17 @@ class Classes extends CI_Controller {
 
     public function categories($kategori){
         if(isset($_SESSION['logged_in'])){
-            $this->load->view('partialsuser/header');
+            $header['nama'] = explode (" ",$this->Classes_model->getMyName()['nama']);
+            $notif = $this->Classes_model->getPesertaByUserId();
+            $datanotif = array();
+            foreach ($notif as $value) {
+                $cek = $this->Classes_model->getKelasKegiatan($value['id_kelas']);
+                if($cek != null) {
+                    $datanotif[] = $cek;
+                }
+            }
+            $header['notif'] = $datanotif;
+            $this->load->view('partialsuser/header',$header);
             
         } else {
             $this->load->view('partials/header');    
@@ -312,7 +418,17 @@ class Classes extends CI_Controller {
 
     public function sort($sorting){
         if(isset($_SESSION['logged_in'])){
-            $this->load->view('partialsuser/header');
+            $header['nama'] = explode (" ",$this->Classes_model->getMyName()['nama']);
+            $notif = $this->Classes_model->getPesertaByUserId();
+            $datanotif = array();
+            foreach ($notif as $value) {
+                $cek = $this->Classes_model->getKelasKegiatan($value['id_kelas']);
+                if($cek != null) {
+                    $datanotif[] = $cek;
+                }
+            }
+            $header['notif'] = $datanotif;
+            $this->load->view('partialsuser/header',$header);
             
         } else {
             $this->load->view('partials/header');    
@@ -327,7 +443,17 @@ class Classes extends CI_Controller {
 
     public function search(){
         if(isset($_SESSION['logged_in'])){
-            $this->load->view('partialsuser/header');
+            $header['nama'] = explode (" ",$this->Classes_model->getMyName()['nama']);
+            $notif = $this->Classes_model->getPesertaByUserId();
+            $datanotif = array();
+            foreach ($notif as $value) {
+                $cek = $this->Classes_model->getKelasKegiatan($value['id_kelas']);
+                if($cek != null) {
+                    $datanotif[] = $cek;
+                }
+            }
+            $header['notif'] = $datanotif;
+            $this->load->view('partialsuser/header',$header);
             
         } else {
             $this->load->view('partials/header');    
@@ -350,6 +476,7 @@ class Classes extends CI_Controller {
         $this->load->view('iframe/elearning');
     }
 
+
     public function download_materi($url_materi)
     {
         if(isset($_SESSION['logged_in'])){
@@ -364,5 +491,302 @@ class Classes extends CI_Controller {
     {
         $this->Classes_model->delMateri($url_materi);
         redirect('classes/open_class/'.$id_kelas);
+
+    public function list_assignment($id_kelas)
+    {
+        if(isset($this->session->userdata['logged_in'])){
+            $data['tugas'] = $this->Classes_model->getTugasByClassId($id_kelas);
+            $datacek = array();
+            foreach ($data['tugas'] as $value) {
+                $cek = $this->Classes_model->cekTugas($value['id_tugas']);
+                if($cek == null) {
+                    $datacek[] = null;
+                }
+                else {
+                    $datacek[] = $cek;
+                }
+            }
+            $data['cek'] = $datacek;
+            $data['submit'] = $this->Classes_model->getSubmit();
+            $data['kelas'] = $this->Classes_model->getClassById($id_kelas);
+            $header['nama'] = explode (" ",$this->Classes_model->getMyName()['nama']);
+            $notif = $this->Classes_model->getPesertaByUserId();
+            $datanotif = array();
+            foreach ($notif as $value) {
+                $cek = $this->Classes_model->getKelasKegiatan($value['id_kelas']);
+                if($cek != null) {
+                    $datanotif[] = $cek;
+                }
+            }
+            $header['notif'] = $datanotif;
+            // $this->load->view('partialsuser/header',$header);
+            $this->load->view('classes/list_assignment',$data);
+            // $this->load->view('partialsuser/footer');
+        } else {
+            redirect('home');
+        }
+    }
+
+    public function new_assignment($id_kelas)
+    {
+        if(isset($this->session->userdata['logged_in'])){
+            $data['kategori'] = $this->Classes_model->getKategoriTugas();
+            $data['id'] = $id_kelas;
+            $header['nama'] = explode (" ",$this->Classes_model->getMyName()['nama']);
+            $notif = $this->Classes_model->getPesertaByUserId();
+            $datanotif = array();
+            foreach ($notif as $value) {
+                $cek = $this->Classes_model->getKelasKegiatan($value['id_kelas']);
+                if($cek != null) {
+                    $datanotif[] = $cek;
+                }
+            }
+            $header['notif'] = $datanotif;
+            $this->load->view('partialsuser/header',$header);
+            $this->load->view('classes/new_assignment',$data);
+            $this->load->view('partialsuser/footer');
+        } else {
+            redirect('home');
+        }
+    }
+
+    public function new_assignment_action($id_kelas)
+    {
+        if(isset($this->session->userdata['logged_in'])){
+            $this->Classes_model->createAssignment($id_kelas);
+            redirect('classes/open_class/' . $id_kelas);
+        } else {
+            redirect('home');
+        }
+    }
+
+    public function collect_assignment($id_kelas,$id_tugas)
+    {
+        if(isset($this->session->userdata['logged_in'])){
+            $deadline = $this->Classes_model->getDeadlineTugas($id_tugas);
+            $status = $this->Classes_model->collectAssignment($id_tugas,$deadline["batas_pengiriman_tugas"]);
+            if ($status == "failed") {
+				$this->session->set_flashdata('failedInputFile', 'Kapasitas file yang Anda input melebihi 25 MB');
+            }
+            redirect('classes/my_classes/');
+        } else {
+            redirect('home');
+        }
+    }
+
+    public function download_assignment($url_assignment)
+    {
+        if(isset($_SESSION['logged_in'])){
+            force_download('./assets/docs/'.$url_assignment,NULL);
+        } else {
+            redirect('home');   
+        }
+    }
+
+    public function hapus_jawaban($id_kelas,$id_submit)
+    {
+        $this->Classes_model->deleteJawaban($id_submit);
+        redirect('classes/my_classes/');
+    }
+
+    public function edit_assignment($id_kelas,$id_tugas)
+    {
+        if(isset($this->session->userdata['logged_in'])){
+            $data['kategori'] = $this->Classes_model->getKategoriTugas();
+            $data['tugas'] = $this->Classes_model->getTugasByTugasId($id_tugas);
+            $data['id'] = $id_kelas;
+            $header['nama'] = explode (" ",$this->Classes_model->getMyName()['nama']);
+            $notif = $this->Classes_model->getPesertaByUserId();
+            $datanotif = array();
+            foreach ($notif as $value) {
+                $cek = $this->Classes_model->getKelasKegiatan($value['id_kelas']);
+                if($cek != null) {
+                    $datanotif[] = $cek;
+                }
+            }
+            $header['notif'] = $datanotif;
+            $this->load->view('partialsuser/header',$header);
+            $this->load->view('classes/edit_assignment',$data);
+            $this->load->view('partialsuser/footer');
+        } else {
+            redirect('home');
+        }
+    }
+
+    public function edit_assignment_action($id_kelas,$id_tugas)
+    {
+        if(isset($this->session->userdata['logged_in'])){
+            $this->Classes_model->updateAssignment($id_tugas);
+            redirect('classes/open_class/' . $id_kelas);
+        } else {
+            redirect('home');
+        }
+    }
+
+    public function del_assignment($id_kelas,$id_tugas)
+    {
+        if(isset($this->session->userdata['logged_in'])){
+            $this->Classes_model->deleteAssignment($id_tugas);
+            redirect('classes/open_class/' . $id_kelas);
+        } else {
+            redirect('home');
+        }
+    }
+
+    public function update_nilai($id_kelas,$id_tugas,$id_submit)
+    {
+        if(isset($this->session->userdata['logged_in'])){
+            $this->Classes_model->updateNilai($id_submit);
+            redirect('classes/open_class/' . $id_kelas);
+        } else {
+            redirect('home');
+        }
+    }
+    
+    // temporary
+
+    public function listkelas(){
+        // $this->load->view('partialsuser/header');
+        // $this->load->view('classes/listtugas');
+        // $this->load->view('partialsuser/footer');
+        if(isset($this->session->userdata['logged_in'])){
+            $data['seluruh_kelas'] = $this->Classes_model->getAllClasses();
+            $data['kelas'] = $this->Classes_model->getMyClasses();
+            $data['kegiatan'] = $this->Classes_model->getAllKegiatan();
+            $data['status'] = $this->Classes_model->getStatus();
+            $data['peserta'] = $this->Classes_model->getPeserta();
+            $header['nama'] = explode (" ",$this->Classes_model->getMyName()['nama']);
+            $notif = $this->Classes_model->getPesertaByUserId();
+            $datanotif = array();
+            foreach ($notif as $value) {
+                $cek = $this->Classes_model->getKelasKegiatan($value['id_kelas']);
+                if($cek != null) {
+                    $datanotif[] = $cek;
+                }
+            }
+            $header['notif'] = $datanotif;
+            $this->load->view('partialsuser/header',$header);
+            $this->load->view('classes/listtugas',$data);
+            $this->load->view('partialsuser/footer');
+        } else {
+            redirect('home');
+        }
+    
+    }
+
+    public function detailtugaskuis(){
+        // $this->load->view('partialsuser/header');
+        // $this->load->view('classes/listtugas');
+        // $this->load->view('partialsuser/footer');
+        if(isset($this->session->userdata['logged_in'])){
+            $data['seluruh_kelas'] = $this->Classes_model->getAllClasses();
+            $data['kelas'] = $this->Classes_model->getMyClasses();
+            $data['kegiatan'] = $this->Classes_model->getAllKegiatan();
+            $data['status'] = $this->Classes_model->getStatus();
+            $data['peserta'] = $this->Classes_model->getPeserta();
+            $header['nama'] = explode (" ",$this->Classes_model->getMyName()['nama']);
+            $notif = $this->Classes_model->getPesertaByUserId();
+            $datanotif = array();
+            foreach ($notif as $value) {
+                $cek = $this->Classes_model->getKelasKegiatan($value['id_kelas']);
+                if($cek != null) {
+                    $datanotif[] = $cek;
+                }
+            }
+            $header['notif'] = $datanotif;
+            $this->load->view('partialsuser/header',$header);
+            $this->load->view('classes/detailkuistugas',$data);
+            $this->load->view('partialsuser/footer');
+        } else {
+            redirect('home');
+        }
+    
+    }
+
+    public function mentorkelas(){
+        // $this->load->view('partialsuser/header');
+        // $this->load->view('classes/listtugas');
+        // $this->load->view('partialsuser/footer');
+        if(isset($this->session->userdata['logged_in'])){
+            $data['seluruh_kelas'] = $this->Classes_model->getAllClasses();
+            $data['kelas'] = $this->Classes_model->getMyClasses();
+            $data['kegiatan'] = $this->Classes_model->getAllKegiatan();
+            $data['status'] = $this->Classes_model->getStatus();
+            $data['peserta'] = $this->Classes_model->getPeserta();
+            $header['nama'] = explode (" ",$this->Classes_model->getMyName()['nama']);
+            $notif = $this->Classes_model->getPesertaByUserId();
+            $datanotif = array();
+            foreach ($notif as $value) {
+                $cek = $this->Classes_model->getKelasKegiatan($value['id_kelas']);
+                if($cek != null) {
+                    $datanotif[] = $cek;
+                }
+            }
+            $header['notif'] = $datanotif;
+            $this->load->view('partialsuser/header',$header);
+            $this->load->view('classes/kelasmentor',$data);
+            $this->load->view('partialsuser/footer');
+        } else {
+            redirect('home');
+        }
+    
+    }
+
+    public function mentortugas(){
+        // $this->load->view('partialsuser/header');
+        // $this->load->view('classes/listtugas');
+        // $this->load->view('partialsuser/footer');
+        if(isset($this->session->userdata['logged_in'])){
+            $data['seluruh_kelas'] = $this->Classes_model->getAllClasses();
+            $data['kelas'] = $this->Classes_model->getMyClasses();
+            $data['kegiatan'] = $this->Classes_model->getAllKegiatan();
+            $data['status'] = $this->Classes_model->getStatus();
+            $data['peserta'] = $this->Classes_model->getPeserta();
+            $header['nama'] = explode (" ",$this->Classes_model->getMyName()['nama']);
+            $notif = $this->Classes_model->getPesertaByUserId();
+            $datanotif = array();
+            foreach ($notif as $value) {
+                $cek = $this->Classes_model->getKelasKegiatan($value['id_kelas']);
+                if($cek != null) {
+                    $datanotif[] = $cek;
+                }
+            }
+            $header['notif'] = $datanotif;
+            $this->load->view('partialsuser/header',$header);
+            $this->load->view('classes/koreksitugas',$data);
+            $this->load->view('partialsuser/footer');
+        } else {
+            redirect('home');
+        }
+    
+    }
+    public function mentorquiz(){
+        // $this->load->view('partialsuser/header');
+        // $this->load->view('classes/listtugas');
+        // $this->load->view('partialsuser/footer');
+        if(isset($this->session->userdata['logged_in'])){
+            $data['seluruh_kelas'] = $this->Classes_model->getAllClasses();
+            $data['kelas'] = $this->Classes_model->getMyClasses();
+            $data['kegiatan'] = $this->Classes_model->getAllKegiatan();
+            $data['status'] = $this->Classes_model->getStatus();
+            $data['peserta'] = $this->Classes_model->getPeserta();
+            $header['nama'] = explode (" ",$this->Classes_model->getMyName()['nama']);
+            $notif = $this->Classes_model->getPesertaByUserId();
+            $datanotif = array();
+            foreach ($notif as $value) {
+                $cek = $this->Classes_model->getKelasKegiatan($value['id_kelas']);
+                if($cek != null) {
+                    $datanotif[] = $cek;
+                }
+            }
+            $header['notif'] = $datanotif;
+            $this->load->view('partialsuser/header',$header);
+            $this->load->view('classes/koreksiquiz',$data);
+            $this->load->view('partialsuser/footer');
+        } else {
+            redirect('home');
+        }
+    
+
     }
 }

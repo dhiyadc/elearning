@@ -12,8 +12,12 @@
                 <div class="col-lg-6 mb-4 mt-5">
                   <h1  data-aos="fade-up" data-aos-delay="100">Pengalaman Adalah Ilmu Terbaik yang semua orang cari</h1>
                   <p class="mb-4"  data-aos="fade-up" data-aos-delay="200">Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime ipsa nulla sed quis rerum amet natus quas necessitatibus.</p>
-                  <p data-aos="fade-up" data-aos-delay="300"><a href="Register" class="btn btn text-white py-3 px-5 btn-pill" style="background-color: #3232aa">Daftar Kelas</a></p>
-                    
+				          <?php if(isset($_SESSION['logged_in'])) : ?>
+                    <p data-aos="fade-up" data-aos-delay="300"><a href="<?= base_url() ?>classes/new_class" class="btn btn text-white py-3 px-5 btn-pill" style="background-color: #3232aa">Buat Kelas</a></p>
+                  <?php else : ?>
+                    <p data-aos="fade-up" data-aos-delay="300"><a data-toggle="modal" data-target="#elegantModalForm" class="btn btn text-white py-3 px-5 btn-pill" style="background-color: #3232aa">Buat Kelas</a></p>
+                  <?php endif; ?>  
+
                 </div>
 
                
@@ -48,9 +52,9 @@
               <figure class="m-0">
                 <a href="<?=base_url()?>classes/open_class/<?= $val['id_kelas'] ?>"><img src="<?= base_url().'assets/images/'.$val['poster_kelas']?>" alt="Image" class="img-fluid" style="height: 180px; object-fit: cover;"></a>
               </figure>
-              <div class="course-inner-text py-4 px-4">
+              <div class="course-inner-text py-4 px-4" style="height: 200px;">
                 <span class="course-price"><?php
-                  if($val['harga_kelas'] == '0'){
+                  if($val['harga_kelas'] == '0' || $val['harga_kelas'] == null){
                     echo "<b>Gratis</b>";
                   } else {
                     $hasil_rupiah = "Rp." . number_format($val['harga_kelas'],2,',','.');

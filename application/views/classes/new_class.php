@@ -95,11 +95,20 @@
             </div>
         </div>
 
+
         <?php if($this->session->flashdata("invalidFile")){ ?>
                       <div class="alert alert-danger" role="alert">
                         <?php echo $this->session->flashdata("invalidFile"); ?>
                       </div>
                       <?php } ?>
+
+
+        <?php if($this->session->flashdata("invalidImage")){ ?>
+        <div class="alert alert-danger" role="alert">
+        <?php echo $this->session->flashdata("invalidImage"); ?>
+        </div>
+        <?php } ?>
+        
 
         <div class="row">
             <div class="col-md-3 field-label-responsive mb-3">
@@ -122,7 +131,7 @@
         </div>
         <div class="row">
             <div class="col-md-3 field-label-responsive mb-3">
-                <label for="passwordnow">Poster Kelas</label>
+                <label for="passwordnow">Poster Kelas (max. 3 MB)</label>
             </div>
             <div class="col-md-6">
                 <div class="form-group">
@@ -176,7 +185,7 @@
                 </div>
             </div>
         </div>
-        <div class="row">
+        <!-- <div class="row">
             <div class="col-md-3 field-label-responsive">
                 <label for="newpassword1">Jenis Kelas</label>
             </div>
@@ -195,8 +204,7 @@
                             </div>
                 </div>
             </div>
-            
-        </div>
+        </div> -->
         <div id="showHideHarga" style="display: none">
             <div class="row">
                 <div class="col-md-3 field-label-responsive">

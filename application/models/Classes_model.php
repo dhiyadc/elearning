@@ -210,6 +210,13 @@ class Classes_model extends CI_Model {
         return $this->db->get('peserta')->result_array();
     }
 
+    public function getPesertaByUserId()
+    {
+        $this->db->select('id_kelas');
+        $this->db->where('id_user',$this->session->userdata('id_user'));
+        return $this->db->get('peserta')->result_array();
+    }
+
     public function getPeserta()
     {
         return $this->db->get('peserta')->result_array();
@@ -219,6 +226,22 @@ class Classes_model extends CI_Model {
     {
         $this->db->where('id_kelas',$id);
         return $this->db->get('harga_kelas')->result_array();
+    }
+
+    public function getMateriByClassId($id)
+    {
+        $sql = "SELECT kelas.id_kelas, kelas.judul_kelas, materi.*, jadwal_kegiatan.deskripsi_kegiatan
+                FROM materi, kelas, jadwal_kegiatan
+                WHERE kelas.id_kelas = '$id' AND materi.id_kelas = kelas.id_kelas AND materi.id_kegiatan = jadwal_kegiatan.id_kegiatan AND kelas.id_kelas = jadwal_kegiatan.id_kelas";
+        return $this->db->query($sql)->result_array();
+    }
+
+    public function getKelasKegiatan($id)
+    {
+        $sql = "SELECT detail_user.nama, kelas.id_kelas, kelas.judul_kelas, kelas.poster_kelas, DATE_FORMAT(jadwal_kegiatan.tanggal_kegiatan, '%W, %d %M %Y (%H:%i)') as tanggal
+                FROM jadwal_kegiatan, kelas, detail_user
+                WHERE kelas.id_kelas = '$id' AND jadwal_kegiatan.id_kelas = kelas.id_kelas AND jadwal_kegiatan.status_kegiatan = 1 AND kelas.pembuat_kelas = detail_user.id_user";
+        return $this->db->query($sql)->result_array();
     }
 
     public function getIdNewClass()
@@ -295,23 +318,38 @@ class Classes_model extends CI_Model {
 
     public function createClass()
     {
-        $data = [
-            'id_kelas' => uniqid(),
-            'pembuat_kelas' => $this->session->userdata('id_user'),
-            'judul_kelas' => $this->input->post('judul'),
-            'deskripsi_kelas' => $this->input->post('deskripsi'),
-            'kategori_kelas' => $this->input->post('kategori'),
-            'poster_kelas' => $this->insertImage(),
-            'jenis_kelas' => $this->input->post('jenis'),
-            'status_kelas' => 1
-        ];
+        $config['upload_path'] = './assets/images/';
+        $config['allowed_types'] = 'jpg|png|jpeg';
+        $config['max_size'] = '3000';
+        $config['remove_space'] = true;
 
-        $this->db->insert('kelas',$data);
-        
-        if(!empty($this->input->post('addmore'))){
-            $this->setKegiatan($this->getIdNewClass()['id_kelas']);
+        $this->load->library('upload', $config);
+        if ($this->upload->do_upload('poster')) {
+            $file_name = $this->upload->data('file_name');
+
+            $data = [
+                'id_kelas' => uniqid(),
+                'pembuat_kelas' => $this->session->userdata('id_user'),
+                'judul_kelas' => $this->input->post('judul'),
+                'deskripsi_kelas' => $this->input->post('deskripsi'),
+                'kategori_kelas' => $this->input->post('kategori'),
+                'poster_kelas' => $file_name,
+                // 'jenis_kelas' => $this->input->post('jenis'),
+                'jenis_kelas' => 1,
+                'status_kelas' => 1
+            ];
+    
+            $this->db->insert('kelas',$data);
+            
+            if(!empty($this->input->post('addmore'))){
+                $this->setKegiatan($this->getIdNewClass()['id_kelas']);
+            }
+            $this->setHarga($this->getIdNewClass()['id_kelas']);
+        } else {
+            return "fail";
         }
-        $this->setHarga($this->getIdNewClass()['id_kelas']);
+
+        
     }
 
     public function updateStatus($id,$selesai)
@@ -353,12 +391,27 @@ class Classes_model extends CI_Model {
     public function updateClass($id)
     {
         if(!empty($_FILES['poster']['name'])) {
-            $data = [
-                'judul_kelas' => $this->input->post('judul'),
-                'deskripsi_kelas' => $this->input->post('deskripsi'),
-                'kategori_kelas' => $this->input->post('kategori'),
-                'poster_kelas' => $this->updateImage($id)
-            ];
+            $config['upload_path'] = './assets/images/';
+            $config['allowed_types'] = 'jpg|png|jpeg';
+            $config['max_size'] = '3000';
+            $config['remove_space'] = true;
+
+            $this->load->library('upload', $config);
+            if ($this->upload->do_upload('poster')) {
+                $data = $this->db->get_where('kelas',['id_kelas' => $id])->row();
+                unlink("images/".$data->poster_kelas);
+
+                $file_name = $this->upload->data('file_name');
+                $data = [
+                    'judul_kelas' => $this->input->post('judul'),
+                    'deskripsi_kelas' => $this->input->post('deskripsi'),
+                    'kategori_kelas' => $this->input->post('kategori'),
+                    'poster_kelas' => $file_name
+                ];
+            } else {
+                return "fail";
+            }
+           
         }
         else {
             $data = [
@@ -566,6 +619,7 @@ class Classes_model extends CI_Model {
 
     public function updateKegiatan($id_kelas, $id_kegiatan)
     {
+
         
 
         $data = [];
@@ -701,6 +755,12 @@ class Classes_model extends CI_Model {
         return "fail";
       } 
 
+        $data = [
+            'deskripsi_kegiatan' => $this->input->post('deskripsi'),
+            'tanggal_kegiatan' => $this->input->post('tanggal')
+        ];
+
+
     }
 
     public function updateKegiatanStatus($activityId, $status) {
@@ -724,6 +784,7 @@ class Classes_model extends CI_Model {
         $this->db->where('id_kelas',$id);
         $this->db->delete('peserta');
     }
+
 
     public function getMateri($id_kelas)
     {
@@ -750,6 +811,145 @@ class Classes_model extends CI_Model {
         $sql = "DELETE FROM materi WHERE url_materi = '$url_materi'";
 
         return $this->db->query($sql);
+    }
+
+
+    public function getKategoriTugas()
+    {
+        return $this->db->get('kategori_tugas')->result_array();
+    }
+
+    public function getDeadlineTugas($id)
+    {
+        $this->db->select('batas_pengiriman_tugas');
+        return $this->db->get_where('tugas_kuis',['id_tugas' => $id])->result_array()[0];
+    }
+
+    public function getTugasByClassId($id)
+    {
+        $sql = "SELECT tugas_kuis.*, kategori_tugas.kategori_tugas as kategori, DATE_FORMAT(tugas_kuis.batas_pengiriman_tugas, '%W, %d %M %Y (%H:%i)') as deadline
+                FROM tugas_kuis, kategori_tugas
+                WHERE tugas_kuis.id_kelas = '$id' AND tugas_kuis.kategori_tugas = kategori_tugas.id";
+
+        $query = $this->db->query($sql);
+        return $query->result_array();
+    }
+
+    public function getTugasByTugasId($id)
+    {
+        return $this->db->get_where('tugas_kuis',['id_tugas' => $id])->result_array();
+    }
+
+    public function getSubmit()
+    {
+        $sql = "SELECT submit_assignment.*, detail_user.nama, status_tugas.status_tugas as status, DATE_FORMAT(submit_assignment.tanggal_submit, '%W, %d %M %Y (%H:%i)') as tanggal_submit
+                FROM submit_assignment, detail_user, status_tugas
+                WHERE status_tugas.id = submit_assignment.status_tugas AND submit_assignment.id_user = detail_user.id_user";
+
+        $query = $this->db->query($sql);
+        return $query->result_array();
+    }
+
+    public function createAssignment($id)
+    {
+        $data = [
+            'id_tugas' => uniqid(),
+            'judul_tugas' => $this->input->post('judul'),
+            'deskripsi_tugas' => $this->input->post('deskripsi'),
+            'id_kelas' => $id,
+            'kategori_tugas' => $this->input->post('kategori'),
+            'batas_pengiriman_tugas' => $this->input->post('deadline')
+        ];
+
+        $this->db->insert('tugas_kuis',$data);
+    }
+
+    public function collectAssignment($id_tugas,$deadline)
+    {
+        $config['upload_path'] = './assets/docs/';
+        $config['allowed_types'] = 'pdf|doc|docx';
+        $config['max_size'] = '25000';
+        $config['remove_space'] = true;
+
+        $this->load->library('upload', $config);
+        if ($this->upload->do_upload('assignment')) {
+            $filename = $this->upload->data('file_name');
+
+            if (date('Y-m-d H:i:s') > $deadline) {
+                $data = [
+                    'id_tugas' => $id_tugas,
+                    'url_file' => $filename,
+                    'nilai_tugas' => 0,
+                    'status_tugas' => 2,
+                    'id_user' => $this->session->userdata('id_user'),
+                    'subjek_tugas' => $this->input->post('subjek'),
+                    'tanggal_submit' => date('Y-m-d H:i:s')
+                ];
+        
+                $this->db->insert('submit_assignment',$data);
+            }
+            else {
+                $data = [
+                    'id_tugas' => $id_tugas,
+                    'url_file' => $filename,
+                    'nilai_tugas' => 0,
+                    'status_tugas' => 1,
+                    'id_user' => $this->session->userdata('id_user'),
+                    'subjek_tugas' => $this->input->post('subjek'),
+                    'tanggal_submit' => date('Y-m-d H:i:s')
+                ];
+        
+                $this->db->insert('submit_assignment',$data);
+            }
+        }
+        else {
+            return "failed";
+        }
+    }
+
+    public function updateAssignment($id)
+    {
+        $data = [
+            'judul_tugas' => $this->input->post('judul'),
+            'deskripsi_tugas' => $this->input->post('deskripsi'),
+            'kategori_tugas' => $this->input->post('kategori'),
+            'batas_pengiriman_tugas' => $this->input->post('deadline')
+        ];
+
+        $this->db->where('id_tugas',$id);
+        $this->db->update('tugas_kuis',$data);
+    }
+
+    public function deleteAssignment($id)
+    {
+        $this->db->where('id_tugas',$id);
+        $this->db->delete('tugas_kuis');
+    }
+    
+    public function updateNilai($id)
+    {
+        $data = [
+            'nilai_tugas' => $this->input->post('nilai')
+        ];
+
+        $this->db->where('id_submit',$id);
+        $this->db->update('submit_assignment',$data);
+    }
+
+    public function deleteJawaban($id)
+    {
+        $data = $this->db->get_where('submit_assignment',['id_submit' => $id])->row();
+        $deldata = $this->db->delete('submit_assignment',['id_submit'=>$id]);
+        if($deldata){
+            unlink("assets/docs/".$data->url_file);
+        }
+    }
+
+    public function cekTugas($id)
+    {
+        $this->db->where('id_tugas',$id);
+        $this->db->where('id_user',$this->session->userdata('id_user'));
+        return $this->db->get('submit_assignment')->result_array();
 
     }
 }

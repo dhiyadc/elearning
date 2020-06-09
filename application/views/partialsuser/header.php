@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="icon" href="<?php echo base_url(); ?>assets/images/favicon.png">
-	  <title>El-Learn.</title>
+	  <title>Classic.</title>
     
     <link href="https://fonts.googleapis.com/css?family=Muli:300,400,700,900" rel="stylesheet">
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/fonts/icomoon/style.css">
@@ -36,12 +36,11 @@
 
   </head>
   <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
-
-  <div class="modal fade" id="contact" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="#" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="contact">Info Kelas</h5>
+                    <h5 class="modal-title" id="#">Info Kelas</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
@@ -141,7 +140,6 @@
           
           
 
-
           <div class="ml-auto w-25">
             <nav class="site-navigation position-relative text-right" role="navigation">
               <ul class="site-menu main-menu site-menu-white js-clone-nav mr-auto d-none d-lg-block m-0 p-0">
@@ -156,54 +154,33 @@
                       <li class="head text-light" style="background-color: forestgreen;">
                         <div class="row">
                           <div class="col-lg-12 col-sm-12 col-12">
-                            <span>Pemberitahuan (3)</span>
-                            <a href="" class="float-right text-light">Tandai Semua sudah Dibaca</a>
+                            <span>Pemberitahuan (<?= count($notif); ?>)</span>
                           </div>
                       </li>
+                      <?php if ($notif != null) : ?>
+                      <?php $i = 0; ?>
+                      <?php foreach ($notif as $val) : ?>
                       <li class="notification-box">
                         <div class="row">
                           <div class="col-lg-3 col-sm-3 col-3 text-center">
-                            <img src="<?php echo base_url(); ?>assets/images/gambar1.png" class="w-100 rounded-circle">
-                          </div>    
+                            <img src="<?php echo base_url(); ?>assets/images/<?= $val[$i]['poster_kelas']; ?>" class="rounded-circle" style="object-fit: cover;height: 60px; width: 60px;">
+                          </div>
                           <div class="col-lg-8 col-sm-8 col-8">
-                            <strong class="text-info">David John</strong>
-                            <div><a href="#" (click)="clearModal()" data-toggle="modal" data-target="#contact">Kelas Pemograman Android Sedang Dimulai</a>
-                          
-                            </div>
-                            <small class="text-warning">27.11.2015, 15:00</small>
-                          </div>    
-                        </div>
-                      </li>
-                      <li class="notification-box bg-gray">
-                        <div class="row">
-                          <div class="col-lg-3 col-sm-3 col-3 text-center">
-                            <img src="<?php echo base_url(); ?>assets/images/gambar1.png" class="w-100 rounded-circle">
-                          </div>    
-                          <div class="col-lg-8 col-sm-8 col-8">
-                            <strong class="text-info">David John</strong>
+                            <strong class="text-info"><?= $val[$i]['nama']; ?></strong>
                             <div>
-                            <div><a href="#" (click)="clearModal()" data-toggle="modal" data-target="#contact">Kelas Pemograman Java Sedang Dimulai</a>
+                              <a href="<?= base_url() ?>classes/open_class/<?= $val[$i]['id_kelas']; ?>">Kelas <?= $val[$i]['judul_kelas']; ?> Sedang Dimulai</a>
                             </div>
-                            <small class="text-warning">27.11.2015, 15:00</small>
+                            <small class="text-warning"><?= $val[$i]['tanggal']; ?></small>
                           </div>    
                         </div>
                       </li>
-                      <li class="notification-box">
-                        <div class="row">
-                          <div class="col-lg-3 col-sm-3 col-3 text-center">
-                            <img src="<?php echo base_url(); ?>assets/images/gambar1.png" class="w-100 rounded-circle">
-                          </div>    
-                          <div class="col-lg-8 col-sm-8 col-8">
-                            <strong class="text-info">David John</strong>
-                            <div>
-                            <div><a href="#" (click)="clearModal()" data-toggle="modal" data-target="#contact">Kelas Maling Sedang Dimulai</a>
-                            </div>
-                            <small class="text-warning">27.11.2015, 15:00</small>
-                          </div>    
-                        </div>
-                      </li>
+                      <?php $i++; ?>
+                      <?php endforeach; ?>
+                      <?php else : ?>
+                        <p><center>Tidak Ada Notifikasi</center></p>
+                      <?php endif; ?>
                       <li class="footer text-center" style="background-color: forestgreen;">
-                        <a href="" class="text-light">View All</a>
+                        <a href="<?php echo base_url(); ?>classes/my_classes" class="text-light">View All</a>
                       </li>
                     </ul>
                     </div>
@@ -212,8 +189,7 @@
                 
                   <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
-                      aria-haspopup="true" aria-expanded="false">Hi,User
-                      <i class="fa fa-user"></i>
+                      aria-haspopup="true" aria-expanded="false">Hi, <?= $nama[0]; ?> <i class="fa fa-user"></i>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right dropdown-default"
                       aria-labelledby="navbarDropdownMenuLink-333">
@@ -229,7 +205,6 @@
 
         </div>
       </div>
-
     
       
     </header>
