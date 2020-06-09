@@ -291,10 +291,6 @@
                 </div>
             </div>
             <input type="hidden" id="dtp_input1"/>
-            <div class="form-group">
-                          <label for="materiForm">Materi (Opsional)</label>
-                          <input type="file" name="addmore[][materi]" accept=".doc, .docx, .ppt, .pptx, .pdf" class="form-control-file" id="materiForm">
-                        </div>
             <div class="form-group text-right">
                 <button type="button" name="remove" id="`+i+`" class="btn btn-danger btn_remove">X</button>
             </div>
