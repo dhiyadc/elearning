@@ -1,3 +1,7 @@
+
+<?php 
+  $_SESSION['url_login'] = "kelasview";
+?>
 <!-- Jumbotron -->
 <div class="card-image bannerkelas">
 	<div class="text-white text-center rgba-stylish-strong py-5 px-4">
@@ -22,6 +26,8 @@
 		</div>
 	</div>
 </div>
+
+
 <!-- Jumbotron -->
 <!-- <div class="col-lg-16">
   <div class="bg-dark">

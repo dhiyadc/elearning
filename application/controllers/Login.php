@@ -50,12 +50,45 @@ class Login extends CI_Controller {
 				$this->session->set_userdata('id_user', $id_user['id_user']);
 				$this->session->set_userdata('email' , $email);
 
-				redirect('home');
+				if(isset($_SESSION['url_login'])){
+					if($_SESSION['url_login'] == "open_class"){
+						$class = $_SESSION['url_login_open_class'];
+						redirect('classes/open_class/'.$class);
+					} else if($_SESSION['url_login'] == "kelasview"){
+						redirect('classes');
+					} else if($_SESSION['url_login'] == "kelasfilter"){
+						redirect('classes');
+					} else if($_SESSION['url_login'] == "home"){
+						redirect('home');
+					} else {
+						redirect('home');
+					}
+
+				} else {
+					redirect('home');
+				}
 
 			} else {
 				
 				$this->session->set_flashdata('invalid', 'Invalid Email or Password');
-				redirect('home');
+				
+				if(isset($_SESSION['url_login'])){
+					if($_SESSION['url_login'] == "open_class"){
+						$class = $_SESSION['url_login_open_class'];
+						redirect('classes/open_class/'.$class);
+					} else if($_SESSION['url_login'] == "kelasview"){
+						redirect('classes');
+					} else if($_SESSION['url_login'] == "kelasfilter"){
+						redirect('classes');
+					} else if($_SESSION['url_login'] == "home"){
+						redirect('home');
+					} else if($_SESSION['url_login'] == "register_user"){
+						redirect('register');
+					}
+
+				} else {
+					redirect('home');
+				}
 			}
 		
 	}

@@ -1,3 +1,6 @@
+<?php 
+  $_SESSION['url_login'] = "register_user";
+?>
 <div class="intro-section" id="daftar-section" >
 
 
