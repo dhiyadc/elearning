@@ -65,11 +65,10 @@
               <?php if ($val['pembuat_kelas'] != $this->session->userdata('id_user')) : ?>
                 <?php if ($peserta != null) : ?>
                   <li class="nav-item">
-                    <a class="nav-link" href="<?= base_url()?>classes/listkelas" role="tab" ><i class="fa fa-tasks"></i> Tugas Kelas</a>
+                    <a class="nav-link" href="<?= base_url()?>classes/list_tugas/<?= $val['id_kelas']; ?>" role="tab" ><i class="fa fa-tasks"></i> Tugas Kelas</a>
                   </li>
                 <?php endif; ?>
-              <?php endif; ?>
-              <?php if($val['pembuat_kelas'] == $this->session->userdata('id_user')) : ?>     
+              <?php else : ?>     
               <li class="nav-item">
                 <a class="nav-link" href="<?= base_url()?>classes/mentorkelas" role="tab" ><i class="fa fa-cog"></i>Atur Kelas</a>
               </li>             
