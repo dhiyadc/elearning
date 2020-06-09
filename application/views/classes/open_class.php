@@ -276,7 +276,7 @@
                                         <?php if ($val2['id_kegiatan'] == $val4['id_kegiatan']) : ?>
                                           
                                               <?php if($PembuatMateri < 1) : ?>
-                                              <button class="btn btn-light btn-md px-3 my-0 ml-0" type="button" data-toggle="modal" data-target="#lihatMateri<?= $modalMateri ?>">Lihat Materi</button>
+                                                <button class="btn btn-light btn-md px-3 my-0 ml-0" type="button" data-toggle="modal" data-target="#lihatMateri<?= $modalMateri ?>">Lihat Materi</button>
                                               <?php endif; ?>
                                               <?php $PembuatMateri++; ?>
                                             <?php else : ?>
@@ -284,11 +284,10 @@
                                         <?php endforeach; ?>
                                   
                                   
-                                  </td>
+                                  </td> 
+                              <?php endif; ?>
 
-
-
-                                  <div class="modal fade" id="lihatMateri<?= $modalMateri ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                              <div class="modal fade" id="lihatMateri<?= $modalMateri ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
                               aria-hidden="true" style="padding-right: 90px;">
                               <?php $modalMateri++; ?>
                               <div class="modal-dialog modal-lg" role="document">
@@ -315,7 +314,7 @@
                                         <?php foreach ($materi as $val4) : ?>
                                         <?php if ($val2['id_kegiatan'] == $val4['id_kegiatan']) : ?>
                                            
-                                           <div class="col-md-12 border-bottom"><a href="<?= base_url(); ?>classes/download_materi/<?= $val4['url_materi'] ?>"><?= $val4['url_materi'] ?></a></div>
+                                           <div class="col-md-12 border-bottom pb-3 mt-3"><a href="<?= base_url(); ?>classes/download_materi/<?= $val4['url_materi'] ?>"><?= $val4['url_materi'] ?></a></div>
                                             <?php else : ?>
                                             <?php endif; ?>
                                         <?php endforeach; ?>
@@ -345,26 +344,6 @@
                                 </div>
                               </div>
                               </div>
-                              <?php endif; ?>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
                           </tr>
                       <?php endforeach; ?>
