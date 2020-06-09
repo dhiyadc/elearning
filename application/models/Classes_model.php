@@ -538,7 +538,12 @@ class Classes_model extends CI_Model {
 
     public function getTugasByTugasId($id)
     {
-        return $this->db->get_where('tugas_kuis',['id_tugas' => $id])->result_array();
+        $sql = "SELECT tugas_kuis.*, kategori_tugas.kategori_tugas as kategori, DATE_FORMAT(tugas_kuis.batas_pengiriman_tugas, '%W, %d %M %Y (%H:%i)') as deadline
+                FROM tugas_kuis, kategori_tugas
+                WHERE tugas_kuis.id_tugas = '$id' AND tugas_kuis.kategori_tugas = kategori_tugas.id";
+
+        $query = $this->db->query($sql);
+        return $query->result_array();
     }
 
     public function getSubmit()
