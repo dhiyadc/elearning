@@ -491,6 +491,7 @@ class Classes extends CI_Controller {
     {
         $this->Classes_model->delMateri($url_materi);
         redirect('classes/open_class/'.$id_kelas);
+    }
 
     public function list_assignment($id_kelas)
     {
