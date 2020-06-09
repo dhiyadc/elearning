@@ -55,7 +55,7 @@
 <ul style="list-style: outside none none;" class="nav nav-tabs" role="tablist">
     
     <li class="nav-item">
-        <a class="nav-link active" data-toggle="tab" href="#tab1" role="tab" aria-expanded="true" style="font-size: 22px;">Quiz</a>
+        <a class="nav-link active" data-toggle="tab" href="#tab1" role="tab" aria-expanded="true" style="font-size: 22px;">Quiz Siswa</a>
     </li>
     
     

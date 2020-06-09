@@ -14,7 +14,7 @@
 
 
        
-<h1> </i>#PTI</h1>
+<h1> </i>Quiz 1</h1>
     <!--  <small> - klik untuk melihat detail</small> -->
 <hr>
     
