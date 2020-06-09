@@ -84,6 +84,83 @@
                   </div>
                 </div>
         </div>
+
+        <div class="project">
+                <div class="row bg-white has-shadow">
+                  <div class="left-col col-lg-6 d-flex align-items-center justify-content-between">
+                    <div class="project-title d-flex align-items-center">
+                      <div class="image has-shadow"><img src="<?php echo base_url(); ?>assets/images/task.png" alt="..." class="img-fluid rounded-circle"></div>
+                      <div class="text">
+                        <h3 class="h4" style="font-size: 20px;">Aua Pradata</h3><small>Siswa</small>
+                      </div>
+                    </div>
+                    <!-- <div class="project-date"><span class="hidden-sm-down">Hari Ini pada 4:24 AM</span></div> -->
+                  </div>
+                  <div class="right-col col-lg-6 d-flex align-items-center">
+                    
+                
+                    <!-- <div class="comments"><i class="fa fa-comment-o"></i>20</div> -->
+                    <div class="project-progress">
+                      <div class="time">
+                        <div class="nilai">0/100 Poin</span></div>
+                      
+                      </div>
+                    </div>
+                    <div class="time"><i class="fa fa-clock-o"></i> Kam 12:00  </div>
+                  </div>
+                </div>
+        </div>
+
+        <div class="project">
+                <div class="row bg-white has-shadow">
+                  <div class="left-col col-lg-6 d-flex align-items-center justify-content-between">
+                    <div class="project-title d-flex align-items-center">
+                      <div class="image has-shadow"><img src="<?php echo base_url(); ?>assets/images/task.png" alt="..." class="img-fluid rounded-circle"></div>
+                      <div class="text">
+                        <h3 class="h4" style="font-size: 20px;">Saya Kucing</h3><small>Siswa</small>
+                      </div>
+                    </div>
+                    <!-- <div class="project-date"><span class="hidden-sm-down">Hari Ini pada 4:24 AM</span></div> -->
+                  </div>
+                  <div class="right-col col-lg-6 d-flex align-items-center">
+                    
+                
+                    <!-- <div class="comments"><i class="fa fa-comment-o"></i>20</div> -->
+                    <div class="project-progress">
+                      <div class="time">
+                        <div class="nilai">0/100 Poin</span></div>
+                      
+                      </div>
+                    </div>
+                    <div class="time"><i class="fa fa-clock-o"></i> Kam 12:00  </div>
+                  </div>
+                </div>
+        </div>
+        <div class="project">
+                <div class="row bg-white has-shadow">
+                  <div class="left-col col-lg-6 d-flex align-items-center justify-content-between">
+                    <div class="project-title d-flex align-items-center">
+                      <div class="image has-shadow"><img src="<?php echo base_url(); ?>assets/images/task.png" alt="..." class="img-fluid rounded-circle"></div>
+                      <div class="text">
+                        <h3 class="h4" style="font-size: 20px;">Arya Muchkin</h3><small>Siswa</small>
+                      </div>
+                    </div>
+                    <!-- <div class="project-date"><span class="hidden-sm-down">Hari Ini pada 4:24 AM</span></div> -->
+                  </div>
+                  <div class="right-col col-lg-6 d-flex align-items-center">
+                    
+                
+                    <!-- <div class="comments"><i class="fa fa-comment-o"></i>20</div> -->
+                    <div class="project-progress">
+                      <div class="time">
+                        <div class="nilai">0/100 Poin</span></div>
+                      
+                      </div>
+                    </div>
+                    <div class="time"><i class="fa fa-clock-o"></i> Kam 12:00  </div>
+                  </div>
+                </div>
+        </div>
         
       </div>
 
