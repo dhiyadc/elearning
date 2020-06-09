@@ -336,7 +336,7 @@
                                             <?php if ($val2['nama_status'] == "Selesai") : ?>
                                                 <span class="badge badge-success"><?= $val2['nama_status'] ?></span>
                                             <?php else : ?>
-                                                <span class="badge badge-danger"><?= $val2['nama_status'] ?></span>
+                                                <span class="badge badge-warning"><?= $val2['nama_status'] ?></span>
                                             <?php endif; ?>
                                         <?php endif; ?>
                                     <?php endforeach; ?>
@@ -432,7 +432,7 @@
                                             <?php if ($val3['nama_status'] == "Selesai") : ?>
                                                 <span class="badge badge-success"><?= $val3['nama_status'] ?></span>
                                             <?php else : ?>
-                                                <span class="badge badge-danger"><?= $val3['nama_status'] ?></span>
+                                                <span class="badge badge-warning"><?= $val3['nama_status'] ?></span>
                                             <?php endif; ?>
                                         <?php endif; ?>
                                     <?php endforeach; ?>
@@ -501,7 +501,6 @@
                   <th scope="col">Nama Tugas</th>
                   <th scope="col">Kategori</th>
                   <th scope="col">Deadline</th>
-                  <th scope="col">Nilai</th>
                   <th scope="col">Aksi</th>
                 </tr>
               </thead>
@@ -512,7 +511,8 @@
                     <?php foreach ($tugas as $val2[$i][$j]) : ?>
                       <?php foreach ($val2[$i][$j] as $val3) : ?>
                         <?php if ($val[$i][0][0]['id_kelas'] == $val3['id_kelas']) : ?>
-                          <tr>
+                          <?php if ($cek[$k]) : ?>
+                            <tr>
                               <th scope="row" style="width: 300px;"><a class="text-primary"><?= $val[$i][0][0]['judul_kelas']; ?></a></th>
                               <td style="padding-top: 20px;">
                                 <?= $val3['judul_tugas']; ?>
@@ -527,85 +527,13 @@
                               <td style="padding-top:20px">
                                 <span class="badge"><?= $val3['deadline']; ?></span>
                               </td>
-                              <?php if ($cek[$k] == null) : ?>
-                                <td style="padding-top:20px">
-                                  Belum Kumpul
-                                </td>
-                              <?php else : ?>
-                                <?php foreach ($submit as $val4) : ?>
-                                  <?php if ($val3['id_tugas'] == $val4['id_tugas'] && $val4['id_user'] == $this->session->userdata('id_user')) : ?>
-                                    <td style="padding-top:20px">
-                                      <?= $val4['nilai_tugas']; ?>
-                                    </td>
-                                  <?php endif; ?>
-                                <?php endforeach; ?>
-                              <?php endif; ?>
                               <td>
-                                <?php if ($cek[$k] == null) : ?>
                                 <div class="buttonclass">
-                                  <a href="" class="btn btncyan" data-toggle="modal" data-target="#detailTugas<?= $val3['id_tugas']; ?>">Serahkan</a>
+                                  <a href="" class="btn btncyan"">Lihat Tugas</a>
                                 </div>
-                                <?php else : ?>
-                                  <?php foreach ($submit as $val4) : ?>
-                                      <?php if ($val3['id_tugas'] == $val4['id_tugas'] && $val4['id_user'] == $this->session->userdata('id_user')) : ?>
-                                        <a href="" class="btn btn-warning" data-toggle="modal" data-target="#detailTugas<?= $val3['id_tugas']; ?>" style="padding-right: 20px; padding-left: 20px; padding-top: 12px; padding-bottom: 12px;">Ganti</a>
-                                      <?php endif; ?>
-                                  <?php endforeach; ?>
-                                <?php endif; ?>
-                                      <div class="modal fade bd-example-modal-lg" id="detailTugas<?= $val3['id_tugas']; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="padding-right: 90px;">
-                                        <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
-                                          <!--Content-->
-                                          <div class="modal-content form-elegant">
-                                            <!--Header-->
-                                            <div class="modal-header text-center">
-                                              <h3 class="modal-title w-100 dark-grey-text font-weight-bold my-3" id="myModalLabel"><strong>Detail Tugas <?= $val3['judul_tugas']; ?></strong></h3>
-                                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                              </button>
-                                            </div>
-                                            <!--Body-->
-                                            <div class="modal-body mx-4">
-                                              <!--Body-->
-                                              <?php if ($this->session->flashdata('failedInputFile')) : ?>
-                                                <div class="alert alert-danger"> <?= $this->session->flashdata('failedInputFile') ?> </div>
-                                              <?php endif; ?>
-                                              <p><strong><b>Deskripsi Tugas</b></strong></p>
-                                              <p><?= $val3['deskripsi_tugas']; ?></p><br>
-                                              <p><strong><b>Kumpul Tugas Anda</b></strong></p>
-                                              <?php if ($cek[$k] == null) : ?>
-                                              <form enctype="multipart/form-data" action="<?= base_url() ?>classes/collect_assignment/<?= $val3['id_kelas'] ?>/<?= $val3['id_tugas'] ?>" method="POST">
-                                                <div class="form-group">
-                                                  <label>Subjek</label>
-                                                    <input type="text" class="form-control" name="subjek" required>
-                                                </div>
-                                                <div class="form-group">
-                                                  <label>File (hanya pdf/doc/docx)</label>
-                                                    <input type="file" class="form-control" name="assignment" accept=".pdf, .doc, .docx" required>
-                                                </div>
-                                                <div class="text-center mb-3">
-                                                  <input type="submit" class="btn btn-light blue-gradient btn-block btn-rounded z-depth-1a" value="Serahkan">
-                                                </div>
-                                              </form>
-                                              <?php else : ?>
-                                                <?php foreach ($submit as $val4) : ?>
-                                                  <?php if ($val3['id_tugas'] == $val4['id_tugas'] && $val4['id_user'] == $this->session->userdata('id_user')) : ?>
-                                                    <div class="row" style="margin-left: 0px;">
-                                                    <p>Jawaban <a href="<?= base_url() ?>classes/download_assignment/<?= $val4['url_file']; ?>"><?= $val4['url_file']; ?></a></p>
-                                                      <div class="col text-right">
-                                                        <a href="<?= base_url() ?>classes/hapus_jawaban/<?= $val[$i][0][0]['id_kelas']; ?>/<?= $val4['id_submit']; ?>" class="btn btn-danger" style="padding-right: 20px; padding-left: 20px; padding-top: 12px; padding-bottom: 12px; top: -12px;" title="Peringatan! Jika Anda menghapus jawaban Anda setelah memperoleh nilai, maka nilai yang Anda peroleh akan ikut terhapus.">Hapus Jawaban</a><br><br>
-                                                      </div>
-                                                    </div>
-                                                    <p style="color: red;"><span class="icon-warning"></span> Peringatan!</p>
-                                                    <p style="color: red;"><small>Jika Anda menghapus jawaban Anda setelah memperoleh nilai, maka nilai yang Anda peroleh akan ikut terhapus.</small></p>
-                                                  <?php endif; ?>
-                                                <?php endforeach; ?>
-                                              <?php endif; ?>
-                                            </div>
-                                          </div>
-                                        </div>
-                                    </div>
-                                </td>
+                              </td>
                           </tr>
+                          <?php endif; ?>
                         <?php endif; ?>
                         <?php $k++; ?>
                       <?php endforeach; ?>

@@ -315,17 +315,16 @@ class Classes extends CI_Controller {
             $data['tugas'] = $datatugas;
             $data['kelas_tugas'] = $datakelas;
             $data['materi'] = $datamateri;
-            $datacek = array(); $i = 0;
+            $datacek = array();
             foreach ($data['tugas'] as $value) {
                 foreach ($value as $value2) {
                     $cek = $this->Classes_model->cekTugas($value2['id_tugas']);
                     if($cek == null) {
-                        $datacek[] = null;
+                        $datacek[] = true;
                     }
                     else {
-                        $datacek[] = $cek;
+                        $datacek[] = false;
                     }
-                    $i++;
                 }
             }
             $data['cek'] = $datacek;
@@ -609,6 +608,7 @@ class Classes extends CI_Controller {
             redirect('home');
         }
     }
+    
     // temporary
 
     public function listkelas(){
