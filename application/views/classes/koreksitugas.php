@@ -134,9 +134,7 @@
         </div>
 
         
-        <div class="col">
-          <button class="btn btncyan ">Kembalikan</button>
-        </div>
+       
       </ul>
       </div>
 
@@ -296,7 +294,10 @@
                                   <!-- <img class="d-block img-fluid rounded-circle" src="" alt="author avatar"> -->
                               </div>
                               <div class="m-2">
-                                  <a href="#">Lihat Tugas Siswa</a>
+                              <div class="col mr-4">
+                                <input class="effect-1" type="text" placeholder="0/100 Poin">
+                                  <span class="focus-border"></span>
+                              </div>
                               </div>
                               <div class="meta-item ml-auto">
                                   <a href="#">
