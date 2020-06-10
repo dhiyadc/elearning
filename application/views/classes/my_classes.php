@@ -582,32 +582,87 @@
               <thead>
                 <tr>
                   <th scope="col">Kelas</th>
-                  <th scope="col">Kegiatan</th>
-                  <th scope="col">Materi</th>
+                  <th scope="col">Jumlah Materi</th>
                   <th scope="col">Aksi</th>
                 </tr>
               </thead>
               <tbody>
+              <?php $lihatMateriCount = 0; ?>
               <?php foreach ($materi as $val) : ?>
-                    <?php foreach ($val as $val2) : ?>
+              <?php
+                    $countMateri = 0;
+              ?>
+                    <?php foreach ($val as $val2) : ?> 
+                      <?php $countMateri++; ?>
+                    <?php endforeach; ?>
                             <tr>
                                 <th scope="row" style="width: 300px;"><a class="text-primary"><?= $val2['judul_kelas']; ?></a></th>
                                 <td style="padding-top:20px">
-                                  <?= $val2['deskripsi_kegiatan']; ?>
-                                </td>
-                                <td style="padding-top:20px">
-                                  <?= $val2['url_materi']; ?>
+                                  <?= $countMateri; ?>
                                 </td>
                                 <td>
                                   <div class="buttonclass">
-                                    <a href="<?= base_url()?>classes/download_materi/<?= $val2['url_materi'] ?>" class="btn btn-success">Download</a>
+                                  <button class="btn btn-info" type="button" data-toggle="modal" data-target="#lihatMateri<?= $lihatMateriCount; ?>">Lihat Materi</button>
                                   </div>
                                 </td>
                             </tr>
-                    <?php endforeach; ?>
+
+            <div class="modal fade" id="lihatMateri<?= $lihatMateriCount; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+              aria-hidden="true" style="padding-right: 90px;">
+              
+              <div class="modal-dialog modal-lg" role="document">
+                <!--Content-->
+                <div class="modal-content form-elegant">
+                  <!--Header-->
+                  <div class="modal-header text-center">
+                    <h3 class="modal-title w-100 dark-grey-text font-weight-bold my-3" id="myModalLabel"><strong>Materi <?= $val2['judul_kelas']; ?></strong></h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <!--Body-->
+                  <div class="modal-body mx-4">
+                    <!--Body-->
+                    <div class="container-fluid">
+                                      <div class="row">
+                                      
+                                      <div class="col-md-6 border-bottom pb-3 mt-3"><b>Kegiatan</b></div>
+                                      <div class="col-md-6 border-bottom pb-3 mt-3"><b>Nama File</b></div>
+                                      <?php foreach ($val as $val2) : ?>
+                                        <div class="col-md-6 border-bottom pb-3 mt-3"><?= $val2['deskripsi_kegiatan']; ?></div>
+                                           <div class="col-md-6 border-bottom pb-3 mt-3"><a href="<?= base_url(); ?>classes/download_materi/"><?= $val2['url_materi']; ?></a></div>
+                                      <?php endforeach; ?>
+                                           
+
+
+                                        </div>
+                                    </div>
+
+                  </div>
+                </div>
+              </div>
+              </div>
+              <?php $lihatMateriCount++; ?>
+
+
                 <?php endforeach; ?>
+
+                
+
               </tbody>
             </table>
+
+
+
+
+            
+
+
+
+
+
+
+
           </div>
           <div class="card-footer white py-3 d-flex justify-content-center">
           <ul class="pagination">

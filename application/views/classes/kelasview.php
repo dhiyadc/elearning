@@ -17,7 +17,8 @@
 				<a href="<?=base_url()?>classes/new_class" class="btn btn-black"><i class="fa fa-clone left"></i> Buat
 					Kelas</a>
 				<?php } else { ?>
-					<a href="" class="btn btn-black" data-toggle="modal" data-target="#elegantModalForm"><i class="fa fa-clone left"></i> Buat
+				<?php $_SESSION['new_class_url_login'] = "newclass"; ?>
+					<a href="" class="btn btn-black" data-toggle="modal" data-target="#elegantModalFormcreateClass"><i class="fa fa-clone left"></i> Buat
 					Kelas</a>
 				<?php } ?>
 				<a href="register" class="btn btn-black"><i class="fa fa-clone left"></i> Gabung Kelas</a>
@@ -154,7 +155,7 @@
 				<div class="input-group mb-3">
 				<input class="form-control form-control-sm mr-0 w-0" type="text" name="keyword" placeholder="Cari Kelas"aria-label="Search">
 					<div class="input-group-append">
-					<button class="btn" type="button"><i class="fa fa-search" aria-hidden="true" onclick=""></i></button>
+					<button class="btn" type="submit"><i class="fa fa-search" aria-hidden="true" onclick=""></i></button>
 					</div>
 				</div>
 				</form>

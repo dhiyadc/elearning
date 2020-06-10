@@ -310,7 +310,7 @@
                                       <div class="container-fluid">
                                       <div class="row">
                                       
-                                      
+                                      <div class="col-md-12 border-bottom pb-3 mt-3"><b>Nama File</b></div>
                                         <?php foreach ($materi as $val4) : ?>
                                         <?php if ($val2['id_kegiatan'] == $val4['id_kegiatan']) : ?>
                                            
@@ -327,7 +327,7 @@
                                     <div class="container-fluid">
                                       <div class="row">
                                         
-                                      
+                                      <div class="col-md-12 border-bottom pb-3 mt-3"><b>Nama File</b></div>
                                       <?php foreach ($materi as $val4) : ?>
                                       <?php if ($val2['id_kegiatan'] == $val4['id_kegiatan']) : ?>
                                         <div class="col-md-10 border-bottom pb-3 mt-3"><a href="<?= base_url(); ?>classes/download_materi/<?= $val4['url_materi'] ?>"><?= $val4['url_materi'] ?></a></div>
