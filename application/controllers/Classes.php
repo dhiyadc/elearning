@@ -63,6 +63,8 @@ class Classes extends CI_Controller {
         $data['harga'] = $this->Classes_model->getHarga($id_kelas);
         $data['peserta'] = $this->Classes_model->getPesertaByUserIdClassId($id_kelas);
         $data['cek'] = $this->Classes_model->cekPeserta($id_kelas);
+        $data['materi'] = $this->Classes_model->getMateri($id_kelas);
+        $data['materiKegiatan'] = $this->Classes_model->getMateribyKegiatan();
         if(isset($this->session->userdata['logged_in'])){
             $this->session->set_flashdata('buttonJoin','Anda telah mengikuti kelas ini');
             $this->session->set_flashdata('batasPeserta','Maaf, kelas ini telah penuh');
@@ -234,7 +236,16 @@ class Classes extends CI_Controller {
     public function set_kegiatan($id_kelas)
     {
         if(isset($this->session->userdata['logged_in'])){
-            $this->Classes_model->setKegiatanByClass($id_kelas);
+            $kegiatan = $this->Classes_model->setKegiatanByClass($id_kelas);
+            if($kegiatan == "fail"){
+                $this->session->set_flashdata("invalidFile", "Jadwal kegiatan anda gagal di upload (hanya pdf, doc, ppt). Ukuran Maksimal : 25MB");
+            }
+
+            if($kegiatan == "success"){
+                $this->session->set_flashdata("success", "Jadwal Kegiatan anda berhasil di tambah!");
+            }
+
+           
             redirect('classes/open_class/' . $id_kelas);
         } else {
             redirect('home');
@@ -244,7 +255,14 @@ class Classes extends CI_Controller {
     public function edit_kegiatan($id_kelas,$id_kegiatan)
     {
         if(isset($this->session->userdata['logged_in'])){
-            $this->Classes_model->updateKegiatan($id_kegiatan);
+            $kegiatan = $this->Classes_model->updateKegiatan($id_kelas, $id_kegiatan);
+            if($kegiatan == "fail"){
+                $this->session->set_flashdata("invalidFile", "Materi anda gagal di upload (hanya pdf, doc, ppt). Ukuran Maksimal : 25MB");
+            }
+
+            if($kegiatan == "success"){
+                $this->session->set_flashdata("success", "Jadwal Kegiatan anda berhasil di update!");
+            }
             redirect('classes/open_class/' . $id_kelas);
         } else {
             redirect('home');
@@ -456,6 +474,23 @@ class Classes extends CI_Controller {
     public function iframe()
     {
         $this->load->view('iframe/elearning');
+    }
+
+
+    public function download_materi($url_materi)
+    {
+        if(isset($_SESSION['logged_in'])){
+            force_download('./assets/docs/'.$url_materi ,NULL);
+        } else {
+            redirect('home');   
+        }
+        
+    }
+
+    public function hapus_materi($id_kelas, $url_materi)
+    {
+        $this->Classes_model->delMateri($url_materi);
+        redirect('classes/open_class/'.$id_kelas);
     }
 
     public function list_assignment($id_kelas)
@@ -755,5 +790,6 @@ class Classes extends CI_Controller {
             redirect('home');
         }
     
+
     }
 }

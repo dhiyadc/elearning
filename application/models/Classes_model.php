@@ -230,7 +230,7 @@ class Classes_model extends CI_Model {
 
     public function getMateriByClassId($id)
     {
-        $sql = "SELECT kelas.id_kelas, kelas.judul_kelas, materi.*, jadwal_kegiatan.deskripsi_kegiatan
+        $sql = "SELECT kelas.id_kelas, kelas.judul_kelas, materi.*, jadwal_kegiatan.deskripsi_kegiatan, jadwal_kegiatan.id_kegiatan
                 FROM materi, kelas, jadwal_kegiatan
                 WHERE kelas.id_kelas = '$id' AND materi.id_kelas = kelas.id_kelas AND materi.id_kegiatan = jadwal_kegiatan.id_kegiatan AND kelas.id_kelas = jadwal_kegiatan.id_kelas";
         return $this->db->query($sql)->result_array();
@@ -464,8 +464,12 @@ class Classes_model extends CI_Model {
     
     public function setKegiatanByClass($id)
     {
+        $data = [];
+        $id_kegiatan_uniq = uniqid();
+
+        if(!empty($_FILES['materi']['name'][0])) {
         $data = [
-            'id_kegiatan' => uniqid(),
+            'id_kegiatan' => $id_kegiatan_uniq,
             'id_kelas' => $id,
             'deskripsi_kegiatan' => $this->input->post('deskripsi'),
             'tanggal_kegiatan' => $this->input->post('tanggal') . ":00",
@@ -473,6 +477,71 @@ class Classes_model extends CI_Model {
         ];
         
         $this->db->insert('jadwal_kegiatan',$data);
+        $id_keg = $data['id_kegiatan'];
+        }
+
+        $count = count($_FILES['materi']['name']);
+        for($i=0;$i<$count;$i++){
+            if(!empty($_FILES['materi']['name'][$i])) {
+                $_FILES['file']['name'] = $_FILES['materi']['name'][$i];
+                $_FILES['file']['type'] = $_FILES['materi']['type'][$i];
+                $_FILES['file']['tmp_name'] = $_FILES['materi']['tmp_name'][$i];
+                $_FILES['file']['error'] = $_FILES['materi']['error'][$i];
+                $_FILES['file']['size'] = $_FILES['materi']['size'][$i];
+
+                $config['upload_path'] = './assets/docs/';
+                $config['allowed_types'] = 'docx|pdf|pptx|doc|ppt';
+                $config['max_size'] = '25000';
+    
+                $this->load->library('upload', $config);
+                if ($this->upload->do_upload('file')) {
+                    $file_name = $this->upload->data('file_name');
+                    // $data['totalFiles'][] = $file_name;
+                    $fileArr[] = $file_name;
+                    
+
+                    $data = [
+                        'id_materi' => uniqid(),
+                        'url_materi' => $file_name,
+                        'id_kelas' => $id,
+                        'id_kegiatan' => $id_kegiatan_uniq
+                    ];
+                    $materi_id[] = $data['id_materi'];
+                    $this->db->insert('materi',$data);
+                } else {
+                    $this->db->where('id_kegiatan', $id_keg);
+                    $this->db->delete('jadwal_kegiatan');
+
+                    $countFile = count($fileArr);
+                    for($j = 0; $j < $countFile; $j++){
+                        $this->db->where('id_materi', $materi_id[$j]);
+                        $this->db->delete('materi');
+                        unlink("assets/docs/".$fileArr[$j]);
+                    }
+
+                    return "fail";
+                    
+                    //return $_FILES['materi']['name'][$i];
+                }
+            }
+            else {
+                
+                $data = [
+                    'id_kegiatan' => $id_kegiatan_uniq,
+                    'id_kelas' => $id,
+                    'deskripsi_kegiatan' => $this->input->post('deskripsi'),
+                    'tanggal_kegiatan' => $this->input->post('tanggal') . ":00",
+                    'status_kegiatan' => 3
+                ];
+                
+                $this->db->insert('jadwal_kegiatan',$data);
+            }
+            
+        }
+        //return $data['totalFiles'];
+        return "success";
+        
+        
     }
 
     public function setKegiatan($id)
@@ -484,9 +553,10 @@ class Classes_model extends CI_Model {
                     $deskripsi = $value['deskripsi_kegiatan'];
                 }
                 else {
+                    $id_kegiatan_uniq = uniqid();
                     $tanggal = $value['tanggal_kegiatan'];
                     $data = [
-                        'id_kegiatan' => uniqid(),
+                        'id_kegiatan' => $id_kegiatan_uniq,
                         'id_kelas' => $id,
                         'deskripsi_kegiatan' => $deskripsi,
                         'tanggal_kegiatan' => $tanggal . ":00",
@@ -495,19 +565,219 @@ class Classes_model extends CI_Model {
 
                     $this->db->insert('jadwal_kegiatan',$data);
                 }
+
+                // if(!empty($this->input->post('addmorefile'))){
+                //     $this->setKegiatanFile($id, $id_kegiatan_uniq);
+                // }
             }
+            
         }
     }
 
-    public function updateKegiatan($id)
+    // public function setKegiatanFile($id, $id_kegiatan)
+    // {
+    //     if(!empty($this->input->post('addmorefile'))){
+    //         foreach ($this->input->post('addmorefile') as $key => $value) {
+    //             $data = [];
+
+    //     $count = count($_FILES['materi']['name']);
+    //     for($i=0;$i<$count;$i++){
+    //         if(!empty($_FILES['materi']['name'][$i])) {
+    //             $_FILES['file']['name'] = $_FILES['materi']['name'][$i];
+    //             $_FILES['file']['type'] = $_FILES['materi']['type'][$i];
+    //             $_FILES['file']['tmp_name'] = $_FILES['materi']['tmp_name'][$i];
+    //             $_FILES['file']['error'] = $_FILES['materi']['error'][$i];
+    //             $_FILES['file']['size'] = $_FILES['materi']['size'][$i];
+
+    //             $config['upload_path'] = './assets/docs/';
+    //             $config['allowed_types'] = 'docx|pdf|pptx|doc|ppt';
+    //             $config['max_size'] = '25000';
+    
+    //             $this->load->library('upload', $config);
+    //             if ($this->upload->do_upload('file')) {
+    //                 $file_name = $this->upload->data('file_name');
+    //                 // $data['totalFiles'][] = $file_name;
+    //                 $fileArr[] = $file_name;
+                    
+
+    //                 $data = [
+    //                     'id_materi' => uniqid(),
+    //                     'url_materi' => $file_name,
+    //                     'id_kelas' => $id,
+    //                     'id_kegiatan' => $id_kegiatan
+    //                 ];
+    //                 $materi_id[] = $data['id_materi'];
+    //                 $this->db->insert('materi',$data);
+    //             } else {
+    //                 $this->db->where('id_kegiatan', $id_keg);
+    //                 $this->db->delete('jadwal_kegiatan');
+
+    //                 $countFile = count($fileArr);
+    //                 for($j = 0; $j < $countFile; $j++){
+    //                     $this->db->where('id_materi', $materi_id[$j]);
+    //                     $this->db->delete('materi');
+    //                     unlink("assets/docs/".$fileArr[$j]);
+    //                 }
+
+    //                 return "fail";
+                    
+    //                 //return $_FILES['materi']['name'][$i];
+    //             }
+    //         }
+    //     }
+    //     //return $data['totalFiles'];
+        
+    //         }
+    //         return "success";
+    //     }
+    // }
+
+
+
+    public function updateKegiatan($id_kelas, $id_kegiatan)
     {
+
+        
+
+        $data = [];
+
+        if(!empty($_FILES['materi']['name'][0])) {
+            $data = [
+                'deskripsi_kegiatan' => $this->input->post('deskripsi'),
+                
+            ];
+            
+            $this->db->where('id_kegiatan',$id_kegiatan);
+            $this->db->update('jadwal_kegiatan',$data);
+        }
+
+        $count = count($_FILES['materi']['name']);
+        for($i=0;$i<$count;$i++){
+            if(!empty($_FILES['materi']['name'][$i])) {
+                $_FILES['file']['name'] = $_FILES['materi']['name'][$i];
+                $_FILES['file']['type'] = $_FILES['materi']['type'][$i];
+                $_FILES['file']['tmp_name'] = $_FILES['materi']['tmp_name'][$i];
+                $_FILES['file']['error'] = $_FILES['materi']['error'][$i];
+                $_FILES['file']['size'] = $_FILES['materi']['size'][$i];
+
+                $config['upload_path'] = './assets/docs/';
+                $config['allowed_types'] = 'docx|pdf|pptx|doc|ppt';
+                $config['max_size'] = '25000';
+    
+                $this->load->library('upload', $config);
+                if ($this->upload->do_upload('file')) {
+                    $file_name = $this->upload->data('file_name');
+                    // $data['totalFiles'][] = $file_name;
+                    $fileArr[] = $file_name;
+                    
+
+                    $data = [
+                        'id_materi' => uniqid(),
+                        'url_materi' => $file_name,
+                        'id_kelas' => $id_kelas,
+                        'id_kegiatan' => $id_kegiatan
+                    ];
+                    $materi_id[] = $data['id_materi'];
+                    $this->db->insert('materi',$data);
+                } else {
+                  
+                    $countFile = count($fileArr);
+                    for($j = 0; $j < $countFile; $j++){
+                        $this->db->where('id_materi', $materi_id[$j]);
+                        $this->db->delete('materi');
+                        unlink("assets/docs/".$fileArr[$j]);
+                    }
+
+                    return "fail";
+                    
+                    //return $_FILES['materi']['name'][$i];
+                }
+            }
+            else {
+                
+                $data = [
+                    'deskripsi_kegiatan' => $this->input->post('deskripsi'),
+                    
+                ];
+                
+                $this->db->where('id_kegiatan',$id_kegiatan);
+                $this->db->update('jadwal_kegiatan',$data);
+            }
+            
+        }
+        return "success";
+
+    }
+
+    public function insertFile($id_kelas, $id_kegiatan)
+    {
+        $id_kegiatan_uniq = $id_kegiatan;
+        // Check form submit or not
+    if($this->input->post('materi') != NULL ){
+ 
+        $data = array();
+  
+        // Count total files
+        $countfiles = count($_FILES['materi']['name']);
+   
+        // Looping all files
+        for($i=0;$i<$countfiles;$i++){
+   
+          if(!empty($_FILES['materi']['name'][$i])){
+   
+            // Define new $_FILES array - $_FILES['file']
+            $_FILES['file']['name'] = $_FILES['materi']['name'][$i];
+                $_FILES['file']['type'] = $_FILES['materi']['type'][$i];
+                $_FILES['file']['tmp_name'] = $_FILES['materi']['tmp_name'][$i];
+                $_FILES['file']['error'] = $_FILES['materi']['error'][$i];
+                $_FILES['file']['size'] = $_FILES['materi']['size'][$i];
+  
+            // Set preference
+            $config['upload_path'] = './assets/docs/';
+                $config['allowed_types'] = 'docx|pdf|pptx|doc|ppt';
+                $config['max_size'] = '25000';
+                $config['remove_space'] = true;
+                $config['file_name'] = $_FILES['materi']['name'][$i];
+   
+            //Load upload library
+            $this->load->library('upload',$config); 
+   
+            // File upload
+            if($this->upload->do_upload('materi')){
+              // Get data about the file
+              $uploadData = $this->upload->data();
+              $filename = $uploadData['file_name'];
+
+              $data = [
+                  'id_materi' => uniqid(),
+                  'url_materi' => $filename,
+                  'id_kelas' => $id_kelas,
+                  'id_kegiatan' => $id_kegiatan_uniq
+              ];
+              
+              $this->db->insert('materi',$data);
+              // Initialize array
+              $data['filenames'][] = $filename;
+            } else {
+                return "fail";
+            }
+          }
+   
+        }
+   
+        // load view
+      }else{
+  
+        // load view
+        return "fail";
+      } 
+
         $data = [
             'deskripsi_kegiatan' => $this->input->post('deskripsi'),
             'tanggal_kegiatan' => $this->input->post('tanggal')
         ];
 
-        $this->db->where('id_kegiatan',$id);
-        $this->db->update('jadwal_kegiatan',$data);
+
     }
 
     public function updateKegiatanStatus($activityId, $status) {
@@ -531,6 +801,35 @@ class Classes_model extends CI_Model {
         $this->db->where('id_kelas',$id);
         $this->db->delete('peserta');
     }
+
+
+    public function getMateri($id_kelas)
+    {
+        $sql = "SELECT * FROM materi WHERE id_kelas = '$id_kelas'";
+        return $this->db->query($sql)->result_array();
+    }
+
+    public function getMateribyKegiatan()
+    {
+        $sql = "SELECT materi.id_materi, jadwal_kegiatan.id_kegiatan
+        FROM materi 
+        LEFT JOIN jadwal_kegiatan
+            ON materi.id_kegiatan = jadwal_kegiatan.id_kegiatan";
+
+        return $this->db->query($sql)->result_array();
+    }
+
+    public function delMateri($url_materi)
+    {
+        
+
+        unlink("assets/docs/".$url_materi);
+
+        $sql = "DELETE FROM materi WHERE url_materi = '$url_materi'";
+
+        return $this->db->query($sql);
+    }
+
 
     public function getKategoriTugas()
     {
@@ -673,5 +972,6 @@ class Classes_model extends CI_Model {
         $this->db->where('id_tugas',$id);
         $this->db->where('id_user',$this->session->userdata('id_user'));
         return $this->db->get('submit_assignment')->result_array();
+
     }
 }
