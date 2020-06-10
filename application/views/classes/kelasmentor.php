@@ -4,94 +4,7 @@
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-<!-- Modal -->
 
-
-<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-    <div class="container">
-
-
-       
-<h1> </i>Quiz 1</h1>
-    <!--  <small> - klik untuk melihat detail</small> -->
-<hr>
-    
-<table class="table table-hover">
-  <thead>
-    <tr>
-      
-      <th>Nama</th>
-      <th>Status</th>
-      <th>Detail Tugas</th>
-      <th>Aksi</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      
-      <td> <a href="<?= base_url()?>classes/mentortugas"> Della Okta Ameli Ahh</a></td>
-      <td>Siswa</td>
-      <td>Belum Diserahkan</td>
-      <td><a href="<?= base_url()?>classes/mentortugas">Lihat Tugas</td>
-    </tr>
-    <tr>
-      
-      <td>Arya Senyum Manis</td>
-      <td>Siswa</td>
-      <td>Diserahkan</td>
-      <td><a href="<?= base_url()?>classes/mentortugas">Lihat Tugas</td>
-    </tr>
-    <tr>
-     
-      <td >Dice Polos Bangets</td>
-      <td>Siswa</td>
-      <td>Diserahkan</td>
-      <td><a href="<?= base_url()?>classes/mentortugas">Lihat Tugas</a></td>
-    </tr>
-    
-            
-  </tbody>
-</table>  
-
-<div class="col-sm-12 ">
-    <div class="result pull-left"><strong>3 Dari 50 Siswa</strong></div>
-
-    <ul class="pagination pull-right">
-      <li><a href="#">«</a></li>
-      <li><a href="#">1</a></li>
-      <li><a href="#">2</a></li>
-      <li><a href="#">3</a></li>
-      <li><a href="#">4</a></li>
-      <li><a href="#">5</a></li>
-      <li><a href="#">»</a></li>
-    </ul>       
-    
-</div>
-
-
-    
-</div>
-
-<!-- Modal -->
-      
-<!-- fim Modal-->    
-    </div>
-  </div>
-</div>
-
-<!-- Small modal -->
-
-
-<div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-sm">
-    <div class="modal-content">
-      ...
-    </div>
-  </div>
-</div>
-    <!-- Modal -->
 
 
 <section class="user_dashboard">
@@ -271,7 +184,7 @@
         <div class="project-title d-flex align-items-center">
           <div class="image has-shadow"><img src="<?php echo base_url(); ?>assets/images/task.png" alt="..." class="img-fluid rounded-circle"></div>
           <div class="text">
-            <a href=""data-toggle="modal" data-target=".bd-example-modal-lg"><h3 class="h4" style="font-size: 20px;">Quiz 1</h3><small>PTI</small></a>
+            <a href="<?= base_url()?>classes/mentorquiz"><h3 class="h4" style="font-size: 20px;">Quiz 1</h3><small>PTI</small></a>
           </div>
         </div>
         <!-- <div class="project-date"><span class="hidden-sm-down">Hari Ini pada 4:24 AM</span></div> -->
