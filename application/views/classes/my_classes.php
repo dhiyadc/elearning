@@ -529,7 +529,7 @@
                               </td>
                               <td>
                                 <div class="buttonclass">
-                                  <a href="" class="btn btncyan"">Lihat Tugas</a>
+                                  <a href="<?= base_url() ?>classes/detail_tugaskuis/<?= $val[$i][0][0]['id_kelas'] ?>/<?= $val3['id_tugas']; ?>" class="btn btncyan"">Lihat Tugas</a>
                                 </div>
                               </td>
                           </tr>
