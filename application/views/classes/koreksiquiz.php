@@ -58,10 +58,10 @@
           </li>
           
           
-          <div class="col-md-3 ml-auto">
+          <!-- <div class="col-md-3 ml-auto">
             <input class="effect-1" type="text" placeholder="0/100 Poin">
               <span class="focus-border"></span>
-          </div>
+          </div> -->
           
           
           
@@ -74,16 +74,16 @@
           
       </ul>
       <ul style="list-style: outside none none;" class="nav nav-tabs" role="tablist">
-        <div class="project">
+        <div class="project" style="width: 700px;">
                 <div class="row bg-white has-shadow">
                   <div class="left-col col-lg-6 d-flex align-items-center justify-content-between">
                     <div class="project-title d-flex align-items-center">
-                    <div class="widget-content-left mr-2">
+                    <!-- <div class="widget-content-left mr-2">
                         <div class="custom-checkbox custom-control"> <input class="custom-control-input" id="exampleCustomCheckbox12" type="checkbox"><label class="custom-control-label" for="exampleCustomCheckbox12">&nbsp;</label> </div>
-                        </div>
+                        </div> -->
                       <div class="text">
                       <li class="nav-item">
-                        <h3 class="h4" style="font-size: 20px;"><a  data-toggle="tab" href="#tab1" role="tab" aria-expanded="true">Arya Pradata</a></h3><small>Siswa</small>
+                        <h3 class="h4" style="font-size: 20px;"><a  data-toggle="tab" href="#tab1" role="tab" aria-expanded="true">Arya Pradata</a></h3>
                       </li>
                       </div>
                     </div>
@@ -105,16 +105,16 @@
                 </div>
         </div>
 
-        <div class="project">
+        <div class="project" style="width: 700px;">
                 <div class="row bg-white has-shadow">
                   <div class="left-col col-lg-6 d-flex align-items-center justify-content-between">
                     <div class="project-title d-flex align-items-center">
-                    <div class="widget-content-left mr-2">
+                    <!-- <div class="widget-content-left mr-2">
                         <div class="custom-checkbox custom-control"> <input class="custom-control-input" id="exampleCustomCheckbox13" type="checkbox"><label class="custom-control-label" for="exampleCustomCheckbox13">&nbsp;</label> </div>
-                        </div>
+                        </div> -->
                       <div class="text">
                       <li class="nav-item">
-                      <h3 class="h4" style="font-size: 20px;"><a  data-toggle="tab" href="#tab2" role="tab" aria-expanded="true">Birli Saputri</a></h3><small>Siswa</small>
+                      <h3 class="h4" style="font-size: 20px;"><a  data-toggle="tab" href="#tab2" role="tab" aria-expanded="true">Birli Saputri</a></h3>
                       </li>  
                     </div>
                     </div>
@@ -187,7 +187,7 @@
                   <div class="card  h-100 border-light  bg-light shadow">
                       <div class="card-body d-flex-row">
                           <blockquote class="blockquote mb-4 pb-2">
-                              <p class="mb-0 font-weight-bold ">Buatlah Sebuah Percobaan Dengan Menggunakan Hukum Newton</p>
+                              <p class="mb-0 font-weight-bold ">Buatlah Sebuah Percobaan yang Mantap</p>
                               <footer class="blockquote-footer">Ahmed Ibrahim</footer>
                           </blockquote>
                           <div class="row">
