@@ -23,7 +23,7 @@
     <!--Grid column-->
     <div class="col-md-12 mb-4">
 
-        <h5 class="text-center font-weight-bold mb-4" style="color: white">PTI</h5>
+        <h5 class="text-center font-weight-bold mb-4" style="color: white">Latihan 1</h5>
         <div class="container my-5">
 
 
