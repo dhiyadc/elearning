@@ -210,7 +210,43 @@
                 </div>
             </div>
         </div>
-        
+        <div class="row">
+            <div class="col-md-3 field-label-responsive">
+                <label for="newpassword1">Batas Jumlah Peserta</label>
+            </div>
+            <div class="col-md-8">
+                <div class="form-group has-danger">
+                             <div class="col-md-4">
+                                
+                                <label class="form-check">
+                                    <input class="form-check-input" type="radio" name="batas" value="1" required onclick="hideJumlahPeserta()">
+                                    <span class="form-check-label">Tidak Ada Batas</span>
+                                </label>
+                                <label class="form-check">
+                                    <input class="form-check-input" type="radio" name="batas" value="2" onclick="showJumlahPeserta()">
+                                    <span class="form-check-label">Ada</span>
+                                </label>
+                            </div>
+                </div>
+            </div>
+        </div>
+        <div id="showHideJumlahPeserta" style="display: none">
+        <div class="row">
+            <div class="col-md-3 field-label-responsive">
+                <!-- <label for="namaclasss">Nama Kelas</label> -->
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <div class="input-group mb-2 mr-sm-2 mb-sm-0" style="margin-left: 30px; padding-right: 28px;">
+                        <input type="number" name="jumlah_peserta" class="form-control">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">orang</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
         <div class="row">
             <div class="col-md-3 field-label-responsive">
                 <label for="password">Deskripsi Kelas</label>
@@ -329,6 +365,18 @@
 
         function hideHarga() {
             var x = document.getElementById("showHideHarga");
+            x.style.display = "none";
+        }
+
+        function showJumlahPeserta() {
+            var x = document.getElementById("showHideJumlahPeserta");
+            if (x.style.display === "none") {
+                x.style.display = "block";
+            }
+        }
+
+        function hideJumlahPeserta() {
+            var x = document.getElementById("showHideJumlahPeserta");
             x.style.display = "none";
         }
 

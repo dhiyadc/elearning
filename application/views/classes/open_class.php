@@ -100,29 +100,35 @@
             <?php endforeach; ?>
 
             <?php if(isset($this->session->userdata['logged_in'])) : ?>
-              <?php if ($val['pembuat_kelas'] != $this->session->userdata('id_user')) : ?>
-                <?php if ($cek == true) : ?>
-                    <?php if ($val['jenis_kelas'] == 1) : ?>
-                        <p class="mt-4"><a href="<?= base_url()?>classes/join_class/<?= $val['id_kelas']; ?>" class="btn btn-dark mr-1">Gabung Kelas</a></p>
-                    <?php else : ?>
-                        <p class="mt-4"><a href="<?= base_url()?>classes/pembayaran_kelas/<?= $val['id_kelas']; ?>" class="btn btn-dark mr-1">Gabung Kelas</a></p>
-                    <?php endif; ?>
-                <?php elseif ($peserta != null) : ?>
-                  <div class="row" style="margin-left: 0px;">
-                    <a class="btn btn-dark mr-1" style="margin-bottom: 14px;" href="<?= base_url()?>classes/list_assignment/<?= $val['id_kelas'] ?>"><span class="icon-list"></span> Lihat Tugas</a>
-                    <div class="col">
-                      <div class="alert alert-dark" role="alert">
-                          <center><?= $this->session->flashdata('buttonJoin') ?></center>
+              <?php if ($val['batas_jumlah'] < count($peserta_kelas)) : ?>
+                <?php if ($val['pembuat_kelas'] != $this->session->userdata('id_user')) : ?>
+                  <?php if ($cek == true) : ?>
+                      <?php if ($val['jenis_kelas'] == 1) : ?>
+                          <p class="mt-4"><a href="<?= base_url()?>classes/join_class/<?= $val['id_kelas']; ?>" class="btn btn-dark mr-1">Gabung Kelas</a></p>
+                      <?php else : ?>
+                          <p class="mt-4"><a href="<?= base_url()?>classes/pembayaran_kelas/<?= $val['id_kelas']; ?>" class="btn btn-dark mr-1">Gabung Kelas</a></p>
+                      <?php endif; ?>
+                  <?php elseif ($peserta != null) : ?>
+                    <div class="row" style="margin-left: 0px;">
+                      <a class="btn btn-dark mr-1" style="margin-bottom: 14px;" href="<?= base_url()?>classes/list_assignment/<?= $val['id_kelas'] ?>"><span class="icon-list"></span> Lihat Tugas</a>
+                      <div class="col">
+                        <div class="alert alert-dark" role="alert">
+                            <center><?= $this->session->flashdata('buttonJoin') ?></center>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                <?php elseif ($cek == false) : ?>
-                    <?php if ($val['jenis_kelas'] == 1) : ?>
-                        <p class="mt-4"><a href="<?= base_url()?>classes/join_class/<?= $val['id_kelas']; ?>" class="btn btn-dark mr-1">Gabung Kelas</a></p>
-                    <?php else : ?>
-                        <p class="mt-4"><a href="<?= base_url()?>classes/pembayaran_kelas/<?= $val['id_kelas']; ?>" class="btn btn-dark mr-1">Gabung Kelas</a></p>
-                    <?php endif; ?>
+                  <?php elseif ($cek == false) : ?>
+                      <?php if ($val['jenis_kelas'] == 1) : ?>
+                          <p class="mt-4"><a href="<?= base_url()?>classes/join_class/<?= $val['id_kelas']; ?>" class="btn btn-dark mr-1">Gabung Kelas</a></p>
+                      <?php else : ?>
+                          <p class="mt-4"><a href="<?= base_url()?>classes/pembayaran_kelas/<?= $val['id_kelas']; ?>" class="btn btn-dark mr-1">Gabung Kelas</a></p>
+                      <?php endif; ?>
+                  <?php endif; ?>
                 <?php endif; ?>
+              <?php else : ?>
+                <div class="alert alert-danger" role="alert">
+                  <center><?= $this->session->flashdata('batasPeserta') ?></center>
+                </div>
               <?php endif; ?>
             <?php else : ?>
               <p class="mt-4"><a href="" class="btn btn-dark mr-1" data-toggle="modal" data-target="#elegantModalForm"><i class="fa fa-clone left"></i>Gabung Kelas</a></p>
