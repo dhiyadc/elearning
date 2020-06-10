@@ -56,9 +56,7 @@
           <li class="nav-item">
               <a class="nav-link active" data-toggle="tab" href="#tab3" role="tab" aria-expanded="true" style="font-size: 22px;">Daftar Siswa</a>
           </li>
-          <li class="nav-item">
-              <a class="nav-link" data-toggle="tab" href="#tab3" role="tab" aria-expanded="true" style="font-size: 22px;">Serahkan</a>
-          </li>
+          
           
           <div class="col-md-3 ml-auto">
             <input class="effect-1" type="text" placeholder="0/100 Poin">
