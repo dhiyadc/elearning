@@ -60,13 +60,17 @@
               <a class="nav-link" data-toggle="tab" href="#tab4" role="tab" aria-expanded="true" style="font-size: 22px;">Daftar Siswa</a>
           </li> -->
           
+          
+          
       </ul>
       <ul style="list-style: outside none none;" class="nav nav-tabs" role="tablist">
         <div class="project">
                 <div class="row bg-white has-shadow">
                   <div class="left-col col-lg-6 d-flex align-items-center justify-content-between">
                     <div class="project-title d-flex align-items-center">
-                      <div class="image has-shadow"><img src="<?php echo base_url(); ?>assets/images/task.png" alt="..." class="img-fluid rounded-circle"></div>
+                    <div class="widget-content-left mr-2">
+                        <div class="custom-checkbox custom-control"> <input class="custom-control-input" id="exampleCustomCheckbox12" type="checkbox"><label class="custom-control-label" for="exampleCustomCheckbox12">&nbsp;</label> </div>
+                        </div>
                       <div class="text">
                       <li class="nav-item">
                         <h3 class="h4" style="font-size: 20px;"><a  data-toggle="tab" href="#tab1" role="tab" aria-expanded="true">Arya Pradata</a></h3><small>Siswa</small>
@@ -94,7 +98,9 @@
                 <div class="row bg-white has-shadow">
                   <div class="left-col col-lg-6 d-flex align-items-center justify-content-between">
                     <div class="project-title d-flex align-items-center">
-                      <div class="image has-shadow"><img src="<?php echo base_url(); ?>assets/images/task.png" alt="..." class="img-fluid rounded-circle"></div>
+                    <div class="widget-content-left mr-2">
+                        <div class="custom-checkbox custom-control"> <input class="custom-control-input" id="exampleCustomCheckbox13" type="checkbox"><label class="custom-control-label" for="exampleCustomCheckbox13">&nbsp;</label> </div>
+                        </div>
                       <div class="text">
                       <li class="nav-item">
                       <h3 class="h4" style="font-size: 20px;"><a  data-toggle="tab" href="#tab2" role="tab" aria-expanded="true">Birli Saputri</a></h3><small>Siswa</small>
@@ -155,7 +161,7 @@
                   <!-- <div class="comments"><i class="fa fa-comment-o"></i>20</div> -->
                   <div class="project-progress">
                     <div class="time">
-                      <div class="nilai">0/100 Poin</span></div>
+                      <div class="nilai">Belum Dinilai</span></div>
                     
                     </div>
                   </div>
@@ -222,7 +228,7 @@
                   <!-- <div class="comments"><i class="fa fa-comment-o"></i>20</div> -->
                   <div class="project-progress">
                     <div class="time">
-                      <div class="nilai">0/100 Poin</span></div>
+                      <div class="nilai">Belum Dinilai</span></div>
                     
                     </div>
                   </div>
