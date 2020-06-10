@@ -56,8 +56,20 @@
           <li class="nav-item">
               <a class="nav-link active" data-toggle="tab" href="#tab3" role="tab" aria-expanded="true" style="font-size: 22px;">Daftar Siswa</a>
           </li>
-          <!-- <li class="nav-item">
-              <a class="nav-link" data-toggle="tab" href="#tab4" role="tab" aria-expanded="true" style="font-size: 22px;">Daftar Siswa</a>
+          <li class="nav-item">
+              <a class="nav-link" data-toggle="tab" href="#tab3" role="tab" aria-expanded="true" style="font-size: 22px;">Serahkan</a>
+          </li>
+          
+          <div class="col-md-3 ml-auto">
+            <input class="effect-1" type="text" placeholder="0/100 Poin">
+              <span class="focus-border"></span>
+          </div>
+          
+          
+          
+          <!-- <li class="nav-item ml-auto">
+            
+              <a class="nav-link" data-toggle="tab" href="#tab4" role="tab" aria-expanded="true" style="font-size: 22px;">Serahkan</a>
           </li> -->
           
           
@@ -86,7 +98,8 @@
                     <div class="project-progress">
                       <div class="time">
                         <div class="nilai">0/100 Poin</span></div>
-                      
+                     
+
                       </div>
                     </div>
                     <div class="time"><i class="fa fa-clock-o"></i> Kam 12:00  </div>
@@ -123,6 +136,9 @@
                   </div>
                 </div>
         </div>
+
+        
+        
       </ul>
       </div>
 
@@ -176,7 +192,21 @@
                               <p class="mb-0 font-weight-bold ">Buatlah Sebuah Percobaan Dengan Menggunakan Hukum Newton</p>
                               <footer class="blockquote-footer">Ahmed Ibrahim</footer>
                           </blockquote>
-                          <p class="card-text mb-5">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nemo magnam, labore ex qui quidem quos impedit architecto porro officia debitis nobis, veritatis earum delectus amet deleniti doloremque iure dignissimos reprehenderit ab ducimus! Corporis rem non eum quisquam impedit aut in alias laboriosam minima, tempore earum dicta! Quod autem ipsum numquam tempore quis architecto fugiat. Id dolore laboriosam assumenda deleniti officiis ipsa quidem fugit maiores reprehenderit doloribus et in odit cupiditate doloremque reiciendis quasi quam, perspiciatis repellendus excepturi! Dolore architecto aliquam possimus unde praesentium voluptatibus, consequatur et. Aspernatur, id! Ipsa ab ullam consequatur laborum quos voluptatum explicabo nesciunt alias blanditiis repellat.</p>
+                          <div class="row">
+                          <div class="col">
+                            <div class="col">
+                              <div class="notice notice-info">
+                                  <a href="">Tugas1.pdf</a>
+                              </div>
+                            </div>
+                            <div class="col">
+                              <div class="notice notice-info">
+                                  <a href="">Tugasrevisi.pdf</a> 
+                              </div>
+                            </div>
+                            
+                          </div>
+                          </div>
                           <div class="w-100 pb-1"></div>
                           <div class="d-flex align-items-center align-self-end">
                               <div class="meta-author">
@@ -184,7 +214,10 @@
                                   <!-- <img class="d-block img-fluid rounded-circle" src="" alt="author avatar"> -->
                               </div>
                               <div class="m-2">
-                                  <a href="#">Lihat Tugas Siswa</a>
+                              <div class="col mr-4">
+                                <input class="effect-1" type="text" placeholder="0/100 Poin">
+                                  <span class="focus-border"></span>
+                              </div>
                               </div>
                               <div class="meta-item ml-auto">
                                   <a href="#">
@@ -243,7 +276,21 @@
                               <p class="mb-0 font-weight-bold ">Buatlah Sebuah Percobaan Dengan Menggunakan Hukum Newton</p>
                               <footer class="blockquote-footer">Memed Ibrahim</footer>
                           </blockquote>
-                          <p class="card-text mb-5">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nemo magnam, labore ex qui quidem quos impedit architecto porro officia debitis nobis, veritatis earum delectus amet deleniti doloremque iure dignissimos reprehenderit ab ducimus! Corporis rem non eum quisquam impedit aut in alias laboriosam minima, tempore earum dicta! Quod autem ipsum numquam tempore quis architecto fugiat. Id dolore laboriosam assumenda deleniti officiis ipsa quidem fugit maiores reprehenderit doloribus et in odit cupiditate doloremque reiciendis quasi quam, perspiciatis repellendus excepturi! Dolore architecto aliquam possimus unde praesentium voluptatibus, consequatur et. Aspernatur, id! Ipsa ab ullam consequatur laborum quos voluptatum explicabo nesciunt alias blanditiis repellat.</p>
+                          <div class="row">
+                          <div class="col">
+                            <div class="col">
+                              <div class="notice notice-info">
+                                  <a href="">Tugas1.pdf</a>
+                              </div>
+                            </div>
+                            <div class="col">
+                              <div class="notice notice-info">
+                                  <a href="">Tugasrevisi.pdf</a> 
+                              </div>
+                            </div>
+                            
+                          </div>
+                          </div>
                           <div class="w-100 pb-1"></div>
                           <div class="d-flex align-items-center align-self-end">
                               <div class="meta-author">
