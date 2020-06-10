@@ -625,16 +625,12 @@
                     <!--Body-->
                     <div class="container-fluid">
                                       <div class="row">
-                                      
                                       <div class="col-md-6 border-bottom pb-3 mt-3"><b>Kegiatan</b></div>
                                       <div class="col-md-6 border-bottom pb-3 mt-3"><b>Nama File</b></div>
                                       <?php foreach ($val as $val2) : ?>
-                                        <div class="col-md-6 border-bottom pb-3 mt-3"><?= $val2['deskripsi_kegiatan']; ?></div>
+                                           <div class="col-md-6 border-bottom pb-3 mt-3"><?= $val2['deskripsi_kegiatan']; ?></div>
                                            <div class="col-md-6 border-bottom pb-3 mt-3"><a href="<?= base_url(); ?>classes/download_materi/"><?= $val2['url_materi']; ?></a></div>
                                       <?php endforeach; ?>
-                                           
-
-
                                         </div>
                                     </div>
 
