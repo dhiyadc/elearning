@@ -198,95 +198,21 @@
         </div>
         </div>
       </div>
+      <?php if ($this->session->flashdata('failedInputFile')) { ?>
+              <script src="<?php echo base_url(); ?>assets/js/jquery-3.3.1.min.js"></script>
+            <script type="text/javascript">
+            $(window).on('load',function(){
+                $('#detailTugas<?= $val2['id_tugas']; ?>').modal('show');
+                console.log('ready');
+            });
+            </script>
+      <?php } ?>
       <?php endforeach; ?>  
       <?php endforeach; ?>  
      </div>
     </section>
-    
-</div>
-
-<div class="tab-pane" id="tab2" role="tabpanel" aria-expanded="false">
-                      
-<section class="projects no-padding-top">
-<div class="container">
-  <!-- Project-->
-  <div class="project">
-    <div class="row bg-white has-shadow">
-      <div class="left-col col-lg-6 d-flex align-items-center justify-content-between">
-        <div class="project-title d-flex align-items-center">
-          <div class="image has-shadow"><img src="<?php echo base_url(); ?>assets/images/task.png" alt="..." class="img-fluid rounded-circle"></div>
-          <div class="text">
-            <h3 class="h4" style="font-size: 20px;">Quiz 1</h3><small>PTI</small>
-          </div>
-        </div>
-        <!-- <div class="project-date"><span class="hidden-sm-down">Hari Ini pada 4:24 AM</span></div> -->
-      </div>
-      <div class="right-col col-lg-6 d-flex align-items-center">
-        
-     
-        <!-- <div class="comments"><i class="fa fa-comment-o"></i>20</div> -->
-        <div class="project-progress">
-          <div class="time">
-            <div class="nilai">0/100</span></div>
-           
-          </div>
-        </div>
-        <div class="time"><i class="fa fa-clock-o"></i>Tenggat Jum 12:00  </div>
-      </div>
-    </div>
   </div>
- 
-</section>
 </div>
-     
-   
-    
-</div>
-
-
-    <!-- <div class="modal fade" id="contact" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="contact">Gabung Kelas</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group">
-                        <p for="msj">Silahkan Masukan Kode Kelas</p>
-                    </div>
-                    <div class="form-group">
-                        <label for="txtFullname">Kode Kelas</label>
-                        <input type="text" id="txtFullname" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="txtEmail">Password Kelas</label>
-                        <input type="text" id="txtEmail" class="form-control">
-                    </div>
-                    
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" (click)="openModal()" data-dismiss="modal">Gabung</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                </div>
-            </div>
-        </div>
-    </div> -->
-
-
-
-    
-    
-    </div>
-
-    
-
-
-
-
 </div>
 </section>
-
 <script type="text/javascript" src="<?= base_url(); ?>assets/js/password_verif.js"></script>

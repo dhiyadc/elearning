@@ -327,17 +327,34 @@ class Classes_model extends CI_Model {
         if ($this->upload->do_upload('poster')) {
             $file_name = $this->upload->data('file_name');
 
-            $data = [
-                'id_kelas' => uniqid(),
-                'pembuat_kelas' => $this->session->userdata('id_user'),
-                'judul_kelas' => $this->input->post('judul'),
-                'deskripsi_kelas' => $this->input->post('deskripsi'),
-                'kategori_kelas' => $this->input->post('kategori'),
-                'poster_kelas' => $file_name,
-                // 'jenis_kelas' => $this->input->post('jenis'),
-                'jenis_kelas' => 1,
-                'status_kelas' => 1
-            ];
+            if($this->input->post('batas') == 0) {
+                $data = [
+                    'id_kelas' => uniqid(),
+                    'pembuat_kelas' => $this->session->userdata('id_user'),
+                    'judul_kelas' => $this->input->post('judul'),
+                    'deskripsi_kelas' => $this->input->post('deskripsi'),
+                    'kategori_kelas' => $this->input->post('kategori'),
+                    'poster_kelas' => $file_name,
+                    // 'jenis_kelas' => $this->input->post('jenis'),
+                    'jenis_kelas' => 1,
+                    'status_kelas' => 1,
+                    'batas_jumlah' => 0
+                ];
+            }
+            else {
+                $data = [
+                    'id_kelas' => uniqid(),
+                    'pembuat_kelas' => $this->session->userdata('id_user'),
+                    'judul_kelas' => $this->input->post('judul'),
+                    'deskripsi_kelas' => $this->input->post('deskripsi'),
+                    'kategori_kelas' => $this->input->post('kategori'),
+                    'poster_kelas' => $file_name,
+                    // 'jenis_kelas' => $this->input->post('jenis'),
+                    'jenis_kelas' => 1,
+                    'status_kelas' => 1,
+                    'batas_jumlah' => $this->input->post('jumlah_peserta')
+                ];
+            }
     
             $this->db->insert('kelas',$data);
             
