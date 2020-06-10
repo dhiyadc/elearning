@@ -394,7 +394,7 @@
                   <th scope="col">Kelas</th>
                   <th scope="col">Progress</th>
                   <th scope="col">Status</th>
-                  <th scope="col">Materi</th>
+                  <!-- <th scope="col">Materi</th> -->
                   <th scope="col">Aksi</th>
                   
                 </tr>
@@ -437,7 +437,7 @@
                                         <?php endif; ?>
                                     <?php endforeach; ?>
                                 </td>
-                                <td>
+                                <!-- <td>
                                   <?php foreach ($materi as $val3) : ?>
                                     <?php if ($val2['id_kelas'] == $val3[0]['id_kelas']) : ?>
                                       <div class="buttonclass">
@@ -445,7 +445,7 @@
                                       </div>
                                     <?php endif; ?>
                                   <?php endforeach; ?>
-                                </td>
+                                </td> -->
                                 <td>
                                   <div class="buttonclass">
                                     <a href="<?= base_url()?>classes/open_class/<?= $val['id_kelas'] ?>" class="btn btn-light">Lihat Kelas</a>
@@ -596,7 +596,7 @@
                       <?php $countMateri++; ?>
                     <?php endforeach; ?>
                             <tr>
-                                <th scope="row" style="width: 300px;"><a class="text-primary"><?= $val2['judul_kelas']; ?></a></th>
+                                <th scope="row" style="width: 300px;"><a href="<?= base_url(); ?>classes/open_class/<?= $val2['id_kelas']; ?>" class="text-primary"><?= $val2['judul_kelas']; ?></a></th>
                                 <td style="padding-top:20px">
                                   <?= $countMateri; ?>
                                 </td>
@@ -639,26 +639,9 @@
               </div>
               </div>
               <?php $lihatMateriCount++; ?>
-
-
                 <?php endforeach; ?>
-
-                
-
               </tbody>
             </table>
-
-
-
-
-            
-
-
-
-
-
-
-
           </div>
           <div class="card-footer white py-3 d-flex justify-content-center">
           <ul class="pagination">

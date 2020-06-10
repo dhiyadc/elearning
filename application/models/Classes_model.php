@@ -230,7 +230,7 @@ class Classes_model extends CI_Model {
 
     public function getMateriByClassId($id)
     {
-        $sql = "SELECT kelas.id_kelas, kelas.judul_kelas, materi.*, jadwal_kegiatan.deskripsi_kegiatan
+        $sql = "SELECT kelas.id_kelas, kelas.judul_kelas, materi.*, jadwal_kegiatan.deskripsi_kegiatan, jadwal_kegiatan.id_kegiatan
                 FROM materi, kelas, jadwal_kegiatan
                 WHERE kelas.id_kelas = '$id' AND materi.id_kelas = kelas.id_kelas AND materi.id_kegiatan = jadwal_kegiatan.id_kegiatan AND kelas.id_kelas = jadwal_kegiatan.id_kelas";
         return $this->db->query($sql)->result_array();
