@@ -64,7 +64,6 @@
           <div class="col-lg-8 mb-5">
             <div class="mb-5">
 
-              <h3 class="text-black">Detail Kelas</h3>
               <?php if($this->session->flashdata("invalidFile")){ ?>
                       <div class="alert alert-danger" role="alert">
                         <?php echo $this->session->flashdata("invalidFile"); ?>
@@ -89,7 +88,7 @@
                 <?php endif; ?>
               <?php else : ?>     
               <li class="nav-item">
-                <a class="nav-link" href="<?= base_url()?>classes/mentorkelas" role="tab" ><i class="fa fa-cog"></i>Atur Kelas</a>
+                <a class="nav-link" href="<?= base_url()?>classes/mentorkelas" role="tab" ><i class="fa fa-cog"></i> Atur Kelas</a>
               </li>             
               <?php endif; ?>                           
             </ul>
@@ -120,24 +119,30 @@
             <?php endforeach; ?>
 
             <?php if(isset($this->session->userdata['logged_in'])) : ?>
-              <?php if ($val['pembuat_kelas'] != $this->session->userdata('id_user')) : ?>
-                <?php if ($cek == true) : ?>
-                    <?php if ($val['jenis_kelas'] == 1) : ?>
-                        <p class="mt-4"><a href="<?= base_url()?>classes/join_class/<?= $val['id_kelas']; ?>" class="btn btn-dark mr-1">Gabung Kelas</a></p>
-                    <?php else : ?>
-                        <p class="mt-4"><a href="<?= base_url()?>classes/pembayaran_kelas/<?= $val['id_kelas']; ?>" class="btn btn-dark mr-1">Gabung Kelas</a></p>
-                    <?php endif; ?>
-                <?php elseif ($peserta != null) : ?>
-                  <div class="alert alert-dark" role="alert">
-                    <center><?= $this->session->flashdata('buttonJoin') ?></center>
-                  </div>
-                <?php elseif ($cek == false) : ?>
-                    <?php if ($val['jenis_kelas'] == 1) : ?>
-                        <p class="mt-4"><a href="<?= base_url()?>classes/join_class/<?= $val['id_kelas']; ?>" class="btn btn-dark mr-1">Gabung Kelas</a></p>
-                    <?php else : ?>
-                        <p class="mt-4"><a href="<?= base_url()?>classes/pembayaran_kelas/<?= $val['id_kelas']; ?>" class="btn btn-dark mr-1">Gabung Kelas</a></p>
-                    <?php endif; ?>
+              <?php if ($val['batas_jumlah'] < count($peserta_kelas)) : ?>
+                <?php if ($val['pembuat_kelas'] != $this->session->userdata('id_user')) : ?>
+                  <?php if ($cek == true) : ?>
+                      <?php if ($val['jenis_kelas'] == 1) : ?>
+                          <p class="mt-4"><a href="<?= base_url()?>classes/join_class/<?= $val['id_kelas']; ?>" class="btn btn-dark mr-1">Gabung Kelas</a></p>
+                      <?php else : ?>
+                          <p class="mt-4"><a href="<?= base_url()?>classes/pembayaran_kelas/<?= $val['id_kelas']; ?>" class="btn btn-dark mr-1">Gabung Kelas</a></p>
+                      <?php endif; ?>
+                  <?php elseif ($peserta != null) : ?>
+                    <div class="alert alert-dark" role="alert">
+                      <center><?= $this->session->flashdata('buttonJoin') ?></center>
+                    </div>
+                  <?php elseif ($cek == false) : ?>
+                      <?php if ($val['jenis_kelas'] == 1) : ?>
+                          <p class="mt-4"><a href="<?= base_url()?>classes/join_class/<?= $val['id_kelas']; ?>" class="btn btn-dark mr-1">Gabung Kelas</a></p>
+                      <?php else : ?>
+                          <p class="mt-4"><a href="<?= base_url()?>classes/pembayaran_kelas/<?= $val['id_kelas']; ?>" class="btn btn-dark mr-1">Gabung Kelas</a></p>
+                      <?php endif; ?>
+                  <?php endif; ?>
                 <?php endif; ?>
+              <?php else : ?>
+                <div class="alert alert-danger" role="alert">
+                  <center><?= $this->session->flashdata('batasPeserta') ?></center>
+                </div>
               <?php endif; ?>
             <?php else : ?>
               <p class="mt-4"><a href="" class="btn btn-dark mr-1" data-toggle="modal" data-target="#elegantModalForm"><i class="fa fa-clone left"></i>Gabung Kelas</a></p>

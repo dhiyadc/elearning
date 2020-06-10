@@ -67,6 +67,7 @@ class Classes extends CI_Controller {
         $data['materiKegiatan'] = $this->Classes_model->getMateribyKegiatan();
         if(isset($this->session->userdata['logged_in'])){
             $this->session->set_flashdata('buttonJoin','Anda telah mengikuti kelas ini');
+            $this->session->set_flashdata('batasPeserta','Maaf, kelas ini telah penuh');
             $header['nama'] = explode (" ",$this->Classes_model->getMyName()['nama']);
             $notif = $this->Classes_model->getPesertaByUserId();
             $datanotif = array();
@@ -81,7 +82,6 @@ class Classes extends CI_Controller {
             $this->load->view('classes/open_class',$data);
             $this->load->view('partialsuser/footer');
         } else {
-            $this->session->set_flashdata('buttonJoin','Anda telah mengikuti kelas ini');
             $this->load->view('partials/header');
             $this->load->view('classes/open_class',$data);
             $this->load->view('partials/footer');
