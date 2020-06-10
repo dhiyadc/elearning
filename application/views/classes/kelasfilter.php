@@ -1,3 +1,7 @@
+<?php 
+  $_SESSION['url_login'] = "kelasfilter";
+?>
+
 <!-- Jumbotron -->
 <div class="card-image bannerkelas">
 	<div class="text-white text-center rgba-stylish-strong py-5 px-4">
@@ -142,7 +146,7 @@
 				<div class="input-group mb-3">
 				<input class="form-control form-control-sm mr-0 w-0" type="text" name="keyword" placeholder="Cari Kelas"aria-label="Search">
 					<div class="input-group-append">
-					<button class="btn" type="button"><i class="fa fa-search" aria-hidden="true" onclick=""></i></button>
+					<button class="btn" type="submit"><i class="fa fa-search" aria-hidden="true" onclick=""></i></button>
 					</div>
 				</div> 
 				</form>          

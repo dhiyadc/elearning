@@ -3,6 +3,11 @@
 <!-- <link href="<?= base_url() ?>assets/datetimepicker/bootstrap.min.css" rel="stylesheet" media="screen"> -->
 <link href="<?= base_url() ?>assets/datetimepicker/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
 
+<?php 
+  $_SESSION['url_login'] = "open_class";
+  $_SESSION['url_login_open_class'] = $this->uri->segment(3);
+?>
+
 <?php if ($this->session->flashdata('message')): ?>
 		<div class="modal fade" id="modalNotif" tabindex="-1" role="dialog">
 		<div class="modal-dialog" role="document">
@@ -58,6 +63,20 @@
         <?php foreach ($kelas as $val) : ?>
           <div class="col-lg-8 mb-5">
             <div class="mb-5">
+
+              <h3 class="text-black">Detail Kelas</h3>
+              <?php if($this->session->flashdata("invalidFile")){ ?>
+                      <div class="alert alert-danger" role="alert">
+                        <?php echo $this->session->flashdata("invalidFile"); ?>
+                      </div>
+              <?php } ?>
+              <?php if($this->session->flashdata("success")){ ?>
+                      <div class="alert alert-success" role="alert">
+                        <?php echo $this->session->flashdata("success"); ?>
+                      </div>
+                <?php } ?>
+              
+
             <ul class="nav nav-tabs" role="tablist" style="font-weight: bolder;">
               <li class="nav-item">
                 <a class="nav-link active" href="#profile" role="tab" data-toggle="tab"><i class="fa fa-user-circle"></i> Detail Kelas</a>
@@ -76,6 +95,7 @@
             </ul>
             <div class="tab-content">
               <div role="tabpanel" class="tab-pane fade show active" id="profile" style="margin-top: 20px;">
+
               <p class="mb-4">
                 <?php foreach ($harga as $val2) : ?>
                 <?php if ($val2['harga_kelas'] == '0' || $val2['harga_kelas'] == null) : ?> 
@@ -148,14 +168,20 @@
                               <?php if ($cek == true) : ?>
                               <?php elseif ($peserta != null) : ?>
                                 <th scope="col">Aksi</th>
+                                <th scope="col">Materi</th>
                               <?php elseif ($cek == false) : ?>
                               <?php endif; ?>
                             <?php else : ?>
                               <th scope="col">Aksi</th>
+                              <th scope="col">Materi</th>
                             <?php endif; ?>
+
+                            
+
                           </tr>
                         </thead>
                         <tbody>
+                        <?php $modalMateri = 0; ?>
                         <?php foreach ($kegiatan as $val2) : ?>
                           <tr>
                               <td><?= $val2['deskripsi_kegiatan']; ?></td>
@@ -196,12 +222,17 @@
                                             <!--Body-->
                                             <div class="modal-body mx-4">
                                               <!--Body-->
-                                              <form action="<?= base_url()?>classes/edit_kegiatan/<?= $val['id_kelas'] ?>/<?= $val2['id_kegiatan'] ?>" method="POST">
+                                              <form enctype="multipart/form-data" action="<?= base_url()?>classes/edit_kegiatan/<?= $val['id_kelas'] ?>/<?= $val2['id_kegiatan'] ?>" method="POST">
                                                 <div class="form-group">
                                                   <label>Deskripsi Kegiatan</label>
                                                     <textarea class="form-control" name="deskripsi" required><?= $val2['deskripsi_kegiatan'] ?></textarea>
                                                 </div>
+                                                <label for="materiForm">Tambah Materi</label>
+                                                <input type="file" name="materi[]" accept=".doc, .docx, .ppt, .pptx, .pdf" class="form-control-file" id="materiForm" multiple> 
+                                                
+                                                </div>
                                                 <input type="hidden" name="tanggal" value="<?= $val2['tanggal_kegiatan'] ?>">
+
                                               <div class="text-center mb-3">
                                                 <button type="submit" class="btn btn-light blue-gradient btn-block btn-rounded z-depth-1a">Simpan</button>
                                               </div>
@@ -212,6 +243,102 @@
                                     </div>
                                   <?php endif; ?>
                               </td>
+                              
+                              <?php if ($val['pembuat_kelas'] != $this->session->userdata('id_user')) : ?>
+                                <?php if ($cek == true) : ?>
+                                <?php elseif ($peserta != null) : ?>
+                                    <td>
+                                    <?php $notPembuatMateri = 0; ?>
+                                    <?php foreach ($materi as $val4) : ?>
+                                        <?php if ($val2['id_kegiatan'] == $val4['id_kegiatan']) : ?>
+                                          
+                                              <?php if($notPembuatMateri < 1) : ?>
+                                              <button class="btn btn-light btn-md px-3 my-0 ml-0" type="button" data-toggle="modal" data-target="#lihatMateri<?= $modalMateri ?>">Lihat Materi</button>
+                                              <?php endif; ?>
+                                              <?php $notPembuatMateri++; ?>
+                                            <?php else : ?>
+                                            <?php endif; ?>
+                                        <?php endforeach; ?>
+                                    
+                                    </td>
+                                <?php elseif ($cek == false) : ?>
+                                <?php endif; ?>
+                              <?php else : ?>
+                                  <td>
+                                  <?php $PembuatMateri = 0; ?>
+                                  <?php foreach ($materi as $val4) : ?>
+                                        <?php if ($val2['id_kegiatan'] == $val4['id_kegiatan']) : ?>
+                                          
+                                              <?php if($PembuatMateri < 1) : ?>
+                                                <button class="btn btn-light btn-md px-3 my-0 ml-0" type="button" data-toggle="modal" data-target="#lihatMateri<?= $modalMateri ?>">Lihat Materi</button>
+                                              <?php endif; ?>
+                                              <?php $PembuatMateri++; ?>
+                                            <?php else : ?>
+                                            <?php endif; ?>
+                                        <?php endforeach; ?>
+                                  
+                                  
+                                  </td> 
+                              <?php endif; ?>
+
+                              <div class="modal fade" id="lihatMateri<?= $modalMateri ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                              aria-hidden="true" style="padding-right: 90px;">
+                              <?php $modalMateri++; ?>
+                              <div class="modal-dialog modal-lg" role="document">
+                                <!--Content-->
+                                <div class="modal-content form-elegant">
+                                  <!--Header-->
+                                  <div class="modal-header text-center">
+                                    <h3 class="modal-title w-100 dark-grey-text font-weight-bold my-3" id="myModalLabel"><strong>Materi</strong></h3>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                    </button>
+                                  </div>
+                                  <!--Body-->
+                                  <div class="modal-body mx-4">
+                                    <!--Body-->
+                                    <?php if ($val['pembuat_kelas'] != $this->session->userdata('id_user')) : ?>
+                                    <?php if ($cek == true) : ?>
+                                    <?php elseif ($peserta != null) : ?>
+                                     
+                                      <div class="container-fluid">
+                                      <div class="row">
+                                      
+                                      <div class="col-md-12 border-bottom pb-3 mt-3"><b>Nama File</b></div>
+                                        <?php foreach ($materi as $val4) : ?>
+                                        <?php if ($val2['id_kegiatan'] == $val4['id_kegiatan']) : ?>
+                                           
+                                           <div class="col-md-12 border-bottom pb-3 mt-3"><a href="<?= base_url(); ?>classes/download_materi/<?= $val4['url_materi'] ?>"><?= $val4['url_materi'] ?></a></div>
+                                            <?php else : ?>
+                                            <?php endif; ?>
+                                        <?php endforeach; ?>
+                                        </div>
+                                    </div>
+                                        
+                                    <?php elseif ($cek == false) : ?>
+                                    <?php endif; ?>
+                                  <?php else : ?>
+                                    <div class="container-fluid">
+                                      <div class="row">
+                                        
+                                      <div class="col-md-12 border-bottom pb-3 mt-3"><b>Nama File</b></div>
+                                      <?php foreach ($materi as $val4) : ?>
+                                      <?php if ($val2['id_kegiatan'] == $val4['id_kegiatan']) : ?>
+                                        <div class="col-md-10 border-bottom pb-3 mt-3"><a href="<?= base_url(); ?>classes/download_materi/<?= $val4['url_materi'] ?>"><?= $val4['url_materi'] ?></a></div>
+                                        <div class="col-md-2 ml-auto border-bottom"><button type="button" class="btn btn-danger"><a href="<?= base_url(); ?>classes/hapus_materi/<?= $val4['id_kelas'] ?>/<?= $val4['url_materi'] ?>">Hapus</a></button></div>
+                                        
+                                          <?php else : ?>
+                                          <?php endif; ?>
+                                      <?php endforeach; ?>
+                                      </div>
+                                    </div>
+                                      
+                                  <?php endif; ?>
+                                  </div>
+                                </div>
+                              </div>
+                              </div>
+
                           </tr>
                       <?php endforeach; ?>
                         </tbody>
@@ -234,6 +361,9 @@
                           <span aria-hidden="true">&times;</span>
                         </button>
                       </div>
+
+                     
+
                       <!--Body-->
                       <div class="modal-body mx-4">
                         <!--Body-->
@@ -251,6 +381,10 @@
                             </div>
                           </div>
                         <input type="hidden" id="dtp_input1"/>
+                        <div class="form-group">
+                          <label for="materiForm">Materi (Opsional)</label>
+                          <input type="file" name="materi[]" accept=".doc, .docx, .ppt, .pptx, .pdf" class="form-control-file" id="materiForm" multiple>
+                        </div>
                         <div class="text-center mb-3">
                           <button type="submit" class="btn btn-light blue-gradient btn-block btn-rounded z-depth-1a">Simpan</button>
                         </div>

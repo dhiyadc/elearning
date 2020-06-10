@@ -75,12 +75,93 @@
           ?>
           <?php if ($this->session->flashdata('invalid')) { ?>
     <div class="alert alert-danger"> <?= $this->session->flashdata('invalid') ?> </div>
-<?php } ?>
-<?php if ($this->session->flashdata('success')) { ?>
-    <div class="alert alert-success"> <?= $this->session->flashdata('success') ?> </div>
-<?php } ?>
+          <?php } ?>
+          <?php if ($this->session->flashdata('success')) { ?>
+              <div class="alert alert-success"> <?= $this->session->flashdata('success') ?> </div>
+          <?php } ?>
             <!--  -->
             <form class="form-login" action="<?= base_url() ?>login/user_login_process" method="post">
+            <div class="md-form mb-3">
+              <h5>Email</h5>
+              <input type="email" class="form-control validate" name="email" placeholder="Email" autofocus required> 
+
+              <label data-error="wrong" data-success="right" for="Form-email1">Masukan email</label>
+            </div>
+
+            <div class="md-form pb-3">
+
+              <h5>Password</h5>
+              <input type="password" class="form-control validate" name="password" placeholder="Password" required>
+              <label data-error="wrong" data-success="right" for="Form-pass1">Masukan Password</label>
+              <p class="font-small blue-text d-flex justify-content-end">Lupa <a href="Forgot_password" class="blue-text ml-1">
+                  Password?</a></p>
+            </div>
+
+            <div class="text-center mb-3">
+
+             
+            <button class="btn btn-theme btn-block" value="login" type="submit">Masuk</button>
+            </form>
+
+            
+          </div>
+          <!--Footer-->
+          <div class="modal-footer mx-5 pt-3 mb-1">
+            <p class="font-small grey-text d-flex justify-content-end">Belum ada Akun? <a href="Register" class="blue-text ml-1">
+                Daftar</a></p>
+          </div>
+        </div>
+        <!--/.Content-->
+      </div>
+    </div>
+    </div>
+    <div id="login-page">
+    <div class="modal fade" id="elegantModalFormcreateClass" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+      aria-hidden="true" style="padding-right: 90px;">
+      <div class="modal-dialog" role="document">
+        <!--Content-->
+        <div class="modal-content form-elegant">
+          <!--Header-->
+          <div class="modal-header text-center">
+            <h3 class="modal-title w-100 dark-grey-text font-weight-bold my-3" id="myModalLabel"><strong>Masuk</strong></h3>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <!--Body-->
+          <div class="modal-body mx-4">
+
+            <!-- Body -->
+            <?php
+              if (isset($logout_message)) {
+              echo "<div class='message'>";
+              echo $logout_message;
+              echo "</div>";
+              }
+            ?>
+            <?php
+              if (isset($message_display)) {
+              echo "<div class='message'>";
+              echo $message_display;
+              echo "</div>";
+              }
+            ?>
+            <?php
+            echo "<div class='error_msg'>";
+            if (isset($error_message)) {
+            echo $error_message;
+            }
+            //echo validation_errors();
+            echo "</div>";
+          ?>
+          <?php if ($this->session->flashdata('invalid')) { ?>
+    <div class="alert alert-danger"> <?= $this->session->flashdata('invalid') ?> </div>
+          <?php } ?>
+          <?php if ($this->session->flashdata('success')) { ?>
+              <div class="alert alert-success"> <?= $this->session->flashdata('success') ?> </div>
+          <?php } ?>
+            <!--  -->
+            <form class="form-login" action="<?= base_url() ?>login/user_login_process/create_class" method="post">
             <div class="md-form mb-3">
               <h5>Email</h5>
               <input type="email" class="form-control validate" name="email" placeholder="Email" autofocus required> 
