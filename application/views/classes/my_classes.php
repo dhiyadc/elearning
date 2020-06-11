@@ -53,11 +53,11 @@
 
 <!-- Nav tabs -------------- -->
 <ul style="list-style: outside none none;" class="nav nav-tabs" role="tablist">
-    <li class="nav-item">
+    <!-- <li class="nav-item">
         <a class="nav-link active" data-toggle="tab" href="#tab1" role="tab" aria-expanded="true">To Do List</a>
-    </li>
+    </li> -->
     <li class="nav-item">
-        <a class="nav-link" data-toggle="tab" href="#tab2" role="tab" aria-expanded="false"> Kelas Saya</a>
+        <a class="nav-link active" data-toggle="tab" href="#tab2" role="tab" aria-expanded="false"> Kelas Saya</a>
     </li>
     <li class="nav-item">
         <a class="nav-link" data-toggle="tab" href="#tab3" role="tab" aria-expanded="false">Kelas Diikuti</a>
@@ -72,7 +72,7 @@
  
 <!-- Tab panes -------------- -->
 <div class="tab-content">
-    <div class="tab-pane active" id="tab1" role="tabpanel" aria-expanded="true">
+    <!-- <div class="tab-pane active" id="tab1" role="tabpanel" aria-expanded="true"> -->
     <!-- <div class="row mt-5">
       <div class="col">
       	<div class="card card-list">
@@ -164,8 +164,8 @@
         </div>
       </div>
     </div> -->
-
-    <div class="row d-flex justify-content-center container">
+<!-- to do -->
+    <!-- <div class="row d-flex justify-content-center container">
     <div class="col-md-12">
         <div class="card-hover-shadow-2x mb-3 card">
             <div class="card-header-tab card-header">
@@ -282,11 +282,11 @@
             <div class="d-block text-right card-footer"><button class="btn btn-primary">Konfirmasi</button><button class="mr-2 btn btn-link btn-sm">Batal</button></div>
         </div>
     </div>
-</div>
+</div> -->
     
-    </div>
+    <!-- </div> -->
 
-    <div class="tab-pane" id="tab2" role="tabpanel" aria-expanded="false">
+    <div class="tab-pane active" id="tab2" role="tabpanel" aria-expanded="true">
 
     <div class="row mt-5">
       <div class="col">

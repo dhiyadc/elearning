@@ -192,12 +192,18 @@
                           <div class="col">
                             <div class="col">
                               <div class="notice notice-info">
+                              <div class="row mb-0" style="padding: 0px;">
+                              <img src="<?php echo base_url(); ?>assets/images/pdf.png" alt="..." class="img-fluid rounded-circle" style="width: 20px;">
                                   <a href="">Tugas1.pdf</a>
+                                  </div>
                               </div>
                             </div>
                             <div class="col">
                               <div class="notice notice-info">
+                              <div class="row mb-0" style="padding: 0px;">
+                              <img src="<?php echo base_url(); ?>assets/images/pdf.png" alt="..." class="img-fluid rounded-circle" style="width: 20px;">
                                   <a href="">Tugasrevisi.pdf</a> 
+                              </div>
                               </div>
                             </div>
                             
@@ -276,12 +282,18 @@
                           <div class="col">
                             <div class="col">
                               <div class="notice notice-info">
+                              <div class="row mb-0" style="padding: 0px;">
+                              <img src="<?php echo base_url(); ?>assets/images/pdf.png" alt="..." class="img-fluid rounded-circle" style="width: 20px;">
                                   <a href="">Tugas1.pdf</a>
+                                  </div>
                               </div>
                             </div>
                             <div class="col">
                               <div class="notice notice-info">
+                              <div class="row mb-0" style="padding: 0px;">
+                              <img src="<?php echo base_url(); ?>assets/images/pdf.png" alt="..." class="img-fluid rounded-circle" style="width: 20px;">
                                   <a href="">Tugasrevisi.pdf</a> 
+                              </div>
                               </div>
                             </div>
                             
