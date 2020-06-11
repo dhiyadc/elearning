@@ -458,7 +458,7 @@
               <figure class="m-0">
                 <a href="<?=base_url()?>classes/open_class/<?= $val['id_kelas'] ?>"><img src="<?= base_url().'assets/images/'.$val['poster_kelas']?>" alt="Image" class="img-fluid" style="height: 180px; object-fit: cover;"></a>
               </figure>
-              <div class="course-inner-text py-4 px-4">
+              <div class="course-inner-text py-4 px-4" style="height: 200px;">
                 <span class="course-price"><?php
                   if($val['harga_kelas'] == '0' || $val['harga_kelas'] == null){
                     echo "<b>Gratis</b>";
