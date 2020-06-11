@@ -114,7 +114,7 @@
                         </div> -->
                       <div class="text">
                       <li class="nav-item">
-                      <h3 class="h4" style="font-size: 20px;"><a  data-toggle="tab" href="#tab2" role="tab" aria-expanded="true">Birli Saputri</a></h3>
+                      <h3 class="h4" style="font-size: 20px;"><a  data-toggle="tab" href="#tab2" role="tab" aria-expanded="false">Birli Saputri</a></h3>
                       </li>  
                     </div>
                     </div>
