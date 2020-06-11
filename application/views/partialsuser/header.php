@@ -162,10 +162,10 @@
                       <?php foreach ($notif as $val) : ?>
                       <li class="notification-box">
                         <div class="row">
-                          <div class="col-lg-3 col-sm-3 col-3 text-center">
+                          <div class="col-md-3 text-center">
                             <img src="<?php echo base_url(); ?>assets/images/<?= $val[$i]['poster_kelas']; ?>" class="rounded-circle" style="object-fit: cover;height: 60px; width: 60px;">
                           </div>
-                          <div class="col-lg-8 col-sm-8 col-8">
+                          <div class="col-md-8">
                             <strong class="text-info"><?= $val[$i]['nama']; ?></strong>
                             <div>
                               <a href="<?= base_url() ?>classes/open_class/<?= $val[$i]['id_kelas']; ?>">Kelas <?= $val[$i]['judul_kelas']; ?> Sedang Dimulai</a>
