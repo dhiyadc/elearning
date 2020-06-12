@@ -864,7 +864,7 @@ class Classes_model extends CI_Model {
 
     public function getSubmit()
     {
-        $sql = "SELECT submit_assignment.*, detail_user.nama, status_tugas.status_tugas as status, DATE_FORMAT(submit_assignment.tanggal_submit, '%W, %d %M %Y (%H:%i)') as tanggal_submit
+        $sql = "SELECT submit_assignment.*, detail_user.nama, status_tugas.status_tugas as status, submit_assignment.tanggal_submit, DATE_FORMAT(submit_assignment.tanggal_submit, '%W, %d %M %Y (%H:%i)') as tanggal
                 FROM submit_assignment, detail_user, status_tugas
                 WHERE status_tugas.id = submit_assignment.status_tugas AND submit_assignment.id_user = detail_user.id_user";
 
@@ -951,7 +951,8 @@ class Classes_model extends CI_Model {
     public function updateNilai($id)
     {
         $data = [
-            'nilai_tugas' => $this->input->post('nilai')
+            'nilai_tugas' => $this->input->post('nilai'),
+            'tanggal_submit' => $this->input->post('tanggal_submit')
         ];
 
         $this->db->where('id_submit',$id);

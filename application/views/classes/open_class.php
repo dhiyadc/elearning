@@ -88,7 +88,7 @@
                 <?php endif; ?>
               <?php else : ?>     
               <li class="nav-item">
-                <a class="nav-link" href="<?= base_url()?>classes/mentorkelas" role="tab" ><i class="fa fa-cog"></i> Atur Kelas</a>
+                <a class="nav-link" href="<?= base_url()?>classes/list_tugas/<?= $val['id_kelas']; ?>" role="tab" ><i class="fa fa-cog"></i> Atur Kelas</a>
               </li>             
               <?php endif; ?>                           
             </ul>

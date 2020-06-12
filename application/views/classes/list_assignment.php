@@ -78,7 +78,7 @@
                             <td><?= $val3['subjek_tugas'] ?></td>
                             <td><a href="<?= base_url() ?>classes/download_assignment/<?= $val3['url_file']; ?>"><?= $val3['url_file']; ?></a></td>
                             <td><?= $val3['status'] ?></td>
-                            <td><?= $val3['tanggal_submit'] ?></td>
+                            <td><?= $val3['tanggal'] ?></td>
                             <td>
                                 <form action="<?= base_url() ?>classes/update_nilai/<?= $val2['id_kelas']; ?>/<?= $val3['id_tugas']; ?>/<?= $val3['id_submit']; ?>" method="POST">
                                     <input type="text" size="3px" name="nilai" value="<?= $val3['nilai_tugas'] ?>">
