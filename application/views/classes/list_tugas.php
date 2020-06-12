@@ -94,7 +94,12 @@
                       <?php endif; ?>
                     </div>
                   </div>
-                  <!-- <div class="project-date"><span class="hidden-sm-down">Hari Ini pada 4:24 AM</span></div> -->
+                  <div class="project-date text-right">
+                    <span class="hidden-sm-down">
+                      <a href="<?= base_url() ?>classes/edit_assignment/<?= $val2['id_kelas']; ?>/<?= $val2['id_tugas']; ?>">Edit</a><br>
+                      <a href="<?= base_url() ?>classes/del_assignment/<?= $val2['id_kelas']; ?>/<?= $val2['id_tugas']; ?>">Hapus</a>
+                    </span>
+                  </div>
                 </div>
                 <div class="right-col col-lg-6 d-flex align-items-center">
                   

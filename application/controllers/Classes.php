@@ -555,7 +555,7 @@ class Classes extends CI_Controller {
     {
         if(isset($this->session->userdata['logged_in'])){
             $this->Classes_model->createAssignment($id_kelas);
-            redirect('classes/open_class/' . $id_kelas);
+            redirect('classes/list_tugas/' . $id_kelas);
         } else {
             redirect('home');
         }
@@ -618,7 +618,7 @@ class Classes extends CI_Controller {
     {
         if(isset($this->session->userdata['logged_in'])){
             $this->Classes_model->updateAssignment($id_tugas);
-            redirect('classes/open_class/' . $id_kelas);
+            redirect('classes/list_tugas/' . $id_kelas);
         } else {
             redirect('home');
         }
@@ -628,7 +628,7 @@ class Classes extends CI_Controller {
     {
         if(isset($this->session->userdata['logged_in'])){
             $this->Classes_model->deleteAssignment($id_tugas);
-            redirect('classes/open_class/' . $id_kelas);
+            redirect('classes/list_tugas/' . $id_kelas);
         } else {
             redirect('home');
         }
@@ -638,7 +638,7 @@ class Classes extends CI_Controller {
     {
         if(isset($this->session->userdata['logged_in'])){
             $this->Classes_model->updateNilai($id_submit);
-            redirect('classes/open_class/' . $id_kelas);
+            redirect('classes/detail_tugaskuisguru/' . $id_kelas . '/' . $id_tugas);
         } else {
             redirect('home');
         }

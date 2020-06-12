@@ -47,284 +47,6 @@
 
 
 
-   <div class="col-md-12">
-      <div class="container my-5">
-        <div class="row">
-      <div class="col-md-6">
-      <ul style="list-style: outside none none;" class="nav nav-tabs">
-          
-          <li class="nav-item">
-              <a class="nav-link active" aria-expanded="true" style="font-size: 22px;">Daftar Siswa</a>
-          </li>
-          
-      </ul>
-
-      <ul style="list-style: outside none none;" class="nav nav-tabs" role="tablist">
-                      <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#tab1" role="tab" aria-expanded="false">
-                          <div class="project" style="width: 500px;">
-                            <div class="row bg-white has-shadow">
-                              <div class="left-col col-lg-6 d-flex align-items-center justify-content-between">
-                                <div class="project-title d-flex align-items-center">
-                                <!-- <div class="widget-content-left mr-2">
-                                    <div class="custom-checkbox custom-control"> <input class="custom-control-input" id="exampleCustomCheckbox13" type="checkbox"><label class="custom-control-label" for="exampleCustomCheckbox13">&nbsp;</label> </div>
-                                    </div> -->
-                                  <div class="text">
-                                  <h3 class="h4" style="font-size: 20px; color: blue;">Arya Pradata</h3>
-                                </div>
-                                </div>
-                                <!-- <div class="project-date"><span class="hidden-sm-down">Hari Ini pada 4:24 AM</span></div> -->
-                              </div>
-                              <div class="right-col col-lg-6 d-flex align-items-center">
-                                
-                            
-                                <!-- <div class="comments"><i class="fa fa-comment-o"></i>20</div> -->
-                                <div class="project-progress">
-                                  <div class="time">
-                                    <div class="nilai">0/100 Poin</span></div>
-                                  
-                                  </div>
-                                </div>
-                                <div class="time"><i class="fa fa-clock-o"></i> Kam 12:00  </div>
-                              </div>
-                            </div>
-                          </div>
-                        </a>
-                      </li>
-
-                      <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#tab2" role="tab" aria-expanded="false">
-                          <div class="project" style="width: 500px;">
-                            <div class="row bg-white has-shadow">
-                              <div class="left-col col-lg-6 d-flex align-items-center justify-content-between">
-                                <div class="project-title d-flex align-items-center">
-                                <!-- <div class="widget-content-left mr-2">
-                                    <div class="custom-checkbox custom-control"> <input class="custom-control-input" id="exampleCustomCheckbox13" type="checkbox"><label class="custom-control-label" for="exampleCustomCheckbox13">&nbsp;</label> </div>
-                                    </div> -->
-                                  <div class="text">
-                                  <h3 class="h4" style="font-size: 20px; color: blue;">Zora Cahya Ardiya Prameswari</h3>
-                                </div>
-                                </div>
-                                <!-- <div class="project-date"><span class="hidden-sm-down">Hari Ini pada 4:24 AM</span></div> -->
-                              </div>
-                              <div class="right-col col-lg-6 d-flex align-items-center">
-                                
-                            
-                                <!-- <div class="comments"><i class="fa fa-comment-o"></i>20</div> -->
-                                <div class="project-progress">
-                                  <div class="time">
-                                    <div class="nilai">0/100 Poin</span></div>
-                                  
-                                  </div>
-                                </div>
-                                <div class="time"><i class="fa fa-clock-o"></i> Kam 12:00  </div>
-                              </div>
-                            </div>
-                          </div>
-                        </a>
-                      </li>
-
-       
-      </ul>
-      </div>
-
-      <div class="col-md-6">
-      <!-- Nav tabs -------------- -->
-      <ul style="list-style: outside none none;" class="nav nav-tabs">
-          
-          <li class="nav-item">
-              <a class="nav-link active" aria-expanded="true" style="font-size: 22px;">Tugas</a>
-          </li>
-          
-          
-      </ul>
-      
-      <!-- Tab panes -------------- -->
-      <div class="tab-content">
-          <div class="tab-pane active" id="tab1" role="tabpanel" aria-expanded="true">
-
-          <section class="projects no-padding-top">
-          <div class="container">
-            <!-- Project-->
-            <div class="project">
-              <div class="row bg-white has-shadow">
-                <div class="left-col col-lg-6 d-flex align-items-center justify-content-between">
-                  <div class="project-title d-flex align-items-center">
-                    <div class="image has-shadow"><img src="<?php echo base_url(); ?>assets/images/task.png" alt="..." class="img-fluid rounded-circle"></div>
-                    <div class="text">
-                      <h3 class="h4" style="font-size: 20px;">Tugas 1</h3><small>PTI</small>
-                    </div>
-                  </div>
-                  <!-- <div class="project-date"><span class="hidden-sm-down">Hari Ini pada 4:24 AM</span></div> -->
-                </div>
-                <div class="right-col col-lg-6 d-flex align-items-center">
-                  
-              
-                  <!-- <div class="comments"><i class="fa fa-comment-o"></i>20</div> -->
-                  <div class="project-progress">
-                    <div class="time">
-                      <div class="nilai">Belum Dinilai</span></div>
-                    
-                    </div>
-                  </div>
-                  <div class="time"><i class="fa fa-clock-o"></i>Tenggat Kam 12:00  </div>
-                </div>
-
-                <div class="row d-flex ">
-              <div class="col-12 col-md-12 mb-2 mt-2">
-                  <div class="card  h-100 border-light  bg-light shadow">
-                      <div class="card-body d-flex-row">
-                          <blockquote class="blockquote mb-4 pb-2">
-                              <p class="mb-0 font-weight-bold ">Buatlah Sebuah Percobaan Dengan Menggunakan Hukum Newton</p>
-                              <footer class="blockquote-footer">Ahmed Ibrahim</footer>
-                          </blockquote>
-                          <div class="row">
-                          <div class="col">
-                            <div class="col">
-                              <div class="notice notice-info">
-                              <div class="row mb-0" style="padding: 0px;">
-                              <img src="<?php echo base_url(); ?>assets/images/pdf.png" alt="..." class="img-fluid rounded-circle" style="width: 20px;">
-                                  <a href="">Tugas1.pdf</a>
-                                  </div>
-                              </div>
-                            </div>
-                            <div class="col">
-                              <div class="notice notice-info">
-                              <div class="row mb-0" style="padding: 0px;">
-                              <img src="<?php echo base_url(); ?>assets/images/pdf.png" alt="..." class="img-fluid rounded-circle" style="width: 20px;">
-                                  <a href="">Tugasrevisi.pdf</a> 
-                              </div>
-                              </div>
-                            </div>
-                            
-                          </div>
-                          </div>
-                          <div class="w-100 pb-1"></div>
-                          <div class="d-flex align-items-center align-self-end">
-                              <div class="meta-author">
-                              <img src="<?php echo base_url(); ?>assets/images/task.png" alt="..." class="d-block img-fluid rounded-circle" width="30px">
-                                  <!-- <img class="d-block img-fluid rounded-circle" src="" alt="author avatar"> -->
-                              </div>
-                              <div class="m-2">
-                              <div class="col mr-4">
-                                <input class="effect-1" type="text" placeholder="0/100 Poin">
-                                  <span class="focus-border"></span>
-                              </div>
-                              </div>
-                              <div class="meta-item ml-auto">
-                                  <a href="#">
-                                      <i class="fa fa-check-square-o"></i>Beri Nilai</a>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-              </div>
-            </div>
-              
-          </div>
-          </section>
-          
-      </div>
-
-      
-
-            <!-- Tab panes -------------- -->
-            
-          <div class="tab-pane" id="tab2" role="tabpanel" aria-expanded="true">
-
-          <section class="projects no-padding-top">
-          <div class="container">
-            <!-- Project-->
-            <div class="project">
-              <div class="row bg-white has-shadow">
-                <div class="left-col col-lg-6 d-flex align-items-center justify-content-between">
-                  <div class="project-title d-flex align-items-center">
-                    <div class="image has-shadow"><img src="<?php echo base_url(); ?>assets/images/task.png" alt="..." class="img-fluid rounded-circle"></div>
-                    <div class="text">
-                      <h3 class="h4" style="font-size: 20px;">Tugas 2</h3><small>PTI</small>
-                    </div>
-                  </div>
-                  <!-- <div class="project-date"><span class="hidden-sm-down">Hari Ini pada 4:24 AM</span></div> -->
-                </div>
-                <div class="right-col col-lg-6 d-flex align-items-center">
-                  
-              
-                  <!-- <div class="comments"><i class="fa fa-comment-o"></i>20</div> -->
-                  <div class="project-progress">
-                    <div class="time">
-                      <div class="nilai">Belum Dinilai</span></div>
-                    
-                    </div>
-                  </div>
-                  <div class="time"><i class="fa fa-clock-o"></i>Tenggat Kam 12:00  </div>
-                </div>
-
-                <div class="row d-flex ">
-              <div class="col-12 col-md-12 mb-2 mt-2">
-                  <div class="card  h-100 border-light  bg-light shadow">
-                      <div class="card-body d-flex-row">
-                          <blockquote class="blockquote mb-4 pb-2">
-                              <p class="mb-0 font-weight-bold ">Buatlah Sebuah Percobaan Dengan Menggunakan Hukum Newton</p>
-                              <footer class="blockquote-footer">Memed Ibrahim</footer>
-                          </blockquote>
-                          <div class="row">
-                          <div class="col">
-                            <div class="col">
-                              <div class="notice notice-info">
-                              <div class="row mb-0" style="padding: 0px;">
-                              <img src="<?php echo base_url(); ?>assets/images/pdf.png" alt="..." class="img-fluid rounded-circle" style="width: 20px;">
-                                  <a href="">Tugas1.pdf</a>
-                                  </div>
-                              </div>
-                            </div>
-                            <div class="col">
-                              <div class="notice notice-info">
-                              <div class="row mb-0" style="padding: 0px;">
-                              <img src="<?php echo base_url(); ?>assets/images/pdf.png" alt="..." class="img-fluid rounded-circle" style="width: 20px;">
-                                  <a href="">Tugasrevisi.pdf</a> 
-                              </div>
-                              </div>
-                            </div>
-                            
-                          </div>
-                          </div>
-                          <div class="w-100 pb-1"></div>
-                          <div class="d-flex align-items-center align-self-end">
-                              <div class="meta-author">
-                              <img src="<?php echo base_url(); ?>assets/images/task.png" alt="..." class="d-block img-fluid rounded-circle" width="30px">
-                                  <!-- <img class="d-block img-fluid rounded-circle" src="" alt="author avatar"> -->
-                              </div>
-                              <div class="m-2">
-                              <div class="col mr-4">
-                                <input class="effect-1" type="text" placeholder="0/100 Poin">
-                                  <span class="focus-border"></span>
-                              </div>
-                              </div>
-                              <div class="meta-item ml-auto">
-                                  <a href="#">
-                                      <i class="fa fa-check-square-o"></i>Beri Nilai</a>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-              </div>
-            </div>
-              
-          </div>
-          </section>
-          
-      </div>
-
-      
-        
-          
-      </div>
-
-
-          <!-- <div class="modal fade" id="contact" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-=======
 	<div class="col-md-12">
 		<div class="container my-5">
 			<div class="row">
@@ -350,134 +72,44 @@
 
 
 					</ul>
-					<ul style="list-style: outside none none;" class="nav nav-tabs" role="tablist">
-						<div class="project" style=" width:700px;">
-							<div class="row bg-white has-shadow">
-								<div class="left-col col-lg-6 d-flex align-items-center justify-content-between">
-									<div class="project-title d-flex align-items-center">
-										<!-- <div class="widget-content-left mr-2">
-                        <div class="custom-checkbox custom-control"> <input class="custom-control-input" id="exampleCustomCheckbox12" type="checkbox"><label class="custom-control-label" for="exampleCustomCheckbox12">&nbsp;</label> </div>
-                        </div> -->
-										<div class="text">
-											<li class="nav-item">
-												<h3 class="h4" style="font-size: 20px;"><a data-toggle="tab" href="#tab1" role="tab"
-                        aria-controls="tab1" aria-selected="true">Arya Pradata</a></h3>
-											</li>
-										</div>
-									</div>
-									<!-- <div class="project-date"><span class="hidden-sm-down">Hari Ini pada 4:24 AM</span></div> -->
-								</div>
-								<div class="right-col col-lg-6 d-flex align-items-center">
+          <ul style="list-style: outside none none;" class="nav nav-tabs" role="tablist">
+          <?php foreach ($tugas as $val) : ?>
+            <?php foreach ($submit as $val2) : ?>
+              <?php if ($val['id_tugas'] == $val2['id_tugas']) : ?>
+                <div class="project" style=" width:700px;">
+                  <div class="row bg-white has-shadow">
+                    <div class="left-col col-lg-6 d-flex align-items-center justify-content-between">
+                      <div class="project-title d-flex align-items-center">
+                        <!-- <div class="widget-content-left mr-2">
+                            <div class="custom-checkbox custom-control"> <input class="custom-control-input" id="exampleCustomCheckbox12" type="checkbox"><label class="custom-control-label" for="exampleCustomCheckbox12">&nbsp;</label> </div>
+                            </div> -->
+                        <div class="text">
+                          <li class="nav-item">
+                            <h3 class="h4" style="font-size: 20px;"><a data-toggle="tab" href="#tab<?= $val2['id_submit'] ?>" role="tab"
+                            aria-controls="tab1" aria-selected="true"><?= $val2['nama'] ?></a></h3>
+                          </li>
+                        </div>
+                      </div>
+                      <!-- <div class="project-date"><span class="hidden-sm-down">Hari Ini pada 4:24 AM</span></div> -->
+                    </div>
+                    <div class="right-col col-lg-6 d-flex align-items-center">
 
 
-									<!-- <div class="comments"><i class="fa fa-comment-o"></i>20</div> -->
-									<div class="project-progress">
-										<div class="time">
-											<div class="nilai">0/100 Poin</span></div>
+                      <!-- <div class="comments"><i class="fa fa-comment-o"></i>20</div> -->
+                      <div class="project-progress">
+                        <div class="time">
+                          <div class="nilai"><?= $val2['nilai_tugas'] ?>/100 Poin</span></div>
 
 
-										</div>
-									</div>
-									<div class="time"><i class="fa fa-clock-o"></i> Kam 12:00 </div>
-								</div>
-							</div>
-						</div>
-
-						<div class="project" style="width: 700px;">
-							<div class="row bg-white has-shadow">
-								<div class="left-col col-lg-6 d-flex align-items-center justify-content-between">
-									<div class="project-title d-flex align-items-center">
-										<!-- <div class="widget-content-left mr-2">
-                        <div class="custom-checkbox custom-control"> <input class="custom-control-input" id="exampleCustomCheckbox13" type="checkbox"><label class="custom-control-label" for="exampleCustomCheckbox13">&nbsp;</label> </div>
-                        </div> -->
-										<div class="text">
-											<li class="nav-item">
-												<h3 class="h4" style="font-size: 20px;"><a data-toggle="tab" href="#tab2" role="tab"
-														aria-controls="tab2" aria-selected="false">Birli Saputri</a></h3>
-											</li>
-										</div>
-									</div>
-									<!-- <div class="project-date"><span class="hidden-sm-down">Hari Ini pada 4:24 AM</span></div> -->
-								</div>
-								<div class="right-col col-lg-6 d-flex align-items-center">
-
-
-									<!-- <div class="comments"><i class="fa fa-comment-o"></i>20</div> -->
-									<div class="project-progress">
-										<div class="time">
-											<div class="nilai">0/100 Poin</span></div>
-
-										</div>
-									</div>
-									<div class="time"><i class="fa fa-clock-o"></i> Kam 12:00 </div>
-								</div>
-							</div>
-						</div>
-
-            <div class="project" style="width: 700px;">
-							<div class="row bg-white has-shadow">
-								<div class="left-col col-lg-6 d-flex align-items-center justify-content-between">
-									<div class="project-title d-flex align-items-center">
-										<!-- <div class="widget-content-left mr-2">
-                        <div class="custom-checkbox custom-control"> <input class="custom-control-input" id="exampleCustomCheckbox13" type="checkbox"><label class="custom-control-label" for="exampleCustomCheckbox13">&nbsp;</label> </div>
-                        </div> -->
-										<div class="text">
-											<li class="nav-item">
-												<h3 class="h4" style="font-size: 20px;"><a data-toggle="tab" href="#tab3" role="tab"
-														aria-controls="tab3" aria-selected="false">Culametan met met</a></h3>
-											</li>
-										</div>
-									</div>
-									<!-- <div class="project-date"><span class="hidden-sm-down">Hari Ini pada 4:24 AM</span></div> -->
-								</div>
-								<div class="right-col col-lg-6 d-flex align-items-center">
-
-
-									<!-- <div class="comments"><i class="fa fa-comment-o"></i>20</div> -->
-									<div class="project-progress">
-										<div class="time">
-											<div class="nilai">0/100 Poin</span></div>
-
-										</div>
-									</div>
-									<div class="time"><i class="fa fa-clock-o"></i> Kam 12:00 </div>
-								</div>
-							</div>
-						</div>
-
-            <div class="project" style="width: 700px;">
-							<div class="row bg-white has-shadow">
-								<div class="left-col col-lg-6 d-flex align-items-center justify-content-between">
-									<div class="project-title d-flex align-items-center">
-										<!-- <div class="widget-content-left mr-2">
-                        <div class="custom-checkbox custom-control"> <input class="custom-control-input" id="exampleCustomCheckbox13" type="checkbox"><label class="custom-control-label" for="exampleCustomCheckbox13">&nbsp;</label> </div>
-                        </div> -->
-										<div class="text">
-											<li class="nav-item">
-												<h3 class="h4" style="font-size: 20px;"><a data-toggle="tab" href="#tab4" role="tab"
-														aria-controls="tab4" aria-selected="false">Sembari</a></h3>
-											</li>
-										</div>
-									</div>
-									<!-- <div class="project-date"><span class="hidden-sm-down">Hari Ini pada 4:24 AM</span></div> -->
-								</div>
-								<div class="right-col col-lg-6 d-flex align-items-center">
-
-
-									<!-- <div class="comments"><i class="fa fa-comment-o"></i>20</div> -->
-									<div class="project-progress">
-										<div class="time">
-											<div class="nilai">0/100 Poin</span></div>
-
-										</div>
-									</div>
-									<div class="time"><i class="fa fa-clock-o"></i> Kam 12:00 </div>
-								</div>
-							</div>
-						</div>
-
-
-
+                        </div>
+                      </div>
+                      <div class="time"><?= $val2['status'] ?></div>
+                    </div>
+                  </div>
+                </div>
+              <?php endif; ?>
+            <?php endforeach; ?>
+          <?php endforeach; ?>
 					</ul>
 				</div>
 
@@ -486,388 +118,133 @@
 					<ul style="list-style: outside none none;" class="nav nav-tabs" role="tablist">
 
 						<li class="nav-item">
-							<a class="nav-link active" data-toggle="tab" href="#tab1" role="tab" aria-expanded="true"
-								style="font-size: 22px;">Tugas</a>
+            <?php foreach ($tugas as $val) : ?>
+              <?php if ($val['kategori'] == "Tugas") : ?>
+						    <a class="nav-link active" data-toggle="tab" href="#tab1" role="tab" aria-expanded="true"
+                style="font-size: 22px;">Tugas</a>
+              <?php else : ?>
+                <a class="nav-link active" data-toggle="tab" href="#tab1" role="tab" aria-expanded="true"
+                style="font-size: 22px;">Quiz</a>
+              <?php endif; ?>
+            <?php endforeach; ?>
 						</li>
 
 
 					</ul>
 
+          <?php foreach ($tugas as $val) : ?>
+            <?php foreach ($submit as $val2) : ?>
+              <?php if ($val['id_tugas'] == $val2['id_tugas']) : ?>
 					<!-- Tab panes -------------- -->
-					<div class="tab-content">
-						<div class="tab-pane active" id="tab1" role="tabpanel" aria-expanded="true">
+                <div class="tab-content">
+                  <div class="tab-pane active" id="tab<?= $val2['id_submit'] ?>" role="tabpanel" aria-expanded="true">
 
-							<section class="projects no-padding-top">
-								<div class="container">
-									<!-- Project-->
-									<div class="project">
-										<div class="row bg-white has-shadow">
-											<div class="left-col col-lg-6 d-flex align-items-center justify-content-between">
-												<div class="project-title d-flex align-items-center">
-													<div class="image has-shadow"><img src="<?php echo base_url(); ?>assets/images/task.png"
-															alt="..." class="img-fluid rounded-circle"></div>
-													<div class="text">
-														<h3 class="h4" style="font-size: 20px;">Tugas 1</h3><small>PTI</small>
-													</div>
-												</div>
-												<!-- <div class="project-date"><span class="hidden-sm-down">Hari Ini pada 4:24 AM</span></div> -->
-											</div>
-											<div class="right-col col-lg-6 d-flex align-items-center">
-
-
-												<!-- <div class="comments"><i class="fa fa-comment-o"></i>20</div> -->
-												<div class="project-progress">
-													<div class="time">
-														<div class="nilai">Belum Dinilai</span></div>
-
-													</div>
-												</div>
-												<div class="time"><i class="fa fa-clock-o"></i>Tenggat Kam 12:00 </div>
-											</div>
-
-											<div class="row d-flex ">
-												<div class="col-12 col-md-12 mb-2 mt-2">
-													<div class="card  h-100 border-light  bg-light shadow">
-														<div class="card-body d-flex-row">
-															<blockquote class="blockquote mb-4 pb-2">
-																<p class="mb-0 font-weight-bold ">Buatlah Sebuah Percobaan Dengan Menggunakan Hukum
-																	Newton</p>
-																<footer class="blockquote-footer">Ahmed Ibrahim</footer>
-															</blockquote>
-															<div class="row">
-																<div class="col">
-																	<div class="col">
-																		<div class="notice notice-info">
-																			<div class="row mb-0" style="padding: 0px;">
-																				<img src="<?php echo base_url(); ?>assets/images/pdf.png" alt="..."
-																					class="img-fluid rounded-circle" style="width: 20px;">
-																				<a href="">Tugas1.pdf</a>
-																			</div>
-																		</div>
-																	</div>
-																	<div class="col">
-																		<div class="notice notice-info">
-																			<div class="row mb-0" style="padding: 0px;">
-																				<img src="<?php echo base_url(); ?>assets/images/pdf.png" alt="..."
-																					class="img-fluid rounded-circle" style="width: 20px;">
-																				<a href="">Tugasrevisi.pdf</a>
-																			</div>
-																		</div>
-																	</div>
-
-																</div>
-															</div>
-															<div class="w-100 pb-1"></div>
-															<div class="d-flex align-items-center align-self-end">
-																<div class="meta-author">
-																	<img src="<?php echo base_url(); ?>assets/images/task.png" alt="..."
-																		class="d-block img-fluid rounded-circle" width="30px">
-																	<!-- <img class="d-block img-fluid rounded-circle" src="" alt="author avatar"> -->
-																</div>
-																<div class="m-2">
-																	<div class="col mr-4">
-																		<input class="effect-1" type="text" placeholder="0/100 Poin">
-																		<span class="focus-border"></span>
-																	</div>
-																</div>
-																<div class="meta-item ml-auto">
-																	<a href="#">
-																		<i class="fa fa-check-square-o"></i>Beri Nilai</a>
-																</div>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-
-									</div>
-							</section>
-
-						</div>
+                    <section class="projects no-padding-top">
+                      <div class="container">
+                        <!-- Project-->
+                        <div class="project">
+                          <div class="row bg-white has-shadow">
+                            <div class="left-col col-lg-6 d-flex align-items-center justify-content-between">
+                              <div class="project-title d-flex align-items-center">
+                                <div class="image has-shadow"><img src="<?php echo base_url(); ?>assets/images/task.png"
+                                    alt="..." class="img-fluid rounded-circle"></div>
+                                <div class="text">
+                                  <h3 class="h4" style="font-size: 20px;"><?= $val['judul_tugas']; ?></h3><small>oleh <?= $val2['nama'] ?></small>
+                                </div>
+                              </div>
+                              <!-- <div class="project-date"><span class="hidden-sm-down">Hari Ini pada 4:24 AM</span></div> -->
+                            </div>
+                            <div class="right-col col-lg-6 d-flex align-items-center">
 
 
+                              <!-- <div class="comments"><i class="fa fa-comment-o"></i>20</div> -->
+                              <div class="project-progress">
+                                <div class="time">
+                                  <div class="nilai"><?= $val2['nilai_tugas'] ?>/100 Poin</span></div>
 
-						<!-- Tab panes -------------- -->
+                                </div>
+                              </div>
+                              <?php 
+                              $awal  = strtotime($val['batas_pengiriman_tugas']);
+                              $akhir = strtotime($val2['tanggal_submit']);
+                              $diff  = $akhir - $awal;
+                              $jam   = floor($diff / (60 * 60));
+                              $menit = $diff - $jam * (60 * 60);
+                              $hari = floor($diff / (60 * 60 * 24));
 
-						<div class="tab-pane" id="tab2" role="tabpanel" aria-expanded="true">
+                              if($val2['status'] == "Terlambat") :
+                                if($jam == 0) : ?>
+                                  <div class="time">Terlambat <?= $menit; ?> menit</div>
+                                <?php elseif ($hari == 0) : ?>
+                                  <div class="time">Terlambat <?= $jam; ?> jam, <?= floor($menit / 60); ?> menit</div>
+                                <?php else : ?>
+                                  <div class="time">Terlambat <?= $hari; ?> hari, <?= floor($jam / 60); ?> jam, <?= floor($menit / 60); ?> menit</div>
+                                <?php endif; ?>
+                              <?php else : ?>
+                                <div class="time"><?= $val2['status']; ?></div>
+                              <?php endif; ?>
+                            </div>
 
-							<section class="projects no-padding-top">
-								<div class="container">
-									<!-- Project-->
-									<div class="project">
-										<div class="row bg-white has-shadow">
-											<div class="left-col col-lg-6 d-flex align-items-center justify-content-between">
-												<div class="project-title d-flex align-items-center">
-													<div class="image has-shadow"><img src="<?php echo base_url(); ?>assets/images/task.png"
-															alt="..." class="img-fluid rounded-circle"></div>
-													<div class="text">
-														<h3 class="h4" style="font-size: 20px;">Tugas 2</h3><small>PTI</small>
-													</div>
-												</div>
-												<!-- <div class="project-date"><span class="hidden-sm-down">Hari Ini pada 4:24 AM</span></div> -->
-											</div>
-											<div class="right-col col-lg-6 d-flex align-items-center">
+                            <div class="row d-flex ">
+                              <div class="col-12 col-md-12 mb-2 mt-2">
+                                <div class="card  h-100 border-light  bg-light shadow">
+                                  <div class="card-body d-flex-row">
+                                    <blockquote class="blockquote mb-4 pb-2">
+                                      <p class="mb-0 font-weight-bold "><?= $val2['subjek_tugas'] ?>Buatlah Sebuah Percobaan Dengan Menggunakan Hukum
+                                        Newton</p>
+                                      <!-- <footer class="blockquote-footer"><?= $val2['nama'] ?></footer> -->
+                                    </blockquote>
+                                    <div class="row">
+                                      <div class="col">
+                                        <div class="col">
+                                          <div class="notice notice-info">
+                                            <div class="row mb-0" style="padding: 0px;">
+                                              <!-- <img src="<?php echo base_url(); ?>assets/images/pdf.png" alt="..." class="img-fluid rounded-circle" style="width: 20px;"> -->
+                                              <a href="<?= base_url() ?>classes/download_assignment/<?= $val2['url_file']; ?>"><?= $val2['url_file']; ?></a>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="w-100 pb-1"></div>
+                                    <div class="d-flex align-items-center align-self-end">
+                                      <div class="meta-author">
+                                        <img src="<?php echo base_url(); ?>assets/images/task.png" alt="..."
+                                          class="d-block img-fluid rounded-circle" width="30px">
+                                        <!-- <img class="d-block img-fluid rounded-circle" src="" alt="author avatar"> -->
+                                      </div>
+                                      <form action="<?= base_url() ?>classes/update_nilai/<?= $val['id_kelas']; ?>/<?= $val2['id_tugas']; ?>/<?= $val2['id_submit']; ?>" method="POST">
+                                        <div class="m-2">
+                                          <div class="col mr-4">
+                                            <input class="effect-1" type="text" name="nilai" placeholder="<?= $val2['nilai_tugas'] ?>/100 Poin">
+                                            <input type="hidden" name="tanggal_submit" value="<?= $val2['tanggal_submit']; ?>">
+                                            <span class="focus-border"></span>
+                                          </div>
+                                        </div>
+                                        <div class="meta-item ml-auto text-right" style="margin-right: -150px; margin-top: -50px;">
+                                          <button type="submit" class="btn btn-primary" style="padding-right: 20px; padding-left: 20px; padding-top: 12px; padding-bottom: 12px;"><i class="fa fa-check-square-o"></i> Beri Nilai</button>
+                                        </div>
+                                      </form>
+                                    </div>  
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
 
+                        </div>
+                    </section>
 
-												<!-- <div class="comments"><i class="fa fa-comment-o"></i>20</div> -->
-												<div class="project-progress">
-													<div class="time">
-														<div class="nilai">Belum Dinilai</span></div>
+                  </div>
+              <?php endif; ?>
+            <?php endforeach; ?>
+          <?php endforeach; ?>
 
-													</div>
-												</div>
-												<div class="time"><i class="fa fa-clock-o"></i>Tenggat Kam 12:00 </div>
-											</div>
-
-											<div class="row d-flex ">
-												<div class="col-12 col-md-12 mb-2 mt-2">
-													<div class="card  h-100 border-light  bg-light shadow">
-														<div class="card-body d-flex-row">
-															<blockquote class="blockquote mb-4 pb-2">
-																<p class="mb-0 font-weight-bold ">Buatlah Sebuah Percobaan Dengan Menggunakan Hukum
-																	Mati</p>
-																<footer class="blockquote-footer">Memed Ibrahim</footer>
-															</blockquote>
-															<div class="row">
-																<div class="col">
-																	<div class="col">
-																		<div class="notice notice-info">
-																			<div class="row mb-0" style="padding: 0px;">
-																				<img src="<?php echo base_url(); ?>assets/images/pdf.png" alt="..."
-																					class="img-fluid rounded-circle" style="width: 20px;">
-																				<a href="">Tugas1.pdf</a>
-																			</div>
-																		</div>
-																	</div>
-																	<div class="col">
-																		<div class="notice notice-info">
-																			<div class="row mb-0" style="padding: 0px;">
-																				<img src="<?php echo base_url(); ?>assets/images/pdf.png" alt="..."
-																					class="img-fluid rounded-circle" style="width: 20px;">
-																				<a href="">Tugasrevisi.pdf</a>
-																			</div>
-																		</div>
-																	</div>
-
-																</div>
-															</div>
-															<div class="w-100 pb-1"></div>
-															<div class="d-flex align-items-center align-self-end">
-																<div class="meta-author">
-																	<img src="<?php echo base_url(); ?>assets/images/task.png" alt="..."
-																		class="d-block img-fluid rounded-circle" width="30px">
-																	<!-- <img class="d-block img-fluid rounded-circle" src="" alt="author avatar"> -->
-																</div>
-																<div class="m-2">
-																	<div class="col mr-4">
-																		<input class="effect-1" type="text" placeholder="0/100 Poin">
-																		<span class="focus-border"></span>
-																	</div>
-																</div>
-																<div class="meta-item ml-auto">
-																	<a href="#">
-																		<i class="fa fa-check-square-o"></i>Beri Nilai</a>
-																</div>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-
-									</div>
-							</section>
-
-						</div>
-
-            <div class="tab-pane" id="tab3" role="tabpanel" aria-expanded="true">
-
-							<section class="projects no-padding-top">
-								<div class="container">
-									<!-- Project-->
-									<div class="project">
-										<div class="row bg-white has-shadow">
-											<div class="left-col col-lg-6 d-flex align-items-center justify-content-between">
-												<div class="project-title d-flex align-items-center">
-													<div class="image has-shadow"><img src="<?php echo base_url(); ?>assets/images/task.png"
-															alt="..." class="img-fluid rounded-circle"></div>
-													<div class="text">
-														<h3 class="h4" style="font-size: 20px;">Tugas 3</h3><small>PTI</small>
-													</div>
-												</div>
-												<!-- <div class="project-date"><span class="hidden-sm-down">Hari Ini pada 4:24 AM</span></div> -->
-											</div>
-											<div class="right-col col-lg-6 d-flex align-items-center">
-
-
-												<!-- <div class="comments"><i class="fa fa-comment-o"></i>20</div> -->
-												<div class="project-progress">
-													<div class="time">
-														<div class="nilai">Belum Dinilai</span></div>
-
-													</div>
-												</div>
-												<div class="time"><i class="fa fa-clock-o"></i>Tenggat Kam 12:00 </div>
-											</div>
-
-											<div class="row d-flex ">
-												<div class="col-12 col-md-12 mb-2 mt-2">
-													<div class="card  h-100 border-light  bg-light shadow">
-														<div class="card-body d-flex-row">
-															<blockquote class="blockquote mb-4 pb-2">
-																<p class="mb-0 font-weight-bold ">Buatlah Sebuah Percobaan Dengan Menggunakan Hukum
-																	3 Tahun Penjara</p>
-																<footer class="blockquote-footer">Comet Ibrahim</footer>
-															</blockquote>
-															<div class="row">
-																<div class="col">
-																	<div class="col">
-																		<div class="notice notice-info">
-																			<div class="row mb-0" style="padding: 0px;">
-																				<img src="<?php echo base_url(); ?>assets/images/pdf.png" alt="..."
-																					class="img-fluid rounded-circle" style="width: 20px;">
-																				<a href="">Tugas1.pdf</a>
-																			</div>
-																		</div>
-																	</div>
-																	<div class="col">
-																		<div class="notice notice-info">
-																			<div class="row mb-0" style="padding: 0px;">
-																				<img src="<?php echo base_url(); ?>assets/images/pdf.png" alt="..."
-																					class="img-fluid rounded-circle" style="width: 20px;">
-																				<a href="">Tugasrevisi.pdf</a>
-																			</div>
-																		</div>
-																	</div>
-
-																</div>
-															</div>
-															<div class="w-100 pb-1"></div>
-															<div class="d-flex align-items-center align-self-end">
-																<div class="meta-author">
-																	<img src="<?php echo base_url(); ?>assets/images/task.png" alt="..."
-																		class="d-block img-fluid rounded-circle" width="30px">
-																	<!-- <img class="d-block img-fluid rounded-circle" src="" alt="author avatar"> -->
-																</div>
-																<div class="m-2">
-																	<div class="col mr-4">
-																		<input class="effect-1" type="text" placeholder="0/100 Poin">
-																		<span class="focus-border"></span>
-																	</div>
-																</div>
-																<div class="meta-item ml-auto">
-																	<a href="#">
-																		<i class="fa fa-check-square-o"></i>Beri Nilai</a>
-																</div>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-
-									</div>
-							</section>
-
-						</div>
-
-            <div class="tab-pane" id="tab4" role="tabpanel" aria-expanded="true">
-
-							<section class="projects no-padding-top">
-								<div class="container">
-									<!-- Project-->
-									<div class="project">
-										<div class="row bg-white has-shadow">
-											<div class="left-col col-lg-6 d-flex align-items-center justify-content-between">
-												<div class="project-title d-flex align-items-center">
-													<div class="image has-shadow"><img src="<?php echo base_url(); ?>assets/images/task.png"
-															alt="..." class="img-fluid rounded-circle"></div>
-													<div class="text">
-														<h3 class="h4" style="font-size: 20px;">Tugas 4</h3><small>PTI</small>
-													</div>
-												</div>
-												<!-- <div class="project-date"><span class="hidden-sm-down">Hari Ini pada 4:24 AM</span></div> -->
-											</div>
-											<div class="right-col col-lg-6 d-flex align-items-center">
-
-
-												<!-- <div class="comments"><i class="fa fa-comment-o"></i>20</div> -->
-												<div class="project-progress">
-													<div class="time">
-														<div class="nilai">Belum Dinilai</span></div>
-
-													</div>
-												</div>
-												<div class="time"><i class="fa fa-clock-o"></i>Tenggat Kam 12:00 </div>
-											</div>
-
-											<div class="row d-flex ">
-												<div class="col-12 col-md-12 mb-2 mt-2">
-													<div class="card  h-100 border-light  bg-light shadow">
-														<div class="card-body d-flex-row">
-															<blockquote class="blockquote mb-4 pb-2">
-																<p class="mb-0 font-weight-bold ">Buatlah Sebuah Percobaan Dengan Menggunakan Hukum
-																	Pidana</p>
-																<footer class="blockquote-footer">Comet Met</footer>
-															</blockquote>
-															<div class="row">
-																<div class="col">
-																	<div class="col">
-																		<div class="notice notice-info">
-																			<div class="row mb-0" style="padding: 0px;">
-																				<img src="<?php echo base_url(); ?>assets/images/pdf.png" alt="..."
-																					class="img-fluid rounded-circle" style="width: 20px;">
-																				<a href="">Tugas1.pdf</a>
-																			</div>
-																		</div>
-																	</div>
-																	<div class="col">
-																		<div class="notice notice-info">
-																			<div class="row mb-0" style="padding: 0px;">
-																				<img src="<?php echo base_url(); ?>assets/images/pdf.png" alt="..."
-																					class="img-fluid rounded-circle" style="width: 20px;">
-																				<a href="">Tugasrevisi.pdf</a>
-																			</div>
-																		</div>
-																	</div>
-
-																</div>
-															</div>
-															<div class="w-100 pb-1"></div>
-															<div class="d-flex align-items-center align-self-end">
-																<div class="meta-author">
-																	<img src="<?php echo base_url(); ?>assets/images/task.png" alt="..."
-																		class="d-block img-fluid rounded-circle" width="30px">
-																	<!-- <img class="d-block img-fluid rounded-circle" src="" alt="author avatar"> -->
-																</div>
-																<div class="m-2">
-																	<div class="col mr-4">
-																		<input class="effect-1" type="text" placeholder="0/100 Poin">
-																		<span class="focus-border"></span>
-																	</div>
-																</div>
-																<div class="meta-item ml-auto">
-																	<a href="#">
-																		<i class="fa fa-check-square-o"></i>Beri Nilai</a>
-																</div>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-
-									</div>
-							</section>
-
-						</div>
 
 
 
 
 					</div>
-
 
 
 
