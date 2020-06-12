@@ -13,16 +13,21 @@
 				<p class="mb-4 pb-2 px-md-5 mx-md-5">Dapatkan Penawaran Kursus terbaik dan pengalaman terbaik disaat
 					Pandemi dan
 					Upgrade diri Kamu! .</p>
+					<div class="row">
+						<div class="col-md-12">
 				<?php if(isset($_SESSION['logged_in'])) { ?>
-				<a href="<?=base_url()?>classes/new_class" class="btn btn-black"><i class="fa fa-clone left"></i> Buat
+				<a href="<?=base_url()?>classes/new_class" class="btn btn-black mr-1 mt-1"><i class="fa fa-clone left"></i> Buat
 					Kelas</a>
+						
 				<?php } else { ?>
 				<?php $_SESSION['new_class_url_login'] = "newclass"; ?>
+				
 					<a href="" class="btn btn-black" data-toggle="modal" data-target="#elegantModalFormcreateClass"><i class="fa fa-clone left"></i> Buat
 					Kelas</a>
 				<?php } ?>
-				<a href="register" class="btn btn-black"><i class="fa fa-clone left"></i> Gabung Kelas</a>
-
+				<a href="register" class="btn btn-black mt-1"><i class="fa fa-clone left"></i> Gabung Kelas</a>
+				</div>
+					</div>
 			</div>
 		</div>
 	</div>
@@ -122,7 +127,7 @@
 				</div> -->
 									
 			</div>
-		</div>
+		
 		
 		<div class="ml-auto w-25">
 			
@@ -163,6 +168,7 @@
           </div>
 	</div>
 	</div>
+</div>
 </section>
 
 <section class="isi-menu-kelas">
