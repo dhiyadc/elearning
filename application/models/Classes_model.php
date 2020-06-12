@@ -416,7 +416,7 @@ class Classes_model extends CI_Model {
             $this->load->library('upload', $config);
             if ($this->upload->do_upload('poster')) {
                 $data = $this->db->get_where('kelas',['id_kelas' => $id])->row();
-                unlink("images/".$data->poster_kelas);
+                unlink("assets/images/".$data->poster_kelas);
 
                 $file_name = $this->upload->data('file_name');
                 $data = [
