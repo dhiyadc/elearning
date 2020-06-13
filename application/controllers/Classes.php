@@ -638,6 +638,7 @@ class Classes extends CI_Controller {
     {
         if(isset($this->session->userdata['logged_in'])){
             $this->Classes_model->updateNilai($id_submit);
+            $this->session->set_flashdata("successUpdateNilai","$id_submit");
             redirect('classes/detail_tugaskuisguru/' . $id_kelas . '/' . $id_tugas);
         } else {
             redirect('home');
