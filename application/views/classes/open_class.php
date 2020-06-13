@@ -168,16 +168,16 @@
                             <th scope="col">Deskripsi</th>
                             <th scope="col">Hari/Tanggal</th>
                             <th scope="col">Waktu</th>
-                            <th scope="col">Status</th>
+                            <th scope="col" style="text-align: center;">Status</th>
                             <?php if ($val['pembuat_kelas'] != $this->session->userdata('id_user')) : ?>
                               <?php if ($cek == true) : ?>
                               <?php elseif ($peserta != null) : ?>
-                                <th scope="col">Aksi</th>
+                                <th scope="col" style="text-align: center;">Aksi</th>
                                 <th scope="col">Materi</th>
                               <?php elseif ($cek == false) : ?>
                               <?php endif; ?>
                             <?php else : ?>
-                              <th scope="col">Aksi</th>
+                              <th scope="col" style="text-align: center ;">Aksi</th>
                               <th scope="col">Materi</th>
                             <?php endif; ?>
 

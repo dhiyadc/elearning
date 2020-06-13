@@ -110,11 +110,11 @@
           <div class="row d-flex ">
         <div class="col-12 col-md-12 mb-2 mt-2">
             <div class="card  h-100 border-light  bg-light shadow">
-                <div class="card-body d-flex-row">
+                <div class="card-body d-flex-row" style="width: 1000px;">
                     <!-- <blockquote class="blockquote mb-4 pb-2">
                         <p class="mb-0 font-weight-bold ">Buatlah Sebuah Percobaan Dengan Menggunakan Hukum Newton</p>
                     </blockquote> -->
-                    <p class="card-text mb-5"><?= $val2['deskripsi_tugas']; ?>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nemo magnam, labore ex qui quidem quos impedit architecto porro officia debitis nobis, veritatis earum delectus amet deleniti doloremque iure dignissimos reprehenderit ab ducimus! Corporis rem non eum quisquam impedit aut in alias laboriosam minima, tempore earum dicta! Quod autem ipsum numquam tempore quis architecto fugiat. Id dolore laboriosam assumenda deleniti officiis ipsa quidem fugit maiores reprehenderit doloribus et in odit cupiditate doloremque reiciendis quasi quam, perspiciatis repellendus excepturi! Dolore architecto aliquam possimus unde praesentium voluptatibus, consequatur et. Aspernatur, id! Ipsa ab ullam consequatur laborum quos voluptatum explicabo nesciunt alias blanditiis repellat.</p>
+                    <p class="card-text mb-5"><?= $val2['deskripsi_tugas']; ?></p>
                     <div class="w-100 pb-1">
                       <?php foreach ($user as $val3) : ?>
                         <footer class="blockquote-footer"><?= $val3['nama']; ?></footer>
