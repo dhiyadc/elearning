@@ -511,11 +511,14 @@ class Classes extends CI_Controller {
 
     public function download_materi($url_materi)
     {
-        if(isset($_SESSION['logged_in'])){
-            force_download('./assets/docs/'.$url_materi ,NULL);
-        } else {
-            redirect('home');   
+        $userId = $this->session->userdata('id_user');
+        $isUserLoggedIn = $this->session->userdata('logged_in') && $userId;
+
+        if (!$isUserLoggedIn) {
+            redirect("home");
         }
+            force_download('./assets/docs/'.$url_materi ,NULL);
+        
         
     }
 
@@ -576,7 +579,20 @@ class Classes extends CI_Controller {
 
     public function new_assignment($id_kelas)
     {
-        if(isset($this->session->userdata['logged_in'])){
+        $userId = $this->session->userdata('id_user');
+        $isUserLoggedIn = $this->session->userdata('logged_in') && $userId;
+
+        if (!$isUserLoggedIn) {
+            redirect("home");
+        }
+
+        $classDetail = $this->Classes_model->getClassById($id_kelas)[0];
+        $isClassOwner = $classDetail['pembuat_kelas'] == $userId;
+        
+        if (!$isClassOwner) {
+            redirect("home");
+        }
+
             $data['kategori'] = $this->Classes_model->getKategoriTugas();
             $data['id'] = $id_kelas;
             $header['nama'] = explode (" ",$this->Classes_model->getMyName()['nama']);
@@ -592,33 +608,45 @@ class Classes extends CI_Controller {
             $this->load->view('partialsuser/header',$header);
             $this->load->view('classes/new_assignment',$data);
             $this->load->view('partialsuser/footer');
-        } else {
-            redirect('home');
-        }
+        
     }
 
     public function new_assignment_action($id_kelas)
     {
-        if(isset($this->session->userdata['logged_in'])){
+        $userId = $this->session->userdata('id_user');
+        $isUserLoggedIn = $this->session->userdata('logged_in') && $userId;
+
+        if (!$isUserLoggedIn) {
+            redirect("home");
+        }
+
+        $classDetail = $this->Classes_model->getClassById($id_kelas)[0];
+        $isClassOwner = $classDetail['pembuat_kelas'] == $userId;
+        
+        if (!$isClassOwner) {
+            redirect("home");
+        }
+
             $this->Classes_model->createAssignment($id_kelas);
             redirect('classes/list_tugas/' . $id_kelas);
-        } else {
-            redirect('home');
-        }
+       
     }
 
     public function collect_assignment($id_kelas,$id_tugas)
     {
-        if(isset($this->session->userdata['logged_in'])){
+        $userId = $this->session->userdata('id_user');
+        $isUserLoggedIn = $this->session->userdata('logged_in') && $userId;
+
+        if (!$isUserLoggedIn) {
+            redirect("home");
+        }
             $deadline = $this->Classes_model->getDeadlineTugas($id_tugas);
             $status = $this->Classes_model->collectAssignment($id_tugas,$deadline["batas_pengiriman_tugas"]);
             if ($status == "failed") {
 				$this->session->set_flashdata('failedInputFile', 'Kapasitas file yang Anda input melebihi 25 MB');
             }
             redirect('classes/detail_tugaskuis/' . $id_kelas . '/' . $id_tugas);
-        } else {
-            redirect('home');
-        }
+        
     }
 
     public function download_assignment($url_assignment)
