@@ -64,7 +64,6 @@
           <div class="col-lg-8 mb-5">
             <div class="mb-5">
 
-              <h3 class="text-black">Detail Kelas</h3>
               <?php if($this->session->flashdata("invalidFile")){ ?>
                       <div class="alert alert-danger" role="alert">
                         <?php echo $this->session->flashdata("invalidFile"); ?>
@@ -84,13 +83,12 @@
               <?php if ($val['pembuat_kelas'] != $this->session->userdata('id_user')) : ?>
                 <?php if ($peserta != null) : ?>
                   <li class="nav-item">
-                    <a class="nav-link" href="<?= base_url()?>classes/listkelas" role="tab" ><i class="fa fa-tasks"></i> Tugas Kelas</a>
+                    <a class="nav-link" href="<?= base_url()?>classes/list_tugas/<?= $val['id_kelas']; ?>" role="tab" ><i class="fa fa-tasks"></i> Tugas Kelas</a>
                   </li>
                 <?php endif; ?>
-              <?php endif; ?>
-              <?php if($val['pembuat_kelas'] == $this->session->userdata('id_user')) : ?>     
+              <?php else : ?>     
               <li class="nav-item">
-                <a class="nav-link" href="<?= base_url()?>classes/mentorkelas" role="tab" ><i class="fa fa-cog"></i>Atur Kelas</a>
+                <a class="nav-link" href="<?= base_url()?>classes/list_tugas/<?= $val['id_kelas']; ?>" role="tab" ><i class="fa fa-cog"></i> Atur Kelas</a>
               </li>             
               <?php endif; ?>                           
             </ul>
@@ -121,29 +119,30 @@
             <?php endforeach; ?>
 
             <?php if(isset($this->session->userdata['logged_in'])) : ?>
-              <?php if ($val['pembuat_kelas'] != $this->session->userdata('id_user')) : ?>
-                <?php if ($cek == true) : ?>
-                    <?php if ($val['jenis_kelas'] == 1) : ?>
-                        <p class="mt-4"><a href="<?= base_url()?>classes/join_class/<?= $val['id_kelas']; ?>" class="btn btn-dark mr-1">Gabung Kelas</a></p>
-                    <?php else : ?>
-                        <p class="mt-4"><a href="<?= base_url()?>classes/pembayaran_kelas/<?= $val['id_kelas']; ?>" class="btn btn-dark mr-1">Gabung Kelas</a></p>
-                    <?php endif; ?>
-                <?php elseif ($peserta != null) : ?>
-                  <div class="row" style="margin-left: 0px;">
-                    <a class="btn btn-dark mr-1" style="margin-bottom: 14px;" href="<?= base_url()?>classes/list_assignment/<?= $val['id_kelas'] ?>"><span class="icon-list"></span> Lihat Tugas</a>
-                    <div class="col">
-                      <div class="alert alert-dark" role="alert">
-                          <center><?= $this->session->flashdata('buttonJoin') ?></center>
-                      </div>
+              <?php if ($val['batas_jumlah'] < count($peserta_kelas)) : ?>
+                <?php if ($val['pembuat_kelas'] != $this->session->userdata('id_user')) : ?>
+                  <?php if ($cek == true) : ?>
+                      <?php if ($val['jenis_kelas'] == 1) : ?>
+                          <p class="mt-4"><a href="<?= base_url()?>classes/join_class/<?= $val['id_kelas']; ?>" class="btn btn-dark mr-1">Gabung Kelas</a></p>
+                      <?php else : ?>
+                          <p class="mt-4"><a href="<?= base_url()?>classes/pembayaran_kelas/<?= $val['id_kelas']; ?>" class="btn btn-dark mr-1">Gabung Kelas</a></p>
+                      <?php endif; ?>
+                  <?php elseif ($peserta != null) : ?>
+                    <div class="alert alert-dark" role="alert">
+                      <center><?= $this->session->flashdata('buttonJoin') ?></center>
                     </div>
-                  </div>
-                <?php elseif ($cek == false) : ?>
-                    <?php if ($val['jenis_kelas'] == 1) : ?>
-                        <p class="mt-4"><a href="<?= base_url()?>classes/join_class/<?= $val['id_kelas']; ?>" class="btn btn-dark mr-1">Gabung Kelas</a></p>
-                    <?php else : ?>
-                        <p class="mt-4"><a href="<?= base_url()?>classes/pembayaran_kelas/<?= $val['id_kelas']; ?>" class="btn btn-dark mr-1">Gabung Kelas</a></p>
-                    <?php endif; ?>
+                  <?php elseif ($cek == false) : ?>
+                      <?php if ($val['jenis_kelas'] == 1) : ?>
+                          <p class="mt-4"><a href="<?= base_url()?>classes/join_class/<?= $val['id_kelas']; ?>" class="btn btn-dark mr-1">Gabung Kelas</a></p>
+                      <?php else : ?>
+                          <p class="mt-4"><a href="<?= base_url()?>classes/pembayaran_kelas/<?= $val['id_kelas']; ?>" class="btn btn-dark mr-1">Gabung Kelas</a></p>
+                      <?php endif; ?>
+                  <?php endif; ?>
                 <?php endif; ?>
+              <?php else : ?>
+                <div class="alert alert-danger" role="alert">
+                  <center><?= $this->session->flashdata('batasPeserta') ?></center>
+                </div>
               <?php endif; ?>
             <?php else : ?>
               <p class="mt-4"><a href="" class="btn btn-dark mr-1" data-toggle="modal" data-target="#elegantModalForm"><i class="fa fa-clone left"></i>Gabung Kelas</a></p>
@@ -169,16 +168,16 @@
                             <th scope="col">Deskripsi</th>
                             <th scope="col">Hari/Tanggal</th>
                             <th scope="col">Waktu</th>
-                            <th scope="col">Status</th>
+                            <th scope="col" style="text-align: center;">Status</th>
                             <?php if ($val['pembuat_kelas'] != $this->session->userdata('id_user')) : ?>
                               <?php if ($cek == true) : ?>
                               <?php elseif ($peserta != null) : ?>
-                                <th scope="col">Aksi</th>
+                                <th scope="col" style="text-align: center;">Aksi</th>
                                 <th scope="col">Materi</th>
                               <?php elseif ($cek == false) : ?>
                               <?php endif; ?>
                             <?php else : ?>
-                              <th scope="col">Aksi</th>
+                              <th scope="col" style="text-align: center ;">Aksi</th>
                               <th scope="col">Materi</th>
                             <?php endif; ?>
 
@@ -459,7 +458,7 @@
               <figure class="m-0">
                 <a href="<?=base_url()?>classes/open_class/<?= $val['id_kelas'] ?>"><img src="<?= base_url().'assets/images/'.$val['poster_kelas']?>" alt="Image" class="img-fluid" style="height: 180px; object-fit: cover;"></a>
               </figure>
-              <div class="course-inner-text py-4 px-4">
+              <div class="course-inner-text py-4 px-4" style="height: 200px;">
                 <span class="course-price"><?php
                   if($val['harga_kelas'] == '0' || $val['harga_kelas'] == null){
                     echo "<b>Gratis</b>";

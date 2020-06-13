@@ -13,16 +13,21 @@
 				<p class="mb-4 pb-2 px-md-5 mx-md-5">Dapatkan Penawaran Kursus terbaik dan pengalaman terbaik disaat
 					Pandemi dan
 					Upgrade diri Kamu! .</p>
+					<div class="row">
+						<div class="col-md-12">
 				<?php if(isset($_SESSION['logged_in'])) { ?>
-				<a href="<?=base_url()?>classes/new_class" class="btn btn-black"><i class="fa fa-clone left"></i> Buat
+				<a href="<?=base_url()?>classes/new_class" class="btn btn-black mr-1 mt-1"><i class="fa fa-clone left"></i> Buat
 					Kelas</a>
+						
 				<?php } else { ?>
 				<?php $_SESSION['new_class_url_login'] = "newclass"; ?>
+				
 					<a href="" class="btn btn-black" data-toggle="modal" data-target="#elegantModalFormcreateClass"><i class="fa fa-clone left"></i> Buat
 					Kelas</a>
 				<?php } ?>
-				<a href="register" class="btn btn-black"><i class="fa fa-clone left"></i> Gabung Kelas</a>
-
+				<a href="register" class="btn btn-black mt-1"><i class="fa fa-clone left"></i> Gabung Kelas</a>
+				</div>
+					</div>
 			</div>
 		</div>
 	</div>
@@ -64,11 +69,11 @@
 <section class="menutop">
 	<div class="container">
 	<div class="row mt-5" style="padding-bottom :15px; border-bottom: 1px solid #dedfe0;">
-		<div class="col-xs-2">
+		<div class="col-xs-2" style="padding-left: 25px;">
 			<div class="col-md-2"><button class="btn btn-primary" style="background-color: dimgrey; border-color: white">Kelas</button>
 			</div>
 		</div>
-		<div class="col-xs-10 no-margin">
+		<div class="col-xs-10 no-margin" style="padding-right: 36px;">
 			
 		
 			<div class="row">
@@ -122,9 +127,12 @@
 				</div> -->
 									
 			</div>
-		</div>
 		
-		<div class="ml-auto w-25">
+		
+		
+		  
+	</div>
+	<div class="ml-auto w-35" style="padding-left: 40px; padding-right: 100px;">
 			
             <!-- <nav class="site-navigation position-relative text-right" role="navigation">
               <ul class="site-menu  mr-auto d-none d-lg-block m-0 p-0">
@@ -160,9 +168,10 @@
 				</div>
 				</form>
            
-          </div>
+		  </div>
+		  
 	</div>
-	</div>
+</div>
 </section>
 
 <section class="isi-menu-kelas">
@@ -299,7 +308,7 @@
 				<div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
 
 					<?php if($classNum > 6 ):  ?>
-					<div id="loadMore">
+					<div id="loadMore" style="padding-left: 60px;">
 						<button class="btn d-flex justify-content-center"> Lebih Banyak</button>
 					</div>
 				</div>

@@ -85,7 +85,7 @@
             <div class="col-md-3"></div>
             <div class="col-md-6">
                 <button type="submit" class="btn btn-primary"><i class="fa fa-user-plus"></i>Edit Tugas</button>
-                <a href="<?= base_url()?>classes/list_assignment/<?= $id ?>" class="btn btn-blue-gradient"></i>Kembali</a>
+                <a href="<?= base_url()?>classes/list_tugas/<?= $id ?>" class="btn btn-blue-gradient"></i>Kembali</a>
             </div>
         </div>
     </form>

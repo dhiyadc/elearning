@@ -21,7 +21,7 @@
   <div class="row">
 
     <!--Grid column-->
-    <div class="col-md-12 mb-4">
+    <div class="col-md-12 col-sm-12 col-xs-12 mb-4">
 
         <h5 class="text-center font-weight-bold mb-4" style="color: white">Dashboard Saya</h5>
         <div class="container my-5">
@@ -53,11 +53,11 @@
 
 <!-- Nav tabs -------------- -->
 <ul style="list-style: outside none none;" class="nav nav-tabs" role="tablist">
-    <li class="nav-item">
+    <!-- <li class="nav-item">
         <a class="nav-link active" data-toggle="tab" href="#tab1" role="tab" aria-expanded="true">To Do List</a>
-    </li>
+    </li> -->
     <li class="nav-item">
-        <a class="nav-link" data-toggle="tab" href="#tab2" role="tab" aria-expanded="false"> Kelas Saya</a>
+        <a class="nav-link active" data-toggle="tab" href="#tab2" role="tab" aria-expanded="false"> Kelas Saya</a>
     </li>
     <li class="nav-item">
         <a class="nav-link" data-toggle="tab" href="#tab3" role="tab" aria-expanded="false">Kelas Diikuti</a>
@@ -72,7 +72,7 @@
  
 <!-- Tab panes -------------- -->
 <div class="tab-content">
-    <div class="tab-pane active" id="tab1" role="tabpanel" aria-expanded="true">
+    <!-- <div class="tab-pane active" id="tab1" role="tabpanel" aria-expanded="true"> -->
     <!-- <div class="row mt-5">
       <div class="col">
       	<div class="card card-list">
@@ -164,8 +164,8 @@
         </div>
       </div>
     </div> -->
-
-    <div class="row d-flex justify-content-center container">
+<!-- to do -->
+    <!-- <div class="row d-flex justify-content-center container">
     <div class="col-md-12">
         <div class="card-hover-shadow-2x mb-3 card">
             <div class="card-header-tab card-header">
@@ -282,11 +282,11 @@
             <div class="d-block text-right card-footer"><button class="btn btn-primary">Konfirmasi</button><button class="mr-2 btn btn-link btn-sm">Batal</button></div>
         </div>
     </div>
-</div>
+</div> -->
     
-    </div>
+    <!-- </div> -->
 
-    <div class="tab-pane" id="tab2" role="tabpanel" aria-expanded="false">
+    <div class="tab-pane active" id="tab2" role="tabpanel" aria-expanded="true">
 
     <div class="row mt-5">
       <div class="col">
@@ -295,7 +295,7 @@
           <h2>Kelas Saya</h2>
           </div>
          
-          <div class="card-body">
+          <div class="card-body table-responsive">
             <table class="table">
               <thead>
                 <tr>
@@ -387,7 +387,7 @@
             <h2>Kelas Diikuti</h2>
           </div>
          
-          <div class="card-body">
+          <div class="card-body table-responsive">
             <table class="table">
               <thead>
                 <tr>
@@ -493,14 +493,14 @@
             <h2>Tugas</h2>
           </div>
          
-          <div class="card-body">
+          <div class="card-body table-responsive">
             <table class="table">
               <thead>
                 <tr>
                   <th scope="col">Kelas</th>
                   <th scope="col">Nama Tugas</th>
                   <th scope="col">Kategori</th>
-                  <th scope="col">Deadline</th>
+                  <th scope="col" style="text-align: center;">Deadline</th>
                   <th scope="col">Aksi</th>
                 </tr>
               </thead>
@@ -513,8 +513,8 @@
                         <?php if ($val[$i][0][0]['id_kelas'] == $val3['id_kelas']) : ?>
                           <?php if ($cek[$k]) : ?>
                             <tr>
-                              <th scope="row" style="width: 300px;"><a class="text-primary"><?= $val[$i][0][0]['judul_kelas']; ?></a></th>
-                              <td style="padding-top: 20px;">
+                              <th scope="row" style="width: 300px; "><a class="text-primary"><?= $val[$i][0][0]['judul_kelas']; ?></a></th>
+                              <td style="padding-top: 20px; ">
                                 <?= $val3['judul_tugas']; ?>
                               </td>
                               <td style="padding-top: 20px;">
@@ -524,12 +524,12 @@
                                   <span class="badge badge-danger"><?= $val3['kategori']; ?></span>
                                 <?php endif; ?>
                               </td> 
-                              <td style="padding-top:20px">
+                              <td style="padding-top:20px; text-align: center;">
                                 <span class="badge"><?= $val3['deadline']; ?></span>
                               </td>
                               <td>
                                 <div class="buttonclass">
-                                  <a href="" class="btn btncyan"">Lihat Tugas</a>
+                                  <a href="<?= base_url() ?>classes/detail_tugaskuis/<?= $val[$i][0][0]['id_kelas'] ?>/<?= $val3['id_tugas']; ?>" class="btn btncyan">Lihat Tugas</a>
                                 </div>
                               </td>
                           </tr>
@@ -577,13 +577,13 @@
             <h2>Materi</h2>
           </div>
          
-          <div class="card-body">
+          <div class="card-body table-responsive">
             <table class="table">
               <thead>
                 <tr>
                   <th scope="col">Kelas</th>
-                  <th scope="col">Jumlah Materi</th>
-                  <th scope="col">Aksi</th>
+                  <th scope="col" style="text-align: center;">Jumlah Materi</th>
+                  <th scope="col" style="text-align: center;">Aksi</th>
                 </tr>
               </thead>
               <tbody>
@@ -596,19 +596,19 @@
                       <?php $countMateri++; ?>
                     <?php endforeach; ?>
                             <tr>
-                                <th scope="row" style="width: 300px;"><a href="<?= base_url(); ?>classes/open_class/<?= $val2['id_kelas']; ?>" class="text-primary"><?= $val2['judul_kelas']; ?></a></th>
-                                <td style="padding-top:20px">
+                                <th scope="row" style="width: 300px; "><a href="<?= base_url(); ?>classes/open_class/<?= $val2['id_kelas']; ?>" class="text-primary"><?= $val2['judul_kelas']; ?></a></th>
+                                <td style="padding-top:20px; text-align: center;">
                                   <?= $countMateri; ?>
                                 </td>
                                 <td>
-                                  <div class="buttonclass">
-                                  <button class="btn btn-info" type="button" data-toggle="modal" data-target="#lihatMateri<?= $lihatMateriCount; ?>">Lihat Materi</button>
+                                  <div class="buttonclass text-center">
+                                  <button class="btn btn-info" type="button" data-toggle="modal" data-target="#lihatMateri<?= $lihatMateriCount; ?>" style="padding: 15px; font-size: 10px;">Lihat Materi</button>
                                   </div>
                                 </td>
                             </tr>
 
             <div class="modal fade" id="lihatMateri<?= $lihatMateriCount; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-              aria-hidden="true" style="padding-right: 90px;">
+              aria-hidden="true" style="padding-right: 60px; padding-left: 17px;">
               
               <div class="modal-dialog modal-lg" role="document">
                 <!--Content-->
@@ -624,15 +624,19 @@
                   <div class="modal-body mx-4">
                     <!--Body-->
                     <div class="container-fluid">
-                                      <div class="row">
-                                      <div class="col-md-6 border-bottom pb-3 mt-3"><b>Kegiatan</b></div>
-                                      <div class="col-md-6 border-bottom pb-3 mt-3"><b>Nama File</b></div>
-                                      <?php foreach ($val as $val2) : ?>
-                                           <div class="col-md-6 border-bottom pb-3 mt-3"><?= $val2['deskripsi_kegiatan']; ?></div>
-                                           <div class="col-md-6 border-bottom pb-3 mt-3"><a href="<?= base_url(); ?>classes/download_materi/"><?= $val2['url_materi']; ?></a></div>
-                                      <?php endforeach; ?>
-                                        </div>
-                                    </div>
+                      <div class="row">
+                      <div class="col-xl-6 border-bottom  mt-3" style="width: 110px;" ><b>Kegiatan</b></div>
+                      <div class="col-xl-6 border-bottom  mt-3" style="width: 110px;" ><b>Nama File</b></div>
+                      </div>
+                      <div class="row">
+                      <?php foreach ($val as $val2) : ?>
+                            <div class="col-xl-6 border-bottom pb-3 mt-3" style="width: 120px;"><?= $val2['deskripsi_kegiatan']; ?></div>
+                            <div class="col-xl-6 border-bottom pb-3 mt-3" style="width: 120px;"> <img src="<?php echo base_url(); ?>assets/images/pdf.png" alt="..." class="img-fluid rounded-circle" style="width: 10px;"><a href="<?= base_url(); ?>classes/download_materi/"><?= $val2['url_materi']; ?></a></div>
+                      <?php endforeach; ?>
+                        </div>
+                        
+                    </div>
+                    
 
                   </div>
                 </div>

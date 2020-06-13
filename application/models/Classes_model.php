@@ -327,17 +327,34 @@ class Classes_model extends CI_Model {
         if ($this->upload->do_upload('poster')) {
             $file_name = $this->upload->data('file_name');
 
-            $data = [
-                'id_kelas' => uniqid(),
-                'pembuat_kelas' => $this->session->userdata('id_user'),
-                'judul_kelas' => $this->input->post('judul'),
-                'deskripsi_kelas' => $this->input->post('deskripsi'),
-                'kategori_kelas' => $this->input->post('kategori'),
-                'poster_kelas' => $file_name,
-                // 'jenis_kelas' => $this->input->post('jenis'),
-                'jenis_kelas' => 1,
-                'status_kelas' => 1
-            ];
+            if($this->input->post('batas') == 0) {
+                $data = [
+                    'id_kelas' => uniqid(),
+                    'pembuat_kelas' => $this->session->userdata('id_user'),
+                    'judul_kelas' => $this->input->post('judul'),
+                    'deskripsi_kelas' => $this->input->post('deskripsi'),
+                    'kategori_kelas' => $this->input->post('kategori'),
+                    'poster_kelas' => $file_name,
+                    // 'jenis_kelas' => $this->input->post('jenis'),
+                    'jenis_kelas' => 1,
+                    'status_kelas' => 1,
+                    'batas_jumlah' => 0
+                ];
+            }
+            else {
+                $data = [
+                    'id_kelas' => uniqid(),
+                    'pembuat_kelas' => $this->session->userdata('id_user'),
+                    'judul_kelas' => $this->input->post('judul'),
+                    'deskripsi_kelas' => $this->input->post('deskripsi'),
+                    'kategori_kelas' => $this->input->post('kategori'),
+                    'poster_kelas' => $file_name,
+                    // 'jenis_kelas' => $this->input->post('jenis'),
+                    'jenis_kelas' => 1,
+                    'status_kelas' => 1,
+                    'batas_jumlah' => $this->input->post('jumlah_peserta')
+                ];
+            }
     
             $this->db->insert('kelas',$data);
             
@@ -399,7 +416,7 @@ class Classes_model extends CI_Model {
             $this->load->library('upload', $config);
             if ($this->upload->do_upload('poster')) {
                 $data = $this->db->get_where('kelas',['id_kelas' => $id])->row();
-                unlink("images/".$data->poster_kelas);
+                unlink("assets/images/".$data->poster_kelas);
 
                 $file_name = $this->upload->data('file_name');
                 $data = [
@@ -837,12 +854,17 @@ class Classes_model extends CI_Model {
 
     public function getTugasByTugasId($id)
     {
-        return $this->db->get_where('tugas_kuis',['id_tugas' => $id])->result_array();
+        $sql = "SELECT tugas_kuis.*, kategori_tugas.kategori_tugas as kategori, DATE_FORMAT(tugas_kuis.batas_pengiriman_tugas, '%W, %d %M %Y (%H:%i)') as deadline
+                FROM tugas_kuis, kategori_tugas
+                WHERE tugas_kuis.id_tugas = '$id' AND tugas_kuis.kategori_tugas = kategori_tugas.id";
+
+        $query = $this->db->query($sql);
+        return $query->result_array();
     }
 
     public function getSubmit()
     {
-        $sql = "SELECT submit_assignment.*, detail_user.nama, status_tugas.status_tugas as status, DATE_FORMAT(submit_assignment.tanggal_submit, '%W, %d %M %Y (%H:%i)') as tanggal_submit
+        $sql = "SELECT submit_assignment.*, detail_user.nama, status_tugas.status_tugas as status, submit_assignment.tanggal_submit, DATE_FORMAT(submit_assignment.tanggal_submit, '%W, %d %M %Y (%H:%i)') as tanggal
                 FROM submit_assignment, detail_user, status_tugas
                 WHERE status_tugas.id = submit_assignment.status_tugas AND submit_assignment.id_user = detail_user.id_user";
 
@@ -929,7 +951,8 @@ class Classes_model extends CI_Model {
     public function updateNilai($id)
     {
         $data = [
-            'nilai_tugas' => $this->input->post('nilai')
+            'nilai_tugas' => $this->input->post('nilai'),
+            'tanggal_submit' => $this->input->post('tanggal_submit')
         ];
 
         $this->db->where('id_submit',$id);

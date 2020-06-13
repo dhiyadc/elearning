@@ -28,7 +28,7 @@
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/style.css">
     
     
-    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
     
@@ -149,7 +149,7 @@
                       aria-haspopup="true" aria-expanded="false"><i class="fa fa-bell"></i>
                       
                     </a>
-                    <div class="notif">
+                    <div class="notif" aria-labelledby="notifis">
                     <ul class="dropdown-menu">
                       <li class="head text-light" style="background-color: forestgreen;">
                         <div class="row">
@@ -162,10 +162,10 @@
                       <?php foreach ($notif as $val) : ?>
                       <li class="notification-box">
                         <div class="row">
-                          <div class="col-lg-3 col-sm-3 col-3 text-center">
+                          <div class="col-md-3 text-center">
                             <img src="<?php echo base_url(); ?>assets/images/<?= $val[$i]['poster_kelas']; ?>" class="rounded-circle" style="object-fit: cover;height: 60px; width: 60px;">
                           </div>
-                          <div class="col-lg-8 col-sm-8 col-8">
+                          <div class="col-md-8">
                             <strong class="text-info"><?= $val[$i]['nama']; ?></strong>
                             <div>
                               <a href="<?= base_url() ?>classes/open_class/<?= $val[$i]['id_kelas']; ?>">Kelas <?= $val[$i]['judul_kelas']; ?> Sedang Dimulai</a>
