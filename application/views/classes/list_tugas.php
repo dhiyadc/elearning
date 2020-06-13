@@ -173,10 +173,18 @@
                     </div>
                   </div>
                   <?php if ($val['pembuat_kelas'] == $this->session->userdata('id_user')) : ?>
-                  <div class="project-date text-right">
+                    <div class="project-date text-right">
                     <span class="hidden-sm-down">
+                    <div class="time">
+                    <div class="row mt-3">
+                      <div class="col-sm-6">
                       <a href="<?= base_url() ?>classes/edit_assignment/<?= $val2['id_kelas']; ?>/<?= $val2['id_tugas']; ?>">Edit</a><br>
+                      </div>
+                      <div class="col-sm-6">
                       <a href="<?= base_url() ?>classes/del_assignment/<?= $val2['id_kelas']; ?>/<?= $val2['id_tugas']; ?>">Hapus</a>
+                      </div>
+                    </div>
+                    </div>
                     </span>
                   </div>
                   <?php endif; ?>
