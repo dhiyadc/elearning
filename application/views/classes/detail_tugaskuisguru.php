@@ -187,12 +187,11 @@
 
                             <div class="row d-flex ">
                               <div class="col-12 col-md-12 mb-2 mt-2">
-                                <div class="card  h-100 border-light  bg-light shadow">
+                                <div class="card  h-100 border-light  bg-light shadow" style="width: 480px;">
                                   <div class="card-body d-flex-row">
                                     <blockquote class="blockquote mb-4 pb-2">
-                                      <p class="mb-0 font-weight-bold "><?= $val2['subjek_tugas'] ?>Buatlah Sebuah Percobaan Dengan Menggunakan Hukum
-                                        Newton</p>
-                                      <!-- <footer class="blockquote-footer"><?= var_dump($val2['id_submit']) ?></footer> -->
+                                      <p class="mb-0 font-weight-bold "><?= $val2['subjek_tugas'] ?></p>
+                                      <!-- <footer class="blockquote-footer"><?= $val2['nama'] ?></footer> -->
                                     </blockquote>
                                     <div class="row">
                                       <div class="col">
