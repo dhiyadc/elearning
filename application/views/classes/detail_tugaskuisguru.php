@@ -72,7 +72,7 @@
 
 
 					</ul>
-          <ul style="list-style: outside none none;" class="nav nav-tabs" role="tablist">
+          <ul style="list-style: outside none none;" id="myTab" class="nav nav-tabs" role="tablist">
           <?php foreach ($tugas as $val) : ?>
             <?php foreach ($submit as $val2) : ?>
               <?php if ($val['id_tugas'] == $val2['id_tugas']) : ?>
@@ -132,12 +132,12 @@
 
 					</ul>
 
+					<!-- Tab panes -------------- -->
+          <div class="tab-content">
           <?php foreach ($tugas as $val) : ?>
             <?php foreach ($submit as $val2) : ?>
               <?php if ($val['id_tugas'] == $val2['id_tugas']) : ?>
-					<!-- Tab panes -------------- -->
-                <div class="tab-content">
-                  <div class="tab-pane active" id="tab<?= $val2['id_submit'] ?>" role="tabpanel" aria-expanded="true">
+                  <div class="tab-pane" id="tab<?= $val2['id_submit']; ?>" role="tabpanel" aria-expanded="true">
 
                     <section class="projects no-padding-top">
                       <div class="container">
@@ -235,31 +235,22 @@
                     </section>
 
                   </div>
+                  <?php if ($this->session->flashdata('successUpdateNilai')) { ?>
+                        <script src="<?php echo base_url(); ?>assets/js/jquery-3.3.1.min.js"></script>
+                        <script>
+                        $(function () {
+                          $('#myTab a[href="#tab<?= $this->session->flashdata('successUpdateNilai'); ?>"]').tab('show');
+                        })
+                      </script>
+                  <?php } ?>
               <?php endif; ?>
             <?php endforeach; ?>
           <?php endforeach; ?>
-
-
-
-
-
-					</div>
-
-
-
-
-
+          </div>
 				</div>
 			</div>
 		</div>
-
-
-
-
-
-
 	</div>
-
 </section>
 
 <!-- <script type="text/javascript" src="<?= base_url(); ?>assets/js/password_verif.js"></script> -->

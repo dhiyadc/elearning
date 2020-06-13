@@ -247,7 +247,7 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <div class="input-group mb-2 mr-sm-2 mb-sm-0" style="margin-left: 30px; padding-right: 28px;">
-                        <input type="number" name="jumlah_peserta" class="form-control">
+                        <input type="number" name="jumlah_peserta" min="0" class="form-control">
                         <div class="input-group-prepend">
                             <div class="input-group-text">orang</div>
                         </div>

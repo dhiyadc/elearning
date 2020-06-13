@@ -119,8 +119,8 @@
             <?php endforeach; ?>
 
             <?php if(isset($this->session->userdata['logged_in'])) : ?>
-              <?php if ($val['batas_jumlah'] < count($peserta_kelas)) : ?>
-                <?php if ($val['pembuat_kelas'] != $this->session->userdata('id_user')) : ?>
+              <?php if ($val['pembuat_kelas'] != $this->session->userdata('id_user')) : ?>
+                <?php if ($val['batas_jumlah'] > count($peserta_kelas) || $val['batas_jumlah'] == 0) : ?>
                   <?php if ($cek == true) : ?>
                       <?php if ($val['jenis_kelas'] == 1) : ?>
                           <p class="mt-4"><a href="<?= base_url()?>classes/join_class/<?= $val['id_kelas']; ?>" class="btn btn-dark mr-1">Gabung Kelas</a></p>
@@ -138,11 +138,11 @@
                           <p class="mt-4"><a href="<?= base_url()?>classes/pembayaran_kelas/<?= $val['id_kelas']; ?>" class="btn btn-dark mr-1">Gabung Kelas</a></p>
                       <?php endif; ?>
                   <?php endif; ?>
+                <?php else : ?>
+                  <div class="alert alert-danger" role="alert">
+                    <center><?= $this->session->flashdata('batasPeserta') ?></center>
+                  </div>
                 <?php endif; ?>
-              <?php else : ?>
-                <div class="alert alert-danger" role="alert">
-                  <center><?= $this->session->flashdata('batasPeserta') ?></center>
-                </div>
               <?php endif; ?>
             <?php else : ?>
               <p class="mt-4"><a href="" class="btn btn-dark mr-1" data-toggle="modal" data-target="#elegantModalForm"><i class="fa fa-clone left"></i>Gabung Kelas</a></p>

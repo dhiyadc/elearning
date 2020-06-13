@@ -94,6 +94,7 @@
                       <?php endif; ?>
                     </div>
                   </div>
+                  <?php if ($val['pembuat_kelas'] == $this->session->userdata('id_user')) : ?>
                   <div class="project-date text-right">
                   <span class="hidden-sm-down">
                     <div class="time">
@@ -108,6 +109,7 @@
                     </div>
                     </span>
                   </div>
+                  <?php endif; ?>
                 </div>
                 <div class="right-col col-lg-6 d-flex align-items-center">
                   
@@ -170,8 +172,9 @@
                       <?php endif; ?>
                     </div>
                   </div>
-                  <div class="project-date text-right">
-                  <span class="hidden-sm-down">
+                  <?php if ($val['pembuat_kelas'] == $this->session->userdata('id_user')) : ?>
+                    <div class="project-date text-right">
+                    <span class="hidden-sm-down">
                     <div class="time">
                     <div class="row mt-3">
                       <div class="col-sm-6">
@@ -184,7 +187,7 @@
                     </div>
                     </span>
                   </div>
-                  <!-- <div class="project-date"><span class="hidden-sm-down">Hari Ini pada 4:24 AM</span></div> -->
+                  <?php endif; ?>
                 </div>
                 <div class="right-col col-lg-6 d-flex align-items-center">
                   
