@@ -129,7 +129,10 @@
 			</div>
 		
 		
-		<div class="ml-auto w-25">
+		
+		  
+	</div>
+	<div class="ml-auto w-35">
 			
             <!-- <nav class="site-navigation position-relative text-right" role="navigation">
               <ul class="site-menu  mr-auto d-none d-lg-block m-0 p-0">
@@ -165,8 +168,8 @@
 				</div>
 				</form>
            
-          </div>
-	</div>
+		  </div>
+		  
 	</div>
 </div>
 </section>
