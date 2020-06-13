@@ -95,9 +95,17 @@
                     </div>
                   </div>
                   <div class="project-date text-right">
-                    <span class="hidden-sm-down">
+                  <span class="hidden-sm-down">
+                    <div class="time">
+                    <div class="row mt-3">
+                      <div class="col-sm-6">
                       <a href="<?= base_url() ?>classes/edit_assignment/<?= $val2['id_kelas']; ?>/<?= $val2['id_tugas']; ?>">Edit</a><br>
+                      </div>
+                      <div class="col-sm-6">
                       <a href="<?= base_url() ?>classes/del_assignment/<?= $val2['id_kelas']; ?>/<?= $val2['id_tugas']; ?>">Hapus</a>
+                      </div>
+                    </div>
+                    </div>
                     </span>
                   </div>
                 </div>
@@ -161,6 +169,20 @@
                         <a href="<?= base_url()?>classes/detail_tugaskuisguru/<?= $val['id_kelas']; ?>/<?= $val2['id_tugas']; ?>"><h3 class="h4" style="font-size: 20px;"><?= $val2['judul_tugas']; ?></h3><small><?= $val['judul_kelas']; ?></small></a>
                       <?php endif; ?>
                     </div>
+                  </div>
+                  <div class="project-date text-right">
+                  <span class="hidden-sm-down">
+                    <div class="time">
+                    <div class="row mt-3">
+                      <div class="col-sm-6">
+                      <a href="<?= base_url() ?>classes/edit_assignment/<?= $val2['id_kelas']; ?>/<?= $val2['id_tugas']; ?>">Edit</a><br>
+                      </div>
+                      <div class="col-sm-6">
+                      <a href="<?= base_url() ?>classes/del_assignment/<?= $val2['id_kelas']; ?>/<?= $val2['id_tugas']; ?>">Hapus</a>
+                      </div>
+                    </div>
+                    </div>
+                    </span>
                   </div>
                   <!-- <div class="project-date"><span class="hidden-sm-down">Hari Ini pada 4:24 AM</span></div> -->
                 </div>
