@@ -11,7 +11,13 @@ class Profile extends CI_Controller {
 
     public function index()
     {
-        if(isset($this->session->userdata['logged_in'])){
+        $userId = $this->session->userdata('id_user');
+        $isUserLoggedIn = $this->session->userdata('logged_in') && $userId;
+
+        if (!$isUserLoggedIn) {
+            redirect("home");
+        }
+
             $email = $_SESSION['email'];
             $id_user = $_SESSION['id_user'];
 
@@ -31,14 +37,18 @@ class Profile extends CI_Controller {
             $this->load->view('partialsuser/header',$header);
             $this->load->view('profile/my_profile',$data);
             $this->load->view('partialsuser/footer');
-        } else {
-            redirect('home');
-        }
+        
     }
 
     public function edit_profile()
     {
-        if(isset($this->session->userdata['logged_in'])){
+        $userId = $this->session->userdata('id_user');
+        $isUserLoggedIn = $this->session->userdata('logged_in') && $userId;
+
+        if (!$isUserLoggedIn) {
+            redirect("home");
+        }
+
             $data['profile'] = $this->Profile_model->getProfile();
             $header['nama'] = explode (" ",$this->Classes_model->getMyName()['nama']);
             $notif = $this->Classes_model->getPesertaByUserId();
@@ -53,38 +63,50 @@ class Profile extends CI_Controller {
             $this->load->view('partialsuser/header',$header);
             $this->load->view('profile/edit_profile',$data);
             $this->load->view('partialsuser/footer');
-        } else {
-            redirect('home');
-        }
+        
     }
 
     public function edit_profile_action()
     {
-        if(isset($this->session->userdata['logged_in'])){
+        $userId = $this->session->userdata('id_user');
+        $isUserLoggedIn = $this->session->userdata('logged_in') && $userId;
+
+        if (!$isUserLoggedIn) {
+            redirect("home");
+        }
+
             $edit_profile = $this->Profile_model->editProfile();
             if($edit_profile == "fail"){
                 $this->session->set_flashdata("invalidImage", "Invalid Image Size (Max Size: 3 MB)");
                 redirect("profile/edit_profile");
             }
             redirect('profile');
-        } else {
-            redirect('home');
-        }
+        
     }
 
     public function delete_account()
     {
-        if(isset($this->session->userdata['logged_in'])){
+        $userId = $this->session->userdata('id_user');
+        $isUserLoggedIn = $this->session->userdata('logged_in') && $userId;
+
+        if (!$isUserLoggedIn) {
+            redirect("home");
+        }
+
             $this->Profile_model->deleteAccount();
             redirect('login/logout');
-        } else {
-            redirect('home');
-        }
+        
     }
 
     public function change_password()
     {
-        if(isset($this->session->userdata['logged_in'])){
+        $userId = $this->session->userdata('id_user');
+        $isUserLoggedIn = $this->session->userdata('logged_in') && $userId;
+
+        if (!$isUserLoggedIn) {
+            redirect("home");
+        }
+
             $header['nama'] = explode (" ",$this->Classes_model->getMyName()['nama']);
             $notif = $this->Classes_model->getPesertaByUserId();
             $datanotif = array();
@@ -98,14 +120,17 @@ class Profile extends CI_Controller {
             $this->load->view('partialsuser/header',$header);
             $this->load->view('profile/change_password');
             $this->load->view('partialsuser/footer');
-        } else {
-            redirect('home');
-        }
+        
     }
 
     public function change_password_action()
     {
-        if(isset($this->session->userdata['logged_in'])){
+        $userId = $this->session->userdata('id_user');
+        $isUserLoggedIn = $this->session->userdata('logged_in') && $userId;
+
+        if (!$isUserLoggedIn) {
+            redirect("home");
+        }
             $oldPass = $this->input->post('old_password');
             $hashed = hash('sha256', $oldPass);
             $getPass = $this->Profile_model->getFirstAccount();
@@ -133,8 +158,6 @@ class Profile extends CI_Controller {
 			    redirect('profile/change_password');
             }
 
-        } else {
-            redirect('home');
-        }
+        
     }
 }

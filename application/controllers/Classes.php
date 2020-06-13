@@ -196,7 +196,20 @@ class Classes extends CI_Controller {
 
     public function update_class($id_kelas)
     {
-        if(isset($this->session->userdata['logged_in'])){
+        $userId = $this->session->userdata('id_user');
+        $isUserLoggedIn = $this->session->userdata('logged_in') && $userId;
+
+        if (!$isUserLoggedIn) {
+            redirect("home");
+        }
+
+        $classDetail = $this->Classes_model->getClassById($id_kelas)[0];
+        $isClassOwner = $classDetail['pembuat_kelas'] == $userId;
+        
+        if (!$isClassOwner) {
+            redirect("home");
+        }
+
             $data['kategori'] = $this->Classes_model->getKategori();
             $data['jenis'] = $this->Classes_model->getJenis();
             $data['kelas'] = $this->Classes_model->getClassById($id_kelas);
@@ -213,24 +226,32 @@ class Classes extends CI_Controller {
             $header['notif'] = $datanotif;
             $this->load->view('partialsuser/header',$header);
             $this->load->view('classes/update_class',$data);
-            $this->load->view('partialsuser/footer');
-        } else {
-            redirect('home');
-        }
+            $this->load->view('partialsuser/footer');   
     }
 
     public function update_class_action($id_kelas)
     {
-        if(isset($this->session->userdata['logged_in'])){
+        $userId = $this->session->userdata('id_user');
+        $isUserLoggedIn = $this->session->userdata('logged_in') && $userId;
+
+        if (!$isUserLoggedIn) {
+            redirect("home");
+        }
+
+        $classDetail = $this->Classes_model->getClassById($id_kelas)[0];
+        $isClassOwner = $classDetail['pembuat_kelas'] == $userId;
+        
+        if (!$isClassOwner) {
+            redirect("home");
+        }
+
             $updateClass = $this->Classes_model->updateClass($id_kelas);
             if($updateClass == "fail"){
                 $this->session->set_flashdata("invalidImage", "Invalid Image Size (Max Size: 3 MB)");
                 redirect("classes/update_class/".$id_kelas);
             }
             redirect('classes/open_class/' . $id_kelas);
-        } else {
-            redirect('home');
-        }
+        
     }
 
     public function set_kegiatan($id_kelas)
@@ -254,7 +275,20 @@ class Classes extends CI_Controller {
 
     public function edit_kegiatan($id_kelas,$id_kegiatan)
     {
-        if(isset($this->session->userdata['logged_in'])){
+        $userId = $this->session->userdata('id_user');
+        $isUserLoggedIn = $this->session->userdata('logged_in') && $userId;
+
+        if (!$isUserLoggedIn) {
+            redirect("home");
+        }
+
+        $classDetail = $this->Classes_model->getClassById($id_kelas)[0];
+        $isClassOwner = $classDetail['pembuat_kelas'] == $userId;
+        
+        if (!$isClassOwner) {
+            redirect("home");
+        }
+
             $kegiatan = $this->Classes_model->updateKegiatan($id_kelas, $id_kegiatan);
             if($kegiatan == "fail"){
                 $this->session->set_flashdata("invalidFile", "Materi anda gagal di upload (hanya pdf, doc, ppt). Ukuran Maksimal : 25MB");
@@ -264,9 +298,7 @@ class Classes extends CI_Controller {
                 $this->session->set_flashdata("success", "Jadwal Kegiatan anda berhasil di update!");
             }
             redirect('classes/open_class/' . $id_kelas);
-        } else {
-            redirect('home');
-        }
+        
     }
 
     public function join_class($id_kelas)
@@ -489,6 +521,20 @@ class Classes extends CI_Controller {
 
     public function hapus_materi($id_kelas, $url_materi)
     {
+        $userId = $this->session->userdata('id_user');
+        $isUserLoggedIn = $this->session->userdata('logged_in') && $userId;
+
+        if (!$isUserLoggedIn) {
+            redirect("home");
+        }
+
+        $classDetail = $this->Classes_model->getClassById($id_kelas)[0];
+        $isClassOwner = $classDetail['pembuat_kelas'] == $userId;
+        
+        if (!$isClassOwner) {
+            redirect("home");
+        }
+
         $this->Classes_model->delMateri($url_materi);
         redirect('classes/open_class/'.$id_kelas);
     }
