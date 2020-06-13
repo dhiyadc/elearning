@@ -69,11 +69,11 @@
 <section class="menutop">
 	<div class="container">
 	<div class="row mt-5" style="padding-bottom :15px; border-bottom: 1px solid #dedfe0;">
-		<div class="col-xs-2">
+		<div class="col-xs-2" style="padding-left: 25px;">
 			<div class="col-md-2"><button class="btn btn-primary" style="background-color: dimgrey; border-color: white">Kelas</button>
 			</div>
 		</div>
-		<div class="col-xs-10 no-margin">
+		<div class="col-xs-10 no-margin" style="padding-right: 36px;">
 			
 		
 			<div class="row">
@@ -132,7 +132,7 @@
 		
 		  
 	</div>
-	<div class="ml-auto w-35">
+	<div class="ml-auto w-35" style="padding-left: 40px; padding-right: 100px;">
 			
             <!-- <nav class="site-navigation position-relative text-right" role="navigation">
               <ul class="site-menu  mr-auto d-none d-lg-block m-0 p-0">
@@ -308,7 +308,7 @@
 				<div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
 
 					<?php if($classNum > 6 ):  ?>
-					<div id="loadMore">
+					<div id="loadMore" style="padding-left: 60px;">
 						<button class="btn d-flex justify-content-center"> Lebih Banyak</button>
 					</div>
 				</div>
