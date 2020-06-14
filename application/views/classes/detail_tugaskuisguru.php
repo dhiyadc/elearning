@@ -173,14 +173,14 @@
                               $hari = floor($diff / (60 * 60 * 24));
 
                               if($val2['status'] == "Terlambat") :
-                                if ($menit < 60) : ?>
-                                  <div class="time">Terlambat <?= $menit; ?> detik</div>
-                                <?php elseif($menit > 60) : ?>
-                                  <div class="time">Terlambat <?= floor($menit / 60); ?> menit</div>
-                                <?php elseif ($hari == 0) : ?>
+                                if ($hari > 0) : ?>
+                                  <div class="time">Terlambat <?= $hari; ?> hari, <?= floor($jam / 24); ?> jam, <?= floor($menit / 60); ?> menit</div>
+                                <?php elseif($jam > 1 || $hari < 0 || $jam == 1) : ?>
                                   <div class="time">Terlambat <?= $jam; ?> jam, <?= floor($menit / 60); ?> menit</div>
-                                <?php else : ?>
-                                  <div class="time">Terlambat <?= $hari; ?> hari, <?= floor($jam / 60); ?> jam, <?= floor($menit / 60); ?> menit</div>
+                                <?php elseif ($menit > 60 || $jam < 1) : ?>
+                                  <div class="time">Terlambat <?= floor($menit / 60); ?> menit</div>
+                                <?php elseif ($menit < 60 || $menit == 60) : ?>
+                                  <div class="time">Terlambat <?= $menit; ?> detik</div>
                                 <?php endif; ?>
                               <?php else : ?>
                                 <div class="time"><?= $val2['status']; ?></div>
