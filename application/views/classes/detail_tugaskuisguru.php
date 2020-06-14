@@ -174,10 +174,10 @@
 
                               if($val2['status'] == "Terlambat") :
                                 if ($hari > 0) : ?>
-                                  <div class="time">Terlambat <?= $hari; ?> hari, <?= floor($jam / 24); ?> jam, <?= floor($menit / 60); ?> menit</div>
-                                <?php elseif($jam > 24 || $hari < 0 || $jam == 1) : ?>
+                                  <div class="time">Terlambat <?= $hari; ?> hari, <?= floor($jam - 24); ?> jam, <?= floor($menit / 60); ?> menit</div>
+                                <?php elseif($jam < 24 || $hari < 0) : ?>
                                   <div class="time">Terlambat <?= $jam; ?> jam, <?= floor($menit / 60); ?> menit</div>
-                                <?php elseif ($menit > 60 || $jam < 1) : ?>
+                                <?php elseif ($menit > 60 || $jam < 0) : ?>
                                   <div class="time">Terlambat <?= floor($menit / 60); ?> menit</div>
                                 <?php elseif ($menit < 60 || $menit == 60) : ?>
                                   <div class="time">Terlambat <?= $menit; ?> detik</div>
