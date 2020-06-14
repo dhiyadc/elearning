@@ -162,6 +162,14 @@ class Classes_model extends CI_Model {
         return $this->db->get('kelas')->result_array();
     }
 
+    public function getPesertabyClass($id)
+    {
+        $this->db->where('id_user', $this->session->userdata('id_user'));
+        $this->db->where('id_kelas',$id);
+        return $this->db->get('peserta')->result_array();
+        
+    }
+
     public function getPembuat()
     {
         return $this->db->get('detail_user')->result_array();
