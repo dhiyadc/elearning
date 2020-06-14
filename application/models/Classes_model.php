@@ -829,8 +829,6 @@ class Classes_model extends CI_Model {
 
     public function delMateri($url_materi)
     {
-        
-
         unlink("assets/docs/".$url_materi);
 
         $sql = "DELETE FROM materi WHERE url_materi = '$url_materi'";
@@ -904,8 +902,9 @@ class Classes_model extends CI_Model {
         $this->load->library('upload', $config);
         if ($this->upload->do_upload('assignment')) {
             $filename = $this->upload->data('file_name');
+            $timezone = time() + (60 * 60 * 7);
 
-            if (date('Y-m-d H:i:s') > $deadline) {
+            if (gmdate('Y-m-d H:i:s', $timezone) > $deadline) {
                 $data = [
                     'id_tugas' => $id_tugas,
                     'url_file' => $filename,
@@ -913,7 +912,7 @@ class Classes_model extends CI_Model {
                     'status_tugas' => 2,
                     'id_user' => $this->session->userdata('id_user'),
                     'subjek_tugas' => $this->input->post('subjek'),
-                    'tanggal_submit' => date('Y-m-d H:i:s')
+                    'tanggal_submit' => gmdate('Y-m-d H:i:s', $timezone)
                 ];
         
                 $this->db->insert('submit_assignment',$data);
@@ -926,7 +925,7 @@ class Classes_model extends CI_Model {
                     'status_tugas' => 1,
                     'id_user' => $this->session->userdata('id_user'),
                     'subjek_tugas' => $this->input->post('subjek'),
-                    'tanggal_submit' => date('Y-m-d H:i:s')
+                    'tanggal_submit' => gmdate('Y-m-d H:i:s',$timezone)
                 ];
         
                 $this->db->insert('submit_assignment',$data);

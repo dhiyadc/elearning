@@ -173,8 +173,10 @@
                               $hari = floor($diff / (60 * 60 * 24));
 
                               if($val2['status'] == "Terlambat") :
-                                if($jam == 0) : ?>
-                                  <div class="time">Terlambat <?= $menit; ?> menit</div>
+                                if ($menit < 60) : ?>
+                                  <div class="time">Terlambat <?= $menit; ?> detik</div>
+                                <?php elseif($menit > 60) : ?>
+                                  <div class="time">Terlambat <?= floor($menit / 60); ?> menit</div>
                                 <?php elseif ($hari == 0) : ?>
                                   <div class="time">Terlambat <?= $jam; ?> jam, <?= floor($menit / 60); ?> menit</div>
                                 <?php else : ?>
@@ -235,14 +237,6 @@
                     </section>
 
                   </div>
-                  <?php if ($this->session->flashdata('successUpdateNilai')) { ?>
-                        <script src="<?php echo base_url(); ?>assets/js/jquery-3.3.1.min.js"></script>
-                        <script>
-                        $(function () {
-                          $('#myTab a[href="#tab<?= $this->session->flashdata('successUpdateNilai'); ?>"]').tab('show');
-                        })
-                      </script>
-                  <?php } ?>
               <?php endif; ?>
             <?php endforeach; ?>
           <?php endforeach; ?>
@@ -255,6 +249,14 @@
 
 <!-- <script type="text/javascript" src="<?= base_url(); ?>assets/js/password_verif.js"></script> -->
  
+<?php if ($this->session->flashdata('successUpdateNilai')) { ?>
+                        <script src="<?php echo base_url(); ?>assets/js/jquery-3.3.1.min.js"></script>
+                        <script>
+                        $(function () {
+                          $('#myTab a[href="#tab<?= $this->session->flashdata('successUpdateNilai'); ?>"]').tab('show');
+                        })
+                      </script>
+                  <?php } ?>
  <script>
  $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
   $(this).removeClass('active');
