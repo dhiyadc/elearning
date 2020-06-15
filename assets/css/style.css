@@ -335,7 +335,8 @@ h1, h2, h3, h4, h5,
         color: #fff;
         font-weight: 400;
         display: inline-block;
-        text-decoration: none !important; }
+        text-decoration: none !important;
+       }
         .site-navbar .site-navigation .site-menu > li > a:hover {
           color: #fff; }
     .site-navbar .site-navigation .site-menu .has-children {
@@ -607,7 +608,8 @@ h1, h2, h3, h4, h5,
         color: #000;
         font-weight: 400;
         display: inline-block;
-        text-decoration: none !important; }
+        text-decoration: none !important; 
+        text-shadow: 0px 0px #ffff;}
         .sticky-wrapper.is-sticky .site-navbar .site-menu > li > a:hover {
           color: #7971ea; }
         .sticky-wrapper.is-sticky .site-navbar .site-menu > li > a.active:after {
