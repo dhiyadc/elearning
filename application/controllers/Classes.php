@@ -832,21 +832,19 @@ class Classes extends CI_Controller {
     }
 
     public function detail_tugaskuis($id_kelas,$id_tugas){
+
         $userId = $this->session->userdata('id_user');
         $isUserLoggedIn = $this->session->userdata('logged_in') && $userId;
 
         if (!$isUserLoggedIn) {
             redirect("home");
         }
-
         
-            $classDetail2 = $this->Classes_model->getPesertabyClass($id_kelas)[0];
-            $isPeserta = $classDetail2['id_user'] == $userId;
+        $classDetail = $this->Classes_model->getClassById($id_kelas)[0];
+        $isClassOwner = $classDetail['pembuat_kelas'] == $userId;
 
-            if(!$isPeserta){
-                redirect("home");
-            }
-
+        if($isClassOwner){
+           
             $data['tugas'] = $this->Classes_model->getTugasByTugasId($id_tugas);
             $data['cek'] = $this->Classes_model->cekTugas($data['tugas'][0]['id_tugas']);
             $data['submit'] = $this->Classes_model->getSubmit();
@@ -865,8 +863,32 @@ class Classes extends CI_Controller {
             $this->load->view('partialsuser/header',$header);
             $this->load->view('classes/detail_tugaskuis',$data);
             $this->load->view('partialsuser/footer');
-        
-    
+        } else {
+            $classDetail2 = $this->Classes_model->getPesertabyClass($id_kelas)[0];
+            $isPeserta = $classDetail2['id_user'] == $userId;
+            
+            if(!$isPeserta){
+                redirect("home");
+            }
+            $data['tugas'] = $this->Classes_model->getTugasByTugasId($id_tugas);
+            $data['cek'] = $this->Classes_model->cekTugas($data['tugas'][0]['id_tugas']);
+            $data['submit'] = $this->Classes_model->getSubmit();
+            $data['kelas'] = $this->Classes_model->getClassById($id_kelas);
+            $data['user'] = $this->Classes_model->getUserDetail($data['kelas'][0]['pembuat_kelas']);
+            $header['nama'] = explode (" ",$this->Classes_model->getMyName()['nama']);
+            $notif = $this->Classes_model->getPesertaByUserId();
+            $datanotif = array();
+            foreach ($notif as $value) {
+                $cek = $this->Classes_model->getKelasKegiatan($value['id_kelas']);
+                if($cek != null) {
+                    $datanotif[] = $cek;
+                }
+            }
+            $header['notif'] = $datanotif;
+            $this->load->view('partialsuser/header',$header);
+            $this->load->view('classes/detail_tugaskuis',$data);
+            $this->load->view('partialsuser/footer');
+        }
     }
 
     public function detail_tugaskuisguru($id_kelas,$id_tugas){
