@@ -177,7 +177,7 @@
                       <?php $i++; ?>
                       <?php endforeach; ?>
                       <?php else : ?>
-                        <p><center>Tidak Ada Notifikasi</center></p>
+                        <p style="text-align: center; margin-top: 10px; text-shadow: 0px 0px white;">Tidak Ada Notifikasi</p>
                       <?php endif; ?>
                       <li class="footer text-center" style="background-color: forestgreen;">
                         <a href="<?php echo base_url(); ?>classes/my_classes" class="text-light">View All</a>
@@ -192,7 +192,7 @@
                       aria-haspopup="true" aria-expanded="false">Hi, <?= $nama[0]; ?> <i class="fa fa-user"></i>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right dropdown-default"
-                      aria-labelledby="navbarDropdownMenuLink-333">
+                      aria-labelledby="navbarDropdownMenuLink-333" style="text-shadow: 0px 0px white;">
                       <a class="dropdown-item" href="<?= base_url(); ?>profile">Profile</a>
                       <a class="dropdown-item" href="<?= base_url(); ?>profile/change_password">Ubah Password</a>
                       <a class="dropdown-item" href="<?= base_url(); ?>login/logout" style="color: cornflowerblue;">Keluar</a>
