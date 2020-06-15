@@ -337,6 +337,7 @@ class Classes extends CI_Controller {
         if(isset($this->session->userdata['logged_in'])){
             $data['seluruh_kelas'] = $this->Classes_model->getAllClasses();
             $data['kelas'] = $this->Classes_model->getMyClasses();
+            $data['private_kelas'] = $this->Classes_model->getMyPrivateClasses();
             $data['kegiatan'] = $this->Classes_model->getAllKegiatan();
             $data['status'] = $this->Classes_model->getStatus();
             $data['peserta'] = $this->Classes_model->getPeserta();

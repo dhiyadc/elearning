@@ -292,7 +292,7 @@
       <div class="col">
       	<div class="card card-list">
           <div class="card-body">
-          <h2>Kelas Saya</h2>
+          <h2>Kelas Saya (Publik)</h2>
           </div>
          
           <div class="card-body table-responsive">
@@ -346,6 +346,97 @@
                                     <a href="<?= base_url()?>classes/open_class/<?= $val['id_kelas'] ?>" class="btn btn-light">Lihat kelas</a>
                                     <a class="btn btn-dark mr-1" href="<?= base_url()?>classes/update_class/<?= $val['id_kelas'] ?>">Edit Kelas</a>
                                     
+                                </td>
+                                </div>
+                            </tr>
+                <?php endforeach; ?>
+              </tbody>
+            </table>
+          </div>
+          <div class="card-footer white py-3 d-flex justify-content-center">
+          <ul class="pagination">
+            <li class="page-item">
+              <a class="page-link" href="#" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+                <span class="sr-only">Previous</span>
+              </a>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item">
+              <a class="page-link" href="#" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+                <span class="sr-only">Next</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="row mt-5">
+      <div class="col">
+      	<div class="card card-list">
+          <div class="card-body">
+          <h2>Kelas Saya (Private)</h2>
+          </div>
+         
+          <div class="card-body table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Kelas</th>
+                  <th scope="col">Progress</th>
+                  <th scope="col">Status</th>
+                  <th scope="col">Aksi</th>
+                </tr>
+              </thead>
+              <tbody>
+              <?php foreach ($private_kelas as $val) : ?>
+                            <tr>
+                                <th scope="row" style="width: 300px;"><a class="text-primary"><?= $val['judul_kelas']; ?></a></th>
+                                <td style="padding-top: 20px;"> 
+                                    <?php $total = 0; $selesai = 0;
+                                    foreach ($kegiatan as $val2) {
+                                        if ($val['id_kelas'] == $val2['id_kelas']){
+                                            $total++; 
+                                            if ($val2['status_kegiatan'] == 2) {
+                                                $selesai++; 
+                                            } 
+                                        }
+                                    }
+                                    if ($total == 0) {
+                                        $proses = 0;
+                                    }
+                                    else {
+                                        $proses = ($selesai / $total) * 100; 
+                                    }?>
+                                    <div class="progress md-progress">
+                                        <div class="progress-bar bg-info" role="progressbar" style="width: <?= $proses; ?>%" aria-valuenow="<?= $proses; ?>" aria-valuemin="0"
+                                        aria-valuemax="100"><?= $proses; ?>%</div>
+                                    </div>
+                                </td>
+                                <td style="padding-top: 20px;"> 
+                                    <?php foreach ($status as $val2) : ?>
+                                        <?php if ($val['status_kelas'] == $val2['id_status']) : ?>
+                                            <?php if ($val2['nama_status'] == "Selesai") : ?>
+                                                <span class="badge badge-success"><?= $val2['nama_status'] ?></span>
+                                            <?php else : ?>
+                                                <span class="badge badge-warning"><?= $val2['nama_status'] ?></span>
+                                            <?php endif; ?>
+                                        <?php endif; ?>
+                                    <?php endforeach; ?>
+                                </td>
+                                <td style="padding-top: 20px;"> 
+                                <div class="buttonclass">
+                                    <a href="<?= base_url()?>classes/open_class/<?= $val['id_kelas'] ?>" class="btn btn-light">Lihat kelas</a>
+                                    <a class="btn btn-dark mr-1" href="<?= base_url()?>classes/update_class/<?= $val['id_kelas'] ?>">Edit Kelas</a>
+                                    <input type="text" value="<?= base_url(); ?>classes/open_class/<?= $val['id_kelas']; ?>" id="copy_text" style="display: none;">
+                                    <button class="btn btn-info mr-1" onclick="copylink()">Copy Link</button>
                                 </td>
                                 </div>
                             </tr>

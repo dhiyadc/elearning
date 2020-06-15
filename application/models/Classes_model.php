@@ -25,7 +25,7 @@ class Classes_model extends CI_Model {
                     ON peserta.id_kelas = kelas.id_kelas
             LEFT JOIN status_kegiatan
                 ON status_kegiatan.id_status = kelas.status_kelas
-                WHERE kelas.judul_kelas LIKE '%$keyword%'
+                WHERE kelas.judul_kelas LIKE '%$keyword%' AND kelas.tipe_kelas = 1
             GROUP BY kelas.id_kelas";
             $query = $this->db->query($sql);
             return $query->result_array();
@@ -42,6 +42,7 @@ class Classes_model extends CI_Model {
                     ON peserta.id_kelas = kelas.id_kelas
             LEFT JOIN status_kegiatan
                 ON status_kegiatan.id_status = kelas.status_kelas
+            WHERE kelas.tipe_kelas = 1
             GROUP BY kelas.id_kelas";
             $query = $this->db->query($sql);
             return $query->result_array();
@@ -49,7 +50,7 @@ class Classes_model extends CI_Model {
     }
 
     public function getAllRandomClasses(){
-        $sql = "SELECT kelas.id_kelas, kelas.judul_kelas, kelas.poster_kelas, kelas.deskripsi_kelas, kategori_kelas.nama_kategori, jenis_kelas.nama_jenis, harga_kelas.harga_kelas, COUNT(peserta.id_kelas) as 'peserta', status_kegiatan.nama_status
+        $sql = "SELECT kelas.id_kelas, kelas.judul_kelas, kelas.poster_kelas, kelas.deskripsi_kelas, kategori_kelas.nama_kategori, jenis_kelas.nama_jenis, harga_kelas.harga_kelas, COUNT(peserta.id_kelas) as 'peserta', status_kegiatan.nama_status, kelas.tipe_kelas
         FROM kelas
         LEFT JOIN kategori_kelas
                 ON kategori_kelas.id_kategori = kelas.kategori_kelas 
@@ -61,6 +62,7 @@ class Classes_model extends CI_Model {
                 ON peserta.id_kelas = kelas.id_kelas
         LEFT JOIN status_kegiatan
             ON status_kegiatan.id_status = kelas.status_kelas
+        WHERE kelas.tipe_kelas = 1
         GROUP BY kelas.id_kelas
         ORDER BY Rand()";
             $query = $this->db->query($sql);
@@ -103,7 +105,7 @@ class Classes_model extends CI_Model {
                  ON peserta.id_kelas = kelas.id_kelas
         LEFT JOIN status_kegiatan
             ON status_kegiatan.id_status = kelas.status_kelas
-        WHERE kategori_kelas.nama_kategori = '$kategori'
+        WHERE kategori_kelas.nama_kategori = '$kategori' AND kelas.tipe_kelas = 1
         GROUP BY kelas.id_kelas";
          $query = $this->db->query($sql);
          return $query->result_array();
@@ -124,6 +126,7 @@ class Classes_model extends CI_Model {
                  ON peserta.id_kelas = kelas.id_kelas
         LEFT JOIN status_kegiatan
             ON status_kegiatan.id_status = kelas.status_kelas
+        WHERE kelas.tipe_kelas = 1
         GROUP BY kelas.id_kelas
         ORDER BY kelas.id_kelas DESC";
          $query = $this->db->query($sql);
@@ -142,6 +145,7 @@ class Classes_model extends CI_Model {
                     ON peserta.id_kelas = kelas.id_kelas
             LEFT JOIN status_kegiatan
                 ON status_kegiatan.id_status = kelas.status_kelas
+            WHERE kelas.tipe_kelas = 1
             GROUP BY kelas.id_kelas
             ORDER BY COUNT(peserta.id_kelas) DESC
             LIMIT 12";
@@ -153,6 +157,14 @@ class Classes_model extends CI_Model {
     public function getMyClasses()
     {
         $this->db->where('pembuat_kelas',$this->session->userdata('id_user'));
+        $this->db->where('tipe_kelas', 1);
+        return $this->db->get('kelas')->result_array();
+    }
+
+    public function getMyPrivateClasses()
+    {
+        $this->db->where('pembuat_kelas',$this->session->userdata('id_user'));
+        $this->db->where('tipe_kelas', 2);
         return $this->db->get('kelas')->result_array();
     }
 
@@ -346,7 +358,8 @@ class Classes_model extends CI_Model {
                     // 'jenis_kelas' => $this->input->post('jenis'),
                     'jenis_kelas' => 1,
                     'status_kelas' => 1,
-                    'batas_jumlah' => 0
+                    'batas_jumlah' => 0,
+                    'tipe_kelas' => $this->input->post('tipe')
                 ];
             }
             else {
@@ -360,7 +373,8 @@ class Classes_model extends CI_Model {
                     // 'jenis_kelas' => $this->input->post('jenis'),
                     'jenis_kelas' => 1,
                     'status_kelas' => 1,
-                    'batas_jumlah' => $this->input->post('jumlah_peserta')
+                    'batas_jumlah' => $this->input->post('jumlah_peserta'),
+                    'tipe_kelas' => $this->input->post('tipe')
                 ];
             }
     
