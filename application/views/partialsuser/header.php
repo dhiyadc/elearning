@@ -36,7 +36,7 @@
 
   </head>
   <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
-  <div class="modal fade" id="#" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <!-- <div class="modal fade" id="#" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -47,7 +47,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        <!-- <p for="msj">Info Kelas</p> -->
+                        <p for="msj">Info Kelas</p>
 
                     </div>
                   <div class="row">
@@ -90,11 +90,11 @@
                     <a href="<?= base_url(); ?>Iframe" class="btn btn-primary">Gabung</a>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
                     
-                    <!-- <a href="" class="btn btn-primary">Gabung</a> -->
+                    <a href="" class="btn btn-primary">Gabung</a>
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 
   
   
@@ -165,7 +165,7 @@
                           <div class="col-md-3 text-center">
                             <img src="<?php echo base_url(); ?>assets/images/<?= $val[$i]['poster_kelas']; ?>" class="rounded-circle" style="object-fit: cover;height: 60px; width: 60px;">
                           </div>
-                          <div class="col-md-8">
+                          <div class="col-md-8" style="text-shadow: 0px 0px white;">
                             <strong class="text-info"><?= $val[$i]['nama']; ?></strong>
                             <div>
                               <a href="<?= base_url() ?>classes/open_class/<?= $val[$i]['id_kelas']; ?>">Kelas <?= $val[$i]['judul_kelas']; ?> Sedang Dimulai</a>

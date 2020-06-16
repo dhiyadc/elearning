@@ -300,9 +300,9 @@
               <thead>
                 <tr>
                   <th scope="col">Kelas</th>
-                  <th scope="col">Progress</th>
-                  <th scope="col">Status</th>
-                  <th scope="col">Aksi</th>
+                  <th scope="col" style="padding-left: 40px;">Progress</th>
+                  <th scope="col"style="padding-left: 60px;">Status</th>
+                  <th scope="col" style="padding-left: 130px;">Aksi</th>
                 </tr>
               </thead>
               <tbody>
@@ -336,7 +336,7 @@
                                             <?php if ($val2['nama_status'] == "Selesai") : ?>
                                                 <span class="badge badge-success"><?= $val2['nama_status'] ?></span>
                                             <?php else : ?>
-                                                <span class="badge badge-warning"><?= $val2['nama_status'] ?></span>
+                                                <span class="badge badge-danger"><?= $val2['nama_status'] ?></span>
                                             <?php endif; ?>
                                         <?php endif; ?>
                                     <?php endforeach; ?>
@@ -345,7 +345,7 @@
                                 <div class="buttonclass">
                                     <a href="<?= base_url()?>classes/open_class/<?= $val['id_kelas'] ?>" class="btn btn-light">Lihat kelas</a>
                                     <a class="btn btn-dark mr-1" href="<?= base_url()?>classes/update_class/<?= $val['id_kelas'] ?>">Edit Kelas</a>
-                                    
+                                    <a class="btn btncyan mr-1" style="color: white;" href="<?= base_url()?>classes/update_class/<?= $val['id_kelas'] ?>">Detail</a>
                                 </td>
                                 </div>
                             </tr>
@@ -392,10 +392,10 @@
               <thead>
                 <tr>
                   <th scope="col">Kelas</th>
-                  <th scope="col">Progress</th>
-                  <th scope="col">Status</th>
+                  <th scope="col" style="padding-left: 60px;">Progress</th>
+                  <th scope="col" style="padding-left: 100px;">Status</th>
                   <!-- <th scope="col">Materi</th> -->
-                  <th scope="col">Aksi</th>
+                  <th scope="col" style="padding-left: 130px;">Aksi</th>
                   
                 </tr>
               </thead>
@@ -426,13 +426,13 @@
                                         aria-valuemax="100"><?= $proses; ?>%</div>
                                     </div>
                                 </td>
-                                <td style="padding-top:20px">
+                                <td style="padding-top:20px; padding-left: 60px;">
                                     <?php foreach ($status as $val3) : ?>
                                         <?php if ($val['status_kelas'] == $val3['id_status']) : ?>
                                             <?php if ($val3['nama_status'] == "Selesai") : ?>
-                                                <span class="badge badge-success"><?= $val3['nama_status'] ?></span>
+                                                <span class="badge badge-success" style="margin-left: 50px;"><?= $val3['nama_status'] ?></span>
                                             <?php else : ?>
-                                                <span class="badge badge-warning"><?= $val3['nama_status'] ?></span>
+                                                <span class="badge badge-danger"><?= $val3['nama_status'] ?></span>
                                             <?php endif; ?>
                                         <?php endif; ?>
                                     <?php endforeach; ?>
@@ -450,6 +450,7 @@
                                   <div class="buttonclass">
                                     <a href="<?= base_url()?>classes/open_class/<?= $val['id_kelas'] ?>" class="btn btn-light">Lihat Kelas</a>
                                     <a href="<?= base_url()?>classes/leave_class/<?= $val['id_kelas'] ?>" class="btn btn-danger">Tinggalkan</a>
+                                    <a href="<?= base_url()?>classes/leave_class/<?= $val['id_kelas'] ?>" class="btn btn-danger" style="background-color: forestgreen; border-color: white;">Jadwal</a>
                                   </div>
                                 </td>
                                 
@@ -501,7 +502,7 @@
                   <th scope="col">Nama Tugas</th>
                   <th scope="col">Kategori</th>
                   <th scope="col" style="text-align: center;">Deadline</th>
-                  <th scope="col">Aksi</th>
+                  <th scope="col" style="padding-left: 40px;">Aksi</th>
                 </tr>
               </thead>
               <tbody>
@@ -529,7 +530,7 @@
                               </td>
                               <td>
                                 <div class="buttonclass">
-                                  <a href="<?= base_url() ?>classes/detail_tugaskuis/<?= $val[$i][0][0]['id_kelas'] ?>/<?= $val3['id_tugas']; ?>" class="btn btncyan">Lihat Tugas</a>
+                                  <a href="<?= base_url() ?>classes/detail_tugaskuis/<?= $val[$i][0][0]['id_kelas'] ?>/<?= $val3['id_tugas']; ?>" class="btn btn-info">Lihat Tugas</a>
                                 </div>
                               </td>
                           </tr>
