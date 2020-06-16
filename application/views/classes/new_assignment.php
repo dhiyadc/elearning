@@ -7,13 +7,14 @@
 
       <div class="col-lg-6 pb-lg-4 pb-sm-3 ">
       <!-- <h5 class="h5 orange-text"><i class="fa fa-camera-retro"></i>#STAYATHOME</h5> -->
-      <h1 class="card-title h2 my-4 py-5">#STAY AT HOME Upgrade Skill</h1>
-      <p class="mb-4 pb-2 px-md-5 mx-md-5">Dapatkan Penawaran Kursus terbaik dan pengalaman terbaik disaat Pandemi dan Upgrade diri Kamu! .</p>
+      <h1 class="card-title h2 my-4 py-5"  style="font-weight: bold; color: black;">#STAY AT HOME Upgrade Skill</h1>
+      <p class="mb-4 pb-2 px-md-5 mx-md-5" style="color: black; text-shadow: floralwhite;">Dapatkan Penawaran Kursus terbaik dan pengalaman terbaik disaat Pandemi dan Upgrade diri Kamu! .</p>
 
       </div>
     </div>
   </div>
 </div>
+
 
 <div class="container">
     <form enctype="multipart/form-data" action="<?= base_url()?>classes/new_assignment_action/<?= $id ?>" method="post" class="form-horizontal">

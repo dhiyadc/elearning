@@ -36,7 +36,7 @@
 
   </head>
   <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
-  <div class="modal fade" id="#" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <!-- <div class="modal fade" id="#" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -47,7 +47,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        <!-- <p for="msj">Info Kelas</p> -->
+                        <p for="msj">Info Kelas</p>
 
                     </div>
                   <div class="row">
@@ -90,11 +90,11 @@
                     <a href="<?= base_url(); ?>Iframe" class="btn btn-primary">Gabung</a>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
                     
-                    <!-- <a href="" class="btn btn-primary">Gabung</a> -->
+                    <a href="" class="btn btn-primary">Gabung</a>
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 
   
   
@@ -113,7 +113,7 @@
     <header class="site-navbar py-4 js-sticky-header site-navbar-target" role="banner">
       
       <div class="container-fluid">
-        <div class="d-flex align-items-center">
+        <div class="d-flex align-items-center" style=" text-shadow: 2px 2px darkcyan;">
           <div class="site-logo mr-auto w-25"><a href="<?php echo base_url(); ?>"><img src="<?php echo base_url(); ?>assets/images/logo.png" alt="" width="150px" height="50px"></a></div>
 
           <div class="mx-auto text-center">
@@ -165,7 +165,7 @@
                           <div class="col-md-3 text-center">
                             <img src="<?php echo base_url(); ?>assets/images/<?= $val[$i]['poster_kelas']; ?>" class="rounded-circle" style="object-fit: cover;height: 60px; width: 60px;">
                           </div>
-                          <div class="col-md-8">
+                          <div class="col-md-8" style="text-shadow: 0px 0px white;">
                             <strong class="text-info"><?= $val[$i]['nama']; ?></strong>
                             <div>
                               <a href="<?= base_url() ?>classes/open_class/<?= $val[$i]['id_kelas']; ?>">Kelas <?= $val[$i]['judul_kelas']; ?> Sedang Dimulai</a>
@@ -177,7 +177,7 @@
                       <?php $i++; ?>
                       <?php endforeach; ?>
                       <?php else : ?>
-                        <p><center>Tidak Ada Notifikasi</center></p>
+                        <p style="text-align: center; margin-top: 10px; text-shadow: 0px 0px white;">Tidak Ada Notifikasi</p>
                       <?php endif; ?>
                       <li class="footer text-center" style="background-color: forestgreen;">
                         <a href="<?php echo base_url(); ?>classes/my_classes" class="text-light">View All</a>
@@ -192,7 +192,7 @@
                       aria-haspopup="true" aria-expanded="false">Hi, <?= $nama[0]; ?> <i class="fa fa-user"></i>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right dropdown-default"
-                      aria-labelledby="navbarDropdownMenuLink-333">
+                      aria-labelledby="navbarDropdownMenuLink-333" style="text-shadow: 0px 0px white;">
                       <a class="dropdown-item" href="<?= base_url(); ?>profile">Profile</a>
                       <a class="dropdown-item" href="<?= base_url(); ?>profile/change_password">Ubah Password</a>
                       <a class="dropdown-item" href="<?= base_url(); ?>login/logout" style="color: cornflowerblue;">Keluar</a>
