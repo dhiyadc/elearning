@@ -627,7 +627,10 @@ class Classes extends CI_Controller {
             redirect("home");
         }
 
-            $this->Classes_model->createAssignment($id_kelas);
+            $status = $this->Classes_model->createAssignment($id_kelas);
+            if ($status == "failed") {
+				$this->session->set_flashdata('failedInputFile', 'Kapasitas file yang Anda input melebihi 25 MB');
+            }
             redirect('classes/list_tugas/' . $id_kelas);
        
     }

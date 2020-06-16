@@ -91,7 +91,7 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-                    <textarea  class="form-control" name="deskripsi" required style="height: 200px;"><?= $val['deskripsi_kelas']; ?></textarea>
+                    <textarea class="form-control ckeditor" id="ckeditor" name="deskripsi" required style="height: 200px;"><?= $val['deskripsi_kelas']; ?></textarea>
                     </div>
                 </div>
             </div>
@@ -108,3 +108,5 @@
   <?php endforeach; ?>
 </div>
 </section>
+
+<script type="text/javascript" src="<?= base_url() ?>assets/ckeditor/ckeditor.js"></script>
