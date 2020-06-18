@@ -41,7 +41,7 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-                    <textarea  class="form-control" name="deskripsi" required style="height: 200px;"><?= $val['deskripsi_tugas']; ?></textarea>
+                    <textarea class="form-control ckeditor" id="ckeditor" name="deskripsi" required style="height: 200px;"><?= $val['deskripsi_tugas']; ?></textarea>
                     </div>
                 </div>
             </div>
@@ -95,6 +95,7 @@
 
 <script type="text/javascript" src="<?= base_url() ?>assets/datetimepicker/bootstrap-datetimepicker.js" charset="UTF-8"></script>
 <script type="text/javascript" src="<?= base_url() ?>assets/datetimepicker/bootstrap-datetimepicker.id.js" charset="UTF-8"></script>
+<script type="text/javascript" src="<?= base_url() ?>assets/ckeditor/ckeditor.js"></script>
 <script type="text/javascript">
         $('.form_datetime').datetimepicker({
             language: 'id',

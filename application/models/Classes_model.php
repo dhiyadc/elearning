@@ -246,7 +246,7 @@ class Classes_model extends CI_Model {
 
     public function getKelasKegiatan($id)
     {
-        $sql = "SELECT detail_user.nama, kelas.id_kelas, kelas.judul_kelas, kelas.poster_kelas, DATE_FORMAT(jadwal_kegiatan.tanggal_kegiatan, '%W, %d %M %Y (%H:%i)') as tanggal
+        $sql = "SELECT detail_user.nama, jadwal_kegiatan.id_kegiatan, jadwal_kegiatan.status_kegiatan, kelas.id_kelas, kelas.judul_kelas, kelas.poster_kelas, DATE_FORMAT(jadwal_kegiatan.tanggal_kegiatan, '%W, %d %M %Y (%H:%i)') as tanggal
                 FROM jadwal_kegiatan, kelas, detail_user
                 WHERE kelas.id_kelas = '$id' AND jadwal_kegiatan.id_kelas = kelas.id_kelas AND jadwal_kegiatan.status_kegiatan = 1 AND kelas.pembuat_kelas = detail_user.id_user";
         return $this->db->query($sql)->result_array();
@@ -880,16 +880,45 @@ class Classes_model extends CI_Model {
 
     public function createAssignment($id)
     {
-        $data = [
-            'id_tugas' => uniqid(),
-            'judul_tugas' => $this->input->post('judul'),
-            'deskripsi_tugas' => $this->input->post('deskripsi'),
-            'id_kelas' => $id,
-            'kategori_tugas' => $this->input->post('kategori'),
-            'batas_pengiriman_tugas' => $this->input->post('deadline')
-        ];
+        if(!empty($_FILES['url_tugas']['name'])) {
+            $config['upload_path'] = './assets/docs/';
+            $config['allowed_types'] = 'pdf|doc|docx';
+            $config['max_size'] = '25000';
+            $config['remove_space'] = true;
 
-        $this->db->insert('tugas_kuis',$data);
+            $this->load->library('upload', $config);
+            if ($this->upload->do_upload('url_tugas')) {
+                $filename = $this->upload->data('file_name');
+
+                    $data = [
+                        'id_tugas' => uniqid(),
+                        'judul_tugas' => $this->input->post('judul'),
+                        'deskripsi_tugas' => $this->input->post('deskripsi'),
+                        'url_tugas' => $filename,
+                        'id_kelas' => $id,
+                        'kategori_tugas' => $this->input->post('kategori'),
+                        'batas_pengiriman_tugas' => $this->input->post('deadline')
+                    ];
+            
+                    $this->db->insert('tugas_kuis',$data);
+            }
+            else {
+                return "failed";
+            }
+        }
+        else {
+            $data = [
+                'id_tugas' => uniqid(),
+                'judul_tugas' => $this->input->post('judul'),
+                'deskripsi_tugas' => $this->input->post('deskripsi'),
+                'url_tugas' => null,
+                'id_kelas' => $id,
+                'kategori_tugas' => $this->input->post('kategori'),
+                'batas_pengiriman_tugas' => $this->input->post('deadline')
+            ];
+    
+            $this->db->insert('tugas_kuis',$data);
+        }
     }
 
     public function collectAssignment($id_tugas,$deadline)

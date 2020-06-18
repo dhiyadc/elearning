@@ -98,7 +98,11 @@
                 <?php else : ?>
                   <?php foreach ($submit as $val3) : ?>
                     <?php if ($val2['id_tugas'] == $val3['id_tugas'] && $val3['id_user'] == $this->session->userdata('id_user')) : ?>
-                      <div class="nilai"><?= $val3['nilai_tugas']; ?>/100 Poin</span></div>
+                      <?php if ($val3['nilai_tugas'] == "Belum Dinilai") : ?>
+                        <div class="nilai"><?= $val3['nilai_tugas']; ?></span></div>
+                      <?php else : ?>
+                        <div class="nilai"><?= $val3['nilai_tugas']; ?>/100</span></div>
+                      <?php endif; ?>
                     <?php endif; ?>
                   <?php endforeach; ?>
                 <?php endif; ?>
@@ -121,54 +125,15 @@
                       <?php endforeach; ?>
                       </div>
                     <div class="d-flex align-items-center align-self-end">
-                      <div class="meta-item mr-auto">
-                      <a href="#" data-toggle="modal" data-target="#detailTugas<?= $val2['id_tugas']; ?>"><i class="fa fa-book m-1"></i>Lihat Materi</a>
-                      
-                      <!--  -->
-                      <!-- <div class="modal fade" id="lihatMateri<?= $lihatMateriCount; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-                        aria-hidden="true" style="padding-right: 60px; padding-left: 17px;">
-                        
-                        <div class="modal-dialog modal-lg" role="document">
-                        
-                          <div class="modal-content form-elegant">
-                           
-                            <div class="modal-header text-center">
-                              <h3 class="modal-title w-100 dark-grey-text font-weight-bold my-3" id="myModalLabel"><strong>Materi <?= $val2['judul_kelas']; ?></strong></h3>
-                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                              </button>
-                            </div>
-                          
-                            <div class="modal-body mx-4">
-                            
-                              <div class="container-fluid">
-                                <div class="row">
-                                <div class="col-xl-6 border-bottom  mt-3" style="width: 110px;" ><b>Kegiatan</b></div>
-                                <div class="col-xl-6 border-bottom  mt-3" style="width: 110px;" ><b>Nama File</b></div>
-                                </div>
-                                <div class="row">
-                                <?php foreach ($val as $val2) : ?>
-                                      <div class="col-xl-6 border-bottom pb-3 mt-3" style="width: 120px;"><?= $val2['deskripsi_kegiatan']; ?></div>
-                                      <div class="col-xl-6 border-bottom pb-3 mt-3" style="width: 120px;"> <img src="<?php echo base_url(); ?>assets/images/pdf.png" alt="..." class="img-fluid rounded-circle" style="width: 10px;"><a href="<?= base_url(); ?>classes/download_materi/"><?= $val2['url_materi']; ?></a></div>
-                                <?php endforeach; ?>
-                                  </div>
-                                  
-                              </div>
-                              
-
-                            </div>
-                          </div>
-                        </div>
-                        </div> -->
-                      <!--  -->
-                      </div>
                         <div class="meta-item ml-auto">
                           <?php if ($cek == null) : ?>
                             <a href="#" data-toggle="modal" data-target="#detailTugas<?= $val2['id_tugas']; ?>"><i class="fa fa-paper-plane-o m-1"></i>Serahkan Jawaban</a>
                           <?php else : ?>
                             <?php foreach ($submit as $val3) : ?>
                               <?php if ($val2['id_tugas'] == $val3['id_tugas'] && $val3['id_user'] == $this->session->userdata('id_user')) : ?>
-                                <a href="#" data-toggle="modal" data-target="#detailTugas<?= $val2['id_tugas']; ?>"><i class="fa fa-pencil m-1"></i>Ganti Jawaban</a>
+                                <?php if ($val3['nilai_tugas'] == "Belum Dinilai") : ?>
+                                  <a href="#" data-toggle="modal" data-target="#detailTugas<?= $val2['id_tugas']; ?>"><i class="fa fa-pencil m-1"></i>Ganti Jawaban</a>
+                                <?php endif; ?>
                               <?php endif; ?>
                             <?php endforeach; ?>
                           <?php endif; ?>
@@ -223,8 +188,6 @@
                                                           <a href="<?= base_url() ?>classes/hapus_jawaban/<?= $val['id_kelas']; ?>/<?= $val3['id_tugas']; ?>/<?= $val3['id_submit']; ?>" class="btn btn-danger blue-gradient btn-block btn-rounded z-depth-1a">Hapus Jawaban</a>
                                                         </div>
                                                       </form>
-                                                    <p style="color: red;"><span class="icon-warning"></span> Peringatan!</p>
-                                                    <p style="color: red;"><small>Jika Anda menghapus jawaban Anda setelah memperoleh nilai, maka nilai yang Anda peroleh akan ikut terhapus.</small></p>
                                                   <?php endif; ?>
                                                 <?php endforeach; ?>
                                               <?php endif; ?>

@@ -99,10 +99,13 @@
                   <span class="hidden-sm-down">
                     <div class="time">
                     <div class="row mt-3">
-                      <div class="col-sm-6">
+                      <div class="col-sm-4">
+                      <a href="<?= base_url()?>classes/detail_tugaskuis/<?= $val['id_kelas']; ?>/<?= $val2['id_tugas']; ?>">Lihat</a><br>
+                      </div>
+                      <div class="col-sm-4">
                       <a href="<?= base_url() ?>classes/edit_assignment/<?= $val2['id_kelas']; ?>/<?= $val2['id_tugas']; ?>">Edit</a><br>
                       </div>
-                      <div class="col-sm-6">
+                      <div class="col-sm-4">
                       <a href="<?= base_url() ?>classes/del_assignment/<?= $val2['id_kelas']; ?>/<?= $val2['id_tugas']; ?>">Hapus</a>
                       </div>
                     </div>
@@ -123,7 +126,11 @@
                         <?php else : ?>
                           <?php foreach ($submit as $val3) : ?>
                             <?php if ($val2['id_tugas'] == $val3['id_tugas'] && $val3['id_user'] == $this->session->userdata('id_user')) : ?>
-                              <div class="nilai"><?= $val3['nilai_tugas']; ?>/100</span></div>
+                              <?php if ($val3['nilai_tugas'] == "Belum Dinilai") : ?>
+                                <div class="nilai"><?= $val3['nilai_tugas']; ?></span></div>
+                              <?php else : ?>
+                                <div class="nilai"><?= $val3['nilai_tugas']; ?>/100</span></div>
+                              <?php endif; ?>
                             <?php endif; ?>
                           <?php endforeach; ?>
                         <?php endif; ?>
@@ -177,10 +184,13 @@
                     <span class="hidden-sm-down">
                     <div class="time">
                     <div class="row mt-3">
-                      <div class="col-sm-6">
+                      <div class="col-sm-4">
+                      <a href="<?= base_url()?>classes/detail_tugaskuis/<?= $val['id_kelas']; ?>/<?= $val2['id_tugas']; ?>">Lihat</a><br>
+                      </div>
+                      <div class="col-sm-4">
                       <a href="<?= base_url() ?>classes/edit_assignment/<?= $val2['id_kelas']; ?>/<?= $val2['id_tugas']; ?>">Edit</a><br>
                       </div>
-                      <div class="col-sm-6">
+                      <div class="col-sm-4">
                       <a href="<?= base_url() ?>classes/del_assignment/<?= $val2['id_kelas']; ?>/<?= $val2['id_tugas']; ?>">Hapus</a>
                       </div>
                     </div>
@@ -201,7 +211,11 @@
                       <?php else : ?>
                         <?php foreach ($submit as $val3) : ?>
                           <?php if ($val2['id_tugas'] == $val3['id_tugas'] && $val3['id_user'] == $this->session->userdata('id_user')) : ?>
-                            <div class="nilai"><?= $val3['nilai_tugas']; ?>/100</span></div>
+                            <?php if ($val3['nilai_tugas'] == "Belum Dinilai") : ?>
+                              <div class="nilai"><?= $val3['nilai_tugas']; ?></span></div>
+                            <?php else : ?>
+                              <div class="nilai"><?= $val3['nilai_tugas']; ?>/100</span></div>
+                            <?php endif; ?>
                           <?php endif; ?>
                         <?php endforeach; ?>
                       <?php endif; ?>

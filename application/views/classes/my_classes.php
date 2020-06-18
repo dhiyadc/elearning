@@ -6,7 +6,6 @@
 
 
 
-
 <section class="user_dashboard">
 <div class="row mt-0">
   <div class="col-lg-12" style="background-color: aquamarine;" >
@@ -21,7 +20,7 @@
   <div class="row">
 
     <!--Grid column-->
-    <div class="col-md-12 col-sm-12 col-xs-12 mb-4">
+    <div class="col-md-12 mb-4">
 
         <h5 class="text-center font-weight-bold mb-4" style="color: white">Dashboard Saya</h5>
         <div class="container my-5">
@@ -297,7 +296,6 @@
           </div>
          
           <div class="card-body table-responsive">
-            
             <table class="table">
               <thead>
                 <tr>
@@ -348,13 +346,20 @@
                                         <?php endif; ?>
                                     <?php endforeach; ?>
                                 </td>
-                                <td style="padding-top: 20px;"> 
-                                <div class="buttonclass">
-                                    <a href="<?= base_url()?>classes/open_class/<?= $val['id_kelas'] ?>" class="btn btn-light">Lihat kelas</a>
-                                    <a class="btn btn-dark mr-1" href="<?= base_url()?>classes/update_class/<?= $val['id_kelas'] ?>">Edit Kelas</a>
-                                    <a class="btn btncyan mr-1" style="color: white;" href="<?= base_url()?>classes/update_class/<?= $val['id_kelas'] ?>">Detail</a>
+                                <td style="padding-top: 20px;">
+                                  <div class="btn-group">
+                                    <a class="btn btn-outline-dark" href="<?= base_url()?>classes/open_class/<?= $val['id_kelas'] ?>" style="padding-right: 20px; padding-left: 20px; padding-top: 12px; padding-bottom: 12px;">Detail</a>
+                                    <button type="button" style="padding-right: 20px; padding-left: 20px; padding-top: 12px; padding-bottom: 12px;" class="btn btn-outline-dark dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                      <span class="sr-only">Toggle Dropdown</span>
+                                    </button>
+                                    <div class="dropdown-menu">
+                                      <a class="dropdown-item btn" href="<?= base_url()?>classes/open_modal_class/<?= $val['id_kelas'] ?>">Tambah Kegiatan</a>
+                                      <a class="dropdown-item btn" href="<?= base_url()?>classes/lihat_kegiatan/<?= $val['id_kelas'] ?>">Lihat Kegiatan</a>
+                                      <a class="dropdown-item btn" href="<?= base_url()?>classes/list_tugas/<?= $val['id_kelas'] ?>">List Tugas</a>
+                                      <a class="dropdown-item btn" href="<?= base_url()?>classes/update_class/<?= $val['id_kelas'] ?>">Edit Kelas</a>
+                                    </div>
+                                  </div>
                                 </td>
-                                </div>
                             </tr>
                 <?php endforeach; ?>
               </tbody>
@@ -394,7 +399,7 @@
             <h2>Kelas Diikuti</h2>
           </div>
          
-          <div class="card-body table-responsive">
+          <div class="card-body">
             <table class="table">
               <thead>
                 <tr>
@@ -458,10 +463,16 @@
                                   <?php endforeach; ?>
                                 </td> -->
                                 <td>
-                                  <div class="buttonclass">
-                                    <a href="<?= base_url()?>classes/open_class/<?= $val['id_kelas'] ?>" class="btn btn-light">Lihat Kelas</a>
-                                    <a href="<?= base_url()?>classes/leave_class/<?= $val['id_kelas'] ?>" class="btn btn-danger">Tinggalkan</a>
-                                    <a href="<?= base_url()?>classes/leave_class/<?= $val['id_kelas'] ?>" class="btn btn-danger" style="background-color: forestgreen; border-color: white;">Jadwal</a>
+                                  <div class="btn-group">
+                                    <a class="btn btn-outline-dark" href="<?= base_url()?>classes/open_class/<?= $val['id_kelas'] ?>" style="padding-right: 20px; padding-left: 20px; padding-top: 12px; padding-bottom: 12px;">Detail</a>
+                                    <button type="button" style="padding-right: 20px; padding-left: 20px; padding-top: 12px; padding-bottom: 12px;" class="btn btn-outline-dark dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                      <span class="sr-only">Toggle Dropdown</span>
+                                    </button>
+                                    <div class="dropdown-menu">
+                                      <a class="dropdown-item btn" href="<?= base_url()?>classes/lihat_kegiatan/<?= $val['id_kelas'] ?>">Lihat Kegiatan</a>
+                                      <a class="dropdown-item btn" href="<?= base_url()?>classes/list_tugas/<?= $val['id_kelas'] ?>">List Tugas</a>
+                                      <a class="dropdown-item btn" href="<?= base_url()?>classes/leave_class/<?= $val['id_kelas'] ?>">Tinggalkan</a>
+                                    </div>
                                   </div>
                                 </td>
                                 
@@ -505,13 +516,14 @@
             <h2>Tugas</h2>
           </div>
          
-          <div class="card-body table-responsive">
+          <div class="card-body">
             <table class="table">
               <thead>
                 <tr>
                   <th scope="col">Kelas</th>
                   <th scope="col">Nama Tugas</th>
                   <th scope="col">Kategori</th>
+                  <th scope="col">Nilai</th>
                   <th scope="col" style="text-align: center;">Deadline</th>
                   <th scope="col" style="padding-left: 40px;">Aksi</th>
                 </tr>
@@ -523,10 +535,9 @@
                     <?php foreach ($tugas as $val2[$i][$j]) : ?>
                       <?php foreach ($val2[$i][$j] as $val3) : ?>
                         <?php if ($val[$i][0][0]['id_kelas'] == $val3['id_kelas']) : ?>
-                          <?php if ($cek[$k]) : ?>
                             <tr>
-                              <th scope="row" style="width: 300px; "><a class="text-primary"><?= $val[$i][0][0]['judul_kelas']; ?></a></th>
-                              <td style="padding-top: 20px; ">
+                              <th scope="row" style="width: 300px;"><a class="text-primary"><?= $val[$i][0][0]['judul_kelas']; ?></a></th>
+                              <td style="padding-top: 20px;">
                                 <?= $val3['judul_tugas']; ?>
                               </td>
                               <td style="padding-top: 20px;">
@@ -536,16 +547,38 @@
                                   <span class="badge badge-danger"><?= $val3['kategori']; ?></span>
                                 <?php endif; ?>
                               </td> 
-                              <td style="padding-top:20px; text-align: center;">
+                              <td style="padding-top:20px">
                                 <span class="badge"><?= $val3['deadline']; ?></span>
                               </td>
-                              <td>
-                                <div class="buttonclass">
-                                  <a href="<?= base_url() ?>classes/detail_tugaskuis/<?= $val[$i][0][0]['id_kelas'] ?>/<?= $val3['id_tugas']; ?>" class="btn btn-info">Lihat Tugas</a>
-                                </div>
-                              </td>
+                              <?php if ($cek[$k] == true) : ?>
+                                <td style="padding-top:20px">
+                                  Belum Kumpul
+                                </td>
+                                <td>
+                                  <div class="buttonclass">
+                                    <a href="<?= base_url() ?>classes/detail_tugaskuis/<?= $val[$i][0][0]['id_kelas'] ?>/<?= $val3['id_tugas']; ?>" class="btn btncyan">Lihat Tugas</a>
+                                  </div>
+                                </td>
+                              <?php else : ?>
+                                <?php foreach ($submit as $val4) : ?>
+                                  <?php if ($val3['id_tugas'] == $val4['id_tugas'] && $val4['id_user'] == $this->session->userdata('id_user')) : ?>
+                                    <td style="padding-top:20px">
+                                    <?php if ($val4['nilai_tugas'] == "Belum Dinilai") {
+                                      echo $val4['nilai_tugas']; 
+                                    }
+                                    else { 
+                                      echo $val4['nilai_tugas'] . "/100";
+                                    } ?>
+                                    </td>
+                                    <td>
+                                      <div class="buttonclass">
+                                        <a href="<?= base_url() ?>classes/detail_tugaskuis/<?= $val[$i][0][0]['id_kelas'] ?>/<?= $val3['id_tugas']; ?>" class="btn btncyan"">Lihat Tugas</a>
+                                      </div>
+                                    </td>
+                                  <?php endif; ?>
+                                <?php endforeach; ?>
+                              <?php endif; ?>
                           </tr>
-                          <?php endif; ?>
                         <?php endif; ?>
                         <?php $k++; ?>
                       <?php endforeach; ?>
@@ -589,13 +622,13 @@
             <h2>Materi</h2>
           </div>
          
-          <div class="card-body table-responsive">
+          <div class="card-body">
             <table class="table">
               <thead>
                 <tr>
                   <th scope="col">Kelas</th>
-                  <th scope="col" style="text-align: center;">Jumlah Materi</th>
-                  <th scope="col" style="text-align: center;">Aksi</th>
+                  <th scope="col">Jumlah Materi</th>
+                  <th scope="col">Aksi</th>
                 </tr>
               </thead>
               <tbody>
@@ -608,19 +641,19 @@
                       <?php $countMateri++; ?>
                     <?php endforeach; ?>
                             <tr>
-                                <th scope="row" style="width: 300px; "><a href="<?= base_url(); ?>classes/open_class/<?= $val2['id_kelas']; ?>" class="text-primary"><?= $val2['judul_kelas']; ?></a></th>
-                                <td style="padding-top:20px; text-align: center;">
+                                <th scope="row" style="width: 300px;"><a href="<?= base_url(); ?>classes/open_class/<?= $val2['id_kelas']; ?>" class="text-primary"><?= $val2['judul_kelas']; ?></a></th>
+                                <td style="padding-top:20px">
                                   <?= $countMateri; ?>
                                 </td>
                                 <td>
-                                  <div class="buttonclass text-center">
-                                  <button class="btn btn-info" type="button" data-toggle="modal" data-target="#lihatMateri<?= $lihatMateriCount; ?>" style="padding: 15px; font-size: 10px;">Lihat Materi</button>
+                                  <div class="buttonclass">
+                                  <button class="btn btn-info" type="button" data-toggle="modal" data-target="#lihatMateri<?= $lihatMateriCount; ?>">Lihat Materi</button>
                                   </div>
                                 </td>
                             </tr>
 
             <div class="modal fade" id="lihatMateri<?= $lihatMateriCount; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-              aria-hidden="true" style="padding-right: 60px; padding-left: 17px;">
+              aria-hidden="true" style="padding-right: 90px;">
               
               <div class="modal-dialog modal-lg" role="document">
                 <!--Content-->
@@ -636,19 +669,15 @@
                   <div class="modal-body mx-4">
                     <!--Body-->
                     <div class="container-fluid">
-                      <div class="row">
-                      <div class="col-xl-6 border-bottom  mt-3" style="width: 110px;" ><b>Kegiatan</b></div>
-                      <div class="col-xl-6 border-bottom  mt-3" style="width: 110px;" ><b>Nama File</b></div>
-                      </div>
-                      <div class="row">
-                      <?php foreach ($val as $val2) : ?>
-                            <div class="col-xl-6 border-bottom pb-3 mt-3" style="width: 120px;"><?= $val2['deskripsi_kegiatan']; ?></div>
-                            <div class="col-xl-6 border-bottom pb-3 mt-3" style="width: 120px;"> <img src="<?php echo base_url(); ?>assets/images/pdf.png" alt="..." class="img-fluid rounded-circle" style="width: 10px;"><a href="<?= base_url(); ?>classes/download_materi/"><?= $val2['url_materi']; ?></a></div>
-                      <?php endforeach; ?>
-                        </div>
-                        
-                    </div>
-                    
+                                      <div class="row">
+                                      <div class="col-md-6 border-bottom pb-3 mt-3"><b>Kegiatan</b></div>
+                                      <div class="col-md-6 border-bottom pb-3 mt-3"><b>Nama File</b></div>
+                                      <?php foreach ($val as $val2) : ?>
+                                           <div class="col-md-6 border-bottom pb-3 mt-3"><?= $val2['deskripsi_kegiatan']; ?></div>
+                                           <div class="col-md-6 border-bottom pb-3 mt-3"><a href="<?= base_url(); ?>classes/download_materi/"><?= $val2['url_materi']; ?></a></div>
+                                      <?php endforeach; ?>
+                                        </div>
+                                    </div>
 
                   </div>
                 </div>
@@ -732,3 +761,7 @@
 </section>
 
 <script type="text/javascript" src="<?= base_url(); ?>assets/js/password_verif.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
