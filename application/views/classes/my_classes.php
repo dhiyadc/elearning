@@ -347,7 +347,6 @@
                                     <a class="btn btn-info mr-1" href="" data-toggle="modal" data-target="#tambahKegiatan">Tambah Kegiatan</a>
                                     <a class="btn btncyan mr-1" href="<?= base_url()?>classes/list_tugas/<?= $val['id_kelas'] ?>">List Tugas</a>
                                     <a class="btn btn-dark mr-1" href="<?= base_url()?>classes/update_class/<?= $val['id_kelas'] ?>">Edit Kelas</a>
-                                    <a class="btn btncyan mr-1" style="color: white;" href="<?= base_url()?>classes/update_class/<?= $val['id_kelas'] ?>">Detail</a>
                                 </td>
                                 </div>
                             </tr>
@@ -453,7 +452,7 @@
                                     <a href="<?= base_url()?>classes/open_class/<?= $val['id_kelas'] ?>" class="btn btn-light">Detail Kelas</a>
                                     <a href="<?= base_url()?>classes/list_tugas/<?= $val['id_kelas'] ?>" class="btn btncyan mr-1">List Tugas</a>
                                     <a href="<?= base_url()?>classes/leave_class/<?= $val['id_kelas'] ?>" class="btn btn-danger">Tinggalkan</a>
-                                    <a href="<?= base_url()?>classes/leave_class/<?= $val['id_kelas'] ?>" class="btn btn-danger" style="background-color: forestgreen; border-color: white;">Jadwal</a>
+                                    <!-- <a href="<?= base_url()?>classes/leave_class/<?= $val['id_kelas'] ?>" class="btn btn-danger" style="background-color: forestgreen; border-color: white;">Jadwal</a> -->
                                   </div>
                                 </td>
                                 

@@ -905,8 +905,6 @@ class Classes extends CI_Controller {
             $this->load->view('partialsuser/header',$header);
             $this->load->view('classes/detail_tugaskuisguru',$data);
             $this->load->view('partialsuser/footer');
-        
-    
     }
     
 }
