@@ -6,7 +6,6 @@
 
 
 
-
 <section class="user_dashboard">
 <div class="row mt-0">
   <div class="col-lg-12" style="background-color: aquamarine;" >
@@ -341,14 +340,20 @@
                                         <?php endif; ?>
                                     <?php endforeach; ?>
                                 </td>
-                                <td style="padding-top: 20px;"> 
-                                <div class="buttonclass">
-                                    <a href="<?= base_url()?>classes/open_class/<?= $val['id_kelas'] ?>" class="btn btn-light">Detail Kelas</a>
-                                    <a class="btn btn-info mr-1" href="" data-toggle="modal" data-target="#tambahKegiatan">Tambah Kegiatan</a>
-                                    <a class="btn btncyan mr-1" href="<?= base_url()?>classes/list_tugas/<?= $val['id_kelas'] ?>">List Tugas</a>
-                                    <a class="btn btn-dark mr-1" href="<?= base_url()?>classes/update_class/<?= $val['id_kelas'] ?>">Edit Kelas</a>
+                                <td style="padding-top: 20px;">
+                                  <div class="btn-group">
+                                    <a class="btn btn-outline-dark" href="<?= base_url()?>classes/open_class/<?= $val['id_kelas'] ?>" style="padding-right: 20px; padding-left: 20px; padding-top: 12px; padding-bottom: 12px;">Detail</a>
+                                    <button type="button" style="padding-right: 20px; padding-left: 20px; padding-top: 12px; padding-bottom: 12px;" class="btn btn-outline-dark dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                      <span class="sr-only">Toggle Dropdown</span>
+                                    </button>
+                                    <div class="dropdown-menu">
+                                      <a class="dropdown-item btn" href="<?= base_url()?>classes/open_modal_class/<?= $val['id_kelas'] ?>">Tambah Kegiatan</a>
+                                      <a class="dropdown-item btn" href="<?= base_url()?>classes/lihat_kegiatan/<?= $val['id_kelas'] ?>">Lihat Kegiatan</a>
+                                      <a class="dropdown-item btn" href="<?= base_url()?>classes/list_tugas/<?= $val['id_kelas'] ?>">List Tugas</a>
+                                      <a class="dropdown-item btn" href="<?= base_url()?>classes/update_class/<?= $val['id_kelas'] ?>">Edit Kelas</a>
+                                    </div>
+                                  </div>
                                 </td>
-                                </div>
                             </tr>
                 <?php endforeach; ?>
               </tbody>
@@ -448,11 +453,16 @@
                                   <?php endforeach; ?>
                                 </td> -->
                                 <td>
-                                  <div class="buttonclass">
-                                    <a href="<?= base_url()?>classes/open_class/<?= $val['id_kelas'] ?>" class="btn btn-light">Detail Kelas</a>
-                                    <a href="<?= base_url()?>classes/list_tugas/<?= $val['id_kelas'] ?>" class="btn btncyan mr-1">List Tugas</a>
-                                    <a href="<?= base_url()?>classes/leave_class/<?= $val['id_kelas'] ?>" class="btn btn-danger">Tinggalkan</a>
-                                    <!-- <a href="<?= base_url()?>classes/leave_class/<?= $val['id_kelas'] ?>" class="btn btn-danger" style="background-color: forestgreen; border-color: white;">Jadwal</a> -->
+                                  <div class="btn-group">
+                                    <a class="btn btn-outline-dark" href="<?= base_url()?>classes/open_class/<?= $val['id_kelas'] ?>" style="padding-right: 20px; padding-left: 20px; padding-top: 12px; padding-bottom: 12px;">Detail</a>
+                                    <button type="button" style="padding-right: 20px; padding-left: 20px; padding-top: 12px; padding-bottom: 12px;" class="btn btn-outline-dark dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                      <span class="sr-only">Toggle Dropdown</span>
+                                    </button>
+                                    <div class="dropdown-menu">
+                                      <a class="dropdown-item btn" href="<?= base_url()?>classes/lihat_kegiatan/<?= $val['id_kelas'] ?>">Lihat Kegiatan</a>
+                                      <a class="dropdown-item btn" href="<?= base_url()?>classes/list_tugas/<?= $val['id_kelas'] ?>">List Tugas</a>
+                                      <a class="dropdown-item btn" href="<?= base_url()?>classes/leave_class/<?= $val['id_kelas'] ?>">Tinggalkan</a>
+                                    </div>
                                   </div>
                                 </td>
                                 
@@ -536,7 +546,7 @@
                                 </td>
                                 <td>
                                   <div class="buttonclass">
-                                    <a href="<?= base_url() ?>classes/detail_tugaskuis/<?= $val[$i][0][0]['id_kelas'] ?>/<?= $val3['id_tugas']; ?>" class="btn btncyan"">Lihat Tugas</a>
+                                    <a href="<?= base_url() ?>classes/detail_tugaskuis/<?= $val[$i][0][0]['id_kelas'] ?>/<?= $val3['id_tugas']; ?>" class="btn btncyan">Lihat Tugas</a>
                                   </div>
                                 </td>
                               <?php else : ?>
@@ -741,3 +751,7 @@
 </section>
 
 <script type="text/javascript" src="<?= base_url(); ?>assets/js/password_verif.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>

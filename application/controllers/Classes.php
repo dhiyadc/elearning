@@ -906,5 +906,26 @@ class Classes extends CI_Controller {
             $this->load->view('classes/detail_tugaskuisguru',$data);
             $this->load->view('partialsuser/footer');
     }
+
+    public function open_modal_class($id_kelas) 
+    {
+        if(isset($this->session->userdata['logged_in'])){
+            $this->session->set_flashdata("openModal","#tambahKegiatan");
+            $this->session->set_flashdata("jadwalKegiatan","#tambahKegiatan");
+            redirect('classes/open_class/' . $id_kelas);
+        } else {
+            redirect('home');
+        }
+    }
+
+    public function lihat_kegiatan($id_kelas) 
+    {
+        if(isset($this->session->userdata['logged_in'])){
+            $this->session->set_flashdata("jadwalKegiatan","#tambahKegiatan");
+            redirect('classes/open_class/' . $id_kelas);
+        } else {
+            redirect('home');
+        }
+    }
     
 }

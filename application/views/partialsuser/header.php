@@ -32,7 +32,31 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
     
+    <style>
+/* .notification {
+  background-color: #555;
+  color: white;
+  text-decoration: none;
+  padding: 15px 26px;
+  position: relative;
+  display: inline-block;
+  border-radius: 2px;
+} */
 
+/* .notification:hover {
+  background: red;
+} */
+
+.notification .badge {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  padding: 5px 10px;
+  border-radius: 50%;
+  background-color: red;
+  color: white;
+}
+</style>
 
   </head>
   <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
@@ -145,10 +169,15 @@
               <ul class="site-menu main-menu site-menu-white js-clone-nav mr-auto d-none d-lg-block m-0 p-0">
               
               <li class="nav-item dropdown ">
-                    <a class="nav-link dropdown-toggle" id="notifis" data-toggle="dropdown"
+                <?php if (count($notif) == 0) : ?>
+                    <a class="nav-link dropdown-toggle notification" id="notifis" data-toggle="dropdown"
                       aria-haspopup="true" aria-expanded="false"><i class="fa fa-bell"></i>
-                      
                     </a>
+                <?php else : ?>
+                    <a class="nav-link dropdown-toggle notification" id="notifis" data-toggle="dropdown"
+                      aria-haspopup="true" aria-expanded="false"><i class="fa fa-bell"></i><span class="badge"><?= count($notif); ?></span>
+                    </a>
+                <?php endif; ?>
                     <div class="notif" aria-labelledby="notifis">
                     <ul class="dropdown-menu">
                       <li class="head text-light" style="background-color: forestgreen;">
@@ -160,20 +189,22 @@
                       <?php if ($notif != null) : ?>
                       <?php $i = 0; ?>
                       <?php foreach ($notif as $val) : ?>
-                      <li class="notification-box">
-                        <div class="row">
-                          <div class="col-md-3 text-center">
-                            <img src="<?php echo base_url(); ?>assets/images/<?= $val[$i]['poster_kelas']; ?>" class="rounded-circle" style="object-fit: cover;height: 60px; width: 60px;">
-                          </div>
-                          <div class="col-md-8" style="text-shadow: 0px 0px white;">
-                            <strong class="text-info"><?= $val[$i]['nama']; ?></strong>
-                            <div>
-                              <a href="<?= base_url() ?>classes/open_class/<?= $val[$i]['id_kelas']; ?>">Kelas <?= $val[$i]['judul_kelas']; ?> Sedang Dimulai</a>
+                        <?php if ($val[$i]['status_kegiatan'] == CLASS_STARTED) : ?>
+                          <li class="notification-box">
+                            <div class="row">
+                              <div class="col-md-3 text-center">
+                                <img src="<?php echo base_url(); ?>assets/images/<?= $val[$i]['poster_kelas']; ?>" class="rounded-circle" style="object-fit: cover;height: 60px; width: 60px;">
+                              </div>
+                              <div class="col-md-8" style="text-shadow: 0px 0px white;">
+                                <strong class="text-info"><?= $val[$i]['nama']; ?></strong>
+                                <div>
+                                  <a href="<?= base_url('class/') ?><?= $val[$i]['id_kelas'] ?>/<?= $val[$i]['id_kegiatan']; ?>">Kelas <?= $val[$i]['judul_kelas']; ?> Sedang Dimulai</a>
+                                </div>
+                                <small class="text-warning"><?= $val[$i]['tanggal']; ?></small>
+                              </div>    
                             </div>
-                            <small class="text-warning"><?= $val[$i]['tanggal']; ?></small>
-                          </div>    
-                        </div>
-                      </li>
+                          </li>
+                        <?php endif; ?>
                       <?php $i++; ?>
                       <?php endforeach; ?>
                       <?php else : ?>

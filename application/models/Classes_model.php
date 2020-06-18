@@ -246,7 +246,7 @@ class Classes_model extends CI_Model {
 
     public function getKelasKegiatan($id)
     {
-        $sql = "SELECT detail_user.nama, kelas.id_kelas, kelas.judul_kelas, kelas.poster_kelas, DATE_FORMAT(jadwal_kegiatan.tanggal_kegiatan, '%W, %d %M %Y (%H:%i)') as tanggal
+        $sql = "SELECT detail_user.nama, jadwal_kegiatan.id_kegiatan, jadwal_kegiatan.status_kegiatan, kelas.id_kelas, kelas.judul_kelas, kelas.poster_kelas, DATE_FORMAT(jadwal_kegiatan.tanggal_kegiatan, '%W, %d %M %Y (%H:%i)') as tanggal
                 FROM jadwal_kegiatan, kelas, detail_user
                 WHERE kelas.id_kelas = '$id' AND jadwal_kegiatan.id_kelas = kelas.id_kelas AND jadwal_kegiatan.status_kegiatan = 1 AND kelas.pembuat_kelas = detail_user.id_user";
         return $this->db->query($sql)->result_array();
