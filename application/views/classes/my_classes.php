@@ -293,13 +293,16 @@
       	<div class="card card-list">
           <div class="card-body">
           <h2>Kelas Saya</h2>
+          
           </div>
          
           <div class="card-body table-responsive">
+            
             <table class="table">
               <thead>
                 <tr>
                   <th scope="col">Kelas</th>
+                  <th scope="col"style="padding-left: 60px;"></th>
                   <th scope="col" style="padding-left: 40px;">Progress</th>
                   <th scope="col"style="padding-left: 60px;">Status</th>
                   <th scope="col" style="padding-left: 130px;">Aksi</th>
@@ -309,6 +312,17 @@
               <?php foreach ($kelas as $val) : ?>
                             <tr>
                                 <th scope="row" style="width: 300px;"><a class="text-primary"><?= $val['judul_kelas']; ?></a></th>
+                                <td style="padding-top: 20px;"> 
+                                    <?php foreach ($status as $val2) : ?>
+                                        <?php if ($val['status_kelas'] == $val2['id_status']) : ?>
+                                            <?php if ($val2['nama_status'] == "Selesai") : ?>
+                                               <span><i class="fa fa-share-alt" aria-hidden="true"></i></span>
+                                            <?php else : ?>
+                                                <span><i class="fa fa-share-alt" aria-hidden="true"></i></span>
+                                            <?php endif; ?>
+                                        <?php endif; ?>
+                                    <?php endforeach; ?>
+                                </td>
                                 <td style="padding-top: 20px;"> 
                                     <?php $total = 0; $selesai = 0;
                                     foreach ($kegiatan as $val2) {
@@ -392,6 +406,7 @@
               <thead>
                 <tr>
                   <th scope="col">Kelas</th>
+                  <th scope="col" style="padding-left: 100px;"></th>
                   <th scope="col" style="padding-left: 60px;">Progress</th>
                   <th scope="col" style="padding-left: 100px;">Status</th>
                   <!-- <th scope="col">Materi</th> -->
@@ -405,6 +420,9 @@
                         <?php if ($val2['id_kelas'] == $val['id_kelas'] && $val2['id_user'] == $this->session->userdata('id_user')) : ?>
                             <tr>
                                 <th scope="row" style="width: 300px;"><a class="text-primary"><?= $val['judul_kelas']; ?></a></th>
+                                <td style="padding-top: 20px;"> 
+                                    <span><i class="fa fa-share-alt" aria-hidden="true"></i></span>
+                                </td>
                                 <td style="padding-top: 20px;"> 
                                 <?php $total = 0; $selesai = 0;
                                 foreach ($kegiatan as $val3) {
