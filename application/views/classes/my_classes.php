@@ -312,16 +312,9 @@
               <?php foreach ($kelas as $val) : ?>
                             <tr>
                                 <th scope="row" style="width: 300px;"><a class="text-primary"><?= $val['judul_kelas']; ?></a></th>
-                                <td style="padding-top: 20px;"> 
-                                    <?php foreach ($status as $val2) : ?>
-                                        <?php if ($val['status_kelas'] == $val2['id_status']) : ?>
-                                            <?php if ($val2['nama_status'] == "Selesai") : ?>
-                                               <span><i class="fa fa-share-alt" aria-hidden="true"></i></span>
-                                            <?php else : ?>
-                                                <span><i class="fa fa-share-alt" aria-hidden="true"></i></span>
-                                            <?php endif; ?>
-                                        <?php endif; ?>
-                                    <?php endforeach; ?>
+                                <td style="padding-top: 20px;">      
+                                    <span><i class="fa fa-share-alt" aria-hidden="true"></i></span>
+                                    
                                 </td>
                                 <td style="padding-top: 20px;"> 
                                     <?php $total = 0; $selesai = 0;
