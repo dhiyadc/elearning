@@ -51,7 +51,7 @@
 
 
 <!-- Nav tabs -------------- -->
-<ul style="list-style: outside none none;" class="nav nav-tabs" role="tablist">
+<ul style="list-style: outside none none;" id="myTab" class="nav nav-tabs" role="tablist">
     <!-- <li class="nav-item">
         <a class="nav-link active" data-toggle="tab" href="#tab1" role="tab" aria-expanded="true">To Do List</a>
     </li> -->
@@ -298,7 +298,11 @@
               <div class="align-self-end">
                 <form action="<?= base_url(); ?>Classes/search_kelas_saya" method="post">
                   <div class="input-group mb-3">
-                  <input class="form-control form-control-sm mr-0 w-0" type="text" name="keyword" placeholder="Cari Kelas"aria-label="Search">
+                  <?php if ($keyword_kelas_saya == null) : ?>
+                    <input class="form-control form-control-sm mr-0 w-0" type="text" name="keyword" placeholder="Cari Kelas"aria-label="Search">
+                  <?php else : ?>
+                    <input class="form-control form-control-sm mr-0 w-0" type="text" name="keyword" value="<?= $keyword_kelas_saya; ?>" placeholder="Cari Kelas"aria-label="Search">
+                  <?php endif; ?>
                     <div class="input-group-append">
                     <button class="btn" type="submit"><i class="fa fa-search" aria-hidden="true" onclick=""></i></button>
                     </div>
@@ -306,6 +310,11 @@
                 </form>
               </div>
             </div>
+            <?php if(count($kelas_saya) == 0){ ?>
+                <div class="alert alert-danger" role="alert">
+					<center>Maaf, kelas yang Anda cari tidak ada.</center>
+				</div>		  
+			<?php } ?>
           </div>
          
           <div class="card-body table-responsive">
@@ -320,7 +329,7 @@
                 </tr>
               </thead>
               <tbody>
-              <?php foreach ($kelas as $val) : ?>
+              <?php foreach ($kelas_saya as $val) : ?>
                             <tr>
                                 <th scope="row" style="width: 300px;"><a class="text-primary"><?= $val['judul_kelas']; ?></a></th>
                                 <td style="padding-top: 20px;">      
@@ -349,12 +358,12 @@
                                     </div>
                                 </td>
                                 <td style="padding-top: 20px;"> 
-                                    <?php foreach ($status as $val2) : ?>
-                                        <?php if ($val['status_kelas'] == $val2['id_status']) : ?>
-                                            <?php if ($val2['nama_status'] == "Selesai") : ?>
-                                                <span class="badge badge-success"><?= $val2['nama_status'] ?></span>
+                                <?php foreach ($status as $val3) : ?>
+                                        <?php if ($val['status_kelas'] == $val3['id_status']) : ?>
+                                            <?php if ($val3['nama_status'] == "Selesai") : ?>
+                                                <span class="badge badge-success" style="margin-left: 50px;"><?= $val3['nama_status'] ?></span>
                                             <?php else : ?>
-                                                <span class="badge badge-danger"><?= $val2['nama_status'] ?></span>
+                                                <span class="badge badge-danger"><?= $val3['nama_status'] ?></span>
                                             <?php endif; ?>
                                         <?php endif; ?>
                                     <?php endforeach; ?>
@@ -416,7 +425,11 @@
               <div class="align-self-end">
                 <form action="<?= base_url(); ?>Classes/search_kelas_diikuti" method="post">
                   <div class="input-group mb-3">
-                  <input class="form-control form-control-sm mr-0 w-0" type="text" name="keyword" placeholder="Cari Kelas"aria-label="Search">
+                    <?php if ($keyword_kelas_diikuti == null) : ?>
+                      <input class="form-control form-control-sm mr-0 w-0" type="text" name="keyword" placeholder="Cari Kelas"aria-label="Search">
+                    <?php else : ?>
+                      <input class="form-control form-control-sm mr-0 w-0" type="text" name="keyword" value="<?= $keyword_kelas_diikuti; ?>" placeholder="Cari Kelas"aria-label="Search">
+                    <?php endif; ?>
                     <div class="input-group-append">
                     <button class="btn" type="submit"><i class="fa fa-search" aria-hidden="true" onclick=""></i></button>
                     </div>
@@ -424,6 +437,19 @@
                 </form>
               </div>
             </div>
+            <?php $kelas_diikuti = 0;
+            foreach ($seluruh_kelas as $val) {
+                foreach ($peserta as $val2) {
+                    if ($val2['id_kelas'] == $val['id_kelas'] && $val2['id_user'] == $this->session->userdata('id_user')) {
+                        $kelas_diikuti++;
+                    }
+                }
+            }?>
+            <?php if($kelas_diikuti == 0){ ?>
+                <div class="alert alert-danger" role="alert">
+                    <center>Maaf, kelas yang Anda cari tidak ada.</center>
+                </div>		  
+            <?php } ?>
           </div>
          
           <div class="card-body">
@@ -434,7 +460,6 @@
                   <th scope="col" style="padding-left: 100px;"></th>
                   <th scope="col" style="padding-left: 60px;">Progress</th>
                   <th scope="col" style="padding-left: 100px;">Status</th>
-                  <!-- <th scope="col">Materi</th> -->
                   <th scope="col" style="padding-left: 130px;">Aksi</th>
                   
                 </tr>
@@ -470,7 +495,7 @@
                                     </div>
                                 </td>
                                 <td style="padding-top:20px; padding-left: 60px;">
-                                    <?php foreach ($status as $val3) : ?>
+                                <?php foreach ($status as $val3) : ?>
                                         <?php if ($val['status_kelas'] == $val3['id_status']) : ?>
                                             <?php if ($val3['nama_status'] == "Selesai") : ?>
                                                 <span class="badge badge-success" style="margin-left: 50px;"><?= $val3['nama_status'] ?></span>
@@ -480,15 +505,6 @@
                                         <?php endif; ?>
                                     <?php endforeach; ?>
                                 </td>
-                                <!-- <td>
-                                  <?php foreach ($materi as $val3) : ?>
-                                    <?php if ($val2['id_kelas'] == $val3[0]['id_kelas']) : ?>
-                                      <div class="buttonclass">
-                                        <a href="<?= base_url()?>classes/open_class/<?= $val3[0]['id_kelas'] ?>" class="btn btn-white" style="color: darkcyan;">Lihat Materi</a>
-                                      </div>
-                                    <?php endif; ?>
-                                  <?php endforeach; ?>
-                                </td> -->
                                 <td>
                                   <div class="btn-group">
                                     <a class="btn btn-outline-dark" href="<?= base_url()?>classes/open_class/<?= $val['id_kelas'] ?>" style="padding-right: 20px; padding-left: 20px; padding-top: 12px; padding-bottom: 12px;">Detail</a>
@@ -547,7 +563,11 @@
               <div class="align-self-end">
                 <form action="<?= base_url(); ?>Classes/search_tugas" method="post">
                   <div class="input-group mb-3">
-                  <input class="form-control form-control-sm mr-0 w-0" type="text" name="keyword" placeholder="Cari Kelas"aria-label="Search">
+                  <?php if ($keyword_tugas == null) : ?>
+                      <input class="form-control form-control-sm mr-0 w-0" type="text" name="keyword" placeholder="Cari Kelas"aria-label="Search">
+                    <?php else : ?>
+                      <input class="form-control form-control-sm mr-0 w-0" type="text" name="keyword" value="<?= $keyword_tugas; ?>" placeholder="Cari Kelas"aria-label="Search">
+                    <?php endif; ?>
                     <div class="input-group-append">
                     <button class="btn" type="submit"><i class="fa fa-search" aria-hidden="true" onclick=""></i></button>
                     </div>
@@ -555,6 +575,22 @@
                 </form>
               </div>
             </div>
+            <?php $i = 0; $banyak_tugas = 0;
+                foreach ($kelas_tugas as $val[$i][0]) {
+                    $j = 0; $k = 0;
+                    foreach ($tugas as $val2[$i][$j]) {
+                        foreach ($val2[$i][$j] as $val3) {
+                            if ($val[$i][0][0]['id_kelas'] == $val3['id_kelas']) { 
+                                $banyak_tugas++;
+                            }
+                        }
+                    }
+                }?>
+            <?php if($banyak_tugas == 0){ ?>
+                <div class="alert alert-danger" role="alert">
+					<center>Maaf, kelas yang Anda cari tidak memiliki tugas.</center>
+				</div>		  
+			<?php } ?>
           </div>
          
           <div class="card-body">
@@ -667,7 +703,11 @@
               <div class="align-self-end">
                 <form action="<?= base_url(); ?>Classes/search_materi" method="post">
                   <div class="input-group mb-3">
-                  <input class="form-control form-control-sm mr-0 w-0" type="text" name="keyword" placeholder="Cari Kelas"aria-label="Search">
+                    <?php if ($keyword_materi == null) : ?>
+                      <input class="form-control form-control-sm mr-0 w-0" type="text" name="keyword" placeholder="Cari Kelas"aria-label="Search">
+                    <?php else : ?>
+                      <input class="form-control form-control-sm mr-0 w-0" type="text" name="keyword" value="<?= $keyword_materi; ?>" placeholder="Cari Kelas"aria-label="Search">
+                    <?php endif; ?>
                     <div class="input-group-append">
                     <button class="btn" type="submit"><i class="fa fa-search" aria-hidden="true" onclick=""></i></button>
                     </div>
@@ -675,6 +715,11 @@
                 </form>
               </div>
             </div>
+            <?php if(count($materi) == 0){ ?>
+                <div class="alert alert-danger" role="alert">
+					<center>Maaf, kelas yang Anda cari tidak memiliki materi.</center>
+				</div>		  
+			<?php } ?>
           </div>
          
           <div class="card-body">
@@ -820,3 +865,33 @@
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+<?php if ($this->session->flashdata('tabKelasSaya')) : ?>
+  <script src="<?php echo base_url(); ?>assets/js/jquery-3.3.1.min.js"></script>
+  <script>
+    $(function () {
+      $('#myTab a[href="#tab<?= $this->session->flashdata('tabKelasSaya'); ?>"]').tab('show');
+    })
+  </script>
+<?php elseif ($this->session->flashdata('tabKelasDiikuti')) : ?>
+  <script src="<?php echo base_url(); ?>assets/js/jquery-3.3.1.min.js"></script>
+  <script>
+    $(function () {
+      $('#myTab a[href="#tab<?= $this->session->flashdata('tabKelasDiikuti'); ?>"]').tab('show');
+    })
+  </script>
+<?php elseif ($this->session->flashdata('tabTugas')) : ?>
+  <script src="<?php echo base_url(); ?>assets/js/jquery-3.3.1.min.js"></script>
+  <script>
+    $(function () {
+      $('#myTab a[href="#tab<?= $this->session->flashdata('tabTugas'); ?>"]').tab('show');
+    })
+  </script>
+<?php elseif ($this->session->flashdata('tabMateri')) : ?>
+  <script src="<?php echo base_url(); ?>assets/js/jquery-3.3.1.min.js"></script>
+  <script>
+    $(function () {
+      $('#myTab a[href="#tab<?= $this->session->flashdata('tabMateri'); ?>"]').tab('show');
+    })
+  </script>
+<?php endif; ?>
