@@ -296,7 +296,7 @@
           </div>
          
           <div class="card-body table-responsive">
-            <table class="table">
+            <table id="pageTable" class="table">
               <thead>
                 <tr>
                   <th scope="col">Kelas</th>
@@ -354,8 +354,8 @@
             </table>
           </div>
           <div class="card-footer white py-3 d-flex justify-content-center">
-          <ul class="pagination">
-            <li class="page-item">
+          <ul id="pagination" class="pagination">
+            <!-- <li class="page-item">
               <a class="page-link" href="#" aria-label="Previous">
                 <span aria-hidden="true">&laquo;</span>
                 <span class="sr-only">Previous</span>
@@ -369,7 +369,7 @@
                 <span aria-hidden="true">&raquo;</span>
                 <span class="sr-only">Next</span>
               </a>
-            </li>
+            </li> -->
           </ul>
         </nav>
           </div>
@@ -386,7 +386,7 @@
           </div>
          
           <div class="card-body table-responsive">
-            <table class="table">
+            <table id="pageTable2" class="table">
               <thead>
                 <tr>
                   <th scope="col">Kelas</th>
@@ -445,22 +445,7 @@
             </table>
           </div>
           <div class="card-footer white py-3 d-flex justify-content-center">
-          <ul class="pagination">
-            <li class="page-item">
-              <a class="page-link" href="#" aria-label="Previous">
-                <span aria-hidden="true">&laquo;</span>
-                <span class="sr-only">Previous</span>
-              </a>
-            </li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item">
-              <a class="page-link" href="#" aria-label="Next">
-                <span aria-hidden="true">&raquo;</span>
-                <span class="sr-only">Next</span>
-              </a>
-            </li>
+          <ul id="pagination2" class="pagination">
           </ul>
         </nav>
           </div>
@@ -479,7 +464,7 @@
           </div>
          
           <div class="card-body table-responsive">
-            <table class="table">
+            <table id="pageTable3" class="table">
               <thead>
                 <tr>
                   <th scope="col">Kelas</th>
@@ -552,8 +537,9 @@
             </table>
           </div>
           <div class="card-footer white py-3 d-flex justify-content-center">
-          <ul class="pagination">
-            <li class="page-item">
+          <nav>
+          <ul id="pagination3" class="pagination">
+            <!-- <li class="page-item">
               <a class="page-link" href="#" aria-label="Previous">
                 <span aria-hidden="true">&laquo;</span>
                 <span class="sr-only">Previous</span>
@@ -567,9 +553,9 @@
                 <span aria-hidden="true">&raquo;</span>
                 <span class="sr-only">Next</span>
               </a>
-            </li>
+            </li> -->
           </ul>
-        </nav>
+          </nav>
           </div>
         </div>
       </div>
@@ -585,7 +571,7 @@
           </div>
          
           <div class="card-body table-responsive">
-            <table class="table">
+            <table id="pageTable4" class="table">
               <thead>
                 <tr>
                   <th scope="col">Kelas</th>
@@ -636,8 +622,8 @@
             </table>
           </div>
           <div class="card-footer white py-3 d-flex justify-content-center">
-          <ul class="pagination">
-            <li class="page-item">
+          <ul id="pagination4" class="pagination">
+            <!-- <li class="page-item">
               <a class="page-link" href="#" aria-label="Previous">
                 <span aria-hidden="true">&laquo;</span>
                 <span class="sr-only">Previous</span>
@@ -651,7 +637,7 @@
                 <span aria-hidden="true">&raquo;</span>
                 <span class="sr-only">Next</span>
               </a>
-            </li>
+            </li> -->
           </ul>
         </nav>
           </div>
@@ -669,7 +655,7 @@
           </div>
          
           <div class="card-body table-responsive">
-            <table class="table">
+            <table id="pageTable5" class="table">
               <thead>
                 <tr>
                   <th scope="col">Kelas</th>
@@ -739,22 +725,7 @@
             </table>
           </div>
           <div class="card-footer white py-3 d-flex justify-content-center">
-          <ul class="pagination">
-            <li class="page-item">
-              <a class="page-link" href="#" aria-label="Previous">
-                <span aria-hidden="true">&laquo;</span>
-                <span class="sr-only">Previous</span>
-              </a>
-            </li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item">
-              <a class="page-link" href="#" aria-label="Next">
-                <span aria-hidden="true">&raquo;</span>
-                <span class="sr-only">Next</span>
-              </a>
-            </li>
+          <ul id="pagination5" class="pagination">
           </ul>
         </nav>
           </div>
@@ -810,4 +781,5 @@
 </div>
 </section>
 
+<script type="text/javascript" src="<?= base_url(); ?>assets/js/paging.js"></script>
 <script type="text/javascript" src="<?= base_url(); ?>assets/js/password_verif.js"></script>
