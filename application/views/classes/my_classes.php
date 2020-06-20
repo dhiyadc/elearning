@@ -312,7 +312,7 @@
 							</div>
 
 							<div class="card-body table-responsive">
-								<table class="table">
+								<table id="pageTable" class="table">
 									<thead>
 										<tr>
 											<th scope="col">Kelas</th>
@@ -398,8 +398,8 @@
 								</table>
 							</div>
 							<div class="card-footer white py-3 d-flex justify-content-center">
-								<ul class="pagination">
-									<li class="page-item">
+								<ul id="pagination" class="pagination">
+									<!-- <li class="page-item">
 										<a class="page-link" href="#" aria-label="Previous">
 											<span aria-hidden="true">&laquo;</span>
 											<span class="sr-only">Previous</span>
@@ -413,15 +413,13 @@
 											<span aria-hidden="true">&raquo;</span>
 											<span class="sr-only">Next</span>
 										</a>
-									</li>
+									</li> -->
 								</ul>
 								</nav>
 							</div>
 						</div>
-
 					</div>
 				</div>
-
 			</div>
 			<div class="tab-pane" id="tab3" role="tabpanel" aria-expanded="false">
 				<div class="row mt-5">
@@ -654,216 +652,179 @@
 												<div class="buttonclass">
 													<a href="<?= base_url() ?>classes/detail_tugaskuis/<?= $val[$i][0][0]['id_kelas'] ?>/<?= $val3['id_tugas']; ?>"
 														class="btn btncyan">Lihat Tugas</a>
-                                      </div>
-                                    </td>
-                                  <?php endif; ?>
-                                <?php endforeach; ?>
-                              <?php endif; ?>
-                          </tr>
-                        <?php endif; ?>
-                        <?php $k++; ?>
-                      <?php endforeach; ?>
-                      <?php $j++; ?>
-                    <?php endforeach; ?>
-                    <?php $i++; ?>
-                <?php endforeach; ?>
-              </tbody>
-            </table>
-          </div>
-          <div class=" card-footer white py-3 d-flex justify-content-center">
-														<ul class="pagination">
-															<li class="page-item">
-																<a class="page-link" href="#" aria-label="Previous">
-																	<span aria-hidden="true">&laquo;</span>
-																	<span class="sr-only">Previous</span>
-																</a>
-															</li>
-															<li class="page-item"><a class="page-link" href="#">1</a>
-															</li>
-															<li class="page-item"><a class="page-link" href="#">2</a>
-															</li>
-															<li class="page-item"><a class="page-link" href="#">3</a>
-															</li>
-															<li class="page-item">
-																<a class="page-link" href="#" aria-label="Next">
-																	<span aria-hidden="true">&raquo;</span>
-																	<span class="sr-only">Next</span>
-																</a>
-															</li>
-														</ul>
-														</nav>
 												</div>
+											</td>
+											<?php endif; ?>
+											<?php endforeach; ?>
+											<?php endif; ?>
+										</tr>
+										<?php endif; ?>
+										<?php $k++; ?>
+										<?php endforeach; ?>
+										<?php $j++; ?>
+										<?php endforeach; ?>
+										<?php $i++; ?>
+										<?php endforeach; ?>
+									</tbody>
+								</table>
 							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="tab-pane" id="tab5" role="tabpanel" aria-expanded="false">
-					<div class="row mt-5">
-						<div class="col">
-							<div class="card card-list">
-								<div class="card-body">
-									<div class="row">
-										<div class="col">
-											<h2>Materi</h2>
-										</div>
-										<div class="align-self-end">
-											<form action="<?= base_url(); ?>Classes/search_materi" method="post">
-												<div class="input-group mb-3">
-													<input class="form-control form-control-sm mr-0 w-0" type="text"
-														name="keyword" placeholder="Cari Kelas" aria-label="Search">
-													<div class="input-group-append">
-														<button class="btn" type="submit"><i class="fa fa-search"
-																aria-hidden="true" onclick=""></i></button>
-													</div>
-												</div>
-											</form>
-										</div>
-									</div>
-								</div>
-
-								<div class="card-body">
-									<table class="table">
-										<thead>
-											<tr>
-												<th scope="col">Kelas</th>
-												<th scope="col">Jumlah Materi</th>
-												<th scope="col">Aksi</th>
-											</tr>
-										</thead>
-										<tbody>
-											<?php $lihatMateriCount = 0; ?>
-											<?php foreach ($materi as $val) : ?>
-											<?php
-                    $countMateri = 0;
-              ?>
-											<?php foreach ($val as $val2) : ?>
-											<?php $countMateri++; ?>
-											<?php endforeach; ?>
-											<tr>
-												<th scope="row" style="width: 300px;"><a
-														href="<?= base_url(); ?>classes/open_class/<?= $val2['id_kelas']; ?>"
-														class="text-primary"><?= $val2['judul_kelas']; ?></a></th>
-												<td style="padding-top:20px">
-													<?= $countMateri; ?>
-												</td>
-												<td>
-													<div class="buttonclass">
-														<button class="btn btn-info" type="button" data-toggle="modal"
-															data-target="#lihatMateri<?= $lihatMateriCount; ?>">Lihat
-															Materi</button>
-													</div>
-												</td>
-											</tr>
-
-											<div class="modal fade" id="lihatMateri<?= $lihatMateriCount; ?>"
-												tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-												aria-hidden="true" style="padding-right: 90px;">
-
-												<div class="modal-dialog modal-lg" role="document">
-													<!--Content-->
-													<div class="modal-content form-elegant">
-														<!--Header-->
-														<div class="modal-header text-center">
-															<h3 class="modal-title w-100 dark-grey-text font-weight-bold my-3"
-																id="myModalLabel"><strong>Materi
-																	<?= $val2['judul_kelas']; ?></strong></h3>
-															<button type="button" class="close" data-dismiss="modal"
-																aria-label="Close">
-																<span aria-hidden="true">&times;</span>
-															</button>
-														</div>
-														<!--Body-->
-														<div class="modal-body mx-4">
-															<!--Body-->
-															<div class="container-fluid">
-																<div class="row">
-																	<div class="col-md-6 border-bottom pb-3 mt-3">
-																		<b>Kegiatan</b></div>
-																	<div class="col-md-6 border-bottom pb-3 mt-3">
-																		<b>Nama File</b></div>
-																	<?php foreach ($val as $val2) : ?>
-																	<div class="col-md-6 border-bottom pb-3 mt-3">
-																		<?= $val2['deskripsi_kegiatan']; ?></div>
-																	<div class="col-md-6 border-bottom pb-3 mt-3"><a
-																			href="<?= base_url(); ?>classes/download_materi/"><?= $val2['url_materi']; ?></a>
-																	</div>
-																	<?php endforeach; ?>
-																</div>
-															</div>
-
-														</div>
-													</div>
-												</div>
-											</div>
-											<?php $lihatMateriCount++; ?>
-											<?php endforeach; ?>
-										</tbody>
-									</table>
-								</div>
-								<div class="card-footer white py-3 d-flex justify-content-center">
-									<ul class="pagination">
-										<li class="page-item">
-											<a class="page-link" href="#" aria-label="Previous">
-												<span aria-hidden="true">&laquo;</span>
-												<span class="sr-only">Previous</span>
-											</a>
-										</li>
-										<li class="page-item"><a class="page-link" href="#">1</a></li>
-										<li class="page-item"><a class="page-link" href="#">2</a></li>
-										<li class="page-item"><a class="page-link" href="#">3</a></li>
-										<li class="page-item">
-											<a class="page-link" href="#" aria-label="Next">
-												<span aria-hidden="true">&raquo;</span>
-												<span class="sr-only">Next</span>
-											</a>
-										</li>
-									</ul>
-									</nav>
-								</div>
+							<div class=" card-footer white py-3 d-flex justify-content-center">
+								<ul class="pagination">
+									<li class="page-item">
+										<a class="page-link" href="#" aria-label="Previous">
+											<span aria-hidden="true">&laquo;</span>
+											<span class="sr-only">Previous</span>
+										</a>
+									</li>
+									<li class="page-item"><a class="page-link" href="#">1</a>
+									</li>
+									<li class="page-item"><a class="page-link" href="#">2</a>
+									</li>
+									<li class="page-item"><a class="page-link" href="#">3</a>
+									</li>
+									<li class="page-item">
+										<a class="page-link" href="#" aria-label="Next">
+											<span aria-hidden="true">&raquo;</span>
+											<span class="sr-only">Next</span>
+										</a>
+									</li>
+								</ul>
+								</nav>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 
+			<div class="tab-pane" id="tab5" role="tabpanel" aria-expanded="false">
+				<div class="row mt-5">
+					<div class="col">
+						<div class="card card-list">
+							<div class="card-body">
+								<div class="row">
+									<div class="col">
+										<h2>Materi</h2>
+									</div>
+									<div class="align-self-end">
+										<form action="<?= base_url(); ?>Classes/search_materi" method="post">
+											<div class="input-group mb-3">
+												<input class="form-control form-control-sm mr-0 w-0" type="text"
+													name="keyword" placeholder="Cari Kelas" aria-label="Search">
+												<div class="input-group-append">
+													<button class="btn" type="submit"><i class="fa fa-search"
+															aria-hidden="true" onclick=""></i></button>
+												</div>
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
 
-			<!-- <div class="modal fade" id="contact" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="contact">Gabung Kelas</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group">
-                        <p for="msj">Silahkan Masukan Kode Kelas</p>
-                    </div>
-                    <div class="form-group">
-                        <label for="txtFullname">Kode Kelas</label>
-                        <input type="text" id="txtFullname" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="txtEmail">Password Kelas</label>
-                        <input type="text" id="txtEmail" class="form-control">
-                    </div>
-                    
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" (click)="openModal()" data-dismiss="modal">Gabung</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                </div>
-            </div>
-        </div>
-    </div> -->
+							<div class="card-body">
+								<table class="table">
+									<thead>
+										<tr>
+											<th scope="col">Kelas</th>
+											<th scope="col">Jumlah Materi</th>
+											<th scope="col">Aksi</th>
+										</tr>
+									</thead>
+									<tbody>
+										<?php $lihatMateriCount = 0; ?>
+										<?php foreach ($materi as $val) : ?>
+										<?php
+												$countMateri = 0;
+										?>
+										<?php foreach ($val as $val2) : ?>
+										<?php $countMateri++; ?>
+										<?php endforeach; ?>
+										<tr>
+											<th scope="row" style="width: 300px;"><a
+													href="<?= base_url(); ?>classes/open_class/<?= $val2['id_kelas']; ?>"
+													class="text-primary"><?= $val2['judul_kelas']; ?></a></th>
+											<td style="padding-top:20px">
+												<?= $countMateri; ?>
+											</td>
+											<td>
+												<div class="buttonclass">
+													<button class="btn btn-info" type="button" data-toggle="modal"
+														data-target="#lihatMateri<?= $lihatMateriCount; ?>">Lihat
+														Materi</button>
+												</div>
+											</td>
+										</tr>
 
+										<div class="modal fade" id="lihatMateri<?= $lihatMateriCount; ?>" tabindex="-1"
+											role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
+											style="padding-right: 90px;">
 
+											<div class="modal-dialog modal-lg" role="document">
+												<!--Content-->
+												<div class="modal-content form-elegant">
+													<!--Header-->
+													<div class="modal-header text-center">
+														<h3 class="modal-title w-100 dark-grey-text font-weight-bold my-3"
+															id="myModalLabel"><strong>Materi
+																<?= $val2['judul_kelas']; ?></strong></h3>
+														<button type="button" class="close" data-dismiss="modal"
+															aria-label="Close">
+															<span aria-hidden="true">&times;</span>
+														</button>
+													</div>
+													<!--Body-->
+													<div class="modal-body mx-4">
+														<!--Body-->
+														<div class="container-fluid">
+															<div class="row">
+																<div class="col-md-6 border-bottom pb-3 mt-3">
+																	<b>Kegiatan</b></div>
+																<div class="col-md-6 border-bottom pb-3 mt-3">
+																	<b>Nama File</b></div>
+																<?php foreach ($val as $val2) : ?>
+																<div class="col-md-6 border-bottom pb-3 mt-3">
+																	<?= $val2['deskripsi_kegiatan']; ?></div>
+																<div class="col-md-6 border-bottom pb-3 mt-3"><a
+																		href="<?= base_url(); ?>classes/download_materi/"><?= $val2['url_materi']; ?></a>
+																</div>
+																<?php endforeach; ?>
+															</div>
+														</div>
 
-
-
+													</div>
+												</div>
+											</div>
+										</div>
+										<?php $lihatMateriCount++; ?>
+										<?php endforeach; ?>
+									</tbody>
+								</table>
+							</div>
+							<div class="card-footer white py-3 d-flex justify-content-center">
+								<ul class="pagination">
+									<li class="page-item">
+										<a class="page-link" href="#" aria-label="Previous">
+											<span aria-hidden="true">&laquo;</span>
+											<span class="sr-only">Previous</span>
+										</a>
+									</li>
+									<li class="page-item"><a class="page-link" href="#">1</a></li>
+									<li class="page-item"><a class="page-link" href="#">2</a></li>
+									<li class="page-item"><a class="page-link" href="#">3</a></li>
+									<li class="page-item">
+										<a class="page-link" href="#" aria-label="Next">
+											<span aria-hidden="true">&raquo;</span>
+											<span class="sr-only">Next</span>
+										</a>
+									</li>
+								</ul>
+								</nav>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
+	</div>
 
 
 
@@ -872,7 +833,7 @@
 
 	</div>
 </section>
-
+<script type="text/javascript" src="<?= base_url(); ?>assets/js/paging.js"></script>
 <script type="text/javascript" src="<?= base_url(); ?>assets/js/password_verif.js"></script>
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
