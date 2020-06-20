@@ -171,6 +171,26 @@
         </div>
         <div class="row">
             <div class="col-md-3 field-label-responsive">
+                <label for="newpassword1">Tipe Kelas</label>
+            </div>
+            <div class="col-md-8">
+                <div class="form-group has-danger">
+                             <div class="col-md-4">
+                                
+                                <label class="form-check">
+                                    <input class="form-check-input" type="radio" name="tipe" value="1" checked>
+                                    <span class="form-check-label">Public</span>
+                                </label>
+                                <label class="form-check">
+                                    <input class="form-check-input" type="radio" name="tipe" value="2">
+                                    <span class="form-check-label">Private</span>
+                                </label>
+                            </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 field-label-responsive">
                 <label for="password">Kategori Kelas</label>
             </div>
             <div class="col-md-6">
@@ -247,7 +267,7 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <div class="input-group mb-2 mr-sm-2 mb-sm-0" style="margin-left: 30px; padding-right: 28px;">
-                        <input type="number" name="jumlah_peserta" min="0" class="form-control">
+                        <input type="number" name="jumlah_peserta" min="0"  value="0" class="form-control">
                         <div class="input-group-prepend">
                             <div class="input-group-text">orang</div>
                         </div>
