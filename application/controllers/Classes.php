@@ -957,6 +957,7 @@ class Classes extends CI_Controller {
             $data['keyword_kelas_saya'] = $this->input->post('keyword');
             $data['keyword_kelas_diikuti'] = null; $data['keyword_tugas'] = null; $data['keyword_materi'] = null;
             $data['kegiatan'] = $this->Classes_model->getAllKegiatan();
+            $data['private_kelas'] = $this->Classes_model->getMyPrivateClassesDetail($data['keyword_kelas_saya']);
             $data['kelas_saya'] = $this->Classes_model->getMyClassesDetail($data['keyword_kelas_saya']);
             $data['seluruh_kelas'] = $this->Classes_model->getAllClasses();
             $data['status'] = $this->Classes_model->getStatus();

@@ -168,6 +168,42 @@ class Classes_model extends CI_Model {
         return $this->db->get('kelas')->result_array();
     }
 
+    public function getMyPrivateClassesDetail($keyword = null){
+        if($keyword){
+            $user = $this->session->userdata('id_user');
+            $sql = "SELECT kelas.id_kelas, kelas.status_kelas, kelas.judul_kelas, kelas.poster_kelas, kelas.deskripsi_kelas, kategori_kelas.nama_kategori, jenis_kelas.nama_jenis, harga_kelas.harga_kelas, COUNT(peserta.id_kelas) as 'peserta'
+            FROM kelas
+            LEFT JOIN kategori_kelas
+                    ON kategori_kelas.id_kategori = kelas.kategori_kelas 
+            LEFT JOIN jenis_kelas
+                    ON jenis_kelas.id_jenis = kelas.jenis_kelas
+            LEFT JOIN harga_kelas
+                    ON harga_kelas.id_kelas = kelas.id_kelas
+            LEFT JOIN peserta
+                    ON peserta.id_kelas = kelas.id_kelas
+                WHERE kelas.judul_kelas LIKE '%$keyword%' AND kelas.pembuat_kelas LIKE '$user' AND kelas.tipe_kelas = 2
+            GROUP BY kelas.id_kelas";
+            $query = $this->db->query($sql);
+            return $query->result_array();
+        } else {
+            $user = $this->session->userdata('id_user');
+            $sql = "SELECT kelas.id_kelas, kelas.status_kelas, kelas.judul_kelas, kelas.poster_kelas, kelas.deskripsi_kelas, kategori_kelas.nama_kategori, jenis_kelas.nama_jenis, harga_kelas.harga_kelas, COUNT(peserta.id_kelas) as 'peserta'
+            FROM kelas
+            LEFT JOIN kategori_kelas
+                    ON kategori_kelas.id_kategori = kelas.kategori_kelas 
+            LEFT JOIN jenis_kelas
+                    ON jenis_kelas.id_jenis = kelas.jenis_kelas
+            LEFT JOIN harga_kelas
+                    ON harga_kelas.id_kelas = kelas.id_kelas
+            LEFT JOIN peserta
+                    ON peserta.id_kelas = kelas.id_kelas
+                WHERE kelas.pembuat_kelas LIKE '$user' AND kelas.tipe_kelas = 2
+            GROUP BY kelas.id_kelas";
+            $query = $this->db->query($sql);
+            return $query->result_array();
+        }
+    }
+
     public function getClassById($id)
     {
         $this->db->where('id_kelas',$id);
@@ -1038,7 +1074,7 @@ class Classes_model extends CI_Model {
                     ON harga_kelas.id_kelas = kelas.id_kelas
             LEFT JOIN peserta
                     ON peserta.id_kelas = kelas.id_kelas
-                WHERE kelas.judul_kelas LIKE '%$keyword%' AND kelas.pembuat_kelas LIKE '$user'
+                WHERE kelas.judul_kelas LIKE '%$keyword%' AND kelas.pembuat_kelas LIKE '$user' AND kelas.tipe_kelas = 1
             GROUP BY kelas.id_kelas";
             $query = $this->db->query($sql);
             return $query->result_array();
@@ -1054,7 +1090,7 @@ class Classes_model extends CI_Model {
                     ON harga_kelas.id_kelas = kelas.id_kelas
             LEFT JOIN peserta
                     ON peserta.id_kelas = kelas.id_kelas
-                WHERE kelas.pembuat_kelas LIKE '$user'
+                WHERE kelas.pembuat_kelas LIKE '$user' AND kelas.tipe_kelas = 1
             GROUP BY kelas.id_kelas";
             $query = $this->db->query($sql);
             return $query->result_array();
