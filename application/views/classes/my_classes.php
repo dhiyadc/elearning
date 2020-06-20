@@ -319,7 +319,7 @@
 											<th scope="col" style="padding-left: 60px;"></th>
 											<th scope="col" style="padding-left: 40px;">Progress</th>
 											<th scope="col" style="padding-left: 60px;">Status</th>
-											<th scope="col" style="padding-left: 130px;">Aksi</th>
+											<th scope="col" style="padding-left: 50px;">Aksi</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -329,7 +329,7 @@
 													class="text-primary"><?= $val['judul_kelas']; ?></a></th>
 											<td style="padding-top: 20px;">
 												<span><i class="fa fa-share-alt" aria-hidden="true"></i></span>
-
+												
 											</td>
 											<td style="padding-top: 20px;">
 												<?php $total = 0; $selesai = 0;
@@ -456,7 +456,7 @@
 											<th scope="col" style="padding-left: 60px;">Progress</th>
 											<th scope="col" style="padding-left: 100px;">Status</th>
 											<!-- <th scope="col">Materi</th> -->
-											<th scope="col" style="padding-left: 130px;">Aksi</th>
+											<th scope="col" style="padding-left: 50px;">Aksi</th>
 
 										</tr>
 									</thead>
@@ -636,7 +636,7 @@
 											<td>
 												<div class="buttonclass">
 													<a href="<?= base_url() ?>classes/detail_tugaskuis/<?= $val[$i][0][0]['id_kelas'] ?>/<?= $val3['id_tugas']; ?>"
-														class="btn btncyan">Lihat Tugas</a>
+														class="btn btncyan" style="color: white;">Lihat Tugas</a>
 												</div>
 											</td>
 											<?php else : ?>
@@ -653,7 +653,7 @@
 											<td>
 												<div class="buttonclass">
 													<a href="<?= base_url() ?>classes/detail_tugaskuis/<?= $val[$i][0][0]['id_kelas'] ?>/<?= $val3['id_tugas']; ?>"
-														class="btn btncyan">Lihat Tugas</a>
+														class="btn btncyan" style="color: white;">Lihat Tugas</a>
                                       </div>
                                     </td>
                                   <?php endif; ?>
