@@ -1,12 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="">
-        <meta name="author" content="">
-
 
 <head>
   <meta charset="utf-8">
@@ -21,39 +14,7 @@
   <!-- **********************************************************************************************************************************************************
       MAIN CONTENT
       *********************************************************************************************************************************************************** -->
-  <div id="login-page">
-    <div class="container">
-      <form class="form-login" action="<?= base_url() ?>nonuser/admin_login_process" method="post">
-        <h2 class="form-login-heading">Admin login</h2>
-        <div class="login-wrap">
-              <?php
-              if (isset($logout_message)) {
-              echo "<div class='message'>";
-              echo $logout_message;
-              echo "</div>";
-              }
-            ?>
-            <?php
-              if (isset($message_display)) {
-              echo "<div class='message'>";
-              echo $message_display;
-              echo "</div>";
-              }
-            ?>
-            <?php
-            echo "<div class='error_msg'>";
-            if (isset($error_message)) {
-            echo $error_message;
-            }
-            //echo validation_errors();
-            echo "</div>";
-          ?>
-          <input type="email" class="form-control" name="email" placeholder="Email" autofocus required>
-          <br>
-          <input type="password" class="form-control" name="password" placeholder="Password" required>
-          <br>
-          <button class="btn btn-theme btn-block" value="login" type="submit"><i class="fa fa-lock"></i> Login</button>
-
+ 
         <!-- Bootstrap Core CSS -->
         <link href="<?= base_url(); ?>assets/css/bootstrap.min.css" rel="stylesheet">
 
@@ -66,14 +27,7 @@
         <!-- Custom Fonts -->
         <link href="<?= base_url(); ?>assets/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
-        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-        <!--[if lt IE 9]>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
-        <![endif]-->
-    </head>
-    <body>
+  
 
         <div class="container">
             <div class="row">
