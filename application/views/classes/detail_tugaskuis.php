@@ -98,7 +98,11 @@
                 <?php else : ?>
                   <?php foreach ($submit as $val3) : ?>
                     <?php if ($val2['id_tugas'] == $val3['id_tugas'] && $val3['id_user'] == $this->session->userdata('id_user')) : ?>
-                      <div class="nilai"><?= $val3['nilai_tugas']; ?>/100 Poin</span></div>
+                      <?php if ($val3['nilai_tugas'] == "Belum Dinilai") : ?>
+                        <div class="nilai"><?= $val3['nilai_tugas']; ?></span></div>
+                      <?php else : ?>
+                        <div class="nilai"><?= $val3['nilai_tugas']; ?>/100</span></div>
+                      <?php endif; ?>
                     <?php endif; ?>
                   <?php endforeach; ?>
                 <?php endif; ?>
@@ -127,7 +131,9 @@
                           <?php else : ?>
                             <?php foreach ($submit as $val3) : ?>
                               <?php if ($val2['id_tugas'] == $val3['id_tugas'] && $val3['id_user'] == $this->session->userdata('id_user')) : ?>
-                                <a href="#" data-toggle="modal" data-target="#detailTugas<?= $val2['id_tugas']; ?>"><i class="fa fa-pencil m-1"></i>Ganti Jawaban</a>
+                                <?php if ($val3['nilai_tugas'] == "Belum Dinilai") : ?>
+                                  <a href="#" data-toggle="modal" data-target="#detailTugas<?= $val2['id_tugas']; ?>"><i class="fa fa-pencil m-1"></i>Ganti Jawaban</a>
+                                <?php endif; ?>
                               <?php endif; ?>
                             <?php endforeach; ?>
                           <?php endif; ?>
@@ -182,8 +188,6 @@
                                                           <a href="<?= base_url() ?>classes/hapus_jawaban/<?= $val['id_kelas']; ?>/<?= $val3['id_tugas']; ?>/<?= $val3['id_submit']; ?>" class="btn btn-danger blue-gradient btn-block btn-rounded z-depth-1a">Hapus Jawaban</a>
                                                         </div>
                                                       </form>
-                                                    <p style="color: red;"><span class="icon-warning"></span> Peringatan!</p>
-                                                    <p style="color: red;"><small>Jika Anda menghapus jawaban Anda setelah memperoleh nilai, maka nilai yang Anda peroleh akan ikut terhapus.</small></p>
                                                   <?php endif; ?>
                                                 <?php endforeach; ?>
                                               <?php endif; ?>

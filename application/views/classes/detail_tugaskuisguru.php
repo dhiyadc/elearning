@@ -98,7 +98,11 @@
                       <!-- <div class="comments"><i class="fa fa-comment-o"></i>20</div> -->
                       <div class="project-progress">
                         <div class="time">
-                          <div class="nilai"><?= $val2['nilai_tugas'] ?>/100 Poin</span></div>
+                        <?php if ($val2['nilai_tugas'] == "Belum Dinilai") : ?>
+                          <div class="nilai"><?= $val2['nilai_tugas']; ?></span></div>
+                        <?php else : ?>
+                          <div class="nilai"><?= $val2['nilai_tugas']; ?>/100</span></div>
+                        <?php endif; ?>
 
 
                         </div>
@@ -160,7 +164,11 @@
                               <!-- <div class="comments"><i class="fa fa-comment-o"></i>20</div> -->
                               <div class="project-progress">
                                 <div class="time">
-                                  <div class="nilai"><?= $val2['nilai_tugas'] ?>/100 Poin</span></div>
+                                <?php if ($val2['nilai_tugas'] == "Belum Dinilai") : ?>
+                                  <div class="nilai"><?= $val2['nilai_tugas']; ?></span></div>
+                                <?php else : ?>
+                                  <div class="nilai"><?= $val2['nilai_tugas']; ?>/100</span></div>
+                                <?php endif; ?>
 
                                 </div>
                               </div>
@@ -217,7 +225,7 @@
                                       <form action="<?= base_url() ?>classes/update_nilai/<?= $val['id_kelas']; ?>/<?= $val2['id_tugas']; ?>/<?= $val2['id_submit']; ?>" method="POST">
                                         <div class="m-2">
                                           <div class="col mr-4">
-                                            <input class="effect-1" type="text" name="nilai" placeholder="<?= $val2['nilai_tugas'] ?>/100 Poin">
+                                            <input class="effect-1" type="text" name="nilai" placeholder="0/100 Poin">
                                             <input type="hidden" name="tanggal_submit" value="<?= $val2['tanggal_submit']; ?>">
                                             <span class="focus-border"></span>
                                           </div>

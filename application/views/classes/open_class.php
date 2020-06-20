@@ -153,6 +153,8 @@
               <!-- <a class="btn btn-light mr-1" href="<?= base_url()?>classes/list_assignment/<?= $val['id_kelas'] ?>"><span class="icon-list"></span> Lihat Tugas</a> -->
             <?php endif; ?>
             <br><br>
+            <a href="#jadwalKegiatan" class="jadwalKegiatan"></a>
+            <div id="jadwalKegiatan">
             <section>
               <div class="row">
                 <div class="col"> 
@@ -403,7 +405,6 @@
                 </div>
               </div>
             </section>
-
             </div>
           </div>
           <div class="tab-content">
@@ -576,3 +577,24 @@
 			return prefix == undefined ? rupiah : (rupiah ? 'Rp. ' + rupiah : '');
 		}
 	</script>
+<?php if ($this->session->flashdata('openModal')) { ?>
+              <script src="<?php echo base_url(); ?>assets/js/jquery-3.3.1.min.js"></script>
+              <script type="text/javascript">
+              $(function(){
+                    window.location.href = $('.jadwalKegiatan').attr('href');
+                });
+
+              $(window).on('load',function(){
+                  $('#tambahKegiatan').modal('show');
+                  console.log('ready');
+              });
+            </script>
+      <?php } ?>
+<?php if ($this->session->flashdata('jadwalKegiatan')) { ?>
+              <script src="<?php echo base_url(); ?>assets/js/jquery-3.3.1.min.js"></script>
+              <script type="text/javascript">
+                $(function(){
+                    window.location.href = $('.jadwalKegiatan').attr('href');
+                });
+                </script>
+      <?php } ?>
