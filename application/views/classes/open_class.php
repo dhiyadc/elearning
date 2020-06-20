@@ -415,7 +415,7 @@
         </div>
 
         <!--  -->
-        
+                    </div>
           </div>
           <div class="col-lg-4 pl-lg-5">
             <div class="mb-5 text-center border rounded course-instructor">
@@ -437,6 +437,7 @@
           </div>
           <?php endforeach; ?>
         </div>
+    </div>
     </div>
 
       <div class="site-section courses-title bg-dark" id="courses-section">
