@@ -172,7 +172,7 @@
                       <?php if ($val2['foto'] == null) : ?>
                         <img src="https://www.jamf.com/jamf-nation/img/default-avatars/generic-user-purple.png" class="rounded-circle mb-4" style="width: 100px">
                       <?php else : ?>
-                        <img src="<?php echo base_url(); ?>assets/images/<?= $val2['foto']; ?>" alt="Image" class="w-25 rounded-circle mb-4" style="object-fit: cover;">
+                        <img src="<?php echo base_url(); ?>assets/images/<?= $val2['foto']; ?>" alt="Image" class="w-50 rounded-circle mb-4" style="object-fit: cover;">
                       <?php endif; ?>
                         <h3 class="h5 text-black mb-4"><?= $val2['nama']; ?></h3>
                         <p><?= $val2['deskripsi']; ?></p>
