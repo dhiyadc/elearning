@@ -227,12 +227,12 @@
                                       <form action="<?= base_url() ?>classes/update_nilai/<?= $val['id_kelas']; ?>/<?= $val2['id_tugas']; ?>/<?= $val2['id_submit']; ?>" method="POST">
                                         <div class="m-2">
                                           <div class="col mr-4">
-                                            <input class="effect-1" type="text" name="nilai" placeholder="0/100 Poin" style="font-size: 20px;">
+                                            <input class="effect-1" type="text" name="nilai" placeholder="<?= $val2['nilai_tugas'] ?>/100 Poin">
                                             <input type="hidden" name="tanggal_submit" value="<?= $val2['tanggal_submit']; ?>">
                                             <span class="focus-border"></span>
                                           </div>
                                         </div>
-                                        <div class="meta-item ml-auto text-right" style="margin-right: -110px; margin-top: -50px;">
+                                        <div class="meta-item ml-auto text-right" style="margin-right: -150px; margin-top: -50px;">
                                           <button type="submit" class="btn btn-primary" style="padding-right: 20px; padding-left: 20px; padding-top: 12px; padding-bottom: 12px;"><i class="fa fa-check-square-o"></i> Beri Nilai</button>
                                         </div>
                                       </form>
