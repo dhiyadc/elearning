@@ -124,7 +124,7 @@
                                             <?php if ($val3['nama_status'] == "Selesai") : ?>
                                                 <span class="badge badge-success"><?= $val3['nama_status'] ?></span>
                                             <?php else : ?>
-                                                <span class="badge badge-danger"><?= $val3['nama_status'] ?></span>
+                                                <span class="badge badge-warning"><?= $val3['nama_status'] ?></span>
                                             <?php endif; ?>
                                         <?php endif; ?>
                                     <?php endforeach; ?>
@@ -220,7 +220,7 @@
                                                 <div class="custom-checkbox custom-control"><input class="custom-control-input" id="exampleCustomCheckbox4" type="checkbox"><label class="custom-control-label" for="exampleCustomCheckbox4">&nbsp;</label></div>
                                             </div>
                                             <div class="widget-content-left flex2">
-                                                <div class="widget-heading">Kelas Kalkulus Sedang Berlangsung <div class="badge badge-danger ml-2">Berakhir</div> 
+                                                <div class="widget-heading">Kelas Kalkulus Sedang Berlangsung <div class="badge badge-warning ml-2">Berakhir</div> 
 
                                                 </div>
                                                 <div class="widget-subheading">By Bambang!</div>
@@ -363,7 +363,7 @@
 														<?php if ($val2['nama_status'] == "Selesai") : ?>
 															<span class="badge badge-success"><?= $val2['nama_status'] ?></span>
 														<?php else : ?>
-															<span class="badge badge-danger"><?= $val2['nama_status'] ?></span>
+															<span class="badge badge-warning"><?= $val2['nama_status'] ?></span>
 														<?php endif; ?>
 													<?php endif; ?>
 												<?php endforeach; ?>
@@ -589,7 +589,7 @@
 															<span class="badge badge-success"
 															style="margin-left: 50px;"><?= $val3['nama_status'] ?></span>
 														<?php else : ?>
-															<span class="badge badge-danger"><?= $val3['nama_status'] ?></span>
+															<span class="badge badge-warning"><?= $val3['nama_status'] ?></span>
 														<?php endif; ?>
 													<?php endif; ?>
 												<?php endforeach; ?>
@@ -672,7 +672,7 @@
 																<?php if ($val3['kategori'] == "Tugas") : ?>
 																	<span class="badge badge-primary"><?= $val3['kategori']; ?></span>
 																<?php else : ?>
-																	<span class="badge badge-danger"><?= $val3['kategori']; ?></span>
+																	<span class="badge badge-warning"><?= $val3['kategori']; ?></span>
 																<?php endif; ?>
 															</td>
 															<td style="padding-top:20px; text-align: center;">
@@ -943,7 +943,7 @@
 												<?php if ($val3['kategori'] == "Tugas") : ?>
 												<span class="badge badge-primary"><?= $val3['kategori']; ?></span>
 												<?php else : ?>
-												<span class="badge badge-danger"><?= $val3['kategori']; ?></span>
+												<span class="badge badge-warning"><?= $val3['kategori']; ?></span>
 												<?php endif; ?>
 											</td>
 											<td style="padding-top:20px">
