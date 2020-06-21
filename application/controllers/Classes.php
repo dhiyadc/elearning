@@ -960,6 +960,7 @@ class Classes extends CI_Controller {
             $data['private_kelas'] = $this->Classes_model->getMyPrivateClassesDetail($data['keyword_kelas_saya']);
             $data['kelas_saya'] = $this->Classes_model->getMyClassesDetail($data['keyword_kelas_saya']);
             $data['seluruh_kelas'] = $this->Classes_model->getAllClasses();
+            $data['private_kelas'] = $this->Classes_model->getMyPrivateClasses();
             $data['status'] = $this->Classes_model->getStatus();
             $data['kegiatan'] = $this->Classes_model->getAllKegiatan();
             $data['status'] = $this->Classes_model->getStatus();
@@ -1020,6 +1021,7 @@ class Classes extends CI_Controller {
             $data['keyword_kelas_saya'] = null; $data['keyword_tugas'] = null; $data['keyword_materi'] = null;
             $data['seluruh_kelas'] = $this->Classes_model->getAllClassesDetail($data['keyword_kelas_diikuti']);
             $data['kelas_saya'] = $this->Classes_model->getMyClasses();
+            $data['private_kelas'] = $this->Classes_model->getMyPrivateClasses();
             $data['status'] = $this->Classes_model->getStatus();
             $data['kegiatan'] = $this->Classes_model->getAllKegiatan();
             $data['peserta'] = $this->Classes_model->getPeserta();
@@ -1079,6 +1081,7 @@ class Classes extends CI_Controller {
             $data['keyword_kelas_diikuti'] = null; $data['keyword_kelas_saya'] = null; $data['keyword_materi'] = null;
             $data['seluruh_kelas'] = $this->Classes_model->getAllClasses();
             $data['kelas_saya'] = $this->Classes_model->getMyClasses();
+            $data['private_kelas'] = $this->Classes_model->getMyPrivateClasses();
             $data['status'] = $this->Classes_model->getStatus();
             $data['kegiatan'] = $this->Classes_model->getAllKegiatan();
             $data['peserta'] = $this->Classes_model->getPeserta();
@@ -1138,6 +1141,7 @@ class Classes extends CI_Controller {
             $data['keyword_kelas_diikuti'] = null; $data['keyword_tugas'] = null; $data['keyword_kelas_saya'] = null;
             $data['seluruh_kelas'] = $this->Classes_model->getAllClasses();
             $data['kelas_saya'] = $this->Classes_model->getMyClasses();
+            $data['private_kelas'] = $this->Classes_model->getMyPrivateClasses();
             $data['status'] = $this->Classes_model->getStatus();
             $data['kegiatan'] = $this->Classes_model->getAllKegiatan();
             $data['peserta'] = $this->Classes_model->getPeserta();

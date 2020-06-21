@@ -359,22 +359,16 @@
 											</td>
 											<td style="padding-top: 20px;">
 												<?php foreach ($status as $val2) : ?>
-												<?php if ($val['status_kelas'] == $val2['id_status']) : ?>
-												<?php if ($val2['nama_status'] == "Selesai") : ?>
-												<span class="badge badge-success"><?= $val2['nama_status'] ?></span>
-												<?php else : ?>
-
-												<span class="badge badge-danger"><?= $val2['nama_status'] ?></span>
-												<?php endif; ?>
-												<?php endif; ?>
+													<?php if ($val['status_kelas'] == $val2['id_status']) : ?>
+														<?php if ($val2['nama_status'] == "Selesai") : ?>
+															<span class="badge badge-success"><?= $val2['nama_status'] ?></span>
+														<?php else : ?>
+															<span class="badge badge-danger"><?= $val2['nama_status'] ?></span>
+														<?php endif; ?>
+													<?php endif; ?>
 												<?php endforeach; ?>
 											</td>
 											<td style="padding-top: 20px;">
-
-
-
-
-
 												<div class="buttonclass">
 													<div class="btn-group">
 														<a class="btn btn-outline-dark"
@@ -403,6 +397,7 @@
 														</div>
 													</div>
 												</div>
+											</td>
 										</tr>
 										<?php endforeach; ?>
 									</tbody>
@@ -410,21 +405,6 @@
 							</div>
 							<div class="card-footer white py-3 d-flex justify-content-center">
 								<ul id="pagination" class="pagination">
-									<!-- <li class="page-item">
-              <a class="page-link" href="#" aria-label="Previous">
-                <span aria-hidden="true">&laquo;</span>
-                <span class="sr-only">Previous</span>
-              </a>
-            </li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item">
-              <a class="page-link" href="#" aria-label="Next">
-                <span aria-hidden="true">&raquo;</span>
-                <span class="sr-only">Next</span>
-              </a>
-            </li> -->
 								</ul>
 								</nav>
 							</div>
@@ -479,13 +459,13 @@
 											</td>
 											<td style="padding-top: 20px;">
 												<?php foreach ($status as $val2) : ?>
-												<?php if ($val['status_kelas'] == $val2['id_status']) : ?>
-												<?php if ($val2['nama_status'] == "Selesai") : ?>
-												<span class="badge badge-success"><?= $val2['nama_status'] ?></span>
-												<?php else : ?>
-												<span class="badge badge-warning"><?= $val2['nama_status'] ?></span>
-												<?php endif; ?>
-												<?php endif; ?>
+													<?php if ($val['status_kelas'] == $val2['id_status']) : ?>
+														<?php if ($val2['nama_status'] == "Selesai") : ?>
+															<span class="badge badge-success"><?= $val2['nama_status'] ?></span>
+														<?php else : ?>
+															<span class="badge badge-warning"><?= $val2['nama_status'] ?></span>
+														<?php endif; ?>
+													<?php endif; ?>
 												<?php endforeach; ?>
 											</td>
 											<td style="padding-top: 20px;">
@@ -525,21 +505,6 @@
 							</div>
 							<div class="card-footer white py-3 d-flex justify-content-center">
 								<ul id="pagination2" class="pagination">
-									<!-- <li class="page-item">
-										<a class="page-link" href="#" aria-label="Previous">
-											<span aria-hidden="true">&laquo;</span>
-											<span class="sr-only">Previous</span>
-										</a>
-									</li>
-									<li class="page-item"><a class="page-link" href="#">1</a></li>
-									<li class="page-item"><a class="page-link" href="#">2</a></li>
-									<li class="page-item"><a class="page-link" href="#">3</a></li>
-									<li class="page-item">
-										<a class="page-link" href="#" aria-label="Next">
-											<span aria-hidden="true">&raquo;</span>
-											<span class="sr-only">Next</span>
-										</a>
-									</li> -->
 								</ul>
 								</nav>
 							</div>
@@ -597,27 +562,20 @@
 											</td>
 											<td style="padding-top: 20px;">
 												<?php $total = 0; $selesai = 0;
-
-                        
-                        
-    
-  
- 
-                                foreach ($kegiatan as $val3) {
-                                  if ($val2['id_kelas'] == $val3['id_kelas']){
-                                    $total++; 
-                                    if ($val3['status_kegiatan'] == 2) {
-                                      $selesai++; 
-                                    } 
-                                  }
-                                }
-                                if ($total == 0) {
-                                  $proses = 0;
-                                }
-                                else {
-                                $proses = ($selesai / $total) * 100; 
-                                } ?>
-
+													foreach ($kegiatan as $val3) {
+													if ($val2['id_kelas'] == $val3['id_kelas']){
+														$total++; 
+														if ($val3['status_kegiatan'] == 2) {
+														$selesai++; 
+														} 
+													}
+													}
+													if ($total == 0) {
+													$proses = 0;
+													}
+													else {
+													$proses = ($selesai / $total) * 100; 
+													} ?>
 												<div class="progress md-progress">
 													<div class="progress-bar bg-info" role="progressbar"
 														style="width: <?= $proses; ?>%" aria-valuenow="<?= $proses; ?>"
@@ -626,34 +584,16 @@
 											</td>
 											<td style="padding-top:20px; padding-left: 60px;">
 												<?php foreach ($status as $val3) : ?>
-												<?php if ($val['status_kelas'] == $val3['id_status']) : ?>
-												<?php if ($val3['nama_status'] == "Selesai") : ?>
-												<span class="badge badge-success"
-													style="margin-left: 50px;"><?= $val3['nama_status'] ?></span>
-												<?php else : ?>
-												<span class="badge badge-danger"><?= $val3['nama_status'] ?></span>
-												<?php endif; ?>
-												<?php endif; ?>
+													<?php if ($val['status_kelas'] == $val3['id_status']) : ?>
+														<?php if ($val3['nama_status'] == "Selesai") : ?>
+															<span class="badge badge-success"
+															style="margin-left: 50px;"><?= $val3['nama_status'] ?></span>
+														<?php else : ?>
+															<span class="badge badge-danger"><?= $val3['nama_status'] ?></span>
+														<?php endif; ?>
+													<?php endif; ?>
 												<?php endforeach; ?>
 											</td>
-											<!-- <td>
-
-                                  <?php foreach ($materi as $val3) : ?>
-                                    <?php if ($val2['id_kelas'] == $val3[0]['id_kelas']) : ?>
-                                      <div class="buttonclass">
-                                        <a href="<?= base_url()?>classes/open_class/<?= $val3[0]['id_kelas'] ?>" class="btn btn-white" style="color: darkcyan;">Lihat Materi</a>
-                                      </div>
-                                    <?php endif; ?>
-                                  <?php endforeach; ?>
-                                </td> -->
-
-
-
-
-
-
-
-
 											<td>
 												<div class="buttonclass">
 													<a href="<?= base_url()?>classes/open_class/<?= $val['id_kelas'] ?>"
@@ -663,7 +603,6 @@
 														class="btn btn-danger">Tinggalkan</a>
 												</div>
 											</td>
-
 										</tr>
 										<?php endif; ?>
 										<?php endforeach; ?>
@@ -674,21 +613,6 @@
 							<div class="card-footer white py-3 d-flex justify-content-center">
 								<nav>
 									<ul id="pagination3" class="pagination">
-										<!-- <li class="page-item">
-              <a class="page-link" href="#" aria-label="Previous">
-                <span aria-hidden="true">&laquo;</span>
-                <span class="sr-only">Previous</span>
-              </a>
-            </li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item">
-              <a class="page-link" href="#" aria-label="Next">
-                <span aria-hidden="true">&raquo;</span>
-                <span class="sr-only">Next</span>
-              </a>
-            </li> -->
 									</ul>
 								</nav>
 							</div>
@@ -702,7 +626,21 @@
 					<div class="col">
 						<div class="card card-list">
 							<div class="card-body">
-								<h2>Tugas</h2>
+								<div class="row">
+									<div class="col">
+										<h2>Tugas</h2>
+									</div>
+									<div class="align-self-end">
+										<form action="<?= base_url(); ?>Classes/search_tugas" method="post">
+											<div class="input-group mb-3">
+												<input class="form-control form-control-sm mr-0 w-0" type="text" name="keyword" placeholder="Cari Kelas"aria-label="Search">
+												<div class="input-group-append">
+													<button class="btn" type="submit"><i class="fa fa-search" aria-hidden="true" onclick=""></i></button>
+												</div>
+											</div>
+										</form>
+									</div>
+								</div>
 							</div>
 
 							<div class="card-body table-responsive">
@@ -713,68 +651,74 @@
 											<th scope="col">Nama Tugas</th>
 											<th scope="col">Kategori</th>
 											<th scope="col" style="text-align: center;">Deadline</th>
+											<th scope="col">Nilai</th>
 											<th scope="col">Aksi</th>
 										</tr>
 									</thead>
 									<tbody>
 										<?php $i = 0; ?>
 										<?php foreach ($kelas_tugas as $val[$i][0]) : ?>
-										<?php $j = 0; $k = 0; ?>
-										<?php foreach ($tugas as $val2[$i][$j]) : ?>
-										<?php foreach ($val2[$i][$j] as $val3) : ?>
-										<?php if ($val[$i][0][0]['id_kelas'] == $val3['id_kelas']) : ?>
-										<?php if ($cek[$k]) : ?>
-										<tr>
-											<th scope="row" style="width: 300px; "><a
-													class="text-primary"><?= $val[$i][0][0]['judul_kelas']; ?></a></th>
-											<td style="padding-top: 20px; ">
-												<?= $val3['judul_tugas']; ?>
-											</td>
-											<td style="padding-top: 20px;">
-												<?php if ($val3['kategori'] == "Tugas") : ?>
-												<span class="badge badge-primary"><?= $val3['kategori']; ?></span>
-												<?php else : ?>
-												<span class="badge badge-danger"><?= $val3['kategori']; ?></span>
-												<?php endif; ?>
-											</td>
-											<td style="padding-top:20px; text-align: center;">
-												<span class="badge"><?= $val3['deadline']; ?></span>
-											</td>
-											<td>
-												<div class="buttonclass">
-													<a href="<?= base_url() ?>classes/detail_tugaskuis/<?= $val[$i][0][0]['id_kelas'] ?>/<?= $val3['id_tugas']; ?>"
-														class="btn btncyan">Lihat Tugas</a>
-												</div>
-											</td>
-										</tr>
-										<?php endif; ?>
-										<?php endif; ?>
-										<?php $k++; ?>
-										<?php endforeach; ?>
-										<?php $j++; ?>
-										<?php endforeach; ?>
-										<?php $i++; ?>
+											<?php $j = 0; $k = 0; ?>
+											<?php foreach ($tugas as $val2[$i][$j]) : ?>
+												<?php foreach ($val2[$i][$j] as $val3) : ?>
+													<?php if ($val[$i][0][0]['id_kelas'] == $val3['id_kelas']) : ?>
+														<tr>
+															<th scope="row" style="width: 300px; "><a
+																	class="text-primary"><?= $val[$i][0][0]['judul_kelas']; ?></a></th>
+															<td style="padding-top: 20px; ">
+																<?= $val3['judul_tugas']; ?>
+															</td>
+															<td style="padding-top: 20px;">
+																<?php if ($val3['kategori'] == "Tugas") : ?>
+																	<span class="badge badge-primary"><?= $val3['kategori']; ?></span>
+																<?php else : ?>
+																	<span class="badge badge-danger"><?= $val3['kategori']; ?></span>
+																<?php endif; ?>
+															</td>
+															<td style="padding-top:20px; text-align: center;">
+																<span class="badge"><?= $val3['deadline']; ?></span>
+															</td>
+															<?php if ($cek[$k] == true) : ?>
+																<td style="padding-top:20px">
+																	Belum Kumpul
+																</td>
+																<td>
+																	<div class="buttonclass">
+																		<a href="<?= base_url() ?>classes/detail_tugaskuis/<?= $val[$i][0][0]['id_kelas'] ?>/<?= $val3['id_tugas']; ?>" class="btn btncyan">Lihat Tugas</a>
+																	</div>
+																</td>
+															<?php else : ?>
+																<?php foreach ($submit as $val4) : ?>
+																	<?php if ($val3['id_tugas'] == $val4['id_tugas'] && $val4['id_user'] == $this->session->userdata('id_user')) : ?>
+																		<td style="padding-top:20px">
+																			<?php if ($val4['nilai_tugas'] == "Belum Dinilai") {
+																			echo $val4['nilai_tugas']; 
+																			}
+																			else { 
+																			echo $val4['nilai_tugas'] . "/100";
+																			} ?>
+																		</td>
+																		<td>
+																			<div class="buttonclass">
+																				<a href="<?= base_url() ?>classes/detail_tugaskuis/<?= $val[$i][0][0]['id_kelas'] ?>/<?= $val3['id_tugas']; ?>" class="btn btncyan"">Lihat Tugas</a>
+																			</div>
+																		</td>
+																	<?php endif; ?>
+																<?php endforeach; ?>
+															<?php endif; ?>
+														</tr>
+													<?php endif; ?>
+												<?php $k++; ?>
+												<?php endforeach; ?>
+												<?php $j++; ?>
+											<?php endforeach; ?>
+											<?php $i++; ?>
 										<?php endforeach; ?>
 									</tbody>
 								</table>
 							</div>
 							<div class="card-footer white py-3 d-flex justify-content-center">
 								<ul id="pagination4" class="pagination">
-									<!-- <li class="page-item">
-              <a class="page-link" href="#" aria-label="Previous">
-                <span aria-hidden="true">&laquo;</span>
-                <span class="sr-only">Previous</span>
-              </a>
-            </li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item">
-              <a class="page-link" href="#" aria-label="Next">
-                <span aria-hidden="true">&raquo;</span>
-                <span class="sr-only">Next</span>
-              </a>
-            </li> -->
 								</ul>
 								</nav>
 							</div>
@@ -788,7 +732,21 @@
 					<div class="col">
 						<div class="card card-list">
 							<div class="card-body">
-								<h2>Materi</h2>
+								<div class="row">
+									<div class="col">
+										<h2>Materi</h2>
+									</div>
+									<div class="align-self-end">
+										<form action="<?= base_url(); ?>Classes/search_materi" method="post">
+											<div class="input-group mb-3">
+												<input class="form-control form-control-sm mr-0 w-0" type="text" name="keyword" placeholder="Cari Kelas"aria-label="Search">
+												<div class="input-group-append">
+													<button class="btn" type="submit"><i class="fa fa-search" aria-hidden="true" onclick=""></i></button>
+												</div>
+											</div>
+										</form>
+									</div>
+								</div>
 							</div>
 
 							<div class="card-body table-responsive">
