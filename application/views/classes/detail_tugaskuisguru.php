@@ -259,17 +259,18 @@
 
 <!-- <script type="text/javascript" src="<?= base_url(); ?>assets/js/password_verif.js"></script> -->
  
-<?php if ($this->session->flashdata('successUpdateNilai')) { ?>
-                        <script src="<?php echo base_url(); ?>assets/js/jquery-3.3.1.min.js"></script>
-                        <script>
-                        $(function () {
-                          $('#myTab a[href="#tab<?= $this->session->flashdata('successUpdateNilai'); ?>"]').tab('show');
-                        })
-                      </script>
-                  <?php } ?>
  <script>
  $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
   $(this).removeClass('active');
 })
  
  </script>
+ 
+<?php if ($this->session->flashdata('successUpdateNilai')) { ?>
+  <script src="<?php echo base_url(); ?>assets/js/jquery-3.3.1.min.js"></script>
+  <script>
+    $(function () {
+      $('#myTab a[href="#tab<?= $this->session->flashdata('successUpdateNilai'); ?>"]').tab('show');
+    })
+  </script>
+<?php } ?>
