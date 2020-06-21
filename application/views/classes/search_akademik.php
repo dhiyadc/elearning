@@ -599,8 +599,8 @@
                                 <span class="badge"><?= $val3['deadline']; ?></span>
                               </td>
                               <?php if ($cek[$k] == true) : ?>
-                                <td style="padding-top:20px">
-                                  Belum Kumpul
+																<td style="padding-top:20px; color: red;">
+																	<b>Belum Kumpul</b>
                                 </td>
                                 <td>
                                   <div class="buttonclass">
@@ -610,7 +610,7 @@
                               <?php else : ?>
                                 <?php foreach ($submit as $val4) : ?>
                                   <?php if ($val3['id_tugas'] == $val4['id_tugas'] && $val4['id_user'] == $this->session->userdata('id_user')) : ?>
-                                    <td style="padding-top:20px">
+                                    <td style="padding-top:20px; color: black;">
                                     <?php if ($val4['nilai_tugas'] == "Belum Dinilai") {
                                       echo $val4['nilai_tugas']; 
                                     }

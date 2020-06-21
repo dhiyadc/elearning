@@ -125,9 +125,9 @@
                       <?php endforeach; ?>
                       </div>
                     <div class="d-flex align-items-center align-self-end">
-                      <div class="meta.item mr-auto">
+                      <!-- <div class="meta.item mr-auto">
                       <a href="#" data-toggle="modal" data-target="#detailTugas<?= $val2['id_tugas']; ?>"><i class="fa  fa-tasks m-1"></i>Lihat Materi</a>
-                      </div>  
+                      </div>   -->
                       <div class="meta-item ml-auto">
                           <?php if ($cek == null) : ?>
                             <a href="#" data-toggle="modal" data-target="#detailTugas<?= $val2['id_tugas']; ?>"><i class="fa fa-paper-plane-o m-1"></i>Serahkan Jawaban</a>
