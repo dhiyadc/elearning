@@ -987,7 +987,7 @@ class Classes_model extends CI_Model {
                 $data = [
                     'id_tugas' => $id_tugas,
                     'url_file' => $filename,
-                    'nilai_tugas' => 0,
+                    'nilai_tugas' => "Belum Dinilai",
                     'status_tugas' => 2,
                     'id_user' => $this->session->userdata('id_user'),
                     'subjek_tugas' => $this->input->post('subjek'),
@@ -1000,7 +1000,7 @@ class Classes_model extends CI_Model {
                 $data = [
                     'id_tugas' => $id_tugas,
                     'url_file' => $filename,
-                    'nilai_tugas' => 0,
+                    'nilai_tugas' => "Belum Dinilai",
                     'status_tugas' => 1,
                     'id_user' => $this->session->userdata('id_user'),
                     'subjek_tugas' => $this->input->post('subjek'),

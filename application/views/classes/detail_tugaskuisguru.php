@@ -263,7 +263,6 @@
  $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
   $(this).removeClass('active');
 })
- 
  </script>
  
 <?php if ($this->session->flashdata('successUpdateNilai')) { ?>
@@ -271,6 +270,11 @@
   <script>
     $(function () {
       $('#myTab a[href="#tab<?= $this->session->flashdata('successUpdateNilai'); ?>"]').tab('show');
+    })
+  </script>
+  <script>
+    $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+      $(this).removeClass('active');
     })
   </script>
 <?php } ?>
