@@ -125,7 +125,10 @@
                       <?php endforeach; ?>
                       </div>
                     <div class="d-flex align-items-center align-self-end">
-                        <div class="meta-item ml-auto">
+                      <div class="meta.item mr-auto">
+                      <a href="#" data-toggle="modal" data-target="#detailTugas<?= $val2['id_tugas']; ?>"><i class="fa  fa-tasks m-1"></i>Lihat Materi</a>
+                      </div>  
+                      <div class="meta-item ml-auto">
                           <?php if ($cek == null) : ?>
                             <a href="#" data-toggle="modal" data-target="#detailTugas<?= $val2['id_tugas']; ?>"><i class="fa fa-paper-plane-o m-1"></i>Serahkan Jawaban</a>
                           <?php else : ?>
@@ -183,6 +186,7 @@
                                                           <label>File (hanya pdf/doc/docx)</label>
                                                             <input type="file" class="form-control" name="assignment" accept=".pdf, .doc, .docx" required>
                                                         </div> -->
+                                                        
                                                         <div class="text-center mb-3">
                                                           <!-- <input type="submit" class="btn btn-light blue-gradient btn-block btn-rounded z-depth-1a" value="Ganti Jawaban"> -->
                                                           <a href="<?= base_url() ?>classes/hapus_jawaban/<?= $val['id_kelas']; ?>/<?= $val3['id_tugas']; ?>/<?= $val3['id_submit']; ?>" class="btn btn-danger blue-gradient btn-block btn-rounded z-depth-1a">Hapus Jawaban</a>
