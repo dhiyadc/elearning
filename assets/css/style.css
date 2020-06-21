@@ -2052,3 +2052,7 @@ input[type="text"]{font: 15px/24px "Lato", Arial, sans-serif; color: #333; width
     font-size: 10px;
   }
 }
+.fa-clickable {
+  cursor:pointer;
+  outline:none;
+}

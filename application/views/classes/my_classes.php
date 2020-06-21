@@ -330,7 +330,7 @@
 											<th scope="row" style="width: 300px;"><a
 													class="text-primary"><?= $val['judul_kelas']; ?></a></th>
 											<td style="padding-top: 20px;">
-												<span><i class="fa fa-share-alt" aria-hidden="true"></i></span>
+												<span><i class="fa fa-share-alt  fa-clickable" id="epd-dribble"></i></span>
 
 											</td>
 
@@ -593,7 +593,7 @@
 											<th scope="row" style="width: 300px;"><a
 													class="text-primary"><?= $val['judul_kelas']; ?></a></th>
 											<td style="padding-top: 20px;">
-												<span><i class="fa fa-share-alt" aria-hidden="true"></i></span>
+											<span><i class="fa fa-share-alt  fa-clickable" id="epd-dribble"></i></span>
 											</td>
 											<td style="padding-top: 20px;">
 												<?php $total = 0; $selesai = 0;
