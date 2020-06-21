@@ -61,8 +61,8 @@
       <div class="container">
         <div class="row">
         <?php foreach ($kelas as $val) : ?>
-          <div class="col-lg-8 mb-5">
-            <div class="mb-5">
+          <div class="col-lg-8 mb-3">
+            <div class="mb-3">
 
               <?php if($this->session->flashdata("invalidFile")){ ?>
                       <div class="alert alert-danger" role="alert">
@@ -152,10 +152,42 @@
               <a class="btn btn-dark mr-1" href="<?= base_url()?>classes/update_class/<?= $val['id_kelas'] ?>"><span class="icon-pencil"></span> Edit Kelas</a>
               <!-- <a class="btn btn-light mr-1" href="<?= base_url()?>classes/list_assignment/<?= $val['id_kelas'] ?>"><span class="icon-list"></span> Lihat Tugas</a> -->
             <?php endif; ?>
-            <br><br>
+          </div>
+          <div class="tab-content">
+              <div role="tabpanel" class="tab-pane fade show active" id="#buzz" style="margin-top: 20px;">
+                      
+              </div>
+          </div>
+        </div>
+
+        <!--  -->
+                    </div>
+          </div>
+          <div class="col-lg-4 pl-lg-5">
+            <div class="mb-5 text-center border rounded course-instructor">
+              <h3 class="mb-5 text-black text-uppercase h6 border-bottom pb-3">Mentor Kelas</h3>
+              <div class="mb-4 text-center"> 
+                <?php foreach ($pembuat as $val2) : ?>
+                    <?php if ($val2['id_user'] == $val['pembuat_kelas']) : ?> 
+                      <?php if ($val2['foto'] == null) : ?>
+                        <img src="https://www.jamf.com/jamf-nation/img/default-avatars/generic-user-purple.png" class="rounded-circle mb-4" style="width: 100px">
+                      <?php else : ?>
+                        <img src="<?php echo base_url(); ?>assets/images/<?= $val2['foto']; ?>" alt="Image" class="w-25 rounded-circle mb-4" style="object-fit: cover;">
+                      <?php endif; ?>
+                        <h3 class="h5 text-black mb-4"><?= $val2['nama']; ?></h3>
+                        <p><?= $val2['deskripsi']; ?></p>
+                    <?php endif; ?>
+                <?php endforeach; ?>
+              </div>
+            </div>
+          </div>
+          <?php endforeach; ?>
+        </div>
+        
+        <section>
             <a href="#jadwalKegiatan" class="jadwalKegiatan"></a>
             <div id="jadwalKegiatan">
-            <section>
+            </div>
               <div class="row">
                 <div class="col"> 
                   <div class="card card-list">
@@ -197,11 +229,11 @@
                               <?php foreach ($status as $val3) : ?>
                                   <?php if ($val3['id_status'] == $val2['status_kegiatan']) : ?> 
                                     <?php if ($val3['nama_status'] == "Selesai") : ?>
-                                      <td><span class="badge badge-success"><?= $val3['nama_status']; ?></span></td>
+                                      <td style="text-align: center ;"><span class="badge badge-success"><?= $val3['nama_status']; ?></span></td>
                                     <?php elseif ($val3['nama_status'] == "Belum Mulai") : ?>
-                                      <td><span class="badge badge-danger"><?= $val3['nama_status']; ?></span></td>
+                                      <td style="text-align: center ;"><span class="badge badge-danger"><?= $val3['nama_status']; ?></span></td>
                                     <?php else : ?>
-                                      <td><span class="badge badge-warning"><?= $val3['nama_status']; ?></span></td>
+                                      <td style="text-align: center ;"><span class="badge badge-warning"><?= $val3['nama_status']; ?></span></td>
                                     <?php endif; ?>
                                   <?php endif; ?>
                               <?php endforeach; ?>
@@ -405,40 +437,9 @@
                 </div>
               </div>
             </section>
-            </div>
-          </div>
-          <div class="tab-content">
-              <div role="tabpanel" class="tab-pane fade show active" id="#buzz" style="margin-top: 20px;">
-                      
-              </div>
-          </div>
-        </div>
-
-        <!--  -->
-                    </div>
-          </div>
-          <div class="col-lg-4 pl-lg-5">
-            <div class="mb-5 text-center border rounded course-instructor">
-              <h3 class="mb-5 text-black text-uppercase h6 border-bottom pb-3">Mentor Kelas</h3>
-              <div class="mb-4 text-center"> 
-                <?php foreach ($pembuat as $val2) : ?>
-                    <?php if ($val2['id_user'] == $val['pembuat_kelas']) : ?> 
-                      <?php if ($val2['foto'] == null) : ?>
-                        <img src="https://www.jamf.com/jamf-nation/img/default-avatars/generic-user-purple.png" class="rounded-circle mb-4" style="width: 100px">
-                      <?php else : ?>
-                        <img src="<?php echo base_url(); ?>assets/images/<?= $val2['foto']; ?>" alt="Image" class="w-25 rounded-circle mb-4" style="object-fit: cover;">
-                      <?php endif; ?>
-                        <h3 class="h5 text-black mb-4"><?= $val2['nama']; ?></h3>
-                        <p><?= $val2['deskripsi']; ?></p>
-                    <?php endif; ?>
-                <?php endforeach; ?>
-              </div>
-            </div>
-          </div>
-          <?php endforeach; ?>
-        </div>
     </div>
     </div>
+    
 
       <div class="site-section courses-title bg-dark" id="courses-section">
       <div class="container">

@@ -318,7 +318,7 @@
           </div>
          
           <div class="card-body table-responsive">
-            <table class="table">
+            <table class="table" id="pageTable">
               <thead>
                 <tr>
                   <th scope="col">Kelas</th>
@@ -388,22 +388,7 @@
             </table>
           </div>
           <div class="card-footer white py-3 d-flex justify-content-center">
-          <ul class="pagination">
-            <li class="page-item">
-              <a class="page-link" href="#" aria-label="Previous">
-                <span aria-hidden="true">&laquo;</span>
-                <span class="sr-only">Previous</span>
-              </a>
-            </li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item">
-              <a class="page-link" href="#" aria-label="Next">
-                <span aria-hidden="true">&raquo;</span>
-                <span class="sr-only">Next</span>
-              </a>
-            </li>
+          <ul class="pagination" id="pagination">
           </ul>
         </nav>
           </div>
@@ -413,6 +398,7 @@
     </div>
      
     </div>
+    
     <div class="tab-pane" id="tab3" role="tabpanel" aria-expanded="false">
     <div class="row mt-5">
       <div class="col">
@@ -453,7 +439,7 @@
           </div>
          
           <div class="card-body">
-            <table class="table">
+            <table class="table" id="pageTable3">
               <thead>
                 <tr>
                   <th scope="col">Kelas</th>
@@ -527,22 +513,7 @@
             </table>
           </div>
           <div class="card-footer white py-3 d-flex justify-content-center">
-          <ul class="pagination">
-            <li class="page-item">
-              <a class="page-link" href="#" aria-label="Previous">
-                <span aria-hidden="true">&laquo;</span>
-                <span class="sr-only">Previous</span>
-              </a>
-            </li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item">
-              <a class="page-link" href="#" aria-label="Next">
-                <span aria-hidden="true">&raquo;</span>
-                <span class="sr-only">Next</span>
-              </a>
-            </li>
+          <ul class="pagination" id="pagination3">
           </ul>
         </nav>
           </div>
@@ -594,7 +565,7 @@
           </div>
          
           <div class="card-body">
-            <table class="table">
+            <table class="table" id="pageTable4">
               <thead>
                 <tr>
                   <th scope="col">Kelas</th>
@@ -667,22 +638,7 @@
             </table>
           </div>
           <div class="card-footer white py-3 d-flex justify-content-center">
-          <ul class="pagination">
-            <li class="page-item">
-              <a class="page-link" href="#" aria-label="Previous">
-                <span aria-hidden="true">&laquo;</span>
-                <span class="sr-only">Previous</span>
-              </a>
-            </li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item">
-              <a class="page-link" href="#" aria-label="Next">
-                <span aria-hidden="true">&raquo;</span>
-                <span class="sr-only">Next</span>
-              </a>
-            </li>
+          <ul class="pagination" id="pagination4">
           </ul>
         </nav>
           </div>
@@ -723,7 +679,7 @@
           </div>
          
           <div class="card-body">
-            <table class="table">
+            <table class="table" id="pageTable5">
               <thead>
                 <tr>
                   <th scope="col">Kelas</th>
@@ -789,22 +745,7 @@
             </table>
           </div>
           <div class="card-footer white py-3 d-flex justify-content-center">
-          <ul class="pagination">
-            <li class="page-item">
-              <a class="page-link" href="#" aria-label="Previous">
-                <span aria-hidden="true">&laquo;</span>
-                <span class="sr-only">Previous</span>
-              </a>
-            </li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item">
-              <a class="page-link" href="#" aria-label="Next">
-                <span aria-hidden="true">&raquo;</span>
-                <span class="sr-only">Next</span>
-              </a>
-            </li>
+          <ul class="pagination" id="pagination5">
           </ul>
         </nav>
           </div>
@@ -860,6 +801,7 @@
 </div>
 </section>
 
+<script type="text/javascript" src="<?= base_url(); ?>assets/js/paging.js"></script>
 <script type="text/javascript" src="<?= base_url(); ?>assets/js/password_verif.js"></script>
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
