@@ -3,7 +3,7 @@
 
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
+<link href="<?= base_url() ?>assets/datetimepicker/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
 
 
 <section class="user_dashboard">
@@ -325,7 +325,9 @@
 										</tr>
 									</thead>
 									<tbody>
+									<?php $ctClass = 0; ?>
 										<?php foreach ($kelas as $val) : ?>
+										<?php $ctClass++; ?>
 										<tr>
 											<th scope="row" style="width: 300px;"><a
 													class="text-primary"><?= $val['judul_kelas']; ?></a></th>
@@ -379,6 +381,7 @@
 															class="btn btn-outline-dark dropdown-toggle dropdown-toggle-split"
 															data-toggle="dropdown" aria-haspopup="true"
 															aria-expanded="false">
+															<button class="btn btn-light btn-md px-3 my-0 ml-0" type="button" data-toggle="modal" data-target="#tambahKegiatan<?= $ctClass ?>">Tambah Jadwal Kegiatan</button>
 															<span class="sr-only">Toggle Dropdown</span>
 														</button>
 														<div class="dropdown-menu">
@@ -399,6 +402,52 @@
 												</div>
 											</td>
 										</tr>
+
+										<div class="modal fade" id="tambahKegiatan<?= $ctClass ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+											aria-hidden="true" style="padding-right: 90px;">
+											<div class="modal-dialog" role="document">
+													<!--Content-->
+													<div class="modal-content form-elegant">
+													<!--Header-->
+													<div class="modal-header text-center">
+														<h3 class="modal-title w-100 dark-grey-text font-weight-bold my-3" id="myModalLabel"><strong>Kelas <?= $val['judul_kelas']; ?></strong></h3>
+														<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+														<span aria-hidden="true">&times;</span>
+														</button>
+													</div>
+
+													
+
+													<!--Body-->
+													<div class="modal-body mx-4">
+														<!--Body-->
+														<form enctype="multipart/form-data" action="<?= base_url()?>classes/set_kegiatan/<?= $val['id_kelas'] ?>" method="POST">
+														<div class="form-group">
+															<label>Deskripsi Kegiatan</label>
+															<textarea class="form-control" name="deskripsi" required></textarea>
+														</div>
+														<div class="form-group">
+															<label>Jadwal Kegiatan</label>
+															<div class="input-group date form_datetime " data-date-format="yyyy/mm/dd hh:ii" data-link-field="dtp_input1">
+															<input class="form-control" id="inputdatetimepicker" size="16" type="text" name="tanggal" readonly required>
+															<span class="input-group-addon" style="width:40px;"><span class="glyphicon glyphicon-remove"></span></span>
+															<span class="input-group-addon" style="width:40px;"><span class="glyphicon glyphicon-th"></span></span>
+															</div>
+														</div>
+														<input type="hidden" id="dtp_input1"/>
+														<div class="form-group">
+														<label for="materiForm">Materi (Opsional)</label>
+														<input type="file" name="materi[]" accept=".doc, .docx, .ppt, .pptx, .pdf" class="form-control-file" id="materiForm" multiple>
+														</div>
+														<div class="text-center mb-3">
+														<button type="submit" class="btn btn-light blue-gradient btn-block btn-rounded z-depth-1a">Simpan</button>
+														</div>
+														</form>
+													</div>
+													</div>
+												</div>
+										</div>
+
 										<?php endforeach; ?>
 									</tbody>
 								</table>
@@ -431,7 +480,9 @@
 										</tr>
 									</thead>
 									<tbody>
-										<?php foreach ($private_kelas as $val) : ?>
+										<?php $ctClass = 0;
+										foreach ($private_kelas as $val) :
+										$ctClass++; ?>
 										<tr>
 											<th scope="row" style="width: 300px;"><a
 													class="text-primary"><?= $val['judul_kelas']; ?></a></th>
@@ -481,6 +532,7 @@
 															aria-expanded="false">
 															<span class="sr-only">Toggle Dropdown</span>
 														</button>
+														<button class="btn btn-light btn-md px-3 my-0 ml-0" type="button" data-toggle="modal" data-target="#tambahKegiatan<?= $ctClass ?>">Tambah Jadwal Kegiatan</button>
 														<div class="dropdown-menu">
 															<a class="dropdown-item btn"
 																href="<?= base_url()?>classes/open_modal_class/<?= $val['id_kelas'] ?>">Tambah
@@ -499,6 +551,53 @@
 												</div>
 											</td>
 										</tr>
+
+										<div class="modal fade" id="tambahKegiatan<?= $ctClass ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+											aria-hidden="true" style="padding-right: 90px;">
+											<div class="modal-dialog" role="document">
+													<!--Content-->
+													<div class="modal-content form-elegant">
+													<!--Header-->
+													<div class="modal-header text-center">
+														<h3 class="modal-title w-100 dark-grey-text font-weight-bold my-3" id="myModalLabel"><strong>Kelas <?= $val['judul_kelas']; ?></strong></h3>
+														<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+														<span aria-hidden="true">&times;</span>
+														</button>
+													</div>
+
+													
+
+													<!--Body-->
+													<div class="modal-body mx-4">
+														<!--Body-->
+														<form enctype="multipart/form-data" action="<?= base_url()?>classes/set_kegiatan/<?= $val['id_kelas'] ?>" method="POST">
+														<div class="form-group">
+															<label>Deskripsi Kegiatan</label>
+															<textarea class="form-control" name="deskripsi" required></textarea>
+														</div>
+														<div class="form-group">
+															<label>Jadwal Kegiatan</label>
+															<div class="input-group date form_datetime " data-date-format="yyyy/mm/dd hh:ii" data-link-field="dtp_input1">
+															<input class="form-control" id="inputdatetimepicker" size="16" type="text" name="tanggal" readonly required>
+															<span class="input-group-addon" style="width:40px;"><span class="glyphicon glyphicon-remove"></span></span>
+															<span class="input-group-addon" style="width:40px;"><span class="glyphicon glyphicon-th"></span></span>
+															</div>
+														</div>
+														<input type="hidden" id="dtp_input1"/>
+														<div class="form-group">
+														<label for="materiForm">Materi (Opsional)</label>
+														<input type="file" name="materi[]" accept=".doc, .docx, .ppt, .pptx, .pdf" class="form-control-file" id="materiForm" multiple>
+														</div>
+														<div class="text-center mb-3">
+														<button type="submit" class="btn btn-light blue-gradient btn-block btn-rounded z-depth-1a">Simpan</button>
+														</div>
+														</form>
+													</div>
+													</div>
+												</div>
+										</div>
+									</div>
+								</div>
 										<?php endforeach; ?>
 									</tbody>
 								</table>
@@ -1090,12 +1189,57 @@
 <script type="text/javascript" src="<?= base_url(); ?>assets/js/paging.js"></script>
 <script type="text/javascript" src="<?= base_url(); ?>assets/js/password_verif.js"></script>
 
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+<!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
 	integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
-</script>
+</script> -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
 	integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
 </script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
 	integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+</script>
+<script type="text/javascript" src="<?= base_url() ?>assets/datetimepicker/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+<script type="text/javascript" src="<?= base_url() ?>assets/datetimepicker/bootstrap-datetimepicker.id.js" charset="UTF-8"></script>
+<script type="text/javascript">
+    $('.form_datetime').datetimepicker({
+        language:  'id',
+        weekStart: 1,
+        todayBtn:  1,
+		autoclose: 1,
+		todayHighlight: 1,
+		startView: 2,
+		forceParse: 0,
+        showMeridian: 0
+    });
+	$('.form_date').datetimepicker({
+        language:  'id',
+        weekStart: 1,
+        todayBtn:  1,
+		autoclose: 1,
+		todayHighlight: 1,
+		startView: 2,
+		minView: 2,
+		forceParse: 0
+    });
+	$('.form_time').datetimepicker({
+        language:  'id',
+        weekStart: 1,
+        todayBtn:  1,
+		autoclose: 1,
+		todayHighlight: 1,
+		startView: 1,
+		minView: 0,
+		maxView: 1,
+		forceParse: 0
+    });
+
+    // function showHideJadwal() {
+    //     var x = document.getElementById("showHideJadwal");
+    //     if (x.style.display === "none") {
+    //         x.style.display = "block";
+    //     }
+    //     else {
+    //         x.style.display = "none";
+    //     }
+    // }
 </script>
