@@ -363,6 +363,7 @@ class Classes extends CI_Controller {
                 }
             }
             $header['notif'] = $datanotif;
+            $data['notif'] = $datanotif;
             $data['tugas'] = $datatugas;
             $data['kelas_tugas'] = $datakelas;
             $data['materi'] = $datamateri;
@@ -719,9 +720,11 @@ class Classes extends CI_Controller {
             redirect("home");
         }
 
-            $this->Classes_model->updateAssignment($id_tugas);
+            $status = $this->Classes_model->updateAssignment($id_tugas);
+            if ($status == "failed") {
+				$this->session->set_flashdata('failedInputFile', 'Kapasitas file yang Anda input melebihi 25 MB');
+            }
             redirect('classes/list_tugas/' . $id_kelas);
-        
     }
 
     public function del_assignment($id_kelas,$id_tugas)
@@ -928,27 +931,6 @@ class Classes extends CI_Controller {
             $this->load->view('partialsuser/header',$header);
             $this->load->view('classes/detail_tugaskuisguru',$data);
             $this->load->view('partialsuser/footer');
-    }
-
-    public function open_modal_class($id_kelas) 
-    {
-        if(isset($this->session->userdata['logged_in'])){
-            $this->session->set_flashdata("openModal","#tambahKegiatan");
-            $this->session->set_flashdata("jadwalKegiatan","#tambahKegiatan");
-            redirect('classes/open_class/' . $id_kelas);
-        } else {
-            redirect('home');
-        }
-    }
-
-    public function lihat_kegiatan($id_kelas) 
-    {
-        if(isset($this->session->userdata['logged_in'])){
-            $this->session->set_flashdata("jadwalKegiatan","#tambahKegiatan");
-            redirect('classes/open_class/' . $id_kelas);
-        } else {
-            redirect('home');
-        }
     }
     
     public function search_kelas_saya(){

@@ -23,7 +23,9 @@
 							<!--Grid column-->
 							<div class="col-md-12 mb-4">
 
-								<h5 class="text-center font-weight-bold mb-4" style="color: white">Tugas Siswa</h5>
+              <?php foreach ($kelas as $val) : ?>
+                <h4 class="text-center font-weight-bold mb-4" style="color: white">Tugas kelas <?= $val['judul_kelas']; ?></h4>
+              <?php endforeach; ?>
 								<div class="container my-5">
 
 
@@ -43,9 +45,81 @@
 		</div>
 	</div>
 
+  <div class="container my-5">
 
 
 
+<!-- Nav tabs -------------- -->
+<ul style="list-style: outside none none;" class="nav nav-tabs" role="tablist">
+    
+    <li class="nav-item">
+      <?php foreach ($tugas as $val) : ?>
+        <?php if ($val['kategori'] == "Tugas") : ?>
+          <a class="nav-link active" data-toggle="tab" href="#tab1" role="tab" aria-expanded="true" style="font-size: 22px;">Tugas</a>
+        <?php elseif ($val['kategori'] == "Tugas Akhir") : ?>
+          <a class="nav-link active" data-toggle="tab" href="#tab1" role="tab" aria-expanded="true" style="font-size: 22px;">Tugas Akhir</a>
+        <?php else: ?>
+          <a class="nav-link active" data-toggle="tab" href="#tab1" role="tab" aria-expanded="true" style="font-size: 22px;">Quiz</a>
+        <?php endif; ?>
+      <?php endforeach; ?>
+    </li>
+   
+    
+</ul>
+
+<!-- Tab panes -------------- -->
+<div class="tab-content">
+    <div class="tab-pane active" id="tab1" role="tabpanel" aria-expanded="true">
+
+    <section class="projects no-padding-top">
+    <div class="container">
+      <!-- Project-->
+    <?php foreach ($kelas as $val) : ?>
+      <?php foreach ($tugas as $val2) : ?>
+      <div class="project">
+        <div class="row bg-white has-shadow">
+          <div class="left-col col-lg-6 d-flex align-items-center justify-content-between">
+            <div class="project-title d-flex align-items-center">
+              <div class="image has-shadow"><img src="<?php echo base_url(); ?>assets/images/task.png" alt="..." class="img-fluid rounded-circle"></div>
+              <div class="text">
+                <h3 class="h4" style="font-size: 20px;"><?= $val2['judul_tugas']; ?></h3><small><?= $val['judul_kelas']; ?></small>
+              </div>
+            </div>
+          </div>
+          <div class="right-col col-lg-6 d-flex align-items-center">
+            <div class="time"><i class="fa fa-clock-o"></i> <?= $val2['deadline']; ?></div>
+          </div>
+
+          <div class="row d-flex ">
+        <div class="col-12 col-md-12 mb-2 mt-2">
+            <div class="card  h-100 border-light  bg-light shadow">
+                <div class="card-body d-flex-row" style="width: 1000px;">
+                    <?php if ($val2['url_tugas'] != null) : ?>
+                                        <div class="col" style="margin-bottom: -20px;">
+                                          <div class="notice notice-info">
+                                            <div class="row mb-0" style="padding: 0px;">
+                                              <!-- <img src="<?php echo base_url(); ?>assets/images/pdf.png" alt="..." class="img-fluid rounded-circle" style="width: 20px;"> -->
+                                              <a href="<?= base_url() ?>classes/download_assignment/<?= $val2['url_tugas']; ?>"><?= $val2['url_tugas']; ?></a>
+                                            </div>
+                                          </div>
+                                        </div>
+                    <?php endif; ?>
+                    <p class="card-text mb-5"><?= $val2['deskripsi_tugas']; ?></p>
+                </div>
+            </div>
+        </div>
+        </div>
+      </div>
+      <?php endforeach; ?>  
+      <?php endforeach; ?>  
+      </div>
+      <a href="#daftarSiswa" class="daftarSiswa"></a>
+      <div id="daftarSiswa"></div>
+    </section>
+  </div>
+</div>
+</div>
+</section>
 
 	<div class="col-md-12">
 		<div class="container my-5">
@@ -57,20 +131,6 @@
 							<a class="nav-link active" data-toggle="tab" href="#tab3" role="tab" aria-expanded="true"
 								style="font-size: 22px;">Daftar Siswa</a>
 						</li>
-
-						<!-- <div class="col-md-3 ml-auto">
-            <input class="effect-1" type="text" placeholder="0/100 Poin">
-              <span class="focus-border"></span>
-          </div> -->
-
-
-						<!-- <li class="nav-item ml-auto">
-            
-              <a class="nav-link" data-toggle="tab" href="#tab4" role="tab" aria-expanded="true" style="font-size: 22px;">Serahkan</a>
-          </li> -->
-
-
-
 					</ul>
           <ul style="list-style: outside none none;" id="myTab" class="nav nav-tabs" role="tablist">
           <?php foreach ($tugas as $val) : ?>
@@ -126,6 +186,9 @@
               <?php if ($val['kategori'] == "Tugas") : ?>
 						    <a class="nav-link active" data-toggle="tab" href="#tab1" role="tab" aria-expanded="true"
                 style="font-size: 22px;">Tugas</a>
+              <?php elseif ($val['kategori'] == "Tugas Akhir") : ?>
+						    <a class="nav-link active" data-toggle="tab" href="#tab1" role="tab" aria-expanded="true"
+                style="font-size: 22px;">Tugas Akhir</a>
               <?php else : ?>
                 <a class="nav-link active" data-toggle="tab" href="#tab1" role="tab" aria-expanded="true"
                 style="font-size: 22px;">Quiz</a>
@@ -227,7 +290,15 @@
                                       <form action="<?= base_url() ?>classes/update_nilai/<?= $val['id_kelas']; ?>/<?= $val2['id_tugas']; ?>/<?= $val2['id_submit']; ?>" method="POST">
                                         <div class="m-2">
                                           <div class="col mr-4">
-                                            <input class="effect-1" type="text" name="nilai" placeholder="<?= $val2['nilai_tugas'] ?>/100 Poin">
+                                            <?php $placeholder;
+                                            if ($val2['nilai_tugas'] == "Belum Dinilai") {
+                                              $placeholder = "Belum Dinilai";
+                                            }
+                                            else {
+                                              $placeholder = "Sudah Dinilai";
+                                            }
+                                             ?>
+                                            <input class="effect-1" type="text" name="nilai" placeholder="<?= $placeholder; ?>">
                                             <input type="hidden" name="tanggal_submit" value="<?= $val2['tanggal_submit']; ?>">
                                             <span class="focus-border"></span>
                                           </div>
@@ -276,5 +347,10 @@
     $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
       $(this).removeClass('active');
     })
+  </script>
+  <script type="text/javascript">
+    $(function(){
+      window.location.href = $('.daftarSiswa').attr('href');
+    });
   </script>
 <?php } ?>

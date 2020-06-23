@@ -23,7 +23,10 @@
     <!--Grid column-->
     <div class="col-md-12 mb-4">
 
-        <h5 class="text-center font-weight-bold mb-4" style="color: white">Tugas Saya</h5>
+        
+        <?php foreach ($kelas as $val) : ?>
+          <h4 class="text-center font-weight-bold mb-4" style="color: white">Tugas kelas <?= $val['judul_kelas']; ?></h4>
+        <?php endforeach; ?>
         <div class="container my-5">
 
 
@@ -50,6 +53,13 @@
 <div class="container my-5">
 
 
+<?php foreach ($kelas as $val) : ?>
+  <?php if ($val['pembuat_kelas'] == $this->session->userdata('id_user')) : ?>
+    <div class="text-right">
+      <a href="<?= base_url() ?>classes/new_assignment/<?= $val['id_kelas']; ?>" class="btn btn-info">Buat Tugas / Quiz</a>
+    </div>
+  <?php endif; ?>
+<?php endforeach; ?>
 
 <!-- Nav tabs -------------- -->
 <ul style="list-style: outside none none;" class="nav nav-tabs" role="tablist">
@@ -60,13 +70,9 @@
     <li class="nav-item">
         <a class="nav-link" data-toggle="tab" href="#tab2" role="tab" aria-expanded="false" style="font-size: 22px;">Quiz</a>
     </li>
-    <?php foreach ($kelas as $val) : ?>
-      <?php if ($val['pembuat_kelas'] == $this->session->userdata('id_user')) : ?>
-      <li class="nav-item">
-          <a class="nav-link" href="<?= base_url() ?>classes/new_assignment/<?= $val['id_kelas']; ?>" aria-expanded="false" style="font-size: 22px;">Buat</a>
-      </li>
-      <?php endif; ?>
-    <?php endforeach; ?>
+    <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#tab3" role="tab" aria-expanded="false" style="font-size: 22px;">Tugas Akhir</a>
+    </li>
     
 </ul>
  
@@ -99,13 +105,10 @@
                   <span class="hidden-sm-down">
                     <div class="time">
                     <div class="row mt-3">
-                      <div class="col-sm-4">
-                      <a href="<?= base_url()?>classes/detail_tugaskuis/<?= $val['id_kelas']; ?>/<?= $val2['id_tugas']; ?>">Lihat</a><br>
-                      </div>
-                      <div class="col-sm-4">
+                      <div class="col-sm-6">
                       <a href="<?= base_url() ?>classes/edit_assignment/<?= $val2['id_kelas']; ?>/<?= $val2['id_tugas']; ?>">Edit</a><br>
                       </div>
-                      <div class="col-sm-4">
+                      <div class="col-sm-6">
                       <a href="<?= base_url() ?>classes/del_assignment/<?= $val2['id_kelas']; ?>/<?= $val2['id_tugas']; ?>">Hapus</a>
                       </div>
                     </div>
@@ -184,13 +187,93 @@
                     <span class="hidden-sm-down">
                     <div class="time">
                     <div class="row mt-3">
-                      <div class="col-sm-4">
-                      <a href="<?= base_url()?>classes/detail_tugaskuis/<?= $val['id_kelas']; ?>/<?= $val2['id_tugas']; ?>">Lihat</a><br>
-                      </div>
-                      <div class="col-sm-4">
+                      <div class="col-sm-6">
                       <a href="<?= base_url() ?>classes/edit_assignment/<?= $val2['id_kelas']; ?>/<?= $val2['id_tugas']; ?>">Edit</a><br>
                       </div>
-                      <div class="col-sm-4">
+                      <div class="col-sm-6">
+                      <a href="<?= base_url() ?>classes/del_assignment/<?= $val2['id_kelas']; ?>/<?= $val2['id_tugas']; ?>">Hapus</a>
+                      </div>
+                    </div>
+                    </div>
+                    </span>
+                  </div>
+                  <?php endif; ?>
+                </div>
+                <div class="right-col col-lg-6 d-flex align-items-center">
+                  
+              
+                  <!-- <div class="comments"><i class="fa fa-comment-o"></i>20</div> -->
+                  <div class="project-progress">
+                    <div class="time">
+                    <?php if ($val['pembuat_kelas'] != $this->session->userdata('id_user')) : ?>
+                      <?php if ($cek[$i] == null) : ?>
+                        <div class="nilai">Belum Kumpul</span></div>
+                      <?php else : ?>
+                        <?php foreach ($submit as $val3) : ?>
+                          <?php if ($val2['id_tugas'] == $val3['id_tugas'] && $val3['id_user'] == $this->session->userdata('id_user')) : ?>
+                            <?php if ($val3['nilai_tugas'] == "Belum Dinilai") : ?>
+                              <div class="nilai"><?= $val3['nilai_tugas']; ?></span></div>
+                            <?php else : ?>
+                              <div class="nilai"><?= $val3['nilai_tugas']; ?>/100</span></div>
+                            <?php endif; ?>
+                          <?php endif; ?>
+                        <?php endforeach; ?>
+                      <?php endif; ?>
+                    <?php else : ?>
+                      <?php $x = 0;
+                        foreach ($submit as $val3) {
+                          if ($val2['id_tugas'] == $val3['id_tugas']) {
+                            $x++;
+                          }
+                        } ?>
+                      <div class="nilai"><?= $x; ?>/<?= count($peserta); ?> Siswa</span></div>
+                    <?php endif; ?>
+                    </div>
+                  </div>
+                  <div class="time"><i class="fa fa-clock-o"></i> <?= $val2['deadline']; ?></div>
+                </div>
+              </div>
+            </div>
+          <?php endif; ?>
+        <?php $i++; ?>
+        <?php endforeach; ?>
+      <?php endforeach; ?>
+ 
+</section>
+</div>
+
+
+<div class="tab-pane" id="tab3" role="tabpanel" aria-expanded="false">
+                      
+<section class="projects no-padding-top">
+<div class="container">
+    <?php foreach ($kelas as $val) : ?>
+      <?php $i = 0; ?>
+        <?php foreach ($tugas as $val2) : ?>
+          <?php if ($val2['kategori'] == "Tugas Akhir") : ?>
+            <!-- Project-->
+            <div class="project">
+              <div class="row bg-white has-shadow">
+                <div class="left-col col-lg-6 d-flex align-items-center justify-content-between">
+                  <div class="project-title d-flex align-items-center">
+                    <div class="image has-shadow"><img src="<?php echo base_url(); ?>assets/images/task.png" alt="..." class="img-fluid rounded-circle"></div>
+                    <div class="text">
+                      <?php if ($val['pembuat_kelas'] != $this->session->userdata('id_user')) : ?>
+                        <a href="<?= base_url()?>classes/detail_tugaskuis/<?= $val['id_kelas']; ?>/<?= $val2['id_tugas']; ?>"><h3 class="h4" style="font-size: 20px;"><?= $val2['judul_tugas']; ?></h3><small><?= $val['judul_kelas']; ?></small></a>
+                      <?php else: ?>
+                        <a href="<?= base_url()?>classes/detail_tugaskuisguru/<?= $val['id_kelas']; ?>/<?= $val2['id_tugas']; ?>"><h3 class="h4" style="font-size: 20px;"><?= $val2['judul_tugas']; ?></h3><small><?= $val['judul_kelas']; ?></small></a>
+                      <?php endif; ?>
+                    </div>
+                  </div>
+                  <?php if ($val['pembuat_kelas'] == $this->session->userdata('id_user')) : ?>
+                    <div class="project-date text-right">
+                    <span class="hidden-sm-down">
+                    <div class="time">
+                    <div class="row mt-3">
+                      <div class="col-sm-6">
+                      <a href="<?= base_url() ?>classes/edit_assignment/<?= $val2['id_kelas']; ?>/<?= $val2['id_tugas']; ?>">Edit</a><br>
+                      </div>
+                      <div class="col-sm-6">
                       <a href="<?= base_url() ?>classes/del_assignment/<?= $val2['id_kelas']; ?>/<?= $val2['id_tugas']; ?>">Hapus</a>
                       </div>
                     </div>
