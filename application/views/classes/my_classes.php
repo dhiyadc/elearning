@@ -381,9 +381,12 @@
 															class="btn btn-outline-dark dropdown-toggle dropdown-toggle-split"
 															data-toggle="dropdown" aria-haspopup="true"
 															aria-expanded="false">
-															<button class="btn btn-light btn-md px-3 my-0 ml-0" type="button" data-toggle="modal" data-target="#tambahKegiatan<?= $ctClass ?>">Tambah Jadwal Kegiatan</button>
 															<span class="sr-only">Toggle Dropdown</span>
+															
 														</button>
+															<button class="btn btn-light btn-md px-3 my-0 ml-0" type="button" data-toggle="modal" data-target="#tambahKegiatan<?= $ctClass ?>">Tambah Jadwal Kegiatan</button>
+															<button id="btnCopy" class="btn" data-toggle="tooltip" data-original-title="Click to copy" data-clipboard-text="<?= base_url(); ?>classes/open_class/<?= $val['id_kelas'] ?>">Copy Link</button>
+														
 														<div class="dropdown-menu">
 															<a class="dropdown-item btn"
 																href="<?= base_url()?>classes/open_modal_class/<?= $val['id_kelas'] ?>">Tambah
@@ -533,6 +536,7 @@
 															<span class="sr-only">Toggle Dropdown</span>
 														</button>
 														<button class="btn btn-light btn-md px-3 my-0 ml-0" type="button" data-toggle="modal" data-target="#tambahKegiatan<?= $ctClass ?>">Tambah Jadwal Kegiatan</button>
+														<button id="btnCopy" class="btn" data-toggle="tooltip" data-original-title="Click to copy" data-clipboard-text="<?= base_url(); ?>classes/open_class/<?= $val['id_kelas'] ?>">Copy Link</button>
 														<div class="dropdown-menu">
 															<a class="dropdown-item btn"
 																href="<?= base_url()?>classes/open_modal_class/<?= $val['id_kelas'] ?>">Tambah
@@ -1187,7 +1191,8 @@
 	</div>
 </section>
 <script type="text/javascript" src="<?= base_url(); ?>assets/js/paging.js"></script>
-<script type="text/javascript" src="<?= base_url(); ?>assets/js/password_verif.js"></script>
+
+<script type="text/javascript" src="<?= base_url(); ?>assets/js/clipboard.min.js"></script>
 
 <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
 	integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
@@ -1195,6 +1200,38 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
 	integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
 </script>
+<script type="text/javascript" src="<?= base_url(); ?>assets/js/password_verif.js"></script>
+<script type="text/javascript" src="<?= base_url(); ?>assets/js/addon.js"></script>
+<!-- <script>
+$(function () {
+
+  $('[data-toggle="tooltip"]').tooltip();
+
+  $('#btnCopy').tooltip({
+  trigger: 'click',
+  placement: 'bottom'
+});
+
+function setTooltip(btn, message) {
+  btn.tooltip('hide')
+    .attr('data-original-title', message)
+    .tooltip('show');
+}
+
+function hideTooltip(btn) {
+  setTimeout(function() {
+    btn.tooltip('hide');
+  }, 1000);
+}
+var clipboard = new ClipboardJS('#btnCopy');
+clipboard.on('success', function(e) {
+	console.log(e);
+	var btn = $(e.trigger);
+  	setTooltip(btn, 'Copied');
+  	hideTooltip(btn);
+});
+});
+</script> -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
 	integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
 </script>
