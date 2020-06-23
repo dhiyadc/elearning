@@ -328,7 +328,66 @@
 										<?php foreach ($kelas as $val) : ?>
 										<tr>
 											<th scope="row" style="width: 300px;"><a
-													class="text-primary"><?= $val['judul_kelas']; ?></a></th>
+													class="text-primary" data-toggle="collapse" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne"><?= $val['judul_kelas']; ?></a>
+													<div id="accordion" role="tablist">
+												
+													
+												<div id="collapseOne" class="collapse" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion">
+													<div class="card-body">
+														<!--  -->
+														<div class="row d-flex ">
+													<div class="col-12 col-md-12 mb-2 mt-2">
+														<div class="card  h-100 border-light  bg-light shadow" style="width: 480px;">
+														<div class="card-body d-flex-row">
+															<blockquote class="blockquote mb-4 pb-2">
+															<p class="mb-0 font-weight-bold ">Haha</p>
+															<!-- <footer class="blockquote-footer"><?= $val2['nama'] ?></footer> -->
+															</blockquote>
+															<div class="row">
+															<div class="col">
+																<div class="col">
+																<div class="notice notice-info">
+																	<div class="row mb-0" style="padding: 0px;">
+																	<!-- <img src="<?php echo base_url(); ?>assets/images/pdf.png" alt="..." class="img-fluid rounded-circle" style="width: 20px;"> -->
+																	<a href=""></a>
+																	</div>
+																</div>
+																</div>
+															</div>
+															</div>
+															<div class="w-100 pb-1"></div>
+															<div class="d-flex align-items-center align-self-end">
+															<div class="meta-author">
+																<img src="<?php echo base_url(); ?>assets/images/task.png" alt="..."
+																class="d-block img-fluid rounded-circle" width="30px">
+																<!-- <img class="d-block img-fluid rounded-circle" src="" alt="author avatar"> -->
+															</div>
+															<form action="" method="POST">
+																<div class="m-2">
+																<div class="col mr-4">
+																	<?php $placeholder;
+																
+																	$placeholder = "Belum Dinilai";
+																
+																	?>
+																	<input class="effect-1" type="text" name="nilai" placeholder="<?= $placeholder; ?>">
+																	<input type="hidden" name="tanggal_submit" value="14 Feb">
+																	<span class="focus-border"></span>
+																</div>
+																</div>
+																<div class="meta-item ml-auto text-right" style="margin-right: -150px; margin-top: -50px;">
+																<button type="submit" class="btn btn-primary" style="padding-right: 20px; padding-left: 20px; padding-top: 12px; padding-bottom: 12px;"><i class="fa fa-check-square-o"></i> Beri Nilai</button>
+																</div>
+															</form>
+															</div>  
+														</div>
+														</div>
+													</div>
+													</div>
+														<!--  -->
+													</div>
+												</div>
+											</th>
 											<td style="padding-top: 20px;">
 												<span><i class="fa fa-share-alt  fa-clickable" id="epd-dribble"></i></span>
 											</td>
@@ -436,7 +495,11 @@
 										<?php foreach ($private_kelas as $val) : ?>
 										<tr>
 											<th scope="row" style="width: 300px;"><a
-													class="text-primary"><?= $val['judul_kelas']; ?></a></th>
+													class="text-primary"><?= $val['judul_kelas']; ?></a>
+											</th>
+
+											
+													
 											<td style="padding-top: 20px;">
 												<?php $total = 0; $selesai = 0;
                                     foreach ($kegiatan as $val2) {
@@ -514,19 +577,69 @@
 					</div>
 				</div>
 					<!--  -->
-					<div id="accordion" role="tablist">
+					<!-- <div id="accordion" role="tablist">
 						<div class="card">
 							<div class="card-header" role="tab" id="headingOne">
 							<h5 class="mb-0">
 								<a data-toggle="collapse" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-								Collapsible Group Item #1
+							Klik Sini
 								</a>
 							</h5>
 						</div>
 						<div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion">
-							<div class="card-body">
-								
-							</div>
+							<div class="card-body"> -->
+								<!--  -->
+								<!-- <div class="row d-flex ">
+                              <div class="col-12 col-md-12 mb-2 mt-2">
+                                <div class="card  h-100 border-light  bg-light shadow" style="width: 480px;">
+                                  <div class="card-body d-flex-row">
+                                    <blockquote class="blockquote mb-4 pb-2">
+                                      <p class="mb-0 font-weight-bold ">Haha</p> -->
+                                      <!-- <footer class="blockquote-footer"><?= $val2['nama'] ?></footer> -->
+                                    <!-- </blockquote>
+                                    <div class="row">
+                                      <div class="col">
+                                        <div class="col">
+                                          <div class="notice notice-info">
+                                            <div class="row mb-0" style="padding: 0px;"> -->
+                                              <!-- <img src="<?php echo base_url(); ?>assets/images/pdf.png" alt="..." class="img-fluid rounded-circle" style="width: 20px;"> -->
+                                              <!-- <a href=""></a>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="w-100 pb-1"></div>
+                                    <div class="d-flex align-items-center align-self-end">
+                                      <div class="meta-author">
+                                        <img src="<?php echo base_url(); ?>assets/images/task.png" alt="..."
+                                          class="d-block img-fluid rounded-circle" width="30px"> -->
+                                        <!-- <img class="d-block img-fluid rounded-circle" src="" alt="author avatar"> -->
+                                      <!-- </div>
+                                      <form action="" method="POST">
+                                        <div class="m-2">
+                                          <div class="col mr-4">
+                                            <?php $placeholder;
+                                           
+                                              $placeholder = "Belum Dinilai";
+                                          
+                                             ?>
+                                            <input class="effect-1" type="text" name="nilai" placeholder="<?= $placeholder; ?>">
+                                            <input type="hidden" name="tanggal_submit" value="14 Feb">
+                                            <span class="focus-border"></span>
+                                          </div>
+                                        </div>
+                                        <div class="meta-item ml-auto text-right" style="margin-right: -150px; margin-top: -50px;">
+                                          <button type="submit" class="btn btn-primary" style="padding-right: 20px; padding-left: 20px; padding-top: 12px; padding-bottom: 12px;"><i class="fa fa-check-square-o"></i> Beri Nilai</button>
+                                        </div>
+                                      </form>
+                                    </div>  
+                                  </div>
+                                </div>
+                              </div>
+                            </div> -->
+								<!--  -->
+							<!-- </div>
 						</div>
 						</div>
 						<div class="card">
@@ -557,7 +670,7 @@
 							</div>
 						</div>
 						</div>
-					</div>
+					</div> -->
 															<!--  -->
 			</div>
 
