@@ -331,7 +331,6 @@
 													class="text-primary"><?= $val['judul_kelas']; ?></a></th>
 											<td style="padding-top: 20px;">
 												<span><i class="fa fa-share-alt  fa-clickable" id="epd-dribble"></i></span>
-
 											</td>
 
 											<td style="padding-top: 20px;">
@@ -383,13 +382,16 @@
 														</button>
 														<div class="dropdown-menu">
 															<a class="dropdown-item btn"
-																href="<?= base_url()?>classes/open_modal_class/<?= $val['id_kelas'] ?>">Tambah
+																href="" data-toggle="modal" data-target="#tambahKegiatan">Tambah
 																Kegiatan</a>
 															<a class="dropdown-item btn"
 																href="<?= base_url()?>classes/lihat_kegiatan/<?= $val['id_kelas'] ?>">Lihat
 																Kegiatan</a>
 															<a class="dropdown-item btn"
 																href="<?= base_url()?>classes/list_tugas/<?= $val['id_kelas'] ?>">List
+																Tugas</a>
+															<a class="dropdown-item btn"
+																href="<?= base_url()?>classes/new_assignment/<?= $val['id_kelas'] ?>">Buat
 																Tugas</a>
 															<a class="dropdown-item btn"
 																href="<?= base_url()?>classes/update_class/<?= $val['id_kelas'] ?>">Edit
@@ -516,6 +518,25 @@
 			<div class="tab-pane" id="tab3" role="tabpanel" aria-expanded="false">
 				<div class="row mt-5">
 					<div class="col">
+						<?php if ($notif != null) : ?>
+                        <?php foreach ($notif as $val) : ?>
+                          <?php foreach ($val as $val2) : ?>
+                            <?php if ($val2['status_kegiatan'] == CLASS_STARTED) : ?>
+								<div class="alert alert-primary" role="alert">
+									<div class="row">
+										<div class="col">
+											<h4 class="alert-heading">Kelas <?= $val2['judul_kelas']; ?> Sedang Dimulai</a></h4>
+										</div>
+										<div class="text-right"><?= $val2['tanggal']; ?></div>
+									</div>
+									<p>oleh <?= $val2['nama']; ?></p>
+									<hr>
+									<a class="btn btn-outline-dark" href="<?= base_url('class/') ?><?= $val2['id_kelas'] ?>/<?= $val2['id_kegiatan']; ?>" style="padding-right: 20px; padding-left: 20px; padding-top: 12px; padding-bottom: 12px;">Ikut</a>
+								</div>
+                            <?php endif; ?>
+                          <?php endforeach; ?>
+                        <?php endforeach; ?>
+                      <?php endif; ?>
 						<div class="card card-list">
 							<div class="card-body">
 								<div class="row">
@@ -595,12 +616,16 @@
 												<?php endforeach; ?>
 											</td>
 											<td>
-												<div class="buttonclass">
-													<a href="<?= base_url()?>classes/open_class/<?= $val['id_kelas'] ?>"
-														class="btn btn-light">Lihat
-														Kelas</a>
-													<a href="<?= base_url()?>classes/leave_class/<?= $val['id_kelas'] ?>"
-														class="btn btn-danger">Tinggalkan</a>
+												<div class="btn-group">
+													<a class="btn btn-outline-dark" href="<?= base_url()?>classes/open_class/<?= $val['id_kelas'] ?>" style="padding-right: 20px; padding-left: 20px; padding-top: 12px; padding-bottom: 12px;">Detail</a>
+													<button type="button" style="padding-right: 20px; padding-left: 20px; padding-top: 12px; padding-bottom: 12px;" class="btn btn-outline-dark dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+														<span class="sr-only">Toggle Dropdown</span>
+													</button>
+													<div class="dropdown-menu">
+														<a class="dropdown-item btn" href="<?= base_url()?>classes/lihat_kegiatan/<?= $val['id_kelas'] ?>">Lihat Kegiatan</a>
+														<a class="dropdown-item btn" href="<?= base_url()?>classes/list_tugas/<?= $val['id_kelas'] ?>">List Tugas</a>
+														<a class="dropdown-item btn" href="<?= base_url()?>classes/leave_class/<?= $val['id_kelas'] ?>">Tinggalkan</a>
+													</div>
 												</div>
 											</td>
 										</tr>
