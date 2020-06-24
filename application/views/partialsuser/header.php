@@ -138,15 +138,16 @@
       
       <div class="container-fluid">
         <div class="d-flex align-items-center" style=" text-shadow: 2px 2px darkcyan;">
-          <div class="site-logo mr-auto w-25"><a href="<?php echo base_url(); ?>"><img src="<?php echo base_url(); ?>assets/images/logo.png" alt="" width="150px" height="50px"></a></div>
+          <div class="site-logo mr-auto w-20"><a href="<?php echo base_url(); ?>"><img src="<?php echo base_url(); ?>assets/images/logo.png" alt="" width="150px" height="50px"></a></div>
 
           <div class="mx-auto text-center">
             <nav class="site-navigation position-relative text-right" role="navigation">
               <ul class="site-menu main-menu js-clone-nav mx-auto d-none d-lg-block  m-0 p-0">
                 <li><a href="<?php echo base_url(); ?>" class="nav-link">Beranda</a></li>
                 <li><a href="<?= base_url(); ?>classes" class="nav-link">Kelas</a></li>
+                <li><a href="<?= base_url(); ?>workshops" class="nav-link">Workshop</a></li>
                 <li><a href="<?= base_url(); ?>classes/my_classes" class="nav-link">Akademik</a></li>
-               
+                
               </ul>
             </nav>
           </div>
@@ -164,7 +165,7 @@
           
           
 
-          <div class="ml-auto w-25">
+          <div class="ml-auto w-20">
             <nav class="site-navigation position-relative text-right" role="navigation">
               <ul class="site-menu main-menu site-menu-white js-clone-nav mr-auto d-none d-lg-block m-0 p-0">
               
@@ -178,6 +179,45 @@
                       aria-haspopup="true" aria-expanded="false"><i class="fa fa-bell"></i><span class="badge"><?= count($notif); ?></span>
                     </a>
                 <?php endif; ?>
+                <?php if($this->session->userdata('workshop') != null) : ?>
+                  <div class="notif" aria-labelledby="notifis">
+                    <ul class="dropdown-menu">
+                      <li class="head text-light" style="background-color: forestgreen;">
+                        <div class="row">
+                          <div class="col-lg-12 col-sm-12 col-12">
+                            <span>Pemberitahuan (<?= count($notif); ?>)</span>
+                          </div>
+                      </li>
+                      <?php if ($notif != null) : ?>
+                      <?php $i = 0; ?>
+                      <?php foreach ($notif as $val) : ?>
+                        <?php if ($val[$i]['status_kegiatan'] == CLASS_STARTED) : ?>
+                          <li class="notification-box">
+                            <div class="row">
+                              <div class="col-md-3 text-center">
+                                <img src="<?php echo base_url(); ?>assets/images/<?= $val[$i]['poster_workshop']; ?>" class="rounded-circle" style="object-fit: cover;height: 60px; width: 60px;">
+                              </div>
+                              <div class="col-md-8" style="text-shadow: 0px 0px white;">
+                                <strong class="text-info"><?= $val[$i]['nama']; ?></strong>
+                                <div>
+                                  <a href="<?= base_url('class/') ?><?= $val[$i]['id_workshop'] ?>/<?= $val[$i]['id_kegiatan']; ?>">Workshop <?= $val[$i]['judul_workshop']; ?> Sedang Dimulai</a>
+                                </div>
+                                <small class="text-warning"><?= $val[$i]['tanggal']; ?></small>
+                              </div>    
+                            </div>
+                          </li>
+                        <?php endif; ?>
+                      <?php $i++; ?>
+                      <?php endforeach; ?>
+                      <?php else : ?>
+                        <p style="text-align: center; margin-top: 10px; text-shadow: 0px 0px white;">Tidak Ada Notifikasi</p>
+                      <?php endif; ?>
+                      <li class="footer text-center" style="background-color: forestgreen;">
+                        <a href="<?php echo base_url(); ?>workshop/my_workshops" class="text-light">View All</a>
+                      </li>
+                    </ul>
+                    </div>
+                  <?php else : ?>
                     <div class="notif" aria-labelledby="notifis">
                     <ul class="dropdown-menu">
                       <li class="head text-light" style="background-color: forestgreen;">
@@ -215,6 +255,7 @@
                       </li>
                     </ul>
                     </div>
+                      <?php endif; ?>
                 </li> 
             
                 
