@@ -4,7 +4,9 @@
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <link href="<?= base_url() ?>assets/datetimepicker/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
-
+<!-- <link href="<?= base_url() ?>assets/css/dataTables/dataTables.bootstrap.css" rel="stylesheet">
+<link href="<?= base_url() ?>assets/css/dataTables/dataTables.responsive.css" rel="stylesheet"> -->
+<link rel="stylesheet" type="text/css" href="<?= base_url(); ?>assets/DataTables/datatables.min.css"/>
 
 <section class="user_dashboard">
 	<div class="row mt-0">
@@ -298,18 +300,18 @@
 									<div class="col">
 										<h2>Kelas Saya</h2>
 									</div>
-									<div class="align-self-end">
+									<!-- <div class="align-self-end">
 										<form action="<?= base_url(); ?>Classes/search_kelas_saya" method="post">
 											<div class="input-group mb-3">
-												<input class="form-control form-control-sm mr-0 w-0" type="text"
+												<input class="form-control form-control-sm mr-0 w-0" id="searchTable" type="text"
 													name="keyword" placeholder="Cari Kelas" aria-label="Search">
 												<div class="input-group-append">
 													<button class="btn" type="submit"><i class="fa fa-search"
 															aria-hidden="true" onclick=""></i></button>
 												</div>
 											</div>
-										</form>
-									</div>
+										</form> 
+									</div> -->
 								</div>
 							</div>
 
@@ -324,7 +326,7 @@
 											<th scope="col" style="padding-left: 50px;">Aksi</th>
 										</tr>
 									</thead>
-									<tbody>
+									<tbody id="pageSearch">
 									<?php $ctClass = 0; ?>
 										<?php foreach ($kelas as $val) : ?>
 										<?php $ctClass++; ?>
@@ -455,11 +457,11 @@
 									</tbody>
 								</table>
 							</div>
-							<div class="card-footer white py-3 d-flex justify-content-center">
+							<!-- <div class="card-footer white py-3 d-flex justify-content-center">
 								<ul id="pagination" class="pagination">
 								</ul>
 								</nav>
-							</div>
+							</div> -->
 						</div>
 
 					</div>
@@ -606,11 +608,11 @@
 									</tbody>
 								</table>
 							</div>
-							<div class="card-footer white py-3 d-flex justify-content-center">
+							<!-- <div class="card-footer white py-3 d-flex justify-content-center">
 								<ul id="pagination2" class="pagination">
 								</ul>
 								</nav>
-							</div>
+							</div> -->
 						</div>
 					</div>
 				</div>
@@ -625,10 +627,10 @@
 									<div class="col">
 										<h2>Kelas Diikuti</h2>
 									</div>
-									<div class="align-self-end">
+									<!-- <div class="align-self-end">
 										<form action="<?= base_url(); ?>Classes/search_kelas_diikuti" method="post">
 											<div class="input-group mb-3">
-												<input class="form-control form-control-sm mr-0 w-0" type="text"
+												<input class="form-control form-control-sm mr-0 w-0" type="text" id="searchTable3"
 													name="keyword" placeholder="Cari Kelas" aria-label="Search">
 												<div class="input-group-append">
 													<button class="btn" type="submit"><i class="fa fa-search"
@@ -636,7 +638,7 @@
 												</div>
 											</div>
 										</form>
-									</div>
+									</div> -->
 								</div>
 							</div>
 
@@ -653,7 +655,7 @@
 
 										</tr>
 									</thead>
-									<tbody>
+									<tbody id="pageSearch3">
 										<?php foreach ($seluruh_kelas as $val) : ?>
 										<?php foreach ($peserta as $val2) : ?>
 										<?php if ($val2['id_kelas'] == $val['id_kelas'] && $val2['id_user'] == $this->session->userdata('id_user')) : ?>
@@ -713,12 +715,12 @@
 									</tbody>
 								</table>
 							</div>
-							<div class="card-footer white py-3 d-flex justify-content-center">
+							<!-- <div class="card-footer white py-3 d-flex justify-content-center">
 								<nav>
 									<ul id="pagination3" class="pagination">
 									</ul>
 								</nav>
-							</div>
+							</div> -->
 						</div>
 					</div>
 				</div>
@@ -733,7 +735,7 @@
 									<div class="col">
 										<h2>Tugas</h2>
 									</div>
-									<div class="align-self-end">
+									<!-- <div class="align-self-end">
 										<form action="<?= base_url(); ?>Classes/search_tugas" method="post">
 											<div class="input-group mb-3">
 												<input class="form-control form-control-sm mr-0 w-0" type="text" name="keyword" placeholder="Cari Kelas"aria-label="Search">
@@ -742,7 +744,7 @@
 												</div>
 											</div>
 										</form>
-									</div>
+									</div> -->
 								</div>
 							</div>
 
@@ -820,11 +822,11 @@
 									</tbody>
 								</table>
 							</div>
-							<div class="card-footer white py-3 d-flex justify-content-center">
+							<!-- <div class="card-footer white py-3 d-flex justify-content-center">
 								<ul id="pagination4" class="pagination">
 								</ul>
 								</nav>
-							</div>
+							</div> -->
 						</div>
 					</div>
 				</div>
@@ -839,7 +841,7 @@
 									<div class="col">
 										<h2>Materi</h2>
 									</div>
-									<div class="align-self-end">
+									<!-- <div class="align-self-end">
 										<form action="<?= base_url(); ?>Classes/search_materi" method="post">
 											<div class="input-group mb-3">
 												<input class="form-control form-control-sm mr-0 w-0" type="text" name="keyword" placeholder="Cari Kelas"aria-label="Search">
@@ -848,7 +850,7 @@
 												</div>
 											</div>
 										</form>
-									</div>
+									</div> -->
 								</div>
 							</div>
 
@@ -940,11 +942,11 @@
 									</tbody>
 								</table>
 							</div>
-							<div class="card-footer white py-3 d-flex justify-content-center">
+							<!-- <div class="card-footer white py-3 d-flex justify-content-center">
 								<ul id="pagination5" class="pagination">
 								</ul>
 								</nav>
-							</div>
+							</div> -->
 						</div>
 					</div>
 				</div>
@@ -1190,7 +1192,7 @@
 
 	</div>
 </section>
-<script type="text/javascript" src="<?= base_url(); ?>assets/js/paging.js"></script>
+<!-- <script type="text/javascript" src="<?= base_url(); ?>assets/js/paging.js"></script> -->
 
 <script type="text/javascript" src="<?= base_url(); ?>assets/js/clipboard.min.js"></script>
 
@@ -1232,11 +1234,116 @@ clipboard.on('success', function(e) {
 });
 });
 </script> -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-	integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
-</script>
+<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+	integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> -->
 <script type="text/javascript" src="<?= base_url() ?>assets/datetimepicker/bootstrap-datetimepicker.js" charset="UTF-8"></script>
 <script type="text/javascript" src="<?= base_url() ?>assets/datetimepicker/bootstrap-datetimepicker.id.js" charset="UTF-8"></script>
+<script type="text/javascript" src="<?= base_url(); ?>assets/DataTables/datatables.min.js"></script>
+
+
+
+<script>
+    $(document).ready(function () {
+        $('#pageTable').DataTable({
+            responsive: true,
+			pageLength: 5,
+			lengthChange: false,
+			pagingType: "numbers",
+			language: {
+            "zeroRecords": "Yang anda cari tidak ditemukan!",
+            "info": "Menampilkan halaman _PAGE_ dari _PAGES_ (total _MAX_ data)",
+            "infoEmpty": "Tidak ada data",
+        	}
+		});
+		
+		$('#pageTable2').DataTable({
+            responsive: true,
+			pageLength: 5,
+			lengthChange: false,
+			pagingType: "numbers",
+			language: {
+            "zeroRecords": "Yang anda cari tidak ditemukan!",
+            "info": "Menampilkan halaman _PAGE_ dari _PAGES_ (total _MAX_ data)",
+            "infoEmpty": "Tidak ada data",
+        	}
+		});
+		
+		$('#pageTable3').DataTable({
+            responsive: true,
+			pageLength: 5,
+			lengthChange: false,
+			pagingType: "numbers",
+			language: {
+            "zeroRecords": "Yang anda cari tidak ditemukan!",
+            "info": "Menampilkan halaman _PAGE_ dari _PAGES_ (total _MAX_ data)",
+            "infoEmpty": "Tidak ada data",
+        	}
+		});
+		
+		$('#pageTable4').DataTable({
+            responsive: true,
+			pageLength: 5,
+			lengthChange: false,
+			pagingType: "numbers",
+			language: {
+            "zeroRecords": "Yang anda cari tidak ditemukan!",
+            "info": "Menampilkan halaman _PAGE_ dari _PAGES_ (total _MAX_ data)",
+            "infoEmpty": "Tidak ada data",
+        	}
+		});
+		
+		$('#pageTable5').DataTable({
+            responsive: true,
+			pageLength: 5,
+			lengthChange: false,
+			pagingType: "numbers",
+			language: {
+            "zeroRecords": "Yang anda cari tidak ditemukan!",
+            "info": "Menampilkan halaman _PAGE_ dari _PAGES_ (total _MAX_ data)",
+            "infoEmpty": "Tidak ada data",
+        	}
+        });
+    });
+</script>
+<!-- <script>
+
+	$("#searchTable").on("keyup", function() {
+      var value = $(this).val().toLowerCase();
+      $("#pageSearch tr").filter(function() {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+	  });
+    });
+  
+    $("#searchTable2").on("keyup", function() {
+      var value = $(this).val().toLowerCase();
+      $("#pageSearch2 tr").filter(function() {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+      });
+    });
+  
+    $("#searchTable3").on("keyup", function() {
+      var value = $(this).val().toLowerCase();
+      $("#pageSearch3 tr").filter(function() {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+      });
+    });
+  
+    $("#searchTable4").on("keyup", function() {
+      var value = $(this).val().toLowerCase();
+      $("#pageSearch4 tr").filter(function() {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+      });
+    });
+  
+    $("#searchTable5").on("keyup", function() {
+      var value = $(this).val().toLowerCase();
+      $("#pageSearch5 tr").filter(function() {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+      });
+    });
+
+</script> -->
+
 <script type="text/javascript">
     $('.form_datetime').datetimepicker({
         language:  'id',
