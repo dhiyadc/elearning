@@ -424,6 +424,9 @@
 																<a class="nav-link" data-toggle="tab" href="#tab3" role="tab" aria-expanded="false">Quiz</a>
 															</li>
 															
+															<li class="nav-item ml-auto">
+																<a class="nav-link active" data-toggle="tab" href="#tab3" role="tab" aria-expanded="false">Buat</a>
+															</li>
 															
 														</ul>
 
@@ -454,9 +457,22 @@
 																<div class="col-12 col-md-12 mb-2 mt-2">
 																	<div class="card  h-100 border-light  bg-light shadow">
 																		<div class="card-body d-flex-row" style="width: 900px;">
+																		<div class="row mb-0" style="padding: 0px;">
+																		<div class="col-md-4">Arya Pradata</div>
+																		<div class="col-md-4" style="margin-bottom: -10px;">
+																			<div class="notice notice-info">
+																				<div class="row mb-0" style="padding: 0px;">
 																			
-																		<div class="col" style="margin-bottom: -10px;">
-																			<div class="notice notice-info">
+																				
+																				<img src="<?php echo base_url(); ?>assets/images/pdf.png" alt="..." class="img-fluid rounded-circle" style="width: 20px;">
+																				<a href="">Tugas1</a>
+																				
+																				
+																				</div>
+																			</div>
+
+																			<!-- 
+																				<div class="notice notice-info">
 																				<div class="row mb-0" style="padding: 0px;">
 																				<div class="col-md-4">Arya Pradata</div>
 																				<div class="col-md-4">
@@ -480,31 +496,13 @@
 																				</div>
 																				</div>
 																			</div>
-																			<div class="notice notice-info">
-																				<div class="row mb-0" style="padding: 0px;">
-																				<div class="col-md-4">Arya Pradata</div>
-																				<div class="col-md-4">
-																				<img src="<?php echo base_url(); ?>assets/images/pdf.png" alt="..." class="img-fluid rounded-circle" style="width: 20px;">
-																				<a href="">Tugas1</a>
-																				</div>
-																				<div class="col-md-4">
-																				<div class="m-2">
-																					<div class="col mr-4" style="margin-top: -15px;">
-																						<?php $placeholder;
-																						
-																						$placeholder = "0/100 Poin";
-																						
-																						
-																						?>
-																						<input class="effect-1" type="text" name="nilai" placeholder="<?= $placeholder; ?>">
-																						<input type="hidden" name="tanggal_submit" value="14 Feb">
-																						<span class="focus-border"></span>
-																					</div>
-																					</div>
-																				</div>
-																				</div>
+																			 -->
+																			
 																			</div>
+																			<div class="col-md-4">
+
 																			</div>
+																		</div>
 																		</div>
 																	</div>
 																</div>
