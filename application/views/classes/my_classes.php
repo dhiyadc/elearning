@@ -332,61 +332,7 @@
 													<div id="accordion" role="tablist">
 												
 													
-												<div id="collapseOne" class="collapse" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion">
-													<div class="card-body">
-														<!--  -->
-														<div class="row d-flex ">
-													<div class="col-12 col-md-12 mb-2 mt-2">
-														<div class="card  h-100 border-light  bg-light shadow" style="width: 480px;">
-														<div class="card-body d-flex-row">
-															<blockquote class="blockquote mb-4 pb-2">
-															<p class="mb-0 font-weight-bold ">Haha</p>
-															<!-- <footer class="blockquote-footer"><?= $val2['nama'] ?></footer> -->
-															</blockquote>
-															<div class="row">
-															<div class="col">
-																<div class="col">
-																<div class="notice notice-info">
-																	<div class="row mb-0" style="padding: 0px;">
-																	<!-- <img src="<?php echo base_url(); ?>assets/images/pdf.png" alt="..." class="img-fluid rounded-circle" style="width: 20px;"> -->
-																	<a href=""></a>
-																	</div>
-																</div>
-																</div>
-															</div>
-															</div>
-															<div class="w-100 pb-1"></div>
-															<div class="d-flex align-items-center align-self-end">
-															<div class="meta-author">
-																<img src="<?php echo base_url(); ?>assets/images/task.png" alt="..."
-																class="d-block img-fluid rounded-circle" width="30px">
-																<!-- <img class="d-block img-fluid rounded-circle" src="" alt="author avatar"> -->
-															</div>
-															<form action="" method="POST">
-																<div class="m-2">
-																<div class="col mr-4">
-																	<?php $placeholder;
-																
-																	$placeholder = "Belum Dinilai";
-																
-																	?>
-																	<input class="effect-1" type="text" name="nilai" placeholder="<?= $placeholder; ?>">
-																	<input type="hidden" name="tanggal_submit" value="14 Feb">
-																	<span class="focus-border"></span>
-																</div>
-																</div>
-																<div class="meta-item ml-auto text-right" style="margin-right: -150px; margin-top: -50px;">
-																<button type="submit" class="btn btn-primary" style="padding-right: 20px; padding-left: 20px; padding-top: 12px; padding-bottom: 12px;"><i class="fa fa-check-square-o"></i> Beri Nilai</button>
-																</div>
-															</form>
-															</div>  
-														</div>
-														</div>
-													</div>
-													</div>
-														<!--  -->
-													</div>
-												</div>
+												
 											</th>
 											<td style="padding-top: 20px;">
 												<span><i class="fa fa-share-alt  fa-clickable" id="epd-dribble"></i></span>
@@ -459,6 +405,125 @@
 													</div>
 												</div>
 											</td>
+										</tr>
+										<tr class="p">
+				            			<td colspan="6" class="hiddenRow">
+										<div id="collapseOne" class="collapse" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion">
+													<div class="card-body">
+														<!--  -->
+														<div class="container my-5">
+														<ul style="list-style: outside none none;" class="nav nav-tabs" role="tablist">
+															<!-- <li class="nav-item">
+														<a class="nav-link active" data-toggle="tab" href="#tab1" role="tab" aria-expanded="true">To Do List</a>
+														</li> -->
+															<li class="nav-item">
+																<a class="nav-link active" data-toggle="tab" href="#tab2" role="tab" aria-expanded="false">Tugas</a>
+
+															</li>
+															<li class="nav-item">
+																<a class="nav-link" data-toggle="tab" href="#tab3" role="tab" aria-expanded="false">Quiz</a>
+															</li>
+															
+															
+														</ul>
+
+														<!-- Tab panes -------------- -->
+														<div class="tab-content">
+															<div class="tab-pane active" id="tab1" role="tabpanel" aria-expanded="true">
+
+															<section class="projects no-padding-top">
+															<div class="container">
+															<!-- Project-->
+														
+															<div class="project">
+																<div class="row bg-white has-shadow">
+																<div class="left-col col-lg-6 d-flex align-items-center justify-content-between">
+																	<div class="project-title d-flex align-items-center">
+																	<div class="image has-shadow"><img src="<?php echo base_url(); ?>assets/images/task.png" alt="..." class="img-fluid rounded-circle"></div>
+																	<div class="text">
+																		<h3 class="h4" style="font-size: 20px;">Tugas Makan</h3><small>14 Feb : 14:00 WIB</small>
+																	</div>
+																	</div>
+																</div>
+																<div class="right-col col-lg-6 d-flex align-items-center">
+																	<div class="time"><i class="fa fa-clock-o"></i> 14 Feb</div>
+																</div>
+															
+
+																<div class="row d-flex ">
+																<div class="col-12 col-md-12 mb-2 mt-2">
+																	<div class="card  h-100 border-light  bg-light shadow">
+																		<div class="card-body d-flex-row" style="width: 900px;">
+																			
+																		<div class="col" style="margin-bottom: -10px;">
+																			<div class="notice notice-info">
+																				<div class="row mb-0" style="padding: 0px;">
+																				<div class="col-md-4">Arya Pradata</div>
+																				<div class="col-md-4">
+																				<img src="<?php echo base_url(); ?>assets/images/pdf.png" alt="..." class="img-fluid rounded-circle" style="width: 20px;">
+																				<a href="">Tugas1</a>
+																				</div>
+																				<div class="col-md-4">
+																				<div class="m-2">
+																					<div class="col mr-4" style="margin-top: -15px;">
+																						<?php $placeholder;
+																						
+																						$placeholder = "0/100 Poin";
+																						
+																						
+																						?>
+																						<input class="effect-1" type="text" name="nilai" placeholder="<?= $placeholder; ?>">
+																						<input type="hidden" name="tanggal_submit" value="14 Feb">
+																						<span class="focus-border"></span>
+																					</div>
+																					</div>
+																				</div>
+																				</div>
+																			</div>
+																			<div class="notice notice-info">
+																				<div class="row mb-0" style="padding: 0px;">
+																				<div class="col-md-4">Arya Pradata</div>
+																				<div class="col-md-4">
+																				<img src="<?php echo base_url(); ?>assets/images/pdf.png" alt="..." class="img-fluid rounded-circle" style="width: 20px;">
+																				<a href="">Tugas1</a>
+																				</div>
+																				<div class="col-md-4">
+																				<div class="m-2">
+																					<div class="col mr-4" style="margin-top: -15px;">
+																						<?php $placeholder;
+																						
+																						$placeholder = "0/100 Poin";
+																						
+																						
+																						?>
+																						<input class="effect-1" type="text" name="nilai" placeholder="<?= $placeholder; ?>">
+																						<input type="hidden" name="tanggal_submit" value="14 Feb">
+																						<span class="focus-border"></span>
+																					</div>
+																					</div>
+																				</div>
+																				</div>
+																			</div>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+																</div>
+																
+															</div>
+																
+															</div>
+															<a href="#daftarSiswa" class="daftarSiswa"></a>
+															<div id="daftarSiswa"></div>
+															</section>
+														</div>
+														</div>
+														</div>
+													
+														<!--  -->
+													</div>
+												</div>
+				            			</td>
 										</tr>
 										<?php endforeach; ?>
 									</tbody>
@@ -563,6 +628,11 @@
 													</div>
 												</div>
 											</td>
+										</tr>
+										<tr class="p">
+											<td colspan="6" class="hiddenRow">
+												
+											</td> 
 										</tr>
 										<?php endforeach; ?>
 									</tbody>
@@ -1271,6 +1341,13 @@
 
 	</div>
 </section>
+<script>
+	$('.accordion-toggle').click(function(){
+	$('.hiddenRow').hide();
+	$(this).next('tr').find('.hiddenRow').show();
+});
+</script>
+
 <script type="text/javascript" src="<?= base_url(); ?>assets/js/paging.js"></script>
 <script type="text/javascript" src="<?= base_url(); ?>assets/js/password_verif.js"></script>
 
