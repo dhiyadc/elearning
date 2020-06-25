@@ -417,11 +417,11 @@
 														<a class="nav-link active" data-toggle="tab" href="#tab1" role="tab" aria-expanded="true">To Do List</a>
 														</li> -->
 															<li class="nav-item">
-																<a class="nav-link active" data-toggle="tab" href="#tab2" role="tab" aria-expanded="false">Tugas</a>
+																<a class="nav-link active" data-toggle="tab" href="#tab2" role="tab" aria-expanded="false">Jadwal</a>
 
 															</li>
 															<li class="nav-item">
-																<a class="nav-link" data-toggle="tab" href="#tab3" role="tab" aria-expanded="false">Quiz</a>
+																<a class="nav-link" data-toggle="tab" href="#tab3" role="tab" aria-expanded="false">Tugas</a>
 															</li>
 															
 															
@@ -442,7 +442,7 @@
 																	<div class="project-title d-flex align-items-center">
 																	<div class="image has-shadow"><img src="<?php echo base_url(); ?>assets/images/task.png" alt="..." class="img-fluid rounded-circle"></div>
 																	<div class="text">
-																		<h3 class="h4" style="font-size: 20px;">Tugas Kelas Satu</h3><small>14 Feb : 14:00 WIB</small>
+																		<h3 class="h4" style="font-size: 20px;">Kelas Satu</h3><small>14 Feb : 14:00 WIB</small>
 																	</div>
 																	</div>
 																</div>
@@ -452,166 +452,210 @@
 																</div>
 
 																<div class="right-col col-lg-3 d-flex align-items-center">
-																	<div class="time"><i class="fa fa-clock-o"></i><a href="">Jadwal Kegiatan</a></div>
+																	<div class="time"><i class="fa fa-clock-o"></i><a href="">2/50 Siswa</a></div>
 																</div>
 																
 															
 
-																<div class="row d-flex ">
-																<div class="col-12 col-md-12 mb-2 mt-2">
-																	<div class="card  h-100 border-light ">
-																		<div class="card-body d-flex-row" style="width: 900px;">
-																		<div class="row mb-0" style="padding: 0px;">
-																		<!-- <div class="col-md-4">Arya Pradata</div>
-																		<div class="col-md-4" style="margin-bottom: -10px;">
-																			<div class="notice notice-info">
-																				<div class="row mb-0" style="padding: 0px;">
-																			
-																				
-																				<img src="<?php echo base_url(); ?>assets/images/pdf.png" alt="..." class="img-fluid rounded-circle" style="width: 20px;">
-																				<a href="">Tugas1</a>
-																				
-																				
-																				</div>
-																			</div> -->
-
-																			<!-- 
-																				<div class="notice notice-info">
-																				<div class="row mb-0" style="padding: 0px;">
-																				<div class="col-md-4">Arya Pradata</div>
-																				<div class="col-md-4">
-																				<img src="<?php echo base_url(); ?>assets/images/pdf.png" alt="..." class="img-fluid rounded-circle" style="width: 20px;">
-																				<a href="">Tugas1</a>
-																				</div>
-																				<div class="col-md-4">
-																				<div class="m-2">
-																					<div class="col mr-4" style="margin-top: -15px;">
-																						<?php $placeholder;
-																						
-																						$placeholder = "0/100 Poin";
-																						
-																						
-																						?>
-																						<input class="effect-1" type="text" name="nilai" placeholder="<?= $placeholder; ?>">
-																						<input type="hidden" name="tanggal_submit" value="14 Feb">
-																						<span class="focus-border"></span>
-																					</div>
-																					</div>
-																				</div>
-																				</div>
+																	<div class="row d-flex ">
+																	<div class="row">
+																		<div class="col"> 
+																		<div class="card card-list">
+																			<div class="card-body">
+																			<h2>Jadwal Kegiatan Kelas</h2>
 																			</div>
-																			 -->
+																		
+																			<div class="card-body">
+																			<table class="table">
+																				<thead>
+																				<tr>
+																					<th scope="col">Deskripsi</th>
+																					<th scope="col">Hari/Tanggal</th>
+																					<th scope="col">Waktu</th>
+																					<th scope="col" style="text-align: center;">Status</th>
+																					
+																					<th scope="col" style="text-align: center ;">Aksi</th>
+																					<th scope="col">Materi</th>
+																				
+
+																					
+
+																				</tr>
+																				</thead>
+																				<tbody>
+																				
+																				<tr>
+																					<td>Kelas Senin</td>
+																					<td>14 Febuary 2020</td>
+																					<td>14.00 WIB</td>
+																					
+																							<td style="text-align: center ;"><span class="badge badge-danger">Sedang Berlangsung</span></td>
+																							
+																					<td>
+																						<!-- <?php if ($val['pembuat_kelas'] != $this->session->userdata('id_user')) : ?>
+																							<?php if ($cek == true) : ?>
+																							<?php elseif ($peserta != null && $val2['status_kegiatan'] == CLASS_STARTED) : ?>
+																							<a href="<?= base_url('class/') ?><?= $val['id_kelas'] ?>/<?= $val2['id_kegiatan']; ?>" class="btn btn-dark mr-1">Ikut</a>
+																							<?php elseif ($cek == false) : ?>
+																							<?php endif; ?> -->
+																						<!-- <?php elseif ($val2['status_kegiatan'] != CLASS_FINISHED) : ?> -->
+																							<button type="button" class="btn btn-light btn-block" data-toggle="modal" data-target="#editKegiatan1">Edit</button><br>
+																							<a href="" class="btn btn-dark mr-1 btn-block">Mulai</a>
+																							<div class="modal fade" id="editKegiatan1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="padding-right: 90px;">
+
+																							
+
+
+																								<div class="modal-dialog" role="document">
+																								<!--Content-->
+																								<div class="modal-content form-elegant">
+																									<!--Header-->
+																									<div class="modal-header text-center">
+																									<h3 class="modal-title w-100 dark-grey-text font-weight-bold my-3" id="myModalLabel"><strong>Edit Kegiatan</strong></h3>
+																									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+																										<span aria-hidden="true">&times;</span>
+																									</button>
+																									</div>
+																									<!--Body-->
+																									<div class="modal-body mx-4">
+																									<!--Body-->
+																									<form enctype="multipart/form-data" action="<?= base_url()?>classes/edit_kegiatan/<?= $val['id_kelas'] ?>/<?= $val2['id_kegiatan'] ?>" method="POST">
+																										<div class="form-group">
+																										<label>Deskripsi Kegiatan</label>
+																											<textarea class="form-control" name="deskripsi" required><?= $val2['deskripsi_kegiatan'] ?></textarea>
+																										</div>
+																										<label for="materiForm">Tambah Materi</label>
+																										<input type="file" name="materi[]" accept=".doc, .docx, .ppt, .pptx, .pdf" class="form-control-file" id="materiForm" multiple> 
+																										
+																										</div>
+																										<input type="hidden" name="tanggal" value="<?= $val2['tanggal_kegiatan'] ?>">
+
+																									<div class="text-center mb-3">
+																										<button type="submit" class="btn btn-light blue-gradient btn-block btn-rounded z-depth-1a">Simpan</button>
+																									</div>
+																									</form>
+																								</div>
+																								</div>
+																							</div>
+																							</div>
+																					
+																					</td>
+																					
+																					
+																							<td>
+																						
+																								
+																								
+																									<button class="btn btn-light btn-md px-3 my-0 ml-0" type="button" data-toggle="modal" data-target="#lihatMateri1">Lihat Materi</button>
+																									
+																							
+																							</td>
+																						
+																						
+																				
+
+																					<div class="modal fade" id="lihatMateri1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+																					aria-hidden="true" style="padding-right: 90px;">
+																				
+																					<div class="modal-dialog modal-lg" role="document">
+																						<!--Content-->
+																						<div class="modal-content form-elegant">
+																						<!--Header-->
+																						<div class="modal-header text-center">
+																							<h3 class="modal-title w-100 dark-grey-text font-weight-bold my-3" id="myModalLabel"><strong>Materi</strong></h3>
+																							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+																							<span aria-hidden="true">&times;</span>
+																							</button>
+																						</div>
+																						<!--Body-->
+																						<div class="modal-body mx-4">
+																							<!--Body-->
+																							
+																							<div class="container-fluid">
+																							<div class="row">
+																							
+																							<div class="col-md-12 border-bottom pb-3 mt-3"><b>Nama File</b></div>
+																								
+																								
+																								<div class="col-md-12 border-bottom pb-3 mt-3"><a href="<?= base_url(); ?>classes/download_materi/<?= $val4['url_materi'] ?>"><?= $val4['url_materi'] ?></a></div>
+																									
+																								</div>
+																							</div>
+																								
+																							
+																							<div class="container-fluid">
+																							<div class="row">
+																								
+																							<div class="col-md-12 border-bottom pb-3 mt-3"><b>Nama File</b></div>
+																						
+																								<div class="col-md-10 border-bottom pb-3 mt-3"><a href="">Materi1</a></div>
+																								<div class="col-md-2 ml-auto border-bottom"><button type="button" class="btn btn-danger"><a href="">Hapus</a></button></div>
+																								
+																								
+																							</div>
+																							</div>
+																							
+																					
+																						</div>
+																						</div>
+																					</div>
+																					</div>
+
+																				</tr>
 																			
+																				</tbody>
+																			</table>
 																			</div>
-																			<!-- <div class="col-md-4">
+																			
+																			<div class="card-footer white py-3 d-flex justify-content-between">
+																			<button class="btn btn-light btn-md px-3 my-0 ml-0" type="button" data-toggle="modal" data-target="#tambahKegiatan">Tambah Jadwal Kegiatan</button>
+																			</div>
+																			<!-- Modal -->
+																		<div class="modal fade" id="tambahKegiatan" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+																		aria-hidden="true" style="padding-right: 90px;">
+																		<div class="modal-dialog" role="document">
+																			<!--Content-->
+																			<div class="modal-content form-elegant">
+																			<!--Header-->
+																			<div class="modal-header text-center">
+																				<h3 class="modal-title w-100 dark-grey-text font-weight-bold my-3" id="myModalLabel"><strong>Atur Kegiatan</strong></h3>
+																				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+																				<span aria-hidden="true">&times;</span>
+																				</button>
+																			</div>
 
-																			</div> -->
+																			
 
-																			<div class="project" style=" width:850px;">
-																				<div class="row bg-white has-shadow">
-																					<div class="left-col col-lg-5 d-flex align-items-center justify-content-between">
-																					<div class="project-title d-flex align-items-center">
-																						<!-- <div class="widget-content-left mr-2">
-																							<div class="custom-checkbox custom-control"> <input class="custom-control-input" id="exampleCustomCheckbox12" type="checkbox"><label class="custom-control-label" for="exampleCustomCheckbox12">&nbsp;</label> </div>
-																							</div> -->
-																						<div class="text">
-																					
-																							<h3 class="h4" style="font-size: 20px;"><a data-toggle="tab" href="#tab3" role="tab"
-																							aria-controls="tab1" aria-selected="true">Tugas 1</a></h3>
-																						
-																						</div>
-																					</div>
-																					<!-- <div class="project-date"><span class="hidden-sm-down">Hari Ini pada 4:24 AM</span></div> -->
-																					</div>
-																					
-																					<div class="right-col col-lg-7 d-flex align-items-center">
-																					<div class="project-date text-right" style="word-wrap: initial; margin-top: 10px;">
-																						<span class="hidden-sm-down">
-																							<div class="time">
-																							<div class="row mt-0">
-																							<div class="col-sm-6">
-																							<a href="">Kumpul</a>
-																							
-																							</div>
-																							<div class="col-sm-6">
-																							<a href="">Detail</a>
-																							
-																							</div>
-																							
-																							</div>
-																							</div>
-																							</span>
-																						</div>
-
-																					<!-- <div class="comments"><i class="fa fa-comment-o"></i>20</div> -->
-																					<div class="project-progress" style="width: 100px;">
-																						<div class="time">
-																						
-																						<div class="nilai">0/100</span></div>
-																					
-
-																						</div>
-																					</div>
-																					<div class="time"><i class="fa fa-clock-o"></i>Hari Ini pada 4:24</div>
-																					
-																					</div>
+																			<!--Body-->
+																			<div class="modal-body mx-4">
+																				<!--Body-->
+																				<form enctype="multipart/form-data" action="" method="POST">
+																				<div class="form-group">
+																					<label>Deskripsi Kegiatan</label>
+																					<textarea class="form-control" name="deskripsi" required></textarea>
+																				</div>
+																				<div class="form-group">
+																					<label>Jadwal Kegiatan</label>
+																					<div class="input-group date form_datetime " data-date-format="yyyy/mm/dd hh:ii" data-link-field="dtp_input1">
+																					<input class="form-control" id="inputdatetimepicker" size="16" type="text" name="tanggal" readonly required>
+																					<span class="input-group-addon" style="width:40px;"><span class="glyphicon glyphicon-remove"></span></span>
+																					<span class="input-group-addon" style="width:40px;"><span class="glyphicon glyphicon-th"></span></span>
 																					</div>
 																				</div>
-
-																				<div class="project" style=" width:850px;">
-																				<div class="row bg-white has-shadow">
-																					<div class="left-col col-lg-5 d-flex align-items-center justify-content-between">
-																					<div class="project-title d-flex align-items-center">
-																						<!-- <div class="widget-content-left mr-2">
-																							<div class="custom-checkbox custom-control"> <input class="custom-control-input" id="exampleCustomCheckbox12" type="checkbox"><label class="custom-control-label" for="exampleCustomCheckbox12">&nbsp;</label> </div>
-																							</div> -->
-																						<div class="text">
-																					
-																							<h3 class="h4" style="font-size: 20px;"><a data-toggle="tab" href="#tab3" role="tab"
-																							aria-controls="tab1" aria-selected="true">Tugas 2</a></h3>
-																						
-																						</div>
-																					</div>
-																					<!-- <div class="project-date"><span class="hidden-sm-down">Hari Ini pada 4:24 AM</span></div> -->
-																					</div>
-																					
-																					<div class="right-col col-lg-7 d-flex align-items-center">
-																					<div class="project-date text-right" style="word-wrap: initial; margin-top: 10px;">
-																						<span class="hidden-sm-down">
-																							<div class="time">
-																							<div class="row mt-0">
-																							<div class="col-sm-6">
-																							<a href="">Kumpul</a>
-																							
-																							</div>
-																							<div class="col-sm-6">
-																							<a href="">Detail</a>
-																							
-																							</div>
-																							
-																							</div>
-																							</div>
-																							</span>
-																						</div>
-
-																					<!-- <div class="comments"><i class="fa fa-comment-o"></i>20</div> -->
-																					<div class="project-progress" style="width: 100px;">
-																						<div class="time">
-																						
-																						<div class="nilai">0/100</span></div>
-																					
-
-																						</div>
-																					</div>
-																					<div class="time"> <i class="fa fa-clock-o"></i>Hari Ini pada 4:24</div>
-																					
-																					</div>
-																					</div>
+																				<input type="hidden" id="dtp_input1"/>
+																				<div class="form-group">
+																				<label for="materiForm">Materi (Opsional)</label>
+																				<input type="file" name="materi[]" accept=".doc, .docx, .ppt, .pptx, .pdf" class="form-control-file" id="materiForm" multiple>
 																				</div>
-
-
+																				<div class="text-center mb-3">
+																				<button type="submit" class="btn btn-light blue-gradient btn-block btn-rounded z-depth-1a">Simpan</button>
 																				</div>
-																			<!--  -->
+																				</form>
+																			</div>
+																			</div>
+																		</div>
+																		</div>
+																			<?php endif; ?>
 																		</div>
 																		</div>
 																	</div>
