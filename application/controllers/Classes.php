@@ -1223,6 +1223,21 @@ class Classes extends CI_Controller
     public function search_kelas_saya()
     {
         if (isset($_SESSION['logged_in'])) {
+            $data['kategori_text2'] = "Pencarian";
+            $data['keyword_kelas_saya2'] = null;
+            $data['keyword_kelas_diikuti2'] = null;
+            $data['keyword_tugas2'] = null;
+            $data['keyword_materi2'] = null;
+            $data['kegiatan2'] = $this->Workshops_model->getAllKegiatan();
+            $data['private_kelas2'] = $this->Workshops_model->getMyPrivateClassesDetail($data['keyword_kelas_saya2']);
+            $data['kelas_saya2'] = $this->Workshops_model->getMyClassesDetail($data['keyword_kelas_saya2']);
+            $data['seluruh_kelas2'] = $this->Workshops_model->getAllClasses();
+            $data['private_kelas2'] = $this->Workshops_model->getMyPrivateClasses();
+            $data['status2'] = $this->Workshops_model->getStatus();
+            $data['kegiatan2'] = $this->Workshops_model->getAllKegiatan();
+            $data['status2'] = $this->Workshops_model->getStatus();
+            $data['peserta2'] = $this->Workshops_model->getPeserta();
+            
             $data['kategori_text'] = "Pencarian";
             $data['keyword_kelas_saya'] = $this->input->post('keyword');
             $data['keyword_kelas_diikuti'] = null;
@@ -1301,6 +1316,18 @@ class Classes extends CI_Controller
     public function search_kelas_diikuti()
     {
         if (isset($_SESSION['logged_in'])) {
+            $data['kategori_text2'] = "Pencarian";
+            $data['keyword_kelas_diikuti2'] = null;
+            $data['keyword_kelas_saya2'] = null;
+            $data['keyword_tugas2'] = null;
+            $data['keyword_materi2'] = null;
+            $data['seluruh_kelas2'] = $this->Workshops_model->getAllClasses();
+            $data['kelas_saya2'] = $this->Workshops_model->getMyClasses();
+            $data['private_kelas2'] = $this->Workshops_model->getMyPrivateClasses();
+            $data['status2'] = $this->Workshops_model->getStatus();
+            $data['kegiatan2'] = $this->Workshops_model->getAllKegiatan();
+            $data['peserta2'] = $this->Workshops_model->getPeserta();
+
             $data['kategori_text'] = "Pencarian";
             $data['keyword_kelas_diikuti'] = $this->input->post('keyword');
             $data['keyword_kelas_saya'] = null;
