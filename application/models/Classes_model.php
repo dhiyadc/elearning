@@ -83,6 +83,7 @@ class Classes_model extends CI_Model {
                     ON peserta.id_kelas = kelas.id_kelas
             LEFT JOIN status_kegiatan
                 ON status_kegiatan.id_status = kelas.status_kelas
+            WHERE kelas.tipe_kelas = 1
             GROUP BY kelas.id_kelas
             ORDER BY COUNT(peserta.id_kelas) DESC
             LIMIT 10";
@@ -694,9 +695,6 @@ class Classes_model extends CI_Model {
 
     public function updateKegiatan($id_kelas, $id_kegiatan)
     {
-
-        
-
         $data = [];
 
         if(!empty($_FILES['materi']['name'][0])) {
@@ -838,7 +836,8 @@ class Classes_model extends CI_Model {
 
     }
 
-    public function updateKegiatanStatus($activityId, $status) {
+    public function updateKegiatanStatus($activityId, $status) 
+    {
         $this->db->set('status_kegiatan', $status)->where('id_kegiatan', $activityId);
         return $this->db->update('jadwal_kegiatan');
     }
@@ -1028,11 +1027,9 @@ class Classes_model extends CI_Model {
                 $filename = $this->upload->data('file_name');
 
                     $data = [
-                        'id_tugas' => uniqid(),
                         'judul_tugas' => $this->input->post('judul'),
                         'deskripsi_tugas' => $this->input->post('deskripsi'),
                         'url_tugas' => $filename,
-                        'id_kelas' => $id,
                         'kategori_tugas' => $this->input->post('kategori'),
                         'batas_pengiriman_tugas' => $this->input->post('deadline')
                     ];
