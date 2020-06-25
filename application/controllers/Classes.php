@@ -27,6 +27,17 @@ class Classes extends CI_Controller
                 }
             }
             $header['notif'] = $datanotif;
+
+            $notif2 = $this->Workshops_model->getPesertaByUserId();
+            $datanotif2 = array();
+            foreach ($notif2 as $value) {
+                $cek2 = $this->Workshops_model->getKelasKegiatan($value['id_workshop']);
+                if ($cek2 != null) {
+                    $datanotif2[] = $cek2;
+                }
+            }
+            $header['notif2'] = $datanotif2;
+
             $this->load->view('partialsuser/header', $header);
             $this->load->view('classes/new_class', $data);
             $this->load->view('partialsuser/footer');
@@ -80,17 +91,25 @@ class Classes extends CI_Controller
                 }
             }
             $header['notif'] = $datanotif;
+
+            $notif2 = $this->Workshops_model->getPesertaByUserId();
+            $datanotif2 = array();
+            foreach ($notif2 as $value) {
+                $cek2 = $this->Workshops_model->getKelasKegiatan($value['id_workshop']);
+                if ($cek2 != null) {
+                    $datanotif2[] = $cek2;
+                }
+            }
+            $header['notif2'] = $datanotif2;
             $this->load->view('partialsuser/header', $header);
             $this->load->view('classes/open_class', $data);
             $this->load->view('partialsuser/footer');
             $this->session->set_userdata('workshop', null);
-
         } else {
             $this->load->view('partials/header');
             $this->load->view('classes/open_class', $data);
             $this->load->view('partials/footer');
             $this->session->set_userdata('workshop', null);
-
         }
     }
 
@@ -155,9 +174,9 @@ class Classes extends CI_Controller
         if (!$this->Classes_model->updateKegiatanStatus($activityId, CLASS_STARTED) || !$this->Workshops_model->updateKegiatanStatus($activityId, CLASS_STARTED)) {
             $this->session->set_flashdata('message', 'Failed to start the class!');
             if ($this->session->userdata('workshop') != null)
-            redirect('workshops/open_workshop/'.$classId);
+                redirect('workshops/open_workshop/' . $classId);
             else
-            redirect("class/$classId");
+                redirect("class/$classId");
         }
         if ($this->session->userdata('workshop') != null) {
             $classId = $classDetail['id_workshop'];
@@ -216,8 +235,7 @@ class Classes extends CI_Controller
             $userId = $this->session->userdata('id_user');
             $classDetail = $this->Workshops_model->getClassById($classId)[0];
             $isClassOwner = $classDetail['pembuat_workshop'] == $userId;
-        } 
-        else {
+        } else {
             $userId = $this->session->userdata('id_user');
             $classDetail = $this->Classes_model->getClassById($classId)[0];
             $isClassOwner = $classDetail['pembuat_kelas'] == $userId;
@@ -232,9 +250,9 @@ class Classes extends CI_Controller
             redirect("class/$classId/$activityId");
         }
 
-        if ($this->session->userdata('workshop'))
+        if ($this->session->userdata('workshop') != null)
             redirect('workshops/open_workshop/' . $classId);
-            
+
         else
             redirect("class/$classId");
     }
@@ -243,43 +261,42 @@ class Classes extends CI_Controller
     {
         $userId = $this->session->userdata('id_user');
         if ($this->session->userdata('workshop') != null)
-        $userDetail = $this->Workshops_model->getUserDetail($userId)[0];
+            $userDetail = $this->Workshops_model->getUserDetail($userId)[0];
         else
-        $userDetail = $this->Classes_model->getUserDetail($userId)[0];
-        if ($this->session->userdata('workshop') != null){
-        $data = [
-            'classId' => $classDetail['id_workshop'],
-            'classTitle' => $classDetail['judul_workshop'],
-            'ownerId' => $classDetail['pembuat_workshop'],
-            'userId' => $userDetail['id_user'],
-            'userName' => $userDetail['nama'],
-            'userEmail' => $userDetail['email'],
-            'classActivity' => [
-                'activityId' => $classActivity['id_kegiatan'],
-                'activityDescription' => $classActivity['deskripsi_kegiatan'],
-                'activityDate' => "$classActivity[tanggal]",
-                'activityTime' => "$classActivity[waktu]",
-                'activityStatus' => $classActivity['status_kegiatan']
-            ]
-        ];
-    }
-        else{
-        $data = [
-            'classId' => $classDetail['id_kelas'],
-            'classTitle' => $classDetail['judul_kelas'],
-            'ownerId' => $classDetail['pembuat_kelas'],
-            'userId' => $userDetail['id_user'],
-            'userName' => $userDetail['nama'],
-            'userEmail' => $userDetail['email'],
-            'classActivity' => [
-                'activityId' => $classActivity['id_kegiatan'],
-                'activityDescription' => $classActivity['deskripsi_kegiatan'],
-                'activityDate' => "$classActivity[tanggal]",
-                'activityTime' => "$classActivity[waktu]",
-                'activityStatus' => $classActivity['status_kegiatan']
-            ]
-        ];
-    }
+            $userDetail = $this->Classes_model->getUserDetail($userId)[0];
+        if ($this->session->userdata('workshop') != null) {
+            $data = [
+                'classId' => $classDetail['id_workshop'],
+                'classTitle' => $classDetail['judul_workshop'],
+                'ownerId' => $classDetail['pembuat_workshop'],
+                'userId' => $userDetail['id_user'],
+                'userName' => $userDetail['nama'],
+                'userEmail' => $userDetail['email'],
+                'classActivity' => [
+                    'activityId' => $classActivity['id_kegiatan'],
+                    'activityDescription' => $classActivity['deskripsi_kegiatan'],
+                    'activityDate' => "$classActivity[tanggal]",
+                    'activityTime' => "$classActivity[waktu]",
+                    'activityStatus' => $classActivity['status_kegiatan']
+                ]
+            ];
+        } else {
+            $data = [
+                'classId' => $classDetail['id_kelas'],
+                'classTitle' => $classDetail['judul_kelas'],
+                'ownerId' => $classDetail['pembuat_kelas'],
+                'userId' => $userDetail['id_user'],
+                'userName' => $userDetail['nama'],
+                'userEmail' => $userDetail['email'],
+                'classActivity' => [
+                    'activityId' => $classActivity['id_kegiatan'],
+                    'activityDescription' => $classActivity['deskripsi_kegiatan'],
+                    'activityDate' => "$classActivity[tanggal]",
+                    'activityTime' => "$classActivity[waktu]",
+                    'activityStatus' => $classActivity['status_kegiatan']
+                ]
+            ];
+        }
 
         $this->load->view('iframe/elearning', $data);
     }
@@ -314,6 +331,17 @@ class Classes extends CI_Controller
             }
         }
         $header['notif'] = $datanotif;
+
+        $notif2 = $this->Workshops_model->getPesertaByUserId();
+        $datanotif2 = array();
+        foreach ($notif2 as $value) {
+            $cek2 = $this->Workshops_model->getKelasKegiatan($value['id_workshop']);
+            if ($cek2 != null) {
+                $datanotif2[] = $cek2;
+            }
+        }
+        $header['notif2'] = $datanotif2;
+
         $this->load->view('partialsuser/header', $header);
         $this->load->view('classes/update_class', $data);
         $this->load->view('partialsuser/footer');
@@ -412,6 +440,17 @@ class Classes extends CI_Controller
                 }
             }
             $header['notif'] = $datanotif;
+
+            $notif2 = $this->Workshops_model->getPesertaByUserId();
+            $datanotif2 = array();
+            foreach ($notif2 as $value) {
+                $cek2 = $this->Workshops_model->getKelasKegiatan($value['id_workshop']);
+                if ($cek2 != null) {
+                    $datanotif2[] = $cek2;
+                }
+            }
+            $header['notif2'] = $datanotif2;
+
             $this->load->view('partialsuser/header', $header);
             $this->load->view('classes/pembayaran', $id_kelas);
             $this->load->view('partialsuser/footer');
@@ -424,14 +463,22 @@ class Classes extends CI_Controller
     {
         if (isset($this->session->userdata['logged_in'])) {
             $data['seluruh_kelas'] = $this->Classes_model->getAllClasses();
+            $data['seluruh_kelas2'] = $this->Workshops_model->getAllClasses();
             $data['kelas'] = $this->Classes_model->getMyClasses();
+            $data['kelas2'] = $this->Workshops_model->getMyClasses();
             $data['private_kelas'] = $this->Classes_model->getMyPrivateClasses();
+            $data['private_kelas2'] = $this->Workshops_model->getMyPrivateClasses();
             $data['kegiatan'] = $this->Classes_model->getAllKegiatan();
+            $data['kegiatan2'] = $this->Workshops_model->getAllKegiatan();
             $data['status'] = $this->Classes_model->getStatus();
+            $data['status2'] = $this->Workshops_model->getStatus();
             $data['peserta'] = $this->Classes_model->getPeserta();
+            $data['peserta2'] = $this->Workshops_model->getPeserta();
             $header['nama'] = explode(" ", $this->Classes_model->getMyName()['nama']);
             $notif = $this->Classes_model->getPesertaByUserId();
+            $notif2 = $this->Workshops_model->getPesertaByUserId();
             $datanotif = array();
+            $datanotif2 = array();
             $datatugas = array();
             $datakelas = array();
             $datamateri = array();
@@ -453,7 +500,15 @@ class Classes extends CI_Controller
                     $datamateri[] = $materi;
                 }
             }
+            foreach ($notif2 as $value) {
+                $cek2 = $this->Workshops_model->getKelasKegiatan($value['id_workshop']);
+                if ($cek2 != null) {
+                    $datanotif2[] = $cek2;
+                }
+            }
+
             $header['notif'] = $datanotif;
+            $header['notif2'] = $datanotif2;
             $data['tugas'] = $datatugas;
             $data['kelas_tugas'] = $datakelas;
             $data['materi'] = $datamateri;
@@ -501,6 +556,17 @@ class Classes extends CI_Controller
                 }
             }
             $header['notif'] = $datanotif;
+
+            $notif2 = $this->Workshops_model->getPesertaByUserId();
+            $datanotif2 = array();
+            foreach ($notif2 as $value) {
+                $cek2 = $this->Workshops_model->getKelasKegiatan($value['id_workshop']);
+                if ($cek2 != null) {
+                    $datanotif2[] = $cek2;
+                }
+            }
+            $header['notif2'] = $datanotif2;
+
             $this->load->view('partialsuser/header', $header);
         } else {
             $this->load->view('partials/header');
@@ -528,6 +594,17 @@ class Classes extends CI_Controller
                 }
             }
             $header['notif'] = $datanotif;
+
+            $notif2 = $this->Workshops_model->getPesertaByUserId();
+            $datanotif2 = array();
+            foreach ($notif2 as $value) {
+                $cek2 = $this->Workshops_model->getKelasKegiatan($value['id_workshop']);
+                if ($cek2 != null) {
+                    $datanotif2[] = $cek2;
+                }
+            }
+            $header['notif2'] = $datanotif2;
+
             $this->load->view('partialsuser/header', $header);
         } else {
             $this->load->view('partials/header');
@@ -553,6 +630,17 @@ class Classes extends CI_Controller
                 }
             }
             $header['notif'] = $datanotif;
+
+            $notif2 = $this->Workshops_model->getPesertaByUserId();
+            $datanotif2 = array();
+            foreach ($notif2 as $value) {
+                $cek2 = $this->Workshops_model->getKelasKegiatan($value['id_workshop']);
+                if ($cek2 != null) {
+                    $datanotif2[] = $cek2;
+                }
+            }
+            $header['notif2'] = $datanotif2;
+
             $this->load->view('partialsuser/header', $header);
         } else {
             $this->load->view('partials/header');
@@ -578,6 +666,17 @@ class Classes extends CI_Controller
                 }
             }
             $header['notif'] = $datanotif;
+
+            $notif2 = $this->Workshops_model->getPesertaByUserId();
+            $datanotif2 = array();
+            foreach ($notif2 as $value) {
+                $cek2 = $this->Workshops_model->getKelasKegiatan($value['id_workshop']);
+                if ($cek2 != null) {
+                    $datanotif2[] = $cek2;
+                }
+            }
+            $header['notif2'] = $datanotif2;
+
             $this->load->view('partialsuser/header', $header);
         } else {
             $this->load->view('partials/header');
@@ -658,6 +757,17 @@ class Classes extends CI_Controller
                 }
             }
             $header['notif'] = $datanotif;
+
+            $notif2 = $this->Workshops_model->getPesertaByUserId();
+            $datanotif2 = array();
+            foreach ($notif2 as $value) {
+                $cek2 = $this->Workshops_model->getKelasKegiatan($value['id_workshop']);
+                if ($cek2 != null) {
+                    $datanotif2[] = $cek2;
+                }
+            }
+            $header['notif2'] = $datanotif2;
+
             // $this->load->view('partialsuser/header',$header);
             $this->load->view('classes/list_assignment', $data);
             // $this->load->view('partialsuser/footer');
@@ -694,6 +804,17 @@ class Classes extends CI_Controller
             }
         }
         $header['notif'] = $datanotif;
+
+        $notif2 = $this->Workshops_model->getPesertaByUserId();
+        $datanotif2 = array();
+        foreach ($notif2 as $value) {
+            $cek2 = $this->Workshops_model->getKelasKegiatan($value['id_workshop']);
+            if ($cek2 != null) {
+                $datanotif2[] = $cek2;
+            }
+        }
+        $header['notif2'] = $datanotif2;
+
         $this->load->view('partialsuser/header', $header);
         $this->load->view('classes/new_assignment', $data);
         $this->load->view('partialsuser/footer');
@@ -782,6 +903,17 @@ class Classes extends CI_Controller
             }
         }
         $header['notif'] = $datanotif;
+
+        $notif2 = $this->Workshops_model->getPesertaByUserId();
+        $datanotif2 = array();
+        foreach ($notif2 as $value) {
+            $cek2 = $this->Workshops_model->getKelasKegiatan($value['id_workshop']);
+            if ($cek2 != null) {
+                $datanotif2[] = $cek2;
+            }
+        }
+        $header['notif2'] = $datanotif2;
+
         $this->load->view('partialsuser/header', $header);
         $this->load->view('classes/edit_assignment', $data);
         $this->load->view('partialsuser/footer');
@@ -875,6 +1007,17 @@ class Classes extends CI_Controller
                 }
             }
             $header['notif'] = $datanotif;
+
+            $notif2 = $this->Workshops_model->getPesertaByUserId();
+            $datanotif2 = array();
+            foreach ($notif2 as $value) {
+                $cek2 = $this->Workshops_model->getKelasKegiatan($value['id_workshop']);
+                if ($cek2 != null) {
+                    $datanotif2[] = $cek2;
+                }
+            }
+            $header['notif2'] = $datanotif2;
+
             $this->load->view('partialsuser/header', $header);
             $this->load->view('classes/list_tugas', $data);
             $this->load->view('partialsuser/footer');
@@ -910,6 +1053,17 @@ class Classes extends CI_Controller
                 }
             }
             $header['notif'] = $datanotif;
+
+            $notif2 = $this->Workshops_model->getPesertaByUserId();
+            $datanotif2 = array();
+            foreach ($notif2 as $value) {
+                $cek2 = $this->Workshops_model->getKelasKegiatan($value['id_workshop']);
+                if ($cek2 != null) {
+                    $datanotif2[] = $cek2;
+                }
+            }
+            $header['notif2'] = $datanotif2;
+
             $this->load->view('partialsuser/header', $header);
             $this->load->view('classes/list_tugas', $data);
             $this->load->view('partialsuser/footer');
@@ -946,6 +1100,16 @@ class Classes extends CI_Controller
                 }
             }
             $header['notif'] = $datanotif;
+
+            $notif2 = $this->Workshops_model->getPesertaByUserId();
+            $datanotif2 = array();
+            foreach ($notif2 as $value) {
+                $cek2 = $this->Workshops_model->getKelasKegiatan($value['id_workshop']);
+                if ($cek2 != null) {
+                    $datanotif2[] = $cek2;
+                }
+            }
+            $header['notif2'] = $datanotif2;
             $this->load->view('partialsuser/header', $header);
             $this->load->view('classes/detail_tugaskuis', $data);
             $this->load->view('partialsuser/footer');
@@ -971,6 +1135,17 @@ class Classes extends CI_Controller
                 }
             }
             $header['notif'] = $datanotif;
+
+            $notif2 = $this->Workshops_model->getPesertaByUserId();
+            $datanotif2 = array();
+            foreach ($notif2 as $value) {
+                $cek2 = $this->Workshops_model->getKelasKegiatan($value['id_workshop']);
+                if ($cek2 != null) {
+                    $datanotif2[] = $cek2;
+                }
+            }
+            $header['notif2'] = $datanotif2;
+
             $this->load->view('partialsuser/header', $header);
             $this->load->view('classes/detail_tugaskuis', $data);
             $this->load->view('partialsuser/footer');
@@ -1008,6 +1183,17 @@ class Classes extends CI_Controller
             }
         }
         $header['notif'] = $datanotif;
+
+        $notif2 = $this->Workshops_model->getPesertaByUserId();
+        $datanotif2 = array();
+        foreach ($notif2 as $value) {
+            $cek2 = $this->Workshops_model->getKelasKegiatan($value['id_workshop']);
+            if ($cek2 != null) {
+                $datanotif2[] = $cek2;
+            }
+        }
+        $header['notif2'] = $datanotif2;
+
         $this->load->view('partialsuser/header', $header);
         $this->load->view('classes/detail_tugaskuisguru', $data);
         $this->load->view('partialsuser/footer');
@@ -1076,6 +1262,17 @@ class Classes extends CI_Controller
                 }
             }
             $header['notif'] = $datanotif;
+
+            $notif2 = $this->Workshops_model->getPesertaByUserId();
+            $datanotif2 = array();
+            foreach ($notif2 as $value) {
+                $cek2 = $this->Workshops_model->getKelasKegiatan($value['id_workshop']);
+                if ($cek2 != null) {
+                    $datanotif2[] = $cek2;
+                }
+            }
+            $header['notif2'] = $datanotif2;
+
             $data['tugas'] = $datatugas;
             $data['kelas_tugas'] = $datakelas;
             $data['materi'] = $datamateri;
@@ -1140,6 +1337,17 @@ class Classes extends CI_Controller
                 }
             }
             $header['notif'] = $datanotif;
+
+            $notif2 = $this->Workshops_model->getPesertaByUserId();
+            $datanotif2 = array();
+            foreach ($notif2 as $value) {
+                $cek2 = $this->Workshops_model->getKelasKegiatan($value['id_workshop']);
+                if ($cek2 != null) {
+                    $datanotif2[] = $cek2;
+                }
+            }
+            $header['notif2'] = $datanotif2;
+
             $data['tugas'] = $datatugas;
             $data['kelas_tugas'] = $datakelas;
             $data['materi'] = $datamateri;
@@ -1204,6 +1412,17 @@ class Classes extends CI_Controller
                 }
             }
             $header['notif'] = $datanotif;
+
+            $notif2 = $this->Workshops_model->getPesertaByUserId();
+            $datanotif2 = array();
+            foreach ($notif2 as $value) {
+                $cek2 = $this->Workshops_model->getKelasKegiatan($value['id_workshop']);
+                if ($cek2 != null) {
+                    $datanotif2[] = $cek2;
+                }
+            }
+            $header['notif2'] = $datanotif2;
+
             $data['tugas'] = $datatugas;
             $data['kelas_tugas'] = $datakelas;
             $data['materi'] = $datamateri;
@@ -1268,6 +1487,17 @@ class Classes extends CI_Controller
                 }
             }
             $header['notif'] = $datanotif;
+
+            $notif2 = $this->Workshops_model->getPesertaByUserId();
+            $datanotif2 = array();
+            foreach ($notif2 as $value) {
+                $cek2 = $this->Workshops_model->getKelasKegiatan($value['id_workshop']);
+                if ($cek2 != null) {
+                    $datanotif2[] = $cek2;
+                }
+            }
+            $header['notif2'] = $datanotif2;
+
             $data['tugas'] = $datatugas;
             $data['kelas_tugas'] = $datakelas;
             $data['materi'] = $datamateri;

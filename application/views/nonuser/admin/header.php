@@ -83,6 +83,9 @@
                                         <a href="<?= base_url() ?>admin/list_kelas">Kelas</a>
                                     </li>
                                     <li>
+                                        <a href="<?= base_url() ?>admin/list_workshop">Workshop</a>
+                                    </li>
+                                    <li>
                                         <a href="<?= base_url() ?>admin/list_user">User</a>
                                     </li>
                                 </ul>

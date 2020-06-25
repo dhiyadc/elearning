@@ -42,7 +42,7 @@
         </div>
         <div class="row">
             <div class="col-md-3 field-label-responsive mb-3">
-                <label for="passwordnow">Poster Kelas (max. 3 MB)</label>
+                <label for="passwordnow">Poster Workshop (max. 3 MB)</label>
             </div>
             <div class="col-md-6">
                 <div class="form-group">
@@ -55,7 +55,7 @@
         </div>
         <div class="row">
             <div class="col-md-3 field-label-responsive">
-                <label for="namaclasss">Nama Kelas</label>
+                <label for="namaclasss">Nama Workshop</label>
             </div>
             <div class="col-md-6">
                 <div class="form-group">
@@ -69,7 +69,7 @@
         </div>
         <div class="row">
             <div class="col-md-3 field-label-responsive">
-                <label for="password">Kategori Kelas</label>
+                <label for="password">Kategori Workshop</label>
             </div>
             <div class="col-md-6">
                 <div class="form-group">
@@ -86,7 +86,7 @@
         </div>
         <div class="row">
             <div class="col-md-3 field-label-responsive">
-                <label for="password">Deskripsi Kelas</label>
+                <label for="password">Deskripsi Workshop</label>
             </div>
             <div class="col-md-6">
                 <div class="form-group">
@@ -100,7 +100,7 @@
         <div class="row">
             <div class="col-md-3"></div>
             <div class="col-md-6">
-                <button type="submit" class="btn btn-primary"><i class="fa fa-user-plus"></i>Edit Kelas</button>
+                <button type="submit" class="btn btn-primary"><i class="fa fa-user-plus"></i>Edit Workshop</button>
                 <a href="<?= base_url()?>workshops/open_workshop/<?= $val['id_workshop'] ?>" class="btn btn-blue-gradient"></i>Kembali</a>
             </div>
         </div>

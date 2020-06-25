@@ -170,27 +170,26 @@
               <ul class="site-menu main-menu site-menu-white js-clone-nav mr-auto d-none d-lg-block m-0 p-0">
               
               <li class="nav-item dropdown ">
-                <?php if (count($notif) == 0) : ?>
+                <?php if ((count($notif)+count($notif2)) == 0) : ?>
                     <a class="nav-link dropdown-toggle notification" id="notifis" data-toggle="dropdown"
                       aria-haspopup="true" aria-expanded="false"><i class="fa fa-bell"></i>
                     </a>
                 <?php else : ?>
                     <a class="nav-link dropdown-toggle notification" id="notifis" data-toggle="dropdown"
-                      aria-haspopup="true" aria-expanded="false"><i class="fa fa-bell"></i><span class="badge"><?= count($notif); ?></span>
+                      aria-haspopup="true" aria-expanded="false"><i class="fa fa-bell"></i><span class="badge"><?= count($notif)+count($notif2); ?></span>
                     </a>
                 <?php endif; ?>
-                <?php if($this->session->userdata('workshop') != null) : ?>
                   <div class="notif" aria-labelledby="notifis">
                     <ul class="dropdown-menu">
                       <li class="head text-light" style="background-color: forestgreen;">
                         <div class="row">
                           <div class="col-lg-12 col-sm-12 col-12">
-                            <span>Pemberitahuan (<?= count($notif); ?>)</span>
+                            <span>Pemberitahuan Workshop (<?= count($notif2)?>)</span>
                           </div>
                       </li>
-                      <?php if ($notif != null) : ?>
+                      <?php if (count($notif2) != null) : ?>
                       <?php $i = 0; ?>
-                      <?php foreach ($notif as $val) : ?>
+                      <?php foreach ($notif2 as $val) : ?>
                         <?php if ($val[$i]['status_kegiatan'] == CLASS_STARTED) : ?>
                           <li class="notification-box">
                             <div class="row">
@@ -200,9 +199,11 @@
                               <div class="col-md-8" style="text-shadow: 0px 0px white;">
                                 <strong class="text-info"><?= $val[$i]['nama']; ?></strong>
                                 <div>
-                                  <a href="<?= base_url('class/') ?><?= $val[$i]['id_workshop'] ?>/<?= $val[$i]['id_kegiatan']; ?>">Workshop <?= $val[$i]['judul_workshop']; ?> Sedang Dimulai</a>
+                                  <a href="<?= base_url('class/') ?><?= $val[$i]['id_workshop'] ?>/<?= $val[$i]['id_kegiatan']; ?>"><b>Workshop</b> "<?= $val[$i]['judul_workshop']; ?>" Sedang Dimulai</a>
                                 </div>
                                 <small class="text-warning"><?= $val[$i]['tanggal']; ?></small>
+                                <br>
+                                <small class="text-error">(Workshop)</small>
                               </div>    
                             </div>
                           </li>
@@ -210,52 +211,55 @@
                       <?php $i++; ?>
                       <?php endforeach; ?>
                       <?php else : ?>
+                        <li class="notification-box">
+
                         <p style="text-align: center; margin-top: 10px; text-shadow: 0px 0px white;">Tidak Ada Notifikasi</p>
+
+                        </li>
                       <?php endif; ?>
-                      <li class="footer text-center" style="background-color: forestgreen;">
-                        <a href="<?php echo base_url(); ?>workshop/my_workshops" class="text-light">View All</a>
-                      </li>
-                    </ul>
-                    </div>
-                  <?php else : ?>
-                    <div class="notif" aria-labelledby="notifis">
-                    <ul class="dropdown-menu">
+
+                      
                       <li class="head text-light" style="background-color: forestgreen;">
                         <div class="row">
-                          <div class="col-lg-12 col-sm-12 col-12">
-                            <span>Pemberitahuan (<?= count($notif); ?>)</span>
+                      <div class="col-lg-12 col-sm-12 col-12">
+                            <span>Pemberitahuan Kelas (<?=count($notif); ?>)</span>
                           </div>
-                      </li>
-                      <?php if ($notif != null) : ?>
-                      <?php $i = 0; ?>
+                          <?php if (count($notif) != null) : ?>
+                      <?php $j = 0?>
                       <?php foreach ($notif as $val) : ?>
-                        <?php if ($val[$i]['status_kegiatan'] == CLASS_STARTED) : ?>
+                        <?php if ($val[$j]['status_kegiatan'] == CLASS_STARTED) : ?>
                           <li class="notification-box">
                             <div class="row">
                               <div class="col-md-3 text-center">
-                                <img src="<?php echo base_url(); ?>assets/images/<?= $val[$i]['poster_kelas']; ?>" class="rounded-circle" style="object-fit: cover;height: 60px; width: 60px;">
+                                <img src="<?php echo base_url(); ?>assets/images/<?= $val[$j]['poster_kelas']; ?>" class="rounded-circle" style="object-fit: cover;height: 60px; width: 60px;">
                               </div>
                               <div class="col-md-8" style="text-shadow: 0px 0px white;">
-                                <strong class="text-info"><?= $val[$i]['nama']; ?></strong>
+                                <strong class="text-info"><?= $val[$j]['nama']; ?></strong>
                                 <div>
-                                  <a href="<?= base_url('class/') ?><?= $val[$i]['id_kelas'] ?>/<?= $val[$i]['id_kegiatan']; ?>">Kelas <?= $val[$i]['judul_kelas']; ?> Sedang Dimulai</a>
+                                  <a href="<?= base_url('class/') ?><?= $val[$j]['id_kelas'] ?>/<?= $val[$j]['id_kegiatan']; ?>"><b>Kelas</b> "<?= $val[$j]['judul_kelas']; ?>" Sedang Dimulai</a>
                                 </div>
-                                <small class="text-warning"><?= $val[$i]['tanggal']; ?></small>
+                                <small class="text-warning"><?= $val[$j]['tanggal']; ?></small>
+                                <br>
+                                <small class="text-error">(Kelas)</small>
                               </div>    
                             </div>
                           </li>
                         <?php endif; ?>
-                      <?php $i++; ?>
+                      <?php $j++; ?>
                       <?php endforeach; ?>
                       <?php else : ?>
+                        <li class="notification-box">
+
                         <p style="text-align: center; margin-top: 10px; text-shadow: 0px 0px white;">Tidak Ada Notifikasi</p>
+
+                        </li>
+
                       <?php endif; ?>
                       <li class="footer text-center" style="background-color: forestgreen;">
                         <a href="<?php echo base_url(); ?>classes/my_classes" class="text-light">View All</a>
                       </li>
                     </ul>
                     </div>
-                      <?php endif; ?>
                 </li> 
             
                 

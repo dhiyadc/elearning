@@ -1,6 +1,32 @@
 <?php
 class workshops_model extends CI_Model
 {
+    public function getAllClasses()
+    {
+        return $this->db->get('workshop')->result_array();
+    }
+
+    public function getMyClasses()
+    {
+        $this->db->where('pembuat_workshop',$this->session->userdata('id_user'));
+        $this->db->where('tipe_workshop', 1);
+        return $this->db->get('workshop')->result_array();
+    }
+
+    public function getMyPrivateClasses()
+    {
+        $this->db->where('pembuat_workshop',$this->session->userdata('id_user'));
+        $this->db->where('tipe_workshop', 2);
+        return $this->db->get('workshop')->result_array();
+    }
+
+    public function getAllKegiatan()
+    {
+        return $this->db->get('jadwal_workshop')->result_array();
+    }
+
+    
+
     public function getKategori()
     {
         return $this->db->get('kategori_workshop')->result_array();
