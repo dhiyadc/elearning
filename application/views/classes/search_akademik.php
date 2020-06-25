@@ -619,7 +619,7 @@
                                     </button>
                                     <div class="dropdown-menu">
                                       <a class="dropdown-item btn" href="<?= base_url()?>workshops/lihat_kegiatan/<?= $val['id_workshop'] ?>">Lihat Kegiatan</a>
-                                      <a class="dropdown-item btn" href="<?= base_url()?>workshop/update_workshop/<?= $val['id_workshop'] ?>">Edit Kelas</a>
+                                      <a class="dropdown-item btn" href="<?= base_url()?>workshops/update_workshop/<?= $val['id_workshop'] ?>">Edit Kelas</a>
                                     </div>
                                   </div>
                                 </td>
@@ -739,8 +739,8 @@
                                       <span class="sr-only">Toggle Dropdown</span>
                                     </button>
                                     <div class="dropdown-menu">
-                                      <a class="dropdown-item btn" href="<?= base_url()?>workshop/lihat_kegiatan/<?= $val['id_workshop'] ?>">Lihat Kegiatan</a>
-                                      <a class="dropdown-item btn" href="<?= base_url()?>workshop/leave_workshop/<?= $val['id_workshop'] ?>">Tinggalkan</a>
+                                      <a class="dropdown-item btn" href="<?= base_url()?>workshops/lihat_kegiatan/<?= $val['id_workshop'] ?>">Lihat Kegiatan</a>
+                                      <a class="dropdown-item btn" href="<?= base_url()?>workshops/leave_workshop/<?= $val['id_workshop'] ?>">Tinggalkan</a>
                                     </div>
                                   </div>
                                 </td>

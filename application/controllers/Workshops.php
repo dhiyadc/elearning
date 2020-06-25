@@ -563,4 +563,25 @@ class Workshops extends CI_Controller
             redirect('home');
         }
     }
+
+    public function lihat_kegiatan($id_kelas)
+    {
+        if (isset($this->session->userdata['logged_in'])) {
+            $this->session->set_flashdata("jadwalKegiatan", "#tambahKegiatan");
+            redirect('workshops/open_workshop/' . $id_kelas);
+        } else {
+            redirect('home');
+        }
+    }
+
+    public function leave_workshop($id_kelas)
+    {
+        if (isset($this->session->userdata['logged_in'])) {
+            $this->Workshops_model->leaveClass($id_kelas);
+            redirect('classes/my_classes');
+        } else {
+            redirect('home');
+        }
+    }
+
 }

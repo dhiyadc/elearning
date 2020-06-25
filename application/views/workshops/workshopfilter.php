@@ -144,7 +144,7 @@
 				</form> -->
 				<form action="<?= base_url(); ?>Workshops/search" method="post">
 				<div class="input-group mb-3">
-				<input class="form-control form-control-sm mr-0 w-0" type="text" name="keyword" placeholder="Cari Kelas"aria-label="Search">
+				<input class="form-control form-control-sm mr-0 w-0" type="text" name="keyword" placeholder="Cari Workshop"aria-label="Search">
 					<div class="input-group-append">
 					<button class="btn" type="submit"><i class="fa fa-search" aria-hidden="true" onclick=""></i></button>
 					</div>

@@ -558,4 +558,10 @@ class workshops_model extends CI_Model
         }
     }
 
+    public function leaveClass($id)
+    {
+        $this->db->where('id_user',$this->session->userdata('id_user'));
+        $this->db->where('id_workshop',$id);
+        $this->db->delete('peserta_workshop');
+    }
 }

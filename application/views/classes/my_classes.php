@@ -568,9 +568,8 @@
 														</td>
 														<td>
 															<div class="buttonclass">
-																<a href="<?= base_url() ?>classes/open_class/<?= $val['id_kelas'] ?>" class="btn btn-light">Lihat
-																	Kelas</a>
-																<a href="<?= base_url() ?>classes/leave_class/<?= $val['id_kelas'] ?>" class="btn btn-danger">Tinggalkan</a>
+																<a href="<?= base_url() ?>classes/open_class/<?= $val['id_kelas'] ?>" class="btn btn-light">Lihat</a>
+																<a data-toggle='modal' data-target='#konfirmasi_hapus' data-href="<?= base_url() ?>classes/leave_class/<?= $val['id_kelas'] ?>"><i class="btn btn-danger">Tinggalkan</i></a>
 															</div>
 														</td>
 													</tr>
@@ -858,9 +857,8 @@
 														</td>
 														<td>
 															<div class="buttonclass">
-																<a href="<?= base_url() ?>Workshops/open_workshop/<?= $val['id_workshop'] ?>" class="btn btn-light">Lihat
-																	Workshop</a>
-																<a href="<?= base_url() ?>workshops/leave_workshop/<?= $val['id_workshop'] ?>" class="btn btn-danger">Tinggalkan</a>
+																<a href="<?= base_url() ?>Workshops/open_workshop/<?= $val['id_workshop'] ?>" class="btn btn-light">Lihat</a>
+																	<a data-toggle='modal' data-target='#konfirmasi_hapus2' data-href="<?= base_url() ?>workshops/leave_workshop/<?= $val['id_workshop'] ?>"><i class="btn btn-danger">Tinggalkan</i></a>
 															</div>
 														</td>
 													</tr>
@@ -1092,6 +1090,29 @@
 				</div>
 			</div>
 
+			<div class="modal fade" id="konfirmasi_hapus" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-body">
+						<center><b>Anda yakin ingin meninggalkan kelas ini ?</b><br><br>
+							<a class="btn btn-danger btn-ok"><i class="fa fa-sign-out"></i> Tinggalkan</a>
+								<button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Batal</button></center>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="modal fade" id="konfirmasi_hapus2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-body">
+						<center><b>Anda yakin ingin meninggalkan workshop ini ?</b><br><br>
+							<a class="btn btn-danger btn-ok"><i class="fa fa-sign-out"></i> Tinggalkan</a>
+								<button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Batal</button></center>
+						</div>
+					</div>
+				</div>
+			</div>
 
 
 
@@ -1341,4 +1362,23 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
 </script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+</script>
+
+
+<script type="text/javascript">
+	//Hapus Data
+	$(document).ready(function() {
+		$('#konfirmasi_hapus').on('show.bs.modal', function(e) {
+			$(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
+		});
+	});
+</script>
+
+<script type="text/javascript">
+	//Hapus Data
+	$(document).ready(function() {
+		$('#konfirmasi_hapus2').on('show.bs.modal', function(e) {
+			$(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
+		});
+	});
 </script>
