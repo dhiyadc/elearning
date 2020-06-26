@@ -1017,15 +1017,46 @@ class Classes_model extends CI_Model {
 
     public function updateAssignment($id)
     {
-        $data = [
-            'judul_tugas' => $this->input->post('judul'),
-            'deskripsi_tugas' => $this->input->post('deskripsi'),
-            'kategori_tugas' => $this->input->post('kategori'),
-            'batas_pengiriman_tugas' => $this->input->post('deadline')
-        ];
+        if(!empty($_FILES['url_tugas']['name'])) {
+            $config['upload_path'] = './assets/docs/';
+            $config['allowed_types'] = 'pdf|doc|docx';
+            $config['max_size'] = '25000';
+            $config['remove_space'] = true;
 
-        $this->db->where('id_tugas',$id);
-        $this->db->update('tugas_kuis',$data);
+            $this->load->library('upload', $config);
+            if ($this->upload->do_upload('url_tugas')) {
+                $filename = $this->upload->data('file_name');
+
+                    $data = [
+                        'id_tugas' => uniqid(),
+                        'judul_tugas' => $this->input->post('judul'),
+                        'deskripsi_tugas' => $this->input->post('deskripsi'),
+                        'url_tugas' => $filename,
+                        'id_kelas' => $id,
+                        'kategori_tugas' => $this->input->post('kategori'),
+                        'batas_pengiriman_tugas' => $this->input->post('deadline')
+                    ];
+            
+                    $this->db->where('id_tugas',$id);
+                    $this->db->update('tugas_kuis',$data);
+            }
+            else {
+                return "failed";
+            }
+           
+        }
+        else {
+            $data = [
+                'judul_tugas' => $this->input->post('judul'),
+                'deskripsi_tugas' => $this->input->post('deskripsi'),
+                'kategori_tugas' => $this->input->post('kategori'),
+                'url_tugas' => $this->input->post('old_file'),
+                'batas_pengiriman_tugas' => $this->input->post('deadline')
+            ];
+
+            $this->db->where('id_tugas',$id);
+            $this->db->update('tugas_kuis',$data);
+        }
     }
 
     public function deleteAssignment($id)

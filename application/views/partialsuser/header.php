@@ -187,26 +187,26 @@
                           </div>
                       </li>
                       <?php if ($notif != null) : ?>
-                      <?php $i = 0; ?>
-                      <?php foreach ($notif as $val) : ?>
-                        <?php if ($val[$i]['status_kegiatan'] == CLASS_STARTED) : ?>
-                          <li class="notification-box">
-                            <div class="row">
-                              <div class="col-md-3 text-center">
-                                <img src="<?php echo base_url(); ?>assets/images/<?= $val[$i]['poster_kelas']; ?>" class="rounded-circle" style="object-fit: cover;height: 60px; width: 60px;">
-                              </div>
-                              <div class="col-md-8" style="text-shadow: 0px 0px white;">
-                                <strong class="text-info"><?= $val[$i]['nama']; ?></strong>
-                                <div>
-                                  <a href="<?= base_url('class/') ?><?= $val[$i]['id_kelas'] ?>/<?= $val[$i]['id_kegiatan']; ?>">Kelas <?= $val[$i]['judul_kelas']; ?> Sedang Dimulai</a>
+                        <?php foreach ($notif as $val) : ?>
+                          <?php foreach ($val as $val2) : ?>
+                            <?php if ($val2['status_kegiatan'] == CLASS_STARTED) : ?>
+                                <li class="notification-box">
+                                <div class="row">
+                                  <div class="col-md-3 text-center">
+                                    <img src="<?php echo base_url(); ?>assets/images/<?= $val2['poster_kelas']; ?>" class="rounded-circle" style="object-fit: cover;height: 60px; width: 60px;">
+                                  </div>
+                                  <div class="col-md-8" style="text-shadow: 0px 0px white;">
+                                    <strong class="text-info"><?= $val2['nama']; ?></strong>
+                                    <div>
+                                      <a href="<?= base_url('class/') ?><?= $val2['id_kelas'] ?>/<?= $val2['id_kegiatan']; ?>">Kelas <?= $val2['judul_kelas']; ?> Sedang Dimulai</a>
+                                    </div>
+                                    <small class="text-warning"><?= $val2['tanggal']; ?></small>
+                                  </div>    
                                 </div>
-                                <small class="text-warning"><?= $val[$i]['tanggal']; ?></small>
-                              </div>    
-                            </div>
-                          </li>
-                        <?php endif; ?>
-                      <?php $i++; ?>
-                      <?php endforeach; ?>
+                              </li>
+                            <?php endif; ?>
+                          <?php endforeach; ?>
+                        <?php endforeach; ?>
                       <?php else : ?>
                         <p style="text-align: center; margin-top: 10px; text-shadow: 0px 0px white;">Tidak Ada Notifikasi</p>
                       <?php endif; ?>
