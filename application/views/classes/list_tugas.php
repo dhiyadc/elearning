@@ -47,18 +47,21 @@
 </div>
 
 
-  
 
- 
+
 <div class="container my-5">
-
-
 <?php foreach ($kelas as $val) : ?>
   <?php if ($val['pembuat_kelas'] == $this->session->userdata('id_user')) : ?>
     <div class="text-right">
       <a href="<?= base_url() ?>classes/new_assignment/<?= $val['id_kelas']; ?>" class="btn btn-info">Buat Tugas / Quiz</a>
+      <a href="<?= base_url() ?>classes/open_class/<?= $val['id_kelas']; ?>" class="btn btn-danger">Kembali ke kelas</a>
+    </div>
+  <?php else : ?>
+    <div class="text-right">
+    <a href="<?= base_url() ?>classes/open_class/<?= $val['id_kelas']; ?>" class="btn btn-danger">Kembali ke kelas</a>
     </div>
   <?php endif; ?>
+  
 <?php endforeach; ?>
 
 <!-- Nav tabs -------------- -->
@@ -75,7 +78,6 @@
     </li>
     
 </ul>
- 
 <!-- Tab panes -------------- -->
 <div class="tab-content">
     <div class="tab-pane active" id="tab1" role="tabpanel" aria-expanded="true">
