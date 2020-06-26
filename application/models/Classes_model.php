@@ -700,7 +700,7 @@ class Classes_model extends CI_Model {
         if(!empty($_FILES['materi']['name'][0])) {
             $data = [
                 'deskripsi_kegiatan' => $this->input->post('deskripsi'),
-                
+                'tanggal_kegiatan' => $this->input->post('tanggal')
             ];
             
             $this->db->where('id_kegiatan',$id_kegiatan);
@@ -753,7 +753,7 @@ class Classes_model extends CI_Model {
                 
                 $data = [
                     'deskripsi_kegiatan' => $this->input->post('deskripsi'),
-                    
+                    'tanggal_kegiatan' => $this->input->post('tanggal')
                 ];
                 
                 $this->db->where('id_kegiatan',$id_kegiatan);
@@ -762,77 +762,6 @@ class Classes_model extends CI_Model {
             
         }
         return "success";
-
-    }
-
-    public function insertFile($id_kelas, $id_kegiatan)
-    {
-        $id_kegiatan_uniq = $id_kegiatan;
-        // Check form submit or not
-    if($this->input->post('materi') != NULL ){
- 
-        $data = array();
-  
-        // Count total files
-        $countfiles = count($_FILES['materi']['name']);
-   
-        // Looping all files
-        for($i=0;$i<$countfiles;$i++){
-   
-          if(!empty($_FILES['materi']['name'][$i])){
-   
-            // Define new $_FILES array - $_FILES['file']
-            $_FILES['file']['name'] = $_FILES['materi']['name'][$i];
-                $_FILES['file']['type'] = $_FILES['materi']['type'][$i];
-                $_FILES['file']['tmp_name'] = $_FILES['materi']['tmp_name'][$i];
-                $_FILES['file']['error'] = $_FILES['materi']['error'][$i];
-                $_FILES['file']['size'] = $_FILES['materi']['size'][$i];
-  
-            // Set preference
-            $config['upload_path'] = './assets/docs/';
-                $config['allowed_types'] = 'docx|pdf|pptx|doc|ppt';
-                $config['max_size'] = '25000';
-                $config['remove_space'] = true;
-                $config['file_name'] = $_FILES['materi']['name'][$i];
-   
-            //Load upload library
-            $this->load->library('upload',$config); 
-   
-            // File upload
-            if($this->upload->do_upload('materi')){
-              // Get data about the file
-              $uploadData = $this->upload->data();
-              $filename = $uploadData['file_name'];
-
-              $data = [
-                  'id_materi' => uniqid(),
-                  'url_materi' => $filename,
-                  'id_kelas' => $id_kelas,
-                  'id_kegiatan' => $id_kegiatan_uniq
-              ];
-              
-              $this->db->insert('materi',$data);
-              // Initialize array
-              $data['filenames'][] = $filename;
-            } else {
-                return "fail";
-            }
-          }
-   
-        }
-   
-        // load view
-      }else{
-  
-        // load view
-        return "fail";
-      } 
-
-        $data = [
-            'deskripsi_kegiatan' => $this->input->post('deskripsi'),
-            'tanggal_kegiatan' => $this->input->post('tanggal')
-        ];
-
 
     }
 
@@ -1087,94 +1016,5 @@ class Classes_model extends CI_Model {
         $this->db->where('id_tugas',$id);
         $this->db->where('id_user',$this->session->userdata('id_user'));
         return $this->db->get('submit_assignment')->result_array();
-    }
-
-    public function getMyClassesDetail($keyword = null){
-        if($keyword){
-            $user = $this->session->userdata('id_user');
-            $sql = "SELECT kelas.id_kelas, kelas.status_kelas, kelas.judul_kelas, kelas.poster_kelas, kelas.deskripsi_kelas, kategori_kelas.nama_kategori, jenis_kelas.nama_jenis, harga_kelas.harga_kelas, COUNT(peserta.id_kelas) as 'peserta'
-            FROM kelas
-            LEFT JOIN kategori_kelas
-                    ON kategori_kelas.id_kategori = kelas.kategori_kelas 
-            LEFT JOIN jenis_kelas
-                    ON jenis_kelas.id_jenis = kelas.jenis_kelas
-            LEFT JOIN harga_kelas
-                    ON harga_kelas.id_kelas = kelas.id_kelas
-            LEFT JOIN peserta
-                    ON peserta.id_kelas = kelas.id_kelas
-                WHERE kelas.judul_kelas LIKE '%$keyword%' AND kelas.pembuat_kelas LIKE '$user' AND kelas.tipe_kelas = 1
-            GROUP BY kelas.id_kelas";
-            $query = $this->db->query($sql);
-            return $query->result_array();
-        } else {
-            $user = $this->session->userdata('id_user');
-            $sql = "SELECT kelas.id_kelas, kelas.status_kelas, kelas.judul_kelas, kelas.poster_kelas, kelas.deskripsi_kelas, kategori_kelas.nama_kategori, jenis_kelas.nama_jenis, harga_kelas.harga_kelas, COUNT(peserta.id_kelas) as 'peserta'
-            FROM kelas
-            LEFT JOIN kategori_kelas
-                    ON kategori_kelas.id_kategori = kelas.kategori_kelas 
-            LEFT JOIN jenis_kelas
-                    ON jenis_kelas.id_jenis = kelas.jenis_kelas
-            LEFT JOIN harga_kelas
-                    ON harga_kelas.id_kelas = kelas.id_kelas
-            LEFT JOIN peserta
-                    ON peserta.id_kelas = kelas.id_kelas
-                WHERE kelas.pembuat_kelas LIKE '$user' AND kelas.tipe_kelas = 1
-            GROUP BY kelas.id_kelas";
-            $query = $this->db->query($sql);
-            return $query->result_array();
-        }
-    }
-
-    public function getClassesByIdDetail($id,$keyword = null){
-        if($keyword){
-            $sql = "SELECT kelas.id_kelas, kelas.status_kelas, kelas.judul_kelas, kelas.poster_kelas, kelas.deskripsi_kelas, kategori_kelas.nama_kategori, jenis_kelas.nama_jenis, harga_kelas.harga_kelas, COUNT(peserta.id_kelas) as 'peserta'
-            FROM kelas
-            LEFT JOIN kategori_kelas
-                    ON kategori_kelas.id_kategori = kelas.kategori_kelas 
-            LEFT JOIN jenis_kelas
-                    ON jenis_kelas.id_jenis = kelas.jenis_kelas
-            LEFT JOIN harga_kelas
-                    ON harga_kelas.id_kelas = kelas.id_kelas
-            LEFT JOIN peserta
-                    ON peserta.id_kelas = kelas.id_kelas
-                WHERE kelas.judul_kelas LIKE '%$keyword%' AND kelas.id_kelas LIKE '$id'
-            GROUP BY kelas.id_kelas";
-            $query = $this->db->query($sql);
-            return $query->result_array();
-        } else {
-            $sql = "SELECT kelas.id_kelas, kelas.status_kelas, kelas.judul_kelas, kelas.poster_kelas, kelas.deskripsi_kelas, kategori_kelas.nama_kategori, jenis_kelas.nama_jenis, harga_kelas.harga_kelas, COUNT(peserta.id_kelas) as 'peserta'
-            FROM kelas
-            LEFT JOIN kategori_kelas
-                    ON kategori_kelas.id_kategori = kelas.kategori_kelas 
-            LEFT JOIN jenis_kelas
-                    ON jenis_kelas.id_jenis = kelas.jenis_kelas
-            LEFT JOIN harga_kelas
-                    ON harga_kelas.id_kelas = kelas.id_kelas
-            LEFT JOIN peserta
-                    ON peserta.id_kelas = kelas.id_kelas
-                WHERE kelas.id_kelas LIKE '$id'
-            GROUP BY kelas.id_kelas";
-            $query = $this->db->query($sql);
-            return $query->result_array();
-        }
-    }
-
-    public function getMateriByClassIdDetail($id,$keyword = null)
-    {
-        if($keyword){
-            $sql = "SELECT kelas.id_kelas, kelas.judul_kelas, materi.*, jadwal_kegiatan.deskripsi_kegiatan, jadwal_kegiatan.id_kegiatan
-                    FROM materi, kelas, jadwal_kegiatan
-                    WHERE kelas.id_kelas = '$id' AND materi.id_kelas = kelas.id_kelas AND materi.id_kegiatan = jadwal_kegiatan.id_kegiatan AND kelas.id_kelas = jadwal_kegiatan.id_kelas AND kelas.judul_kelas LIKE '%$keyword%'
-                    GROUP BY kelas.id_kelas";
-            $query = $this->db->query($sql);
-            return $query->result_array();
-        } else {
-            $sql = "SELECT kelas.id_kelas, kelas.judul_kelas, materi.*, jadwal_kegiatan.deskripsi_kegiatan, jadwal_kegiatan.id_kegiatan
-                    FROM materi, kelas, jadwal_kegiatan
-                    WHERE kelas.id_kelas = '$id' AND materi.id_kelas = kelas.id_kelas AND materi.id_kegiatan = jadwal_kegiatan.id_kegiatan AND kelas.id_kelas = jadwal_kegiatan.id_kelas
-                    GROUP BY kelas.id_kelas";
-            $query = $this->db->query($sql);
-            return $query->result_array();
-        }
     }
 }

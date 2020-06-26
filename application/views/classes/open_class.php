@@ -266,6 +266,7 @@
                                                   <label>Deskripsi Kegiatan</label>
                                                     <textarea class="form-control" name="deskripsi" required><?= $val2['deskripsi_kegiatan'] ?></textarea>
                                                 </div>
+                                                <input type="hidden" name="tanggal" value="<?= $val2['tanggal_kegiatan'] ?>">
                                                 <label for="materiForm">Tambah Materi</label>
                                                 <input type="file" name="materi[]" accept=".doc, .docx, .ppt, .pptx, .pdf" class="form-control-file" id="materiForm" multiple> 
                                                 

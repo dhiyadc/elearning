@@ -96,7 +96,7 @@ public function getIDbyToken($token){
     return $query->result_array()[0];
 }
 
-public function updatePassword($id_user, $newPassword)
+public function updatePasswordUser($id_user, $newPassword)
 {
     $newPasswordHashed = hash('sha256', $newPassword);
     $sql = "UPDATE user SET password = '$newPasswordHashed'

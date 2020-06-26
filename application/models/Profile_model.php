@@ -21,15 +21,6 @@ class Profile_model extends CI_Model {
     return $query->result_array()[0];
     }
 
-    public function getFotoDeskripsi()
-    {
-        $id_user = $this->session->userdata('id_user');
-        $sql = "SELECT foto,deskripsi FROM detail_user
-        WHERE id_user='$id_user'";
-        $query = $this->db->query($sql);
-        return $query->result_array()[0];
-    }
-
     private function insertImage() 
     {
         $config['upload_path'] = './assets/images/';
@@ -97,16 +88,6 @@ class Profile_model extends CI_Model {
 
         $this->db->where('id_user',$this->session->userdata('id_user'));
         $this->db->update('detail_user',$data);   
-    }
-
-    public function editAccount()
-    {
-        $data = [
-            'password' => $this->input->post('password')
-        ];
-
-        $this->db->where('id_user',$this->session->userdata('id_user'));
-        $this->db->update('user',$data);   
     }
 
     public function deleteAccount()
