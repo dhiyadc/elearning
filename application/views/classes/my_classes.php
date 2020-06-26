@@ -1075,7 +1075,7 @@
 											<td>
 												<div class="btn-group">
 													<a class="btn btn-outline-dark" href=""  data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" style="padding-right: 20px; padding-left: 20px; padding-top: 12px; padding-bottom: 12px;">Detail</a>
-													<button type="button" style="padding-right: 20px; padding-left: 20px; padding-top: 12px; padding-bottom: 12px;" class="btn btn-outline-dark dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+													<button type="button" style="padding-right: 20px; padding-left: 20px; padding-top: 12px; padding-bottom: 12px;" class="btn btn-outline-dark dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 
 														<span class="sr-only">Toggle Dropdown</span>
 													</button>
 													<div class="dropdown-menu">
@@ -1797,8 +1797,8 @@
 	</div>
 </section>
 
-<<<<<<< HEAD
-<script>
+
+<!-- <script>
 	$(document).ready(function(){
 
 
@@ -1812,7 +1812,7 @@
 			$(this).remove();
 		});
 		});
-</script>
+</script> -->
 
 <!-- <script>
 $(document).on('click',function(){
@@ -1837,6 +1837,13 @@ $(document).on('click',function(e){
 <script type="text/javascript" src="<?= base_url(); ?>assets/js/paging.js"></script>
 
 <script type="text/javascript" src="<?= base_url(); ?>assets/js/clipboard.min.js"></script>
+
+<script type="text/javascript" src="js/bootstrap/bootstrap-dropdown.js"></script>
+<script>
+     $(document).ready(function(){
+        $('.dropdown-toggle').dropdown()
+    });
+</script>
 
 
 
@@ -1890,6 +1897,8 @@ clipboard.on('success', function(e) {
 <script type="text/javascript" src="<?= base_url() ?>assets/datetimepicker/bootstrap-datetimepicker.js" charset="UTF-8"></script>
 <script type="text/javascript" src="<?= base_url() ?>assets/datetimepicker/bootstrap-datetimepicker.id.js" charset="UTF-8"></script>
 <script type="text/javascript" src="<?= base_url(); ?>assets/DataTables/datatables.min.js"></script>
+
+
 
 
 
