@@ -3,8 +3,10 @@
 
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-
+<link href="<?= base_url() ?>assets/datetimepicker/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
+<!-- <link href="<?= base_url() ?>assets/css/dataTables/dataTables.bootstrap.css" rel="stylesheet">
+<link href="<?= base_url() ?>assets/css/dataTables/dataTables.responsive.css" rel="stylesheet"> -->
+<link rel="stylesheet" type="text/css" href="<?= base_url(); ?>assets/DataTables/datatables.min.css"/>
 
 <section class="user_dashboard">
 	<div class="row mt-0">
@@ -298,18 +300,18 @@
 									<div class="col">
 										<h2>Kelas Saya</h2>
 									</div>
-									<div class="align-self-end">
+									<!-- <div class="align-self-end">
 										<form action="<?= base_url(); ?>Classes/search_kelas_saya" method="post">
 											<div class="input-group mb-3">
-												<input class="form-control form-control-sm mr-0 w-0" type="text"
+												<input class="form-control form-control-sm mr-0 w-0" id="searchTable" type="text"
 													name="keyword" placeholder="Cari Kelas" aria-label="Search">
 												<div class="input-group-append">
 													<button class="btn" type="submit"><i class="fa fa-search"
 															aria-hidden="true" onclick=""></i></button>
 												</div>
 											</div>
-										</form>
-									</div>
+										</form> 
+									</div> -->
 								</div>
 							</div>
 
@@ -324,8 +326,10 @@
 											<th scope="col" style="padding-left: 50px;">Aksi</th>
 										</tr>
 									</thead>
-									<tbody>
+									<tbody id="pageSearch">
+									<?php $ctClass = 0; ?>
 										<?php foreach ($kelas as $val) : ?>
+										<?php $ctClass++; ?>
 										<tr>
 											<th scope="row" style="width: 300px; padding-top: 23px;" ><a
 													class="text-primary" data-toggle="collapse" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne"><?= $val['judul_kelas']; ?></a>
@@ -384,7 +388,11 @@
 															data-toggle="dropdown" aria-haspopup="true"
 															aria-expanded="false">
 															<span class="sr-only">Toggle Dropdown</span>
+															
 														</button>
+															<button class="btn btn-light btn-md px-3 my-0 ml-0" type="button" data-toggle="modal" data-target="#tambahKegiatan<?= $ctClass ?>">Tambah Jadwal Kegiatan</button>
+															<button id="btnCopy" class="btn" data-toggle="tooltip" data-original-title="Click to copy" data-clipboard-text="<?= base_url(); ?>classes/open_class/<?= $val['id_kelas'] ?>">Copy Link</button>
+														
 														<div class="dropdown-menu">
 															<a class="dropdown-item btn"
 																href="" data-toggle="modal" data-target="#tambahKegiatan">Tambah
@@ -406,6 +414,7 @@
 												</div>
 											</td>
 										</tr>
+
 										<tr class="p">
 				            			<td colspan="6" class="hiddenRow">
 										<div id="collapseOne" class="collapse" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion">
@@ -700,15 +709,16 @@
 												</div>
 				            			</td>
 										</tr>
+
 										<?php endforeach; ?>
 									</tbody>
 								</table>
 							</div>
-							<div class="card-footer white py-3 d-flex justify-content-center">
+							<!-- <div class="card-footer white py-3 d-flex justify-content-center">
 								<ul id="pagination" class="pagination">
 								</ul>
 								</nav>
-							</div>
+							</div> -->
 						</div>
 														
 					</div>
@@ -732,7 +742,9 @@
 										</tr>
 									</thead>
 									<tbody>
-										<?php foreach ($private_kelas as $val) : ?>
+										<?php $ctClass = 0;
+										foreach ($private_kelas as $val) :
+										$ctClass++; ?>
 										<tr>
 											<th scope="row" style="width: 300px;"><a
 													class="text-primary"><?= $val['judul_kelas']; ?></a>
@@ -786,6 +798,8 @@
 															aria-expanded="false">
 															<span class="sr-only">Toggle Dropdown</span>
 														</button>
+														<button class="btn btn-light btn-md px-3 my-0 ml-0" type="button" data-toggle="modal" data-target="#tambahKegiatan<?= $ctClass ?>">Tambah Jadwal Kegiatan</button>
+														<button id="btnCopy" class="btn" data-toggle="tooltip" data-original-title="Click to copy" data-clipboard-text="<?= base_url(); ?>classes/open_class/<?= $val['id_kelas'] ?>">Copy Link</button>
 														<div class="dropdown-menu">
 															<a class="dropdown-item btn"
 																href="<?= base_url()?>classes/open_modal_class/<?= $val['id_kelas'] ?>">Tambah
@@ -804,20 +818,70 @@
 												</div>
 											</td>
 										</tr>
+
+
+										<div class="modal fade" id="tambahKegiatan<?= $ctClass ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+											aria-hidden="true" style="padding-right: 90px;">
+											<div class="modal-dialog" role="document">
+													<!--Content-->
+													<div class="modal-content form-elegant">
+													<!--Header-->
+													<div class="modal-header text-center">
+														<h3 class="modal-title w-100 dark-grey-text font-weight-bold my-3" id="myModalLabel"><strong>Kelas <?= $val['judul_kelas']; ?></strong></h3>
+														<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+														<span aria-hidden="true">&times;</span>
+														</button>
+													</div>
+
+													
+
+													<!--Body-->
+													<div class="modal-body mx-4">
+														<!--Body-->
+														<form enctype="multipart/form-data" action="<?= base_url()?>classes/set_kegiatan/<?= $val['id_kelas'] ?>" method="POST">
+														<div class="form-group">
+															<label>Deskripsi Kegiatan</label>
+															<textarea class="form-control" name="deskripsi" required></textarea>
+														</div>
+														<div class="form-group">
+															<label>Jadwal Kegiatan</label>
+															<div class="input-group date form_datetime " data-date-format="yyyy/mm/dd hh:ii" data-link-field="dtp_input1">
+															<input class="form-control" id="inputdatetimepicker" size="16" type="text" name="tanggal" readonly required>
+															<span class="input-group-addon" style="width:40px;"><span class="glyphicon glyphicon-remove"></span></span>
+															<span class="input-group-addon" style="width:40px;"><span class="glyphicon glyphicon-th"></span></span>
+															</div>
+														</div>
+														<input type="hidden" id="dtp_input1"/>
+														<div class="form-group">
+														<label for="materiForm">Materi (Opsional)</label>
+														<input type="file" name="materi[]" accept=".doc, .docx, .ppt, .pptx, .pdf" class="form-control-file" id="materiForm" multiple>
+														</div>
+														<div class="text-center mb-3">
+														<button type="submit" class="btn btn-light blue-gradient btn-block btn-rounded z-depth-1a">Simpan</button>
+														</div>
+														</form>
+													</div>
+													</div>
+												</div>
+										</div>
+									</div>
+								</div>
+
 										<tr class="p">
 											<td colspan="6" class="hiddenRow">
 												
 											</td> 
 										</tr>
+
 										<?php endforeach; ?>
 									</tbody>
 								</table>
 							</div>
-							<div class="card-footer white py-3 d-flex justify-content-center">
+							<!-- <div class="card-footer white py-3 d-flex justify-content-center">
 								<ul id="pagination2" class="pagination">
 								</ul>
 								</nav>
-							</div>
+							</div> -->
 						</div>
 					</div>
 				</div>
@@ -947,10 +1011,10 @@
 									<div class="col">
 										<h2>Kelas Diikuti</h2>
 									</div>
-									<div class="align-self-end">
+									<!-- <div class="align-self-end">
 										<form action="<?= base_url(); ?>Classes/search_kelas_diikuti" method="post">
 											<div class="input-group mb-3">
-												<input class="form-control form-control-sm mr-0 w-0" type="text"
+												<input class="form-control form-control-sm mr-0 w-0" type="text" id="searchTable3"
 													name="keyword" placeholder="Cari Kelas" aria-label="Search">
 												<div class="input-group-append">
 													<button class="btn" type="submit"><i class="fa fa-search"
@@ -958,7 +1022,7 @@
 												</div>
 											</div>
 										</form>
-									</div>
+									</div> -->
 								</div>
 							</div>
 
@@ -975,7 +1039,7 @@
 
 										</tr>
 									</thead>
-									<tbody>
+									<tbody id="pageSearch3">
 										<?php foreach ($seluruh_kelas as $val) : ?>
 										<?php foreach ($peserta as $val2) : ?>
 										<?php if ($val2['id_kelas'] == $val['id_kelas'] && $val2['id_user'] == $this->session->userdata('id_user')) : ?>
@@ -1266,12 +1330,12 @@
 									</tbody>
 								</table>
 							</div>
-							<div class="card-footer white py-3 d-flex justify-content-center">
+							<!-- <div class="card-footer white py-3 d-flex justify-content-center">
 								<nav>
 									<ul id="pagination3" class="pagination">
 									</ul>
 								</nav>
-							</div>
+							</div> -->
 						</div>
 					</div>
 				</div>
@@ -1286,7 +1350,7 @@
 									<div class="col">
 										<h2>Tugas</h2>
 									</div>
-									<div class="align-self-end">
+									<!-- <div class="align-self-end">
 										<form action="<?= base_url(); ?>Classes/search_tugas" method="post">
 											<div class="input-group mb-3">
 												<input class="form-control form-control-sm mr-0 w-0" type="text" name="keyword" placeholder="Cari Kelas"aria-label="Search">
@@ -1295,7 +1359,7 @@
 												</div>
 											</div>
 										</form>
-									</div>
+									</div> -->
 								</div>
 							</div>
 
@@ -1373,11 +1437,11 @@
 									</tbody>
 								</table>
 							</div>
-							<div class="card-footer white py-3 d-flex justify-content-center">
+							<!-- <div class="card-footer white py-3 d-flex justify-content-center">
 								<ul id="pagination4" class="pagination">
 								</ul>
 								</nav>
-							</div>
+							</div> -->
 						</div>
 					</div>
 				</div>
@@ -1392,7 +1456,7 @@
 									<div class="col">
 										<h2>Materi</h2>
 									</div>
-									<div class="align-self-end">
+									<!-- <div class="align-self-end">
 										<form action="<?= base_url(); ?>Classes/search_materi" method="post">
 											<div class="input-group mb-3">
 												<input class="form-control form-control-sm mr-0 w-0" type="text" name="keyword" placeholder="Cari Kelas"aria-label="Search">
@@ -1401,7 +1465,7 @@
 												</div>
 											</div>
 										</form>
-									</div>
+									</div> -->
 								</div>
 							</div>
 
@@ -1493,11 +1557,11 @@
 									</tbody>
 								</table>
 							</div>
-							<div class="card-footer white py-3 d-flex justify-content-center">
+							<!-- <div class="card-footer white py-3 d-flex justify-content-center">
 								<ul id="pagination5" class="pagination">
 								</ul>
 								</nav>
-							</div>
+							</div> -->
 						</div>
 					</div>
 				</div>
@@ -1743,6 +1807,11 @@
 
 	</div>
 </section>
+
+<script type="text/javascript" src="<?= base_url(); ?>assets/js/paging.js"></script>
+
+<script type="text/javascript" src="<?= base_url(); ?>assets/js/clipboard.min.js"></script>
+
 <script>
 	$('.accordion-toggle').click(function(){
 	$('.hiddenRow').hide();
@@ -1750,15 +1819,194 @@
 });
 </script>
 
-<script type="text/javascript" src="<?= base_url(); ?>assets/js/paging.js"></script>
-<script type="text/javascript" src="<?= base_url(); ?>assets/js/password_verif.js"></script>
-
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+<!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
 	integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
-</script>
+</script> -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
 	integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
 </script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-	integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+<script type="text/javascript" src="<?= base_url(); ?>assets/js/password_verif.js"></script>
+<script type="text/javascript" src="<?= base_url(); ?>assets/js/addon.js"></script>
+<!-- <script>
+$(function () {
+
+  $('[data-toggle="tooltip"]').tooltip();
+
+  $('#btnCopy').tooltip({
+  trigger: 'click',
+  placement: 'bottom'
+});
+
+function setTooltip(btn, message) {
+  btn.tooltip('hide')
+    .attr('data-original-title', message)
+    .tooltip('show');
+}
+
+function hideTooltip(btn) {
+  setTimeout(function() {
+    btn.tooltip('hide');
+  }, 1000);
+}
+var clipboard = new ClipboardJS('#btnCopy');
+clipboard.on('success', function(e) {
+	console.log(e);
+	var btn = $(e.trigger);
+  	setTooltip(btn, 'Copied');
+  	hideTooltip(btn);
+});
+});
+</script> -->
+<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+	integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> -->
+<script type="text/javascript" src="<?= base_url() ?>assets/datetimepicker/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+<script type="text/javascript" src="<?= base_url() ?>assets/datetimepicker/bootstrap-datetimepicker.id.js" charset="UTF-8"></script>
+<script type="text/javascript" src="<?= base_url(); ?>assets/DataTables/datatables.min.js"></script>
+
+
+
+<script>
+    $(document).ready(function () {
+        $('#pageTable').DataTable({
+            responsive: true,
+			pageLength: 5,
+			lengthChange: false,
+			pagingType: "numbers",
+			language: {
+            "zeroRecords": "Yang anda cari tidak ditemukan!",
+            "info": "Menampilkan halaman _PAGE_ dari _PAGES_ (total _MAX_ data)",
+            "infoEmpty": "Tidak ada data",
+        	}
+		});
+		
+		$('#pageTable2').DataTable({
+            responsive: true,
+			pageLength: 5,
+			lengthChange: false,
+			pagingType: "numbers",
+			language: {
+            "zeroRecords": "Yang anda cari tidak ditemukan!",
+            "info": "Menampilkan halaman _PAGE_ dari _PAGES_ (total _MAX_ data)",
+            "infoEmpty": "Tidak ada data",
+        	}
+		});
+		
+		$('#pageTable3').DataTable({
+            responsive: true,
+			pageLength: 5,
+			lengthChange: false,
+			pagingType: "numbers",
+			language: {
+            "zeroRecords": "Yang anda cari tidak ditemukan!",
+            "info": "Menampilkan halaman _PAGE_ dari _PAGES_ (total _MAX_ data)",
+            "infoEmpty": "Tidak ada data",
+        	}
+		});
+		
+		$('#pageTable4').DataTable({
+            responsive: true,
+			pageLength: 5,
+			lengthChange: false,
+			pagingType: "numbers",
+			language: {
+            "zeroRecords": "Yang anda cari tidak ditemukan!",
+            "info": "Menampilkan halaman _PAGE_ dari _PAGES_ (total _MAX_ data)",
+            "infoEmpty": "Tidak ada data",
+        	}
+		});
+		
+		$('#pageTable5').DataTable({
+            responsive: true,
+			pageLength: 5,
+			lengthChange: false,
+			pagingType: "numbers",
+			language: {
+            "zeroRecords": "Yang anda cari tidak ditemukan!",
+            "info": "Menampilkan halaman _PAGE_ dari _PAGES_ (total _MAX_ data)",
+            "infoEmpty": "Tidak ada data",
+        	}
+        });
+    });
+</script>
+<!-- <script>
+
+	$("#searchTable").on("keyup", function() {
+      var value = $(this).val().toLowerCase();
+      $("#pageSearch tr").filter(function() {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+	  });
+    });
+  
+    $("#searchTable2").on("keyup", function() {
+      var value = $(this).val().toLowerCase();
+      $("#pageSearch2 tr").filter(function() {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+      });
+    });
+  
+    $("#searchTable3").on("keyup", function() {
+      var value = $(this).val().toLowerCase();
+      $("#pageSearch3 tr").filter(function() {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+      });
+    });
+  
+    $("#searchTable4").on("keyup", function() {
+      var value = $(this).val().toLowerCase();
+      $("#pageSearch4 tr").filter(function() {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+      });
+    });
+  
+    $("#searchTable5").on("keyup", function() {
+      var value = $(this).val().toLowerCase();
+      $("#pageSearch5 tr").filter(function() {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+      });
+    });
+
+</script> -->
+
+<script type="text/javascript">
+    $('.form_datetime').datetimepicker({
+        language:  'id',
+        weekStart: 1,
+        todayBtn:  1,
+		autoclose: 1,
+		todayHighlight: 1,
+		startView: 2,
+		forceParse: 0,
+        showMeridian: 0
+    });
+	$('.form_date').datetimepicker({
+        language:  'id',
+        weekStart: 1,
+        todayBtn:  1,
+		autoclose: 1,
+		todayHighlight: 1,
+		startView: 2,
+		minView: 2,
+		forceParse: 0
+    });
+	$('.form_time').datetimepicker({
+        language:  'id',
+        weekStart: 1,
+        todayBtn:  1,
+		autoclose: 1,
+		todayHighlight: 1,
+		startView: 1,
+		minView: 0,
+		maxView: 1,
+		forceParse: 0
+    });
+
+    // function showHideJadwal() {
+    //     var x = document.getElementById("showHideJadwal");
+    //     if (x.style.display === "none") {
+    //         x.style.display = "block";
+    //     }
+    //     else {
+    //         x.style.display = "none";
+    //     }
+    // }
 </script>
