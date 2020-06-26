@@ -8,6 +8,7 @@ class Owner extends CI_Controller{
     {
         parent::__construct();
         $this->load->model('Admin_database');
+        $this->load->model('Workshops_model');
 	}
 
     public function index()
@@ -43,6 +44,18 @@ class Owner extends CI_Controller{
             $data['class'] = $this->Admin_database->getAllClassesOwner();
             $this->load->view('nonuser/owner/pages/navbar.php');
             $this->load->view('nonuser/owner/pages/classes.php', $data);
+            $this->load->view('nonuser/owner/pages/footer.php');
+        }  else {
+            redirect('nonuser');
+        }
+    }
+    public function workshops()
+    {
+        if(isset($_SESSION['owner_logged_in']))
+        {
+            $data['class'] = $this->Admin_database->getAllWorkshopsOwner();
+            $this->load->view('nonuser/owner/pages/navbar.php');
+            $this->load->view('nonuser/owner/pages/workshops.php', $data);
             $this->load->view('nonuser/owner/pages/footer.php');
         }  else {
             redirect('nonuser');

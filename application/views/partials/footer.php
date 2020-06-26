@@ -2,15 +2,16 @@
       <div class="container">
         <div class="row">
           <div class="col-md-4">
-            <h3>Tentang Classic.</h3>
+            <h3>Tentang Classico.</h3>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro consectetur ut hic ipsum et veritatis corrupti. Itaque eius soluta optio dolorum temporibus in, atque, quos fugit sunt sit quaerat dicta.</p>
           </div>
 
           <div class="col-md-3 ml-auto">
             <h3>Links</h3>
             <ul class="list-unstyled footer-links">
-              <li><a href="#">Beranda</a></li>
-              <li><a href="#">Kelas</a></li>
+            <li><a href="<?=base_url()?>Home">Beranda</a></li>
+              <li><a href="<?=base_url()?>Classes">Kelas</a></li>
+              <li><a href="<?=base_url()?>Workshops">Workshop</a></li>
               <li><a href="#">Programs</a></li>
               <li><a href="#">Daftar</a></li>
             </ul>

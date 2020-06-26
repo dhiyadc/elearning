@@ -127,6 +127,9 @@
                         <li>
                             <a href="<?= base_url(); ?>owner/classes">Semua Kelas</a>
                         </li>
+                        <li>
+                            <a href="<?= base_url(); ?>owner/Workshops">Semua Workshop</a>
+                        </li>
                         <!-- <li>
                             <a href="#">Third Level <span class="fa arrow"></span></a>
                             <ul class="nav nav-third-level">
