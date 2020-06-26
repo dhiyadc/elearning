@@ -10,17 +10,6 @@ class Profile_model extends CI_Model {
         return $this->db->query($sql)->result_array();
     }
     
-    public function getFirstAccount()
-    {
-        //return $this->db->get_where('user',['id_user' => $this->session->userdata('id_user')])->result_array();
-        
-        $id_user = $_SESSION['id_user'];
-        $sql = "SELECT * FROM user
-        WHERE id_user='$id_user'";
-    $query = $this->db->query($sql);
-    return $query->result_array()[0];
-    }
-
     private function insertImage() 
     {
         $config['upload_path'] = './assets/images/';

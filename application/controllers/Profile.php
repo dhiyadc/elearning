@@ -133,7 +133,7 @@ class Profile extends CI_Controller {
         }
             $oldPass = $this->input->post('old_password');
             $hashed = hash('sha256', $oldPass);
-            $getPass = $this->Profile_model->getFirstAccount();
+            $getPass = $this->Profile_model->getOldPassword();
             $getPassword = $getPass['password'];
 
             $newPassword = $this->input->post('password');
