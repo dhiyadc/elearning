@@ -365,9 +365,9 @@
 												<?php foreach ($status as $val2) : ?>
 													<?php if ($val['status_kelas'] == $val2['id_status']) : ?>
 														<?php if ($val2['nama_status'] == "Selesai") : ?>
-															<span class="badge badge-success" style="padding: 7px;"><?= $val2['nama_status'] ?></span>
+															<span class="badge badge-success" style="padding: 6px;"><?= $val2['nama_status'] ?></span>
 														<?php else : ?>
-															<span class="badge badge-danger" style="padding: 7px;"><?= $val2['nama_status'] ?></span>
+															<span class="badge badge-danger" style="padding: 6px;"><?= $val2['nama_status'] ?></span>
 														<?php endif; ?>
 													<?php endif; ?>
 												<?php endforeach; ?>
@@ -489,7 +489,7 @@
 																					<td style="padding-top: 23px;">14 Febuary 2020</td>
 																					<td style="padding-top: 23px;">14.00 WIB</td>
 																					
-																					<td style="text-align: center ; padding-top: 20px;"><span class="badge badge-danger" style="padding: 7px;">Sedang Berlangsung</span></td>
+																					<td style="text-align: center ; padding-top: 20px;"><span class="badge badge-danger" style="padding: 6px;">Sedang Berlangsung</span></td>
 																							
 																					<td>
 																						<!-- <?php if ($val['pembuat_kelas'] != $this->session->userdata('id_user')) : ?>
