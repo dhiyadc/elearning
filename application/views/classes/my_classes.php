@@ -502,12 +502,12 @@
 																							<!-- <button type="button" class="btn btn-light btn-block" data-toggle="modal" data-target="#editKegiatan1">Edit</button><br>
 																							<a href="" class="btn btn-dark mr-1 btn-block">Mulai</a> -->
 																							<div class="btn-group">
-																								<a class="btn btn-outline-dark"
+																								<a class="btn btn-light"
 																									href="<?= base_url()?>classes/open_class/<?= $val['id_kelas'] ?>"
 																									style="padding-right: 20px; padding-left: 20px; padding-top: 12px; padding-bottom: 12px;">Lihat</a>
 																								<button type="button"
 																									style="padding-right: 20px; padding-left: 20px; padding-top: 12px; padding-bottom: 12px;"
-																									class="btn btn-outline-dark dropdown-toggle dropdown-toggle-split"
+																									class="btn btn-light dropdown-toggle dropdown-toggle-split"
 																									data-toggle="dropdown" aria-haspopup="true"
 																									aria-expanded="false">
 																									<span class="sr-only">Toggle Dropdown</span>
