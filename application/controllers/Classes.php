@@ -500,15 +500,19 @@ class Classes extends CI_Controller
                     $datamateri[] = $materi;
                 }
             }
+            $header['notif'] = $datanotif;
+          
             foreach ($notif2 as $value) {
                 $cek2 = $this->Workshops_model->getKelasKegiatan($value['id_workshop']);
                 if ($cek2 != null) {
                     $datanotif2[] = $cek2;
                 }
             }
+           $header['notif2'] = $datanotif2;
 
-            $header['notif'] = $datanotif;
-            $header['notif2'] = $datanotif2;
+          
+            $data['notif'] = $datanotif;
+           
             $data['tugas'] = $datatugas;
             $data['kelas_tugas'] = $datakelas;
             $data['materi'] = $datamateri;
@@ -935,8 +939,13 @@ class Classes extends CI_Controller
             redirect("home");
         }
 
-        $this->Classes_model->updateAssignment($id_tugas);
-        redirect('classes/list_tugas/' . $id_kelas);
+
+            $status = $this->Classes_model->updateAssignment($id_tugas);
+            if ($status == "failed") {
+				$this->session->set_flashdata('failedInputFile', 'Kapasitas file yang Anda input melebihi 25 MB');
+            }
+            redirect('classes/list_tugas/' . $id_kelas);
+
     }
 
     public function del_assignment($id_kelas, $id_tugas)
@@ -1237,7 +1246,6 @@ class Classes extends CI_Controller
             $data['kegiatan2'] = $this->Workshops_model->getAllKegiatan();
             $data['status2'] = $this->Workshops_model->getStatus();
             $data['peserta2'] = $this->Workshops_model->getPeserta();
-            
             $data['kategori_text'] = "Pencarian";
             $data['keyword_kelas_saya'] = $this->input->post('keyword');
             $data['keyword_kelas_diikuti'] = null;

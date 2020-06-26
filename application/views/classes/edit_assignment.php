@@ -16,7 +16,7 @@
 </div>
 <?php foreach ($tugas as $val) : ?>
 <div class="container">
-    <form action="<?= base_url()?>classes/edit_assignment_action/<?= $id ?>/<?= $val['id_tugas'] ?>" method="post" class="form-horizontal">
+    <form enctype="multipart/form-data" action="<?= base_url()?>classes/edit_assignment_action/<?= $id ?>/<?= $val['id_tugas'] ?>" method="post" class="form-horizontal">
         <div class="row">
             <div class="col-md-3 mb-3 mt-5"><h2>Edit Tugas</h2><hr></div>
             <div class="col-md-6">
@@ -30,6 +30,19 @@
                 <div class="form-group">
                     <div class="input-group mb-2 mr-sm-2 mb-sm-0">
                         <input type="text" name="judul" class="form-control" value="<?= $val['judul_tugas'] ?>" placeholder="" required autofocus>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 field-label-responsive mb-3">
+                <label for="passwordnow">File Tugas (max. 25 MB)</label>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                    <input type="file" name="url_tugas" accept=".pdf, .doc, .docx" class="form-control-file" id="exampleFormControlFile1">
+                    <input type="hidden" name="old_file" value="<?= $val['url_tugas'] ?>">
                     </div>
                 </div>
             </div>

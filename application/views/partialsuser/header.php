@@ -210,6 +210,7 @@
                         <?php endif; ?>
                       <?php $i++; ?>
                       <?php endforeach; ?>
+
                       <?php else : ?>
                         <li class="notification-box">
 

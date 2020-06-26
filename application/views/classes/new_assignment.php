@@ -45,7 +45,7 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-                    <input type="file" name="url_tugas" accept=".pdf, .doc, .docx" class="form-control-file" required id="exampleFormControlFile1">
+                    <input type="file" name="url_tugas" accept=".pdf, .doc, .docx" class="form-control-file" id="exampleFormControlFile1">
                     </div>
                 </div>
             </div>

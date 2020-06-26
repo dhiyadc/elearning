@@ -23,7 +23,9 @@
     <!--Grid column-->
     <div class="col-md-12 mb-4">
 
-        <h5 class="text-center font-weight-bold mb-4" style="color: white">Tugas Saya</h5>
+        <?php foreach ($kelas as $val) : ?>
+          <h4 class="text-center font-weight-bold mb-4" style="color: white">Tugas kelas <?= $val['judul_kelas']; ?></h4>
+        <?php endforeach; ?>
         <div class="container my-5">
 
 
@@ -58,6 +60,8 @@
       <?php foreach ($tugas as $val) : ?>
         <?php if ($val['kategori'] == "Tugas") : ?>
           <a class="nav-link active" data-toggle="tab" href="#tab1" role="tab" aria-expanded="true" style="font-size: 22px;">Tugas</a>
+        <?php elseif ($val['kategori'] == "Tugas Akhir") : ?>
+          <a class="nav-link active" data-toggle="tab" href="#tab1" role="tab" aria-expanded="true" style="font-size: 22px;">Tugas Akhir</a>
         <?php else: ?>
           <a class="nav-link active" data-toggle="tab" href="#tab1" role="tab" aria-expanded="true" style="font-size: 22px;">Quiz</a>
         <?php endif; ?>
@@ -118,6 +122,20 @@
                     <!-- <blockquote class="blockquote mb-4 pb-2">
                         <p class="mb-0 font-weight-bold ">Buatlah Sebuah Percobaan Dengan Menggunakan Hukum Newton</p>
                     </blockquote> -->
+                    <?php if ($val2['url_tugas'] != null) : ?>
+                                    <div class="row">
+                                      <div class="col">
+                                        <div class="col">
+                                          <div class="notice notice-info">
+                                            <div class="row mb-0" style="padding: 0px;">
+                                              <!-- <img src="<?php echo base_url(); ?>assets/images/pdf.png" alt="..." class="img-fluid rounded-circle" style="width: 20px;"> -->
+                                              <a href="<?= base_url() ?>classes/download_assignment/<?= $val2['url_tugas']; ?>"><?= $val2['url_tugas']; ?></a>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                    <?php endif; ?>
                     <p class="card-text mb-5"><?= $val2['deskripsi_tugas']; ?></p>
                     <div class="w-100 pb-1">
                       <?php foreach ($user as $val3) : ?>

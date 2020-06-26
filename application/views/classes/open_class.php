@@ -580,24 +580,3 @@
 			return prefix == undefined ? rupiah : (rupiah ? 'Rp. ' + rupiah : '');
 		}
 	</script>
-<?php if ($this->session->flashdata('openModal')) { ?>
-              <script src="<?php echo base_url(); ?>assets/js/jquery-3.3.1.min.js"></script>
-              <script type="text/javascript">
-              $(function(){
-                    window.location.href = $('.jadwalKegiatan').attr('href');
-                });
-
-              $(window).on('load',function(){
-                  $('#tambahKegiatan').modal('show');
-                  console.log('ready');
-              });
-            </script>
-      <?php } ?>
-<?php if ($this->session->flashdata('jadwalKegiatan')) { ?>
-              <script src="<?php echo base_url(); ?>assets/js/jquery-3.3.1.min.js"></script>
-              <script type="text/javascript">
-                $(function(){
-                    window.location.href = $('.jadwalKegiatan').attr('href');
-                });
-                </script>
-      <?php } ?>
