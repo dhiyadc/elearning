@@ -327,11 +327,10 @@
 									<tbody>
 										<?php foreach ($kelas as $val) : ?>
 										<tr>
-											<th scope="row" style="width: 300px; padding-top: 23px;" ><a
-													class="text-primary" data-toggle="collapse" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne"><?= $val['judul_kelas']; ?></a>
+											<th scope="row" style="width: 300px; padding-top: 23px;" ><?= $val['judul_kelas']; ?>
 													<div id="accordion" role="tablist">
 												
-													
+													</div>
 												
 											</th>
 											<td style="padding-top: 20px; padding-top: 23px;">
@@ -375,8 +374,8 @@
 											<td style="padding-top: 20px;">
 												<div class="buttonclass">
 													<div class="btn-group">
-														<a class="btn btn-outline-dark"
-															href="<?= base_url()?>classes/open_class/<?= $val['id_kelas'] ?>"
+														<a class="btn btn-outline-dark" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne"
+															href=""
 															style="padding-right: 20px; padding-left: 20px; padding-top: 12px; padding-bottom: 12px;">Detail</a>
 														<button type="button"
 															style="padding-right: 20px; padding-left: 20px; padding-top: 12px; padding-bottom: 12px;"
@@ -386,9 +385,7 @@
 															<span class="sr-only">Toggle Dropdown</span>
 														</button>
 														<div class="dropdown-menu">
-															<a class="dropdown-item btn"
-																href="" data-toggle="modal" data-target="#tambahKegiatan">Tambah
-																Kegiatan</a>
+															
 															<a class="dropdown-item btn"
 																href="<?= base_url()?>classes/lihat_kegiatan/<?= $val['id_kelas'] ?>">Lihat
 																Kegiatan</a>
@@ -421,7 +418,7 @@
 
 															</li>
 															<li class="nav-item">
-																<a class="nav-link" data-toggle="tab" href="#tab3" role="tab" aria-expanded="false">Tugas</a>
+																<a class="nav-link" data-toggle="" href="<?= base_url()?>classes/list_tugas/<?= $val['id_kelas'] ?>" >Tugas</a>
 															</li>
 															
 															
@@ -452,7 +449,7 @@
 																</div>
 
 																<div class="right-col col-lg-3 d-flex align-items-center">
-																	<div class="time"><i class="fa fa-clock-o"></i><a href="">2/50 Siswa</a></div>
+																	<div class="time"><i class="fa fa-clock-o"></i>2/50 Siswa</div>
 																</div>
 																
 															
@@ -565,19 +562,12 @@
 																					</td>
 																					
 																					
-																							<td>
-																						
-																								
-																								
-																									<button class="btn btn-light btn-md px-3 my-0 ml-0" type="button" data-toggle="modal" data-target="#lihatMateri1">Lihat Materi</button>
-																									
-																							
-																							</td>
+																							<td><button class="btn btn-light btn-md px-3 my-0 ml-0" type="button" data-toggle="modal" data-target="#lihatMateri1">Lihat Materi</button></td>
 																						
 																						
 																				
 
-																					<div class="modal fade" id="lihatMateri1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+																				<div class="modal fade" id="lihatMateri1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
 																					aria-hidden="true" style="padding-right: 90px;">
 																				
 																					<div class="modal-dialog modal-lg" role="document">
@@ -980,8 +970,7 @@
 										<?php foreach ($peserta as $val2) : ?>
 										<?php if ($val2['id_kelas'] == $val['id_kelas'] && $val2['id_user'] == $this->session->userdata('id_user')) : ?>
 										<tr>
-											<th scope="row" style="width: 300px;" data-toggle="collapse" href="#collapseTwo" aria-expanded="true" aria-controls="collapseTne"><a
-													class="text-primary"><?= $val['judul_kelas']; ?></a></th>
+											<th scope="row" style="width: 300px;" ><?= $val['judul_kelas']; ?></th>
 											<td style="padding-top: 20px;">
 											<span><i class="fa fa-share-alt  fa-clickable" id="epd-dribble"></i></span>
 											</td>
@@ -1021,7 +1010,7 @@
 											</td>
 											<td>
 												<div class="btn-group">
-													<a class="btn btn-outline-dark" href="<?= base_url()?>classes/open_class/<?= $val['id_kelas'] ?>" style="padding-right: 20px; padding-left: 20px; padding-top: 12px; padding-bottom: 12px;">Detail</a>
+													<a class="btn btn-outline-dark" href=""  data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" style="padding-right: 20px; padding-left: 20px; padding-top: 12px; padding-bottom: 12px;">Detail</a>
 													<button type="button" style="padding-right: 20px; padding-left: 20px; padding-top: 12px; padding-bottom: 12px;" class="btn btn-outline-dark dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 														<span class="sr-only">Toggle Dropdown</span>
 													</button>
@@ -1035,7 +1024,7 @@
 										</tr>
 										<tr class="p">
 				            			<td colspan="6" class="hiddenRow">
-										<div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion">
+										<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
 													<div class="card-body">
 														<!--  -->
 														<div class="container my-5">
@@ -1743,6 +1732,44 @@
 
 	</div>
 </section>
+
+<script>
+	$(document).ready(function(){
+
+
+		$('#button').click(function(){
+			var toAdd = $('input[name=checkListItem]').val();
+			$('.list').append($('<div class="item">' + toAdd + ' </div>'));
+		});
+
+
+		$(document).on('click', '.item', function(){
+			$(this).remove();
+		});
+		});
+</script>
+
+<!-- <script>
+$(document).on('click',function(){
+$('.collapse').collapse('hide');
+})
+</script> -->
+
+<!-- <script type="text/javascript">
+$(document).ready(function () {
+$('.collapse').collapse
+});
+
+</script> -->
+
+<!-- <script>
+$(document).on('click',function(e){
+  if($('#collapseOne').hasClass('in')){
+    $('.collapse').collapse('hide'); 
+  }
+})
+</script> -->
+
 <script>
 	$('.accordion-toggle').click(function(){
 	$('.hiddenRow').hide();
