@@ -454,7 +454,6 @@
 																<span class="badge badge-warning"><?= $val2['nama_status'] ?></span>
 															<?php endif; ?>
 														<?php endif; ?>
-														<?php endif; ?>
 													<?php endforeach; ?>
 												</td>
 												<td style="padding-top: 20px;">
