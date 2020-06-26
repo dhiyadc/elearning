@@ -327,18 +327,18 @@
 									<tbody>
 										<?php foreach ($kelas as $val) : ?>
 										<tr>
-											<th scope="row" style="width: 300px;"><a
+											<th scope="row" style="width: 300px; padding-top: 23px;" ><a
 													class="text-primary" data-toggle="collapse" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne"><?= $val['judul_kelas']; ?></a>
 													<div id="accordion" role="tablist">
 												
 													
 												
 											</th>
-											<td style="padding-top: 20px;">
+											<td style="padding-top: 20px; padding-top: 23px;">
 												<span><i class="fa fa-share-alt  fa-clickable" id="epd-dribble"></i></span>
 											</td>
 
-											<td style="padding-top: 20px;">
+											<td style="padding-top: 23px;">
 												<?php $total = 0; $selesai = 0;
                                     foreach ($kegiatan as $val2) {
                                         if ($val['id_kelas'] == $val2['id_kelas']){
@@ -365,9 +365,9 @@
 												<?php foreach ($status as $val2) : ?>
 													<?php if ($val['status_kelas'] == $val2['id_status']) : ?>
 														<?php if ($val2['nama_status'] == "Selesai") : ?>
-															<span class="badge badge-success"><?= $val2['nama_status'] ?></span>
+															<span class="badge badge-success" style="padding: 7px;"><?= $val2['nama_status'] ?></span>
 														<?php else : ?>
-															<span class="badge badge-warning"><?= $val2['nama_status'] ?></span>
+															<span class="badge badge-danger" style="padding: 7px;"><?= $val2['nama_status'] ?></span>
 														<?php endif; ?>
 													<?php endif; ?>
 												<?php endforeach; ?>
@@ -485,11 +485,11 @@
 																				<tbody>
 																				
 																				<tr>
-																					<td>Kelas Senin</td>
-																					<td>14 Febuary 2020</td>
-																					<td>14.00 WIB</td>
+																					<td style="padding-top: 23px;">Kelas Senin</td>
+																					<td style="padding-top: 23px;">14 Febuary 2020</td>
+																					<td style="padding-top: 23px;">14.00 WIB</td>
 																					
-																							<td style="text-align: center ;"><span class="badge badge-danger">Sedang Berlangsung</span></td>
+																					<td style="text-align: center ; padding-top: 20px;"><span class="badge badge-danger" style="padding: 7px;">Sedang Berlangsung</span></td>
 																							
 																					<td>
 																						<!-- <?php if ($val['pembuat_kelas'] != $this->session->userdata('id_user')) : ?>
