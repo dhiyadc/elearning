@@ -530,11 +530,13 @@
 										<?php foreach ($seluruh_kelas as $val) : ?>
 											<?php foreach ($peserta as $val2) : ?>
 												<?php if ($val2['id_kelas'] == $val['id_kelas'] && $val2['id_user'] == $this->session->userdata('id_user')) : ?>
-													<tr>
+													<?php if($val['tipe_kelas'] == 2) : ?>
+														<th scope="row" style="width: 300px;"><a class="text-primary"><?= $val['judul_kelas']; ?> <i class="fa fa-lock"></a></th>
+														<?php else : ?>
 														<th scope="row" style="width: 300px;"><a class="text-primary"><?= $val['judul_kelas']; ?></a></th>
-														<td style="padding-top: 20px;">
-															<span><i class="fa fa-share-alt  fa-clickable" id="epd-dribble"></i></span>
-														</td>
+												
+														<?php endif; ?>
+														<td></td>
 														<td style="padding-top: 20px;">
 															<?php $total = 0;
 															$selesai = 0;
@@ -708,7 +710,7 @@
 								<table id="pageTable7" class="table">
 									<thead>
 										<tr>
-											<th scope="col">Kelas</th>
+											<th scope="col">Workshop</th>
 											<th scope="col">Progress</th>
 											<th scope="col">Status</th>
 											<th scope="col">Aksi</th>
@@ -740,7 +742,7 @@
 												</td>
 												<td style="padding-top: 20px;">
 													<?php foreach ($status2 as $val2) : ?>
-														<?php if ($val['status_workshop'] == $val2['id_workshop']) : ?>
+														<?php if ($val['status_workshop'] == $val2['id_status']) : ?>
 															<?php if ($val2['nama_status'] == "Selesai") : ?>
 																<span class="badge badge-success"><?= $val2['nama_status'] ?></span>
 															<?php else : ?>
@@ -752,7 +754,7 @@
 												<td style="padding-top: 20px;">
 													<div class="buttonclass">
 														<div class="btn-group">
-															<a class="btn btn-outline-dark" href="<?= base_url() ?>Workshops/open_workshop/<?= $val['id_kelas'] ?>" style="padding-right: 20px; padding-left: 20px; padding-top: 12px; padding-bottom: 12px;">Detail</a>
+															<a class="btn btn-outline-dark" href="<?= base_url() ?>Workshops/open_workshop/<?= $val['id_workshop'] ?>" style="padding-right: 20px; padding-left: 20px; padding-top: 12px; padding-bottom: 12px;">Detail</a>
 															<button type="button" style="padding-right: 20px; padding-left: 20px; padding-top: 12px; padding-bottom: 12px;" class="btn btn-outline-dark dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 																<span class="sr-only">Toggle Dropdown</span>
 															</button>
@@ -820,10 +822,12 @@
 											<?php foreach ($peserta2 as $val2) : ?>
 												<?php if ($val2['id_workshop'] == $val['id_workshop'] && $val2['id_user'] == $this->session->userdata('id_user')) : ?>
 													<tr>
+													<?php if($val['tipe_workshop'] == 2) : ?>
+														<th scope="row" style="width: 300px;"><a class="text-primary"><?= $val['judul_workshop']; ?> <i class="fa fa-lock"></a></th>
+														<?php else : ?>
 														<th scope="row" style="width: 300px;"><a class="text-primary"><?= $val['judul_workshop']; ?></a></th>
-														<td style="padding-top: 20px;">
-															<span><i class="fa fa-share-alt  fa-clickable" id="epd-dribble"></i></span>
-														</td>
+														<?php endif; ?>
+														<td></td>
 														<td style="padding-top: 20px;">
 															<?php $total = 0;
 															$selesai = 0;
