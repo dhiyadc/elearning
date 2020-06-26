@@ -499,26 +499,49 @@
 																							<?php elseif ($cek == false) : ?>
 																							<?php endif; ?> -->
 																						<!-- <?php elseif ($val2['status_kegiatan'] != CLASS_FINISHED) : ?> -->
-																							<button type="button" class="btn btn-light btn-block" data-toggle="modal" data-target="#editKegiatan1">Edit</button><br>
-																							<a href="" class="btn btn-dark mr-1 btn-block">Mulai</a>
+																							<!-- <button type="button" class="btn btn-light btn-block" data-toggle="modal" data-target="#editKegiatan1">Edit</button><br>
+																							<a href="" class="btn btn-dark mr-1 btn-block">Mulai</a> -->
+																							<div class="btn-group">
+																								<a class="btn btn-outline-dark"
+																									href="<?= base_url()?>classes/open_class/<?= $val['id_kelas'] ?>"
+																									style="padding-right: 20px; padding-left: 20px; padding-top: 12px; padding-bottom: 12px;">Lihat</a>
+																								<button type="button"
+																									style="padding-right: 20px; padding-left: 20px; padding-top: 12px; padding-bottom: 12px;"
+																									class="btn btn-outline-dark dropdown-toggle dropdown-toggle-split"
+																									data-toggle="dropdown" aria-haspopup="true"
+																									aria-expanded="false">
+																									<span class="sr-only">Toggle Dropdown</span>
+																								</button>
+																								<div class="dropdown-menu">
+																									<a class="dropdown-item btn"
+																										href="" data-toggle="modal" data-target="#tambahKegiatan">Edit
+																										</a>
+																									<a class="dropdown-item btn"
+																										href="<?= base_url()?>classes/lihat_kegiatan/<?= $val['id_kelas'] ?>">Mulai
+																										</a>
+																									<!-- <a class="dropdown-item btn"
+																										href="<?= base_url()?>classes/list_tugas/<?= $val['id_kelas'] ?>">
+																										Tugas</a> -->
+																								</div>
+																							</div>
 																							<div class="modal fade" id="editKegiatan1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="padding-right: 90px;">
 
 																							
 
 
-																								<div class="modal-dialog" role="document">
-																								<!--Content-->
+																								<!-- <div class="modal-dialog" role="document">
+																								
 																								<div class="modal-content form-elegant">
-																									<!--Header-->
+																									
 																									<div class="modal-header text-center">
 																									<h3 class="modal-title w-100 dark-grey-text font-weight-bold my-3" id="myModalLabel"><strong>Edit Kegiatan</strong></h3>
 																									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 																										<span aria-hidden="true">&times;</span>
 																									</button>
 																									</div>
-																									<!--Body-->
+																									
 																									<div class="modal-body mx-4">
-																									<!--Body-->
+																									
 																									<form enctype="multipart/form-data" action="<?= base_url()?>classes/edit_kegiatan/<?= $val['id_kelas'] ?>/<?= $val2['id_kegiatan'] ?>" method="POST">
 																										<div class="form-group">
 																										<label>Deskripsi Kegiatan</label>
@@ -535,7 +558,7 @@
 																									</div>
 																									</form>
 																								</div>
-																								</div>
+																								</div> -->
 																							</div>
 																							</div>
 																					
