@@ -1,5 +1,7 @@
 $( document ).ready(function() {
 
+  
+
     //TABLE 1
    
      var table = '#pageTable';
@@ -222,6 +224,7 @@ $( document ).ready(function() {
    
      $('#pagination5 li:first-child').trigger("click");
    
+
      
      // table 6
      var table6 = '#pageTable6';
@@ -357,3 +360,4 @@ $( document ).ready(function() {
       
     });
       
+

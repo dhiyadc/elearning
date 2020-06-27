@@ -3,8 +3,10 @@
 
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-
+<link href="<?= base_url() ?>assets/datetimepicker/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
+<!-- <link href="<?= base_url() ?>assets/css/dataTables/dataTables.bootstrap.css" rel="stylesheet">
+<link href="<?= base_url() ?>assets/css/dataTables/dataTables.responsive.css" rel="stylesheet"> -->
+<link rel="stylesheet" type="text/css" href="<?= base_url(); ?>assets/DataTables/datatables.min.css"/>
 
 <section class="user_dashboard">
 	<div class="row mt-0">
@@ -304,16 +306,19 @@
 									<div class="col">
 										<h2>Kelas Saya</h2>
 									</div>
-									<div class="align-self-end">
+									<!-- <div class="align-self-end">
 										<form action="<?= base_url(); ?>Classes/search_kelas_saya" method="post">
 											<div class="input-group mb-3">
-												<input class="form-control form-control-sm mr-0 w-0" type="text" name="keyword" placeholder="Cari Kelas" aria-label="Search">
+
+												<input class="form-control form-control-sm mr-0 w-0" id="searchTable" type="text"
+													name="keyword" placeholder="Cari Kelas" aria-label="Search">
+
 												<div class="input-group-append">
 													<button class="btn" type="submit"><i class="fa fa-search" aria-hidden="true" onclick=""></i></button>
 												</div>
 											</div>
-										</form>
-									</div>
+										</form> 
+									</div> -->
 								</div>
 							</div>
 
@@ -328,77 +333,383 @@
 											<th scope="col" style="padding-left: 50px;">Aksi</th>
 										</tr>
 									</thead>
-									<tbody>
+									<tbody id="pageSearch">
+									<?php $ctClass = 0; ?>
 										<?php foreach ($kelas as $val) : ?>
-											<tr>
-												<th scope="row" style="width: 300px;"><a class="text-primary"><?= $val['judul_kelas']; ?></a></th>
-												<td style="padding-top: 20px;">
-													<span><i class="fa fa-share-alt  fa-clickable" id="epd-dribble"></i></span>
 
-												</td>
-
-												<td style="padding-top: 20px;">
-													<?php $total = 0;
-													$selesai = 0;
-													foreach ($kegiatan as $val2) {
-														if ($val['id_kelas'] == $val2['id_kelas']) {
-															$total++;
-															if ($val2['status_kegiatan'] == 2) {
-																$selesai++;
-															}
-														}
-													}
-													if ($total == 0) {
-														$proses = 0;
-													} else {
-														$proses = ($selesai / $total) * 100;
-													} ?>
-													<div class="progress md-progress">
-
-														<div class="progress-bar bg-info" role="progressbar" style="width: <?= $proses; ?>%" aria-valuenow="<?= $proses; ?>" aria-valuemin="0" aria-valuemax="100"><?= $proses; ?>%</div>
+										<?php $ctClass++; ?>
+										<tr>
+											<th scope="row" style="width: 300px; padding-top: 23px;" ><?= $val['judul_kelas']; ?>
+													<div id="accordion" role="tablist">
+												
 													</div>
-												</td>
-												<td style="padding-top: 20px;">
-													<?php foreach ($status as $val2) : ?>
-														<?php if ($val['status_kelas'] == $val2['id_status']) : ?>
-															<?php if ($val2['nama_status'] == "Selesai") : ?>
-																<span class="badge badge-success"><?= $val2['nama_status'] ?></span>
-															<?php else : ?>
-																<span class="badge badge-warning"><?= $val2['nama_status'] ?></span>
-															<?php endif; ?>
+												
+											</th>
+											<td style="padding-top: 20px; padding-top: 23px;">
+												<span><i class="fa fa-share-alt  fa-clickable" id="epd-dribble"></i></span>
+											</td>
+
+											<td style="padding-top: 23px;">
+												<?php $total = 0; $selesai = 0;
+                                    foreach ($kegiatan as $val2) {
+                                        if ($val['id_kelas'] == $val2['id_kelas']){
+                                            $total++; 
+                                            if ($val2['status_kegiatan'] == 2) {
+                                                $selesai++; 
+                                            } 
+                                        }
+                                    }
+                                    if ($total == 0) {
+                                        $proses = 0;
+                                    }
+                                    else {
+                                        $proses = ($selesai / $total) * 100; 
+                                    }?>
+												<div class="progress md-progress">
+
+													<div class="progress-bar bg-info" role="progressbar"
+														style="width: <?= $proses; ?>%" aria-valuenow="<?= $proses; ?>"
+														aria-valuemin="0" aria-valuemax="100"><?= $proses; ?>%</div>
+												</div>
+											</td>
+											<td style="padding-top: 20px;">
+												<?php foreach ($status as $val2) : ?>
+													<?php if ($val['status_kelas'] == $val2['id_status']) : ?>
+														<?php if ($val2['nama_status'] == "Selesai") : ?>
+															<span class="badge badge-success" style="padding: 6px;"><?= $val2['nama_status'] ?></span>
+														<?php else : ?>
+															<span class="badge badge-danger" style="padding: 6px;"><?= $val2['nama_status'] ?></span>
 														<?php endif; ?>
-													<?php endforeach; ?>
-												</td>
-												<td style="padding-top: 20px;">
-													<div class="buttonclass">
-														<div class="btn-group">
-															<a class="btn btn-outline-dark" href="<?= base_url() ?>classes/open_class/<?= $val['id_kelas'] ?>" style="padding-right: 20px; padding-left: 20px; padding-top: 12px; padding-bottom: 12px;">Detail</a>
-															<button type="button" style="padding-right: 20px; padding-left: 20px; padding-top: 12px; padding-bottom: 12px;" class="btn btn-outline-dark dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-																<span class="sr-only">Toggle Dropdown</span>
-															</button>
-															<div class="dropdown-menu">
-																<a class="dropdown-item btn" href="<?= base_url() ?>classes/open_modal_class/<?= $val['id_kelas'] ?>">Tambah
-																	Kegiatan</a>
-																<a class="dropdown-item btn" href="<?= base_url() ?>classes/lihat_kegiatan/<?= $val['id_kelas'] ?>">Lihat
-																	Kegiatan</a>
-																<a class="dropdown-item btn" href="<?= base_url() ?>classes/list_tugas/<?= $val['id_kelas'] ?>">List
-																	Tugas</a>
-																<a class="dropdown-item btn" href="<?= base_url() ?>classes/update_class/<?= $val['id_kelas'] ?>">Edit
-																	Kelas</a>
+													<?php endif; ?>
+												<?php endforeach; ?>
+											</td>
+											<td style="padding-top: 20px;">
+												<div class="buttonclass">
+													<div class="btn-group">
+														<a class="btn btn-outline-dark" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne"
+															href=""
+															style="padding-right: 20px; padding-left: 20px; padding-top: 12px; padding-bottom: 12px;">Detail</a>
+														<button type="button"
+															style="padding-right: 20px; padding-left: 20px; padding-top: 12px; padding-bottom: 12px;"
+															class="btn btn-outline-dark dropdown-toggle dropdown-toggle-split"
+															data-toggle="dropdown" aria-haspopup="true"
+															aria-expanded="false">
+															<span class="sr-only">Toggle Dropdown</span>
+															
+														</button>
+															<button class="btn btn-light btn-md px-3 my-0 ml-0" type="button" data-toggle="modal" data-target="#tambahKegiatan<?= $ctClass ?>">Tambah Jadwal Kegiatan</button>
+															<button id="btnCopy" class="btn" data-toggle="tooltip" data-original-title="Click to copy" data-clipboard-text="<?= base_url(); ?>classes/open_class/<?= $val['id_kelas'] ?>">Copy Link</button>
+														
+														<div class="dropdown-menu">
+															
+															<a class="dropdown-item btn"
+																href="<?= base_url()?>classes/lihat_kegiatan/<?= $val['id_kelas'] ?>">Lihat
+																Kegiatan</a>
+															<a class="dropdown-item btn"
+																href="<?= base_url()?>classes/list_tugas/<?= $val['id_kelas'] ?>">List
+																Tugas</a>
+															<a class="dropdown-item btn"
+																href="<?= base_url()?>classes/new_assignment/<?= $val['id_kelas'] ?>">Buat
+																Tugas</a>
+															<a class="dropdown-item btn"
+																href="<?= base_url()?>classes/update_class/<?= $val['id_kelas'] ?>">Edit
+																Kelas</a>
+														</div>
+													</div>
+												</div>
+											</td>
+										</tr>
+
+										<tr class="p">
+				            			<td colspan="6" class="hiddenRow">
+										<div id="collapseOne" class="collapse" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion">
+													<div class="card-body">
+														<!--  -->
+														<div class="container my-5">
+														<ul style="list-style: outside none none;" class="nav nav-tabs" role="tablist">
+															<!-- <li class="nav-item">
+														<a class="nav-link active" data-toggle="tab" href="#tab1" role="tab" aria-expanded="true">To Do List</a>
+														</li> -->
+															<li class="nav-item">
+																<a class="nav-link active" data-toggle="tab" href="#tab2" role="tab" aria-expanded="false">Jadwal</a>
+
+															</li>
+															<li class="nav-item">
+																<a class="nav-link" data-toggle="" href="<?= base_url()?>classes/list_tugas/<?= $val['id_kelas'] ?>" >Tugas</a>
+															</li>
+															
+															
+															
+														</ul>
+
+														<!-- Tab panes -------------- -->
+														<div class="tab-content">
+															<div class="tab-pane active" id="tab1" role="tabpanel" aria-expanded="true">
+
+															<section class="projects no-padding-top">
+															<div class="container">
+															<!-- Project-->
+														
+															<div class="project">
+																<div class="row bg-white has-shadow">
+																<div class="left-col col-lg-6 d-flex align-items-center justify-content-between">
+																	<div class="project-title d-flex align-items-center">
+																	<div class="image has-shadow"><img src="<?php echo base_url(); ?>assets/images/task.png" alt="..." class="img-fluid rounded-circle"></div>
+																	<div class="text">
+																		<h3 class="h4" style="font-size: 20px;">Kelas Satu</h3><small>14 Feb : 14:00 WIB</small>
+																	</div>
+																	</div>
+																</div>
+																<div class="right-col col-lg-3 d-flex align-items-center">
+																	
+																	<div class="time"><i class="fa fa-tasks" aria-hidden="true"></i>2 Tugas</div>
+																</div>
+
+																<div class="right-col col-lg-3 d-flex align-items-center">
+																	<div class="time"><i class="fa fa-clock-o"></i>2/50 Siswa</div>
+																</div>
+																
+															
+
+																	<div class="row d-flex ">
+																	<div class="row">
+																		<div class="col"> 
+																		<div class="card card-list">
+																			<div class="card-body">
+																			<h2>Jadwal Kegiatan Kelas</h2>
+																			</div>
+																		
+																			<div class="card-body">
+																			<table class="table">
+																				<thead>
+																				<tr>
+																					<th scope="col">Deskripsi</th>
+																					<th scope="col">Hari/Tanggal</th>
+																					<th scope="col">Waktu</th>
+																					<th scope="col" style="text-align: center;">Status</th>
+																					
+																					<th scope="col" style="text-align: center ;">Aksi</th>
+																					<th scope="col">Materi</th>
+																				
+
+																					
+
+																				</tr>
+																				</thead>
+																				<tbody>
+																				
+																				<tr>
+																					<td style="padding-top: 23px;">Kelas Senin</td>
+																					<td style="padding-top: 23px;">14 Febuary 2020</td>
+																					<td style="padding-top: 23px;">14.00 WIB</td>
+																					
+																					<td style="text-align: center ; padding-top: 20px;"><span class="badge badge-danger" style="padding: 6px;">Sedang Berlangsung</span></td>
+																							
+																					<td>
+																						<!-- <?php if ($val['pembuat_kelas'] != $this->session->userdata('id_user')) : ?>
+																							<?php if ($cek == true) : ?>
+																							<?php elseif ($peserta != null && $val2['status_kegiatan'] == CLASS_STARTED) : ?>
+																							<a href="<?= base_url('class/') ?><?= $val['id_kelas'] ?>/<?= $val2['id_kegiatan']; ?>" class="btn btn-dark mr-1">Ikut</a>
+																							<?php elseif ($cek == false) : ?>
+																							<?php endif; ?> -->
+																						<!-- <?php elseif ($val2['status_kegiatan'] != CLASS_FINISHED) : ?> -->
+																							<!-- <button type="button" class="btn btn-light btn-block" data-toggle="modal" data-target="#editKegiatan1">Edit</button><br>
+																							<a href="" class="btn btn-dark mr-1 btn-block">Mulai</a> -->
+																							<div class="btn-group">
+																								<a class="btn btn-light"
+																									href="<?= base_url()?>classes/open_class/<?= $val['id_kelas'] ?>"
+																									style="padding-right: 20px; padding-left: 20px; padding-top: 12px; padding-bottom: 12px;">Lihat</a>
+																								<button type="button"
+																									style="padding-right: 20px; padding-left: 20px; padding-top: 12px; padding-bottom: 12px;"
+																									class="btn btn-light dropdown-toggle dropdown-toggle-split"
+																									data-toggle="dropdown" aria-haspopup="true"
+																									aria-expanded="false">
+																									<span class="sr-only">Toggle Dropdown</span>
+																								</button>
+																								<div class="dropdown-menu">
+																									<a class="dropdown-item btn"
+																										href="" data-toggle="modal" data-target="#tambahKegiatan">Edit
+																										</a>
+																									<a class="dropdown-item btn"
+																										href="<?= base_url()?>classes/lihat_kegiatan/<?= $val['id_kelas'] ?>">Mulai
+																										</a>
+																									<!-- <a class="dropdown-item btn"
+																										href="<?= base_url()?>classes/list_tugas/<?= $val['id_kelas'] ?>">
+																										Tugas</a> -->
+																								</div>
+																							</div>
+																							<div class="modal fade" id="editKegiatan1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="padding-right: 90px;">
+
+																							
+
+
+																								<!-- <div class="modal-dialog" role="document">
+																								
+																								<div class="modal-content form-elegant">
+																									
+																									<div class="modal-header text-center">
+																									<h3 class="modal-title w-100 dark-grey-text font-weight-bold my-3" id="myModalLabel"><strong>Edit Kegiatan</strong></h3>
+																									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+																										<span aria-hidden="true">&times;</span>
+																									</button>
+																									</div>
+																									
+																									<div class="modal-body mx-4">
+																									
+																									<form enctype="multipart/form-data" action="<?= base_url()?>classes/edit_kegiatan/<?= $val['id_kelas'] ?>/<?= $val2['id_kegiatan'] ?>" method="POST">
+																										<div class="form-group">
+																										<label>Deskripsi Kegiatan</label>
+																											<textarea class="form-control" name="deskripsi" required><?= $val2['deskripsi_kegiatan'] ?></textarea>
+																										</div>
+																										<label for="materiForm">Tambah Materi</label>
+																										<input type="file" name="materi[]" accept=".doc, .docx, .ppt, .pptx, .pdf" class="form-control-file" id="materiForm" multiple> 
+																										
+																										</div>
+																										<input type="hidden" name="tanggal" value="<?= $val2['tanggal_kegiatan'] ?>">
+
+																									<div class="text-center mb-3">
+																										<button type="submit" class="btn btn-light blue-gradient btn-block btn-rounded z-depth-1a">Simpan</button>
+																									</div>
+																									</form>
+																								</div>
+																								</div> -->
+																							</div>
+																							</div>
+																					
+																					</td>
+																					
+																					
+																							<td><button class="btn btn-light btn-md px-3 my-0 ml-0" type="button" data-toggle="modal" data-target="#lihatMateri1">Lihat Materi</button></td>
+																						
+																						
+																				
+
+																				<div class="modal fade" id="lihatMateri1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+																					aria-hidden="true" style="padding-right: 90px;">
+																				
+																					<div class="modal-dialog modal-lg" role="document">
+																						<!--Content-->
+																						<div class="modal-content form-elegant">
+																						<!--Header-->
+																						<div class="modal-header text-center">
+																							<h3 class="modal-title w-100 dark-grey-text font-weight-bold my-3" id="myModalLabel"><strong>Materi</strong></h3>
+																							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+																							<span aria-hidden="true">&times;</span>
+																							</button>
+																						</div>
+																						<!--Body-->
+																						<div class="modal-body mx-4">
+																							<!--Body-->
+																							
+																							<div class="container-fluid">
+																							<div class="row">
+																							
+																							<div class="col-md-12 border-bottom pb-3 mt-3"><b>Nama File</b></div>
+																								
+																								
+																								<div class="col-md-12 border-bottom pb-3 mt-3"><a href="<?= base_url(); ?>classes/download_materi/<?= $val4['url_materi'] ?>"><?= $val4['url_materi'] ?></a></div>
+																									
+																								</div>
+																							</div>
+																								
+																							
+																							<div class="container-fluid">
+																							<div class="row">
+																								
+																							<div class="col-md-12 border-bottom pb-3 mt-3"><b>Nama File</b></div>
+																						
+																								<div class="col-md-10 border-bottom pb-3 mt-3"><a href="">Materi1</a></div>
+																								<div class="col-md-2 ml-auto border-bottom"><button type="button" class="btn btn-danger"><a href="">Hapus</a></button></div>
+																								
+																								
+																							</div>
+																							</div>
+																							
+																					
+																						</div>
+																						</div>
+																					</div>
+																					</div>
+
+																				</tr>
+																			
+																				</tbody>
+																			</table>
+																			</div>
+																			
+																			<div class="card-footer white py-3 d-flex justify-content-between">
+																			<button class="btn btn-light btn-md px-3 my-0 ml-0" type="button" data-toggle="modal" data-target="#tambahKegiatan">Tambah Jadwal Kegiatan</button>
+																			</div>
+																			<!-- Modal -->
+																		<div class="modal fade" id="tambahKegiatan" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+																		aria-hidden="true" style="padding-right: 90px;">
+																		<div class="modal-dialog" role="document">
+																			<!--Content-->
+																			<div class="modal-content form-elegant">
+																			<!--Header-->
+																			<div class="modal-header text-center">
+																				<h3 class="modal-title w-100 dark-grey-text font-weight-bold my-3" id="myModalLabel"><strong>Atur Kegiatan</strong></h3>
+																				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+																				<span aria-hidden="true">&times;</span>
+																				</button>
+																			</div>
+
+																			
+
+																			<!--Body-->
+																			<div class="modal-body mx-4">
+																				<!--Body-->
+																				<form enctype="multipart/form-data" action="" method="POST">
+																				<div class="form-group">
+																					<label>Deskripsi Kegiatan</label>
+																					<textarea class="form-control" name="deskripsi" required></textarea>
+																				</div>
+																				<div class="form-group">
+																					<label>Jadwal Kegiatan</label>
+																					<div class="input-group date form_datetime " data-date-format="yyyy/mm/dd hh:ii" data-link-field="dtp_input1">
+																					<input class="form-control" id="inputdatetimepicker" size="16" type="text" name="tanggal" readonly required>
+																					<span class="input-group-addon" style="width:40px;"><span class="glyphicon glyphicon-remove"></span></span>
+																					<span class="input-group-addon" style="width:40px;"><span class="glyphicon glyphicon-th"></span></span>
+																					</div>
+																				</div>
+																				<input type="hidden" id="dtp_input1"/>
+																				<div class="form-group">
+																				<label for="materiForm">Materi (Opsional)</label>
+																				<input type="file" name="materi[]" accept=".doc, .docx, .ppt, .pptx, .pdf" class="form-control-file" id="materiForm" multiple>
+																				</div>
+																				<div class="text-center mb-3">
+																				<button type="submit" class="btn btn-light blue-gradient btn-block btn-rounded z-depth-1a">Simpan</button>
+																				</div>
+																				</form>
+																			</div>
+																			</div>
+																		</div>
+																		</div>
+																			<?php endif; ?>
+																		</div>
+																		</div>
+																	</div>
+																</div>
+																</div>
+																
+															</div>
+			
 															</div>
 														</div>
 													</div>
-												</td>
-											</tr>
+												</div>
+				            			</td>
+										</tr>
+
 										<?php endforeach; ?>
 									</tbody>
 								</table>
 							</div>
-							<div class="card-footer white py-3 d-flex justify-content-center">
+							<!-- <div class="card-footer white py-3 d-flex justify-content-center">
 								<ul id="pagination" class="pagination">
 								</ul>
 								</nav>
-							</div>
+							</div> -->
 						</div>
 
 					</div>
@@ -422,70 +733,147 @@
 										</tr>
 									</thead>
 									<tbody>
-										<?php foreach ($private_kelas as $val) : ?>
-											<tr>
-												<th scope="row" style="width: 300px;"><a class="text-primary"><?= $val['judul_kelas']; ?></a></th>
-												<td style="padding-top: 20px;">
-													<?php $total = 0;
-													$selesai = 0;
-													foreach ($kegiatan as $val2) {
-														if ($val['id_kelas'] == $val2['id_kelas']) {
-															$total++;
-															if ($val2['status_kegiatan'] == 2) {
-																$selesai++;
-															}
-														}
-													}
-													if ($total == 0) {
-														$proses = 0;
-													} else {
-														$proses = ($selesai / $total) * 100;
-													} ?>
-													<div class="progress md-progress">
-														<div class="progress-bar bg-info" role="progressbar" style="width: <?= $proses; ?>%" aria-valuenow="<?= $proses; ?>" aria-valuemin="0" aria-valuemax="100"><?= $proses; ?>%</div>
-													</div>
-												</td>
-												<td style="padding-top: 20px;">
-													<?php foreach ($status as $val2) : ?>
-														<?php if ($val['status_kelas'] == $val2['id_status']) : ?>
-															<?php if ($val2['nama_status'] == "Selesai") : ?>
-																<span class="badge badge-success"><?= $val2['nama_status'] ?></span>
-															<?php else : ?>
-																<span class="badge badge-warning"><?= $val2['nama_status'] ?></span>
-															<?php endif; ?>
+
+										<?php $ctClass = 0;
+										foreach ($private_kelas as $val) :
+										$ctClass++; ?>
+										<tr>
+											<th scope="row" style="width: 300px;"><a
+													class="text-primary"><?= $val['judul_kelas']; ?></a>
+											</th>
+
+											
+													
+											<td style="padding-top: 20px;">
+												<?php $total = 0; $selesai = 0;
+                                    foreach ($kegiatan as $val2) {
+                                        if ($val['id_kelas'] == $val2['id_kelas']){
+                                            $total++; 
+                                            if ($val2['status_kegiatan'] == 2) {
+                                                $selesai++; 
+                                            } 
+                                        }
+                                    }
+                                    if ($total == 0) {
+                                        $proses = 0;
+                                    }
+                                    else {
+                                        $proses = ($selesai / $total) * 100; 
+                                    }?>
+												<div class="progress md-progress">
+													<div class="progress-bar bg-info" role="progressbar"
+														style="width: <?= $proses; ?>%" aria-valuenow="<?= $proses; ?>"
+														aria-valuemin="0" aria-valuemax="100"><?= $proses; ?>%</div>
+												</div>
+											</td>
+											<td style="padding-top: 20px;">
+												<?php foreach ($status as $val2) : ?>
+													<?php if ($val['status_kelas'] == $val2['id_status']) : ?>
+														<?php if ($val2['nama_status'] == "Selesai") : ?>
+															<span class="badge badge-success"><?= $val2['nama_status'] ?></span>
+														<?php else : ?>
+															<span class="badge badge-warning"><?= $val2['nama_status'] ?></span>
 														<?php endif; ?>
-													<?php endforeach; ?>
-												</td>
-												<td style="padding-top: 20px;">
-													<div class="buttonclass">
-														<div class="btn-group">
-															<a class="btn btn-outline-dark" href="<?= base_url() ?>classes/open_class/<?= $val['id_kelas'] ?>" style="padding-right: 20px; padding-left: 20px; padding-top: 12px; padding-bottom: 12px;">Detail</a>
-															<button type="button" style="padding-right: 20px; padding-left: 20px; padding-top: 12px; padding-bottom: 12px;" class="btn btn-outline-dark dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-																<span class="sr-only">Toggle Dropdown</span>
-															</button>
-															<div class="dropdown-menu">
-																<a class="dropdown-item btn" href="<?= base_url() ?>classes/open_modal_class/<?= $val['id_kelas'] ?>">Tambah
-																	Kegiatan</a>
-																<a class="dropdown-item btn" href="<?= base_url() ?>classes/lihat_kegiatan/<?= $val['id_kelas'] ?>">Lihat
-																	Kegiatan</a>
-																<a class="dropdown-item btn" href="<?= base_url() ?>classes/list_tugas/<?= $val['id_kelas'] ?>">List
-																	Tugas</a>
-																<a class="dropdown-item btn" href="<?= base_url() ?>classes/update_class/<?= $val['id_kelas'] ?>">Edit
-																	Kelas</a>
-															</div>
+													<?php endif; ?>
+												<?php endforeach; ?>
+											</td>
+											<td style="padding-top: 20px;">
+												<div class="buttonclass">
+													<div class="btn-group">
+														<a class="btn btn-outline-dark"
+															href="<?= base_url()?>classes/open_class/<?= $val['id_kelas'] ?>"
+															style="padding-right: 20px; padding-left: 20px; padding-top: 12px; padding-bottom: 12px;">Detail</a>
+														<button type="button"
+															style="padding-right: 20px; padding-left: 20px; padding-top: 12px; padding-bottom: 12px;"
+															class="btn btn-outline-dark dropdown-toggle dropdown-toggle-split"
+															data-toggle="dropdown" aria-haspopup="true"
+															aria-expanded="false">
+															<span class="sr-only">Toggle Dropdown</span>
+														</button>
+														<button class="btn btn-light btn-md px-3 my-0 ml-0" type="button" data-toggle="modal" data-target="#tambahKegiatan<?= $ctClass ?>">Tambah Jadwal Kegiatan</button>
+														<button id="btnCopy" class="btn" data-toggle="tooltip" data-original-title="Click to copy" data-clipboard-text="<?= base_url(); ?>classes/open_class/<?= $val['id_kelas'] ?>">Copy Link</button>
+														<div class="dropdown-menu">
+															<a class="dropdown-item btn"
+																href="<?= base_url()?>classes/open_modal_class/<?= $val['id_kelas'] ?>">Tambah
+																Kegiatan</a>
+															<a class="dropdown-item btn"
+																href="<?= base_url()?>classes/lihat_kegiatan/<?= $val['id_kelas'] ?>">Lihat
+																Kegiatan</a>
+															<a class="dropdown-item btn"
+																href="<?= base_url()?>classes/list_tugas/<?= $val['id_kelas'] ?>">List
+																Tugas</a>
+															<a class="dropdown-item btn"
+																href="<?= base_url()?>classes/update_class/<?= $val['id_kelas'] ?>">Edit
+																Kelas</a>
 														</div>
 													</div>
-												</td>
-											</tr>
-										<?php endforeach; ?>
+												</div>
+											</td>
+										</tr>
+
+
+										<div class="modal fade" id="tambahKegiatan<?= $ctClass ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+											aria-hidden="true" style="padding-right: 90px;">
+											<div class="modal-dialog" role="document">
+													<!--Content-->
+													<div class="modal-content form-elegant">
+													<!--Header-->
+													<div class="modal-header text-center">
+														<h3 class="modal-title w-100 dark-grey-text font-weight-bold my-3" id="myModalLabel"><strong>Kelas <?= $val['judul_kelas']; ?></strong></h3>
+														<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+														<span aria-hidden="true">&times;</span>
+														</button>
+													</div>
+
+													
+
+													<!--Body-->
+													<div class="modal-body mx-4">
+														<!--Body-->
+														<form enctype="multipart/form-data" action="<?= base_url()?>classes/set_kegiatan/<?= $val['id_kelas'] ?>" method="POST">
+														<div class="form-group">
+															<label>Deskripsi Kegiatan</label>
+															<textarea class="form-control" name="deskripsi" required></textarea>
+														</div>
+														<div class="form-group">
+															<label>Jadwal Kegiatan</label>
+															<div class="input-group date form_datetime " data-date-format="yyyy/mm/dd hh:ii" data-link-field="dtp_input1">
+															<input class="form-control" id="inputdatetimepicker" size="16" type="text" name="tanggal" readonly required>
+															<span class="input-group-addon" style="width:40px;"><span class="glyphicon glyphicon-remove"></span></span>
+															<span class="input-group-addon" style="width:40px;"><span class="glyphicon glyphicon-th"></span></span>
+															</div>
+														</div>
+														<input type="hidden" id="dtp_input1"/>
+														<div class="form-group">
+														<label for="materiForm">Materi (Opsional)</label>
+														<input type="file" name="materi[]" accept=".doc, .docx, .ppt, .pptx, .pdf" class="form-control-file" id="materiForm" multiple>
+														</div>
+														<div class="text-center mb-3">
+														<button type="submit" class="btn btn-light blue-gradient btn-block btn-rounded z-depth-1a">Simpan</button>
+														</div>
+														</form>
+													</div>
+													</div>
+												</div>
+										</div>
+									</div>
+								</div>
+
+										<tr class="p">
+											<td colspan="6" class="hiddenRow">
+												
+											</td> 
+										</tr>
+
+								<?php endforeach; ?>
 									</tbody>
 								</table>
 							</div>
-							<div class="card-footer white py-3 d-flex justify-content-center">
+							<!-- <div class="card-footer white py-3 d-flex justify-content-center">
 								<ul id="pagination2" class="pagination">
 								</ul>
 								</nav>
-							</div>
+							</div> -->
 						</div>
 					</div>
 				</div>
@@ -500,16 +888,18 @@
 									<div class="col">
 										<h2>Kelas Diikuti</h2>
 									</div>
-									<div class="align-self-end">
+									<!-- <div class="align-self-end">
 										<form action="<?= base_url(); ?>Classes/search_kelas_diikuti" method="post">
 											<div class="input-group mb-3">
-												<input class="form-control form-control-sm mr-0 w-0" type="text" name="keyword" placeholder="Cari Kelas" aria-label="Search">
+												<input class="form-control form-control-sm mr-0 w-0" type="text" id="searchTable3"
+													name="keyword" placeholder="Cari Kelas" aria-label="Search">
+
 												<div class="input-group-append">
 													<button class="btn" type="submit"><i class="fa fa-search" aria-hidden="true" onclick=""></i></button>
 												</div>
 											</div>
 										</form>
-									</div>
+									</div> -->
 								</div>
 							</div>
 
@@ -526,7 +916,7 @@
 
 										</tr>
 									</thead>
-									<tbody>
+									<tbody id="pageSearch3">
 										<?php foreach ($seluruh_kelas as $val) : ?>
 											<?php foreach ($peserta as $val2) : ?>
 												<?php if ($val2['id_kelas'] == $val['id_kelas'] && $val2['id_user'] == $this->session->userdata('id_user')) : ?>
@@ -620,6 +1010,7 @@
 								<table id="pageTable6" class="table">
 									<thead>
 										<tr>
+
 											<th scope="col">Workshop</th>
 											<th scope="col" style="padding-left: 60px;"></th>
 											<th scope="col" style="padding-left: 40px;">Tanggal</th>
@@ -695,7 +1086,6 @@
 								</nav>
 							</div>
 						</div>
-
 					</div>
 				</div>
 
@@ -872,12 +1262,12 @@
 									</tbody>
 								</table>
 							</div>
-							<div class="card-footer white py-3 d-flex justify-content-center">
+							<!-- <div class="card-footer white py-3 d-flex justify-content-center">
 								<nav>
 									<ul id="pagination8" class="pagination">
 									</ul>
 								</nav>
-							</div>
+							</div> -->
 						</div>
 					</div>
 				</div>
@@ -893,7 +1283,7 @@
 									<div class="col">
 										<h2>Tugas</h2>
 									</div>
-									<div class="align-self-end">
+									<!-- <div class="align-self-end">
 										<form action="<?= base_url(); ?>Classes/search_tugas" method="post">
 											<div class="input-group mb-3">
 												<input class="form-control form-control-sm mr-0 w-0" type="text" name="keyword" placeholder="Cari Kelas" aria-label="Search">
@@ -902,7 +1292,7 @@
 												</div>
 											</div>
 										</form>
-									</div>
+									</div> -->
 								</div>
 							</div>
 
@@ -979,36 +1369,37 @@
 									</tbody>
 								</table>
 							</div>
-							<div class=" card-footer white py-3 d-flex justify-content-center">
-																					<ul id="pagination4" class="pagination">
-																					</ul>
-																					</nav>
-																			</div>
-							</div>
+
+							<!-- <div class="card-footer white py-3 d-flex justify-content-center">
+								<ul id="pagination4" class="pagination">
+								</ul>
+								</nav>
+							</div> -->
+
 						</div>
 					</div>
 				</div>
 
-				<div class="tab-pane" id="tab5" role="tabpanel" aria-expanded="false">
-					<div class="row mt-5">
-						<div class="col">
-							<div class="card card-list">
-								<div class="card-body">
-									<div class="row">
-										<div class="col">
-											<h2>Materi</h2>
-										</div>
-										<div class="align-self-end">
-											<form action="<?= base_url(); ?>Classes/search_materi" method="post">
-												<div class="input-group mb-3">
-													<input class="form-control form-control-sm mr-0 w-0" type="text" name="keyword" placeholder="Cari Kelas" aria-label="Search">
-													<div class="input-group-append">
-														<button class="btn" type="submit"><i class="fa fa-search" aria-hidden="true" onclick=""></i></button>
-													</div>
-												</div>
-											</form>
-										</div>
+
+			<div class="tab-pane" id="tab5" role="tabpanel" aria-expanded="false">
+				<div class="row mt-5">
+					<div class="col">
+						<div class="card card-list">
+							<div class="card-body">
+								<div class="row">
+									<div class="col">
+										<h2>Materi</h2>
 									</div>
+									<!-- <div class="align-self-end">
+										<form action="<?= base_url(); ?>Classes/search_materi" method="post">
+											<div class="input-group mb-3">
+												<input class="form-control form-control-sm mr-0 w-0" type="text" name="keyword" placeholder="Cari Kelas"aria-label="Search">
+												<div class="input-group-append">
+													<button class="btn" type="submit"><i class="fa fa-search" aria-hidden="true" onclick=""></i></button>
+												</div>
+											</div>
+										</form>
+									</div> -->
 								</div>
 
 								<div class="card-body table-responsive">
@@ -1104,6 +1495,19 @@
 														</div>
 													</div>
 												</div>
+											</div>
+										</div>
+										<?php $lihatMateriCount++; ?>
+										<?php endforeach; ?>
+									</tbody>
+								</table>
+							</div>
+							<!-- <div class="card-footer white py-3 d-flex justify-content-center">
+								<ul id="pagination5" class="pagination">
+								</ul>
+								</nav>
+							</div> -->
+
 												<?php $lihatMateriCount++; ?>
 											<?php endforeach; ?>
 										</tbody>
@@ -1384,17 +1788,260 @@
 
 	</div>
 </section>
+
+
+
+<!-- <script>
+	$(document).ready(function(){
+
+
+		$('#button').click(function(){
+			var toAdd = $('input[name=checkListItem]').val();
+			$('.list').append($('<div class="item">' + toAdd + ' </div>'));
+		});
+
+
+		$(document).on('click', '.item', function(){
+			$(this).remove();
+		});
+		});
+</script> -->
+
+<!-- <script>
+$(document).on('click',function(){
+$('.collapse').collapse('hide');
+})
+</script> -->
+
+<!-- <script type="text/javascript">
+$(document).ready(function () {
+$('.collapse').collapse
+});
+
+</script> -->
+
+<!-- <script>
+$(document).on('click',function(e){
+  if($('#collapseOne').hasClass('in')){
+    $('.collapse').collapse('hide'); 
+  }
+})
+</script> -->
 <script type="text/javascript" src="<?= base_url(); ?>assets/js/paging.js"></script>
+
+<script type="text/javascript" src="<?= base_url(); ?>assets/js/clipboard.min.js"></script>
+
+<script type="text/javascript" src="js/bootstrap/bootstrap-dropdown.js"></script>
+<script>
+     $(document).ready(function(){
+        $('.dropdown-toggle').dropdown()
+    });
+</script>
+
+
+
+<script>
+	$('.accordion-toggle').click(function(){
+	$('.hiddenRow').hide();
+	$(this).next('tr').find('.hiddenRow').show();
+});
+</script>
+
+<!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+	integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+</script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+	integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+</script>
 <script type="text/javascript" src="<?= base_url(); ?>assets/js/password_verif.js"></script>
+<script type="text/javascript" src="<?= base_url(); ?>assets/js/addon.js"></script>
+<!-- <script>
+$(function () {
 
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
-</script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
-</script>
+  $('[data-toggle="tooltip"]').tooltip();
+
+  $('#btnCopy').tooltip({
+  trigger: 'click',
+  placement: 'bottom'
+});
+
+function setTooltip(btn, message) {
+  btn.tooltip('hide')
+    .attr('data-original-title', message)
+    .tooltip('show');
+}
+
+function hideTooltip(btn) {
+  setTimeout(function() {
+    btn.tooltip('hide');
+  }, 1000);
+}
+var clipboard = new ClipboardJS('#btnCopy');
+clipboard.on('success', function(e) {
+	console.log(e);
+	var btn = $(e.trigger);
+  	setTooltip(btn, 'Copied');
+  	hideTooltip(btn);
+});
+});
+</script> -->
+<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+	integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> -->
+<script type="text/javascript" src="<?= base_url() ?>assets/datetimepicker/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+<script type="text/javascript" src="<?= base_url() ?>assets/datetimepicker/bootstrap-datetimepicker.id.js" charset="UTF-8"></script>
+<script type="text/javascript" src="<?= base_url(); ?>assets/DataTables/datatables.min.js"></script>
 
 
+
+
+
+<script>
+    $(document).ready(function () {
+        $('#pageTable').DataTable({
+            responsive: true,
+			pageLength: 5,
+			lengthChange: false,
+			pagingType: "numbers",
+			language: {
+            "zeroRecords": "Yang anda cari tidak ditemukan!",
+            "info": "Menampilkan halaman _PAGE_ dari _PAGES_ (total _MAX_ data)",
+            "infoEmpty": "Tidak ada data",
+        	}
+		});
+		
+		$('#pageTable2').DataTable({
+            responsive: true,
+			pageLength: 5,
+			lengthChange: false,
+			pagingType: "numbers",
+			language: {
+            "zeroRecords": "Yang anda cari tidak ditemukan!",
+            "info": "Menampilkan halaman _PAGE_ dari _PAGES_ (total _MAX_ data)",
+            "infoEmpty": "Tidak ada data",
+        	}
+		});
+		
+		$('#pageTable3').DataTable({
+            responsive: true,
+			pageLength: 5,
+			lengthChange: false,
+			pagingType: "numbers",
+			language: {
+            "zeroRecords": "Yang anda cari tidak ditemukan!",
+            "info": "Menampilkan halaman _PAGE_ dari _PAGES_ (total _MAX_ data)",
+            "infoEmpty": "Tidak ada data",
+        	}
+		});
+		
+		$('#pageTable4').DataTable({
+            responsive: true,
+			pageLength: 5,
+			lengthChange: false,
+			pagingType: "numbers",
+			language: {
+            "zeroRecords": "Yang anda cari tidak ditemukan!",
+            "info": "Menampilkan halaman _PAGE_ dari _PAGES_ (total _MAX_ data)",
+            "infoEmpty": "Tidak ada data",
+        	}
+		});
+		
+		$('#pageTable5').DataTable({
+            responsive: true,
+			pageLength: 5,
+			lengthChange: false,
+			pagingType: "numbers",
+			language: {
+            "zeroRecords": "Yang anda cari tidak ditemukan!",
+            "info": "Menampilkan halaman _PAGE_ dari _PAGES_ (total _MAX_ data)",
+            "infoEmpty": "Tidak ada data",
+        	}
+        });
+    });
+</script>
+<!-- <script>
+
+	$("#searchTable").on("keyup", function() {
+      var value = $(this).val().toLowerCase();
+      $("#pageSearch tr").filter(function() {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+	  });
+    });
+  
+    $("#searchTable2").on("keyup", function() {
+      var value = $(this).val().toLowerCase();
+      $("#pageSearch2 tr").filter(function() {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+      });
+    });
+  
+    $("#searchTable3").on("keyup", function() {
+      var value = $(this).val().toLowerCase();
+      $("#pageSearch3 tr").filter(function() {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+      });
+    });
+  
+    $("#searchTable4").on("keyup", function() {
+      var value = $(this).val().toLowerCase();
+      $("#pageSearch4 tr").filter(function() {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+      });
+    });
+  
+    $("#searchTable5").on("keyup", function() {
+      var value = $(this).val().toLowerCase();
+      $("#pageSearch5 tr").filter(function() {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+      });
+    });
+                        
+
+</script> -->
+
+<script type="text/javascript">
+    $('.form_datetime').datetimepicker({
+        language:  'id',
+        weekStart: 1,
+        todayBtn:  1,
+		autoclose: 1,
+		todayHighlight: 1,
+		startView: 2,
+		forceParse: 0,
+        showMeridian: 0
+    });
+	$('.form_date').datetimepicker({
+        language:  'id',
+        weekStart: 1,
+        todayBtn:  1,
+		autoclose: 1,
+		todayHighlight: 1,
+		startView: 2,
+		minView: 2,
+		forceParse: 0
+    });
+	$('.form_time').datetimepicker({
+        language:  'id',
+        weekStart: 1,
+        todayBtn:  1,
+		autoclose: 1,
+		todayHighlight: 1,
+		startView: 1,
+		minView: 0,
+		maxView: 1,
+		forceParse: 0
+    });
+
+    // function showHideJadwal() {
+    //     var x = document.getElementById("showHideJadwal");
+    //     if (x.style.display === "none") {
+    //         x.style.display = "block";
+    //     }
+    //     else {
+    //         x.style.display = "none";
+    //     }
+    // }
+</script>
+                                       
 <script type="text/javascript">
 	//Hapus Data
 	$(document).ready(function() {
@@ -1411,4 +2058,3 @@
 			$(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
 		});
 	});
-</script>
