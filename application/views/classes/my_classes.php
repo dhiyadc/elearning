@@ -1086,10 +1086,73 @@
 												</div>
 											</td>
 										</tr>
+										<!-- Jadwal -->
 										<tr class="p">
-				            			<td colspan="6" class="hiddenRow">
+				            			<td colspan="6" class="hiddenRow" style="padding: 0px; border-top: 0px;">
+										<div id="collapseJadwal" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+													<div class="card-body" style="padding-top: 0px;">
+														<!--  -->
+														<div class="row" style="margin-bottom: -20px;">
+															<div class="col"> 
+															<div class="card card-list">
+																<div class="card-body">
+																<h2>Jadwal Kegiatan Kelas</h2>
+																</div>
+															
+																<div class="card-body">
+																<table class="table">
+																	<thead>
+																	<tr>
+																		<th scope="col">Deskripsi</th>
+																		<th scope="col">Hari/Tanggal</th>
+																		<th scope="col">Waktu</th>
+																		<th scope="col" style="text-align: center;">Status</th>
+																	
+																		
+																		
+
+																		
+
+																	</tr>
+																	</thead>
+																	<tbody>
+																
+																	<tr>
+																		<td>Latihan1</td>
+																		<td>14 Febuari 2001</td>
+																		<td>14.00</td>
+																		
+																				<td style="text-align: center ;"><span class="badge badge-warning">Sedang Berlangsung</span></td>
+																				
+																	
+													
+																	</tr>
+															
+																	</tbody>
+																</table>
+																</div>
+															
+																<div class="card-footer white py-3 d-flex justify-content-between">
+																
+																</div>
+																<!-- Modal -->
+															
+														
+															</div>
+															</div>
+														</div>
+													
+														<!--  -->
+													</div>
+										</td>
+										</tr>
+
+										<!--  -->
+
+										<tr class="p">
+				            			<td colspan="6" class="hiddenRow" style="border-top: 0px; padding: 0px;">
 										<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-													<div class="card-body">
+													<div class="card-body" style="margin-top: -20px;">
 														<!--  -->
 														<div class="container my-5">
 														<ul style="list-style: outside none none;" class="nav nav-tabs" role="tablist">
@@ -1132,7 +1195,7 @@
 																</div>
 
 																<div class="right-col col-lg-3 d-flex align-items-center">
-																	<div class="time"><i class="fa fa-clock-o"></i><a href="">Jadwal Kegiatan</a></div>
+																	<div class="time"><i class="fa fa-clock-o"></i><a href=""  data-toggle="collapse" data-target="#collapseJadwal" aria-expanded="false" aria-controls="collapseJadwal">Jadwal Kegiatan</a></div>
 																</div>
 																
 															
@@ -1313,6 +1376,8 @@
 												</div>
 				            			</td>
 										</tr>
+										
+										
 										<?php endif; ?>
 										<?php endforeach; ?>
 										<?php endforeach; ?>
