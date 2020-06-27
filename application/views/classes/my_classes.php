@@ -810,6 +810,69 @@
 
 										<!--  -->
 
+										<!--  Jadwal -->
+											<tr class="p">
+												<td colspan="6" class="hiddenRow" style="padding: 0px; border-top: 0px;">
+													<div id="collapseJadwal<?= $val['id_kelas'] ?>" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+														<div class="card-body" style="padding-top: 0px;">
+															<!--  -->
+															<div class="row" style="margin-bottom: -20px;">
+																<div class="col">
+																	<div class="card card-list">
+																		<div class="card-body">
+																			<h2>Jadwal Kegiatan Kelas</h2>
+																		</div>
+
+																		<div class="card-body">
+																			<table class="table">
+																				<thead>
+																					<tr>
+																						<th scope="col">Deskripsi</th>
+																						<th scope="col">Hari/Tanggal</th>
+																						<th scope="col">Waktu</th>
+																						<th scope="col" style="text-align: center;">Status</th>
+
+
+
+
+
+
+																					</tr>
+																				</thead>
+																				<tbody>
+
+																					<tr>
+																						<td>Latihan1</td>
+																						<td>14 Febuari 2001</td>
+																						<td>14.00</td>
+
+																						<td style="text-align: center ;"><span class="badge badge-warning">Sedang Berlangsung</span></td>
+
+
+
+																					</tr>
+
+																				</tbody>
+																			</table>
+																		</div>
+
+																		<div class="card-footer white py-3 d-flex justify-content-between">
+
+																		</div>
+																		<!-- Modal -->
+
+
+																	</div>
+																</div>
+															</div>
+
+															<!--  -->
+														</div>
+												</td>
+											</tr>
+
+											<!--  -->
+
 										<tr class="p">
 				            			<td colspan="6" class="hiddenRow" style="border-top: 0px; padding: 0px;">
 										<div id="collapseTwo<?= $val['id_kelas'] ?>" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
@@ -1801,69 +1864,7 @@
 						</div>
 					</div>
 				</div>
-				<!-- <div class="card-footer white py-3 d-flex justify-content-center">
-										 Jadwal -->
-				<tr class="p">
-					<td colspan="6" class="hiddenRow" style="padding: 0px; border-top: 0px;">
-						<div id="collapseJadwal" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
-							<div class="card-body" style="padding-top: 0px;">
-								<!--  -->
-								<div class="row" style="margin-bottom: -20px;">
-									<div class="col">
-										<div class="card card-list">
-											<div class="card-body">
-												<h2>Jadwal Kegiatan Kelas</h2>
-											</div>
-
-											<div class="card-body">
-												<table class="table">
-													<thead>
-														<tr>
-															<th scope="col">Deskripsi</th>
-															<th scope="col">Hari/Tanggal</th>
-															<th scope="col">Waktu</th>
-															<th scope="col" style="text-align: center;">Status</th>
-
-
-
-
-
-
-														</tr>
-													</thead>
-													<tbody>
-
-														<tr>
-															<td>Latihan1</td>
-															<td>14 Febuari 2001</td>
-															<td>14.00</td>
-
-															<td style="text-align: center ;"><span class="badge badge-warning">Sedang Berlangsung</span></td>
-
-
-
-														</tr>
-
-													</tbody>
-												</table>
-											</div>
-
-											<div class="card-footer white py-3 d-flex justify-content-between">
-
-											</div>
-											<!-- Modal -->
-
-
-										</div>
-									</div>
-								</div>
-
-								<!--  -->
-							</div>
-					</td>
-				</tr>
-
-				<!--  -->
+				
 
 				<tr class="p">
 					<td colspan="6" class="hiddenRow" style="border-top: 0px; padding: 0px;">
