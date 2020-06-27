@@ -1,10 +1,11 @@
 <?php if(isset($_SESSION['admin_logged_in'])) : ?>
+    
     <?php $this->load->view('nonuser/admin/header'); ?>
             <div id="page-wrapper">
                 <div class="container-fluid"><div class="row">
                     <div>
                         <div class="col-lg-12">
-                            <h1 class="page-header">Kelas</h1>
+                            <h1 class="page-header">Workshop</h1>
                         </div>
                         <!-- /.col-lg-12 -->
                     </div>
@@ -13,7 +14,7 @@
                         <div class="col-lg-12">
                             <div class="panel panel-primary">
                                 <div class="panel-heading">
-                                    Data Kelas
+                                    Data Workshop
                                 </div>
                                 <!-- /.panel-heading -->
                                 <div class="panel-body">
@@ -22,8 +23,8 @@
                                             <thead>
                                                 <tr>
                                                     <th>No.</th>
-                                                    <th>Nama Kelas</th>
-                                                    <th>Pembuat Kelas</th>
+                                                    <th>Nama Workshop</th>
+                                                    <th>Pembuat Workshop</th>
                                                     <th>Banyak Peserta Yang Join</th>
                                                     <th>Action</th>
                                                 </tr>
@@ -33,10 +34,10 @@
                                                 <?php foreach ($kelas as $val) : ?>
                                                 <tr>
                                                     <td><?= $i; ?></td>
-                                                    <td><?= $val['judul_kelas']; ?></td>
+                                                    <td><?= $val['judul_workshop']; ?></td>
                                                     <td>
                                                         <?php foreach ($pembuat as $val2) {
-                                                            if($val['pembuat_kelas'] == $val2['id_user']) {
+                                                            if($val['pembuat_workshop'] == $val2['id_user']) {
                                                                 echo $val2['nama'];
                                                             }
                                                         } 
@@ -46,7 +47,7 @@
                                                         <?php 
                                                         $x = 0;
                                                         foreach ($peserta as $val2) {
-                                                            if($val['id_kelas'] == $val2['id_kelas']) {
+                                                            if($val['id_workshop'] == $val2['id_workshop']) {
                                                                 $x++;
                                                             }
                                                         } 
@@ -54,9 +55,9 @@
                                                         ?>
                                                     </td>
                                                     <td>
-                                                        <a href="<?= base_url() ?>admin/detail_kelas/<?= $val['id_kelas']; ?>"><i class="fa fa-fw" aria-hidden="true">&#xf06e</i></a>
-                                                        <a href="<?= base_url() ?>admin/edit_kelas/<?= $val['id_kelas']; ?>"><i class="fa fa-fw" aria-hidden="true">&#xf040</i></a>
-                                                        <a data-toggle='modal' data-target='#konfirmasi_hapus'data-href="<?= base_url() ?>admin/hapus_kelas/<?= $val['id_kelas']; ?>"><i class="fa fa-fw" aria-hidden="true">&#xf1f8</i></a>
+                                                        <a href="<?= base_url() ?>admin/detail_workshop/<?= $val['id_workshop']; ?>"><i class="fa fa-fw" aria-hidden="true">&#xf06e</i></a>
+                                                        <a href="<?= base_url() ?>admin/edit_workshop/<?= $val['id_workshop']; ?>"><i class="fa fa-fw" aria-hidden="true">&#xf040</i></a>
+                                                        <a data-toggle='modal' data-target='#konfirmasi_hapus'data-href="<?= base_url() ?>admin/hapus_workshop/<?= $val['id_workshop']; ?>"><i class="fa fa-fw" aria-hidden="true">&#xf1f8</i></a>
                                                     </td>
                                                 </tr>
                                                 <?php $i++; ?>
@@ -75,7 +76,6 @@
                 </div>
                 <!-- /.container-fluid -->
             </div>
-
             <div class="modal fade" id="konfirmasi_hapus" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">

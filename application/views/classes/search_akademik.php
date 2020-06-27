@@ -62,6 +62,12 @@
         <a class="nav-link" data-toggle="tab" href="#tab3" role="tab" aria-expanded="false">Kelas Diikuti</a>
     </li>
     <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#tab6" role="tab" aria-expanded="false">Workshop Saya</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#tab7" role="tab" aria-expanded="false">Workshop Diikuti</a>
+    </li>
+    <li class="nav-item">
         <a class="nav-link" data-toggle="tab" href="#tab4" role="tab" aria-expanded="false">Tugas</a>
     </li>
     <li class="nav-item">
@@ -522,6 +528,240 @@
     </div>
     </div>
 
+    <div class="tab-pane " id="tab6" role="tabpanel" aria-expanded="true">
+
+    <div class="row mt-5">
+      <div class="col">
+      	<div class="card card-list">
+          <div class="card-body">
+            <div class="row">
+              <div class="col">
+                <h2>Workshop Saya</h2>
+              </div>
+              <div class="align-self-end">
+                <form action="<?= base_url(); ?>workshops/search_workshop_saya" method="post">
+                  <div class="input-group mb-3">
+                  <?php if ($keyword_kelas_saya2 == null) : ?>
+                    <input class="form-control form-control-sm mr-0 w-0" type="text" name="keyword" placeholder="Cari Workshop"aria-label="Search">
+                  <?php else : ?>
+                    <input class="form-control form-control-sm mr-0 w-0" type="text" name="keyword" value="<?= $keyword_kelas_saya2; ?>" placeholder="Cari Workshop"aria-label="Search">
+                  <?php endif; ?>
+                    <div class="input-group-append">
+                    <button class="btn" type="submit"><i class="fa fa-search" aria-hidden="true" onclick=""></i></button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+            <?php if(count($kelas_saya2) == 0){ ?>
+                <div class="alert alert-danger" role="alert">
+					<center>Maaf, Workshop yang Anda cari tidak ada.</center>
+				</div>		  
+			<?php } ?>
+          </div>
+         
+          <div class="card-body table-responsive">
+            <table class="table" id="pageTable6">
+              <thead>
+                <tr>
+                  <th scope="col">Workshop</th>
+                  <th scope="col"style="padding-left: 60px;"></th>
+                  <th scope="col" style="padding-left: 40px;">Progress</th>
+                  <th scope="col"style="padding-left: 60px;">Status</th>
+                  <th scope="col" style="padding-left: 130px;">Aksi</th>
+                </tr>
+              </thead>
+              <tbody>
+              <?php foreach ($kelas_saya2 as $val) : ?>
+                            <tr>
+                                <th scope="row" style="width: 300px;"><a class="text-primary"><?= $val['judul_workshop']; ?></a></th>
+                                <td style="padding-top: 20px;">      
+                                    <span><i class="fa fa-share-alt" aria-hidden="true"></i></span>
+                                    
+                                </td>
+                                <td style="padding-top: 20px;"> 
+                                    <?php $total = 0; $selesai = 0;
+                                    foreach ($kegiatan2 as $val2) {
+                                        if ($val['id_workshop'] == $val2['id_workshop']){
+                                            $total++; 
+                                            if ($val2['status_kegiatan'] == 2) {
+                                                $selesai++; 
+                                            } 
+                                        }
+                                    }
+                                    if ($total == 0) {
+                                        $proses = 0;
+                                    }
+                                    else {
+                                        $proses = ($selesai / $total) * 100; 
+                                    }?>
+                                    <div class="progress md-progress">
+                                        <div class="progress-bar bg-info" role="progressbar" style="width: <?= $proses; ?>%" aria-valuenow="<?= $proses; ?>" aria-valuemin="0"
+                                        aria-valuemax="100"><?= $proses; ?>%</div>
+                                    </div>
+                                </td>
+                                <td style="padding-top: 20px;"> 
+                                <?php foreach ($status2 as $val3) : ?>
+                                        <?php if ($val['status_workshop'] == $val3['id_status']) : ?>
+                                            <?php if ($val3['nama_status'] == "Selesai") : ?>
+                                                <span class="badge badge-success" style="margin-left: 50px;"><?= $val3['nama_status'] ?></span>
+                                            <?php else : ?>
+                                                <span class="badge badge-danger"><?= $val3['nama_status'] ?></span>
+                                            <?php endif; ?>
+                                        <?php endif; ?>
+                                    <?php endforeach; ?>
+                                </td>
+                                <td style="padding-top: 20px;">
+                                  <div class="btn-group">
+                                    <a class="btn btn-outline-dark" href="<?= base_url()?>workshops/open_workshop/<?= $val['id_workshop'] ?>" style="padding-right: 20px; padding-left: 20px; padding-top: 12px; padding-bottom: 12px;">Detail</a>
+                                    <button type="button" style="padding-right: 20px; padding-left: 20px; padding-top: 12px; padding-bottom: 12px;" class="btn btn-outline-dark dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                      <span class="sr-only">Toggle Dropdown</span>
+                                    </button>
+                                    <div class="dropdown-menu">
+                                      <a class="dropdown-item btn" href="<?= base_url()?>workshops/lihat_kegiatan/<?= $val['id_workshop'] ?>">Lihat Kegiatan</a>
+                                      <a class="dropdown-item btn" href="<?= base_url()?>workshops/update_workshop/<?= $val['id_workshop'] ?>">Edit Kelas</a>
+                                    </div>
+                                  </div>
+                                </td>
+                            </tr>
+                <?php endforeach; ?>
+              </tbody>
+            </table>
+          </div>
+          <div class="card-footer white py-3 d-flex justify-content-center">
+          <ul class="pagination" id="pagination6">
+          </ul>
+        </nav>
+          </div>
+        </div>
+
+      </div>
+    </div>
+     
+    </div>
+    
+    <div class="tab-pane" id="tab7" role="tabpanel" aria-expanded="false">
+    <div class="row mt-5">
+      <div class="col">
+      	<div class="card card-list">
+          <div class="card-body">
+            <div class="row">
+              <div class="col">
+                <h2>Workshop Diikuti</h2>
+              </div>
+              <div class="align-self-end">
+                <form action="<?= base_url(); ?>workshops/search_workshop_diikuti" method="post">
+                  <div class="input-group mb-3">
+                    <?php if ($keyword_kelas_diikuti2 == null) : ?>
+                      <input class="form-control form-control-sm mr-0 w-0" type="text" name="keyword" placeholder="Cari workshop"aria-label="Search">
+                    <?php else : ?>
+                      <input class="form-control form-control-sm mr-0 w-0" type="text" name="keyword" value="<?= $keyword_kelas_diikuti2; ?>" placeholder="Cari workshop"aria-label="Search">
+                    <?php endif; ?>
+                    <div class="input-group-append">
+                    <button class="btn" type="submit"><i class="fa fa-search" aria-hidden="true" onclick=""></i></button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+            <?php $kelas_diikuti2 = 0;
+            foreach ($seluruh_kelas2 as $val) {
+                foreach ($peserta2 as $val2) {
+                    if ($val2['id_workshop'] == $val['id_workshop'] && $val2['id_user'] == $this->session->userdata('id_user')) {
+                        $kelas_diikuti2++;
+                    }
+                }
+            }?>
+            <?php if($kelas_diikuti2 == 0){ ?>
+                <div class="alert alert-danger" role="alert">
+                    <center>Maaf, kelas yang Anda cari tidak ada.</center>
+                </div>		  
+            <?php } ?>
+          </div>
+         
+          <div class="card-body">
+            <table class="table" id="pageTable7">
+              <thead>
+                <tr>
+                  <th scope="col">Workshop</th>
+                  <th scope="col" style="padding-left: 100px;"></th>
+                  <th scope="col" style="padding-left: 60px;">Progress</th>
+                  <th scope="col" style="padding-left: 100px;">Status</th>
+                  <th scope="col" style="padding-left: 130px;">Aksi</th>
+                  
+                </tr>
+              </thead>
+              <tbody>
+              <?php foreach ($seluruh_kelas2 as $val) : ?>
+                    <?php foreach ($peserta2 as $val2) : ?>
+                        <?php if ($val2['id_workshop'] == $val['id_workshop'] && $val2['id_user'] == $this->session->userdata('id_user')) : ?>
+                            <tr>
+                                <th scope="row" style="width: 300px;"><a class="text-primary"><?= $val['judul_workshop']; ?></a></th>
+                                <td style="padding-top: 20px;"> 
+                                    <span><i class="fa fa-share-alt" aria-hidden="true"></i></span>
+                                </td>
+                                <td style="padding-top: 20px;"> 
+                                <?php $total = 0; $selesai = 0;
+                                foreach ($kegiatan2 as $val3) {
+                                  if ($val2['id_workshop'] == $val3['id_workshop']){
+                                    $total++; 
+                                    if ($val3['status_kegiatan'] == 2) {
+                                      $selesai++; 
+                                    } 
+                                  }
+                                }
+                                if ($total == 0) {
+                                  $proses = 0;
+                                }
+                                else {
+                                $proses = ($selesai / $total) * 100; 
+                                } ?>
+                                    <div class="progress md-progress">
+                                        <div class="progress-bar bg-info" role="progressbar" style="width: <?= $proses; ?>%" aria-valuenow="<?= $proses; ?>" aria-valuemin="0"
+                                        aria-valuemax="100"><?= $proses; ?>%</div>
+                                    </div>
+                                </td>
+                                <td style="padding-top:20px; padding-left: 60px;">
+                                <?php foreach ($status2 as $val3) : ?>
+                                        <?php if ($val['status_workshop'] == $val3['id_status']) : ?>
+                                            <?php if ($val3['nama_status'] == "Selesai") : ?>
+                                                <span class="badge badge-success" style="margin-left: 50px;"><?= $val3['nama_status'] ?></span>
+                                            <?php else : ?>
+                                                <span class="badge badge-danger"><?= $val3['nama_status'] ?></span>
+                                            <?php endif; ?>
+                                        <?php endif; ?>
+                                    <?php endforeach; ?>
+                                </td>
+                                <td>
+                                  <div class="btn-group">
+                                    <a class="btn btn-outline-dark" href="<?= base_url()?>workshops/open_workshop/<?= $val['id_workshop'] ?>" style="padding-right: 20px; padding-left: 20px; padding-top: 12px; padding-bottom: 12px;">Detail</a>
+                                    <button type="button" style="padding-right: 20px; padding-left: 20px; padding-top: 12px; padding-bottom: 12px;" class="btn btn-outline-dark dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                      <span class="sr-only">Toggle Dropdown</span>
+                                    </button>
+                                    <div class="dropdown-menu">
+                                      <a class="dropdown-item btn" href="<?= base_url()?>workshops/lihat_kegiatan/<?= $val['id_workshop'] ?>">Lihat Kegiatan</a>
+                                      <a class="dropdown-item btn" href="<?= base_url()?>workshops/leave_workshop/<?= $val['id_workshop'] ?>">Tinggalkan</a>
+                                    </div>
+                                  </div>
+                                </td>
+                                
+                            </tr>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
+                <?php endforeach; ?>
+              </tbody>
+            </table>
+          </div>
+          <div class="card-footer white py-3 d-flex justify-content-center">
+          <ul class="pagination" id="pagination7">
+          </ul>
+        </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+
     <div class="tab-pane" id="tab4" role="tabpanel" aria-expanded="false">
     <div class="row mt-5">
       <div class="col">
@@ -717,6 +957,8 @@
                   <!--Header-->
                   <div class="modal-header text-center">
                     <h3 class="modal-title w-100 dark-grey-text font-weight-bold my-3" id="myModalLabel"><strong>Materi <?= $val2['judul_kelas']; ?></strong></h3>
+
+                    <?php $id_kelass = $val2['id_kelas']; ?>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
@@ -725,15 +967,42 @@
                   <div class="modal-body mx-4">
                     <!--Body-->
                     <div class="container-fluid">
-                                      <div class="row">
-                                      <div class="col-md-6 border-bottom pb-3 mt-3"><b>Kegiatan</b></div>
-                                      <div class="col-md-6 border-bottom pb-3 mt-3"><b>Nama File</b></div>
-                                      <?php foreach ($val as $val2) : ?>
-                                           <div class="col-md-6 border-bottom pb-3 mt-3"><?= $val2['deskripsi_kegiatan']; ?></div>
-                                           <div class="col-md-6 border-bottom pb-3 mt-3"><a href="<?= base_url(); ?>classes/download_materi/"><?= $val2['url_materi']; ?></a></div>
-                                      <?php endforeach; ?>
-                                        </div>
-                                    </div>
+                    <div class="row">
+																		<div class="col-xl-6 border-bottom  mt-3" style="width: 110px;"><b>Kegiatan</b></div>
+																		<div class="col-xl-6 border-bottom  mt-3" style="width: 110px;"><b>Nama File</b></div>
+																	</div>
+																	<div class="row">
+																		
+																		
+																		<?php foreach ($seluruh_kelas as $val4) : ?>
+																			<?php if($val4['id_kelas'] == $id_kelass) : ?>
+																			<?php foreach ($kegiatan as $val2) : ?>
+																			<?php if($val2['id_kelas'] == $val4['id_kelas']) : ?>
+																			<?php $a = 0; ?>
+																			
+																		<?php foreach ($materi2 as $val3) : ?>
+																			<?php if($val2['id_kegiatan'] == 
+																			$val3['id_kegiatan']) :?>
+																			
+																			<div class="col-xl-6 border-bottom pb-3 mt-3" style="width: 120px;">
+																				<?= $val2['deskripsi_kegiatan']; ?></div>
+																				<?php if ($val3['kategori_materi'] == 1) : ?>
+																					<div class="col-xl-6 border-bottom pb-3 mt-3" style="width: 120px;"><a href="<?= base_url(); ?>classes/download_materi/<?= $val3['url_materi']; ?>"><i class="fa fa-file"></i> <?= wordwrap($val3['url_materi'], 26, '<br>', true); ?></a>
+																				</div>
+																				
+																				<?php else : ?>
+																					<?php $a++ ?>
+																					<?php $strvid = "Video " . $a . " Kegiatan " . $val2['deskripsi_kegiatan'] . " <b>(" . $val4['judul_kelas'] . ")</b>"; ?>
+																				<div class="col-xl-6 border-bottom pb-3 mt-3" style="width: 120px;"> <a href="<?= base_url(); ?>classes/video_class/<?= $val4['id_kelas'] ?>/<?= $val2['id_kegiatan'] ?>/<?= $val3['id_materi'] ?>/<?= $a ?>"><i class="fa fa-video-camera"></i> <?= wordwrap($strvid, 26, '<br>', true);?> </a>
+																				</div>
+																			<?php endif; ?>
+																			<?php endif; ?>
+																		<?php endforeach; ?>
+																		<?php endif?>
+																		<?php endforeach; ?>
+																		<?php endif?>
+																		<?php endforeach; ?> 
+																	</div>
 
                   </div>
                 </div>
@@ -820,6 +1089,20 @@
   <script>
     $(function () {
       $('#myTab a[href="#tab<?= $this->session->flashdata('tabKelasDiikuti'); ?>"]').tab('show');
+    })
+  </script>
+<?php elseif ($this->session->flashdata('tabWorkshopSaya')) : ?>
+  <script src="<?php echo base_url(); ?>assets/js/jquery-3.3.1.min.js"></script>
+  <script>
+    $(function () {
+      $('#myTab a[href="#tab<?= $this->session->flashdata('tabWorkshopSaya'); ?>"]').tab('show');
+    })
+  </script>
+<?php elseif ($this->session->flashdata('tabWorkshopDiikuti')) : ?>
+  <script src="<?php echo base_url(); ?>assets/js/jquery-3.3.1.min.js"></script>
+  <script>
+    $(function () {
+      $('#myTab a[href="#tab<?= $this->session->flashdata('tabWorkshopDiikuti'); ?>"]').tab('show');
     })
   </script>
 <?php elseif ($this->session->flashdata('tabTugas')) : ?>
