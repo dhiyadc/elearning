@@ -176,7 +176,7 @@
                     </a>
                 <?php else : ?>
                     <a class="nav-link dropdown-toggle notification" id="notifis" data-toggle="dropdown"
-                      aria-haspopup="true" aria-expanded="false"><i class="fa fa-bell"></i><span class="badge"><?= count($notif)+count($notif2); ?></span>
+                      aria-haspopup="true" aria-expanded="false"><i class="fa fa-bell"></i><span class="badge" style="font-size: 10px;"><?= count($notif)+count($notif2); ?></span>
                     </a>
                 <?php endif; ?>
                   <div class="notif" aria-labelledby="notifis">
@@ -226,27 +226,27 @@
                             <span>Pemberitahuan Kelas (<?=count($notif); ?>)</span>
                           </div>
                           <?php if (count($notif) != null) : ?>
-                      <?php $j = 0?>
                       <?php foreach ($notif as $val) : ?>
-                        <?php if ($val[$j]['status_kegiatan'] == CLASS_STARTED) : ?>
+                        <?php foreach ($val as $val2) : ?>
+                        <?php if ($val2['status_kegiatan'] == CLASS_STARTED) : ?>
                           <li class="notification-box">
                             <div class="row">
                               <div class="col-md-3 text-center">
-                                <img src="<?php echo base_url(); ?>assets/images/<?= $val[$j]['poster_kelas']; ?>" class="rounded-circle" style="object-fit: cover;height: 60px; width: 60px;">
+                                <img src="<?php echo base_url(); ?>assets/images/<?= $val2['poster_kelas']; ?>" class="rounded-circle" style="object-fit: cover;height: 70px; width: 70px;">
                               </div>
                               <div class="col-md-8" style="text-shadow: 0px 0px white;">
-                                <strong class="text-info"><?= $val[$j]['nama']; ?></strong>
+                                <strong class="text-info"><?= $val2['nama']; ?></strong>
                                 <div>
-                                  <a href="<?= base_url('class/') ?><?= $val[$j]['id_kelas'] ?>/<?= $val[$j]['id_kegiatan']; ?>"><b>Kelas</b> "<?= $val[$j]['judul_kelas']; ?>" Sedang Dimulai</a>
+                                  <a href="<?= base_url('class/') ?><?= $val2['id_kelas'] ?>/<?= $val2['id_kegiatan']; ?>"><b>Kelas</b> "<?= $val2['judul_kelas']; ?>" Sedang Dimulai</a>
                                 </div>
-                                <small class="text-warning"><?= $val[$j]['tanggal']; ?></small>
+                                <small class="text-warning"><?= $val2['tanggal']; ?></small>
                                 <br>
                                 <small class="text-error">(Kelas)</small>
                               </div>    
                             </div>
                           </li>
                         <?php endif; ?>
-                      <?php $j++; ?>
+                      <?php endforeach; ?>
                       <?php endforeach; ?>
                       <?php else : ?>
                         <li class="notification-box">
