@@ -176,7 +176,7 @@
                     </a>
                 <?php else : ?>
                     <a class="nav-link dropdown-toggle notification" id="notifis" data-toggle="dropdown"
-                      aria-haspopup="true" aria-expanded="false"><i class="fa fa-bell"></i><span class="badge"><?= count($notif)+count($notif2); ?></span>
+                      aria-haspopup="true" aria-expanded="false"><i class="fa fa-bell"></i><span class="badge" style="font-size: 10px;"><?= count($notif)+count($notif2); ?></span>
                     </a>
                 <?php endif; ?>
                   <div class="notif" aria-labelledby="notifis">
