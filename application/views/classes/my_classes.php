@@ -338,7 +338,7 @@
 
 											<?php $ctClass++; ?>
 											<tr>
-												<th scope="row" style="width: 300px; padding-top: 23px;"><?= $val['judul_kelas']; ?>
+												<th scope="row" style="width: 300px; padding-top: 23px;"><a class="text-primary"><?= $val['judul_kelas']; ?></a>
 													<div id="accordion" role="tablist">
 
 													</div>
@@ -923,9 +923,301 @@
 										<td>
 											<div class="buttonclass">
 												<a href="<?= base_url() ?>classes/open_class/<?= $val['id_kelas'] ?>" class="btn btn-light">Lihat</a>
+													<a class="btn btn-outline-dark" href="" data-toggle="collapse" data-target="#collapseTwo<?= $val['id_kelas'] ?>" aria-expanded="false" aria-controls="collapseTwo" style="padding-right: 20px; padding-left: 20px; padding-top: 12px; padding-bottom: 12px;">Tugas</a>
+													<a class="btn btn-outline-dark" href="" data-toggle="collapse" data-target="#collapseJadwal<?= $val['id_kelas'] ?>" aria-expanded="false" aria-controls="collapseTwo" style="padding-right: 20px; padding-left: 20px; padding-top: 12px; padding-bottom: 12px;">Jadwal</a>
 												<a data-toggle='modal' data-target='#konfirmasi_hapus' data-href="<?= base_url() ?>classes/leave_class/<?= $val['id_kelas'] ?>"><i class="btn btn-danger">Tinggalkan</i></a>
 											</div>
 										</td>
+										</tr>
+										
+										<!-- Jadwal -->
+										<tr class="p">
+				            			<td colspan="6" class="hiddenRow" style="padding: 0px; border-top: 0px;">
+										<div id="collapseJadwal<?= $val['id_kelas'] ?>" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+													<div class="card-body" style="padding-top: 0px;">
+														<!--  -->
+														<div class="row" style="margin-bottom: -20px;">
+															<div class="col"> 
+															<div class="card card-list">
+																<div class="card-body">
+																<h2>Jadwal Kegiatan Kelas</h2>
+																</div>
+															
+																<div class="card-body">
+																<table class="table">
+																	<thead>
+																	<tr>
+																		<th scope="col">Deskripsi</th>
+																		<th scope="col">Hari/Tanggal</th>
+																		<th scope="col">Waktu</th>
+																		<th scope="col" style="text-align: center;">Status</th>
+																	
+																		
+																		
+
+																		
+
+																	</tr>
+																	</thead>
+																	<tbody>
+																
+																	<tr>
+																		<td>Latihan1</td>
+																		<td>14 Febuari 2001</td>
+																		<td>14.00</td>
+																		
+																				<td style="text-align: center ;"><span class="badge badge-warning">Sedang Berlangsung</span></td>
+																				
+																	
+													
+																	</tr>
+															
+																	</tbody>
+																</table>
+																</div>
+															
+																<div class="card-footer white py-3 d-flex justify-content-between">
+																
+																</div>
+																<!-- Modal -->
+															
+														
+															</div>
+															</div>
+														</div>
+													
+														<!--  -->
+													</div>
+										</td>
+										</tr>
+
+										<!--  -->
+
+										<tr class="p">
+				            			<td colspan="6" class="hiddenRow" style="border-top: 0px; padding: 0px;">
+										<div id="collapseTwo<?= $val['id_kelas'] ?>" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+													<div class="card-body" style="margin-top: -20px;">
+														<!--  -->
+														<div class="container my-5">
+														<ul style="list-style: outside none none;" class="nav nav-tabs" role="tablist">
+															<!-- <li class="nav-item">
+														<a class="nav-link active" data-toggle="tab" href="#tab1" role="tab" aria-expanded="true">To Do List</a>
+														</li> -->
+															<li class="nav-item">
+																<a class="nav-link active" data-toggle="tab" href="#tab2" role="tab" aria-expanded="false">Tugas</a>
+
+															</li>
+															<li class="nav-item">
+																<a class="nav-link" data-toggle="tab" href="#tab3" role="tab" aria-expanded="false">Quiz</a>
+															</li>
+															
+															
+															
+														</ul>
+
+														<!-- Tab panes -------------- -->
+														<div class="tab-content">
+															<div class="tab-pane active" id="tab1" role="tabpanel" aria-expanded="true">
+
+															<section class="projects no-padding-top">
+															<div class="container">
+															<!-- Project-->
+														
+															<div class="project">
+																<div class="row bg-white has-shadow">
+																<div class="left-col col-lg-6 d-flex align-items-center justify-content-between">
+																	<div class="project-title d-flex align-items-center">
+																	<div class="image has-shadow"><img src="<?php echo base_url(); ?>assets/images/task.png" alt="..." class="img-fluid rounded-circle"></div>
+																	<div class="text">
+																		<h3 class="h4" style="font-size: 20px;">Tugas Kelas Satu</h3><small>14 Feb : 14:00 WIB</small>
+																	</div>
+																	</div>
+																</div>
+																<div class="right-col col-lg-3 d-flex align-items-center">
+																	
+																	<div class="time"><i class="fa fa-tasks" aria-hidden="true"></i>2 Tugas</div>
+																</div>
+
+																<div class="right-col col-lg-3 d-flex align-items-center">
+																	<div class="time"><i class="fa fa-clock-o"></i><a href=""  data-toggle="collapse" data-target="#collapseJadwal" aria-expanded="false" aria-controls="collapseJadwal">Jadwal Kegiatan</a></div>
+																</div>
+																
+															
+
+																<div class="row d-flex ">
+																<div class="col-12 col-md-12 mb-2 mt-2">
+																	<div class="card  h-100 border-light ">
+																		<div class="card-body d-flex-row" style="width: 900px;">
+																		<div class="row mb-0" style="padding: 0px;">
+																		<!-- <div class="col-md-4">Arya Pradata</div>
+																		<div class="col-md-4" style="margin-bottom: -10px;">
+																			<div class="notice notice-info">
+																				<div class="row mb-0" style="padding: 0px;">
+																			
+																				
+																				<img src="<?php echo base_url(); ?>assets/images/pdf.png" alt="..." class="img-fluid rounded-circle" style="width: 20px;">
+																				<a href="">Tugas1</a>
+																				
+																				
+																				</div>
+																			</div> -->
+
+																			<!-- 
+																				<div class="notice notice-info">
+																				<div class="row mb-0" style="padding: 0px;">
+																				<div class="col-md-4">Arya Pradata</div>
+																				<div class="col-md-4">
+																				<img src="<?php echo base_url(); ?>assets/images/pdf.png" alt="..." class="img-fluid rounded-circle" style="width: 20px;">
+																				<a href="">Tugas1</a>
+																				</div>
+																				<div class="col-md-4">
+																				<div class="m-2">
+																					<div class="col mr-4" style="margin-top: -15px;">
+																						<?php $placeholder;
+																						
+																						$placeholder = "0/100 Poin";
+																						
+																						
+																						?>
+																						<input class="effect-1" type="text" name="nilai" placeholder="<?= $placeholder; ?>">
+																						<input type="hidden" name="tanggal_submit" value="14 Feb">
+																						<span class="focus-border"></span>
+																					</div>
+																					</div>
+																				</div>
+																				</div>
+																			</div>
+																			 -->
+																			
+																			</div>
+																			<!-- <div class="col-md-4">
+																			</div> -->
+
+																			<div class="project" style=" width:850px;">
+																				<div class="row bg-white has-shadow">
+																					<div class="left-col col-lg-5 d-flex align-items-center justify-content-between">
+																					<div class="project-title d-flex align-items-center">
+																						<!-- <div class="widget-content-left mr-2">
+																							<div class="custom-checkbox custom-control"> <input class="custom-control-input" id="exampleCustomCheckbox12" type="checkbox"><label class="custom-control-label" for="exampleCustomCheckbox12">&nbsp;</label> </div>
+																							</div> -->
+																						<div class="text">
+																					
+																							<h3 class="h4" style="font-size: 20px;"><a data-toggle="tab" href="#tab3" role="tab"
+																							aria-controls="tab1" aria-selected="true">Tugas 1</a></h3>
+																						
+																						</div>
+																					</div>
+																					<!-- <div class="project-date"><span class="hidden-sm-down">Hari Ini pada 4:24 AM</span></div> -->
+																					</div>
+																					
+																					<div class="right-col col-lg-7 d-flex align-items-center">
+																					<div class="project-date text-right" style="word-wrap: initial; margin-top: 10px;">
+																						<span class="hidden-sm-down">
+																							<div class="time">
+																							<div class="row mt-0">
+																							<div class="col-sm-6">
+																							<a href="">Kumpul</a>
+																							
+																							</div>
+																							<div class="col-sm-6">
+																							<a href="">Detail</a>
+																							
+																							</div>
+																							
+																							</div>
+																							</div>
+																							</span>
+																						</div>
+
+																					<!-- <div class="comments"><i class="fa fa-comment-o"></i>20</div> -->
+																					<div class="project-progress" style="width: 100px;">
+																						<div class="time">
+																						
+																						<div class="nilai">0/100</span></div>
+																					
+
+																						</div>
+																					</div>
+																					<div class="time"><i class="fa fa-clock-o"></i>Hari Ini pada 4:24</div>
+																					
+																					</div>
+																					</div>
+																				</div>
+
+																				<div class="project" style=" width:850px;">
+																				<div class="row bg-white has-shadow">
+																					<div class="left-col col-lg-5 d-flex align-items-center justify-content-between">
+																					<div class="project-title d-flex align-items-center">
+																						<!-- <div class="widget-content-left mr-2">
+																							<div class="custom-checkbox custom-control"> <input class="custom-control-input" id="exampleCustomCheckbox12" type="checkbox"><label class="custom-control-label" for="exampleCustomCheckbox12">&nbsp;</label> </div>
+																							</div> -->
+																						<div class="text">
+																					
+																							<h3 class="h4" style="font-size: 20px;"><a data-toggle="tab" href="#tab3" role="tab"
+																							aria-controls="tab1" aria-selected="true">Tugas 2</a></h3>
+																						
+																						</div>
+																					</div>
+																					<!-- <div class="project-date"><span class="hidden-sm-down">Hari Ini pada 4:24 AM</span></div> -->
+																					</div>
+																					
+																					<div class="right-col col-lg-7 d-flex align-items-center">
+																					<div class="project-date text-right" style="word-wrap: initial; margin-top: 10px;">
+																						<span class="hidden-sm-down">
+																							<div class="time">
+																							<div class="row mt-0">
+																							<div class="col-sm-6">
+																							<a href="">Kumpul</a>
+																							
+																							</div>
+																							<div class="col-sm-6">
+																							<a href="">Detail</a>
+																							
+																							</div>
+																							
+																							</div>
+																							</div>
+																							</span>
+																						</div>
+
+																					<!-- <div class="comments"><i class="fa fa-comment-o"></i>20</div> -->
+																					<div class="project-progress" style="width: 100px;">
+																						<div class="time">
+																						
+																						<div class="nilai">0/100</span></div>
+																					
+
+																						</div>
+																					</div>
+																					<div class="time"> <i class="fa fa-clock-o"></i>Hari Ini pada 4:24</div>
+																					
+																					</div>
+																					</div>
+																				</div>
+
+
+																				</div>
+																			<!--  -->
+																		</div>
+																		</div>
+																	</div>
+																</div>
+																</div>
+																
+															</div>
+																
+															</div>
+															<a href="#daftarSiswa" class="daftarSiswa"></a>
+															<div id="daftarSiswa"></div>
+															</section>
+														</div>
+														</div>
+														</div>
+													
+														<!--  -->
+													</div>
+												</div>
+				            			</td>
 										</tr>
 									<?php endif; ?>
 								<?php endforeach; ?>
