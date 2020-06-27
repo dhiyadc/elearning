@@ -230,8 +230,7 @@
               <ul class="site-menu main-menu js-clone-nav mx-auto d-none d-lg-block  m-0 p-0">
                 <li><a href="<?php echo base_url(); ?>" class="nav-link">Beranda</a></li>
                 <li><a href="<?= base_url(); ?>classes" class="nav-link">Kelas</a></li>
-
-               
+                <li><a href="<?= base_url(); ?>workshops" class="nav-link">Workshop</a></li>
               </ul>
             </nav>
           </div>
