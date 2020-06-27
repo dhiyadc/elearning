@@ -225,8 +225,139 @@ $( document ).ready(function() {
      $('#pagination5 li:first-child').trigger("click");
    
 
-
-
      
+     // table 6
+     var table6 = '#pageTable6';
+     var trnum6 = 0;
+     var maxRows6 = 5;
+     var totalRows6 = $(table6+' tbody tr').length;
+     
+     $(table6+ 'tr:gt(0)').each(function(){
+       trnum6++;
+       if(trnum6 > maxRows6){
+         $(this).hide();
+        }
+        if(trnum6 <= maxRows6){
+          $(this).show();
+        }
+      });
+      
+      if(totalRows6 > maxRows6){
+        var pagenum6 = Math.ceil(totalRows6/maxRows6);
+        for(var i=1; i<= pagenum6;){
+          $('#pagination6').append('<li class="page-item" data-page="'+i+'"><span class="page-link">'+ i++ +'</span></li>').show();
+        }
+      }else {
+        $('#pagination6').append('<li class="page-item" data-page="1"><span class="page-link">1</span></li>').show();
+      }
+      
+      
+      $('#pagination6 li:first-child').addClass('active');
+      $('#pagination6 li').on('click',function(){
+        var pageNum6 = $(this).attr('data-page');
+        var trIndex6 = 0;
+        $('#pagination6 li').removeClass('active');
+        $(this).addClass('active');
+        $(table6+' tr:gt(0)').each(function(){
+          trIndex6++;
+          if(trIndex6 > (maxRows6 * pageNum6) || trIndex6 <= ((maxRows6*pageNum6)-maxRows6)){
+            $(this).hide();
+          } else {
+            $(this).show();
+          }
+        });
+      });
+      
+      $('#pagination6 li:first-child').trigger("click");
+      
+      // table 7
+     var table7 = '#pageTable7';
+     var trnum7 = 0;
+     var maxRows7 = 5;
+     var totalRows7 = $(table7+' tbody tr').length;
+     
+     $(table7+ 'tr:gt(0)').each(function(){
+       trnum7++;
+       if(trnum7 > maxRows7){
+         $(this).hide();
+        }
+        if(trnum7 <= maxRows7){
+          $(this).show();
+        }
+      });
+      
+      if(totalRows7 > maxRows7){
+        var pagenum7 = Math.ceil(totalRows7/maxRows7);
+        for(var i=1; i<= pagenum7;){
+          $('#pagination7').append('<li class="page-item" data-page="'+i+'"><span class="page-link">'+ i++ +'</span></li>').show();
+        }
+      }else {
+        $('#pagination7').append('<li class="page-item" data-page="1"><span class="page-link">1</span></li>').show();
+      }
+      
+      
+      $('#pagination7 li:first-child').addClass('active');
+      $('#pagination7 li').on('click',function(){
+        var pageNum7 = $(this).attr('data-page');
+        var trIndex7 = 0;
+        $('#pagination7 li').removeClass('active');
+        $(this).addClass('active');
+        $(table7+' tr:gt(0)').each(function(){
+          trIndex7++;
+          if(trIndex7 > (maxRows7 * pageNum7) || trIndex7 <= ((maxRows7*pageNum7)-maxRows7)){
+            $(this).hide();
+          } else {
+            $(this).show();
+          }
+        });
+      });
+      
+      $('#pagination7 li:first-child').trigger("click");
+      
+      // table 8
+     var table8 = '#pageTable8';
+     var trnum8 = 0;
+     var maxRows8 = 5;
+     var totalRows8 = $(table8+' tbody tr').length;
+     
+     $(table8+ 'tr:gt(0)').each(function(){
+       trnum8++;
+       if(trnum8 > maxRows8){
+         $(this).hide();
+        }
+        if(trnum8 <= maxRows8){
+          $(this).show();
+        }
+      });
+      
+      if(totalRows8 > maxRows8){
+        var pagenum8 = Math.ceil(totalRows8/maxRows8);
+        for(var i=1; i<= pagenum8;){
+          $('#pagination8').append('<li class="page-item" data-page="'+i+'"><span class="page-link">'+ i++ +'</span></li>').show();
+        }
+      }else {
+        $('#pagination8').append('<li class="page-item" data-page="1"><span class="page-link">1</span></li>').show();
+      }
+      
+      
+      $('#pagination8 li:first-child').addClass('active');
+      $('#pagination8 li').on('click',function(){
+        var pageNum8 = $(this).attr('data-page');
+        var trIndex8 = 0;
+        $('#pagination8 li').removeClass('active');
+        $(this).addClass('active');
+        $(table8+' tr:gt(0)').each(function(){
+          trIndex8++;
+          if(trIndex8 > (maxRows8 * pageNum8) || trIndex8 <= ((maxRows8*pageNum8)-maxRows8)){
+            $(this).hide();
+          } else {
+            $(this).show();
+          }
+        });
+      });
+      
+      $('#pagination8 li:first-child').trigger("click");
+      
+    });
+      
 
-   });

@@ -1,11 +1,13 @@
 <?php
 
-class Profile extends CI_Controller {
+class Profile extends CI_Controller
+{
     public function __construct()
     {
         parent::__construct();
         $this->load->model('Profile_model');
         $this->load->model('Classes_model');
+        $this->load->model('Workshops_model');
         $this->load->model('User_database');
     }
 
@@ -18,26 +20,36 @@ class Profile extends CI_Controller {
             redirect("home");
         }
 
-            $email = $_SESSION['email'];
-            $id_user = $_SESSION['id_user'];
+        $email = $_SESSION['email'];
+        $id_user = $_SESSION['id_user'];
 
-            $data['profile'] = $this->Profile_model->getProfile();
-            $data['peserta'] = $this->Classes_model->getPeserta();
-            $data['kelas'] = $this->Classes_model->getMyClasses();
-            $header['nama'] = explode (" ",$this->Classes_model->getMyName()['nama']);
-            $notif = $this->Classes_model->getPesertaByUserId();
-            $datanotif = array();
-            foreach ($notif as $value) {
-                $cek = $this->Classes_model->getKelasKegiatan($value['id_kelas']);
-                if($cek != null) {
-                    $datanotif[] = $cek;
-                }
+        $data['profile'] = $this->Profile_model->getProfile();
+        $data['peserta'] = $this->Classes_model->getPeserta();
+        $data['kelas'] = $this->Classes_model->getMyClasses();
+        $header['nama'] = explode(" ", $this->Classes_model->getMyName()['nama']);
+        $notif = $this->Classes_model->getPesertaByUserId();
+        $datanotif = array();
+        foreach ($notif as $value) {
+            $cek = $this->Classes_model->getKelasKegiatan($value['id_kelas']);
+            if ($cek != null) {
+                $datanotif[] = $cek;
             }
-            $header['notif'] = $datanotif;
-            $this->load->view('partialsuser/header',$header);
-            $this->load->view('profile/my_profile',$data);
-            $this->load->view('partialsuser/footer');
-        
+        }
+        $header['notif'] = $datanotif;
+
+        $notif2 = $this->Workshops_model->getPesertaByUserId();
+        $datanotif2 = array();
+        foreach ($notif2 as $value) {
+            $cek2 = $this->Workshops_model->getKelasKegiatan($value['id_workshop']);
+            if ($cek2 != null) {
+                $datanotif2[] = $cek2;
+            }
+        }
+        $header['notif2'] = $datanotif2;
+
+        $this->load->view('partialsuser/header', $header);
+        $this->load->view('profile/my_profile', $data);
+        $this->load->view('partialsuser/footer');
     }
 
     public function edit_profile()
@@ -49,21 +61,32 @@ class Profile extends CI_Controller {
             redirect("home");
         }
 
-            $data['profile'] = $this->Profile_model->getProfile();
-            $header['nama'] = explode (" ",$this->Classes_model->getMyName()['nama']);
-            $notif = $this->Classes_model->getPesertaByUserId();
-            $datanotif = array();
-            foreach ($notif as $value) {
-                $cek = $this->Classes_model->getKelasKegiatan($value['id_kelas']);
-                if($cek != null) {
-                    $datanotif[] = $cek;
-                }
+        $data['profile'] = $this->Profile_model->getProfile();
+        $header['nama'] = explode(" ", $this->Classes_model->getMyName()['nama']);
+        $notif = $this->Classes_model->getPesertaByUserId();
+        $datanotif = array();
+        foreach ($notif as $value) {
+            $cek = $this->Classes_model->getKelasKegiatan($value['id_kelas']);
+            if ($cek != null) {
+                $datanotif[] = $cek;
             }
-            $header['notif'] = $datanotif;
-            $this->load->view('partialsuser/header',$header);
-            $this->load->view('profile/edit_profile',$data);
-            $this->load->view('partialsuser/footer');
-        
+        }
+        $header['notif'] = $datanotif;
+
+        $notif2 = $this->Workshops_model->getPesertaByUserId();
+        $datanotif2 = array();
+        foreach ($notif2 as $value) {
+            $cek2 = $this->Workshops_model->getKelasKegiatan($value['id_workshop']);
+            if ($cek2 != null) {
+                $datanotif2[] = $cek2;
+            }
+        }
+        $header['notif2'] = $datanotif2;
+
+
+        $this->load->view('partialsuser/header', $header);
+        $this->load->view('profile/edit_profile', $data);
+        $this->load->view('partialsuser/footer');
     }
 
     public function edit_profile_action()
@@ -75,13 +98,12 @@ class Profile extends CI_Controller {
             redirect("home");
         }
 
-            $edit_profile = $this->Profile_model->editProfile();
-            if($edit_profile == "fail"){
-                $this->session->set_flashdata("invalidImage", "Invalid Image Size (Max Size: 3 MB)");
-                redirect("profile/edit_profile");
-            }
-            redirect('profile');
-        
+        $edit_profile = $this->Profile_model->editProfile();
+        if ($edit_profile == "fail") {
+            $this->session->set_flashdata("invalidImage", "Invalid Image Size (Max Size: 3 MB)");
+            redirect("profile/edit_profile");
+        }
+        redirect('profile');
     }
 
     public function delete_account()
@@ -93,9 +115,8 @@ class Profile extends CI_Controller {
             redirect("home");
         }
 
-            $this->Profile_model->deleteAccount();
-            redirect('login/logout');
-        
+        $this->Profile_model->deleteAccount();
+        redirect('login/logout');
     }
 
     public function change_password()
@@ -107,20 +128,30 @@ class Profile extends CI_Controller {
             redirect("home");
         }
 
-            $header['nama'] = explode (" ",$this->Classes_model->getMyName()['nama']);
-            $notif = $this->Classes_model->getPesertaByUserId();
-            $datanotif = array();
-            foreach ($notif as $value) {
-                $cek = $this->Classes_model->getKelasKegiatan($value['id_kelas']);
-                if($cek != null) {
-                    $datanotif[] = $cek;
-                }
+        $header['nama'] = explode(" ", $this->Classes_model->getMyName()['nama']);
+        $notif = $this->Classes_model->getPesertaByUserId();
+        $datanotif = array();
+        foreach ($notif as $value) {
+            $cek = $this->Classes_model->getKelasKegiatan($value['id_kelas']);
+            if ($cek != null) {
+                $datanotif[] = $cek;
             }
-            $header['notif'] = $datanotif;
-            $this->load->view('partialsuser/header',$header);
-            $this->load->view('profile/change_password');
-            $this->load->view('partialsuser/footer');
-        
+        }
+        $header['notif'] = $datanotif;
+
+        $notif2 = $this->Workshops_model->getPesertaByUserId();
+        $datanotif2 = array();
+        foreach ($notif2 as $value) {
+            $cek2 = $this->Workshops_model->getKelasKegiatan($value['id_workshop']);
+            if ($cek2 != null) {
+                $datanotif2[] = $cek2;
+            }
+        }
+        $header['notif2'] = $datanotif2;
+
+        $this->load->view('partialsuser/header', $header);
+        $this->load->view('profile/change_password');
+        $this->load->view('partialsuser/footer');
     }
 
     public function change_password_action()
@@ -157,7 +188,5 @@ class Profile extends CI_Controller {
                 $this->session->set_flashdata('invalid_pass', 'Password lama yang anda input salah');
 			    redirect('profile/change_password');
             }
-
-        
     }
 }

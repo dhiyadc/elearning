@@ -14,9 +14,12 @@
                   <p class="mb-4"  data-aos="fade-up" data-aos-delay="200">Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime ipsa nulla sed quis rerum amet natus quas necessitatibus.</p>
 				          <?php if(isset($_SESSION['logged_in'])) : ?>
                     <p data-aos="fade-up" data-aos-delay="300"><a href="<?= base_url() ?>classes/new_class" class="btn btn text-white py-3 px-5 btn-pill" style="background-color: #3232aa">Buat Kelas</a></p>
+                    <p data-aos="fade-up" data-aos-delay="300"><a href="<?= base_url() ?>workshops/new_workshop" class="btn btn text-white py-3 px-5 btn-pill" style="background-color: #3232aa">Buat Workshop</a></p>
                   <?php else : ?>
                     <p data-aos="fade-up" data-aos-delay="300"><a data-toggle="modal" data-target="#elegantModalForm" class="btn btn text-white py-3 px-5 btn-pill" style="background-color: #3232aa">Buat Kelas</a></p>
-                  <?php endif; ?>  
+                    <p data-aos="fade-up" data-aos-delay="300"><a data-toggle="modal" data-target="#elegantModalForm" class="btn btn text-white py-3 px-5 btn-pill" style="background-color: #3232aa">Buat Workshop</a></p>
+                 
+                    <?php endif; ?>  
 
                 </div>
 
@@ -66,6 +69,78 @@
                 </div>
                 <h3><a href="<?=base_url()?>classes/open_class/<?= $val['id_kelas'] ?>"><?= $val['judul_kelas'] ?></a></h3>
                 <p><?php echo substr($val['deskripsi_kelas'],0,100);  ?></p>
+              </div>
+              <div class="d-flex border-top stats">
+                <div class="py-3 px-4"><span class="icon-users"></span> <?= $val['peserta'] ?> peserta</div>
+              </div>
+            </div>
+          <?php endforeach; ?>
+            
+
+
+          </div>
+
+          <a class="carousel-control-prev" href="#myCarousel" data-slide="prev">
+              <span class="customPrevBtn carousel-control-prev-icon"></span>
+          </a>
+          <a class="carousel-control-next" href="#myCarousel" data-slide="next">
+              <span class="customNextBtn carousel-control-next-icon"></span>
+          </a>
+        
+
+            <script>
+              var owl = $('.owl-carousel');
+              owl.owlCarousel();
+              // Go to the next item
+              $('.customNextBtn').click(function() {
+                  owl.trigger('owl.prev');
+              })
+              // Go to the previous item
+              $('.customPrevBtn').click(function() {
+                  owl.trigger('owl.next');
+              })
+            </script>
+           <!--  -->
+          </div>
+        </div> 
+      </div>
+
+    <div class="site-section courses-title" id="courses-section">
+      <div class="container">
+        <div class="row mb-5 justify-content-center">
+          <div class="col-lg-7 text-center" data-aos="fade-up" data-aos-delay="">
+            <h2 class="section-title">Workshop Terbaik</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="site-section courses-entry-wrap"  data-aos="fade-up" data-aos-delay="100">
+      <div class="container">
+        <div class="row">
+
+          <div class="owl-carousel col-12 nonloop-block-14" id="owl-demo">
+            
+          <!-- FOR FIXED IMAGE 
+          style="object-fit: cover; height: 300px" -->
+          <?php foreach ($class2 as $val) : ?>
+            <div class="course bg-white h-100 align-self-stretch">
+              <figure class="m-0">
+                <a href="<?=base_url()?>workshops/open_workshop/<?= $val['id_workshop'] ?>"><img src="<?= base_url().'assets/images/'.$val['poster_workshop']?>" alt="Image" class="img-fluid" style="height: 180px; object-fit: cover;"></a>
+              </figure>
+              <div class="course-inner-text py-4 px-4" style="height: 200px;">
+                <span class="course-price"><?php
+                  if($val['harga_workshop'] == '0' || $val['harga_workshop'] == null){
+                    echo "<b>Gratis</b>";
+                  } else {
+                    $hasil_rupiah = "Rp." . number_format($val['harga_workshop'],2,',','.');
+                    echo $hasil_rupiah;
+                  }
+                ?></span>
+                <div class="meta">
+                      <div class="meta"># <?= $val['nama_kategori']; ?></div>
+                </div>
+                <h3><a href="<?=base_url()?>workshops/open_workshop/<?= $val['id_workshop'] ?>"><?= $val['judul_workshop'] ?></a></h3>
+                <p><?php echo substr($val['deskripsi_workshop'],0,100);  ?></p>
               </div>
               <div class="d-flex border-top stats">
                 <div class="py-3 px-4"><span class="icon-users"></span> <?= $val['peserta'] ?> peserta</div>

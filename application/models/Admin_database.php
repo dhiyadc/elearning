@@ -195,6 +195,11 @@ Class Admin_database extends CI_Model {
         $this->db->delete('kelas',['id_kelas' => $id]);
     }
 
+    public function hapusWorkshop($id)
+    {
+        $this->db->delete('workshop',['id_workshop' => $id]);
+    } 
+
 public function getAllUsersDetail(){
     $sql = "SELECT user.id_user, user.email, detail_user.nama, detail_user.no_telepon
     FROM user
@@ -218,6 +223,23 @@ public function getAllClassesOwner(){
     LEFT JOIN status_kegiatan
         ON status_kegiatan.id_status = kelas.status_kelas
     GROUP BY kelas.id_kelas";
+    $query = $this->db->query($sql);
+    return $query->result_array();
+}
+public function getAllWorkshopsOwner(){
+    $sql = "SELECT workshop.id_workshop, workshop.judul_workshop, workshop.deskripsi_workshop, kategori_workshop.nama_kategori, jenis_kelas.nama_jenis, harga_workshop.harga_workshop, COUNT(peserta_workshop.id_workshop) as 'peserta', status_kegiatan.nama_status
+    FROM workshop
+    LEFT JOIN kategori_workshop
+             ON kategori_workshop.id_kategori = workshop.kategori_workshop 
+    LEFT JOIN jenis_kelas
+             ON jenis_kelas.id_jenis = workshop.jenis_workshop
+    LEFT JOIN harga_workshop
+             ON harga_workshop.id_workshop = workshop.id_workshop
+    LEFT JOIN peserta_workshop
+             ON peserta_workshop.id_workshop = workshop.id_workshop
+    LEFT JOIN status_kegiatan
+        ON status_kegiatan.id_status = workshop.status_workshop
+    GROUP BY workshop.id_workshop";
     $query = $this->db->query($sql);
     return $query->result_array();
 }
