@@ -52,7 +52,7 @@
   top: -10px;
   right: -10px;
   padding: 5px 10px;
-  border-radius: 50%;
+  border-radius: 10%;
   background-color: red;
   color: white;
 }
