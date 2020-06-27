@@ -530,50 +530,50 @@
 										<?php foreach ($seluruh_kelas as $val) : ?>
 											<?php foreach ($peserta as $val2) : ?>
 												<?php if ($val2['id_kelas'] == $val['id_kelas'] && $val2['id_user'] == $this->session->userdata('id_user')) : ?>
-													<?php if($val['tipe_kelas'] == 2) : ?>
+													<?php if ($val['tipe_kelas'] == 2) : ?>
 														<th scope="row" style="width: 300px;"><a class="text-primary"><?= $val['judul_kelas']; ?> <i class="fa fa-lock"></a></th>
-														<?php else : ?>
+													<?php else : ?>
 														<th scope="row" style="width: 300px;"><a class="text-primary"><?= $val['judul_kelas']; ?></a></th>
-												
-														<?php endif; ?>
-														<td></td>
-														<td style="padding-top: 20px;">
-															<?php $total = 0;
-															$selesai = 0;
-															foreach ($kegiatan as $val3) {
-																if ($val2['id_kelas'] == $val3['id_kelas']) {
-																	$total++;
-																	if ($val3['status_kegiatan'] == 2) {
-																		$selesai++;
-																	}
+
+													<?php endif; ?>
+													<td></td>
+													<td style="padding-top: 20px;">
+														<?php $total = 0;
+														$selesai = 0;
+														foreach ($kegiatan as $val3) {
+															if ($val2['id_kelas'] == $val3['id_kelas']) {
+																$total++;
+																if ($val3['status_kegiatan'] == 2) {
+																	$selesai++;
 																}
 															}
-															if ($total == 0) {
-																$proses = 0;
-															} else {
-																$proses = ($selesai / $total) * 100;
-															} ?>
-															<div class="progress md-progress">
-																<div class="progress-bar bg-info" role="progressbar" style="width: <?= $proses; ?>%" aria-valuenow="<?= $proses; ?>" aria-valuemin="0" aria-valuemax="100"><?= $proses; ?>%</div>
-															</div>
-														</td>
-														<td style="padding-top:20px; padding-left: 60px;">
-															<?php foreach ($status as $val3) : ?>
-																<?php if ($val['status_kelas'] == $val3['id_status']) : ?>
-																	<?php if ($val3['nama_status'] == "Selesai") : ?>
-																		<span class="badge badge-success" style="margin-left: 50px;"><?= $val3['nama_status'] ?></span>
-																	<?php else : ?>
-																		<span class="badge badge-warning"><?= $val3['nama_status'] ?></span>
-																	<?php endif; ?>
+														}
+														if ($total == 0) {
+															$proses = 0;
+														} else {
+															$proses = ($selesai / $total) * 100;
+														} ?>
+														<div class="progress md-progress">
+															<div class="progress-bar bg-info" role="progressbar" style="width: <?= $proses; ?>%" aria-valuenow="<?= $proses; ?>" aria-valuemin="0" aria-valuemax="100"><?= $proses; ?>%</div>
+														</div>
+													</td>
+													<td style="padding-top:20px; padding-left: 60px;">
+														<?php foreach ($status as $val3) : ?>
+															<?php if ($val['status_kelas'] == $val3['id_status']) : ?>
+																<?php if ($val3['nama_status'] == "Selesai") : ?>
+																	<span class="badge badge-success" style="margin-left: 50px;"><?= $val3['nama_status'] ?></span>
+																<?php else : ?>
+																	<span class="badge badge-warning"><?= $val3['nama_status'] ?></span>
 																<?php endif; ?>
-															<?php endforeach; ?>
-														</td>
-														<td>
-															<div class="buttonclass">
-																<a href="<?= base_url() ?>classes/open_class/<?= $val['id_kelas'] ?>" class="btn btn-light">Lihat</a>
-																<a data-toggle='modal' data-target='#konfirmasi_hapus' data-href="<?= base_url() ?>classes/leave_class/<?= $val['id_kelas'] ?>"><i class="btn btn-danger">Tinggalkan</i></a>
-															</div>
-														</td>
+															<?php endif; ?>
+														<?php endforeach; ?>
+													</td>
+													<td>
+														<div class="buttonclass">
+															<a href="<?= base_url() ?>classes/open_class/<?= $val['id_kelas'] ?>" class="btn btn-light">Lihat</a>
+															<a data-toggle='modal' data-target='#konfirmasi_hapus' data-href="<?= base_url() ?>classes/leave_class/<?= $val['id_kelas'] ?>"><i class="btn btn-danger">Tinggalkan</i></a>
+														</div>
+													</td>
 													</tr>
 												<?php endif; ?>
 											<?php endforeach; ?>
@@ -822,10 +822,10 @@
 											<?php foreach ($peserta2 as $val2) : ?>
 												<?php if ($val2['id_workshop'] == $val['id_workshop'] && $val2['id_user'] == $this->session->userdata('id_user')) : ?>
 													<tr>
-													<?php if($val['tipe_workshop'] == 2) : ?>
-														<th scope="row" style="width: 300px;"><a class="text-primary"><?= $val['judul_workshop']; ?> <i class="fa fa-lock"></a></th>
+														<?php if ($val['tipe_workshop'] == 2) : ?>
+															<th scope="row" style="width: 300px;"><a class="text-primary"><?= $val['judul_workshop']; ?> <i class="fa fa-lock"></a></th>
 														<?php else : ?>
-														<th scope="row" style="width: 300px;"><a class="text-primary"><?= $val['judul_workshop']; ?></a></th>
+															<th scope="row" style="width: 300px;"><a class="text-primary"><?= $val['judul_workshop']; ?></a></th>
 														<?php endif; ?>
 														<td></td>
 														<td style="padding-top: 20px;">
@@ -862,7 +862,7 @@
 														<td>
 															<div class="buttonclass">
 																<a href="<?= base_url() ?>Workshops/open_workshop/<?= $val['id_workshop'] ?>" class="btn btn-light">Lihat</a>
-																	<a data-toggle='modal' data-target='#konfirmasi_hapus2' data-href="<?= base_url() ?>workshops/leave_workshop/<?= $val['id_workshop'] ?>"><i class="btn btn-danger">Tinggalkan</i></a>
+																<a data-toggle='modal' data-target='#konfirmasi_hapus2' data-href="<?= base_url() ?>workshops/leave_workshop/<?= $val['id_workshop'] ?>"><i class="btn btn-danger">Tinggalkan</i></a>
 															</div>
 														</td>
 													</tr>
@@ -1021,12 +1021,13 @@
 											</tr>
 										</thead>
 										<tbody>
-											<?php $lihatMateriCount = 0; ?>
+											<?php $lihatMateriCount = 0;?>
 											<?php foreach ($materi as $val) : ?>
 												<?php
 												$countMateri = 0;
 												?>
 												<?php foreach ($val as $val2) : ?>
+													<?php $id_kelas=0; ?>
 													<?php $countMateri++; ?>
 												<?php endforeach; ?>
 												<tr>
@@ -1050,6 +1051,7 @@
 															<div class="modal-header text-center">
 																<h3 class="modal-title w-100 dark-grey-text font-weight-bold my-3" id="myModalLabel">
 																	<strong>Materi <?= $val2['judul_kelas']; ?></strong></h3>
+																	<?php $id_kelass = $val2['id_kelas']; ?>
 																<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 																	<span aria-hidden="true">&times;</span>
 																</button>
@@ -1063,12 +1065,36 @@
 																		<div class="col-xl-6 border-bottom  mt-3" style="width: 110px;"><b>Nama File</b></div>
 																	</div>
 																	<div class="row">
-																		<?php foreach ($val as $val2) : ?>
+																		
+																		
+																		<?php foreach ($seluruh_kelas as $val4) : ?>
+																			<?php if($val4['id_kelas'] == $id_kelass) : ?>
+																			<?php foreach ($kegiatan as $val2) : ?>
+																			<?php if($val2['id_kelas'] == $val4['id_kelas']) : ?>
+																			<?php $a = 0; ?>
+																			
+																		<?php foreach ($materi2 as $val3) : ?>
+																			<?php if($val2['id_kegiatan'] == 
+																			$val3['id_kegiatan']) :?>
+																			
 																			<div class="col-xl-6 border-bottom pb-3 mt-3" style="width: 120px;">
 																				<?= $val2['deskripsi_kegiatan']; ?></div>
-																			<div class="col-xl-6 border-bottom pb-3 mt-3" style="width: 120px;"> <img src="<?php echo base_url(); ?>assets/images/pdf.png" alt="..." class="img-fluid rounded-circle" style="width: 10px;"><a href="<?= base_url(); ?>classes/download_materi/"><?= $val2['url_materi']; ?></a>
-																			</div>
+																				<?php if ($val3['kategori_materi'] == 1) : ?>
+																					<div class="col-xl-6 border-bottom pb-3 mt-3" style="width: 120px;"><a href="<?= base_url(); ?>classes/download_materi/<?= $val3['url_materi']; ?>"><i class="fa fa-file"></i> <?= wordwrap($val3['url_materi'], 26, '<br>', true); ?></a>
+																				</div>
+																				
+																				<?php else : ?>
+																					<?php $a++ ?>
+																					<?php $strvid = "Video " . $a . " Kegiatan " . $val2['deskripsi_kegiatan'] . " <b>(" . $val4['judul_kelas'] . ")</b>"; ?>
+																				<div class="col-xl-6 border-bottom pb-3 mt-3" style="width: 120px;"> <a href="<?= base_url(); ?>classes/video_class/<?= $val4['id_kelas'] ?>/<?= $val2['id_kegiatan'] ?>/<?= $val3['id_materi'] ?>/<?= $a ?>"><i class="fa fa-video-camera"></i> <?= wordwrap($strvid, 26, '<br>', true);?> </a>
+																				</div>
+																			<?php endif; ?>
+																			<?php endif; ?>
 																		<?php endforeach; ?>
+																		<?php endif?>
+																		<?php endforeach; ?>
+																		<?php endif?>
+																		<?php endforeach; ?> 
 																	</div>
 
 																</div>
@@ -1098,8 +1124,8 @@
 				<div class="modal-dialog">
 					<div class="modal-content">
 						<div class="modal-body">
-						<center><b>Anda yakin ingin meninggalkan kelas ini ?</b><br><br>
-							<a class="btn btn-danger btn-ok"><i class="fa fa-sign-out"></i> Tinggalkan</a>
+							<center><b>Anda yakin ingin meninggalkan kelas ini ?</b><br><br>
+								<a class="btn btn-danger btn-ok"><i class="fa fa-sign-out"></i> Tinggalkan</a>
 								<button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Batal</button></center>
 						</div>
 					</div>
@@ -1110,8 +1136,8 @@
 				<div class="modal-dialog">
 					<div class="modal-content">
 						<div class="modal-body">
-						<center><b>Anda yakin ingin meninggalkan workshop ini ?</b><br><br>
-							<a class="btn btn-danger btn-ok"><i class="fa fa-sign-out"></i> Tinggalkan</a>
+							<center><b>Anda yakin ingin meninggalkan workshop ini ?</b><br><br>
+								<a class="btn btn-danger btn-ok"><i class="fa fa-sign-out"></i> Tinggalkan</a>
 								<button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Batal</button></center>
 						</div>
 					</div>

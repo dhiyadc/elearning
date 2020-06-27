@@ -113,6 +113,63 @@ class Classes extends CI_Controller
         }
     }
 
+    public function video_class($id_kelas, $id_kegiatan, $id_materi, $index)
+    {
+        if (isset($this->session->userdata['logged_in'])) {
+            $data['seluruh_kelas'] = $this->Classes_model->getAllTopClasses();
+            $data['seluruh_harga'] = $this->Classes_model->getAllHarga();
+            $data['kegiatan'] = $this->Classes_model->getKegiatanByIdKegiatan($id_kegiatan);
+            $data['tanggal'] = $this->Classes_model->getTanggalKegiatan($id_kelas);
+            $data['kelas'] = $this->Classes_model->getClassById($id_kelas);
+            $data['pembuat'] = $this->Classes_model->getPembuat();
+            $data['peserta_kelas'] = $this->Classes_model->getPesertaByClassId($id_kelas);
+            $data['peserta_seluruh_kelas'] = $this->Classes_model->getPeserta();
+            $data['kategori'] = $this->Classes_model->getKategori();
+            $data['status'] = $this->Classes_model->getStatus();
+            $data['harga'] = $this->Classes_model->getHarga($id_kelas);
+            $data['peserta'] = $this->Classes_model->getPesertaByUserIdClassId($id_kelas);
+            $data['cek'] = $this->Classes_model->cekPeserta($id_kelas);
+            $data['materi'] = $this->Classes_model->getMateriByKegiatan($id_kelas);
+            $data['materiKegiatan'] = $this->Classes_model->getMateribyIdMateri($id_materi);
+            $data['materiLain'] = $this->Classes_model->getMateriLain($id_kegiatan, $id_materi);
+            $data['indexvideo'] = $index;
+            if (isset($this->session->userdata['logged_in'])) {
+                $this->session->set_flashdata('buttonJoin', 'Anda telah mengikuti kelas ini');
+                $this->session->set_flashdata('batasPeserta', 'Maaf, kelas ini telah penuh');
+                $header['nama'] = explode(" ", $this->Classes_model->getMyName()['nama']);
+                $notif = $this->Classes_model->getPesertaByUserId();
+                $datanotif = array();
+                foreach ($notif as $value) {
+                    $cek = $this->Classes_model->getKelasKegiatan($value['id_kelas']);
+                    if ($cek != null) {
+                        $datanotif[] = $cek;
+                    }
+                }
+                $header['notif'] = $datanotif;
+
+                $notif2 = $this->Workshops_model->getPesertaByUserId();
+                $datanotif2 = array();
+                foreach ($notif2 as $value) {
+                    $cek2 = $this->Workshops_model->getKelasKegiatan($value['id_workshop']);
+                    if ($cek2 != null) {
+                        $datanotif2[] = $cek2;
+                    }
+                }
+                $header['notif2'] = $datanotif2;
+                $this->load->view('partialsuser/header', $header);
+                $this->load->view('classes/video_kelas', $data);
+                $this->load->view('partialsuser/footer');
+                $this->session->set_userdata('workshop', null);
+            } else {
+                $this->load->view('partials/header');
+                $this->load->view('classes/video_kelas', $data);
+                $this->load->view('partials/footer');
+                $this->session->set_userdata('workshop', null);
+            }
+        } else
+            redirect('Home');
+    }
+
     /**
      * Controller for handling user session and role 
      * before starting or joining the class.
@@ -474,6 +531,7 @@ class Classes extends CI_Controller
             $data['status2'] = $this->Workshops_model->getStatus();
             $data['peserta'] = $this->Classes_model->getPeserta();
             $data['peserta2'] = $this->Workshops_model->getPeserta();
+            $data['materi2'] = $this->Classes_model->getMateriAll();
             $header['nama'] = explode(" ", $this->Classes_model->getMyName()['nama']);
             $notif = $this->Classes_model->getPesertaByUserId();
             $notif2 = $this->Workshops_model->getPesertaByUserId();
@@ -487,6 +545,7 @@ class Classes extends CI_Controller
                 $tugas = $this->Classes_model->getTugasByClassId($value['id_kelas']);
                 $kelas = $this->Classes_model->getClassById($value['id_kelas']);
                 $materi = $this->Classes_model->getMateriByClassId($value['id_kelas']);
+
                 if ($cek != null) {
                     $datanotif[] = $cek;
                 }
@@ -501,21 +560,21 @@ class Classes extends CI_Controller
                 }
             }
             $header['notif'] = $datanotif;
-          
+
             foreach ($notif2 as $value) {
                 $cek2 = $this->Workshops_model->getKelasKegiatan($value['id_workshop']);
                 if ($cek2 != null) {
                     $datanotif2[] = $cek2;
                 }
             }
-           $header['notif2'] = $datanotif2;
+            $header['notif2'] = $datanotif2;
 
-          
             $data['notif'] = $datanotif;
-           
+
             $data['tugas'] = $datatugas;
             $data['kelas_tugas'] = $datakelas;
             $data['materi'] = $datamateri;
+
             $datacek = array();
             foreach ($data['tugas'] as $value) {
                 foreach ($value as $value2) {
@@ -940,12 +999,11 @@ class Classes extends CI_Controller
         }
 
 
-            $status = $this->Classes_model->updateAssignment($id_tugas);
-            if ($status == "failed") {
-				$this->session->set_flashdata('failedInputFile', 'Kapasitas file yang Anda input melebihi 25 MB');
-            }
-            redirect('classes/list_tugas/' . $id_kelas);
-
+        $status = $this->Classes_model->updateAssignment($id_tugas);
+        if ($status == "failed") {
+            $this->session->set_flashdata('failedInputFile', 'Kapasitas file yang Anda input melebihi 25 MB');
+        }
+        redirect('classes/list_tugas/' . $id_kelas);
     }
 
     public function del_assignment($id_kelas, $id_tugas)
@@ -1260,6 +1318,8 @@ class Classes extends CI_Controller
             $data['kegiatan'] = $this->Classes_model->getAllKegiatan();
             $data['status'] = $this->Classes_model->getStatus();
             $data['peserta'] = $this->Classes_model->getPeserta();
+            $data['materi2'] = $this->Classes_model->getMateriAll();
+
             $header['nama'] = explode(" ", $this->Classes_model->getMyName()['nama']);
             $notif = $this->Classes_model->getPesertaByUserId();
             $datanotif = array();
@@ -1347,6 +1407,8 @@ class Classes extends CI_Controller
             $data['status'] = $this->Classes_model->getStatus();
             $data['kegiatan'] = $this->Classes_model->getAllKegiatan();
             $data['peserta'] = $this->Classes_model->getPeserta();
+            $data['materi2'] = $this->Classes_model->getMateriAll();
+
             $header['nama'] = explode(" ", $this->Classes_model->getMyName()['nama']);
             $notif = $this->Classes_model->getPesertaByUserId();
             $datanotif = array();
@@ -1411,6 +1473,21 @@ class Classes extends CI_Controller
     public function search_tugas()
     {
         if (isset($_SESSION['logged_in'])) {
+            $data['kategori_text2'] = "Pencarian";
+            $data['keyword_kelas_saya2'] = null;
+            $data['keyword_kelas_diikuti2'] = null;
+            $data['keyword_tugas2'] = null;
+            $data['keyword_materi2'] = null;
+            $data['kegiatan2'] = $this->Workshops_model->getAllKegiatan();
+            $data['kelas_saya2'] = $this->Workshops_model->getMyClasses();
+            $data['seluruh_kelas2'] = $this->Workshops_model->getAllClasses();
+            $data['private_kelas2'] = $this->Workshops_model->getMyPrivateClasses();
+            $data['status2'] = $this->Workshops_model->getStatus();
+            $data['kegiatan2'] = $this->Workshops_model->getAllKegiatan();
+            $data['status2'] = $this->Workshops_model->getStatus();
+            $data['peserta2'] = $this->Workshops_model->getPeserta();
+            
+
             $data['kategori_text'] = "Pencarian";
             $data['keyword_tugas'] = $this->input->post('keyword');
             $data['keyword_kelas_diikuti'] = null;
@@ -1422,6 +1499,8 @@ class Classes extends CI_Controller
             $data['status'] = $this->Classes_model->getStatus();
             $data['kegiatan'] = $this->Classes_model->getAllKegiatan();
             $data['peserta'] = $this->Classes_model->getPeserta();
+            $data['materi2'] = $this->Classes_model->getMateriAll();
+
             $header['nama'] = explode(" ", $this->Classes_model->getMyName()['nama']);
             $notif = $this->Classes_model->getPesertaByUserId();
             $datanotif = array();
@@ -1486,6 +1565,21 @@ class Classes extends CI_Controller
     public function search_materi()
     {
         if (isset($_SESSION['logged_in'])) {
+
+            $data['kategori_text2'] = "Pencarian";
+            $data['keyword_kelas_saya2'] = null;
+            $data['keyword_kelas_diikuti2'] = null;
+            $data['keyword_tugas2'] = null;
+            $data['keyword_materi2'] = null;
+            $data['kegiatan2'] = $this->Workshops_model->getAllKegiatan();
+            $data['kelas_saya2'] = $this->Workshops_model->getMyClasses();
+            $data['seluruh_kelas2'] = $this->Workshops_model->getAllClasses();
+            $data['private_kelas2'] = $this->Workshops_model->getMyPrivateClasses();
+            $data['status2'] = $this->Workshops_model->getStatus();
+            $data['kegiatan2'] = $this->Workshops_model->getAllKegiatan();
+            $data['status2'] = $this->Workshops_model->getStatus();
+            $data['peserta2'] = $this->Workshops_model->getPeserta();
+
             $data['kategori_text'] = "Pencarian";
             $data['keyword_materi'] = $this->input->post('keyword');
             $data['keyword_kelas_diikuti'] = null;
@@ -1497,6 +1591,8 @@ class Classes extends CI_Controller
             $data['status'] = $this->Classes_model->getStatus();
             $data['kegiatan'] = $this->Classes_model->getAllKegiatan();
             $data['peserta'] = $this->Classes_model->getPeserta();
+            $data['materi2'] = $this->Classes_model->getMateriAll();
+
             $header['nama'] = explode(" ", $this->Classes_model->getMyName()['nama']);
             $notif = $this->Classes_model->getPesertaByUserId();
             $datanotif = array();
