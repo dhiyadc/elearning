@@ -1145,7 +1145,7 @@
 							<h2>Workshop Diikuti</h2>
 						</div>
 						<div class="align-self-end">
-							<form action="<?= base_url(); ?>Workshops/search_kelas_diikuti" method="post">
+							<form action="<?= base_url(); ?>Workshops/search_workshop_diikuti" method="post">
 								<div class="input-group mb-3">
 									<input class="form-control form-control-sm mr-0 w-0" type="text" name="keyword" placeholder="Cari Workshop" aria-label="Search">
 									<div class="input-group-append">
