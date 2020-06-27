@@ -415,7 +415,7 @@
 										<tr class="p">
 				            			<td colspan="6" class="hiddenRow">
 										<div id="collapseOne" class="collapse" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion">
-													<div class="card-body">
+													<div class="card-body" style="margin-top: -20px;">
 														<!--  -->
 														<div class="container my-5">
 														<ul style="list-style: outside none none;" class="nav nav-tabs" role="tablist">
