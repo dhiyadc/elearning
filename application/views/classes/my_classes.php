@@ -388,7 +388,7 @@
 																<span class="sr-only">Toggle Dropdown</span>
 															</button>
 															<div class="dropdown-menu">
-																<a class="dropdown-item btn" data-toggle="collapse" data-target="#collapseOne<?= $val['id_kelas'] ?>" aria-expanded="true" aria-controls="collapseOne" style="padding-right: 20px; padding-left: 20px; padding-top: 12px; padding-bottom: 12px;">Lihat
+																<a class="dropdown-item btn" data-toggle="collapse" data-target="#collapseOne1" aria-expanded="true" aria-controls="collapseOne" style="padding-right: 20px; padding-left: 20px; padding-top: 12px; padding-bottom: 12px;">Lihat
 																	Kegiatan</a>
 																<a class="dropdown-item btn" type="button" data-toggle="modal" data-target="#tambahKegiatan<?= $ctClass ?>" style="padding-right: 20px; padding-left: 20px; padding-top: 12px; padding-bottom: 12px;">Tambah
 																	Kegiatan</a>
@@ -403,11 +403,11 @@
 													</div>
 												</td>
 											</tr>
-
+											<!--  -->
 											<tr class="p">
-												<td colspan="6" class="hiddenRow">
-													<div id="collapseOne<?= $val['id_kelas'] ?>" class="collapse" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion">
-														<div class="card-body" style="margin-top: -20px;">
+												<td colspan="6" class="hiddenRow" style="padding: 0px; border-top: 0px;">
+													<div id="collapseOne1" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+														<div class="card-body" style="padding-top: 0px;">
 															<!--  -->
 															<div class="row">
 																<div class="col">
@@ -469,20 +469,32 @@
 																	</div>
 																</div>
 															</div>
+
+															<!--  -->
+														</div>
+												</td>
+											</tr>
+											<!--  -->
+											<!-- <tr class="p">
+												<td colspan="6" class="hiddenRow">
+													<div id="collapseOne<?= $val['id_kelas'] ?>" class="collapse" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion">
+														<div class="card-body" style="margin-top: -20px;">
+															
+															
 														</div>
 													</div>
 												</td>
-											</tr>
+											</tr> -->
 
 										<?php endforeach; ?>
 									</tbody>
 								</table>
 							</div>
-							<!-- <div class="card-footer white py-3 d-flex justify-content-center">
+							<div class="card-footer white py-3 d-flex justify-content-center">
 								<ul id="pagination" class="pagination">
 								</ul>
 								</nav>
-							</div> -->
+							</div>
 						</div>
 
 					</div>
@@ -628,11 +640,11 @@
 					</tbody>
 					</table>
 					</div>
-					<!-- <div class="card-footer white py-3 d-flex justify-content-center">
+					<div class="card-footer white py-3 d-flex justify-content-center">
 								<ul id="pagination2" class="pagination">
 								</ul>
 								</nav>
-							</div> -->
+							</div>
 				</div>
 			</div>
 		</div>
@@ -831,12 +843,6 @@
 																						<th scope="col">Hari/Tanggal</th>
 																						<th scope="col">Waktu</th>
 																						<th scope="col" style="text-align: center;">Status</th>
-
-
-
-
-
-
 																					</tr>
 																				</thead>
 																				<tbody>
@@ -847,9 +853,6 @@
 																						<td>14.00</td>
 
 																						<td style="text-align: center ;"><span class="badge badge-warning">Sedang Berlangsung</span></td>
-
-
-
 																					</tr>
 
 																				</tbody>
