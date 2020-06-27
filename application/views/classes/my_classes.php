@@ -845,6 +845,25 @@
 <div class="tab-pane" id="tab3" role="tabpanel" aria-expanded="false">
 	<div class="row mt-5">
 		<div class="col">
+			<?php if ($notif != null) : ?>
+                        <?php foreach ($notif as $val) : ?>
+                          <?php foreach ($val as $val2) : ?>
+                            <?php if ($val2['status_kegiatan'] == CLASS_STARTED) : ?>
+								<div class="alert alert-primary" role="alert">
+									<div class="row">
+										<div class="col">
+											<h4 class="alert-heading">Kelas <?= $val2['judul_kelas']; ?> Sedang Dimulai</a></h4>
+										</div>
+										<div class="text-right"><?= $val2['tanggal']; ?></div>
+									</div>
+									<p>oleh <?= $val2['nama']; ?></p>
+									<hr>
+									<a class="btn btn-outline-dark" href="<?= base_url('class/') ?><?= $val2['id_kelas'] ?>/<?= $val2['id_kegiatan']; ?>" style="padding-right: 20px; padding-left: 20px; padding-top: 12px; padding-bottom: 12px;">Ikut</a>
+								</div>
+                            <?php endif; ?>
+                          <?php endforeach; ?>
+                        <?php endforeach; ?>
+                      <?php endif; ?>
 			<div class="card card-list">
 				<div class="card-body">
 					<div class="row">
