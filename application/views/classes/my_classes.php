@@ -1379,7 +1379,7 @@
 						</div>
 					</div>
 				</div>
-
+			</div>
 
 			<div class="tab-pane" id="tab5" role="tabpanel" aria-expanded="false">
 				<div class="row mt-5">
@@ -1507,12 +1507,6 @@
 								</ul>
 								</nav>
 							</div> -->
-
-												<?php $lihatMateriCount++; ?>
-											<?php endforeach; ?>
-										</tbody>
-									</table>
-								</div>
 								<div class="card-footer white py-3 d-flex justify-content-center">
 									<ul id="pagination5" class="pagination">
 									</ul>
@@ -1522,8 +1516,7 @@
 						</div>
 					</div>
 				</div>
-			</div>
-
+			
 			<div class="modal fade" id="konfirmasi_hapus" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 				<div class="modal-dialog">
 					<div class="modal-content">
@@ -1956,6 +1949,39 @@ clipboard.on('success', function(e) {
             "infoEmpty": "Tidak ada data",
         	}
         });
+		$('#pageTable6').DataTable({
+            responsive: true,
+			pageLength: 5,
+			lengthChange: false,
+			pagingType: "numbers",
+			language: {
+            "zeroRecords": "Yang anda cari tidak ditemukan!",
+            "info": "Menampilkan halaman _PAGE_ dari _PAGES_ (total _MAX_ data)",
+            "infoEmpty": "Tidak ada data",
+        	}
+        });
+		$('#pageTable7').DataTable({
+            responsive: true,
+			pageLength: 5,
+			lengthChange: false,
+			pagingType: "numbers",
+			language: {
+            "zeroRecords": "Yang anda cari tidak ditemukan!",
+            "info": "Menampilkan halaman _PAGE_ dari _PAGES_ (total _MAX_ data)",
+            "infoEmpty": "Tidak ada data",
+        	}
+        });
+		$('#pageTable8').DataTable({
+            responsive: true,
+			pageLength: 5,
+			lengthChange: false,
+			pagingType: "numbers",
+			language: {
+            "zeroRecords": "Yang anda cari tidak ditemukan!",
+            "info": "Menampilkan halaman _PAGE_ dari _PAGES_ (total _MAX_ data)",
+            "infoEmpty": "Tidak ada data",
+        	}
+        });
     });
 </script>
 <!-- <script>
@@ -2058,3 +2084,4 @@ clipboard.on('success', function(e) {
 			$(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
 		});
 	});
+</script>
