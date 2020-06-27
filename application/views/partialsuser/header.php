@@ -190,18 +190,19 @@
                       <?php if (count($notif2) != null) : ?>
                       <?php $i = 0; ?>
                       <?php foreach ($notif2 as $val) : ?>
-                        <?php if ($val[$i]['status_kegiatan'] == CLASS_STARTED) : ?>
+                      <?php foreach ($val as $val2) : ?>
+                        <?php if ($val2['status_kegiatan'] == CLASS_STARTED) : ?>
                           <li class="notification-box">
                             <div class="row">
                               <div class="col-md-3 text-center">
-                                <img src="<?php echo base_url(); ?>assets/images/<?= $val[$i]['poster_workshop']; ?>" class="rounded-circle" style="object-fit: cover;height: 60px; width: 60px;">
+                                <img src="<?php echo base_url(); ?>assets/images/<?= $val2['poster_workshop']; ?>" class="rounded-circle" style="object-fit: cover;height: 60px; width: 60px;">
                               </div>
                               <div class="col-md-8" style="text-shadow: 0px 0px white;">
-                                <strong class="text-info"><?= $val[$i]['nama']; ?></strong>
+                                <strong class="text-info"><?= $val2['nama']; ?></strong>
                                 <div>
-                                  <a href="<?= base_url('class/') ?><?= $val[$i]['id_workshop'] ?>/<?= $val[$i]['id_kegiatan']; ?>"><b>Workshop</b> "<?= $val[$i]['judul_workshop']; ?>" Sedang Dimulai</a>
+                                  <a href="<?= base_url('class/') ?><?= $val2['id_workshop'] ?>/<?= $val2['id_kegiatan']; ?>"><b>Workshop</b> "<?= $val2['judul_workshop']; ?>" Sedang Dimulai</a>
                                 </div>
-                                <small class="text-warning"><?= $val[$i]['tanggal']; ?></small>
+                                <small class="text-warning"><?= $val2['tanggal']; ?></small>
                                 <br>
                                 <small class="text-error">(Workshop)</small>
                               </div>    
@@ -210,6 +211,8 @@
                         <?php endif; ?>
                       <?php $i++; ?>
                       <?php endforeach; ?>
+                      <?php endforeach; ?>
+
 
                       <?php else : ?>
                         <li class="notification-box">
