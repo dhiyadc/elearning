@@ -87,6 +87,7 @@ class Classes_model extends CI_Model
                     ON peserta.id_kelas = kelas.id_kelas
             LEFT JOIN status_kegiatan
                 ON status_kegiatan.id_status = kelas.status_kelas
+            WHERE kelas.tipe_kelas = 1
             GROUP BY kelas.id_kelas
             ORDER BY COUNT(peserta.id_kelas) DESC
             LIMIT 10";
@@ -728,15 +729,12 @@ class Classes_model extends CI_Model
 
     public function updateKegiatan($id_kelas, $id_kegiatan)
     {
-
-
-
         $data = [];
 
         if (!empty($_FILES['materi']['name'][0])) {
             $data = [
                 'deskripsi_kegiatan' => $this->input->post('deskripsi'),
-
+                'tanggal_kegiatan' => $this->input->post('tanggal')
             ];
 
             $this->db->where('id_kegiatan', $id_kegiatan);
@@ -807,7 +805,7 @@ class Classes_model extends CI_Model
 
                 $data = [
                     'deskripsi_kegiatan' => $this->input->post('deskripsi'),
-
+                    'tanggal_kegiatan' => $this->input->post('tanggal')
                 ];
                 
 
@@ -834,74 +832,6 @@ class Classes_model extends CI_Model
             }
         }
         return "success";
-    }
-
-    public function insertFile($id_kelas, $id_kegiatan)
-    {
-        $id_kegiatan_uniq = $id_kegiatan;
-        // Check form submit or not
-        if ($this->input->post('materi') != NULL) {
-
-            $data = array();
-
-            // Count total files
-            $countfiles = count($_FILES['materi']['name']);
-
-            // Looping all files
-            for ($i = 0; $i < $countfiles; $i++) {
-
-                if (!empty($_FILES['materi']['name'][$i])) {
-
-                    // Define new $_FILES array - $_FILES['file']
-                    $_FILES['file']['name'] = $_FILES['materi']['name'][$i];
-                    $_FILES['file']['type'] = $_FILES['materi']['type'][$i];
-                    $_FILES['file']['tmp_name'] = $_FILES['materi']['tmp_name'][$i];
-                    $_FILES['file']['error'] = $_FILES['materi']['error'][$i];
-                    $_FILES['file']['size'] = $_FILES['materi']['size'][$i];
-
-                    // Set preference
-                    $config['upload_path'] = './assets/docs/';
-                    $config['allowed_types'] = 'docx|pdf|pptx|doc|ppt';
-                    $config['max_size'] = '25000';
-                    $config['remove_space'] = true;
-                    $config['file_name'] = $_FILES['materi']['name'][$i];
-
-                    //Load upload library
-                    $this->load->library('upload', $config);
-
-                    // File upload
-                    if ($this->upload->do_upload('materi')) {
-                        // Get data about the file
-                        $uploadData = $this->upload->data();
-                        $filename = $uploadData['file_name'];
-
-                        $data = [
-                            'id_materi' => uniqid(),
-                            'url_materi' => $filename,
-                            'id_kelas' => $id_kelas,
-                            'id_kegiatan' => $id_kegiatan_uniq
-                        ];
-
-                        $this->db->insert('materi', $data);
-                        // Initialize array
-                        $data['filenames'][] = $filename;
-                    } else {
-                        return "fail";
-                    }
-                }
-            }
-
-            // load view
-        } else {
-
-            // load view
-            return "fail";
-        }
-
-        $data = [
-            'deskripsi_kegiatan' => $this->input->post('deskripsi'),
-            'tanggal_kegiatan' => $this->input->post('tanggal')
-        ];
     }
 
     public function updateKegiatanStatus($activityId, $status)
@@ -1103,19 +1033,18 @@ class Classes_model extends CI_Model
             if ($this->upload->do_upload('url_tugas')) {
                 $filename = $this->upload->data('file_name');
 
-                $data = [
-                    'id_tugas' => uniqid(),
-                    'judul_tugas' => $this->input->post('judul'),
-                    'deskripsi_tugas' => $this->input->post('deskripsi'),
-                    'url_tugas' => $filename,
-                    'id_kelas' => $id,
-                    'kategori_tugas' => $this->input->post('kategori'),
-                    'batas_pengiriman_tugas' => $this->input->post('deadline')
-                ];
-
-                $this->db->where('id_tugas', $id);
-                $this->db->update('tugas_kuis', $data);
-            } else {
+                    $data = [
+                        'judul_tugas' => $this->input->post('judul'),
+                        'deskripsi_tugas' => $this->input->post('deskripsi'),
+                        'url_tugas' => $filename,
+                        'kategori_tugas' => $this->input->post('kategori'),
+                        'batas_pengiriman_tugas' => $this->input->post('deadline')
+                    ];
+            
+                    $this->db->where('id_tugas',$id);
+                    $this->db->update('tugas_kuis',$data);
+            }
+            else {
                 return "failed";
             }
         } else {
