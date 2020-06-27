@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 26, 2020 at 07:47 AM
+-- Generation Time: Jun 27, 2020 at 07:17 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.6
 
@@ -66,9 +66,10 @@ INSERT INTO `detail_user` (`id_user`, `nama`, `no_telepon`, `foto`, `deskripsi`)
 ('AORFhHgQkBDCZiJZcSTxQxPVgAsnrcvI32rfqZT11YM5N7WG2dfFybRCcF0YwD6o', 'Ricardo Adocicados', '983228390', '', ''),
 ('b0D4Q4pX6NCibfO2SRag3BdN6tpOugQkilV5LbBHgSVFO9gD5VDCnuqU2oGWyLz9', 'Dice', '0812', '71779706_448094602754019_6167635517203967163_n.jpg', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro consectetur ut hic ipsum et veritatis corrupti. Itaque eius soluta optio dolorum temporibus in, atque, quos fugit sunt sit quaerat dicta.'),
 ('ETiCSZYrZcv2P6sTtL8PiQaK7HFiTPxb7mUksTq059xTCTTPbOdn7dTsdkfl7NWt', 'Zora Cahya', '1234', NULL, NULL),
+('jwr5zJHNb1idsN6iFE5DHv6avqn5AQnO8znVsfMF73DM6MkPPxd0PAaT2ZRWscXF', 'Zora Cahya', '1234', NULL, NULL),
 ('jybs0xGSI5ZWrRLnjb34qSf7PsxSHp2fMAghq4y9MA8j20E48bB6xUj9jPfTXdwI', 'Hanari Carnes', '982302831039', '', ''),
 ('L4rQj4YlTEGD96F8zirIpcZayHzMXmr5m0faCd7KA2AeyKW0X4AO3n354kVWhiLZ', 'murid', '1234', NULL, NULL),
-('lk2r0BAwiZpAx4olmJXEYZlSbfWLPPZrTgCugFF765Bf4enCVHddaj6DtdGfcbFs', 'cindy ilfith cilisti priditi', '1234', NULL, NULL),
+('lk2r0BAwiZpAx4olmJXEYZlSbfWLPPZrTgCugFF765Bf4enCVHddaj6DtdGfcbFs', 'cindy ilfith cilisti priditi', '1234', '1fad513047507969cfa32b5cf979bde3.jpg', 'StackOverflow adalah jalan ninjaku'),
 ('OISI84OylRn1zOP0qWxn7AoRdRzEn2YrFPwAdBaJzNBxLd0rffZcU91zfjhGFdrw', 'Zora Cahya', '1234', 'original.jpg', '2020 Zora cakep Aamiin'),
 ('pTithyQiH1fYF5fOjETFtMblWqqsfbv9V56o3pC4JFNM617ULFmTchAfK7JCMbDp', 'Wilman Kala', '231231233', '', ''),
 ('s4blnpXLSs4GWELe5YM6GrJV4m6r7m8fUCsEZq8zuqXpDNnnDwniMLKt1si675HC', 'Ernst Handel', '8723827382', '', ''),
@@ -193,7 +194,13 @@ INSERT INTO `jadwal_kegiatan` (`id_kegiatan`, `id_kelas`, `deskripsi_kegiatan`, 
 ('5ef41deee03be', '5ef3412624fa6', 'tes notif ', '2020-06-25 03:46:24', 2),
 ('5ef420b641680', '5ef4198236236', 'hudoa', '2020-06-25 03:58:52', 2),
 ('5ef4a008c7918', '5ef3412624fa6', 'tes', '2020-06-25 13:01:46', 2),
-('5ef58102d1cd5', '5ef58102cf223', 'tes', '2020-06-26 05:00:00', 3);
+('5ef58102d1cd5', '5ef58102cf223', 'tes', '2020-06-26 06:06:19', 2),
+('5ef5a6bf26e79', '5ef4198236236', 'v', '2020-06-03 07:40:00', 3),
+('5ef5ab6a0ebe9', '5ef3412624fa6', 'upload files', '2020-06-26 14:10:31', 2),
+('5ef5ac0112958', '5ef3412624fa6', 'upload files', '2020-06-26 14:10:44', 2),
+('5ef5d34c59297', '5ef3412624fa6', 'Sadboy', '2020-06-27 03:27:17', 2),
+('5ef60286b49d2', '5ef3412624fa6', 'Kelas Belajar Overthinking', '2020-06-27 03:26:41', 3),
+('5ef603d5bad1a', '5ef3412624fa6', 'Kelas Malam-Malam Insecure ', '2020-06-27 03:26:17', 3);
 
 -- --------------------------------------------------------
 
@@ -281,6 +288,25 @@ INSERT INTO `kategori_kelas` (`id_kategori`, `nama_kategori`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `kategori_materi`
+--
+
+CREATE TABLE `kategori_materi` (
+  `kategori_id` int(11) NOT NULL,
+  `nama_kategori` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `kategori_materi`
+--
+
+INSERT INTO `kategori_materi` (`kategori_id`, `nama_kategori`) VALUES
+(1, 'File'),
+(2, 'Video');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `kategori_tugas`
 --
 
@@ -362,10 +388,10 @@ INSERT INTO `kelas` (`id_kelas`, `pembuat_kelas`, `judul_kelas`, `deskripsi_kela
 ('5eeeeb8da26e6', 'b0D4Q4pX6NCibfO2SRag3BdN6tpOugQkilV5LbBHgSVFO9gD5VDCnuqU2oGWyLz9', 'private', '<p>private</p>\r\n', 1, 'dice35.png', 1, 1, 0, 2),
 ('5ef2b84c690e2', 'OISI84OylRn1zOP0qWxn7AoRdRzEn2YrFPwAdBaJzNBxLd0rffZcU91zfjhGFdrw', 'Belajar Memasak Seblak Rior', '<p>HEHEHEEH</p>\r\n', 2, 'Untitled.png', 1, 1, 0, 1),
 ('5ef30bb921a60', 'OISI84OylRn1zOP0qWxn7AoRdRzEn2YrFPwAdBaJzNBxLd0rffZcU91zfjhGFdrw', 'Tugas dan Fungsi', '<p>public&nbsp;function&nbsp;updateKegiatan($id_kelas,&nbsp;$id_kegiatan)</p>\r\n\r\n<p>&nbsp;&nbsp;&nbsp;&nbsp;{</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$data&nbsp;=&nbsp;[];</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(!empty($_FILES[&#39;materi&#39;][&#39;name&#39;][0]))&nbsp;{</p>\r\n\r\n<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$data&nbsp;=&nbsp;[</p>\r\n\r\n<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#39;deskripsi_kegiatan&#39;&nbsp;=&gt;&nbsp;$this-&gt;input-&gt;post(&#39;deskripsi&#39;),</p>\r\n\r\n<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>\r\n\r\n<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;];</p>\r\n\r\n<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>\r\n\r\n<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;db-&gt;where(&#39;id_kegiatan&#39;,$id_kegiatan);</p>\r\n\r\n<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;db-&gt;update(&#39;jadwal_kegiatan&#39;,$data);</p>\r\n\r\n<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$count&nbsp;=&nbsp;count($_FILES[&#39;materi&#39;][&#39;name&#39;]);</p>\r\n\r\n<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for($i=0;$i&lt;$count;$i++){</p>\r\n\r\n<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(!empty($_FILES[&#39;materi&#39;][&#39;name&#39;][$i]))&nbsp;{</p>\r\n\r\n<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$_FILES[&#39;file&#39;][&#39;name&#39;]&nbsp;=&nbsp;$_FILES[&#39;materi&#39;][&#39;name&#39;][$i];</p>\r\n\r\n<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$_FILES[&#39;file&#39;][&#39;type&#39;]&nbsp;=&nbsp;$_FILES[&#39;materi&#39;][&#39;type&#39;][$i];</p>\r\n\r\n<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$_FILES[&#39;file&#39;][&#39;tmp_name&#39;]&nbsp;=&nbsp;$_FILES[&#39;materi&#39;][&#39;tmp_name&#39;][$i];</p>\r\n\r\n<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$_FILES[&#39;file&#39;][&#39;error&#39;]&nbsp;=&nbsp;$_FILES[&#39;materi&#39;][&#39;error&#39;][$i];</p>\r\n\r\n<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$_FILES[&#39;file&#39;][&#39;size&#39;]&nbsp;=&nbsp;$_FILES[&#39;materi&#39;][&#39;size&#39;][$i];</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$config[&#39;upload_path&#39;]&nbsp;=&nbsp;&#39;./assets/docs/&#39;;</p>\r\n\r\n<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$config[&#39;allowed_types&#39;]&nbsp;=&nbsp;&#39;docx|pdf|pptx|doc|ppt&#39;;</p>\r\n\r\n<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$config[&#39;max_size&#39;]&nbsp;=&nbsp;&#39;25000&#39;;</p>\r\n\r\n<p>&nbsp;&nbsp;&nbsp;&nbsp;</p>\r\n\r\n<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;load-&gt;library(&#39;upload&#39;,&nbsp;$config);</p>\r\n\r\n<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;($this-&gt;upload-&gt;do_upload(&#39;file&#39;))&nbsp;{</p>\r\n\r\n<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$file_name&nbsp;=&nbsp;$this-&gt;upload-&gt;data(&#39;file_name&#39;);</p>\r\n\r\n<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;$data[&#39;totalFiles&#39;][]&nbsp;=&nbsp;$file_name;</p>\r\n\r\n<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$fileArr[]&nbsp;=&nbsp;$file_name;</p>\r\n\r\n<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$data&nbsp;=&nbsp;[</p>\r\n\r\n<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#39;id_materi&#39;&nbsp;=&gt;&nbsp;uniqid(),</p>\r\n\r\n<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#39;url_materi&#39;&nbsp;=&gt;&nbsp;$file_name,</p>\r\n\r\n<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#39;id_kelas&#39;&nbsp;=&gt;&nbsp;$id_kelas,</p>\r\n\r\n<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#39;id_kegiatan&#39;&nbsp;=&gt;&nbsp;$id_kegiatan</p>\r\n\r\n<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;];</p>\r\n\r\n<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$materi_id[]&nbsp;=&nbsp;$data[&#39;id_materi&#39;];</p>\r\n\r\n<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;db-&gt;insert(&#39;materi&#39;,$data);</p>\r\n\r\n<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;else&nbsp;{</p>\r\n\r\n<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>\r\n\r\n<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$countFile&nbsp;=&nbsp;count($fileArr);</p>\r\n\r\n<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for($j&nbsp;=&nbsp;0;&nbsp;$j&nbsp;&lt;&nbsp;$countFile;&nbsp;$j++){</p>\r\n\r\n<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;db-&gt;where(&#39;id_materi&#39;,&nbsp;$materi_id[$j]);</p>\r\n\r\n<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;db-&gt;delete(&#39;materi&#39;);</p>\r\n\r\n<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;unlink(&quot;assets/docs/&quot;.$fileArr[$j]);</p>\r\n\r\n<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;&quot;fail&quot;;</p>\r\n\r\n<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>\r\n\r\n<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//return&nbsp;$_FILES[&#39;materi&#39;][&#39;name&#39;][$i];</p>\r\n\r\n<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</p>\r\n\r\n<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</p>\r\n\r\n<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else&nbsp;{</p>\r\n\r\n<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>\r\n\r\n<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$data&nbsp;=&nbsp;[</p>\r\n\r\n<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#39;deskripsi_kegiatan&#39;&nbsp;=&gt;&nbsp;$this-&gt;input-&gt;post(&#39;deskripsi&#39;),</p>\r\n\r\n<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>\r\n\r\n<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;];</p>\r\n\r\n<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>\r\n\r\n<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;db-&gt;where(&#39;id_kegiatan&#39;,$id_kegiatan);</p>\r\n\r\n<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;db-&gt;update(&#39;jadwal_kegiatan&#39;,$data);</p>\r\n\r\n<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</p>\r\n\r\n<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>\r\n\r\n<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</p>\r\n\r\n<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;&quot;success&quot;;</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&nbsp;&nbsp;&nbsp;&nbsp;}</p>\r\n', 2, 'Screenshot_2020-06-17_Admin_Tambah_Artikel(1).png', 1, 2, 0, 1),
-('5ef33d1b3c398', 'lk2r0BAwiZpAx4olmJXEYZlSbfWLPPZrTgCugFF765Bf4enCVHddaj6DtdGfcbFs', 'Kenapa ini hah', '<p>tes</p>\r\n', 2, 'Screenshot_2020-06-17_Admin_Agenda(1).png', 1, 2, 0, 1),
-('5ef3412624fa6', 'lk2r0BAwiZpAx4olmJXEYZlSbfWLPPZrTgCugFF765Bf4enCVHddaj6DtdGfcbFs', 'Fingerprint', '<p>jifs fsij&nbsp;</p>\r\n', 3, 'Screenshot_2020-06-17_Admin_Data_Guru(2)1.png', 1, 2, 0, 1),
-('5ef4198236236', 'L4rQj4YlTEGD96F8zirIpcZayHzMXmr5m0faCd7KA2AeyKW0X4AO3n354kVWhiLZ', 'Tes Notif', '<p>32 32</p>\r\n', 2, 'Screenshot_2020-06-17_Admin_Agenda(2).png', 1, 2, 100, 1),
-('5ef58102cf223', 'L4rQj4YlTEGD96F8zirIpcZayHzMXmr5m0faCd7KA2AeyKW0X4AO3n354kVWhiLZ', 'tes private', '<p>tes</p>\r\n', 2, 'Screenshot_2020-06-17_Admin_Data_Guru(2)3.png', 1, 1, 0, 2);
+('5ef33d1b3c398', 'lk2r0BAwiZpAx4olmJXEYZlSbfWLPPZrTgCugFF765Bf4enCVHddaj6DtdGfcbFs', 'Overthinking 101', '<p>Overthinking 101 bersama saya</p>\r\n', 3, 'Screenshot_2020-06-17_Admin_Agenda(1).png', 1, 2, 0, 1),
+('5ef3412624fa6', 'lk2r0BAwiZpAx4olmJXEYZlSbfWLPPZrTgCugFF765Bf4enCVHddaj6DtdGfcbFs', 'Fingerprint', '<p>jifs fsij&nbsp;</p>\r\n', 3, 'Screenshot_2020-06-17_Admin_Data_Guru(2)1.png', 1, 1, 0, 1),
+('5ef4198236236', 'L4rQj4YlTEGD96F8zirIpcZayHzMXmr5m0faCd7KA2AeyKW0X4AO3n354kVWhiLZ', 'Tes Notif', '<p>32 32</p>\r\n', 2, 'Screenshot_2020-06-17_Admin_Agenda(2).png', 1, 1, 100, 1),
+('5ef58102cf223', 'L4rQj4YlTEGD96F8zirIpcZayHzMXmr5m0faCd7KA2AeyKW0X4AO3n354kVWhiLZ', 'tes private', '<p>tes</p>\r\n', 2, 'Screenshot_2020-06-17_Admin_Data_Guru(2)3.png', 1, 2, 0, 2);
 
 -- --------------------------------------------------------
 
@@ -391,20 +417,37 @@ CREATE TABLE `materi` (
   `id_materi` varchar(64) NOT NULL,
   `url_materi` varchar(200) NOT NULL,
   `id_kelas` varchar(64) NOT NULL,
-  `id_kegiatan` varchar(64) NOT NULL
+  `id_kegiatan` varchar(64) NOT NULL,
+  `kategori_materi` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `materi`
 --
 
-INSERT INTO `materi` (`id_materi`, `url_materi`, `id_kelas`, `id_kegiatan`) VALUES
-('5ed9c5f366e81', 'BAB_II.docx', '5ebffb1f05953', '5ed9c5f355df5'),
-('5ed9c5f366e82', 'grafkom1.docx', '5ebffb1f05953', '5ed9c0530bfff'),
-('5eeeff78cd810', 'Dhiya_Calista_(09021381823105)_Grafkom1.pdf', '5edce70836148', '5edce708420ad'),
-('5ef0c5g367df1', 'footnote_revisi.docx', '5ed9fa1e537d6', '5ed9fa1e68fcc'),
-('5ef4a008d6a73', 'BAB_II2.docx', '5ef3412624fa6', '5ef4a008c7918'),
-('5fp0c5g367e81', 'grafkom.docx', '5ebffb1f05953', '5ed9c5f355df5');
+INSERT INTO `materi` (`id_materi`, `url_materi`, `id_kelas`, `id_kegiatan`, `kategori_materi`) VALUES
+('5ed9c5f366e81', 'BAB_II.docx', '5ebffb1f05953', '5ed9c5f355df5', 1),
+('5ed9c5f366e82', 'grafkom1.docx', '5ebffb1f05953', '5ed9c0530bfff', 1),
+('5eeeff78cd810', 'Dhiya_Calista_(09021381823105)_Grafkom1.pdf', '5edce70836148', '5edce708420ad', 1),
+('5ef0c5g367df1', 'footnote_revisi.docx', '5ed9fa1e537d6', '5ed9fa1e68fcc', 1),
+('5ef4a008d6a73', 'BAB_II2.docx', '5ef3412624fa6', '5ef4a008c7918', 1),
+('5ef5a6bf28747', 'grafkom11.docx', '5ef4198236236', '5ef5a6bf26e79', 1),
+('5ef5ac011499d', 'PANCASILA_DALAM_SISTEM_ETIKA2.docx', '5ef3412624fa6', '5ef5ac0112958', 1),
+('5ef5ac01169e0', 'pert8b.ppt', '5ef3412624fa6', '5ef5ac0112958', 1),
+('5ef5d34c5a5bc', ' tree', '5ef3412624fa6', '5ef5d34c59297', 2),
+('5ef5d34c5b456', 'https://www.youtube.com/embed/X8607H_ND4k', '5ef3412624fa6', '5ef5d34c59297', 2),
+('5ef5d34c5cc78', 'PANCASILA_DALAM_SISTEM_ETIKA3.docx', '5ef3412624fa6', '5ef5d34c59297', 1),
+('5ef5d34c5e097', 'pert8b1.ppt', '5ef3412624fa6', '5ef5d34c59297', 1),
+('5ef60286b5dea', 'https://www.youtube.com/embed/tk-f1JppLmM', '5ef3412624fa6', '5ef60286b49d2', 2),
+('5ef60286b68c7', ' https://www.youtube.com/embed/LMQ5Gauy17k', '5ef3412624fa6', '5ef60286b49d2', 2),
+('5ef60286b72c4', ' https://www.youtube.com/embed/1HygThMLzGs', '5ef3412624fa6', '5ef60286b49d2', 2),
+('5ef603d5bb8d9', 'https://www.youtube.com/embed/1HygThMLzGs', '5ef3412624fa6', '5ef603d5bad1a', 2),
+('5ef605c449592', 'https://www.youtube.com/embed/1HygThMLzGs', '5ef3412624fa6', '5ef603d5bad1a', 2),
+('5ef62909ef94b', 'teslink1', '5ef4198236236', '5ef5a6bf26e79', 2),
+('5ef62909f0d4c', ' teslink2', '5ef4198236236', '5ef5a6bf26e79', 2),
+('5ef6290a0109c', 'PANCASILA_DALAM_SISTEM_ETIKA21.docx', '5ef4198236236', '5ef5a6bf26e79', 1),
+('5ef6290a037a9', 'BAB_II2_(1).docx', '5ef4198236236', '5ef5a6bf26e79', 1),
+('5fp0c5g367e81', 'grafkom.docx', '5ebffb1f05953', '5ed9c5f355df5', 1);
 
 -- --------------------------------------------------------
 
@@ -472,7 +515,9 @@ INSERT INTO `peserta` (`id_kelas`, `id_user`) VALUES
 ('5ee4d9a981dd4', 'b0D4Q4pX6NCibfO2SRag3BdN6tpOugQkilV5LbBHgSVFO9gD5VDCnuqU2oGWyLz9'),
 ('5ee4daf10f6c6', 'b0D4Q4pX6NCibfO2SRag3BdN6tpOugQkilV5LbBHgSVFO9gD5VDCnuqU2oGWyLz9'),
 ('5ee4daf10f6c6', 'OISI84OylRn1zOP0qWxn7AoRdRzEn2YrFPwAdBaJzNBxLd0rffZcU91zfjhGFdrw'),
+('5ef3412624fa6', 'jwr5zJHNb1idsN6iFE5DHv6avqn5AQnO8znVsfMF73DM6MkPPxd0PAaT2ZRWscXF'),
 ('5ef3412624fa6', 'L4rQj4YlTEGD96F8zirIpcZayHzMXmr5m0faCd7KA2AeyKW0X4AO3n354kVWhiLZ'),
+('5ef4198236236', 'jwr5zJHNb1idsN6iFE5DHv6avqn5AQnO8znVsfMF73DM6MkPPxd0PAaT2ZRWscXF'),
 ('5ef4198236236', 'lk2r0BAwiZpAx4olmJXEYZlSbfWLPPZrTgCugFF765Bf4enCVHddaj6DtdGfcbFs'),
 ('5ef58102cf223', 'lk2r0BAwiZpAx4olmJXEYZlSbfWLPPZrTgCugFF765Bf4enCVHddaj6DtdGfcbFs');
 
@@ -674,7 +719,8 @@ INSERT INTO `tugas_kuis` (`id_tugas`, `judul_tugas`, `deskripsi_tugas`, `url_tug
 ('5ef05a1c43b7e', 'tugas 1', '<p>tugas</p>\r\n', '09021381823105_Dhiya_Calista.pdf', '5eca8fcd66d7d', 1, '2020-06-22 07:13:00'),
 ('5ef05c6af0743', 'UAS', '<p>UAS</p>\r\n', '09021381823105_Dhiya_Calista1.pdf', '5eca8fcd66d7d', 3, '2020-06-22 07:23:00'),
 ('5ef06186520f2', 'kuis 1', '<p>kuis</p>\r\n', NULL, '5eca8fcd66d7d', 2, '2020-06-22 07:45:00'),
-('5ef2b8bc67a30', 'TUGAS AJE', '<p>HEHE</p>\r\n', 'UAS_IMK_(09021281823056_-_Zora_Cahya).pdf', '5ef2b84c690e2', 1, '2020-06-26 03:00:00');
+('5ef2b8bc67a30', 'TUGAS AJE', '<p>HEHE</p>\r\n', 'UAS_IMK_(09021281823056_-_Zora_Cahya).pdf', '5ef2b84c690e2', 1, '2020-06-26 03:00:00'),
+('5ef59b8fe9b10', 'Tugas dan Fungsi', '<p>tugas pancasila</p>\r\n', 'PANCASILA_DALAM_SISTEM_ETIKA.docx', '5ef33d1b3c398', 1, '2020-06-26 17:00:00');
 
 -- --------------------------------------------------------
 
@@ -700,6 +746,7 @@ INSERT INTO `user` (`id_user`, `email`, `password`) VALUES
 ('AORFhHgQkBDCZiJZcSTxQxPVgAsnrcvI32rfqZT11YM5N7WG2dfFybRCcF0YwD6o', 'ricar@gmail.com', '54680bd183bb915f1a4d0745b8e3660841ed6ecc30871431e24a451ae4894edb'),
 ('b0D4Q4pX6NCibfO2SRag3BdN6tpOugQkilV5LbBHgSVFO9gD5VDCnuqU2oGWyLz9', 'dice@gmail.com', '82ecd2972f1fac44447c233d24f0efb96dea42fc6bda8e18b3f780e9c370a7ed'),
 ('ETiCSZYrZcv2P6sTtL8PiQaK7HFiTPxb7mUksTq059xTCTTPbOdn7dTsdkfl7NWt', 'zora@email.comm', '219e9b0a470e253d8f7b38f6adfc6c916a024184536eff3d83c86e6b4dea6e50'),
+('jwr5zJHNb1idsN6iFE5DHv6avqn5AQnO8znVsfMF73DM6MkPPxd0PAaT2ZRWscXF', 'tes_materi@email.com', '8582b47edaf2c5a49893cb708c67ac328c3b3b382b6d249b778c90e3522cb1a1'),
 ('jybs0xGSI5ZWrRLnjb34qSf7PsxSHp2fMAghq4y9MA8j20E48bB6xUj9jPfTXdwI', 'hanari@mail.com', '54680bd183bb915f1a4d0745b8e3660841ed6ecc30871431e24a451ae4894edb'),
 ('L4rQj4YlTEGD96F8zirIpcZayHzMXmr5m0faCd7KA2AeyKW0X4AO3n354kVWhiLZ', 'murid@email.com', '8582b47edaf2c5a49893cb708c67ac328c3b3b382b6d249b778c90e3522cb1a1'),
 ('lk2r0BAwiZpAx4olmJXEYZlSbfWLPPZrTgCugFF765Bf4enCVHddaj6DtdGfcbFs', 'tes@email.com', '8582b47edaf2c5a49893cb708c67ac328c3b3b382b6d249b778c90e3522cb1a1'),
@@ -811,6 +858,12 @@ ALTER TABLE `kategori_kelas`
   ADD PRIMARY KEY (`id_kategori`);
 
 --
+-- Indexes for table `kategori_materi`
+--
+ALTER TABLE `kategori_materi`
+  ADD PRIMARY KEY (`kategori_id`);
+
+--
 -- Indexes for table `kategori_tugas`
 --
 ALTER TABLE `kategori_tugas`
@@ -847,7 +900,8 @@ ALTER TABLE `lupa_password`
 ALTER TABLE `materi`
   ADD PRIMARY KEY (`id_materi`),
   ADD KEY `id_kelas` (`id_kelas`,`id_kegiatan`),
-  ADD KEY `id_kegiatan` (`id_kegiatan`);
+  ADD KEY `id_kegiatan` (`id_kegiatan`),
+  ADD KEY `kategori_materi` (`kategori_materi`);
 
 --
 -- Indexes for table `pembayaran`
@@ -969,6 +1023,12 @@ ALTER TABLE `kategori_kelas`
   MODIFY `id_kategori` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT for table `kategori_materi`
+--
+ALTER TABLE `kategori_materi`
+  MODIFY `kategori_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `kategori_tugas`
 --
 ALTER TABLE `kategori_tugas`
@@ -1067,6 +1127,8 @@ ALTER TABLE `lupa_password`
 -- Constraints for table `materi`
 --
 ALTER TABLE `materi`
+  ADD CONSTRAINT `FK_kategori_materi` FOREIGN KEY (`kategori_materi`) REFERENCES `kategori_materi` (`kategori_id`),
+  ADD CONSTRAINT `kategori_materi` FOREIGN KEY (`kategori_materi`) REFERENCES `kategori_materi` (`kategori_id`),
   ADD CONSTRAINT `materi_ibfk_1` FOREIGN KEY (`id_kelas`) REFERENCES `kelas` (`id_kelas`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `materi_ibfk_2` FOREIGN KEY (`id_kegiatan`) REFERENCES `jadwal_kegiatan` (`id_kegiatan`) ON DELETE CASCADE ON UPDATE CASCADE;
 
