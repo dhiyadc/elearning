@@ -60,7 +60,7 @@ class Nonuser extends CI_Controller {
                 redirect('owner');
 
             } else {
-                $result = $this->Admin_database->login($data);
+                $result = $this->Admin_database->isAdmin($data);
                 if ($result == TRUE) {
                 
                     // Add user data in session

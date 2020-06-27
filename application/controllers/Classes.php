@@ -526,6 +526,7 @@ class Classes extends CI_Controller
             $data['private_kelas'] = $this->Classes_model->getMyPrivateClasses();
             $data['private_kelas2'] = $this->Workshops_model->getMyPrivateClasses();
             $data['kegiatan'] = $this->Classes_model->getAllKegiatan();
+            $data['pembuat'] = $this->Classes_model->getPembuat();
             $data['kegiatan2'] = $this->Workshops_model->getAllKegiatan();
             $data['status'] = $this->Classes_model->getStatus();
             $data['status2'] = $this->Workshops_model->getStatus();
@@ -540,11 +541,14 @@ class Classes extends CI_Controller
             $datatugas = array();
             $datakelas = array();
             $datamateri = array();
+            $datakegiatansaya = array();
+            $datakegiatandiikuti = array();
             foreach ($notif as $value) {
                 $cek = $this->Classes_model->getKelasKegiatan($value['id_kelas']);
                 $tugas = $this->Classes_model->getTugasByClassId($value['id_kelas']);
                 $kelas = $this->Classes_model->getClassById($value['id_kelas']);
                 $materi = $this->Classes_model->getMateriByClassId($value['id_kelas']);
+                $kegiatandiikuti = $this->Classes_model->getKegiatan($value['id_kelas']);
 
                 if ($cek != null) {
                     $datanotif[] = $cek;
@@ -558,8 +562,21 @@ class Classes extends CI_Controller
                 if ($materi != null) {
                     $datamateri[] = $materi;
                 }
+                if ($kegiatandiikuti != null) {
+                    $datakegiatandiikuti[] = $kegiatandiikuti;
+                }
             }
+            $data['kegiatan_diikuti'] = $datakegiatandiikuti;
             $header['notif'] = $datanotif;
+
+            foreach ($data['kelas'] as $value) {
+                $kegiatansaya = $this->Classes_model->getKegiatan($value['id_kelas']);
+                
+                if ($kegiatansaya != null) {
+                    $datakegiatansaya[] = $kegiatansaya;
+                }
+            }
+            $data['kegiatan_saya'] = $datakegiatansaya;
 
             foreach ($notif2 as $value) {
                 $cek2 = $this->Workshops_model->getKelasKegiatan($value['id_workshop']);
@@ -1286,7 +1303,7 @@ class Classes extends CI_Controller
             redirect('home');
         }
     }
-
+    
     public function search_kelas_saya()
     {
         if (isset($_SESSION['logged_in'])) {

@@ -3,7 +3,7 @@
 Class Admin_database extends CI_Model {
 
 //Login Function
-    public function login($data){
+    public function isAdmin($data){
         
         $username = $data['email'];
         $password = $data['password'];
