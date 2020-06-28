@@ -344,7 +344,7 @@
 
 												</th>
 												<td style="padding-top: 20px; padding-top: 23px;">
-													<span><small><small><a id="btnCopy" href="" data-toggle="tooltip" data-original-title="Click to copy" data-clipboard-text="<?= base_url(); ?>classes/open_class/<?= $val['id_kelas'] ?>">Copy Link</a></small></small></span>
+													<span><small><small><a id="btnCopy" href="" onclick="return false" data-toggle="tooltip" data-original-title="Click to copy" data-clipboard-text="<?= base_url(); ?>classes/open_class/<?= $val['id_kelas'] ?>">Copy Link</a></small></small></span>
 												</td>
 
 												<td style="padding-top: 23px;">
@@ -472,6 +472,49 @@
 		</div>
 	</td>
 	</tr>
+	<div class="modal fade" id="tambahKegiatan<?= $ctClass ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="padding-right: 90px;">
+								<div class="modal-dialog" role="document">
+									<!--Content-->
+									<div class="modal-content form-elegant">
+										<!--Header-->
+										<div class="modal-header text-center">
+											<h3 class="modal-title w-100 dark-grey-text font-weight-bold my-3" id="myModalLabel"><strong>Kelas <?= $val['judul_kelas']; ?></strong></h3>
+											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+												<span aria-hidden="true">&times;</span>
+											</button>
+										</div>
+
+
+
+										<!--Body-->
+										<div class="modal-body mx-4">
+											<!--Body-->
+											<form enctype="multipart/form-data" action="<?= base_url() ?>classes/set_kegiatan/<?= $val['id_kelas'] ?>" method="POST">
+												<div class="form-group">
+													<label>Deskripsi Kegiatan</label>
+													<textarea class="form-control" name="deskripsi" required></textarea>
+												</div>
+												<div class="form-group">
+													<label>Jadwal Kegiatan</label>
+													<div class="input-group date form_datetime " data-date-format="yyyy/mm/dd hh:ii" data-link-field="dtp_input1">
+														<input class="form-control" id="inputdatetimepicker" size="16" type="text" name="tanggal" readonly required>
+														<span class="input-group-addon" style="width:40px;"><span class="glyphicon glyphicon-remove"></span></span>
+														<span class="input-group-addon" style="width:40px;"><span class="glyphicon glyphicon-th"></span></span>
+													</div>
+												</div>
+												<input type="hidden" id="dtp_input1" />
+												<div class="form-group">
+													<label for="materiForm">Materi (Opsional)</label>
+													<input type="file" name="materi[]" accept=".doc, .docx, .ppt, .pptx, .pdf" class="form-control-file" id="materiForm" multiple>
+												</div>
+												<div class="text-center mb-3">
+													<button type="submit" class="btn btn-light blue-gradient btn-block btn-rounded z-depth-1a">Simpan</button>
+												</div>
+											</form>
+										</div>
+									</div>
+								</div>
+							</div>
 
 <?php endforeach; ?>
 </tbody>
@@ -639,8 +682,7 @@
 			</div>
 		</div>
 	</td>
-	</tr
-							<!--  -->
+	</tr>
 
 
 							<div class="modal fade" id="tambahKegiatan<?= $ctClass ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="padding-right: 90px;">

@@ -298,7 +298,7 @@
                                               $placeholder = "Sudah Dinilai";
                                             }
                                              ?>
-                                            <input class="effect-1" type="text" name="nilai" placeholder="<?= $placeholder; ?>">
+                                            <input class="effect-1" type="number" min="0" max="100" name="nilai" placeholder="<?= $placeholder; ?>">
                                             <input type="hidden" name="tanggal_submit" value="<?= $val2['tanggal_submit']; ?>">
                                             <span class="focus-border"></span>
                                           </div>
