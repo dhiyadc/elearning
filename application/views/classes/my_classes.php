@@ -498,10 +498,10 @@
 				<table id="pageTable2" class="table">
 					<thead>
 						<tr>
-							<th scope="col">Kelas</th>
-							<th scope="col">Progress</th>
-							<th scope="col">Status</th>
-							<th scope="col">Aksi</th>
+						<th scope="col">Kelas</th>
+						<th scope="col" style="padding-left: 40px;">Progress</th>
+						<th scope="col" style="padding-left: 60px;">Status</th>
+						<th scope="col" style="padding-left: 50px;">Aksi</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -510,7 +510,7 @@
 						foreach ($private_kelas as $val) :
 							$ctClass++; ?>
 							<tr>
-								<th scope="row" style="width: 300px;"><a class="text-primary"><?= $val['judul_kelas']; ?></a>
+								<th scope="row" style="width: 400px;"><a class="text-primary"><?= $val['judul_kelas']; ?></a>
 								</th>
 
 
@@ -539,9 +539,9 @@
 									<?php foreach ($status as $val2) : ?>
 										<?php if ($val['status_kelas'] == $val2['id_status']) : ?>
 											<?php if ($val2['nama_status'] == "Selesai") : ?>
-												<span class="badge badge-success"><?= $val2['nama_status'] ?></span>
+												<span class="badge badge-success" style="padding: 6px;"><?= $val2['nama_status'] ?></span>
 											<?php else : ?>
-												<span class="badge badge-warning"><?= $val2['nama_status'] ?></span>
+												<span class="badge badge-danger" style="padding: 6px;"><?= $val2['nama_status'] ?></span>
 											<?php endif; ?>
 										<?php endif; ?>
 									<?php endforeach; ?>
