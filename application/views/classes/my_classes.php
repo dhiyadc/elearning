@@ -458,6 +458,70 @@
 																															<button class="btn btn-light btn-md px-3 my-0 ml-0" type="button" data-toggle="modal" data-target="#lihatMateri<?= $modalMateri ?>">Lihat Materi</button>
 																														</td>
 																													</tr>
+														<div class="modal fade" id="lihatMateri<?= $modalMateri; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="padding-right: 60px; padding-left: 17px;">
+
+															<div class="modal-dialog modal-lg" role="document">
+																<!--Content-->
+																<div class="modal-content form-elegant">
+																	<!--Header-->
+																	<div class="modal-header text-center">
+																		<h3 class="modal-title w-100 dark-grey-text font-weight-bold my-3" id="myModalLabel">
+																			<strong>Materi <?= $val['judul_kelas']; ?></strong></h3>
+																		<?php $id_kelass = $val['id_kelas']; ?>
+																		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+																			<span aria-hidden="true">&times;</span>
+																		</button>
+																	</div>
+																	<!--Body-->
+																	<div class="modal-body mx-4">
+																		<!--Body-->
+																		<div class="container-fluid">
+																			<div class="row">
+																				<div class="col-xl-6 border-bottom  mt-3" style="width: 110px;"><b>Kegiatan</b></div>
+																				<div class="col-xl-6 border-bottom  mt-3" style="width: 110px;"><b>Nama File</b></div>
+																			</div>
+																			<div class="row">
+
+
+																				<?php foreach ($seluruh_kelas as $val4) : ?>
+																					<?php if ($val4['id_kelas'] == $val['id_kelas']) : ?>
+																						<?php foreach ($kegiatan as $val2) : ?>
+																							<?php if ($val2['id_kelas'] == $val4['id_kelas']) : ?>
+																								<?php $a = 0; ?>
+
+																								<?php foreach ($materi2 as $val3) : ?>
+																									<?php if (
+																										$val2['id_kegiatan'] ==
+																										$val3['id_kegiatan']
+																									) : ?>
+
+																										<div class="col-xl-6 border-bottom pb-3 mt-3" style="width: 120px;">
+																											<?= $val2['deskripsi_kegiatan']; ?></div>
+																										<?php if ($val3['kategori_materi'] == 1) : ?>
+																											<div class="col-xl-6 border-bottom pb-3 mt-3" style="width: 120px;"><a href="<?= base_url(); ?>classes/download_materi/<?= $val3['url_materi']; ?>"><i class="fa fa-file"></i> <?= wordwrap($val3['url_materi'], 26, '<br>', true); ?></a>
+																											</div>
+
+																										<?php else : ?>
+																											<?php $a++ ?>
+																											<?php $strvid = "Video " . $a . " Kegiatan " . $val2['deskripsi_kegiatan'] . " <b>(" . $val4['judul_kelas'] . ")</b>"; ?>
+																											<div class="col-xl-6 border-bottom pb-3 mt-3" style="width: 120px;"> <a href="<?= base_url(); ?>classes/video_class/<?= $val4['id_kelas'] ?>/<?= $val2['id_kegiatan'] ?>/<?= $val3['id_materi'] ?>/<?= $a ?>"><i class="fa fa-video-camera"></i> <?= wordwrap($strvid, 26, '<br>', true); ?> </a>
+																											</div>
+																										<?php endif; ?>
+																									<?php endif; ?>
+																								<?php endforeach; ?>
+																							<?php endif ?>
+																						<?php endforeach; ?>
+																					<?php endif ?>
+																				<?php endforeach; ?>
+																			</div>
+
+																		</div>
+
+
+																	</div>
+																</div>
+															</div>
+														</div>
 													<?php endif; ?>
 												<?php endforeach; ?>
 											<?php endforeach; ?>
@@ -515,6 +579,8 @@
 									</div>
 								</div>
 							</div>
+
+
 
 <?php endforeach; ?>
 </tbody>
