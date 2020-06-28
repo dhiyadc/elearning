@@ -1462,14 +1462,33 @@
 </div>
 
 <div class="tab-pane" id="tab7" role="tabpanel" aria-expanded="false">
-	<div class="row mt-5">
-		<div class="col">
-			<div class="card card-list">
-				<div class="card-body">
-					<div class="row">
-						<div class="col">
-							<h2>Workshop Diikuti</h2>
-						</div>
+		<div class="row mt-5">
+			<div class="col">
+				<?php if ($notif2 != null) : ?>
+					<?php foreach ($notif2 as $val) : ?>
+						<?php foreach ($val as $val2) : ?>
+							<?php if ($val2['status_kegiatan'] == CLASS_STARTED) : ?>
+								<div class="alert alert-primary" role="alert">
+									<div class="row">
+										<div class="col">
+											<h4 class="alert-heading">Workshop <?= $val2['judul_workshop']; ?> Sedang Dimulai</a></h4>
+										</div>
+										<div class="text-right"><?= $val2['tanggal']; ?></div>
+									</div>
+									<p>oleh <?= $val2['nama']; ?></p>
+									<hr>
+									<a class="btn btn-outline-dark" href="<?= base_url('class/') ?><?= $val2['id_workshop'] ?>/<?= $val2['id_kegiatan']; ?>" style="padding-right: 20px; padding-left: 20px; padding-top: 12px; padding-bottom: 12px;">Ikut</a>
+								</div>
+							<?php endif; ?>
+						<?php endforeach; ?>
+					<?php endforeach; ?>
+				<?php endif; ?>
+				<div class="card card-list">
+					<div class="card-body">
+						<div class="row">
+							<div class="col">
+								<h2>Workshop Diikuti</h2>
+							</div>
 						<div class="align-self-end">
 							<form action="<?= base_url(); ?>Workshops/search_workshop_diikuti" method="post">
 								<div class="input-group mb-3">
