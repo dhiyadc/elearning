@@ -818,13 +818,13 @@
 														<div class="container my-5">
 														<ul style="list-style: outside none none;" class="nav nav-tabs" role="tablist">
 															<li class="nav-item">
-																<a class="nav-link active" data-toggle="tab" href="#tabtugas" role="tab" aria-expanded="false">Tugas</a>
+																<a class="nav-link active" data-toggle="tab" href="#tabtugas<?= $val['id_kelas'] ?>" role="tab" aria-expanded="false">Tugas</a>
 															</li>
 															<li class="nav-item">
-																<a class="nav-link" data-toggle="tab" href="#tabkuis" role="tab" aria-expanded="false">Quiz</a>
+																<a class="nav-link" data-toggle="tab" href="#tabkuis<?= $val['id_kelas'] ?>" role="tab" aria-expanded="false">Quiz</a>
 															</li>
 															<li class="nav-item">
-																<a class="nav-link" data-toggle="tab" href="#tabakhir" role="tab" aria-expanded="false">Tugas Akhir</a>
+																<a class="nav-link" data-toggle="tab" href="#tabakhir<?= $val['id_kelas'] ?>" role="tab" aria-expanded="false">Tugas Akhir</a>
 															</li>
 															
 															
@@ -833,7 +833,7 @@
 
 														<!-- Tab panes -------------- -->
 														<div class="tab-content">
-															<div class="tab-pane active" id="tabtugas" role="tabpanel" aria-expanded="true">
+															<div class="tab-pane active" id="tabtugas<?= $val['id_kelas'] ?>" role="tabpanel" aria-expanded="true">
 
 															<section class="projects no-padding-top">
 															<div class="container">
@@ -926,7 +926,7 @@
 																						<div class="time">
 																						
 																						<?php if ($cek[$l] == true) : ?>
-																							<div class="nilai">Belum Kumpul</span></div>
+																							<div class="nilai" style="color: red;"><b>Belum Kumpul</b></span></div>
 																						<?php else : ?>
 																							<?php foreach ($submit as $val6) : ?>
 																								<?php if ($val5['id_tugas'] == $val6['id_tugas'] && $val6['id_user'] == $this->session->userdata('id_user')) : ?>
@@ -949,9 +949,9 @@
 																				</div>
 																		<?php endif; ?>
 																		<?php endif; ?>
-																		<?php endforeach; ?>
-																		<?php endforeach; ?>
 																		<?php $l++; ?>
+																		<?php endforeach; ?>
+																		<?php endforeach; ?>
 
 
 																				</div>
@@ -968,7 +968,7 @@
 															</section>
 
 														</div>
-															<div class="tab-pane" id="tabkuis" role="tabpanel" aria-expanded="true">
+															<div class="tab-pane" id="tabkuis<?= $val['id_kelas'] ?>" role="tabpanel" aria-expanded="true">
 
 															<section class="projects no-padding-top">
 															<div class="container">
@@ -1065,7 +1065,7 @@
 																						<div class="time">
 																						
 																						<?php if ($cek[$l] == true) : ?>
-																							<div class="nilai">Belum Kumpul</span></div>
+																							<div class="nilai" style="color: red;"><b>Belum Kumpul</b></span></div>
 																						<?php else : ?>
 																							<?php foreach ($submit as $val6) : ?>
 																								<?php if ($val5['id_tugas'] == $val6['id_tugas'] && $val6['id_user'] == $this->session->userdata('id_user')) : ?>
@@ -1088,9 +1088,9 @@
 																				</div>
 																		<?php endif; ?>
 																		<?php endif; ?>
+																		<?php $l++;?>
 																		<?php endforeach; ?>
 																		<?php endforeach; ?>
-																		<?php $l++; ?>
 
 																				</div>
 																			<!--  -->
@@ -1107,7 +1107,7 @@
 
 														</div>
 
-															<div class="tab-pane" id="tabakhir" role="tabpanel" aria-expanded="true">
+															<div class="tab-pane" id="tabakhir<?= $val['id_kelas'] ?>" role="tabpanel" aria-expanded="true">
 
 															<section class="projects no-padding-top">
 															<div class="container">
@@ -1205,7 +1205,7 @@
 																						<div class="time">
 																						
 																						<?php if ($cek[$l] == true) : ?>
-																							<div class="nilai">Belum Kumpul</span></div>
+																							<div class="nilai" style="color: red;"><b>Belum Kumpul</b></span></div>
 																						<?php else : ?>
 																							<?php foreach ($submit as $val6) : ?>
 																								<?php if ($val5['id_tugas'] == $val6['id_tugas'] && $val6['id_user'] == $this->session->userdata('id_user')) : ?>
@@ -1228,9 +1228,9 @@
 																				</div>
 																		<?php endif; ?>
 																		<?php endif; ?>
-																		<?php endforeach; ?>
-																		<?php endforeach; ?>
 																		<?php $l++; ?>
+																		<?php endforeach; ?>
+																		<?php endforeach; ?>
 
 																				</div>
 																			<!--  -->
