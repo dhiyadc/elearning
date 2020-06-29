@@ -160,6 +160,12 @@ class Classes_model extends CI_Model
     public function getMyClasses()
     {
         $this->db->where('pembuat_kelas', $this->session->userdata('id_user'));
+        return $this->db->get('kelas')->result_array();
+    }
+
+    public function getMyPublicClasses()
+    {
+        $this->db->where('pembuat_kelas', $this->session->userdata('id_user'));
         $this->db->where('tipe_kelas', 1);
         return $this->db->get('kelas')->result_array();
     }
@@ -1092,96 +1098,5 @@ class Classes_model extends CI_Model
         $this->db->where('id_tugas', $id);
         $this->db->where('id_user', $this->session->userdata('id_user'));
         return $this->db->get('submit_assignment')->result_array();
-    }
-
-    public function getMyClassesDetail($keyword = null)
-    {
-        if ($keyword) {
-            $user = $this->session->userdata('id_user');
-            $sql = "SELECT kelas.id_kelas, kelas.status_kelas, kelas.judul_kelas, kelas.poster_kelas, kelas.deskripsi_kelas, kategori_kelas.nama_kategori, jenis_kelas.nama_jenis, harga_kelas.harga_kelas, COUNT(peserta.id_kelas) as 'peserta'
-            FROM kelas
-            LEFT JOIN kategori_kelas
-                    ON kategori_kelas.id_kategori = kelas.kategori_kelas 
-            LEFT JOIN jenis_kelas
-                    ON jenis_kelas.id_jenis = kelas.jenis_kelas
-            LEFT JOIN harga_kelas
-                    ON harga_kelas.id_kelas = kelas.id_kelas
-            LEFT JOIN peserta
-                    ON peserta.id_kelas = kelas.id_kelas
-                WHERE kelas.judul_kelas LIKE '%$keyword%' AND kelas.pembuat_kelas LIKE '$user' AND kelas.tipe_kelas = 1
-            GROUP BY kelas.id_kelas";
-            $query = $this->db->query($sql);
-            return $query->result_array();
-        } else {
-            $user = $this->session->userdata('id_user');
-            $sql = "SELECT kelas.id_kelas, kelas.status_kelas, kelas.judul_kelas, kelas.poster_kelas, kelas.deskripsi_kelas, kategori_kelas.nama_kategori, jenis_kelas.nama_jenis, harga_kelas.harga_kelas, COUNT(peserta.id_kelas) as 'peserta'
-            FROM kelas
-            LEFT JOIN kategori_kelas
-                    ON kategori_kelas.id_kategori = kelas.kategori_kelas 
-            LEFT JOIN jenis_kelas
-                    ON jenis_kelas.id_jenis = kelas.jenis_kelas
-            LEFT JOIN harga_kelas
-                    ON harga_kelas.id_kelas = kelas.id_kelas
-            LEFT JOIN peserta
-                    ON peserta.id_kelas = kelas.id_kelas
-                WHERE kelas.pembuat_kelas LIKE '$user' AND kelas.tipe_kelas = 1
-            GROUP BY kelas.id_kelas";
-            $query = $this->db->query($sql);
-            return $query->result_array();
-        }
-    }
-
-    public function getClassesByIdDetail($id, $keyword = null)
-    {
-        if ($keyword) {
-            $sql = "SELECT kelas.id_kelas, kelas.status_kelas, kelas.judul_kelas, kelas.poster_kelas, kelas.deskripsi_kelas, kategori_kelas.nama_kategori, jenis_kelas.nama_jenis, harga_kelas.harga_kelas, COUNT(peserta.id_kelas) as 'peserta'
-            FROM kelas
-            LEFT JOIN kategori_kelas
-                    ON kategori_kelas.id_kategori = kelas.kategori_kelas 
-            LEFT JOIN jenis_kelas
-                    ON jenis_kelas.id_jenis = kelas.jenis_kelas
-            LEFT JOIN harga_kelas
-                    ON harga_kelas.id_kelas = kelas.id_kelas
-            LEFT JOIN peserta
-                    ON peserta.id_kelas = kelas.id_kelas
-                WHERE kelas.judul_kelas LIKE '%$keyword%' AND kelas.id_kelas LIKE '$id'
-            GROUP BY kelas.id_kelas";
-            $query = $this->db->query($sql);
-            return $query->result_array();
-        } else {
-            $sql = "SELECT kelas.id_kelas, kelas.status_kelas, kelas.judul_kelas, kelas.poster_kelas, kelas.deskripsi_kelas, kategori_kelas.nama_kategori, jenis_kelas.nama_jenis, harga_kelas.harga_kelas, COUNT(peserta.id_kelas) as 'peserta'
-            FROM kelas
-            LEFT JOIN kategori_kelas
-                    ON kategori_kelas.id_kategori = kelas.kategori_kelas 
-            LEFT JOIN jenis_kelas
-                    ON jenis_kelas.id_jenis = kelas.jenis_kelas
-            LEFT JOIN harga_kelas
-                    ON harga_kelas.id_kelas = kelas.id_kelas
-            LEFT JOIN peserta
-                    ON peserta.id_kelas = kelas.id_kelas
-                WHERE kelas.id_kelas LIKE '$id'
-            GROUP BY kelas.id_kelas";
-            $query = $this->db->query($sql);
-            return $query->result_array();
-        }
-    }
-
-    public function getMateriByClassIdDetail($id, $keyword = null)
-    {
-        if ($keyword) {
-            $sql = "SELECT kelas.id_kelas, kelas.judul_kelas, materi.*, jadwal_kegiatan.deskripsi_kegiatan, jadwal_kegiatan.id_kegiatan
-                    FROM materi, kelas, jadwal_kegiatan
-                    WHERE kelas.id_kelas = '$id' AND materi.id_kelas = kelas.id_kelas AND materi.id_kegiatan = jadwal_kegiatan.id_kegiatan AND kelas.id_kelas = jadwal_kegiatan.id_kelas AND kelas.judul_kelas LIKE '%$keyword%'
-                    GROUP BY kelas.id_kelas";
-            $query = $this->db->query($sql);
-            return $query->result_array();
-        } else {
-            $sql = "SELECT kelas.id_kelas, kelas.judul_kelas, materi.*, jadwal_kegiatan.deskripsi_kegiatan, jadwal_kegiatan.id_kegiatan
-                    FROM materi, kelas, jadwal_kegiatan
-                    WHERE kelas.id_kelas = '$id' AND materi.id_kelas = kelas.id_kelas AND materi.id_kegiatan = jadwal_kegiatan.id_kegiatan AND kelas.id_kelas = jadwal_kegiatan.id_kelas
-                    GROUP BY kelas.id_kelas";
-            $query = $this->db->query($sql);
-            return $query->result_array();
-        }
     }
 }

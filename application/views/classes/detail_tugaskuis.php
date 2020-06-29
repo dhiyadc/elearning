@@ -136,7 +136,7 @@
                                       </div>
                                     </div>
                     <?php endif; ?>
-                    <p class="card-text mb-5"><?= $val2['deskripsi_tugas']; ?></p>
+                    <p class="card-text mb-5" style="margin-top: -25px;"><?= $val2['deskripsi_tugas']; ?></p>
                     <div class="w-100 pb-1">
                       <?php foreach ($user as $val3) : ?>
                         <footer class="blockquote-footer"><?= $val3['nama']; ?></footer>
