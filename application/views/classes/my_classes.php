@@ -474,7 +474,7 @@
 																																<!--Body-->
 																																<div class="modal-body mx-4">
 																																	<!--Body-->
-																																	<form enctype="multipart/form-data" action="<?= base_url() ?>classes/edit_kegiatan/<?= $val['id_kelas'] ?>/<?= $val5['id_kegiatan'] ?>" method="POST">
+																																	<form enctype="multipart/form-data" action="<?= base_url() ?>classes/edit_kegiatan/<?= $val['id_kelas'] ?>/<?= $val5['id_kegiatan'] ?>/akademik" method="POST">
 																																	<div class="form-group">
 																																		<label>Deskripsi Kegiatan</label>
 																																		<textarea class="form-control" name="deskripsi" required><?= $val5['deskripsi_kegiatan'] ?></textarea>
@@ -589,7 +589,7 @@
 										<!--Body-->
 										<div class="modal-body mx-4">
 											<!--Body-->
-											<form enctype="multipart/form-data" action="<?= base_url() ?>classes/set_kegiatan/<?= $val['id_kelas'] ?>" method="POST">
+											<form enctype="multipart/form-data" action="<?= base_url() ?>classes/set_kegiatan/<?= $val['id_kelas'] ?>/akademik" method="POST">
 												<div class="form-group">
 													<label>Deskripsi Kegiatan</label>
 													<textarea class="form-control" name="deskripsi" required></textarea>
