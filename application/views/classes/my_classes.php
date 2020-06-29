@@ -324,11 +324,11 @@
 									<thead>
 										<tr>
 											<th scope="col">Kelas</th>
-											<th scope="col" style="padding-left: 60px;"></th>
-											<th scope="col" style="padding-left: 40px;">Progress</th>
-											<th scope="col" style="padding-left: 60px;">Status</th>
-											<th scope="col" style="padding-left: 40px;">Tipe</th>
-											<th scope="col" style="padding-left: 50px;">Aksi</th>
+											<th scope="col" class="text-center"></th>
+											<th scope="col" class="text-center">Progress</th>
+											<th scope="col" class="text-center">Status</th>
+											<th scope="col" class="text-center">Tipe</th>
+											<th scope="col" class="text-center">Aksi</th>
 										</tr>
 									</thead>
 									<tbody id="pageSearch">
@@ -372,21 +372,21 @@
 													<?php foreach ($status as $val2) : ?>
 														<?php if ($val['status_kelas'] == $val2['id_status']) : ?>
 															<?php if ($val2['nama_status'] == "Selesai") : ?>
-																<span class="badge badge-success" style="padding: 6px;"><?= $val2['nama_status'] ?></span>
+																<span class="badge badge-success"><?= $val2['nama_status'] ?></span>
 															<?php else : ?>
-																<span class="badge badge-warning" style="padding: 6px;"><?= $val2['nama_status'] ?></span>
+																<span class="badge badge-warning"><?= $val2['nama_status'] ?></span>
 															<?php endif; ?>
 														<?php endif; ?>
 													<?php endforeach; ?>
 												</td>
 												<td style="padding-top: 20px;" class="text-center">
 													<?php if ($val['tipe_kelas'] == 1) : ?>
-														<span class="badge badge-light" style="padding: 6px;">Public</span>
+														<span class="badge badge-light">Public</span>
 													<?php else : ?>
-														<span class="badge badge-dark" style="padding: 6px;">Private</span>
+														<span class="badge badge-dark">Private</span>
 													<?php endif; ?>
 												</td>
-												<td style="padding-top: 20px;">
+												<td style="padding-top: 20px;" class="text-center">
 													<div class="buttonclass">
 														<div class="btn-group">
 															<a class="btn btn-outline-dark" href="<?= base_url() ?>classes/lihat_kegiatan/<?= $val['id_kelas'] ?>" style="padding-right: 20px; padding-left: 20px; padding-top: 12px; padding-bottom: 12px;">Detail</a>
@@ -724,7 +724,7 @@
 											<?php foreach ($status as $val3) : ?>
 												<?php if ($val['status_kelas'] == $val3['id_status']) : ?>
 													<?php if ($val3['nama_status'] == "Selesai") : ?>
-														<span class="badge badge-success" style="margin-left: 50px;"><?= $val3['nama_status'] ?></span>
+														<span class="badge badge-success"><?= $val3['nama_status'] ?></span>
 													<?php else : ?>
 														<span class="badge badge-warning"><?= $val3['nama_status'] ?></span>
 													<?php endif; ?>
