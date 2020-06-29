@@ -95,9 +95,8 @@
 					TOOLBAR_BUTTONS: [
 						'microphone', 'camera', 'closedcaptions', 'desktop', 'fullscreen',
 						'fodeviceselection', 'hangup', 'profile', 'chat', 'etherpad', 'feedback',
-						'settings', 'raisehand',  'videoquality', 'filmstrip', 'invite', 'security',
-						'tileview', 'videobackgroundblur', 'download', 'help', 'mute-everyone',
-						'e2ee', 'recording'
+						'settings', 'raisehand',  'videoquality', 'filmstrip','tileview', 
+						'videobackgroundblur', 'download', 'help', 'mute-everyone', 'e2ee', 'recording'
 					],
 				}
 			}
