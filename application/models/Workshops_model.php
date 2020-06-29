@@ -9,7 +9,6 @@ class workshops_model extends CI_Model
     public function getMyClasses()
     {
         $this->db->where('pembuat_workshop',$this->session->userdata('id_user'));
-        $this->db->where('tipe_workshop', 1);
         return $this->db->get('workshop')->result_array();
     }
 
