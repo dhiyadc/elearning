@@ -479,9 +479,17 @@
 																																	<label>Deskripsi Kegiatan</label>
 																																	<textarea class="form-control" name="deskripsi" required><?= $val5['deskripsi_kegiatan'] ?></textarea>
 																																</div>
-																																<div class="form-group">
-																																	<label for="materiForm">Video (Opsional)</label>
-																																	<div id="kegiatan_field">
+																																<!--Body-->
+																																<div class="modal-body mx-4">
+																																	<!--Body-->
+																																	<form enctype="multipart/form-data" action="<?= base_url() ?>classes/edit_kegiatan/<?= $val['id_kelas'] ?>/<?= $val5['id_kegiatan'] ?>/akademik" method="POST">
+																																	<div class="form-group">
+																																		<label>Deskripsi Kegiatan</label>
+																																		<textarea class="form-control" name="deskripsi" required><?= $val5['deskripsi_kegiatan'] ?></textarea>
+																																	</div>
+																																	<div class="form-group">
+																																		<label for="materiForm">Video (Opsional)</label>
+																																		<div id="kegiatan_field">
 																																		<textarea class="form-control" name="video" placeholder="Tambahkan link Youtube Embed. Jika Banyak, pisahkan dengan koma ( , )" style="margin-bottom: 5px;"></textarea>
 																																	</div>
 																																</div>
@@ -594,20 +602,33 @@
 
 
 
-					<!--Body-->
-					<div class="modal-body mx-4">
-						<!--Body-->
-						<form enctype="multipart/form-data" action="<?= base_url() ?>classes/set_kegiatan/<?= $val['id_kelas'] ?>" method="POST">
-							<div class="form-group">
-								<label>Deskripsi Kegiatan</label>
-								<textarea class="form-control" name="deskripsi" required></textarea>
-							</div>
-							<div class="form-group">
-								<label>Jadwal Kegiatan</label>
-								<div class="input-group date form_datetime " data-date-format="yyyy/mm/dd hh:ii" data-link-field="dtp_input1">
-									<input class="form-control" id="inputdatetimepicker" size="16" type="text" name="tanggal" readonly required>
-									<span class="input-group-addon" style="width:40px;"><span class="glyphicon glyphicon-remove"></span></span>
-									<span class="input-group-addon" style="width:40px;"><span class="glyphicon glyphicon-th"></span></span>
+										<!--Body-->
+										<div class="modal-body mx-4">
+											<!--Body-->
+											<form enctype="multipart/form-data" action="<?= base_url() ?>classes/set_kegiatan/<?= $val['id_kelas'] ?>/akademik" method="POST">
+												<div class="form-group">
+													<label>Deskripsi Kegiatan</label>
+													<textarea class="form-control" name="deskripsi" required></textarea>
+												</div>
+												<div class="form-group">
+													<label>Jadwal Kegiatan</label>
+													<div class="input-group date form_datetime " data-date-format="yyyy/mm/dd hh:ii" data-link-field="dtp_input1">
+														<input class="form-control" id="inputdatetimepicker" size="16" type="text" name="tanggal" readonly required>
+														<span class="input-group-addon" style="width:40px;"><span class="glyphicon glyphicon-remove"></span></span>
+														<span class="input-group-addon" style="width:40px;"><span class="glyphicon glyphicon-th"></span></span>
+													</div>
+												</div>
+												<input type="hidden" id="dtp_input1" />
+												<div class="form-group">
+													<label for="materiForm">Materi (Opsional)</label>
+													<input type="file" name="materi[]" accept=".doc, .docx, .ppt, .pptx, .pdf" class="form-control-file" id="materiForm" multiple>
+												</div>
+												<div class="text-center mb-3">
+													<button type="submit" class="btn btn-light blue-gradient btn-block btn-rounded z-depth-1a">Simpan</button>
+												</div>
+											</form>
+										</div>
+									</div>
 								</div>
 							</div>
 							<input type="hidden" id="dtp_input1" />
@@ -1182,14 +1203,31 @@
 													<?php if ($val['id_kelas'] == $val5['id_kelas']) : ?>
 														<div class="modal fade" id="detailTugas<?= $val5['id_tugas']; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="padding-right: 90px;">
 															<div class="modal-dialog modal-dialog-scrollable" role="document">
-																<!--Content-->
-																<div class="modal-content form-elegant">
-																	<!--Header-->
-																	<div class="modal-header text-center">
-																		<h3 class="modal-title w-100 dark-grey-text font-weight-bold my-3" id="myModalLabel"><strong>Kumpul Jawaban</strong></h3>
-																		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-																			<span aria-hidden="true">&times;</span>
-																		</button>
+															<!--Content-->
+															<div class="modal-content form-elegant">
+																<!--Header-->
+																<div class="modal-header text-center">
+																<h3 class="modal-title w-100 dark-grey-text font-weight-bold my-3" id="myModalLabel"><strong>Kumpul Jawaban</strong></h3>
+																<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+																	<span aria-hidden="true">&times;</span>
+																</button>
+																</div>
+																<!--Body-->
+																<div class="modal-body mx-4">
+																<!--Body-->
+																<?php if ($this->session->flashdata('failedInputFile')) : ?>
+																	<div class="alert alert-danger"> <?= $this->session->flashdata('failedInputFile') ?> </div>
+																<?php endif; ?>
+																<!-- <p><strong><b>Kumpul Tugas Anda</b></strong></p> -->
+																<?php if ($cek[$l] == true) : ?>
+																<form enctype="multipart/form-data" action="<?= base_url() ?>classes/collect_assignment/<?= $val['id_kelas'] ?>/<?= $val5['id_tugas'] ?>/akademik" method="POST">
+																	<div class="form-group">
+																	<label>Subjek</label>
+																		<input type="text" class="form-control" name="subjek" required>
+																	</div>
+																	<div class="form-group">
+																	<label>File (hanya pdf/doc/docx)</label>
+																		<input type="file" class="form-control" name="assignment" accept=".pdf, .doc, .docx" required>
 																	</div>
 																	<!--Body-->
 																	<div class="modal-body mx-4">
@@ -1224,6 +1262,18 @@
 																			<?php endforeach; ?>
 																		<?php endif; ?>
 																	</div>
+																</form>
+																<?php else : ?>
+																	<?php foreach ($submit as $val6) : ?>
+																	<?php if ($val5['id_tugas'] == $val6['id_tugas'] && $val6['id_user'] == $this->session->userdata('id_user')) : ?>
+																		<p>Jawaban</p> 
+																		<p><a href="<?= base_url() ?>classes/download_assignment/<?= $val6['url_file']; ?>"><?= $val6['url_file']; ?></a></p>
+																		<div class="text-center mb-3">
+																			<a href="<?= base_url() ?>classes/hapus_jawaban/<?= $val['id_kelas']; ?>/<?= $val5['id_tugas']; ?>/<?= $val6['id_submit']; ?>/akademik" class="btn btn-danger blue-gradient btn-block btn-rounded z-depth-1a">Hapus Jawaban</a>
+																		</div>
+																	<?php endif; ?>
+																	<?php endforeach; ?>
+																<?php endif; ?>
 																</div>
 															</div>
 														</div>
