@@ -954,7 +954,7 @@
 																			<?php $l = 0; ?>
 																			<?php foreach ($val4 as $val5) : ?>
 																				<?php if ($val['id_kelas'] == $val5['id_kelas']) : ?>
-																					<?php if ($val5['kategori_tugas'] == 1) : ?>
+																					<?php if ($val5['kategori_tugas'] == 2) : ?>
 																					<div class="project" style=" width:850px;">
 																						<div class="row bg-white has-shadow">
 																							<div class="left-col col-lg-5 d-flex align-items-center justify-content-between">
@@ -1083,7 +1083,7 @@
 																				<?php $l = 0; ?>
 																				<?php foreach ($val4 as $val5) : ?>
 																					<?php if ($val['id_kelas'] == $val5['id_kelas']) : ?>
-																						<?php if ($val5['kategori_tugas'] == 1) : ?>
+																						<?php if ($val5['kategori_tugas'] == 3) : ?>
 																						<div class="project" style=" width:850px;">
 																							<div class="row bg-white has-shadow">
 																								<div class="left-col col-lg-5 d-flex align-items-center justify-content-between">
