@@ -98,8 +98,8 @@
                     <!-- see password -->
                     <script>
                     function myFunction() {
-                    var x = document.getElementById("myPass");
-                    var y = document.getElementById("myPassConfirm");
+                    var x = document.getElementById("password");
+                    var y = document.getElementById("password2");
                     if (x.type === "password"){
                         x.type = "text";
                         y.type = "text";
