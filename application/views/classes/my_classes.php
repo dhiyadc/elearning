@@ -338,7 +338,7 @@
 
 											<?php $ctClass++; ?>
 											<tr>
-												<th scope="row" style="width: 300px; padding-top: 23px;"><a class="text-primary"><?= $val['judul_kelas']; ?></a>
+												<th class="kelasSearch" scope="row" style="width: 300px; padding-top: 23px;"><a class="text-primary"><?= $val['judul_kelas']; ?></a>
 													<div id="accordion" role="tablist">
 
 													</div>
@@ -502,10 +502,10 @@
 																														</div>
 																															<?php endif; ?>
 																														<td>
-																															<button class="btn btn-light btn-md px-3 my-0 ml-0" type="button" data-toggle="modal" data-target="#lihatMateri<?= $modalMateri ?>">Lihat Materi</button>
+																															<button class="btn btn-light btn-md px-3 my-0 ml-0" type="button" data-toggle="modal" data-target="#lihatMateri<?= $val5['id_kegiatan']; ?>">Lihat Materi</button>
 																														</td>
 																													</tr>
-														<div class="modal fade" id="lihatMateri<?= $modalMateri; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="padding-right: 60px; padding-left: 17px;">
+														<div class="modal fade" id="lihatMateri<?= $val5['id_kegiatan']; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="padding-right: 60px; padding-left: 17px;">
 
 															<div class="modal-dialog modal-lg" role="document">
 																<!--Content-->
@@ -530,36 +530,26 @@
 																			<div class="row">
 
 
-																				<?php foreach ($seluruh_kelas as $val4) : ?>
-																					<?php if ($val4['id_kelas'] == $val['id_kelas']) : ?>
-																						<?php foreach ($kegiatan as $val2) : ?>
-																							<?php if ($val2['id_kelas'] == $val4['id_kelas']) : ?>
+																				
 																								<?php $a = 0; ?>
 
 																								<?php foreach ($materi2 as $val3) : ?>
-																									<?php if (
-																										$val2['id_kegiatan'] ==
-																										$val3['id_kegiatan']
-																									) : ?>
+																									<?php if ( $val5['id_kegiatan'] == $val3['id_kegiatan']) : ?>
 
 																										<div class="col-xl-6 border-bottom pb-3 mt-3" style="width: 120px;">
-																											<?= $val2['deskripsi_kegiatan']; ?></div>
+																											<?= $val5['deskripsi_kegiatan']; ?></div>
 																										<?php if ($val3['kategori_materi'] == 1) : ?>
 																											<div class="col-xl-6 border-bottom pb-3 mt-3" style="width: 120px;"><a href="<?= base_url(); ?>classes/download_materi/<?= $val3['url_materi']; ?>"><i class="fa fa-file"></i> <?= wordwrap($val3['url_materi'], 26, '<br>', true); ?></a>
 																											</div>
 
 																										<?php else : ?>
 																											<?php $a++ ?>
-																											<?php $strvid = "Video " . $a . " Kegiatan " . $val2['deskripsi_kegiatan'] . " <b>(" . $val4['judul_kelas'] . ")</b>"; ?>
-																											<div class="col-xl-6 border-bottom pb-3 mt-3" style="width: 120px;"> <a href="<?= base_url(); ?>classes/video_class/<?= $val4['id_kelas'] ?>/<?= $val2['id_kegiatan'] ?>/<?= $val3['id_materi'] ?>/<?= $a ?>"><i class="fa fa-video-camera"></i> <?= wordwrap($strvid, 26, '<br>', true); ?> </a>
+																											<?php $strvid = "Video " . $a . " Kegiatan " . $val5['deskripsi_kegiatan'] . " <b>(" . $val['judul_kelas'] . ")</b>"; ?>
+																											<div class="col-xl-6 border-bottom pb-3 mt-3" style="width: 120px;"> <a href="<?= base_url(); ?>classes/video_class/<?= $val['id_kelas'] ?>/<?= $val2['id_kegiatan'] ?>/<?= $val3['id_materi'] ?>/<?= $a ?>"><i class="fa fa-video-camera"></i> <?= wordwrap($strvid, 26, '<br>', true); ?> </a>
 																											</div>
 																										<?php endif; ?>
 																									<?php endif; ?>
 																								<?php endforeach; ?>
-																							<?php endif ?>
-																						<?php endforeach; ?>
-																					<?php endif ?>
-																				<?php endforeach; ?>
 																			</div>
 
 																		</div>
@@ -2591,45 +2581,6 @@ clipboard.on('success', function(e) {
 		});
 	});
 </script>
-<!-- <script>
-
-	$("#searchTable").on("keyup", function() {
-      var value = $(this).val().toLowerCase();
-      $("#pageSearch tr").filter(function() {
-        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
-	  });
-    });
-  
-    $("#searchTable2").on("keyup", function() {
-      var value = $(this).val().toLowerCase();
-      $("#pageSearch2 tr").filter(function() {
-        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-      });
-    });
-  
-    $("#searchTable3").on("keyup", function() {
-      var value = $(this).val().toLowerCase();
-      $("#pageSearch3 tr").filter(function() {
-        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-      });
-    });
-  
-    $("#searchTable4").on("keyup", function() {
-      var value = $(this).val().toLowerCase();
-      $("#pageSearch4 tr").filter(function() {
-        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-      });
-    });
-  
-    $("#searchTable5").on("keyup", function() {
-      var value = $(this).val().toLowerCase();
-      $("#pageSearch5 tr").filter(function() {
-        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-      });
-    });
-                        
-
-</script> -->
 
 <script type="text/javascript">
 	$('.form_datetime').datetimepicker({
