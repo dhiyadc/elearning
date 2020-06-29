@@ -345,7 +345,7 @@
 
 												</th>
 												<td style="padding-top: 20px; padding-top: 23px;">
-													<span><small><small><a id="btnCopy" href="" data-toggle="tooltip" data-original-title="Click to copy" data-clipboard-text="<?= base_url(); ?>classes/open_class/<?= $val['id_kelas'] ?>">Copy Link</a></small></small></span>
+													<span><small><small><a id="btnCopy" href="" onclick="return false" data-toggle="tooltip" data-original-title="Click to copy" data-clipboard-text="<?= base_url(); ?>classes/open_class/<?= $val['id_kelas'] ?>">Copy Link</a></small></small></span>
 												</td>
 
 												<td style="padding-top: 23px;">
@@ -505,6 +505,70 @@
 																															<button class="btn btn-light btn-md px-3 my-0 ml-0" type="button" data-toggle="modal" data-target="#lihatMateri<?= $modalMateri ?>">Lihat Materi</button>
 																														</td>
 																													</tr>
+														<div class="modal fade" id="lihatMateri<?= $modalMateri; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="padding-right: 60px; padding-left: 17px;">
+
+															<div class="modal-dialog modal-lg" role="document">
+																<!--Content-->
+																<div class="modal-content form-elegant">
+																	<!--Header-->
+																	<div class="modal-header text-center">
+																		<h3 class="modal-title w-100 dark-grey-text font-weight-bold my-3" id="myModalLabel">
+																			<strong>Materi <?= $val['judul_kelas']; ?></strong></h3>
+																		<?php $id_kelass = $val['id_kelas']; ?>
+																		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+																			<span aria-hidden="true">&times;</span>
+																		</button>
+																	</div>
+																	<!--Body-->
+																	<div class="modal-body mx-4">
+																		<!--Body-->
+																		<div class="container-fluid">
+																			<div class="row">
+																				<div class="col-xl-6 border-bottom  mt-3" style="width: 110px;"><b>Kegiatan</b></div>
+																				<div class="col-xl-6 border-bottom  mt-3" style="width: 110px;"><b>Nama File</b></div>
+																			</div>
+																			<div class="row">
+
+
+																				<?php foreach ($seluruh_kelas as $val4) : ?>
+																					<?php if ($val4['id_kelas'] == $val['id_kelas']) : ?>
+																						<?php foreach ($kegiatan as $val2) : ?>
+																							<?php if ($val2['id_kelas'] == $val4['id_kelas']) : ?>
+																								<?php $a = 0; ?>
+
+																								<?php foreach ($materi2 as $val3) : ?>
+																									<?php if (
+																										$val2['id_kegiatan'] ==
+																										$val3['id_kegiatan']
+																									) : ?>
+
+																										<div class="col-xl-6 border-bottom pb-3 mt-3" style="width: 120px;">
+																											<?= $val2['deskripsi_kegiatan']; ?></div>
+																										<?php if ($val3['kategori_materi'] == 1) : ?>
+																											<div class="col-xl-6 border-bottom pb-3 mt-3" style="width: 120px;"><a href="<?= base_url(); ?>classes/download_materi/<?= $val3['url_materi']; ?>"><i class="fa fa-file"></i> <?= wordwrap($val3['url_materi'], 26, '<br>', true); ?></a>
+																											</div>
+
+																										<?php else : ?>
+																											<?php $a++ ?>
+																											<?php $strvid = "Video " . $a . " Kegiatan " . $val2['deskripsi_kegiatan'] . " <b>(" . $val4['judul_kelas'] . ")</b>"; ?>
+																											<div class="col-xl-6 border-bottom pb-3 mt-3" style="width: 120px;"> <a href="<?= base_url(); ?>classes/video_class/<?= $val4['id_kelas'] ?>/<?= $val2['id_kegiatan'] ?>/<?= $val3['id_materi'] ?>/<?= $a ?>"><i class="fa fa-video-camera"></i> <?= wordwrap($strvid, 26, '<br>', true); ?> </a>
+																											</div>
+																										<?php endif; ?>
+																									<?php endif; ?>
+																								<?php endforeach; ?>
+																							<?php endif ?>
+																						<?php endforeach; ?>
+																					<?php endif ?>
+																				<?php endforeach; ?>
+																			</div>
+
+																		</div>
+
+
+																	</div>
+																</div>
+															</div>
+														</div>
 													<?php endif; ?>
 												<?php endforeach; ?>
 											<?php endforeach; ?>
@@ -519,6 +583,51 @@
 		</div>
 	</td>
 	</tr>
+	<div class="modal fade" id="tambahKegiatan<?= $ctClass ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="padding-right: 90px;">
+								<div class="modal-dialog" role="document">
+									<!--Content-->
+									<div class="modal-content form-elegant">
+										<!--Header-->
+										<div class="modal-header text-center">
+											<h3 class="modal-title w-100 dark-grey-text font-weight-bold my-3" id="myModalLabel"><strong>Kelas <?= $val['judul_kelas']; ?></strong></h3>
+											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+												<span aria-hidden="true">&times;</span>
+											</button>
+										</div>
+
+
+
+										<!--Body-->
+										<div class="modal-body mx-4">
+											<!--Body-->
+											<form enctype="multipart/form-data" action="<?= base_url() ?>classes/set_kegiatan/<?= $val['id_kelas'] ?>" method="POST">
+												<div class="form-group">
+													<label>Deskripsi Kegiatan</label>
+													<textarea class="form-control" name="deskripsi" required></textarea>
+												</div>
+												<div class="form-group">
+													<label>Jadwal Kegiatan</label>
+													<div class="input-group date form_datetime " data-date-format="yyyy/mm/dd hh:ii" data-link-field="dtp_input1">
+														<input class="form-control" id="inputdatetimepicker" size="16" type="text" name="tanggal" readonly required>
+														<span class="input-group-addon" style="width:40px;"><span class="glyphicon glyphicon-remove"></span></span>
+														<span class="input-group-addon" style="width:40px;"><span class="glyphicon glyphicon-th"></span></span>
+													</div>
+												</div>
+												<input type="hidden" id="dtp_input1" />
+												<div class="form-group">
+													<label for="materiForm">Materi (Opsional)</label>
+													<input type="file" name="materi[]" accept=".doc, .docx, .ppt, .pptx, .pdf" class="form-control-file" id="materiForm" multiple>
+												</div>
+												<div class="text-center mb-3">
+													<button type="submit" class="btn btn-light blue-gradient btn-block btn-rounded z-depth-1a">Simpan</button>
+												</div>
+											</form>
+										</div>
+									</div>
+								</div>
+							</div>
+
+
 
 <?php endforeach; ?>
 </tbody>
@@ -574,7 +683,7 @@
 						foreach ($private_kelas as $val) :
 							$ctClass++; ?>
 							<tr>
-								<th scope="row" style="width: 300px;"><a class="text-primary"><?= $val['judul_kelas']; ?></a>
+								<th scope="row" style="width: 400px;"><a class="text-primary"><?= $val['judul_kelas']; ?></a>
 								</th>
 								
 								<td style="padding-top: 20px; padding-top: 23px;">
@@ -607,16 +716,16 @@
 									<?php foreach ($status as $val2) : ?>
 										<?php if ($val['status_kelas'] == $val2['id_status']) : ?>
 											<?php if ($val2['nama_status'] == "Selesai") : ?>
-												<span class="badge badge-success"><?= $val2['nama_status'] ?></span>
+												<span class="badge badge-success" style="padding: 6px;"><?= $val2['nama_status'] ?></span>
 											<?php else : ?>
-												<span class="badge badge-warning"><?= $val2['nama_status'] ?></span>
+												<span class="badge badge-danger" style="padding: 6px;"><?= $val2['nama_status'] ?></span>
 											<?php endif; ?>
 										<?php endif; ?>
 									<?php endforeach; ?>
 								</td>
 								<td style="padding-top: 20px;">
 									<div class="buttonclass">
-										<div class="btn-group">
+										<div class="btn-group" style="margin-top: -10px;">
 											<a class="btn btn-outline-dark" href="<?= base_url() ?>classes/open_class/<?= $val['id_kelas'] ?>" style="padding-right: 20px; padding-left: 20px; padding-top: 12px; padding-bottom: 12px;">Detail</a>
 											<button type="button" style="padding-right: 20px; padding-left: 20px; padding-top: 12px; padding-bottom: 12px;" class="btn btn-outline-dark dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 												<span class="sr-only">Toggle Dropdown</span>
@@ -624,7 +733,7 @@
 											<div class="dropdown-menu">
 												<a class="btn btn-light btn-md px-3 my-0 ml-0" type="button" data-toggle="modal" data-target="#tambahKegiatan<?= $ctClass ?>">>Tambah
 													Kegiatan</a>
-												<a class="dropdown-item btn" href="<?= base_url() ?>classes/lihat_kegiatan/<?= $val['id_kelas'] ?>">Lihat
+												<a class="dropdown-item btn" data-toggle="collapse" data-target="#collapseOne<?= $val['id_kelas'] ?>" aria-expanded="true" aria-controls="collapseOne">Lihat
 													Kegiatan</a>
 												<a class="dropdown-item btn" href="<?= base_url() ?>classes/list_tugas/<?= $val['id_kelas'] ?>">List
 													Tugas</a>
@@ -635,6 +744,77 @@
 									</div>
 								</td>
 							</tr>
+
+							<!--  -->
+							<tr class="p">
+				            			<td colspan="6" class="hiddenRow">
+										<div id="collapseOne<?= $val['id_kelas'] ?>" class="collapse" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordionExample">
+													<div class="card-body" style="margin-top: -20px;">
+														<!--  -->
+																							<div class="row">
+																								<div class="col">
+																									<div class="card card-list">
+																										<div class="card-body">
+																											<h2>Jadwal Kegiatan Kelas</h2>
+																										</div>
+
+																										<div class="card-body">
+																											<table class="table">
+																												<thead>
+																													<tr>
+																														<th scope="col">Deskripsi</th>
+																														<th scope="col">Hari/Tanggal</th>
+																														<th scope="col">Waktu</th>
+																														<th scope="col" style="text-align: center;">Status</th>
+																														<th scope="col" style="text-align: center ;">Aksi</th>
+																														<th scope="col">Materi</th>
+																													</tr>
+																												</thead>
+																												<tbody>
+                    																								<?php $modalMateri = 0; ?>	
+																													<?php foreach ($kegiatan_saya as $val4) : ?>
+																													<?php foreach ($val4 as $val5) : ?>
+																													<?php if ($val['id_kelas'] == $val5['id_kelas']) : ?>
+																													<tr>
+																														<td style="padding-top: 23px;"><?= $val5['deskripsi_kegiatan']; ?></td>
+																														<td style="padding-top: 23px;"><?= $val5['tanggal']; ?></td>
+																														<td style="padding-top: 23px;"><?= $val5['waktu']; ?></td>
+
+																														<td style="text-align: center ; padding-top: 20px;">
+																														<?php if ($val5['status_kegiatan'] == 1) : ?>
+																															<span class="badge badge-warning" style="padding: 6px;">Sedang Berlangsung</span>
+																														<?php elseif ($val5['status_kegiatan'] == 2) : ?>
+																															<span class="badge badge-success" style="padding: 6px;">Selesai</span>
+																														<?php else : ?>
+																															<span class="badge badge-danger" style="padding: 6px;">Belum Mulai</span>
+																														<?php endif; ?>
+																														</td>
+
+																														<td>
+                          																									<?php if ($val5['status_kegiatan'] != CLASS_FINISHED) : ?>
+																															<div class="btn-group" role="group" aria-label="Basic example">
+																																<a class="dropdown-item btn" class="btn btn-secondary" href="" data-toggle="modal" data-target="#editKegiatan<?= $val5['id_kegiatan']; ?>">Edit</a>
+																																<a class="dropdown-item btn" class="btn btn-secondary" href="<?= base_url('class/') ?><?= $val['id_kelas'] ?>/<?= $val5['id_kegiatan']; ?>">Mulai</a>
+																															</div>
+																															<?php endif; ?>
+																														<td>
+																															<button class="btn btn-light btn-md px-3 my-0 ml-0" type="button" data-toggle="modal" data-target="#lihatMateri<?= $modalMateri ?>">Lihat Materi</button>
+																														</td>
+																													</tr>
+													<?php endif; ?>
+												<?php endforeach; ?>
+											<?php endforeach; ?>
+										<?php $modalMateri++; ?>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</td>
+	</tr>
 
 
 							<div class="modal fade" id="tambahKegiatan<?= $ctClass ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="padding-right: 90px;">
