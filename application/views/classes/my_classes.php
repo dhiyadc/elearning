@@ -843,8 +843,8 @@
 																										<div class="card  h-100 border-light ">
 																											<div class="card-body d-flex-row" style="width: 900px;">
 																												<div class="row mb-0" style="padding: 0px;">
+																													<?php $l = 0; ?>
 																													<?php foreach ($tugas as $val4) : ?>
-																														<?php $l = 0; ?>
 																														<?php foreach ($val4 as $val5) : ?>
 																															<?php if ($val['id_kelas'] == $val5['id_kelas']) : ?>
 																																<?php if ($val5['kategori_tugas'] == 1) : ?>
@@ -883,7 +883,9 @@
 																																									<div class="time">
 																																										<div class="row mt-0">
 																																											<div class="col-sm-4">
-																																												<a href="" data-toggle="modal" data-target="#detailTugas<?= $val5['id_tugas']; ?>">Serahkan Jawaban</a>
+																																												<?php if ($val6['nilai_tugas'] == "Belum Dinilai") : ?>
+																																													<a href="" data-toggle="modal" data-target="#detailTugas<?= $val5['id_tugas']; ?>">Serahkan Jawaban</a>
+																																												<?php endif; ?>
 																																											</div>
 																																										</div>
 																																									</div>
@@ -972,8 +974,8 @@
 																										<div class="card  h-100 border-light ">
 																											<div class="card-body d-flex-row" style="width: 900px;">
 																												<div class="row mb-0" style="padding: 0px;">
+																													<?php $l = 0; ?>
 																													<?php foreach ($tugas as $val4) : ?>
-																														<?php $l = 0; ?>
 																														<?php foreach ($val4 as $val5) : ?>
 																															<?php if ($val['id_kelas'] == $val5['id_kelas']) : ?>
 																																<?php if ($val5['kategori_tugas'] == 2) : ?>
@@ -1012,7 +1014,9 @@
 																																									<div class="time">
 																																										<div class="row mt-0">
 																																											<div class="col-sm-4">
-																																												<a href="" data-toggle="modal" data-target="#detailTugas<?= $val5['id_tugas']; ?>">Serahkan Jawaban</a>
+																																												<?php if ($val6['nilai_tugas'] == "Belum Dinilai") : ?>
+																																													<a href="" data-toggle="modal" data-target="#detailTugas<?= $val5['id_tugas']; ?>">Serahkan Jawaban</a>
+																																												<?php endif; ?>
 																																											</div>
 																																										</div>
 																																									</div>
@@ -1101,8 +1105,8 @@
 																										<div class="card  h-100 border-light ">
 																											<div class="card-body d-flex-row" style="width: 900px;">
 																												<div class="row mb-0" style="padding: 0px;">
+																													<?php $l = 0; ?>
 																													<?php foreach ($tugas as $val4) : ?>
-																														<?php $l = 0; ?>
 																														<?php foreach ($val4 as $val5) : ?>
 																															<?php if ($val['id_kelas'] == $val5['id_kelas']) : ?>
 																																<?php if ($val5['kategori_tugas'] == 3) : ?>
@@ -1140,9 +1144,9 @@
 																																								<span class="hidden-sm-down">
 																																									<div class="time">
 																																										<div class="row mt-0">
-																																											<div class="col-sm-4">
+																																											<?php if ($val6['nilai_tugas'] == "Belum Dinilai") : ?>
 																																												<a href="" data-toggle="modal" data-target="#detailTugas<?= $val5['id_tugas']; ?>">Serahkan Jawaban</a>
-																																											</div>
+																																											<?php endif; ?>
 																																										</div>
 																																									</div>
 																																								</span>
