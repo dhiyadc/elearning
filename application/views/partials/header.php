@@ -4,7 +4,9 @@
     
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="icon" href="<?php echo base_url(); ?>assets/images/favicon.png">
+    <meta name="author" content="Classico">
+  <meta name="description" content="Pengalaman Adalah Ilmu Terbaik yang semua orang cari ayo kembangkan skill anda di Classico.">
+    <link rel="icon" href="<?php echo base_url(); ?>assets/images/logo.png">
 	  <title>Classico</title>
     
     <link href="https://fonts.googleapis.com/css?family=Muli:300,400,700,900" rel="stylesheet">

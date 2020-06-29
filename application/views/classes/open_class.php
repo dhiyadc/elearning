@@ -139,9 +139,19 @@ $this->session->set_userdata('workshop', null);
                           <?php endif; ?>
                         <?php endif; ?>
                       <?php else : ?>
-                        <div class="alert alert-danger" role="alert">
-                          <center><?= $this->session->flashdata('batasPeserta') ?></center>
-                        </div>
+                        <?php if ($cek == true) : ?>
+                          <div class="alert alert-danger" role="alert">
+                            <center><?= $this->session->flashdata('batasPeserta') ?></center>
+                          </div>
+                        <?php elseif ($peserta != null) : ?>
+                          <div class="alert alert-dark" role="alert">
+                            <center><?= $this->session->flashdata('buttonJoin') ?></center>
+                          </div>
+                        <?php elseif ($cek == false) : ?>
+                          <div class="alert alert-danger" role="alert">
+                            <center><?= $this->session->flashdata('batasPeserta') ?></center>
+                          </div>
+                        <?php endif; ?>
                       <?php endif; ?>
                     <?php endif; ?>
                   <?php else : ?>
