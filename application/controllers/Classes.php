@@ -569,7 +569,7 @@ class Classes extends CI_Controller
             $data['kegiatan_diikuti'] = $datakegiatandiikuti;
             $header['notif'] = $datanotif;
 
-            foreach ($data['kelas'] as $value) {
+            foreach ($data['kelas'] as $value) { 
                 $kegiatansaya = $this->Classes_model->getKegiatan($value['id_kelas']);
                 
                 if ($kegiatansaya != null) {
