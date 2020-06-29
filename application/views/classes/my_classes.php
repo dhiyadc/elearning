@@ -411,7 +411,7 @@
 											</tr>
 
 										<tr class="p">
-				            			<td colspan="6" class="hiddenRow">
+				            			<td colspan="6" class="hiddenRow" style="border-top: 0px; padding: 0px;">
 										<div id="collapseOne<?= $val['id_kelas'] ?>" class="collapse" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordionExample">
 													<div class="card-body" style="margin-top: -20px;">
 														<!--  -->
