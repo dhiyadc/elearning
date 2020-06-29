@@ -931,7 +931,7 @@ class Classes extends CI_Controller
         redirect('classes/list_tugas/' . $id_kelas);
     }
 
-    public function collect_assignment($id_kelas, $id_tugas)
+    public function collect_assignment($id_kelas, $id_tugas, $redirect = null)
     {
         $userId = $this->session->userdata('id_user');
         $isUserLoggedIn = $this->session->userdata('logged_in') && $userId;
@@ -943,6 +943,10 @@ class Classes extends CI_Controller
         $status = $this->Classes_model->collectAssignment($id_tugas, $deadline["batas_pengiriman_tugas"]);
         if ($status == "failed") {
             $this->session->set_flashdata('failedInputFile', 'Kapasitas file yang Anda input melebihi 25 MB');
+        }
+
+        if($redirect == "akademik"){
+            redirect('classes/my_classes');
         }
         redirect('classes/detail_tugaskuis/' . $id_kelas . '/' . $id_tugas);
     }
@@ -956,9 +960,13 @@ class Classes extends CI_Controller
         }
     }
 
-    public function hapus_jawaban($id_kelas, $id_tugas, $id_submit)
+    public function hapus_jawaban($id_kelas, $id_tugas, $id_submit, $redirect = null)
     {
         $this->Classes_model->deleteJawaban($id_submit);
+
+        if($redirect == "akademik"){
+            redirect('classes/my_classes');
+        }
         redirect('classes/detail_tugaskuis/' . $id_kelas . '/' . $id_tugas);
     }
 

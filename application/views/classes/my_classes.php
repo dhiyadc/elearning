@@ -1199,7 +1199,7 @@
 																<?php endif; ?>
 																<!-- <p><strong><b>Kumpul Tugas Anda</b></strong></p> -->
 																<?php if ($cek[$l] == true) : ?>
-																<form enctype="multipart/form-data" action="<?= base_url() ?>classes/collect_assignment/<?= $val['id_kelas'] ?>/<?= $val5['id_tugas'] ?>" method="POST">
+																<form enctype="multipart/form-data" action="<?= base_url() ?>classes/collect_assignment/<?= $val['id_kelas'] ?>/<?= $val5['id_tugas'] ?>/akademik" method="POST">
 																	<div class="form-group">
 																	<label>Subjek</label>
 																		<input type="text" class="form-control" name="subjek" required>
@@ -1218,7 +1218,7 @@
 																		<p>Jawaban</p> 
 																		<p><a href="<?= base_url() ?>classes/download_assignment/<?= $val6['url_file']; ?>"><?= $val6['url_file']; ?></a></p>
 																		<div class="text-center mb-3">
-																			<a href="<?= base_url() ?>classes/hapus_jawaban/<?= $val['id_kelas']; ?>/<?= $val5['id_tugas']; ?>/<?= $val6['id_submit']; ?>" class="btn btn-danger blue-gradient btn-block btn-rounded z-depth-1a">Hapus Jawaban</a>
+																			<a href="<?= base_url() ?>classes/hapus_jawaban/<?= $val['id_kelas']; ?>/<?= $val5['id_tugas']; ?>/<?= $val6['id_submit']; ?>/akademik" class="btn btn-danger blue-gradient btn-block btn-rounded z-depth-1a">Hapus Jawaban</a>
 																		</div>
 																	<?php endif; ?>
 																	<?php endforeach; ?>
