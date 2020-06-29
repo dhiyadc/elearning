@@ -120,7 +120,7 @@ public function read_user_information($email) {
     if ($query->num_rows() == 1) {
         return $query->result();
     } else {
-        return false;
+        return "fail";
     }
 }
 
