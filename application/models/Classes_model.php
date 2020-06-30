@@ -163,13 +163,6 @@ class Classes_model extends CI_Model
         return $this->db->get('kelas')->result_array();
     }
 
-    public function getMyPublicClasses()
-    {
-        $this->db->where('pembuat_kelas', $this->session->userdata('id_user'));
-        $this->db->where('tipe_kelas', 1);
-        return $this->db->get('kelas')->result_array();
-    }
-
     public function getMyPrivateClasses()
     {
         $this->db->where('pembuat_kelas', $this->session->userdata('id_user'));
