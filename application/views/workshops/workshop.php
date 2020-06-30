@@ -8,10 +8,11 @@ $_SESSION['url_login'] = "kelasview";
 
             <div class="col-lg-6 pb-lg-4 pb-sm-3 ">
                 <!-- <h5 class="h5 orange-text"><i class="fa fa-camera-retro"></i>#STAYATHOME</h5> -->
-                <h1 class="card-title h2 my-4 py-5" style="font-weight: bold; color: black	;">#STAY AT HOME Upgrade Skill</h1>
-                <p class="mb-4 pb-2 px-md-5 mx-md-5" style="color: black; text-shadow: floralwhite;">Dapatkan Penawaran Kursus terbaik dan pengalaman terbaik disaat
-                    Pandemi dan
-                    Upgrade diri Kamu! .</p>
+                <h1 style="color: black;" class="card-title h2 my-4 py-4"><strong>#Stay at home</strong><br> and <br><strong>#Upgrade your skill</strong></h1>
+                <p class="mb-1 pb-2 px-md-5 mx-md-5" style="color: black; text-shadow: floralwhite; text-align: justify;">Kamu boleh dirumah aja, tapi skill kamu jangan begitu-begitu aja.
+                    Ayo gabung dan <strong>#Upgrade</strong> skill kamu sekarang juga.</p>
+                <p class="mb-4 pb-2 px-md-5 mx-md-5" style="color: black; text-shadow: floralwhite; text-align: justify;">Temukan Workshop terbaik disini untuk buat kamu tetap <strong>#Produktif</strong> dimasa
+                    Pandemi. </p>
                 <div class="row">
                     <div class="col-md-12">
                         <?php if (isset($_SESSION['logged_in'])) { ?>
@@ -21,10 +22,11 @@ $_SESSION['url_login'] = "kelasview";
                         <?php } else { ?>
                             <?php $_SESSION['new_class_url_login'] = "newworkshop"; ?>
 
-                            <a href="" class="btn btn-black" data-toggle="modal" data-target="#elegantModalFormcreateClass"><i class="fa fa-clone left"></i> Buat
+                            <a href="" class="btn btn-black " data-toggle="modal" data-target="#elegantModalFormcreateClass"><i class="fa fa-clone left"></i> Buat
+                                Workshop</a>
+                            <a href="" class="btn btn-black " data-toggle="modal" data-target="#elegantModalFormcreateClass"><i class="fa fa-clone left"></i> Gabung
                                 Workshop</a>
                         <?php } ?>
-                        <a href="register" class="btn btn-black mt-1"><i class="fa fa-clone left"></i> Gabung Workshop</a>
                     </div>
                 </div>
             </div>
