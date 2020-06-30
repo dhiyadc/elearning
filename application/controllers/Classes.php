@@ -50,10 +50,12 @@ class Classes extends CI_Controller
     {
         if (isset($this->session->userdata['logged_in'])) {
             $newClass = $this->Classes_model->createClass();
-            if ($newClass == "fail") {
-                $this->session->set_flashdata("invalidImage", "Invalid Image Size (Max Size: 3 MB)");
+
+            if ($newClass) {
+                $this->session->set_flashdata("invalidImage", "$newClass");
                 redirect("classes/new_class");
-            }
+            } 
+
             $id = $this->Classes_model->getIdNewClass();
             redirect('classes/open_class/' . $id['id_kelas']);
         } else {
@@ -421,8 +423,8 @@ class Classes extends CI_Controller
         }
 
         $updateClass = $this->Classes_model->updateClass($id_kelas);
-        if ($updateClass == "fail") {
-            $this->session->set_flashdata("invalidImage", "Invalid Image Size (Max Size: 3 MB)");
+        if ($updateClass) {
+            $this->session->set_flashdata("invalidImage", "$updateClass");
             redirect("classes/update_class/" . $id_kelas);
         }
         redirect('classes/open_class/' . $id_kelas);
@@ -432,12 +434,10 @@ class Classes extends CI_Controller
     {
         if (isset($this->session->userdata['logged_in'])) {
             $kegiatan = $this->Classes_model->setKegiatanByClass($id_kelas);
-            if ($kegiatan == "fail") {
-                $this->session->set_flashdata("invalidFile", "Jadwal kegiatan anda gagal di upload (hanya pdf, doc, ppt). Ukuran Maksimal : 25MB");
-            }
-
             if ($kegiatan == "success") {
                 $this->session->set_flashdata("success", "Jadwal Kegiatan anda berhasil di tambah!");
+            } else if ($kegiatan) {
+                $this->session->set_flashdata("invalidFile", "$kegiatan (only pdf, doc, ppt). Max Size : 25MB");
             }
 
             if($redirect == "akademik"){
@@ -468,13 +468,11 @@ class Classes extends CI_Controller
         }
 
         $kegiatan = $this->Classes_model->updateKegiatan($id_kelas, $id_kegiatan);
-        if ($kegiatan == "fail") {
-            $this->session->set_flashdata("invalidFile", "Materi anda gagal di upload (hanya pdf, doc, ppt). Ukuran Maksimal : 25MB");
-        }
-
         if ($kegiatan == "success") {
-            $this->session->set_flashdata("success", "Jadwal Kegiatan anda berhasil di update!");
-        }
+                $this->session->set_flashdata("success", "Jadwal Kegiatan anda berhasil di tambah!");
+            } else if ($kegiatan) {
+                $this->session->set_flashdata("invalidFile", "$kegiatan (only pdf, doc, ppt). Max Size : 25MB");
+            }
 
         if($redirect == "akademik"){
             redirect('classes/my_classes');
@@ -925,8 +923,9 @@ class Classes extends CI_Controller
         }
 
         $status = $this->Classes_model->createAssignment($id_kelas);
-        if ($status == "failed") {
-            $this->session->set_flashdata('failedInputFile', 'Kapasitas file yang Anda input melebihi 25 MB');
+        if ($status) {
+            $this->session->set_flashdata("failedInputFile", "$status (Maz Size: 25 MB) (.pdf, .doc, .docx only)");
+            redirect('classes/new_assignment/' . $id_kelas);
         }
         redirect('classes/list_tugas/' . $id_kelas);
     }
@@ -941,8 +940,9 @@ class Classes extends CI_Controller
         }
         $deadline = $this->Classes_model->getDeadlineTugas($id_tugas);
         $status = $this->Classes_model->collectAssignment($id_tugas, $deadline["batas_pengiriman_tugas"]);
-        if ($status == "failed") {
-            $this->session->set_flashdata('failedInputFile', 'Kapasitas file yang Anda input melebihi 25 MB');
+        if ($status) {
+            $this->session->set_flashdata("failedInputFile", "$status (Maz Size: 25 MB) (.pdf, .doc, .docx only)");
+            redirect('classes/detail_tugaskuis/'.$id_kelas.'/'.$id_tugas);
         }
 
         if($redirect == "akademik"){
@@ -1033,8 +1033,9 @@ class Classes extends CI_Controller
 
 
         $status = $this->Classes_model->updateAssignment($id_tugas);
-        if ($status == "failed") {
-            $this->session->set_flashdata('failedInputFile', 'Kapasitas file yang Anda input melebihi 25 MB');
+        if ($status) {
+            $this->session->set_flashdata("failedInputFile", "$status (Maz Size: 25 MB) (.pdf, .doc, .docx only)");
+            redirect('classes/edit_assignment/' .$id_kelas.'/'.$id_tugas);
         }
         redirect('classes/list_tugas/' . $id_kelas);
     }
