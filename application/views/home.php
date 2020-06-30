@@ -13,11 +13,9 @@
                   <h1  data-aos="fade-up" data-aos-delay="100">Pengalaman Adalah Ilmu Terbaik yang semua orang cari</h1>
                   <p class="mb-4"  data-aos="fade-up" data-aos-delay="200">Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime ipsa nulla sed quis rerum amet natus quas necessitatibus.</p>
 				          <?php if(isset($_SESSION['logged_in'])) : ?>
-                    <p data-aos="fade-up" data-aos-delay="300"><a href="<?= base_url() ?>classes/new_class" class="btn btn text-white py-3 px-5 btn-pill" style="background-color: #3232aa">Buat Kelas</a></p>
-                    <p data-aos="fade-up" data-aos-delay="300"><a href="<?= base_url() ?>workshops/new_workshop" class="btn btn text-white py-3 px-5 btn-pill" style="background-color: #3232aa">Buat Workshop</a></p>
+                  <a href="<?= base_url() ?>classes/new_class" class="btn btn text-white py-3 px-5 btn-pill" data-aos="fade-up" data-aos-delay="300" style="background-color: #3232aa">Buat Kelas</a><a href="<?= base_url() ?>workshops/new_workshop" class="btn btn text-white py-3 px-5 btn-pill ml-2" data-aos="fade-up" data-aos-delay="300" style="background-color: #3232aa">Buat Workshop</a>
                   <?php else : ?>
-                    <p data-aos="fade-up" data-aos-delay="300"><a data-toggle="modal" data-target="#elegantModalForm" class="btn btn text-white py-3 px-5 btn-pill" style="background-color: #3232aa">Buat Kelas</a></p>
-                    <p data-aos="fade-up" data-aos-delay="300"><a data-toggle="modal" data-target="#elegantModalForm" class="btn btn text-white py-3 px-5 btn-pill" style="background-color: #3232aa">Buat Workshop</a></p>
+                   <a data-toggle="modal" data-target="#elegantModalForm" class="btn btn text-white py-3 px-5 btn-pill" data-aos="fade-up" data-aos-delay="300" style="background-color: #3232aa">Buat Kelas</a><a data-toggle="modal" data-target="#elegantModalForm" class="btn btn text-white py-3 px-5 btn-pill ml-2" data-aos="fade-up" data-aos-delay="300" style="background-color: #3232aa">Buat Workshop</a>
                  
                     <?php endif; ?>  
 
