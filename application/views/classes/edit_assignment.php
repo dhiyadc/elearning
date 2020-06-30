@@ -22,6 +22,9 @@
             <div class="col-md-6">
             </div>
         </div>
+        <?php if ($this->session->flashdata('failedInputFile')) : ?>
+            <div class="alert alert-danger"> <?= $this->session->flashdata('failedInputFile') ?> </div>
+        <?php endif; ?>
         <div class="row">
             <div class="col-md-3 field-label-responsive">
                 <label for="namaclasss">Nama Tugas</label>
