@@ -331,10 +331,10 @@
         </div>
         <div class="row justify-content-center">
         <a class="carousel-control-prev" href="#myCarousel" data-slide="prev">
-              <span class="customPrevBtn carousel-control-prev-icon"></span>
+              <span class="customPrevBtn carousel-control-prev-icon" style="background-color: grey;"></span>
           </a>
           <a class="carousel-control-next" href="#myCarousel" data-slide="next">
-              <span class="customNextBtn carousel-control-next-icon"></span>
+              <span class="customNextBtn carousel-control-next-icon" style="background-color: grey;"></span>
           </a>
           </div>
         </div>
