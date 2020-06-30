@@ -422,7 +422,7 @@ class Classes_model extends CI_Model
             }
             $this->setHarga($this->getIdNewClass()['id_kelas']);
         } else {
-            return "fail";
+            return $this->upload->display_errors();
         }
     }
 
@@ -486,7 +486,7 @@ class Classes_model extends CI_Model
                     'poster_kelas' => $file_name
                 ];
             } else {
-                return "fail";
+                return $this->upload->display_errors();
             }
         } else {
             $data = [
@@ -595,7 +595,7 @@ class Classes_model extends CI_Model
                         unlink("assets/docs/" . $fileArr[$j]);
                     }
 
-                    return "fail";
+                    return $this->upload->display_errors();
 
                     //return $_FILES['materi']['name'][$i];
                 }
@@ -796,7 +796,7 @@ class Classes_model extends CI_Model
                         unlink("assets/docs/" . $fileArr[$j]);
                     }
 
-                    return "fail";
+                    return $this->upload->display_errors();
 
                     //return $_FILES['materi']['name'][$i];
                 }
@@ -961,7 +961,7 @@ class Classes_model extends CI_Model
 
                 $this->db->insert('tugas_kuis', $data);
             } else {
-                return "failed";
+                return $this->upload->display_errors();
             }
         } else {
             $data = [
@@ -1016,7 +1016,7 @@ class Classes_model extends CI_Model
                 $this->db->insert('submit_assignment', $data);
             }
         } else {
-            return "failed";
+            return $this->upload->display_errors();
         }
     }
 
@@ -1044,7 +1044,7 @@ class Classes_model extends CI_Model
                     $this->db->update('tugas_kuis',$data);
             }
             else {
-                return "failed";
+                return $this->upload->display_errors();
             }
         } else {
             $data = [

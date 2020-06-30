@@ -42,13 +42,14 @@ class Register extends CI_Controller {
 
 			
 			$email = $this->input->post('email');
-			$emailDB = $this->user_database->read_user_information($email);
+			$getEmail = $this->user_database->getFirstAccount($email);
+			$getUserEmail = $getEmail['email'];
 
-			if($email = $emailDB){
+			if($email == $getUserEmail){
 				$data = array(
 					'error_message' => 'Email has been registered'
 					);
-				$this->session->set_flashdata('registered', 'Email has been registered');
+				$this->session->set_flashdata('registered', 'Email has been registered' .$getUserEmail.' and '.$email);
 				redirect('register');
 			}
 
