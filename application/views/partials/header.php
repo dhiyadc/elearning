@@ -85,17 +85,17 @@
             <form class="form-login" action="<?= base_url() ?>login/user_login_process" method="post">
             <div class="md-form mb-3">
               <h5>Email</h5>
-              <input type="email" class="form-control validate" name="email" placeholder="Email" autofocus required> 
+              <input type="email" class="form-control validate" name="email" placeholder="Masukkan Email" autofocus required> 
 
-              <label data-error="wrong" data-success="right" for="Form-email1">Masukan email</label>
+              <!-- <label data-error="wrong" data-success="right" for="Form-email1">Masukan email</label> -->
             </div>
 
             <div class="md-form pb-3">
 
               <h5>Password</h5>
-              <input type="password" class="form-control validate" name="password" placeholder="Password" required>
-              <label data-error="wrong" data-success="right" for="Form-pass1">Masukan Password</label>
-              <p class="font-small blue-text d-flex justify-content-end">Lupa <a href="Forgot_password" class="blue-text ml-1">
+              <input type="password" class="form-control validate" name="password" placeholder="Masukkan Password" required>
+              <!-- <label data-error="wrong" data-success="right" for="Form-pass1">Masukan Password</label> -->
+              <p class="font-small blue-text d-flex justify-content-end mt-2">Lupa <a href="Forgot_password" class="blue-text ml-1">
                   Password?</a></p>
             </div>
 
@@ -109,7 +109,7 @@
           </div>
           <!--Footer-->
           <div class="modal-footer mx-5 pt-3 mb-1">
-            <p class="font-small grey-text d-flex justify-content-end">Belum ada Akun? <a href="Register" class="blue-text ml-1">
+            <p class="mr-5 font-small grey-text d-flex justify-content-end">Belum ada Akun? <a href="Register" class="blue-text ml-1">
                 Daftar</a></p>
           </div>
         </div>
@@ -166,17 +166,17 @@
             <form class="form-login" action="<?= base_url() ?>login/user_login_process/create_class" method="post">
             <div class="md-form mb-3">
               <h5>Email</h5>
-              <input type="email" class="form-control validate" name="email" placeholder="Email" autofocus required> 
+              <input type="email" class="form-control validate" name="email" placeholder="Masukkan Email" autofocus required> 
 
-              <label data-error="wrong" data-success="right" for="Form-email1">Masukan email</label>
+              <!-- <label data-error="wrong" data-success="right" for="Form-email1">Masukan email</label> -->
             </div>
 
             <div class="md-form pb-3">
 
               <h5>Password</h5>
-              <input type="password" class="form-control validate" name="password" placeholder="Password" required>
-              <label data-error="wrong" data-success="right" for="Form-pass1">Masukan Password</label>
-              <p class="font-small blue-text d-flex justify-content-end">Lupa <a href="Forgot_password" class="blue-text ml-1">
+              <input type="password" class="form-control validate" name="password" placeholder="Masukkan Password" required>
+              <!-- <label data-error="wrong" data-success="right" for="Form-pass1">Masukan Password</label> -->
+              <p class="mt-2 font-small blue-text d-flex justify-content-end">Lupa <a href="Forgot_password" class="blue-text ml-1">
                   Password?</a></p>
             </div>
 
@@ -190,7 +190,7 @@
           </div>
           <!--Footer-->
           <div class="modal-footer mx-5 pt-3 mb-1">
-            <p class="font-small grey-text d-flex justify-content-end">Belum ada Akun? <a href="Register" class="blue-text ml-1">
+            <p class="font-small grey-text d-flex justify-content-end mr-5">Belum ada Akun? <a href="Register" class="blue-text ml-1">
                 Daftar</a></p>
           </div>
         </div>

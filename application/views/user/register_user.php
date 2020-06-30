@@ -28,14 +28,14 @@
                             <div class="modal-body mx-4">
                               <!--Body-->
                               <div class="md-form mb-5">
-                                <input type="email" id="Form-email1" class="form-control validate">
-                                <label data-error="wrong" data-success="right" for="Form-email1">Masukan email</label>
+                                <input type="email" id="Form-email1" class="form-control validate" placeholder="Masukkan Email">
+                                <!-- <label data-error="wrong" data-success="right" for="Form-email1">Masukan email</label> -->
                               </div>
 
                               <div class="md-form pb-3">
-                                <input type="password" id="Form-pass1" class="form-control validate">
-                                <label data-error="wrong" data-success="right" for="Form-pass1">Masukan Password</label>
-                                <p class="font-small blue-text d-flex justify-content-end">Lupa <a href="#" class="blue-text ml-1">
+                                <input type="password" id="Form-pass1" class="form-control validate" placeholder="Masukkan Password">
+                                <!-- <label data-error="wrong" data-success="right" for="Form-pass1">Masukan Password</label> -->
+                                <p class="font-small blue-text d-flex justify-content-end mt-2">Lupa <a href="#" class="blue-text ml-1">
                                     Password?</a></p>
                               </div>
 
@@ -48,7 +48,7 @@
                             </div>
                             <!--Footer-->
                             <div class="modal-footer mx-5 pt-3 mb-1">
-                              <p class="font-small grey-text d-flex justify-content-end">Belum ada Akun? <a href="" class="blue-text ml-1" data-toggle="modal" data-target="#elegantModalForm">
+                              <p class="mr-5 font-small grey-text d-flex justify-content-end">Belum ada Akun? <a href="" class="blue-text ml-1" data-toggle="modal" data-target="#elegantModalForm">
                                   Daftar</a></p>
                             </div>
                           </div>
@@ -70,26 +70,28 @@
                     
                     <div class="form-group">
                       <input type="text" class="form-control" name="nama" placeholder="Fullname" minlength="3" maxlength="50" autofocus required>
-                      <small class="form-text text-muted">isi dengan Nama lengkap asli Anda.</small>
+                      <small class="form-text text-muted">Nama lengkap Anda.</small>
                     </div>
 
                    <div class="form-group mb-3">
                       <input type="tel" class="form-control" name="no_telepon" placeholder="Phone Number" required>
+                      <small class="form-text text-muted">Nomor Handphone.</small>
+
                     </div>
 
                     <div class="form-group mb-3">
                       <input type="email" class="form-control" name="email" placeholder="Email" oninvalid="this.setCustomValidity('Please enter a valid email address')"
                         oninput="this.setCustomValidity('')" required>
-                      <small class="form-text text-muted">Isi Email dengan Alamat yang valid.</small>
+                      <small class="form-text text-muted">Alamat Email yang valid.</small>
                     </div>
                     
                     <div class="form-group mb-3">
                     <input type="password" class="form-control" id="password" name="password" placeholder="Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required>
-                      <small class="form-text text-muted">isi Password dengan menggunakan setidaknya 1 Huruf Kapital dan 1 Simbol</small>
+                      <small class="form-text text-muted">Password menggunakan setidaknya 1 Huruf Kapital dan 1 Simbol.</small>
                     </div>
                     <div class="form-group mb-4">
                     <input type="password" class="form-control" id="password2" name="password2" placeholder="Confirm Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required>
-                        <small class="form-text text-muted mb-2">Ulangi password diatas sekali lagi.</small>
+                        <small class="form-text text-muted mb-2">Ulangi password diatas.</small>
                         <small>
                         <input type="checkbox" class="form-checkbox" onclick="myFunction()"> Show password
                         </small>
