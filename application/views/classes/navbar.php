@@ -11,8 +11,8 @@
         <p class="mb-4 pb-2 px-md-5 mx-md-5" style="color: black; text-shadow: floralwhite; text-align: justify;">Temukan Kelas terbaik disini untuk buat kamu tetap <strong>#Produktif</strong> dimasa
           Pandemi. </p>
 
-        <a href="register" class="btn btn-black"><i class="fa fa-clone left"></i> Buat Kelas</a>
-        <a href="register" class="btn btn-black"><i class="fa fa-clone left"></i> Gabung Kelas</a>
+        <a href="<?=base_url()?>register" class="btn btn-black"><i class="fa fa-clone left"></i> Buat Kelas</a>
+        <a href="<?=base_url()?>register" class="btn btn-black"><i class="fa fa-clone left"></i> Gabung Kelas</a>
 
       </div>
     </div>

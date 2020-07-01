@@ -102,7 +102,7 @@ class Classes extends CI_Controller
                     $datanotif2[] = $cek2;
                 }
             }
-            $header['notif2'] = $datanotif2;
+            $header['notif2'] = $datanotif2;           
             $this->load->view('partialsuser/header', $header);
             $this->load->view('classes/open_class', $data);
             $this->load->view('partialsuser/footer');
