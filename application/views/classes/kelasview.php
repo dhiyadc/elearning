@@ -11,8 +11,6 @@ $_SESSION['url_login'] = "kelasview";
 				<h1 style="color: black;" class="card-title h2 my-4 py-4"><strong>#Stay at home</strong><br> and <br><strong>#Upgrade your skill</strong></h1>
 				<p class="mb-1 pb-2 px-md-5 mx-md-5" style="color: black; text-shadow: floralwhite; text-align: justify;">Kamu boleh dirumah aja, tapi skill kamu jangan begitu-begitu aja.
 					Ayo gabung dan <strong>#Upgrade</strong> skill kamu sekarang juga.</p>
-				<p class="mb-4 pb-2 px-md-5 mx-md-5" style="color: black; text-shadow: floralwhite; text-align: justify;">Temukan Kelas terbaik disini untuk buat kamu tetap <strong>#Produktif</strong> dimasa
-					Pandemi. </p>
 				<div class="row">
 					<div class="col-md-12">
 						<?php if (isset($_SESSION['logged_in'])) { ?>
