@@ -5,7 +5,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="author" content="Classico">
-  <meta name="description" content="Pengalaman Adalah Ilmu Terbaik yang semua orang cari ayo kembangkan skill anda di Classico.">
+    <meta name="description" content="Pengalaman Adalah Ilmu Terbaik yang semua orang cari ayo kembangkan skill anda di Classico.">
+    <meta name="google-site-verification" content="ITEJvL_D_0UTelIVg3Qb2vDeYSh1s4y_Xix_pONnWKo" />
     <link rel="icon" href="<?php echo base_url(); ?>assets/images/logo.png">
 	  <title>Classico</title>
     
