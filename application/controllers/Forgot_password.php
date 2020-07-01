@@ -32,13 +32,12 @@ class Forgot_password extends CI_Controller{
         require 'vendor/autoload.php';
 
         $email = $this->input->post('email');
-		$emailDB = $this->user_database->read_user_information($email);
+        $emailDBe = $this->user_database->getFirstAccount($email);
+        $emailDB = $emailDBe['email'];
 
-			if(!$emailDB){
-				$data = array(
-					'error_message' => 'Email is not registered'
-					);
-			    return $this->load->view('user/forgot_password', $data);
+			if($email != $emailDB){
+                    $this->session->set_flashdata('error_message', 'Email is not registered');
+			        redirect('forgot_password');
 			}
 
         function generateNewString($len = 16) {
@@ -99,7 +98,7 @@ class Forgot_password extends CI_Controller{
 	            '>http://localhost/elearning/reset_password/valid/$token</a><br><br>
 	            
 	            Kind Regards,<br>
-	            E-Learning
+	            Classico
 	        ";
         
         // Send email
@@ -111,12 +110,8 @@ class Forgot_password extends CI_Controller{
         } 
     
     
-
-
-        $data = array(
-        'message_display' => 'An email has been sent, you have 5 minutes to verify'
-        );
-        $this->load->view('user/forgot_password', $data);
+        $this->session->set_flashdata('message_display', 'An email has been sent, you have 5 minutes to verify');
+		redirect('forgot_password');
 
     }
     

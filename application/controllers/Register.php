@@ -49,7 +49,7 @@ class Register extends CI_Controller {
 				$data = array(
 					'error_message' => 'Email has been registered'
 					);
-				$this->session->set_flashdata('registered', 'Email has been registered' .$getUserEmail.' and '.$email);
+				$this->session->set_flashdata('registered', 'Email has been registered');
 				redirect('register');
 			}
 

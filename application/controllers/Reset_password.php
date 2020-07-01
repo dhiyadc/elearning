@@ -12,15 +12,9 @@ class Reset_password extends CI_Controller{
         
 	}
 
-    public function index($email, $token){
+    public function index(){
         //Controller Home
-        if(isset($this->session->userdata['logged_in'])){
-        //$this->load->view('layout/header');
-        $this->load->view('viewtes');
-        //$this->load->view('layout/footer');
-        } else {
-            
-        }
+        redirect('forgot_password');
     }
 
     public function valid($token){
@@ -29,10 +23,8 @@ class Reset_password extends CI_Controller{
             {
                 $this->load->view('user/reset_password');
             } else {
-                $data = array(
-                    'error_message' => 'Token is not valid / expired'
-					);
-                $this->load->view('user/reset_password', $data);
+                $this->session->set_flashdata('error_message', 'Token is not valid / expired');
+			        redirect('forgot_password');
             }
     }
 
@@ -43,11 +35,9 @@ class Reset_password extends CI_Controller{
         $user = $this->user_database->getIDbyToken($token);
         $id_user = $user['id_user'];
 
-        $this->user_database->updatePassword($id_user, $newPassword);
-        $data = array(
-            'message_display' => 'Your password has been updated'
-            );
-            $this->load->view('user/login_user', $data);
+        $this->user_database->updatePasswordUser($id_user, $newPassword);
+            $this->session->set_flashdata('success', 'Your password has been updated');
+            redirect('home');
     }
     
 }
