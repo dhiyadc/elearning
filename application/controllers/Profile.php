@@ -84,9 +84,9 @@ class Profile extends CI_Controller
         $header['notif2'] = $datanotif2;
 
 
-        $this->load->view('partialsuser/header', $header);
+        $this->load->view('partials/user/header', $header);
         $this->load->view('profile/edit_profile', $data);
-        $this->load->view('partialsuser/footer');
+        $this->load->view('partials/user/footer');
     }
 
     public function edit_profile_action()
@@ -149,9 +149,9 @@ class Profile extends CI_Controller
         }
         $header['notif2'] = $datanotif2;
 
-        $this->load->view('partialsuser/header', $header);
+        $this->load->view('partials/user/header', $header);
         $this->load->view('profile/change_password');
-        $this->load->view('partialsuser/footer');
+        $this->load->view('partials/user/footer');
     }
 
     public function change_password_action()

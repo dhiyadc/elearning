@@ -39,15 +39,15 @@ class Home extends CI_Controller
                 }
             }
             $header['notif2'] = $datanotif2;
-            $this->load->view('partialsuser/header', $header);
+            $this->load->view('partials/user/header', $header);
         } else {
-            $this->load->view('partials/header');
+            $this->load->view('partials/common/header');
         }
         $data['class'] = $this->Classes_model->getAllTopClasses();
         $data['class2'] = $this->Workshops_model->getAllTopClasses();
         $data['kategori'] = $this->Classes_model->getKategori();
         $data['kategori2'] = $this->Workshops_model->getKategori();
         $this->load->view('home', $data);
-        $this->load->view('partials/footer');
+        $this->load->view('partials/common/footer');
     }
 }

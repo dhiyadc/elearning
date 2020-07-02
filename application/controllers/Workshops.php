@@ -36,9 +36,9 @@ class Workshops extends CI_Controller
             $header['notif2'] = $datanotif2;
             $this->session->set_userdata('workshop', true);
 
-            $this->load->view('partialsuser/header', $header);
+            $this->load->view('partials/user/header', $header);
         } else {
-            $this->load->view('partials/header');
+            $this->load->view('partials/common/header');
         }
 
 
@@ -47,7 +47,7 @@ class Workshops extends CI_Controller
         $data['classNum'] = count($this->Workshops_model->getAllClassesDetail());
         $this->session->set_userdata('workshop', true);
         $this->load->view('workshops/workshop', $data);
-        $this->load->view('partials/footer');
+        $this->load->view('partials/common/footer');
     }
 
     public function new_workshop()
@@ -77,9 +77,9 @@ class Workshops extends CI_Controller
             }
             $header['notif2'] = $datanotif2;
 
-            $this->load->view('partialsuser/header', $header);
+            $this->load->view('partials/user/header', $header);
             $this->load->view('workshops/new_workshop', $data);
-            $this->load->view('partialsuser/footer');
+            $this->load->view('partials/user/footer');
         } else {
             redirect('home');
         }
@@ -124,16 +124,16 @@ class Workshops extends CI_Controller
                 }
             }
             $header['notif2'] = $datanotif2;
-            $this->load->view('partialsuser/header', $header);
+            $this->load->view('partials/user/header', $header);
         } else {
-            $this->load->view('partials/header');
+            $this->load->view('partials/common/header');
         }
         $data['kategori_text'] = $kategorii;
         $data['categories'] = $this->Workshops_model->getKategori();
         $data['class'] = $this->Workshops_model->getClassesbyCategories($kategorii);
         $data['classNum'] = count($this->Workshops_model->getClassesbyCategories($kategorii));
         $this->load->view('workshops/workshopfilter', $data);
-        $this->load->view('partials/footer');
+        $this->load->view('partials/common/footer');
     }
 
     public function sort($sorting)
@@ -159,16 +159,16 @@ class Workshops extends CI_Controller
                 }
             }
             $header['notif2'] = $datanotif2;
-            $this->load->view('partialsuser/header', $header);
+            $this->load->view('partials/user/header', $header);
         } else {
-            $this->load->view('partials/header');
+            $this->load->view('partials/common/header');
         }
         $data['kategori_text'] = $sorting;
         $data['categories'] = $this->Workshops_model->getKategori();
         $data['class'] = $this->Workshops_model->getClassesbySorting($sorting);
         $data['classNum'] = count($this->Workshops_model->getClassesbySorting($sorting));
         $this->load->view('workshops/workshopfilter', $data);
-        $this->load->view('partials/footer');
+        $this->load->view('partials/common/footer');
     }
 
     public function search()
@@ -194,9 +194,9 @@ class Workshops extends CI_Controller
                 }
             }
             $header['notif2'] = $datanotif2;
-            $this->load->view('partialsuser/header', $header);
+            $this->load->view('partials/user/header', $header);
         } else {
-            $this->load->view('partials/header');
+            $this->load->view('partials/common/header');
         }
 
         $data['kategori_text'] = "Pencarian";
@@ -208,7 +208,7 @@ class Workshops extends CI_Controller
             $data['tidak_ketemu'] = "workshop yang anda cari tidak ada.";
         }
         $this->load->view('workshops/workshopfilter', $data);
-        $this->load->view('partials/footer');
+        $this->load->view('partials/common/footer');
     }
 
     public function join_workshop($id_kelas)
@@ -286,13 +286,13 @@ class Workshops extends CI_Controller
                 }
             }
             $header['notif2'] = $datanotif2;
-            $this->load->view('partialsuser/header', $header);
+            $this->load->view('partials/user/header', $header);
             $this->load->view('workshops/openworkshop', $data);
-            $this->load->view('partialsuser/footer');
+            $this->load->view('partials/user/footer');
         } else {
-            $this->load->view('partials/header');
+            $this->load->view('partials/common/header');
             $this->load->view('workshops/openworkshop', $data);
-            $this->load->view('partials/footer');
+            $this->load->view('partials/common/footer');
         }
     }
 
@@ -319,9 +319,9 @@ class Workshops extends CI_Controller
                 }
             }
             $header['notif2'] = $datanotif2;
-            $this->load->view('partialsuser/header', $header);
+            $this->load->view('partials/user/header', $header);
             $this->load->view('workshops/pembayaran', $id_kelas);
-            $this->load->view('partialsuser/footer');
+            $this->load->view('partials/user/footer');
         } else {
             redirect('home');
         }
@@ -367,9 +367,9 @@ class Workshops extends CI_Controller
             }
         }
         $header['notif2'] = $datanotif2;
-        $this->load->view('partialsuser/header', $header);
+        $this->load->view('partials/user/header', $header);
         $this->load->view('workshops/update_workshop', $data);
-        $this->load->view('partialsuser/footer');
+        $this->load->view('partials/user/footer');
     }
 
     public function update_workshop_action($id_kelas)
@@ -467,9 +467,9 @@ class Workshops extends CI_Controller
             $data['cek'] = $cek2;
             $data['submit'] = $this->Classes_model->getSubmit();
             $this->session->set_flashdata("tabWorkshopSaya", "6");
-            $this->load->view('partialsuser/header', $header);
+            $this->load->view('partials/user/header', $header);
             $this->load->view('classes/search_akademik', $data);
-            $this->load->view('partials/footer');
+            $this->load->view('partials/common/footer');
         } else {
             redirect('home');
         }
@@ -558,7 +558,7 @@ class Workshops extends CI_Controller
             $this->session->set_flashdata("tabWorkshopDiikuti", "7");
             $this->load->view('partialsuser/header', $header);
             $this->load->view('classes/search_akademik', $data);
-            $this->load->view('partials/footer');
+            $this->load->view('partials/common/footer');
         } else {
             redirect('home');
         }

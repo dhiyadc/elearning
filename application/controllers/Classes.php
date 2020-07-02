@@ -38,9 +38,9 @@ class Classes extends CI_Controller
             }
             $header['notif2'] = $datanotif2;
 
-            $this->load->view('partialsuser/header', $header);
+            $this->load->view('partials/user/header', $header);
             $this->load->view('classes/new_class', $data);
-            $this->load->view('partialsuser/footer');
+            $this->load->view('partials/user/footer');
         } else {
             redirect('home');
         }
@@ -103,14 +103,14 @@ class Classes extends CI_Controller
                 }
             }
             $header['notif2'] = $datanotif2;           
-            $this->load->view('partialsuser/header', $header);
+            $this->load->view('partials/user/header', $header);
             $this->load->view('classes/open_class', $data);
-            $this->load->view('partialsuser/footer');
+            $this->load->view('partials/user/footer');
             $this->session->set_userdata('workshop', null);
         } else {
-            $this->load->view('partials/header');
+            $this->load->view('partials/common/header');
             $this->load->view('classes/open_class', $data);
-            $this->load->view('partials/footer');
+            $this->load->view('partials/common/footer');
             $this->session->set_userdata('workshop', null);
         }
     }
@@ -158,14 +158,14 @@ class Classes extends CI_Controller
                     }
                 }
                 $header['notif2'] = $datanotif2;
-                $this->load->view('partialsuser/header', $header);
+                $this->load->view('partials/user/header', $header);
                 $this->load->view('classes/video_kelas', $data);
-                $this->load->view('partialsuser/footer');
+                $this->load->view('partials/user/footer');
                 $this->session->set_userdata('workshop', null);
             } else {
-                $this->load->view('partials/header');
+                $this->load->view('partials/common/header');
                 $this->load->view('classes/video_kelas', $data);
-                $this->load->view('partials/footer');
+                $this->load->view('partials/common/footer');
                 $this->session->set_userdata('workshop', null);
             }
         } else
@@ -401,9 +401,9 @@ class Classes extends CI_Controller
         }
         $header['notif2'] = $datanotif2;
 
-        $this->load->view('partialsuser/header', $header);
+        $this->load->view('partials/user/header', $header);
         $this->load->view('classes/update_class', $data);
-        $this->load->view('partialsuser/footer');
+        $this->load->view('partials/user/footer');
     }
 
     public function update_class_action($id_kelas)
@@ -514,9 +514,9 @@ class Classes extends CI_Controller
             }
             $header['notif2'] = $datanotif2;
 
-            $this->load->view('partialsuser/header', $header);
+            $this->load->view('partials/user/header', $header);
             $this->load->view('classes/pembayaran', $id_kelas);
-            $this->load->view('partialsuser/footer');
+            $this->load->view('partials/user/footer');
         } else {
             redirect('home');
         }
@@ -611,9 +611,9 @@ class Classes extends CI_Controller
             }
             $data['cek'] = $datacek;
             $data['submit'] = $this->Classes_model->getSubmit();
-            $this->load->view('partialsuser/header', $header);
+            $this->load->view('partials/user/header', $header);
             $this->load->view('classes/my_classes', $data);
-            $this->load->view('partialsuser/footer');
+            $this->load->view('partials/user/footer');
         } else {
             redirect('home');
         }
@@ -653,9 +653,9 @@ class Classes extends CI_Controller
             }
             $header['notif2'] = $datanotif2;
 
-            $this->load->view('partialsuser/header', $header);
+            $this->load->view('partials/user/header', $header);
         } else {
-            $this->load->view('partials/header');
+            $this->load->view('partials/common/header');
         }
 
 
@@ -664,7 +664,7 @@ class Classes extends CI_Controller
         $data['classNum'] = count($this->Classes_model->getAllClassesDetail());
         $this->session->set_userdata('workshop', null);
         $this->load->view('classes/kelasview', $data);
-        $this->load->view('partials/footer');
+        $this->load->view('partials/common/footer');
     }
 
     public function categories($kategori)
@@ -691,16 +691,16 @@ class Classes extends CI_Controller
             }
             $header['notif2'] = $datanotif2;
 
-            $this->load->view('partialsuser/header', $header);
+            $this->load->view('partials/user/header', $header);
         } else {
-            $this->load->view('partials/header');
+            $this->load->view('partials/common/header');
         }
         $data['kategori_text'] = $kategori;
         $data['categories'] = $this->Classes_model->getKategori();
         $data['class'] = $this->Classes_model->getClassesbyCategories($kategori);
         $data['classNum'] = count($this->Classes_model->getClassesbyCategories($kategori));
         $this->load->view('classes/kelasfilter', $data);
-        $this->load->view('partials/footer');
+        $this->load->view('partials/common/footer');
     }
 
     public function sort($sorting)
@@ -727,16 +727,16 @@ class Classes extends CI_Controller
             }
             $header['notif2'] = $datanotif2;
 
-            $this->load->view('partialsuser/header', $header);
+            $this->load->view('partials/user/header', $header);
         } else {
-            $this->load->view('partials/header');
+            $this->load->view('partials/common/header');
         }
         $data['kategori_text'] = $sorting;
         $data['categories'] = $this->Classes_model->getKategori();
         $data['class'] = $this->Classes_model->getClassesbySorting($sorting);
         $data['classNum'] = count($this->Classes_model->getClassesbySorting($sorting));
         $this->load->view('classes/kelasfilter', $data);
-        $this->load->view('partials/footer');
+        $this->load->view('partials/common/footer');
     }
 
     public function search()
@@ -763,9 +763,9 @@ class Classes extends CI_Controller
             }
             $header['notif2'] = $datanotif2;
 
-            $this->load->view('partialsuser/header', $header);
+            $this->load->view('partials/user/header', $header);
         } else {
-            $this->load->view('partials/header');
+            $this->load->view('partials/common/header');
         }
 
         $data['kategori_text'] = "Pencarian";
@@ -777,7 +777,7 @@ class Classes extends CI_Controller
             $data['tidak_ketemu'] = "Kelas yang anda cari tidak ada.";
         }
         $this->load->view('classes/kelasfilter', $data);
-        $this->load->view('partials/footer');
+        $this->load->view('partials/common/footer');
     }
 
     public function iframe()
@@ -901,9 +901,9 @@ class Classes extends CI_Controller
         }
         $header['notif2'] = $datanotif2;
 
-        $this->load->view('partialsuser/header', $header);
+        $this->load->view('partials/user/header', $header);
         $this->load->view('classes/new_assignment', $data);
-        $this->load->view('partialsuser/footer');
+        $this->load->view('partials/user/footer');
     }
 
     public function new_assignment_action($id_kelas)
@@ -1010,9 +1010,9 @@ class Classes extends CI_Controller
         }
         $header['notif2'] = $datanotif2;
 
-        $this->load->view('partialsuser/header', $header);
+        $this->load->view('partials/user/header', $header);
         $this->load->view('classes/edit_assignment', $data);
-        $this->load->view('partialsuser/footer');
+        $this->load->view('partials/user/footer');
     }
 
     public function edit_assignment_action($id_kelas, $id_tugas)
@@ -1119,9 +1119,9 @@ class Classes extends CI_Controller
             }
             $header['notif2'] = $datanotif2;
 
-            $this->load->view('partialsuser/header', $header);
+            $this->load->view('partials/user/header', $header);
             $this->load->view('classes/list_tugas', $data);
-            $this->load->view('partialsuser/footer');
+            $this->load->view('partials/user/footer');
         } else {
             $classDetail2 = $this->Classes_model->getPesertabyClass($id_kelas)[0];
             $isPeserta = $classDetail2['id_user'] == $userId;
@@ -1165,9 +1165,9 @@ class Classes extends CI_Controller
             }
             $header['notif2'] = $datanotif2;
 
-            $this->load->view('partialsuser/header', $header);
+            $this->load->view('partials/user/header', $header);
             $this->load->view('classes/list_tugas', $data);
-            $this->load->view('partialsuser/footer');
+            $this->load->view('partials/user/footer');
         }
     }
 
@@ -1211,9 +1211,9 @@ class Classes extends CI_Controller
                 }
             }
             $header['notif2'] = $datanotif2;
-            $this->load->view('partialsuser/header', $header);
+            $this->load->view('partials/user/header', $header);
             $this->load->view('classes/detail_tugaskuis', $data);
-            $this->load->view('partialsuser/footer');
+            $this->load->view('partials/user/footer');
         } else {
             $classDetail2 = $this->Classes_model->getPesertabyClass($id_kelas)[0];
             $isPeserta = $classDetail2['id_user'] == $userId;
@@ -1247,9 +1247,9 @@ class Classes extends CI_Controller
             }
             $header['notif2'] = $datanotif2;
 
-            $this->load->view('partialsuser/header', $header);
+            $this->load->view('partials/user/header', $header);
             $this->load->view('classes/detail_tugaskuis', $data);
-            $this->load->view('partialsuser/footer');
+            $this->load->view('partials/user/footer');
         }
     }
 
@@ -1295,9 +1295,9 @@ class Classes extends CI_Controller
         }
         $header['notif2'] = $datanotif2;
 
-        $this->load->view('partialsuser/header', $header);
+        $this->load->view('partials/user/header', $header);
         $this->load->view('classes/detail_tugaskuisguru', $data);
-        $this->load->view('partialsuser/footer');
+        $this->load->view('partials/user/footer');
     }
 
     public function open_modal_class($id_kelas)
