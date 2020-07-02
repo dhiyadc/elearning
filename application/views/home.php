@@ -105,7 +105,7 @@
         </div> 
       </div>
 
-
+<!-- 
       <div class="site-section" id="programs-section" style="padding-bottom: 100px;">
 
       <section class="ftco-section" id="inputs">
@@ -125,7 +125,7 @@
           </div>
         </section>
       <div class="container">
-        <!-- DIRTY Responsive pricing table HTML -->
+
        
         <div class="row mb-5 justify-content-center">
           <div class="col-lg-7 text-center"  data-aos="fade-up" data-aos-delay="">
@@ -219,7 +219,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
 
 
     <div class="site-section courses-title" id="courses-section">
@@ -329,7 +329,7 @@
 
     </script> -->
 
-    <div class="site-section" id="programs-section" style="padding-bottom: 100px;">
+    <!-- <div class="site-section" id="programs-section" style="padding-bottom: 100px;">
     <section class="ftco-section" id="inputs">
 		  
       <div class="bg-light py-5 mt-md-5">
@@ -441,7 +441,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
 
 
 
