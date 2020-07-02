@@ -163,50 +163,6 @@ class Classes_model extends CI_Model
         return $this->db->get('kelas')->result_array();
     }
 
-    public function getMyPrivateClasses()
-    {
-        $this->db->where('pembuat_kelas', $this->session->userdata('id_user'));
-        $this->db->where('tipe_kelas', 2);
-        return $this->db->get('kelas')->result_array();
-    }
-
-    public function getMyPrivateClassesDetail($keyword = null)
-    {
-        if ($keyword) {
-            $user = $this->session->userdata('id_user');
-            $sql = "SELECT kelas.id_kelas, kelas.status_kelas, kelas.judul_kelas, kelas.poster_kelas, kelas.deskripsi_kelas, kategori_kelas.nama_kategori, jenis_kelas.nama_jenis, harga_kelas.harga_kelas, COUNT(peserta.id_kelas) as 'peserta'
-            FROM kelas
-            LEFT JOIN kategori_kelas
-                    ON kategori_kelas.id_kategori = kelas.kategori_kelas 
-            LEFT JOIN jenis_kelas
-                    ON jenis_kelas.id_jenis = kelas.jenis_kelas
-            LEFT JOIN harga_kelas
-                    ON harga_kelas.id_kelas = kelas.id_kelas
-            LEFT JOIN peserta
-                    ON peserta.id_kelas = kelas.id_kelas
-                WHERE kelas.judul_kelas LIKE '%$keyword%' AND kelas.pembuat_kelas LIKE '$user' AND kelas.tipe_kelas = 2
-            GROUP BY kelas.id_kelas";
-            $query = $this->db->query($sql);
-            return $query->result_array();
-        } else {
-            $user = $this->session->userdata('id_user');
-            $sql = "SELECT kelas.id_kelas, kelas.status_kelas, kelas.judul_kelas, kelas.poster_kelas, kelas.deskripsi_kelas, kategori_kelas.nama_kategori, jenis_kelas.nama_jenis, harga_kelas.harga_kelas, COUNT(peserta.id_kelas) as 'peserta'
-            FROM kelas
-            LEFT JOIN kategori_kelas
-                    ON kategori_kelas.id_kategori = kelas.kategori_kelas 
-            LEFT JOIN jenis_kelas
-                    ON jenis_kelas.id_jenis = kelas.jenis_kelas
-            LEFT JOIN harga_kelas
-                    ON harga_kelas.id_kelas = kelas.id_kelas
-            LEFT JOIN peserta
-                    ON peserta.id_kelas = kelas.id_kelas
-                WHERE kelas.pembuat_kelas LIKE '$user' AND kelas.tipe_kelas = 2
-            GROUP BY kelas.id_kelas";
-            $query = $this->db->query($sql);
-            return $query->result_array();
-        }
-    }
-
     public function getClassById($id)
     {
         $this->db->where('id_kelas', $id);
@@ -384,10 +340,11 @@ class Classes_model extends CI_Model
         $this->load->library('upload', $config);
         if ($this->upload->do_upload('poster')) {
             $file_name = $this->upload->data('file_name');
+            $uniqid = uniqid();
 
             if ($this->input->post('batas') == 0) {
                 $data = [
-                    'id_kelas' => uniqid(),
+                    'id_kelas' => $uniqid,
                     'pembuat_kelas' => $this->session->userdata('id_user'),
                     'judul_kelas' => $this->input->post('judul'),
                     'deskripsi_kelas' => $this->input->post('deskripsi'),
@@ -401,7 +358,7 @@ class Classes_model extends CI_Model
                 ];
             } else {
                 $data = [
-                    'id_kelas' => uniqid(),
+                    'id_kelas' => $uniqid,
                     'pembuat_kelas' => $this->session->userdata('id_user'),
                     'judul_kelas' => $this->input->post('judul'),
                     'deskripsi_kelas' => $this->input->post('deskripsi'),
@@ -417,10 +374,23 @@ class Classes_model extends CI_Model
 
             $this->db->insert('kelas', $data);
 
-            if (!empty($this->input->post('addmore'))) {
-                $this->setKegiatan($this->getIdNewClass()['id_kelas']);
+            if (!empty($this->input->post('harga'))) {
+                $harga_str = preg_replace("/[^0-9]/", "", $this->input->post('harga'));
+                $data = [
+                    'id_kelas' => $uniqid,
+                    'harga_kelas' => $harga_str
+                ];
+            } else {
+                $data = [
+                    'id_kelas' => $uniqid,
+                    'harga_kelas' => '0'
+                ];
             }
-            $this->setHarga($this->getIdNewClass()['id_kelas']);
+            $this->db->insert('harga_kelas', $data);
+
+            if (!empty($this->input->post('addmore'))) {
+                $this->setKegiatan($uniqid);
+            }
         } else {
             return $this->upload->display_errors();
         }
@@ -499,24 +469,6 @@ class Classes_model extends CI_Model
 
         $this->db->where('id_kelas', $id);
         $this->db->update('kelas', $data);
-    }
-
-    public function setHarga($id)
-    {
-        if (!empty($this->input->post('harga'))) {
-            $harga_str = preg_replace("/[^0-9]/", "", $this->input->post('harga'));
-            $data = [
-                'id_kelas' => $id,
-                'harga_kelas' => $harga_str
-            ];
-        } else {
-            $data = [
-                'id_kelas' => $id,
-                'harga_kelas' => '0'
-            ];
-        }
-
-        $this->db->insert('harga_kelas', $data);
     }
 
     public function setKegiatanByClass($id)
@@ -855,7 +807,6 @@ class Classes_model extends CI_Model
         $this->db->where('id_kelas', $id);
         $this->db->delete('peserta');
     }
-
 
     public function getMateri($id_kelas)
     {

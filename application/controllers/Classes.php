@@ -529,8 +529,6 @@ class Classes extends CI_Controller
             $data['seluruh_kelas2'] = $this->Workshops_model->getAllClasses();
             $data['kelas'] = $this->Classes_model->getMyClasses();
             $data['kelas2'] = $this->Workshops_model->getMyClasses();
-            $data['private_kelas'] = $this->Classes_model->getMyPrivateClasses();
-            $data['private_kelas2'] = $this->Workshops_model->getMyPrivateClasses();
             $data['kegiatan'] = $this->Classes_model->getAllKegiatan();
             $data['pembuat'] = $this->Classes_model->getPembuat();
             $data['kegiatan2'] = $this->Workshops_model->getAllKegiatan();
