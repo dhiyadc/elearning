@@ -1342,12 +1342,12 @@
 									</tbody>
 								</table>
 							</div>
-							<div class="card-footer white py-3 d-flex justify-content-center">
+							<!-- <div class="card-footer white py-3 d-flex justify-content-center">
 								<nav>
 									<ul id="pagination3" class="pagination">
 									</ul>
 								</nav>
-							</div>
+							</div> -->
 						</div>
 					</div>
 				</div>
@@ -1456,11 +1456,11 @@
 									</tbody>
 								</table>
 							</div>
-							<div class="card-footer white py-3 d-flex justify-content-center">
+							<!-- <div class="card-footer white py-3 d-flex justify-content-center">
 								<ul id="pagination6" class="pagination">
 								</ul>
 								</nav>
-							</div>
+							</div> -->
 						</div>
 					</div>
 				</div>
