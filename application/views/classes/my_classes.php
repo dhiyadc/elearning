@@ -666,7 +666,7 @@
 										<div class="alert alert-primary" role="alert">
 											<div class="row">
 												<div class="col">
-													<h4 class="alert-heading">Kelas <?= $val2['judul_kelas']; ?> Sedang Dimulai</a></h4>
+													<h4 class="alert-heading">Kelas <b><?= $val2['judul_kelas']; ?></b> Sedang Dimulai</a></h4>
 												</div>
 												<div class="text-right"><?= $val2['tanggal']; ?></div>
 											</div>
@@ -1342,12 +1342,12 @@
 									</tbody>
 								</table>
 							</div>
-							<div class="card-footer white py-3 d-flex justify-content-center">
+							<!-- <div class="card-footer white py-3 d-flex justify-content-center">
 								<nav>
 									<ul id="pagination3" class="pagination">
 									</ul>
 								</nav>
-							</div>
+							</div> -->
 						</div>
 					</div>
 				</div>
@@ -1456,11 +1456,11 @@
 									</tbody>
 								</table>
 							</div>
-							<div class="card-footer white py-3 d-flex justify-content-center">
+							<!-- <div class="card-footer white py-3 d-flex justify-content-center">
 								<ul id="pagination6" class="pagination">
 								</ul>
 								</nav>
-							</div>
+							</div> -->
 						</div>
 					</div>
 				</div>
@@ -1476,7 +1476,7 @@
 										<div class="alert alert-primary" role="alert">
 											<div class="row">
 												<div class="col">
-													<h4 class="alert-heading">Workshop <?= $val2['judul_workshop']; ?> Sedang Dimulai</a></h4>
+													<h4 class="alert-heading">Workshop <b><?= $val2['judul_workshop']; ?></b> Sedang Dimulai</a></h4>
 												</div>
 												<div class="text-right"><?= $val2['tanggal']; ?></div>
 											</div>
