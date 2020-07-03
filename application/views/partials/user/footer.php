@@ -19,7 +19,7 @@
 
           <div class="col-md-4">
             <h3>Ikuti Kami</h3>
-            <p>Untuk mendapatkan info menarik tentang classic, silahkan tinggalkan alamat email pada kolom dibawah ini</p>
+            <p>Untuk mendapatkan info menarik tentang classico, silahkan tinggalkan alamat email pada kolom dibawah ini</p>
             <form action="#" class="footer-subscribe">
               <div class="d-flex mb-5">
                 <input type="text" class="form-control rounded-0" placeholder="Email">
