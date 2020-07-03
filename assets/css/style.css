@@ -5,7 +5,9 @@ body {
   /* 1.7 */
   color: gray;
   font-weight: 300;
-  font-size: 1.1rem; }
+  font-size: 1.1rem;
+  padding: 0px;
+  margin: 0px; }
 
 ::-moz-selection {
   background: #000;
