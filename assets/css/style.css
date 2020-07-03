@@ -1302,7 +1302,7 @@ background-color: black;
       width: 290px;
     } 
     .nav{
-      display: block;
+      /* display: block; */
     }
     .nav .nav-item,.nav .nav-item a{
       padding-left: 0px;
