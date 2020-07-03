@@ -53,8 +53,8 @@
 <?php foreach ($kelas as $val) : ?>
   <?php if ($val['pembuat_kelas'] == $this->session->userdata('id_user')) : ?>
     <div class="text-right">
-      <a href="<?= base_url() ?>classes/new_assignment/<?= $val['id_kelas']; ?>" class="btn btn-info">Buat Tugas / Quiz</a>
-      <a href="<?= base_url() ?>classes/open_class/<?= $val['id_kelas']; ?>" class="btn btn-danger">Kembali ke kelas</a>
+      <a href="<?= base_url() ?>classes/new_assignment/<?= $val['id_kelas']; ?>" class="btn btn-info" style="width: 200px;">Buat Tugas / Quiz</a>
+      <a href="<?= base_url() ?>classes/open_class/<?= $val['id_kelas']; ?>" class="btn btn-danger" style="width: 200px">Kembali ke kelas</a>
     </div>
   <?php else : ?>
     <div class="text-right">
