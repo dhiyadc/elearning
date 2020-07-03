@@ -2193,3 +2193,13 @@ svg.enterprise-check path {
   background-image: url("../images/bb2.jpg");
   height: 300px;
 }
+
+.darkbg{
+  opacity:0.5;
+  background-color: Black;
+  z-index:10;
+}
+
+.darkbg .img{
+  Z-index: 5;
+}

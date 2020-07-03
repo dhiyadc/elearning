@@ -65,7 +65,7 @@
           <?php foreach ($class as $val) : ?>
             <div class="course bg-white h-100 align-self-stretch">
               <figure class="m-0">
-                <a href="<?=base_url()?>classes/open_class/<?= $val['id_kelas'] ?>"><img src="<?= base_url().'assets/images/'.$val['poster_kelas']?>" alt="Image" class="img-fluid" style="height: 180px; object-fit: cover;"></a>
+                <a href="<?=base_url()?>classes/open_class/<?= $val['id_kelas'] ?>"><img src="<?= base_url().'assets/images/'.$val['poster_kelas']?>" alt="Image" class="img-fluid darkbg" style="height: 180px; object-fit: cover;"></a>
               </figure>
               <div class="course-inner-text py-4 px-4" style="height: 200px;">
                 <span class="course-price"><?php
@@ -254,7 +254,7 @@
           <?php foreach ($class2 as $val) : ?>
             <div class="course bg-white h-100 align-self-stretch">
               <figure class="m-0">
-                <a href="<?=base_url()?>workshops/open_workshop/<?= $val['id_workshop'] ?>"><img src="<?= base_url().'assets/images/'.$val['poster_workshop']?>" alt="Image" class="img-fluid" style="height: 180px; object-fit: cover;"></a>
+                <a href="<?=base_url()?>workshops/open_workshop/<?= $val['id_workshop'] ?>"><img src="<?= base_url().'assets/images/'.$val['poster_workshop']?>" alt="Image" class="img-fluid darkbg" style="height: 180px; object-fit: cover;"></a>
               </figure>
               <div class="course-inner-text py-4 px-4" style="height: 200px;">
                 <span class="course-price"><?php
