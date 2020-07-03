@@ -537,7 +537,7 @@
             <img src="<?php echo base_url(); ?>assets/images/original.jpg" alt="Image" class="img-fluid w-25 mb-4 rounded-circle">
             <h3 class="mb-4">Setsuna F Say Yeah</h3>
             <blockquote>
-              <p>&ldquo; Teknologi adalah Harapan bagi mMimpi Para Anak muda di esok hari kelak &rdquo;</p>
+              <p>&ldquo; Teknologi adalah Harapan bagi Mimpi Para Anak muda di esok hari kelak &rdquo;</p>
             </blockquote>
           </div>
         </div>
