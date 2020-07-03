@@ -20,9 +20,9 @@ $_SESSION['url_login'] = "kelasview";
                         <?php } else { ?>
                             <?php $_SESSION['new_class_url_login'] = "newworkshop"; ?>
 
-                            <a href="" class="btn btn-black " data-toggle="modal" data-target="#elegantModalFormcreateClass"><i class="fa fa-clone left"></i> Buat
+                            <a href="" class="btn btn-black ml-2 mt-1 " data-toggle="modal" data-target="#elegantModalFormcreateClass"><i class="fa fa-clone left"></i> Buat
                                 Workshop</a>
-                            <a href="" class="btn btn-black " data-toggle="modal" data-target="#elegantModalFormcreateClass"><i class="fa fa-clone left"></i> Gabung
+                            <a href="" class="btn btn-black ml-2 mt-1" data-toggle="modal" data-target="#elegantModalFormcreateClass"><i class="fa fa-clone left"></i> Gabung
                                 Workshop</a>
                         <?php } ?>
                     </div>
