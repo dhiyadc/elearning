@@ -699,7 +699,7 @@
 								</div>
 							</div>
 
-							<div class="card-body">
+							<div class="card-body table-responsive">
 								<table id="pageTable3" class="table">
 									<thead>
 										<tr>
@@ -1509,7 +1509,7 @@
 								</div>
 							</div>
 
-							<div class="card-body">
+							<div class="card-body table-responsive">
 								<table id="pageTable8" class="table">
 									<thead>
 										<tr>
