@@ -121,9 +121,9 @@
   </div>
   <div id="login-page">
     <div class="modal fade" id="elegantModalFormcreateClass" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="padding-right: 90px;">
-      <div class="modal-dialog" role="document">
+      <div class="modal-dialog" role="document" style="padding-right: 100px;">
         <!--Content-->
-        <div class="modal-content form-elegant">
+        <div class="modal-content form-elegant" style="padding-right: 100px;">
           <!--Header-->
           <div class="modal-header text-center">
             <h3 class="modal-title w-100 dark-grey-text font-weight-bold my-3" id="myModalLabel"><strong>Masuk</strong></h3>
