@@ -604,7 +604,7 @@
 
 
           </div>
-          <div class="col-lg-7 align-self-end"  data-aos="fade-left" data-aos-delay="200">
+          <div class="col-lg-7 align-self-end"  data-aos="fade-right" data-aos-delay="200">
             <img src="<?php echo base_url(); ?>assets/images/gambar1.png" alt="Image" class="img-fluid" height="400px" >
           </div>
         </div>
