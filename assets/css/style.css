@@ -1314,6 +1314,21 @@ background-color: black;
     }
 }
 
+
+@media (max-width: 640px) {
+  .notice-info{
+    font-size: 10px;
+    width: 200px;
+    margin-left: -12px;
+  } 
+ 
+}
+
+.pcview{
+width: 900px;
+
+}
+
 .primarywarna{
   background-color: #3838b0;
 }
