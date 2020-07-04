@@ -47,9 +47,9 @@ class Profile extends CI_Controller
         }
         $header['notif2'] = $datanotif2;
 
-        $this->load->view('partialsuser/header', $header);
+        $this->load->view('partials/user/header', $header);
         $this->load->view('profile/my_profile', $data);
-        $this->load->view('partialsuser/footer');
+        $this->load->view('partials/user/footer');
     }
 
     public function edit_profile()
