@@ -87,7 +87,23 @@
               </div>
             </div>
           <?php endforeach; ?>
-            
+            <!--  -->
+            <!-- <div class="course bg-white h-100 align-self-stretch">
+              <figure class="m-0">
+                <a href="#"><img src="<?php echo base_url(); ?>assets/images/noimg.png" alt="Image" class="img-fluid darkbg" style="height: 180px; object-fit: cover;"></a>
+              </figure>
+              <div class="course-inner-text py-4 px-4" style="height: 200px;">
+                <span class="course-price">N/A</span>
+                <div class="meta">
+                      <div class="meta"></div>
+                </div>
+                <h3><a href="">Kelas Belum Tersedia</a></h3>
+                <p>Kelas belum tersedia utk saat ini. Kami akan menyediakan kelas-kelas lain untuk anda dalam beberapa waktu</p>
+              </div>
+              <div class="d-flex border-top stats">
+                <div class="py-3 px-4"><span class="icon-users"></span> 0 peserta</div>
+              </div>
+            </div> -->
 
 
           </div>
@@ -276,7 +292,23 @@
               </div>
             </div>
           <?php endforeach; ?>
-            
+            <!--  -->
+            <!-- <div class="course bg-white h-100 align-self-stretch">
+              <figure class="m-0">
+                <a href="#"><img src="<?php echo base_url(); ?>assets/images/noimg.png" class="img-fluid darkbg" style="height: 180px; object-fit: cover;"></a>
+              </figure>
+              <div class="course-inner-text py-4 px-4" style="height: 200px;">
+                <span class="course-price">N/A</span>
+                <div class="meta">
+                      <div class="meta"></div>
+                </div>
+                <h3><a href="#">Workshop Belum Tersedia</a></h3>
+                <p>Workshop belum tersedia untuk saat ini. Kami akan menyediakan Workshop lain untuk anda dalam beberapa waktu</p>
+              </div>
+              <div class="d-flex border-top stats">
+                <div class="py-3 px-4"><span class="icon-users"></span> 0 peserta</div>
+              </div>
+            </div> -->
 
 
           </div>
