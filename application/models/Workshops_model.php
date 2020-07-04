@@ -268,7 +268,7 @@ class workshops_model extends CI_Model
             $this->load->library('upload', $config);
             if ($this->upload->do_upload('poster')) {
                 $data = $this->db->get_where('workshop',['id_workshop' => $id])->row();
-                unlink("assets/images/".$data->poster_kelas);
+                unlink("assets/images/".$data->poster_workshop);
 
                 $file_name = $this->upload->data('file_name');
                 $data = [
