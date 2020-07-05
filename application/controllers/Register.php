@@ -28,9 +28,9 @@ class Register extends CI_Controller {
 		 if(isset($this->session->userdata['logged_in'])){
 		 	redirect('home');
 		 }else{
-			$this->load->view('partials/header'); 
+			$this->load->view('partials/common/header'); 
 			$this->load->view('user/register_user');
-			$this->load->view('partials/footer');
+			$this->load->view('partials/common/footer');
 		}
 	}
 
