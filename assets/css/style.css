@@ -2218,3 +2218,14 @@ svg.enterprise-check path {
 .darkbg .img{
   Z-index: 5;
 }
+
+.icon-success {
+  color: #5CB85C;
+}
+
+.carousel-control-next,
+.carousel-control-prev{
+    filter: invert(100%);
+    
+}
+

@@ -45,7 +45,7 @@
     
 
 
-    <div class="site-section courses-title" id="courses-section">
+    <div class="site-section courses-title" id="courses-section" style="background-color: #3232aa;">
       <div class="container">
         <div class="row mb-5 justify-content-center">
           <div class="col-lg-7 text-center" data-aos="fade-up" data-aos-delay="">
@@ -54,7 +54,7 @@
         </div>
       </div>
     </div>
-    <div class="site-section courses-entry-wrap"  data-aos="fade-up" data-aos-delay="100">
+    <div class="site-section courses-entry-wrap"  data-aos="fade-up" data-aos-delay="100" style="background-color: #3232aa;"> 
       <div class="container">
         <div class="row">
 
@@ -90,7 +90,7 @@
             <!--  -->
             <!-- <div class="course bg-white h-100 align-self-stretch">
               <figure class="m-0">
-                <a href="#"><img src="<?php echo base_url(); ?>assets/images/noimg.png" alt="Image" class="img-fluid darkbg" style="height: 180px; object-fit: cover;"></a>
+                <a href="#"><img src="<?php echo base_url(); ?>assets/images/logo.png" alt="Image" class="img-fluid darkbg" style="height: 180px; object-fit: cover;"></a>
               </figure>
               <div class="course-inner-text py-4 px-4" style="height: 200px;">
                 <span class="course-price">N/A</span>
@@ -109,11 +109,21 @@
           </div>
 
           <a class="carousel-control-prev" href="#myCarousel" data-slide="prev">
-              <span class="customPrevBtn carousel-control-prev-icon" style="background-color: grey;"></span>
+              <span class="customPrevBtn carousel-control-prev-icon"></span>
           </a>
           <a class="carousel-control-next" href="#myCarousel" data-slide="next">
-              <span class="customNextBtn carousel-control-next-icon" style="background-color: grey;"></span>
+              <span class="customNextBtn carousel-control-next-icon"></span>
           </a>
+
+          <!-- <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+              <span class="carousel-control-prev-icon icon-success" aria-hidden="true" style="color: white;"></span>
+              <span class="sr-only">Previous</span>
+          </a>
+
+          <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+              <span class="carousel-control-next-icon icon-success" aria-hidden="true" style="color: white;"></span>
+              <span class="sr-only">Next</span>
+          </a> -->
         
 
             <script>
@@ -250,11 +260,11 @@
     </div> -->
 
 
-    <div class="site-section courses-title" id="courses-section">
+    <div class="site-section courses-title" id="courses-section" style="background-color: white;">
       <div class="container">
         <div class="row mb-5 justify-content-center">
           <div class="col-lg-7 text-center" data-aos="fade-up" data-aos-delay="">
-            <h2 class="section-title">Workshop Terbaik</h2>
+            <h2 class="section-title" style="color: #3232aa;">Workshop Terbaik</h2>
           </div>
         </div>
       </div>
@@ -295,7 +305,7 @@
             <!--  -->
             <!-- <div class="course bg-white h-100 align-self-stretch">
               <figure class="m-0">
-                <a href="#"><img src="<?php echo base_url(); ?>assets/images/noimg.png" class="img-fluid darkbg" style="height: 180px; object-fit: cover;"></a>
+                <a href="#"><img src="<?php echo base_url(); ?>assets/images/logo.png" class="img-fluid darkbg" style="height: 180px; object-fit: cover;"></a>
               </figure>
               <div class="course-inner-text py-4 px-4" style="height: 200px;">
                 <span class="course-price">N/A</span>
@@ -314,10 +324,10 @@
           </div>
 
           <a class="carousel-control-prev" href="#myCarousel" data-slide="prev">
-              <span class="customPrevBtn carousel-control-prev-icon" style="background-color: grey;"></span>
+              <span class="customPrevBtn carousel-control-prev-icon blck"></span>
           </a>
           <a class="carousel-control-next" href="#myCarousel" data-slide="next">
-              <span class="customNextBtn carousel-control-next-icon"style="background-color: grey;"></span>
+              <span class="customNextBtn carousel-control-next-icon blck"></span>
           </a>
         
 
