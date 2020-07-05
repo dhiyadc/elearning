@@ -1,17 +1,72 @@
 <?php
 
-Class User_database extends CI_Model {
+class User_database extends CI_Model
+{
+    public function http_request_get($url)
+    {
 
-//Login Function
-    public function login($data){
-        
+        $curl = curl_init();
+        $url = "http://classico.co.id".$url;
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
+        $result = curl_exec($curl);
+        curl_close($curl);
+
+        return json_decode($result, TRUE);
+    }
+
+    public function http_request_post($data, $url)
+    {
+        $curl = curl_init();
+        $url = "http://classico.co.id".$url;
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_POST, TRUE);
+        curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
+        $result = curl_exec($curl);
+        curl_close($curl);
+
+        return json_decode($result, TRUE);
+    }
+
+    public function http_request_update($data, $url)
+    {
+        $curl = curl_init();
+        $url = "http://classico.co.id".$url;
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "UPDATE");
+        curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
+        $result = curl_exec($curl);
+        curl_close($curl);
+
+        return json_decode($result, TRUE);
+    }
+    public function http_request_delete($url)
+    {
+        $curl = curl_init();
+        $url = "http://classico.co.id".$url;
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "DELETE");
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
+        $result = curl_exec($curl);
+        curl_close($curl);
+
+        return json_decode($result, TRUE);
+    }
+
+    //Login Function
+    public function login($data)
+    {
+
         $username = $data['email'];
         $password = $data['password'];
         $hashed = hash('sha256', $password);
-        $user = $this->db->get_where('user', ['email' => $username])->row_array();
-    
-        if($user){
-            if($this->db->get_where('user', ['password' => $hashed])->row_array()){
+        $user = $this->http_request_get("?email=$username");
+
+        if ($user['status'] == 200 && count($user['data']) != 0 || count($user['data']) != null) {
+            $passwordcek = $this->http_request_get("?password=$hashed");
+            if ($passwordcek['status'] == 200 && count($passwordcek['data']) != 0 || count($passwordcek['data']) != null) {
                 return true;
             } else {
                 return false;
@@ -23,107 +78,83 @@ Class User_database extends CI_Model {
 
     public function getFirstAccount($email)
     {
-        
-        $sql = "SELECT * FROM user
-        WHERE email='$email'";
-    $query = $this->db->query($sql);
-    return $query->result_array()[0];
+
+        return $this->http_request_get("?email=$email");
     }
 
-// Register Function
-public function register($data){
-    $id_user = $data['user_id'];
-    $email = $data['email'];
-    $password = $data['password'];
-    $nama = $data['nama'];
-    $no_telepon = $data['no_telepon'];
-    $hashed = hash('sha256', $password);
-    $sql = "INSERT INTO user (id_user, email, password)
-        VALUES ('$id_user','$email', '$hashed')";
-    $this->db->query($sql);
+    // Register Function
+    public function register($data)
+    {
+        $data1 = [
+            "id_user" => $data['user_id'],
+            "email" => $data['email'],
+            'hashed' => hash('sha256', $data['password'])
+        ];
+        $data2 = [
+            "id_user" => $data['user_id'],
+            "nama" => $data['nama'],
+            "no_telepon" => $data['no_telepon'],
+        ];
+        $this->http_request_post($data1, "");
+        return $this->http_request_post($data2, "");
+    }
 
-    $sql = "INSERT INTO detail_user (id_user, nama, no_telepon)
-            VALUES ('$id_user','$nama','$no_telepon')";
-    return $this->db->query($sql);
-}
+    public function getIDUser($email)
+    {
+        return $this->http_request_get("?email=$email");
+    }
 
-public function getIDUser($email){
-    /*$sql = "SELECT id_user FROM user
-        WHERE email='$email'";
-    $query = $this->db->query($sql);
-    return $query->getFirstRow(); */
-    
-    
-    $condition = "email =" . "'" . $email . "'";
-    $this->db->select('id_user');
-    $this->db->from('user');
-    $this->db->where($condition);
-    //$this->db->limit(1);
-    $query = $this->db->get(); 
+    public function getEmailUser($id_user)
+    {
+        return $this->http_request_get("?id_user=$id_user");
+    }
 
-    return $query->result_array()[0];
-}
+    //Set token for reset password request
+    public function setToken($id_user, $token)
+    {
+        $data = [
+            'id_user' => $id_user,
+            'token' => $token,
+            'status_token' => 0,
+            'expire_date' => "DATE_ADD(NOW(), INTERVAL 5 MINUTE)"
+        ];
 
-public function getEmailUser($id_user){
-    $condition = "id_user =" . "'" . $id_user . "'";
-    $this->db->select('email');
-    $this->db->from('user');
-    $this->db->where($condition);
-    //$this->db->limit(1);
-    $query = $this->db->get(); 
+        $this->http_request_post($data, "");
+    }
 
-    return $query->result_array()[0];
-}
+    public function getValidToken($token)
+    {
 
-//Set token for reset password request
-public function setToken($id_user, $token)
-{
-    $sql = "INSERT INTO lupa_password (id_user, token, status_token, expire_date)
-            VALUES ('$id_user','$token',0, DATE_ADD(NOW(), INTERVAL 5 MINUTE))";
-    return $this->db->query($sql);
-}
+        return $this->http_request_get("?token=$token");
+    }
 
-public function getValidToken($token){
-    $sql = "SELECT id_user FROM lupa_password WHERE token='$token' AND token<>'' AND expire_date > NOW()";
-    $query = $this->db->query($sql);
-    return $query->num_rows();
-}
+    public function getIDbyToken($token)
+    {
+        return $this->http_request_get("?token=$token");
+    }
 
-public function getIDbyToken($token){
-    $sql = "SELECT id_user FROM lupa_password WHERE token='$token'";
-    $query = $this->db->query($sql);
+    public function updatePasswordUser($id_user, $newPassword)
+    {
+        $newPasswordHashed = hash('sha256', $newPassword);
 
-    return $query->result_array()[0];
-}
+        $data = [
+            'password' => $newPasswordHashed
+        ];
+        $this->http_request_update($data, "?id_user=$id_user");
 
-public function updatePasswordUser($id_user, $newPassword)
-{
-    $newPasswordHashed = hash('sha256', $newPassword);
-    $sql = "UPDATE user SET password = '$newPasswordHashed'
-    WHERE id_user='$id_user'";
-    $this->db->query($sql);
+        return $this->http_request_delete("?id_user=$id_user");
+    }
 
-    $sql = "DELETE FROM lupa_password WHERE id_user='$id_user'";
-    return $this->db->query($sql);
-}
+    // Read data from database to show data in any page
+    public function read_user_information($email)
+    {
 
-// Read data from database to show data in any page
-public function read_user_information($email) {
+        $data = $this->http_request_delete("?email=$email");
 
-    $condition = "email =" . "'" . $email . "'";
-    $this->db->select('*');
-    $this->db->from('user');
-    $this->db->where($condition);
-    $this->db->limit(1);
-    $query = $this->db->get();
-
-    if ($query->num_rows() == 1) {
-        return $query->result();
-    } else {
-        return "fail";
+        if ($data['status'] == 200 && count($data['data']) == 1) {
+            return $data['data'];
+        } else {
+            return "fail";
+        }
     }
 }
-
-}
-
-?>
