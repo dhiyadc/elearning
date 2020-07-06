@@ -11,7 +11,7 @@
               <div class="row align-items-center">
                 <div class="col-lg-6 mb-4 mt-5">
                   <h1  data-aos="fade-up" data-aos-delay="100">Pengalaman Adalah Ilmu Terbaik yang semua orang cari</h1>
-                  <p class="mb-4"  data-aos="fade-up" data-aos-delay="200">Segera temukan kelas-kelas yang mampu menginspirasi kamu dan menjadikanmu “from zero to hero” disini.</p>
+                  <p class="mb-4"  data-aos="fade-up" data-aos-delay="200">Segera temukan kelas-kelas yang mampu menginspirasi kamu disini.</p>
                   <?php if(isset($_SESSION['logged_in'])) : ?>
                   <div class="row">  
                     <a href="<?= base_url() ?>classes/new_class" class="btn btn text-white py-3 px-5 btn-pill ml-2 mt-1" data-aos="fade-up" data-aos-delay="300" style="background-color: #3232aa;">Buat Kelas</a>

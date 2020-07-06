@@ -132,7 +132,7 @@ class workshops_model extends CI_Model
                     'poster_workshop' => $file_name,
                     // 'jenis_kelas' => $this->input->post('jenis'),
                     'jenis_workshop' => 1,
-                    'status_workshop' => 1,
+                    'status_workshop' => 3,
                     'batas_jumlah' => 0,
                     'tipe_workshop' => $this->input->post('tipe')
                 ];
@@ -146,7 +146,7 @@ class workshops_model extends CI_Model
                     'poster_workshop' => $file_name,
                     // 'jenis_kelas' => $this->input->post('jenis'),
                     'jenis_workshop' => 1,
-                    'status_workshop' => 1,
+                    'status_workshop' => 3,
                     'batas_jumlah' => $this->input->post('jumlah_peserta'),
                     'tipe_workshop' => $this->input->post('tipe')
                 ];

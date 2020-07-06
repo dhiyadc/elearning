@@ -1421,7 +1421,7 @@
 															<?php if ($val2['nama_status'] == "Selesai") : ?>
 																<span class="badge badge-success"><?= $val2['nama_status'] ?></span>
 															<?php else : ?>
-																<span class="badge badge-warning"><?= $val2['nama_status'] ?></span>
+																<span class="badge badge-danger"><?= $val2['nama_status'] ?></span>
 															<?php endif; ?>
 														<?php endif; ?>
 													<?php endforeach; ?>
@@ -1548,7 +1548,7 @@
 																	<?php if ($val3['nama_status'] == "Selesai") : ?>
 																		<span class="badge badge-success" style="margin-left: 50px;"><?= $val3['nama_status'] ?></span>
 																	<?php else : ?>
-																		<span class="badge badge-warning"><?= $val3['nama_status'] ?></span>
+																		<span class="badge badge-danger"><?= $val3['nama_status'] ?></span>
 																	<?php endif; ?>
 																<?php endif; ?>
 															<?php endforeach; ?>
