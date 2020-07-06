@@ -282,7 +282,8 @@
                 </li>
               </ul>
             </nav>
-            <a href="<?= base_url(); ?>profile"" class="d-inline-block d-lg-none site-menu-toggle js-menu-toggle text-black float-right"><span class="icon-menu h3"></span></a>
+            
+            <a href="" class="d-inline-block d-lg-none site-menu-toggle js-menu-toggle text-black float-right"><span class="icon-menu h3"></span></a>
           </div>
 
         </div>

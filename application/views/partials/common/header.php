@@ -243,7 +243,9 @@
             <nav class="site-navigation position-relative text-right" role="navigation">
               <ul class="site-menu main-menu site-menu-white js-clone-nav mr-auto d-none d-lg-block m-0 p-0">
                 <li class="nav-link"><a href="" data-toggle="modal" data-target="#elegantModalForm"><span>Masuk</span></a></li>
+                <!-- <li class="nav-link"><a href="<?= base_url() ?>register" ><span>Masuk</span></a></li> -->
                 <li class="cta"><a href="<?= base_url() ?>register" class="nav-link"><span style=" text-shadow: none;">Daftar</span></a></li>
+
               </ul>
             </nav>
             <a href="#" class="d-inline-block d-lg-none site-menu-toggle js-menu-toggle text-black float-right"><span class="icon-menu h3"></span></a>
