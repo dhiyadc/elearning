@@ -3,11 +3,13 @@
 class Admin_database extends CI_Model
 {
 
-    public function http_request_get($url)
+    public function http_request_get($data = null, $url)
     {
 
         $curl = curl_init();
-        $url = "http://classico.co.id".$url;
+        if($data)
+        $data = http_build_query($data);
+        $url = "http://classico.co.id/".$url;
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
         $result = curl_exec($curl);
@@ -19,7 +21,7 @@ class Admin_database extends CI_Model
     public function http_request_post($data, $url)
     {
         $curl = curl_init();
-        $url = "http://classico.co.id".$url;
+        $url = "http://classico.co.id/".$url;
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_POST, TRUE);
         curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
@@ -33,7 +35,7 @@ class Admin_database extends CI_Model
     public function http_request_update($data, $url)
     {
         $curl = curl_init();
-        $url = "http://classico.co.id".$url;
+        $url = "http://classico.co.id/".$url;
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "UPDATE");
         curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
@@ -43,10 +45,10 @@ class Admin_database extends CI_Model
 
         return json_decode($result, true);
     }
-    public function http_request_delete($url)
+    public function http_request_delete($id)
     {
         $curl = curl_init();
-        $url = "http://classico.co.id".$url;
+        $url = "http://classico.co.id/".$id;
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "DELETE");
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
@@ -227,7 +229,7 @@ class Admin_database extends CI_Model
 
     public function hapusWorkshop($id)
     {
-        $this->http_request_delete("?id_workshop=$id");
+        $this->http_request_delete("$id");
     }
 
     public function getAllUsersDetail()
