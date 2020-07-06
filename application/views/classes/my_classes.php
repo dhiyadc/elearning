@@ -344,7 +344,7 @@
 
 												</th>
 												<td style="padding-top: 20px; padding-top: 23px;">
-													<span><small><small><a id="btnCopy" href="" onclick="return false" data-toggle="tooltip" data-original-title="Click to copy" data-clipboard-text="Hey, saya sudah membuat kelas baru silahkan cek disini: <?= base_url(); ?>classes/open_class/<?= $val['id_kelas'] ?>">Share Link</a></small></small></span>
+													<span><a id="btnCopy" href="" onclick="return false" data-toggle="tooltip" data-original-title="Click to copy" data-clipboard-text="Hey, saya sudah membuat kelas baru silahkan cek disini: <?= base_url(); ?>classes/open_class/<?= $val['id_kelas'] ?>"><i class="fa fa-share-alt" aria-hidden="true"></i></a></span>
 												</td>
 
 												<td style="padding-top: 23px;">
@@ -1397,11 +1397,11 @@
 										<?php foreach ($kelas2 as $val) : ?>
 											<?php $ctWorkshop++; ?>
 											<tr>
-												<th scope="row" style="width: 300px;"><a class="text-primary"><?= $val['judul_workshop']; ?></a></th>
+												<th scope="row" style="width: 300px; "><a class="text-primary"><?= $val['judul_workshop']; ?></a></th>
 
 
 												<td style="padding-top: 20px; padding-top: 23px;">
-													<span><small><small><a id="btnCopy" href="" onclick="return false" data-toggle="tooltip" data-original-title="Click to copy" data-clipboard-text="Hey, saya sudah membuat workshop baru silahkan cek disini: <?= base_url(); ?>Workshops/open_workshop/<?= $val['id_workshop'] ?>">Copy Link</a></small></small></span>
+													<span><a id="btnCopy" href="" onclick="return false" data-toggle="tooltip" data-original-title="Click to copy" data-clipboard-text="Hey, saya sudah membuat workshop baru silahkan cek disini: <?= base_url(); ?>Workshops/open_workshop/<?= $val['id_workshop'] ?>"><i class="fa fa-share-alt" aria-hidden="true"></i></a></span>
 												</td>
 
 												<td style="padding-top: 20px;">
@@ -1415,17 +1415,19 @@
 													?>
 
 												</td>
-												<td style="padding-top: 20px;" class="text-center">
-													<?php foreach ($status2 as $val2) : ?>
-														<?php if ($val['status_workshop'] == $val2['id_status']) : ?>
-															<?php if ($val2['nama_status'] == "Selesai") : ?>
-																<span class="badge badge-success"><?= $val2['nama_status'] ?></span>
-															<?php else : ?>
-																<span class="badge badge-danger"><?= $val2['nama_status'] ?></span>
-															<?php endif; ?>
+
+												<?php foreach ($status2 as $val3) : ?>
+													<?php if ($val3['id_status'] == $val2['status_kegiatan']) : ?>
+														<?php if ($val3['nama_status'] == "Selesai") : ?>
+															<td style="text-align: center ;"><span class="badge badge-success"><?= $val3['nama_status']; ?></span></td>
+														<?php elseif ($val3['nama_status'] == "Belum Mulai") : ?>
+															<td style="text-align: center ;"><span class="badge badge-danger"><?= $val3['nama_status']; ?></span></td>
+														<?php else : ?>
+															<td style="text-align: center ;"><span class="badge badge-warning"><?= $val3['nama_status']; ?></span></td>
 														<?php endif; ?>
-													<?php endforeach; ?>
-												</td>
+													<?php endif; ?>
+												<?php endforeach; ?>
+
 
 												<td style="padding-top: 20px;" class="text-center">
 													<?php if ($val['tipe_workshop'] == 1) : ?>
@@ -1542,23 +1544,24 @@
 																}
 															}
 															?>
-														<td style="padding-top:20px; padding-left: 60px;">
 															<?php foreach ($status2 as $val3) : ?>
-																<?php if ($val['status_workshop'] == $val3['id_status']) : ?>
+																<?php if ($val3['id_status'] == $val2['status_kegiatan']) : ?>
 																	<?php if ($val3['nama_status'] == "Selesai") : ?>
-																		<span class="badge badge-success" style="margin-left: 50px;"><?= $val3['nama_status'] ?></span>
-																	<?php else : ?>
-																		<span class="badge badge-danger"><?= $val3['nama_status'] ?></span>
-																	<?php endif; ?>
-																<?php endif; ?>
-															<?php endforeach; ?>
-														</td>
-														<td>
-															<div class="buttonclass text-center">
-																<a href="<?= base_url() ?>Workshops/open_workshop/<?= $val['id_workshop'] ?>" class="btn btn-light">Lihat</a>
-																<a data-toggle='modal' data-target='#konfirmasi_hapus2' data-href="<?= base_url() ?>workshops/leave_workshop/<?= $val['id_workshop'] ?>"><i class="btn btn-danger">Tinggalkan</i></a>
-															</div>
-														</td>
+														<td style="text-align: center ;"><span class="badge badge-success"><?= $val3['nama_status']; ?></span></td>
+													<?php elseif ($val3['nama_status'] == "Belum Mulai") : ?>
+														<td style="text-align: center ;"><span class="badge badge-danger"><?= $val3['nama_status']; ?></span></td>
+													<?php else : ?>
+														<td style="text-align: center ;"><span class="badge badge-warning"><?= $val3['nama_status']; ?></span></td>
+													<?php endif; ?>
+												<?php endif; ?>
+											<?php endforeach; ?>
+
+											<td>
+												<div class="buttonclass text-center">
+													<a href="<?= base_url() ?>Workshops/open_workshop/<?= $val['id_workshop'] ?>" class="btn btn-light">Lihat</a>
+													<a data-toggle='modal' data-target='#konfirmasi_hapus2' data-href="<?= base_url() ?>workshops/leave_workshop/<?= $val['id_workshop'] ?>"><i class="btn btn-danger">Tinggalkan</i></a>
+												</div>
+											</td>
 													</tr>
 
 												<?php endif; ?>
