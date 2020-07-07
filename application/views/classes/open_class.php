@@ -213,7 +213,8 @@ $this->session->set_userdata('workshop', null);
                       <th scope="col">Hari/Tanggal</th>
                       <th scope="col">Waktu</th>
                       <th scope="col" style="text-align: center;">Status</th>
-                      <?php if ($val['pembuat_kelas'] != $this->session->userdata('id_user')) : ?>
+                      <?php foreach ($kelas as $val2) : ?>
+                      <?php if ($val2['pembuat_kelas'] != $this->session->userdata('id_user')) : ?>
                         <?php if ($cek == true) : ?>
                         <?php elseif ($peserta != null) : ?>
                           <th scope="col" style="text-align: center;">Aksi</th>
@@ -224,6 +225,7 @@ $this->session->set_userdata('workshop', null);
                         <th scope="col" style="text-align: center ;">Aksi</th>
                         <th scope="col" style="text-align: center;">Materi</th>
                       <?php endif; ?>
+                      <?php endforeach?>
 
 
 
@@ -405,12 +407,13 @@ $this->session->set_userdata('workshop', null);
                 </div>
               </div>
             </div>
-
+            
             </tr>
-          <?php endforeach; ?>
+            <?php endforeach; ?>
           </tbody>
           </table>
             </div>
+            <?php foreach ($kelas as $val) : ?>
             <?php if ($val['pembuat_kelas'] == $this->session->userdata('id_user')) : ?>
               <div class="card-footer white py-3 d-flex justify-content-between">
                 <button class="btn btn-light btn-md px-3 my-0 ml-0" type="button" data-toggle="modal" data-target="#tambahKegiatan">Tambah Jadwal Kegiatan</button>
@@ -427,9 +430,9 @@ $this->session->set_userdata('workshop', null);
                         <span aria-hidden="true">&times;</span>
                       </button>
                     </div>
-
-
-
+                    
+                    
+                    
                     <!--Body-->
                     <div class="modal-body mx-4">
                       <!--Body-->
@@ -441,7 +444,7 @@ $this->session->set_userdata('workshop', null);
                         <div class="form-group">
                           <label>Jadwal Kegiatan</label>
                           <div class="input-group date form_datetime " data-date-format="yyyy/mm/dd hh:ii" data-link-field="dtp_input1">
-                            <input class="form-control" id="inputdatetimepicker" size="16" type="text" name="tanggal" readonly required>
+                          <input class="form-control" id="inputdatetimepicker" size="16" type="text" name="tanggal" readonly required>
                             <span class="input-group-addon" style="width:40px;"><span class="glyphicon glyphicon-remove"></span></span>
                             <span class="input-group-addon" style="width:40px;"><span class="glyphicon glyphicon-th"></span></span>
                           </div>
@@ -466,10 +469,11 @@ $this->session->set_userdata('workshop', null);
                 </div>
               </div>
             <?php endif; ?>
+            <?php endforeach; ?>
           </div>
         </div>
-    </div>
-</section>
+      </div>
+    </section>
 </div>
 </div>
 
