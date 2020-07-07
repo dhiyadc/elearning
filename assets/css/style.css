@@ -2233,5 +2233,12 @@ svg.enterprise-check path {
   #notifis { 
     display: none;
   }
-}
 
+  @media screen and (max-width: 767px) {
+    .footer-subscribe .btn{
+      font-size: 9px;
+    }
+    .footer-subscribe .form-control{
+      font-size: 9px;
+    }
+  }
