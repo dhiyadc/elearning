@@ -3,13 +3,13 @@
         <div class="row">
           <div class="col-md-4">
             <h3>Tentang Classico</h3>
-            <p>CLASSIC merupakan singakat dari Class Interaction Community yang hadir sebagai media pembelajaran online yang membantu kalian mendapatkan pengalaman dalam mengeksplor kemampuan mengajar, membantu kalian mendapatkan ilmu diluar Pendidikan formal serta mempermudah kalian dalam berinteraksi dengan suatu kelompok belajar.</p>
+            <p>CLASSICO merupakan singakat dari Class Interaction Community yang hadir sebagai media pembelajaran online yang membantu kalian mendapatkan pengalaman dalam mengeksplor kemampuan mengajar, membantu kalian mendapatkan ilmu diluar Pendidikan formal serta mempermudah kalian dalam berinteraksi dengan suatu kelompok belajar. </p>
           </div>
 
           <div class="col-md-3 ml-auto">
             <h3>Links</h3>
             <ul class="list-unstyled footer-links">
-            <li><a href="<?=base_url()?>Home">Beranda</a></li>
+              <li><a href="<?=base_url()?>Home">Beranda</a></li>
               <li><a href="<?=base_url()?>Classes">Kelas</a></li>
               <li><a href="<?=base_url()?>Workshops">Workshop</a></li>
               <li><a href="#">Programs</a></li>
@@ -19,7 +19,7 @@
 
           <div class="col-md-4">
             <h3>Ikuti Kami</h3>
-            <p>Untuk mendapatkan info menarik tentang classic, silahkan tinggalkan alamat email pada kolom dibawah ini</p>
+            <p>Untuk mendapatkan info menarik tentang classico, silahkan tinggalkan alamat email pada kolom dibawah ini</p>
             <form action="#" class="footer-subscribe">
               <div class="d-flex mb-5">
                 <input type="text" class="form-control rounded-0" placeholder="Email">
@@ -49,7 +49,7 @@
     
   </div> <!-- .site-wrap -->
 
-  <script src="<?php echo base_url(); ?>assets/js/jquery-3.3.1.min.js"></script>
+  <!-- <script src="<?php echo base_url(); ?>assets/js/jquery-3.3.1.min.js"></script> -->
   <script src="<?php echo base_url(); ?>assets/js/jquery-migrate-3.0.1.min.js"></script>
   <script src="<?php echo base_url(); ?>assets/js/jquery-ui.js"></script>
   <script src="<?php echo base_url(); ?>assets/js/popper.min.js"></script>

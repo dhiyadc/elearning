@@ -66,6 +66,7 @@ class workshops_model extends CI_Model
         return $this->http_request_get("?id_user=$id_user");
     }
 
+
     public function getMyPrivateClasses()
     {
         $id_user = $this->session->userdata('id_user');
@@ -135,9 +136,6 @@ class workshops_model extends CI_Model
         }
     }
 
-
-
-
     public function getPesertaByUserId()
     {
         $id_user = $this->session->userdata('id_user');
@@ -158,8 +156,6 @@ class workshops_model extends CI_Model
     {
         return $this->http_request_get("");
     }
-
-
 
     public function getKelasKegiatan($id)
     {
@@ -187,7 +183,7 @@ class workshops_model extends CI_Model
                     'poster_workshop' => $file_name,
                     // 'jenis_kelas' => $this->input->post('jenis'),
                     'jenis_workshop' => 1,
-                    'status_workshop' => 1,
+                    'status_workshop' => 3,
                     'batas_jumlah' => 0,
                     'tipe_workshop' => $this->input->post('tipe')
                 ];
@@ -201,7 +197,7 @@ class workshops_model extends CI_Model
                     'poster_workshop' => $file_name,
                     // 'jenis_kelas' => $this->input->post('jenis'),
                     'jenis_workshop' => 1,
-                    'status_workshop' => 1,
+                    'status_workshop' => 3,
                     'batas_jumlah' => $this->input->post('jumlah_peserta'),
                     'tipe_workshop' => $this->input->post('tipe')
                 ];
@@ -302,6 +298,7 @@ class workshops_model extends CI_Model
 
             $this->load->library('upload', $config);
             if ($this->upload->do_upload('poster')) {
+
                 $data = $this->http_request_get("?id_workshop=$id");
                 foreach ($data['data'] as $data2) {
                     unlink("assets/images/" . $data2['poster_workshop']);
@@ -420,6 +417,7 @@ class workshops_model extends CI_Model
         } else {
             return $this->http_request_get("keyword=null&id_user=$user");
         }
+
     }
 
     public function leaveClass($id)

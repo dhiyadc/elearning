@@ -5,7 +5,9 @@ body {
   /* 1.7 */
   color: gray;
   font-weight: 300;
-  font-size: 1.1rem; }
+  font-size: 1.1rem;
+  padding: 0px;
+  margin: 0px; }
 
 ::-moz-selection {
   background: #000;
@@ -874,7 +876,7 @@ h1, h2, h3, h4, h5,
       background-color: #7971ea; }
 
 .footer-section {
-  padding: 7em 0;
+  padding: 3em 0;
   background-color: #fafafa; }
   .footer-section p {
     font-size: 1rem; }
@@ -1302,7 +1304,7 @@ background-color: black;
       width: 290px;
     } 
     .nav{
-      display: block;
+      /* display: block; */
     }
     .nav .nav-item,.nav .nav-item a{
       padding-left: 0px;
@@ -1310,6 +1312,21 @@ background-color: black;
     .message{
       font-size: 13px;
     }
+}
+
+
+@media (max-width: 640px) {
+  .notice-info{
+    font-size: 10px;
+    width: 200px;
+    margin-left: -12px;
+  } 
+ 
+}
+
+.pcview{
+width: 900px;
+
 }
 
 .primarywarna{
@@ -2191,3 +2208,30 @@ svg.enterprise-check path {
   background-image: url("../images/bb2.jpg");
   height: 300px;
 }
+
+.darkbg{
+  opacity:0.5;
+  background-color: Black;
+  z-index:10;
+}
+
+.darkbg .img{
+  Z-index: 5;
+}
+
+.icon-success {
+  color: #5CB85C;
+}
+
+.carousel-control-next,
+.carousel-control-prev{
+    filter: invert(100%);
+    
+}
+
+@media screen and (max-width: 767px) {
+  #notifis { 
+    display: none;
+  }
+}
+

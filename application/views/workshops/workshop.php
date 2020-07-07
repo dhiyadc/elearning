@@ -20,9 +20,9 @@ $_SESSION['url_login'] = "kelasview";
                         <?php } else { ?>
                             <?php $_SESSION['new_class_url_login'] = "newworkshop"; ?>
 
-                            <a href="" class="btn btn-black " data-toggle="modal" data-target="#elegantModalFormcreateClass"><i class="fa fa-clone left"></i> Buat
+                            <a href="" class="btn btn-black ml-2 mt-1 " data-toggle="modal" data-target="#elegantModalFormcreateClass"><i class="fa fa-clone left"></i> Buat
                                 Workshop</a>
-                            <a href="" class="btn btn-black " data-toggle="modal" data-target="#elegantModalFormcreateClass"><i class="fa fa-clone left"></i> Gabung
+                            <a href="" class="btn btn-black ml-2 mt-1" data-toggle="modal" data-target="#elegantModalFormcreateClass"><i class="fa fa-clone left"></i> Gabung
                                 Workshop</a>
                         <?php } ?>
                     </div>
@@ -249,7 +249,7 @@ $_SESSION['url_login'] = "kelasview";
                             <div class="col-lg-4 mt-5 mb-5 classBox moreBox" style="display: none;">
                                 <div class="course bg-white h-100 align-self-stretch">
                                     <figure class="m-0">
-                                        <a href="<?= base_url() ?>workshops/open_workshop/<?= $val['id_workshop'] ?>"><img src="<?= base_url() . 'assets/images/' . $val['poster_workshop'] ?>" alt="Image" class="img-fluid" style="height: 180px; width: 330px; object-fit: cover;"></a>
+                                        <a href="<?= base_url() ?>workshops/open_workshop/<?= $val['id_workshop'] ?>"><img src="<?= base_url() . 'assets/images/' . $val['poster_workshop'] ?>" alt="Image" class="img-fluid darkbg" style="height: 180px; width: 330px; object-fit: cover;"></a>
                                     </figure>
                                     <div class="course-inner-text py-4 px-4" style="height: 200px;">
                                         <span class="course-price"><?php

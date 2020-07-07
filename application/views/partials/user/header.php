@@ -171,7 +171,7 @@
             <nav class="site-navigation position-relative text-right" role="navigation">
               <ul class="site-menu main-menu site-menu-white js-clone-nav mr-auto d-none d-lg-block m-0 p-0">
               
-              <li class="nav-item dropdown ">
+              <li class="nav-item dropdown">
                 <?php if ((count($notif)+count($notif2)) == 0) : ?>
                     <a class="nav-link dropdown-toggle notification" id="notifis" data-toggle="dropdown"
                       aria-haspopup="true" aria-expanded="false"><i class="fa fa-bell"></i>
@@ -282,7 +282,8 @@
                 </li>
               </ul>
             </nav>
-           
+            
+            <a href="" class="d-inline-block d-lg-none site-menu-toggle js-menu-toggle text-black float-right"><span class="icon-menu h3"></span></a>
           </div>
 
         </div>

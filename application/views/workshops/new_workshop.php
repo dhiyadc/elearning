@@ -323,7 +323,7 @@
         <div class="row">
             <div class="col-md-3"></div>
             <div class="col-md-6">
-                <button type="submit" class="btn btn-primary"><i class="fa fa-user-plus"></i>Buat Kelas</button>
+                <button type="submit" class="btn btn-primary"><i class="fa fa-user-plus"></i>Buat Workshop</button>
                 <button type="submit" class="btn btn-blue-gradient"></i>Kembali</button>
             </div>
         </div>

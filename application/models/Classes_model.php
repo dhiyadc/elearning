@@ -106,6 +106,7 @@ class Classes_model extends CI_Model
         return $this->http_request_get("?id_user=$id_user");
     }
 
+
     public function getMyPublicClasses()
     {
         $id_user = $this->session->userdata('id_user');
@@ -281,10 +282,11 @@ class Classes_model extends CI_Model
         $this->load->library('upload', $config);
         if ($this->upload->do_upload('poster')) {
             $file_name = $this->upload->data('file_name');
+            $uniqid = uniqid();
 
             if ($this->input->post('batas') == 0) {
                 $data = [
-                    'id_kelas' => uniqid(),
+                    'id_kelas' => $uniqid,
                     'pembuat_kelas' => $this->session->userdata('id_user'),
                     'judul_kelas' => $this->input->post('judul'),
                     'deskripsi_kelas' => $this->input->post('deskripsi'),
@@ -298,7 +300,7 @@ class Classes_model extends CI_Model
                 ];
             } else {
                 $data = [
-                    'id_kelas' => uniqid(),
+                    'id_kelas' => $uniqid,
                     'pembuat_kelas' => $this->session->userdata('id_user'),
                     'judul_kelas' => $this->input->post('judul'),
                     'deskripsi_kelas' => $this->input->post('deskripsi'),
@@ -314,10 +316,23 @@ class Classes_model extends CI_Model
 
             $this->http_request_post($data, "");
 
-            if (!empty($this->input->post('addmore'))) {
-                $this->setKegiatan($this->getIdNewClass()['id_kelas']);
+            if (!empty($this->input->post('harga'))) {
+                $harga_str = preg_replace("/[^0-9]/", "", $this->input->post('harga'));
+                $data = [
+                    'id_kelas' => $uniqid,
+                    'harga_kelas' => $harga_str
+                ];
+            } else {
+                $data = [
+                    'id_kelas' => $uniqid,
+                    'harga_kelas' => '0'
+                ];
             }
-            $this->setHarga($this->getIdNewClass()['id_kelas']);
+            $this->db->insert('harga_kelas', $data);
+
+            if (!empty($this->input->post('addmore'))) {
+                $this->setKegiatan($uniqid);
+            }
         } else {
             return $this->upload->display_errors();
         }
@@ -747,7 +762,6 @@ class Classes_model extends CI_Model
         $this->db->where('id_kelas', $id);
         $this->http_request_delete("?id_user=$id_user&id_kelas=$id");
     }
-
 
     public function getMateri($id_kelas)
     {

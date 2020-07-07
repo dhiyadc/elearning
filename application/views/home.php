@@ -11,14 +11,26 @@
               <div class="row align-items-center">
                 <div class="col-lg-6 mb-4 mt-5">
                   <h1  data-aos="fade-up" data-aos-delay="100">Pengalaman Adalah Ilmu Terbaik yang semua orang cari</h1>
-                  <p class="mb-4"  data-aos="fade-up" data-aos-delay="200">Segera temukan kelas-kelas yang mampu menginspirasi kamu dan menjadikanmu “from zero to hero” disini.</p>
-				          <?php if(isset($_SESSION['logged_in'])) : ?>
-                  <a href="<?= base_url() ?>classes/new_class" class="btn btn text-white py-3 px-5 btn-pill" data-aos="fade-up" data-aos-delay="300" style="background-color: #3232aa">Buat Kelas</a><a href="<?= base_url() ?>workshops/new_workshop" class="btn btn text-white py-3 px-5 btn-pill ml-2" data-aos="fade-up" data-aos-delay="300" style="background-color: #3232aa">Buat Workshop</a>
+                  <p class="mb-4"  data-aos="fade-up" data-aos-delay="200">Segera temukan kelas-kelas yang mampu menginspirasi kamu disini.</p>
+                  <?php if(isset($_SESSION['logged_in'])) : ?>
+                  <div class="row">  
+                    <a href="<?= base_url() ?>classes/new_class" class="btn btn text-white py-3 px-5 btn-pill ml-2 mt-1" data-aos="fade-up" data-aos-delay="300" style="background-color: #3232aa;">Buat Kelas</a>
+                    <a href="<?= base_url() ?>workshops/new_workshop" class="btn btn text-white py-3 px-5 btn-pill ml-2 mt-1" data-aos="fade-up" data-aos-delay="300" style="background-color: #3232aa">Buat Workshop</a>
+                  </div>
                   <?php else : ?>
-                   <a data-toggle="modal" data-target="#elegantModalForm" class="btn btn text-white py-3 px-5 btn-pill" data-aos="fade-up" data-aos-delay="300" style="background-color: #3232aa">Buat Kelas</a><a data-toggle="modal" data-target="#elegantModalForm" class="btn btn text-white py-3 px-5 btn-pill ml-2" data-aos="fade-up" data-aos-delay="300" style="background-color: #3232aa">Buat Workshop</a>
-                 
-                    <?php endif; ?>  
+                  <div class="row">
+                   <a data-toggle="modal" data-target="#elegantModalForm" class="btn btn text-white py-3 px-5 btn-pill ml-2 mt-1" data-aos="fade-up" data-aos-delay="300" style="background-color: #3232aa;">Buat Kelas</a>
+                   <a data-toggle="modal" data-target="#elegantModalForm" class="btn btn text-white py-3 px-5 btn-pill ml-2 mt-1" data-aos="fade-up" data-aos-delay="300" style="background-color: #3232aa">Buat Workshop</a>
+                  </div>
+                   <?php endif; ?>  
+                    
+                    <!-- <div class="row">
+                      <a href="<?= base_url() ?>classes/new_class" class="btn btn text-white py-3 px-5 btn-pill ml-2 mt-1" data-aos="fade-up" data-aos-delay="300" style="background-color: #3232aa;">Buat Kelas</a>
+                    
+                      <a href="<?= base_url() ?>workshops/new_workshop" class="btn btn text-white py-3 px-5 btn-pill ml-2 mt-1" data-aos="fade-up" data-aos-delay="300" style="background-color: #3232aa">Buat Workshop</a>
+                  </div> -->
 
+                 </div>
                 </div>
 
                
@@ -33,7 +45,7 @@
     
 
 
-    <div class="site-section courses-title" id="courses-section">
+    <div class="site-section courses-title" id="courses-section" style="background-color: #3232aa;">
       <div class="container">
         <div class="row mb-5 justify-content-center">
           <div class="col-lg-7 text-center" data-aos="fade-up" data-aos-delay="">
@@ -42,7 +54,7 @@
         </div>
       </div>
     </div>
-    <div class="site-section courses-entry-wrap"  data-aos="fade-up" data-aos-delay="100">
+    <div class="site-section courses-entry-wrap"  data-aos="fade-up" data-aos-delay="100" style="background-color: #3232aa;"> 
       <div class="container">
         <div class="row">
 
@@ -53,7 +65,7 @@
           <?php foreach ($class as $val) : ?>
             <div class="course bg-white h-100 align-self-stretch">
               <figure class="m-0">
-                <a href="<?=base_url()?>classes/open_class/<?= $val['id_kelas'] ?>"><img src="<?= base_url().'assets/images/'.$val['poster_kelas']?>" alt="Image" class="img-fluid" style="height: 180px; object-fit: cover;"></a>
+                <a href="<?=base_url()?>classes/open_class/<?= $val['id_kelas'] ?>"><img src="<?= base_url().'assets/images/'.$val['poster_kelas']?>" alt="Image" class="img-fluid darkbg" style="height: 180px; object-fit: cover;"></a>
               </figure>
               <div class="course-inner-text py-4 px-4" style="height: 200px;">
                 <span class="course-price"><?php
@@ -75,17 +87,43 @@
               </div>
             </div>
           <?php endforeach; ?>
-            
+            <!--  -->
+            <!-- <div class="course bg-white h-100 align-self-stretch">
+              <figure class="m-0">
+                <a href="#"><img src="<?php echo base_url(); ?>assets/images/logo.png" alt="Image" class="img-fluid darkbg" style="height: 180px; object-fit: cover;"></a>
+              </figure>
+              <div class="course-inner-text py-4 px-4" style="height: 200px;">
+                <span class="course-price">N/A</span>
+                <div class="meta">
+                      <div class="meta"></div>
+                </div>
+                <h3><a href="">Kelas Belum Tersedia</a></h3>
+                <p>Kelas belum tersedia utk saat ini. Kami akan menyediakan kelas-kelas lain untuk anda dalam beberapa waktu</p>
+              </div>
+              <div class="d-flex border-top stats">
+                <div class="py-3 px-4"><span class="icon-users"></span> 0 peserta</div>
+              </div>
+            </div> -->
 
 
           </div>
 
           <a class="carousel-control-prev" href="#myCarousel" data-slide="prev">
-              <span class="customPrevBtn carousel-control-prev-icon" style="background-color: grey;"></span>
+              <span class="customPrevBtn carousel-control-prev-icon"></span>
           </a>
           <a class="carousel-control-next" href="#myCarousel" data-slide="next">
-              <span class="customNextBtn carousel-control-next-icon" style="background-color: grey;"></span>
+              <span class="customNextBtn carousel-control-next-icon"></span>
           </a>
+
+          <!-- <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+              <span class="carousel-control-prev-icon icon-success" aria-hidden="true" style="color: white;"></span>
+              <span class="sr-only">Previous</span>
+          </a>
+
+          <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+              <span class="carousel-control-next-icon icon-success" aria-hidden="true" style="color: white;"></span>
+              <span class="sr-only">Next</span>
+          </a> -->
         
 
             <script>
@@ -105,7 +143,7 @@
         </div> 
       </div>
 
-
+<!-- 
       <div class="site-section" id="programs-section" style="padding-bottom: 100px;">
 
       <section class="ftco-section" id="inputs">
@@ -125,7 +163,7 @@
           </div>
         </section>
       <div class="container">
-        <!-- DIRTY Responsive pricing table HTML -->
+
        
         <div class="row mb-5 justify-content-center">
           <div class="col-lg-7 text-center"  data-aos="fade-up" data-aos-delay="">
@@ -219,14 +257,14 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
 
 
-    <div class="site-section courses-title" id="courses-section">
+    <div class="site-section courses-title" id="courses-section" style="background-color: white;">
       <div class="container">
         <div class="row mb-5 justify-content-center">
           <div class="col-lg-7 text-center" data-aos="fade-up" data-aos-delay="">
-            <h2 class="section-title">Workshop Terbaik</h2>
+            <h2 class="section-title" style="color: #3232aa;">Workshop Terbaik</h2>
           </div>
         </div>
       </div>
@@ -242,7 +280,7 @@
           <?php foreach ($class2 as $val) : ?>
             <div class="course bg-white h-100 align-self-stretch">
               <figure class="m-0">
-                <a href="<?=base_url()?>workshops/open_workshop/<?= $val['id_workshop'] ?>"><img src="<?= base_url().'assets/images/'.$val['poster_workshop']?>" alt="Image" class="img-fluid" style="height: 180px; object-fit: cover;"></a>
+                <a href="<?=base_url()?>workshops/open_workshop/<?= $val['id_workshop'] ?>"><img src="<?= base_url().'assets/images/'.$val['poster_workshop']?>" alt="Image" class="img-fluid darkbg" style="height: 180px; object-fit: cover;"></a>
               </figure>
               <div class="course-inner-text py-4 px-4" style="height: 200px;">
                 <span class="course-price"><?php
@@ -264,16 +302,32 @@
               </div>
             </div>
           <?php endforeach; ?>
-            
+            <!--  -->
+            <!-- <div class="course bg-white h-100 align-self-stretch">
+              <figure class="m-0">
+                <a href="#"><img src="<?php echo base_url(); ?>assets/images/logo.png" class="img-fluid darkbg" style="height: 180px; object-fit: cover;"></a>
+              </figure>
+              <div class="course-inner-text py-4 px-4" style="height: 200px;">
+                <span class="course-price">N/A</span>
+                <div class="meta">
+                      <div class="meta"></div>
+                </div>
+                <h3><a href="#">Workshop Belum Tersedia</a></h3>
+                <p>Workshop belum tersedia untuk saat ini. Kami akan menyediakan Workshop lain untuk anda dalam beberapa waktu</p>
+              </div>
+              <div class="d-flex border-top stats">
+                <div class="py-3 px-4"><span class="icon-users"></span> 0 peserta</div>
+              </div>
+            </div> -->
 
 
           </div>
 
           <a class="carousel-control-prev" href="#myCarousel" data-slide="prev">
-              <span class="customPrevBtn carousel-control-prev-icon" style="background-color: grey;"></span>
+              <span class="customPrevBtn carousel-control-prev-icon blck"></span>
           </a>
           <a class="carousel-control-next" href="#myCarousel" data-slide="next">
-              <span class="customNextBtn carousel-control-next-icon"style="background-color: grey;"></span>
+              <span class="customNextBtn carousel-control-next-icon blck"></span>
           </a>
         
 
@@ -293,7 +347,7 @@
           </div>
         </div> 
       </div>
-    </div>
+
 
     <!-- <script>
       
@@ -329,7 +383,7 @@
 
     </script> -->
 
-    <div class="site-section" id="programs-section" style="padding-bottom: 100px;">
+    <!-- <div class="site-section" id="programs-section" style="padding-bottom: 100px;">
     <section class="ftco-section" id="inputs">
 		  
       <div class="bg-light py-5 mt-md-5">
@@ -347,7 +401,7 @@
       </div>
     </section>
       <div class="container">
-        <!-- DIRTY Responsive pricing table HTML -->
+       
         <div class="row mb-5 justify-content-center">
           <div class="col-lg-7 text-center"  data-aos="fade-up" data-aos-delay="">
             <h2 class="section-title" style="font-weight: 600;">Premium Account</h2><hr>
@@ -408,10 +462,7 @@
             </div>
             <div class="table-cell cell-feature">Potongan dari Kelas Berbayar</div>
             <div class="table-cell">
-              <!-- <svg width="18" height="18" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
-                <title>check_blue</title>
-                <path d="M6.116 14.884c.488.488 1.28.488 1.768 0l10-10c.488-.488.488-1.28 0-1.768s-1.28-.488-1.768 0l-9.08 9.15-4.152-4.15c-.488-.488-1.28-.488-1.768 0s-.488 1.28 0 1.768l5 5z" fill="limegreen" fill-rule="evenodd"/>
-              </svg> -->
+             
             </div>
             <div class="table-cell">
               <svg class="enterprise-check" width="18" height="18" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
@@ -441,10 +492,11 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
 
 
-
+<!-- rapiin padding style="padding-top: 180px;" -->
+    
     <div class="site-section" id="programs-section">
       <div class="container">
         <div class="row mb-5 justify-content-center">
@@ -527,7 +579,7 @@
             <img src="<?php echo base_url(); ?>assets/images/original.jpg" alt="Image" class="img-fluid w-25 mb-4 rounded-circle">
             <h3 class="mb-4">Setsuna F Say Yeah</h3>
             <blockquote>
-              <p>&ldquo; Teknologi adalah Harapan bagi mMimpi Para Anak muda di esok hari kelak &rdquo;</p>
+              <p>&ldquo; Teknologi adalah Harapan bagi Mimpi Para Anak muda di esok hari kelak &rdquo;</p>
             </blockquote>
           </div>
         </div>
@@ -594,7 +646,7 @@
 
 
           </div>
-          <div class="col-lg-7 align-self-end"  data-aos="fade-left" data-aos-delay="200">
+          <div class="col-lg-7 align-self-end"  data-aos="fade-right" data-aos-delay="200">
             <img src="<?php echo base_url(); ?>assets/images/gambar1.png" alt="Image" class="img-fluid" height="400px" >
           </div>
         </div>

@@ -9,7 +9,7 @@
 
 <section class="user_dashboard">
 	<div class="row mt-0">
-		<div class="col-lg-12" style="background-color: aquamarine;">
+		<div class="col-lg-12" style="background-color: darkcyan;">
 			<div class="card" style="border-radius: 0px; background-color: darkcyan;">
 				<div class="container my-5 pt-5 pb-3 px-4 z-depth-1">
 
@@ -337,17 +337,17 @@
 
 											<?php $ctClass++; ?>
 											<tr>
-												<th class="kelasSearch" scope="row" style="width: 300px; padding-top: 23px;"><a class="text-primary"><?= $val['judul_kelas']; ?></a>
+												<th class="kelasSearch" scope="row" style="width: 300px; padding-top: 30px;"><a class="text-primary"><?= $val['judul_kelas']; ?></a>
 													<div id="accordion" role="tablist">
 
 													</div>
 
 												</th>
-												<td style="padding-top: 20px; padding-top: 23px;">
-													<span><small><small><a id="btnCopy" href="" onclick="return false" data-toggle="tooltip" data-original-title="Click to copy" data-clipboard-text="Hey, saya sudah membuat kelas baru silahkan cek disini: <?= base_url(); ?>classes/open_class/<?= $val['id_kelas'] ?>">Share Link</a></small></small></span>
+												<td style="padding-top: 30px;">
+													<span><a id="btnCopy" href="" onclick="return false" data-toggle="tooltip" data-original-title="Click to copy" data-clipboard-text="Hey, saya sudah membuat kelas baru silahkan cek disini: <?= base_url(); ?>classes/open_class/<?= $val['id_kelas'] ?>"><i class="fa fa-share-alt" aria-hidden="true"></i></a></span>
 												</td>
 
-												<td style="padding-top: 23px;">
+												<td style="padding-top: 30px;">
 													<?php $total = 0;
 													$selesai = 0;
 													foreach ($kegiatan as $val2) {
@@ -368,7 +368,7 @@
 														<div class="progress-bar bg-info" role="progressbar" style="width: <?= $proses; ?>%" aria-valuenow="<?= $proses; ?>" aria-valuemin="0" aria-valuemax="100"><?= round($proses); ?>%</div>
 													</div>
 												</td>
-												<td style="padding-top: 20px;" class="text-center">
+												<td style="padding-top: 30px;" class="text-center">
 													<?php foreach ($status as $val2) : ?>
 														<?php if ($val['status_kelas'] == $val2['id_status']) : ?>
 															<?php if ($val2['nama_status'] == "Selesai") : ?>
@@ -379,7 +379,7 @@
 														<?php endif; ?>
 													<?php endforeach; ?>
 												</td>
-												<td style="padding-top: 20px;" class="text-center">
+												<td style="padding-top: 30px;" class="text-center">
 													<?php if ($val['tipe_kelas'] == 1) : ?>
 														<span class="badge badge-light">Public</span>
 													<?php else : ?>
@@ -444,7 +444,7 @@
 																									<td style="padding-top: 23px;"><?= $val5['tanggal']; ?></td>
 																									<td style="padding-top: 23px;"><?= $val5['waktu']; ?></td>
 
-																									<td style="text-align: center ; padding-top: 20px;">
+																									<td style="text-align: center ; padding-top: 30px;">
 																										<?php if ($val5['status_kegiatan'] == 1) : ?>
 																											<span class="badge badge-warning" style="padding: 6px;">Sedang Berlangsung</span>
 																										<?php elseif ($val5['status_kegiatan'] == 2) : ?>
@@ -666,7 +666,7 @@
 										<div class="alert alert-primary" role="alert">
 											<div class="row">
 												<div class="col">
-													<h4 class="alert-heading">Kelas <?= $val2['judul_kelas']; ?> Sedang Dimulai</a></h4>
+													<h4 class="alert-heading">Kelas <b><?= $val2['judul_kelas']; ?></b> Sedang Dimulai</a></h4>
 												</div>
 												<div class="text-right"><?= $val2['tanggal']; ?></div>
 											</div>
@@ -699,7 +699,7 @@
 								</div>
 							</div>
 
-							<div class="card-body">
+							<div class="card-body table-responsive">
 								<table id="pageTable3" class="table">
 									<thead>
 										<tr>
@@ -717,12 +717,12 @@
 												<?php if ($val2['id_kelas'] == $val['id_kelas'] && $val2['id_user'] == $this->session->userdata('id_user')) : ?>
 													<tr>
 														<?php if ($val['tipe_kelas'] == 2) : ?>
-															<th scope="row" style="width: 300px;"><a class="text-primary"><?= $val['judul_kelas']; ?> <i class="fa fa-lock"></a></th>
+															<th scope="row" style="width: 300px; padding-top: 25px;"><a class="text-primary"><?= $val['judul_kelas']; ?> <i class="fa fa-lock"></a></th>
 														<?php else : ?>
-															<th scope="row" style="width: 300px;"><a class="text-primary"><?= $val['judul_kelas']; ?></a></th>
+															<th scope="row" style="width: 300px; padding-top: 25px;"><a class="text-primary"><?= $val['judul_kelas']; ?></a></th>
 
 														<?php endif; ?>
-														<td style="padding-top: 20px;" class="text-center">
+														<td style="padding-top: 25px;" class="text-center">
 															<?php $total = 0;
 															$selesai = 0;
 															foreach ($kegiatan as $val3) {
@@ -742,7 +742,7 @@
 																<div class="progress-bar bg-info" role="progressbar" style="width: <?= $proses; ?>%" aria-valuenow="<?= round($proses); ?>" aria-valuemin="0" aria-valuemax="100"><?= $proses; ?>%</div>
 															</div>
 														</td>
-														<td style="padding-top:20px;" class="text-center">
+														<td style="padding-top:25px;" class="text-center">
 															<?php foreach ($status as $val3) : ?>
 																<?php if ($val['status_kelas'] == $val3['id_status']) : ?>
 																	<?php if ($val3['nama_status'] == "Selesai") : ?>
@@ -753,7 +753,7 @@
 																<?php endif; ?>
 															<?php endforeach; ?>
 														</td>
-														<td style="padding-top:20px;" class="text-center">
+														<td style="padding-top:25px;" class="text-center">
 															<?php if ($val['tipe_kelas'] == 1) : ?>
 																<span class="badge badge-light">Public</span>
 															<?php else : ?>
@@ -1310,7 +1310,7 @@
 																												<td><?= $val5['deskripsi_kegiatan']; ?></td>
 																												<td><?= $val5['tanggal']; ?></td>
 																												<td><?= $val5['waktu']; ?></td>
-																												<td style="text-align: center ; padding-top: 20px;">
+																												<td style="text-align: center ; padding-top: 30px;">
 																													<?php if ($val5['status_kegiatan'] == 1) : ?>
 																														<span class="badge badge-warning" style="padding: 6px;">Sedang Berlangsung</span>
 																													<?php elseif ($val5['status_kegiatan'] == 2) : ?>
@@ -1342,12 +1342,12 @@
 									</tbody>
 								</table>
 							</div>
-							<div class="card-footer white py-3 d-flex justify-content-center">
+							<!-- <div class="card-footer white py-3 d-flex justify-content-center">
 								<nav>
 									<ul id="pagination3" class="pagination">
 									</ul>
 								</nav>
-							</div>
+							</div> -->
 						</div>
 					</div>
 				</div>
@@ -1397,14 +1397,14 @@
 										<?php foreach ($kelas2 as $val) : ?>
 											<?php $ctWorkshop++; ?>
 											<tr>
-												<th scope="row" style="width: 300px;"><a class="text-primary"><?= $val['judul_workshop']; ?></a></th>
+												<th scope="row" style="width: 300px; padding-top: 30px; "><a href="<?= base_url() ?>Workshops/open_workshop/<?= $val['id_workshop'] ?>" class="text-primary"><?= $val['judul_workshop']; ?></a></th>
 
 
-												<td style="padding-top: 20px; padding-top: 23px;">
-													<span><small><small><a id="btnCopy" href="" onclick="return false" data-toggle="tooltip" data-original-title="Click to copy" data-clipboard-text="Hey, saya sudah membuat workshop baru silahkan cek disini: <?= base_url(); ?>Workshops/open_workshop/<?= $val['id_workshop'] ?>">Copy Link</a></small></small></span>
+												<td style="padding-top: 30px;">
+													<span><a id="btnCopy" href="" onclick="return false" data-toggle="tooltip" data-original-title="Click to copy" data-clipboard-text="Hey, saya sudah membuat workshop baru silahkan cek disini: <?= base_url(); ?>Workshops/open_workshop/<?= $val['id_workshop'] ?>"><i class="fa fa-share-alt" aria-hidden="true"></i></a></span>
 												</td>
 
-												<td style="padding-top: 20px;">
+												<td style="padding-top: 30px;">
 													<?php
 													foreach ($kegiatan2 as $val2) {
 														if ($val['id_workshop'] == $val2['id_workshop']) {
@@ -1415,19 +1415,22 @@
 													?>
 
 												</td>
-												<td style="padding-top: 20px;" class="text-center">
-													<?php foreach ($status2 as $val2) : ?>
-														<?php if ($val['status_workshop'] == $val2['id_status']) : ?>
-															<?php if ($val2['nama_status'] == "Selesai") : ?>
-																<span class="badge badge-success"><?= $val2['nama_status'] ?></span>
-															<?php else : ?>
-																<span class="badge badge-warning"><?= $val2['nama_status'] ?></span>
-															<?php endif; ?>
-														<?php endif; ?>
-													<?php endforeach; ?>
-												</td>
 
-												<td style="padding-top: 20px;" class="text-center">
+												<?php foreach ($kegiatan2 as $val2) :
+													if ($val['id_workshop'] == $val2['id_workshop']) : ?>
+														<?php if ($val2['status_kegiatan'] == 2) : ?>
+															<td style="text-align: center; padding-top: 30px;"><span class="badge badge-success">Selesai</span></td>
+														<?php elseif ($val2['status_kegiatan'] == 1) : ?>
+															<td style="text-align: center; padding-top: 30px;"><span class="badge badge-danger">Sedang Berlangsung</span></td>
+														<?php else : ?>
+															<td style="text-align: center; padding-top: 30px;"><span class="badge badge-warning">Belum Mulai</span></td>
+														<?php endif; ?>
+													<?php endif; ?>
+												<?php endforeach; ?>
+
+
+
+												<td style="padding-top: 30px;" class="text-center">
 													<?php if ($val['tipe_workshop'] == 1) : ?>
 														<span class="badge badge-light">Public</span>
 													<?php else : ?>
@@ -1435,7 +1438,7 @@
 													<?php endif; ?>
 												</td>
 
-												<td style="padding-top: 20px;">
+												<td style="padding-top: 20px;" class="text-center">
 													<div class="buttonclass">
 														<div class="btn-group">
 															<a class="btn btn-outline-dark" href="<?= base_url() ?>Workshops/open_workshop/<?= $val['id_workshop'] ?>" style="padding-right: 20px; padding-left: 20px; padding-top: 12px; padding-bottom: 12px;">Detail</a>
@@ -1456,11 +1459,11 @@
 									</tbody>
 								</table>
 							</div>
-							<div class="card-footer white py-3 d-flex justify-content-center">
+							<!-- <div class="card-footer white py-3 d-flex justify-content-center">
 								<ul id="pagination6" class="pagination">
 								</ul>
 								</nav>
-							</div>
+							</div> -->
 						</div>
 					</div>
 				</div>
@@ -1476,7 +1479,7 @@
 										<div class="alert alert-primary" role="alert">
 											<div class="row">
 												<div class="col">
-													<h4 class="alert-heading">Workshop <?= $val2['judul_workshop']; ?> Sedang Dimulai</a></h4>
+													<h4 class="alert-heading">Workshop <b><?= $val2['judul_workshop']; ?></b> Sedang Dimulai</a></h4>
 												</div>
 												<div class="text-right"><?= $val2['tanggal']; ?></div>
 											</div>
@@ -1509,7 +1512,7 @@
 								</div>
 							</div>
 
-							<div class="card-body">
+							<div class="card-body table-responsive">
 								<table id="pageTable8" class="table">
 									<thead>
 										<tr>
@@ -1528,12 +1531,12 @@
 												<?php if ($val2['id_workshop'] == $val['id_workshop'] && $val2['id_user'] == $this->session->userdata('id_user')) : ?>
 													<tr>
 														<?php if ($val['tipe_workshop'] == 2) : ?>
-															<th scope="row" style="width: 300px;"><a class="text-primary"><?= $val['judul_workshop']; ?> <i class="fa fa-lock"></a></th>
+															<th scope="row" style="width: 300px; padding-top: 30px;"><a href="<?= base_url() ?>Workshops/open_workshop/<?= $val['id_workshop'] ?>" class="text-primary"><?= $val['judul_workshop']; ?> <i class="fa fa-lock"></a></th>
 														<?php else : ?>
-															<th scope="row" style="width: 300px;"><a class="text-primary"><?= $val['judul_workshop']; ?></a></th>
+															<th scope="row" style="width: 300px; padding-top: 30px;"><a href="<?= base_url() ?>Workshops/open_workshop/<?= $val['id_workshop'] ?>" class="text-primary"><?= $val['judul_workshop']; ?></a></th>
 														<?php endif; ?>
 														<td></td>
-														<td style="padding-top: 20px;">
+														<td style="padding-top: 30px;">
 															<?php
 															foreach ($kegiatan2 as $val2) {
 																if ($val['id_workshop'] == $val2['id_workshop']) {
@@ -1542,23 +1545,24 @@
 																}
 															}
 															?>
-														<td style="padding-top:20px; padding-left: 60px;">
-															<?php foreach ($status2 as $val3) : ?>
-																<?php if ($val['status_workshop'] == $val3['id_status']) : ?>
-																	<?php if ($val3['nama_status'] == "Selesai") : ?>
-																		<span class="badge badge-success" style="margin-left: 50px;"><?= $val3['nama_status'] ?></span>
-																	<?php else : ?>
-																		<span class="badge badge-warning"><?= $val3['nama_status'] ?></span>
-																	<?php endif; ?>
-																<?php endif; ?>
-															<?php endforeach; ?>
-														</td>
-														<td>
-															<div class="buttonclass text-center">
-																<a href="<?= base_url() ?>Workshops/open_workshop/<?= $val['id_workshop'] ?>" class="btn btn-light">Lihat</a>
-																<a data-toggle='modal' data-target='#konfirmasi_hapus2' data-href="<?= base_url() ?>workshops/leave_workshop/<?= $val['id_workshop'] ?>"><i class="btn btn-danger">Tinggalkan</i></a>
-															</div>
-														</td>
+															<?php foreach ($kegiatan2 as $val2) :
+																if ($val['id_workshop'] == $val2['id_workshop']) : ?>
+																	<?php if ($val2['status_kegiatan'] == 2) : ?>
+														<td style="text-align: center; padding-top: 30px;"><span class="badge badge-success">Selesai</span></td>
+													<?php elseif ($val2['status_kegiatan'] == 1) : ?>
+														<td style="text-align: center; padding-top: 30px;"><span class="badge badge-danger">Sedang Berlangsung</span></td>
+													<?php else : ?>
+														<td style="text-align: center; padding-top: 30px;"><span class="badge badge-warning">Belum Mulai</span></td>
+													<?php endif; ?>
+												<?php endif; ?>
+											<?php endforeach; ?>
+
+											<td>
+												<div class="buttonclass text-center">
+													<a href="<?= base_url() ?>Workshops/open_workshop/<?= $val['id_workshop'] ?>"><i class="btn btn-primary">Lihat</i></a>
+													<a data-toggle='modal' data-target='#konfirmasi_hapus2' data-href="<?= base_url() ?>workshops/leave_workshop/<?= $val['id_workshop'] ?>"><i class="btn btn-danger">Tinggalkan</i></a>
+												</div>
+											</td>
 													</tr>
 
 												<?php endif; ?>
@@ -1602,11 +1606,11 @@
 									<thead>
 										<tr>
 											<th scope="col">Kelas</th>
-											<th scope="col">Nama Tugas</th>
-											<th scope="col">Kategori</th>
-											<th scope="col" style="text-align: center;">Deadline</th>
-											<th scope="col">Nilai</th>
-											<th scope="col">Aksi</th>
+											<th scope="col" class="text-center">Nama Tugas</th>
+											<th scope="col" class="text-center">Kategori</th>
+											<th scope="col" class="text-center">Deadline</th>
+											<th scope="col" class="text-center">Nilai</th>
+											<th scope="col" class="text-center">Aksi</th>
 										</tr>
 									</thead>
 									<tbody id="pageSearch7">
@@ -1618,33 +1622,33 @@
 												<?php foreach ($val2[$i][$j] as $val3) : ?>
 													<?php if ($val[$i][0][0]['id_kelas'] == $val3['id_kelas']) : ?>
 														<tr>
-															<th scope="row" style="width: 300px; "><a class="text-primary"><?= $val[$i][0][0]['judul_kelas']; ?></a></th>
-															<td style="padding-top: 20px; ">
+															<th scope="row" style="width: 220px; padding-top: 25px; "><a class="text-primary"><?= $val[$i][0][0]['judul_kelas']; ?></a></th>
+															<td style="padding-top: 25px; " class="text-center">
 																<?= $val3['judul_tugas']; ?>
 															</td>
-															<td style="padding-top: 20px;">
+															<td style="padding-top: 25px;" class="text-center">
 																<?php if ($val3['kategori'] == "Tugas") : ?>
 																	<span class="badge badge-primary"><?= $val3['kategori']; ?></span>
 																<?php else : ?>
 																	<span class="badge badge-warning"><?= $val3['kategori']; ?></span>
 																<?php endif; ?>
 															</td>
-															<td style="padding-top:20px; text-align: center;">
+															<td style="padding-top:25px; text-align: center;">
 																<span class="badge"><?= $val3['deadline']; ?></span>
 															</td>
 															<?php if ($cek[$k] == true) : ?>
-																<td style="padding-top:20px; color: red;">
+																<td style="padding-top:25px; color: red;" class="text-center">
 																	<b>Belum Kumpul</b>
 																</td>
 																<td>
-																	<div class="buttonclass">
+																	<div class="buttonclass text-center">
 																		<a href="<?= base_url() ?>classes/detail_tugaskuis/<?= $val[$i][0][0]['id_kelas'] ?>/<?= $val3['id_tugas']; ?>" class="btn btncyan">Lihat Tugas</a>
 																	</div>
 																</td>
 															<?php else : ?>
 																<?php foreach ($submit as $val4) : ?>
 																	<?php if ($val3['id_tugas'] == $val4['id_tugas'] && $val4['id_user'] == $this->session->userdata('id_user')) : ?>
-																		<td style="padding-top:20px; color: black;">
+																		<td style="padding-top:25px; color: black;" class="text-center">
 																			<?php if ($val4['nilai_tugas'] == "Belum Dinilai") {
 																				echo $val4['nilai_tugas'];
 																			} else {
@@ -1652,7 +1656,7 @@
 																			} ?>
 																		</td>
 																		<td>
-																			<div class="buttonclass">
+																			<div class="buttonclass text-center">
 																				<a href="<?= base_url() ?>classes/detail_tugaskuis/<?= $val[$i][0][0]['id_kelas'] ?>/<?= $val3['id_tugas']; ?>" class="btn btncyan"">Lihat Tugas</a>
 																			</div>
 																		</td>
@@ -1725,8 +1729,8 @@
 														<?php $countMateri++; ?>
 													<?php endforeach; ?>
 													<tr>
-														<th scope="row" style="width: 300px; "><a href="<?= base_url(); ?>classes/open_class/<?= $val2['id_kelas']; ?>" class="text-primary"><?= $val2['judul_kelas']; ?></a></th>
-														<td style="padding-top:20px; text-align: center;">
+														<th scope="row" style="width: 300px; padding-top: 30px; "><a href="<?= base_url(); ?>classes/open_class/<?= $val2['id_kelas']; ?>" class="text-primary"><?= $val2['judul_kelas']; ?></a></th>
+														<td style="padding-top:30px; text-align: center;">
 															<?= $countMateri; ?>
 														</td>
 														<td>
