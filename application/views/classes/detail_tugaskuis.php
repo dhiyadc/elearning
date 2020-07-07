@@ -118,7 +118,7 @@
           <div class="row d-flex ">
         <div class="col-12 col-md-12 mb-2 mt-2">
             <div class="card  h-100 border-light  bg-light shadow">
-                <div class="card-body d-flex-row" style="width: 1000px;">
+                <div class="card-body d-flex-row">
                     <!-- <blockquote class="blockquote mb-4 pb-2">
                         <p class="mb-0 font-weight-bold ">Buatlah Sebuah Percobaan Dengan Menggunakan Hukum Newton</p>
                     </blockquote> -->
@@ -136,7 +136,11 @@
                                       </div>
                                     </div>
                     <?php endif; ?>
-                    <p class="card-text mb-5" style="margin-top: -25px;"><?= $val2['deskripsi_tugas']; ?></p>
+                    <div class="p-luar" style="margin-top: 25px;">
+                    <div class="row">
+                    <p class="card-text mb-5" style="margin-top: -25px; width: 980px;"><?= $val2['deskripsi_tugas']; ?></p>
+                    </div>
+                    </div>
                     <div class="w-100 pb-1">
                       <?php foreach ($user as $val3) : ?>
                         <footer class="blockquote-footer"><?= $val3['nama']; ?></footer>
