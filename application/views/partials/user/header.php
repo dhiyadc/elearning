@@ -18,7 +18,7 @@
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/jquery-ui.css">
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/owl.carousel.min.css">
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/owl.theme.default.min.css">
-  <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/owl.theme.default.min.css">
+
 
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/jquery.fancybox.min.css">
 
@@ -278,8 +278,9 @@
                 </li>
               </ul>
             </nav>
-
-            <a href="" class="d-inline-block d-lg-none site-menu-toggle js-menu-toggle text-black float-right"><span class="icon-menu h3"></span></a>
+            <a href="" class="d-inline-block d-lg-none nav-link dropdown-toggle notification text-black mt-2 mr-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span> <i class="fa fa-bell"></i><span class="badge" style="font-size: 10px;"></span></a>
+            
+            <a href="" class="d-inline-block d-lg-none site-menu-toggle js-menu-toggle text-black float-right mr-2 mt-2"><span class="icon-menu h3"></span></a>
           </div>
 
         </div>
