@@ -3,11 +3,16 @@
 class Classes_model extends CI_Model
 {
 
-    public function http_request_get($url)
+    public function http_request_get($data = null, $function)
     {
+        if($data!=null){
+            $data=http_build_query($data);
+            $url = "http://classico.co.id/".$function.":?".$data;
+        }
+        else
+        $url = "http://classico.co.id/".$function;
 
         $curl = curl_init();
-        $url = "http://classico.co.id".$url;
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
         $result = curl_exec($curl);
@@ -19,7 +24,7 @@ class Classes_model extends CI_Model
     public function http_request_post($data, $url)
     {
         $curl = curl_init();
-        $url = "http://classico.co.id".$url;
+        $url = "http://classico.co.id/".$url;
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_POST, TRUE);
         curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
@@ -33,7 +38,7 @@ class Classes_model extends CI_Model
     public function http_request_update($data, $url)
     {
         $curl = curl_init();
-        $url = "http://classico.co.id".$url;
+        $url = "http://classico.co.id/".$url;
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "UPDATE");
         curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
@@ -43,10 +48,16 @@ class Classes_model extends CI_Model
 
         return json_decode($result, TRUE);
     }
-    public function http_request_delete($url)
+    public function http_request_delete($data=null, $function)
     {
+        if($data!=null){
+            $data=http_build_query($data);
+            $url = "http://classico.co.id/".$function.":?".$data;
+        }
+        else
+        $url = "http://classico.co.id/".$function;
+
         $curl = curl_init();
-        $url = "http://classico.co.id".$url;
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "DELETE");
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
@@ -251,7 +262,7 @@ class Classes_model extends CI_Model
 
     public function cekPeserta($id)
     {
-        $peserta = $this->http_request_get("?id_kelas=$id");
+        $peserta = $this->http_request_get("class/cekpeserta/$id");
         if ($peserta['status'] == 200 && count($peserta['data']) == null || count($peserta['data']) == 0) {
             return true;
         } else {
@@ -314,7 +325,7 @@ class Classes_model extends CI_Model
                 ];
             }
 
-            $this->http_request_post($data, "");
+            $this->http_request_post($data, "/classes/create_class");
 
             if (!empty($this->input->post('harga'))) {
                 $harga_str = preg_replace("/[^0-9]/", "", $this->input->post('harga'));
@@ -815,6 +826,8 @@ class Classes_model extends CI_Model
 
     public function createAssignment($id)
     {
+        $id_tugas = uniqid();
+        $deadline = $this->input->post('deadline');
         if (!empty($_FILES['url_tugas']['name'])) {
             $config['upload_path'] = './assets/docs/';
             $config['allowed_types'] = 'pdf|doc|docx';
@@ -824,9 +837,8 @@ class Classes_model extends CI_Model
             $this->load->library('upload', $config);
             if ($this->upload->do_upload('url_tugas')) {
                 $filename = $this->upload->data('file_name');
-
                 $data = [
-                    'id_tugas' => uniqid(),
+                    'id_tugas' => $id_tugas,
                     'judul_tugas' => $this->input->post('judul'),
                     'deskripsi_tugas' => $this->input->post('deskripsi'),
                     'url_tugas' => $filename,
@@ -835,13 +847,13 @@ class Classes_model extends CI_Model
                     'batas_pengiriman_tugas' => $this->input->post('deadline')
                 ];
 
-                $this->http_request_post($data, "");
+                $this->http_request_post($data, "classes/my_class/assignment/kuis/$id/$id_tugas/$deadline");
             } else {
                 return $this->upload->display_errors();
             }
         } else {
             $data = [
-                'id_tugas' => uniqid(),
+                'id_tugas' => $id_tugas,
                 'judul_tugas' => $this->input->post('judul'),
                 'deskripsi_tugas' => $this->input->post('deskripsi'),
                 'url_tugas' => null,
@@ -850,7 +862,7 @@ class Classes_model extends CI_Model
                 'batas_pengiriman_tugas' => $this->input->post('deadline')
             ];
 
-            $this->http_request_post($data, "");
+            $this->http_request_post($data, "classes/my_class/assignment/kuis/$id/$id_tugas/$deadline");
         }
     }
 
@@ -860,6 +872,7 @@ class Classes_model extends CI_Model
         $config['allowed_types'] = 'pdf|doc|docx';
         $config['max_size'] = '25000';
         $config['remove_space'] = true;
+        $id_user = $this->session->userdata('id_user');
 
         $this->load->library('upload', $config);
         if ($this->upload->do_upload('assignment')) {
@@ -877,7 +890,7 @@ class Classes_model extends CI_Model
                     'tanggal_submit' => gmdate('Y-m-d H:i:s', $timezone)
                 ];
 
-                $this->http_request_post($data, "");
+                $this->http_request_post($data, "classes/my_class/submit_assignment/$id_user/$id_tugas");
             } else {
                 $data = [
                     'id_tugas' => $id_tugas,
@@ -889,7 +902,7 @@ class Classes_model extends CI_Model
                     'tanggal_submit' => gmdate('Y-m-d H:i:s', $timezone)
                 ];
 
-                $this->http_request_post($data, "");
+                $this->http_request_post($data, "classes/my_class/submit_assignment/$id_user/$id_tugas");
             }
         } else {
             return $this->upload->display_errors();
@@ -935,7 +948,8 @@ class Classes_model extends CI_Model
 
     public function deleteAssignment($id)
     {
-        return $this->http_request_delete("?id_tugas=$id");
+        $data = ['id_tugas' => $id];
+        return $this->http_request_delete($data, "classes/my_class/assignment/kuis/");
     }
 
     public function updateNilai($id)
@@ -962,6 +976,6 @@ class Classes_model extends CI_Model
     public function cekTugas($id)
     {
         $id_user = $this->session->userdata('id_user');
-        return $this->http_request_get("?id_tugas=$id&id_user=$id_user");
+        return $this->http_request_get("/classes/my_class/assignment/$id/$id_user");
     }
 }

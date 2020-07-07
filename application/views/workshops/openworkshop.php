@@ -186,7 +186,7 @@
                       <h2>Jadwal Workshop</h2>
                     </div>
                   
-                    <div class="card-body">
+                    <div class="card-body table-responsive">
                       <table class="table">
                         <thead>
                           <tr>
