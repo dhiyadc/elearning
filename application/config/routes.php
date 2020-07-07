@@ -57,3 +57,5 @@ $route['translate_uri_dashes'] = FALSE;
 $route['class/(:any)'] = 'classes/open_class/$1';
 $route['class/(:any)/(:any)'] = 'classes/validateUserClass/$1/$2';
 $route['class/(:any)/(:any)/close'] = 'classes/closeClassActivity/$1/$2';
+
+$route['workshop/(:any)'] = 'workshops/open_workshop/$1';
