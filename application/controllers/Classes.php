@@ -308,7 +308,9 @@ class Classes extends CI_Controller
             $this->session->set_flashdata('message', 'Failed to end the class!');
             redirect("class/$classId/$activityId");
         }
-
+        // var_dump($this->session->userdata('workshop'));
+        // return;
+        // die;
         if ($this->session->userdata('workshop') != null)
             redirect('workshops/open_workshop/' . $classId);
 
