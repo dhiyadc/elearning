@@ -320,7 +320,7 @@
 							</div>
 
 							<div class="card-body table-responsive">
-								<table id="pageTable" class="table">
+								<table id="pageTable" class="table" style="margin-bottom: 75px;">
 									<thead>
 										<tr>
 											<th scope="col">Kelas</th>
