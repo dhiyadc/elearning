@@ -1397,7 +1397,7 @@
 										<?php foreach ($kelas2 as $val) : ?>
 											<?php $ctWorkshop++; ?>
 											<tr>
-												<th scope="row" style="width: 300px; padding-top: 30px; "><a class="text-primary"><?= $val['judul_workshop']; ?></a></th>
+												<th scope="row" style="width: 300px; padding-top: 30px; "><a href="<?= base_url() ?>Workshops/open_workshop/<?= $val['id_workshop'] ?>" class="text-primary"><?= $val['judul_workshop']; ?></a></th>
 
 
 												<td style="padding-top: 30px;">
@@ -1531,9 +1531,9 @@
 												<?php if ($val2['id_workshop'] == $val['id_workshop'] && $val2['id_user'] == $this->session->userdata('id_user')) : ?>
 													<tr>
 														<?php if ($val['tipe_workshop'] == 2) : ?>
-															<th scope="row" style="width: 300px; padding-top: 30px;"><a class="text-primary"><?= $val['judul_workshop']; ?> <i class="fa fa-lock"></a></th>
+															<th scope="row" style="width: 300px; padding-top: 30px;"><a href="<?= base_url() ?>Workshops/open_workshop/<?= $val['id_workshop'] ?>" class="text-primary"><?= $val['judul_workshop']; ?> <i class="fa fa-lock"></a></th>
 														<?php else : ?>
-															<th scope="row" style="width: 300px; padding-top: 30px;"><a class="text-primary"><?= $val['judul_workshop']; ?></a></th>
+															<th scope="row" style="width: 300px; padding-top: 30px;"><a href="<?= base_url() ?>Workshops/open_workshop/<?= $val['id_workshop'] ?>" class="text-primary"><?= $val['judul_workshop']; ?></a></th>
 														<?php endif; ?>
 														<td></td>
 														<td style="padding-top: 30px;">
