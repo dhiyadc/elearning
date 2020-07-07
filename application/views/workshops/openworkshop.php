@@ -194,15 +194,21 @@
                             <th scope="col">Hari/Tanggal</th>
                             <th scope="col">Waktu</th>
                             <th scope="col" style="text-align: center;">Status</th>
+                            <?php foreach ($kegiatan as $val2) :
+                                if($val2['status_kegiatan'] != 2) : ?>
                             <?php if ($val['pembuat_workshop'] != $this->session->userdata('id_user')) : ?>
                               <?php if ($cek == true) : ?>
                               <?php elseif ($peserta != null) : ?>
+                                <?php if($val2['status_kegiatan'] == 1) : ?>
                                 <th scope="col" style="text-align: center;">Aksi</th>
+                                <?php endif?> 
                               <?php elseif ($cek == false) : ?>
                               <?php endif; ?>
                             <?php else : ?>
                               <th scope="col" style="text-align: center ;">Aksi</th>
                             <?php endif; ?>
+                            <?php endif; ?>
+                            <?php endforeach?>
 
                             
 

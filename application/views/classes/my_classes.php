@@ -1416,17 +1416,18 @@
 
 												</td>
 
-												<?php foreach ($status2 as $val3) : ?>
-													<?php if ($val3['id_status'] == $val2['status_kegiatan']) : ?>
-														<?php if ($val3['nama_status'] == "Selesai") : ?>
-															<td style="text-align: center; padding-top: 30px;"><span class="badge badge-success"><?= $val3['nama_status']; ?></span></td>
-														<?php elseif ($val3['nama_status'] == "Belum Mulai") : ?>
-															<td style="text-align: center; padding-top: 30px;"><span class="badge badge-danger"><?= $val3['nama_status']; ?></span></td>
+												<?php foreach ($kegiatan2 as $val2) :
+													if ($val['id_workshop'] == $val2['id_workshop']) : ?>
+														<?php if ($val2['status_kegiatan'] == 2) : ?>
+															<td style="text-align: center; padding-top: 30px;"><span class="badge badge-success">Selesai</span></td>
+														<?php elseif ($val2['status_kegiatan'] == 1) : ?>
+															<td style="text-align: center; padding-top: 30px;"><span class="badge badge-danger">Sedang Berlangsung</span></td>
 														<?php else : ?>
-															<td style="text-align: center; padding-top: 30px;"><span class="badge badge-warning"><?= $val3['nama_status']; ?></span></td>
+															<td style="text-align: center; padding-top: 30px;"><span class="badge badge-warning">Belum Mulai</span></td>
 														<?php endif; ?>
 													<?php endif; ?>
 												<?php endforeach; ?>
+
 
 
 												<td style="padding-top: 30px;" class="text-center">
@@ -1544,21 +1545,21 @@
 																}
 															}
 															?>
-															<?php foreach ($status2 as $val3) : ?>
-																<?php if ($val3['id_status'] == $val2['status_kegiatan']) : ?>
-																	<?php if ($val3['nama_status'] == "Selesai") : ?>
-														<td style="text-align: center  ; padding-top: 30px;"><span class="badge badge-success"><?= $val3['nama_status']; ?></span></td>
-													<?php elseif ($val3['nama_status'] == "Belum Mulai") : ?>
-														<td style="text-align: center ;padding-top: 30px;"><span class="badge badge-danger"><?= $val3['nama_status']; ?></span></td>
+															<?php foreach ($kegiatan2 as $val2) :
+																if ($val['id_workshop'] == $val2['id_workshop']) : ?>
+																	<?php if ($val2['status_kegiatan'] == 2) : ?>
+														<td style="text-align: center; padding-top: 30px;"><span class="badge badge-success">Selesai</span></td>
+													<?php elseif ($val2['status_kegiatan'] == 1) : ?>
+														<td style="text-align: center; padding-top: 30px;"><span class="badge badge-danger">Sedang Berlangsung</span></td>
 													<?php else : ?>
-														<td style="text-align: center ;padding-top: 30px;"><span class="badge badge-warning"><?= $val3['nama_status']; ?></span></td>
+														<td style="text-align: center; padding-top: 30px;"><span class="badge badge-warning">Belum Mulai</span></td>
 													<?php endif; ?>
 												<?php endif; ?>
 											<?php endforeach; ?>
 
 											<td>
 												<div class="buttonclass text-center">
-													<a href="<?= base_url() ?>Workshops/open_workshop/<?= $val['id_workshop'] ?>" class="btn btn-light">Lihat</a>
+													<a href="<?= base_url() ?>Workshops/open_workshop/<?= $val['id_workshop'] ?>"><i class="btn btn-primary">Lihat</i></a>
 													<a data-toggle='modal' data-target='#konfirmasi_hapus2' data-href="<?= base_url() ?>workshops/leave_workshop/<?= $val['id_workshop'] ?>"><i class="btn btn-danger">Tinggalkan</i></a>
 												</div>
 											</td>
