@@ -2246,3 +2246,26 @@ svg.enterprise-check path {
       font-size: 9px;
     }
   }
+
+ 
+
+  @media screen and (max-width: 767px) {
+     .p-luar{
+          width: 250px;
+          font-size: 13px;
+          
+      }
+      .p-luar card-text{
+        margin-right: 20px;
+      }
+  }
+
+  @media screen and (max-width: 568px) {
+    .p-luar{
+         width: 200px;
+         
+     }
+     .p-luar card-text{
+       margin-right: 20px;
+     }
+ }
