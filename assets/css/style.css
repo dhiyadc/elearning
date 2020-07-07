@@ -2269,3 +2269,8 @@ svg.enterprise-check path {
        margin-right: 20px;
      }
  }
+
+ @media screen and (max-width: 767px) {
+  #hiddendaftar { 
+    display: none;
+  }

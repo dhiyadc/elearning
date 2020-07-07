@@ -236,28 +236,31 @@
                 <li><a href="<?= base_url(); ?>workshops" class="nav-link js-scroll-trigger">Workshop</a></li>
               </ul>
             </nav>
+           
           </div>
 
 
           <div class="ml-auto w-25">
             <nav class="site-navigation position-relative text-right" role="navigation">
               <ul class="site-menu main-menu site-menu-white js-clone-nav mr-auto d-none d-lg-block m-0 p-0">
-                <li class="nav-link"><a href="" data-toggle="modal" data-target="#elegantModalForm"><span>Masuk</span></a></li>
+                <li><a class="nav-link" href="" data-toggle="modal" data-target="#elegantModalForm"><span>Masuk</span></a></li>
                 <!-- <li class="nav-link"><a href="<?= base_url() ?>register" ><span>Masuk</span></a></li> -->
-                <li class="cta"><a href="<?= base_url() ?>register" class="nav-link js-scroll-trigger"><span style=" text-shadow: none;">Daftar</span></a></li>
+                <li class="cta"><a id="hiddendaftar" href="<?= base_url() ?>register" class="nav-link js-scroll-trigger"><span style=" text-shadow: none;">Daftar</span></a></li>
 
               </ul>
+              
             </nav>
+            <!-- <a href="#" class="d-inline-block d-lg-none text-black mt-2 mr-2">Login</a> -->
             <a href="#" class="d-inline-block d-lg-none site-menu-toggle js-menu-toggle text-black float-right"><span class="icon-menu h3"></span></a>
           </div>
 
         </div>
       </div>
 
-
+              
 
     </header>
-
+  </div>
 
     <?php if ($this->session->flashdata('invalid')) { ?>
       <script src="<?php echo base_url(); ?>assets/js/jquery-3.3.1.min.js"></script>
