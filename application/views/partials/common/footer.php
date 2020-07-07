@@ -3,7 +3,7 @@
         <div class="row">
           <div class="col-md-4">
             <h3>Tentang Classico</h3>
-            <p>CLASSICO merupakan singakat dari Class Interaction Community yang hadir sebagai media pembelajaran online yang membantu kalian mendapatkan pengalaman dalam mengeksplor kemampuan mengajar, membantu kalian mendapatkan ilmu diluar Pendidikan formal serta mempermudah kalian dalam berinteraksi dengan suatu kelompok belajar.</p>
+            <p>CLASSICO merupakan singkatan dari Class Interaction Community yang hadir sebagai media pembelajaran online yang membantu kalian mendapatkan pengalaman dalam mengeksplor kemampuan mengajar, membantu kalian mendapatkan ilmu diluar Pendidikan formal serta mempermudah kalian dalam berinteraksi dengan suatu kelompok belajar.</p>
           </div>
 
           <div class="col-md-3 ml-auto">
@@ -12,8 +12,7 @@
             <li><a href="<?=base_url()?>Home">Beranda</a></li>
               <li><a href="<?=base_url()?>Classes">Kelas</a></li>
               <li><a href="<?=base_url()?>Workshops">Workshop</a></li>
-              <li><a href="#">Programs</a></li>
-              <li><a href="#">Daftar</a></li>
+              
             </ul>
           </div>
 
