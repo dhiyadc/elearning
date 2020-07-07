@@ -191,8 +191,8 @@
                         <thead>
                           <tr>
                             <th scope="col">Deskripsi</th>
-                            <th scope="col">Hari/Tanggal</th>
-                            <th scope="col">Waktu</th>
+                            <th scope="col" class="text-center">Hari/Tanggal</th>
+                            <th scope="col" class="text-center">Waktu</th>
                             <th scope="col" style="text-align: center;">Status</th>
                             <?php foreach ($kegiatan as $val2) :
                                 if($val2['status_kegiatan'] != 2) : ?>
@@ -218,21 +218,21 @@
                         <?php $modalMateri = 0; ?>
                         <?php foreach ($kegiatan as $val2) : ?>
                           <tr>
-                              <td><?= $val2['deskripsi_kegiatan']; ?></td>
-                              <td><?= $val2['tanggal']; ?></td>
-                              <td><?= $val2['waktu']; ?></td>
+                              <td style="padding-top: 30px;"><?= $val2['deskripsi_kegiatan']; ?></td>
+                              <td class="text-center" style="padding-top: 30px;"><?= $val2['tanggal']; ?></td>
+                              <td  class="text-center"style="padding-top: 30px;"><?= $val2['waktu']; ?></td>
                               <?php foreach ($status as $val3) : ?>
                                   <?php if ($val3['id_status'] == $val2['status_kegiatan']) : ?> 
                                     <?php if ($val3['nama_status'] == "Selesai") : ?>
-                                      <td style="text-align: center ;"><span class="badge badge-success"><?= $val3['nama_status']; ?></span></td>
+                                      <td style="text-align: center ;padding-top: 30px;"><span class="badge badge-success"><?= $val3['nama_status']; ?></span></td>
                                     <?php elseif ($val3['nama_status'] == "Belum Mulai") : ?>
-                                      <td style="text-align: center ;"><span class="badge badge-danger"><?= $val3['nama_status']; ?></span></td>
+                                      <td style="text-align: center ;padding-top: 30px;"><span class="badge badge-danger"><?= $val3['nama_status']; ?></span></td>
                                     <?php else : ?>
-                                      <td style="text-align: center ;"><span class="badge badge-warning"><?= $val3['nama_status']; ?></span></td>
+                                      <td style="text-align: center ; padding-top: 30px;"><span class="badge badge-warning"><?= $val3['nama_status']; ?></span></td>
                                     <?php endif; ?>
                                   <?php endif; ?>
                               <?php endforeach; ?>
-                              <td>
+                              <td class="text-center">
                                   <?php if ($val['pembuat_workshop'] != $this->session->userdata('id_user')) : ?>
                                     <?php if ($cek == true) : ?>
                                     <?php elseif ($peserta != null && $val2['status_kegiatan'] == CLASS_STARTED) : ?>
