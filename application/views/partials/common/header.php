@@ -40,7 +40,7 @@
 <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
   <!-- Modal -->
   <div id="login-page">
-    <div class="modal fade" id="elegantModalForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+    <div class="modal fade" id="elegantModalForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <!--Content-->
         <div class="modal-content form-elegant">
@@ -120,10 +120,10 @@
     </div>
   </div>
   <div id="login-page">
-    <div class="modal fade" id="elegantModalFormcreateClass" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="padding-right: 90px;">
-      <div class="modal-dialog" role="document" style="padding-right: 100px;">
+    <div class="modal fade" id="elegantModalFormcreateClass" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document" >
         <!--Content-->
-        <div class="modal-content form-elegant" style="padding-right: 100px;">
+        <div class="modal-content form-elegant">
           <!--Header-->
           <div class="modal-header text-center">
             <h3 class="modal-title w-100 dark-grey-text font-weight-bold my-3" id="myModalLabel"><strong>Masuk</strong></h3>
@@ -231,9 +231,9 @@
           <div class="mx-auto text-center">
             <nav class="site-navigation position-relative text-right" role="navigation">
               <ul class="site-menu main-menu js-clone-nav mx-auto d-none d-lg-block  m-0 p-0">
-                <li><a href="<?php echo base_url(); ?>" class="nav-link">Beranda</a></li>
-                <li><a href="<?= base_url(); ?>classes" class="nav-link">Kelas</a></li>
-                <li><a href="<?= base_url(); ?>workshops" class="nav-link">Workshop</a></li>
+                <li><a href="<?php echo base_url(); ?>" class="nav-link js-scroll-trigger">Beranda</a></li>
+                <li><a href="<?= base_url(); ?>classes" class="nav-link js-scroll-trigger">Kelas</a></li>
+                <li><a href="<?= base_url(); ?>workshops" class="nav-link js-scroll-trigger">Workshop</a></li>
               </ul>
             </nav>
           </div>
@@ -244,7 +244,7 @@
               <ul class="site-menu main-menu site-menu-white js-clone-nav mr-auto d-none d-lg-block m-0 p-0">
                 <li class="nav-link"><a href="" data-toggle="modal" data-target="#elegantModalForm"><span>Masuk</span></a></li>
                 <!-- <li class="nav-link"><a href="<?= base_url() ?>register" ><span>Masuk</span></a></li> -->
-                <li class="cta"><a href="<?= base_url() ?>register" class="nav-link"><span style=" text-shadow: none;">Daftar</span></a></li>
+                <li class="cta"><a href="<?= base_url() ?>register" class="nav-link js-scroll-trigger"><span style=" text-shadow: none;">Daftar</span></a></li>
 
               </ul>
             </nav>
@@ -277,3 +277,13 @@
         });
       </script>
     <?php } ?>
+
+    <!--------------- nutup navbar kalo di klik mobile ------------->
+
+<script type="text/javascript">    
+           $('.js-scroll-trigger').click(function() {
+    $('.navbar-collapse').collapse('hide');
+  });
+      </script>
+
+<!---- Copy and paste it on anchor tag class=”js-scroll-trigger” as show in video ---->
