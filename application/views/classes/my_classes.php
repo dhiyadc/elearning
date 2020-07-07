@@ -672,7 +672,7 @@
 											</div>
 											<p>oleh <?= $val2['nama']; ?></p>
 											<hr>
-											<a class="btn btn-outline-dark" href="<?= base_url('class/') ?><?= $val2['id_kelas'] ?>/<?= $val2['id_kegiatan']; ?>" style="padding-right: 20px; padding-left: 20px; padding-top: 12px; padding-bottom: 12px;">Ikut</a>
+											<a class="btn btn-outline-dark" href="<?= base_url('class/') ?><?= $val2['id_kelas'] ?>/<?= $val2['id_kegiatan']; ?>" id="sessc<?=$val2['id_kelas']?>" style="padding-right: 20px; padding-left: 20px; padding-top: 12px; padding-bottom: 12px;">Ikut</a>
 										</div>
 									<?php endif; ?>
 								<?php endforeach; ?>
@@ -1485,7 +1485,7 @@
 											</div>
 											<p>oleh <?= $val2['nama']; ?></p>
 											<hr>
-											<a class="btn btn-outline-dark" href="<?= base_url('class/') ?><?= $val2['id_workshop'] ?>/<?= $val2['id_kegiatan']; ?>" style="padding-right: 20px; padding-left: 20px; padding-top: 12px; padding-bottom: 12px;">Ikut</a>
+											<a class="btn btn-outline-dark" href="<?= base_url('class/') ?><?= $val2['id_workshop'] ?>/<?= $val2['id_kegiatan']; ?>" id="sess<?= $val2['id_workshop'] ?>" style="padding-right: 20px; padding-left: 20px; padding-top: 12px; padding-bottom: 12px;">Ikut</a>
 										</div>
 									<?php endif; ?>
 								<?php endforeach; ?>
@@ -2331,3 +2331,30 @@ clipboard.on('success', function(e) {
 		});
 	});
 </script>
+
+<?php foreach ($notif2 as $val) : ?>
+	<?php foreach ($val as $val2) : ?>
+
+		<script type="text/javascript">
+			$('#sess<?= $val2['id_workshop'] ?>').click(function() {
+				$.ajax({
+					type: "POST",
+					url: "<?= base_url() ?>workshops/set_sess"
+				});
+			});
+		</script>
+	<?php endforeach; ?>
+<?php endforeach; ?>
+<?php foreach ($notif as $val) : ?>
+	<?php foreach ($val as $val2) : ?>
+
+		<script type="text/javascript">
+			$('#sessc<?= $val2['id_kelas'] ?>').click(function() {
+				$.ajax({
+					type: "POST",
+					url: "<?= base_url() ?>classes/set_sess"
+				});
+			});
+		</script>
+	<?php endforeach; ?>
+<?php endforeach; ?>

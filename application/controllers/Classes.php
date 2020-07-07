@@ -665,6 +665,9 @@ class Classes extends CI_Controller
         $this->load->view('partials/common/footer');
     }
 
+    public function set_sess(){
+        $this->session->set_userdata('workshop', null);
+    }
     public function categories($kategori)
     {
         if (isset($_SESSION['logged_in'])) {

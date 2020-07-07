@@ -11,6 +11,7 @@ class Workshops extends CI_Controller
         $this->load->helper('download');
     }
 
+
     public function index()
     {
         if (isset($_SESSION['logged_in'])) {
@@ -50,6 +51,9 @@ class Workshops extends CI_Controller
         $this->load->view('partials/common/footer');
     }
 
+    public function set_sess(){
+        $this->session->set_userdata('workshop', true);
+    }
     public function new_workshop()
     {
         if (isset($this->session->userdata['logged_in'])) {
