@@ -217,12 +217,12 @@ $this->session->set_userdata('workshop', null);
                         <?php if ($cek == true) : ?>
                         <?php elseif ($peserta != null) : ?>
                           <th scope="col" style="text-align: center;">Aksi</th>
-                          <th scope="col">Materi</th>
+                          <th scope="col" style="text-align: center;">Materi</th>
                         <?php elseif ($cek == false) : ?>
                         <?php endif; ?>
                       <?php else : ?>
                         <th scope="col" style="text-align: center ;">Aksi</th>
-                        <th scope="col">Materi</th>
+                        <th scope="col" style="text-align: center;">Materi</th>
                       <?php endif; ?>
 
 
@@ -302,7 +302,7 @@ $this->session->set_userdata('workshop', null);
             <?php if ($val['pembuat_kelas'] != $this->session->userdata('id_user')) : ?>
               <?php if ($cek == true) : ?>
               <?php elseif ($peserta != null) : ?>
-                <td>
+                <td class="text-center">
                   <?php $notPembuatMateri = 0; ?>
                   <?php foreach ($materi as $val4) : ?>
                     <?php if ($val2['id_kegiatan'] == $val4['id_kegiatan']) : ?>
