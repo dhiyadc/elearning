@@ -40,7 +40,7 @@
 <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
   <!-- Modal -->
   <div id="login-page">
-    <div class="modal fade" id="elegantModalForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="padding-right: 90px;">
+    <div class="modal fade" id="elegantModalForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
       <div class="modal-dialog" role="document">
         <!--Content-->
         <div class="modal-content form-elegant">
