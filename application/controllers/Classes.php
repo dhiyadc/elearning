@@ -665,6 +665,9 @@ class Classes extends CI_Controller
         $this->load->view('partials/common/footer');
     }
 
+    public function set_sess(){
+        $this->session->set_userdata('workshop', null);
+    }
     public function categories($kategori)
     {
         if (isset($_SESSION['logged_in'])) {
@@ -795,7 +798,7 @@ class Classes extends CI_Controller
         force_download('./assets/docs/' . $url_materi, NULL);
     }
 
-    public function hapus_materi($id_kelas, $url_materi)
+    public function hapus_materi($id_kelas, $url_materi, $redirect = null)
     {
         $userId = $this->session->userdata('id_user');
         $isUserLoggedIn = $this->session->userdata('logged_in') && $userId;
@@ -812,6 +815,11 @@ class Classes extends CI_Controller
         }
 
         $this->Classes_model->delMateri($url_materi);
+
+        if($redirect == "akademik"){
+            redirect("classes/my_classes");
+        }
+
         redirect('classes/open_class/' . $id_kelas);
     }
 
