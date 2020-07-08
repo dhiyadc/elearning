@@ -343,13 +343,8 @@
 													</div>
 
 												</th>
-<<<<<<< HEAD
-												<td style="padding-top: 20px; padding-top: 23px;">
-													<span><small><small><a id="btnCopy" href="" onclick="return false" data-toggle="tooltip" data-original-title="Click to copy" data-clipboard-text="Hey, saya telah membuat kelas baru silahkan cek disini: <?= base_url(); ?>classes/open_class/<?= $val['id_kelas'] ?>">Copy Link</a></small></small></span>
-=======
 												<td style="padding-top: 30px;">
 													<span><a id="btnCopy" href="" onclick="return false" data-toggle="tooltip" data-original-title="Click to copy" data-clipboard-text="Hey, saya sudah membuat kelas baru silahkan cek disini: <?= base_url(); ?>classes/open_class/<?= $val['id_kelas'] ?>"><i class="fa fa-share-alt" aria-hidden="true"></i></a></span>
->>>>>>> 9bbe2b86c2b5066466173cc01def42c6ab737302
 												</td>
 
 												<td style="padding-top: 30px;">
