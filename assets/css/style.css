@@ -1233,7 +1233,7 @@ color: #000;
 .bannerkelas{
   background-image: url("../images/banner2.jpg");
   opacity:0.8;
-  background-color: pink;
+  background-color: black;
   z-index:10;
   background-size: cover;
   background-position: 0 0;

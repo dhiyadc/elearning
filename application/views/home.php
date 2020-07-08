@@ -523,7 +523,7 @@
 
             <div class="d-flex align-items-center custom-icon-wrap">
               <span class="custom-icon-inner mr-3"><span class="icon icon-university"></span></span>
-              <div><h3 class="m-0">Para Pengajar yang sudah Berpengalaman</h3></div>
+              <div><h3 class="m-0">Para Pengajar yang Berpengalaman</h3></div>
             </div>
 
           </div>
