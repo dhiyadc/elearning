@@ -1,20 +1,22 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
-
+<script type="text/javascript" src="<?= base_url(); ?>assets/js/password_verif.js"></script>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 
 
 
+
+
+
 <section class="user_dashboard">
-<div class="row mt-0">
-  <div class="col-lg-12" style="background-color: aquamarine;" >
+
+  <div class="col-lg-12" style="background-color: darkcyan;" >
     <div class="card" style="border-radius: 0px; background-color: darkcyan;"> 
-    <div class="container my-5 pt-5 pb-3 px-4 z-depth-1">
+    <div class="container my-5 pt-5 pb-3 px-4 ">
 
 
-<!--Section: Block Content-->
+
 <section>
 
   <!--Grid row-->
@@ -44,7 +46,7 @@
 </div>
     </div>
   </div>
-</div>
+
 
 
 
@@ -53,8 +55,8 @@
 <?php foreach ($kelas as $val) : ?>
   <?php if ($val['pembuat_kelas'] == $this->session->userdata('id_user')) : ?>
     <div class="text-right">
-      <a href="<?= base_url() ?>classes/new_assignment/<?= $val['id_kelas']; ?>" class="btn btn-info">Buat Tugas / Quiz</a>
-      <a href="<?= base_url() ?>classes/open_class/<?= $val['id_kelas']; ?>" class="btn btn-danger">Kembali ke kelas</a>
+      <a href="<?= base_url() ?>classes/new_assignment/<?= $val['id_kelas']; ?>" class="btn btn-info" style="width: 200px;">Buat Tugas / Quiz</a>
+      <a href="<?= base_url() ?>classes/open_class/<?= $val['id_kelas']; ?>" class="btn btn-danger" style="width: 200px">Kembali ke kelas</a>
     </div>
   <?php else : ?>
     <div class="text-right">
@@ -377,4 +379,4 @@
 </div>
 </section>
 
-<script type="text/javascript" src="<?= base_url(); ?>assets/js/password_verif.js"></script>
+

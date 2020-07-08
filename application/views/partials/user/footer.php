@@ -2,24 +2,23 @@
       <div class="container">
         <div class="row">
           <div class="col-md-4">
-            <h3>Tentang Classico.</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro consectetur ut hic ipsum et veritatis corrupti. Itaque eius soluta optio dolorum temporibus in, atque, quos fugit sunt sit quaerat dicta.</p>
+            <h3>Tentang Classico</h3>
+            <p>CLASSICO merupakan singkatan dari Class Interaction Community yang hadir sebagai media pembelajaran online yang membantu kalian mendapatkan pengalaman dalam mengeksplor kemampuan mengajar, membantu kalian mendapatkan ilmu diluar Pendidikan formal serta mempermudah kalian dalam berinteraksi dengan suatu kelompok belajar. </p>
           </div>
 
           <div class="col-md-3 ml-auto">
             <h3>Links</h3>
             <ul class="list-unstyled footer-links">
-            <li><a href="<?=base_url()?>Home">Beranda</a></li>
+              <li><a href="<?=base_url()?>Home">Beranda</a></li>
               <li><a href="<?=base_url()?>Classes">Kelas</a></li>
               <li><a href="<?=base_url()?>Workshops">Workshop</a></li>
-              <li><a href="#">Programs</a></li>
-              <li><a href="#">Daftar</a></li>
+              
             </ul>
           </div>
 
           <div class="col-md-4">
             <h3>Ikuti Kami</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt incidunt iure iusto architecto? Numquam, natus?</p>
+            <p>Untuk mendapatkan info menarik tentang classico, silahkan tinggalkan alamat email pada kolom dibawah ini</p>
             <form action="#" class="footer-subscribe">
               <div class="d-flex mb-5">
                 <input type="text" class="form-control rounded-0" placeholder="Email">
@@ -35,7 +34,7 @@
             <div class="border-top pt-5">
             <p>
         <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-        Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved <a href="" target="_blank" >Digital Creative</a>
+        Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved <a href="" target="_blank" >CLASSICO</a>
         <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
       </p>
             </div>
@@ -49,7 +48,7 @@
     
   </div> <!-- .site-wrap -->
 
-  <script src="<?php echo base_url(); ?>assets/js/jquery-3.3.1.min.js"></script>
+  <!-- <script src="<?php echo base_url(); ?>assets/js/jquery-3.3.1.min.js"></script> -->
   <script src="<?php echo base_url(); ?>assets/js/jquery-migrate-3.0.1.min.js"></script>
   <script src="<?php echo base_url(); ?>assets/js/jquery-ui.js"></script>
   <script src="<?php echo base_url(); ?>assets/js/popper.min.js"></script>

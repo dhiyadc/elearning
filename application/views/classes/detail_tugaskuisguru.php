@@ -8,8 +8,8 @@
 
 
 <section class="user_dashboard">
-	<div class="row mt-0">
-		<div class="col-lg-12" style="background-color: aquamarine;">
+
+		<div class="col-lg-12" style="background-color: darkcyan;">
 			<div class="card" style="border-radius: 0px; background-color: darkcyan;">
 				<div class="container my-5 pt-5 pb-3 px-4 z-depth-1">
 
@@ -40,7 +40,7 @@
 					<!--Section: Block Content-->
 
 
-				</div>
+
 			</div>
 		</div>
 	</div>
@@ -90,7 +90,7 @@
             <div class="time"><i class="fa fa-clock-o"></i> <?= $val2['deadline']; ?></div>
           </div>
 
-          <div class="row d-flex ">
+          <!-- <div class="row d-flex ">
         <div class="col-12 col-md-12 mb-2 mt-2">
             <div class="card  h-100 border-light  bg-light shadow">
                 <div class="card-body d-flex-row" style="width: 1000px;">
@@ -98,7 +98,7 @@
                                         <div class="col" style="margin-bottom: -20px;">
                                           <div class="notice notice-info">
                                             <div class="row mb-0" style="padding: 0px;">
-                                              <!-- <img src="<?php echo base_url(); ?>assets/images/pdf.png" alt="..." class="img-fluid rounded-circle" style="width: 20px;"> -->
+                                             
                                               <a href="<?= base_url() ?>classes/download_assignment/<?= $val2['url_tugas']; ?>"><?= $val2['url_tugas']; ?></a>
                                             </div>
                                           </div>
@@ -108,7 +108,31 @@
                 </div>
             </div>
         </div>
+        </div> -->
+
+        <div class="row d-flex ">
+        <div class="col mb-2 mt-2">
+            <div class="card  h-100 border-light  bg-light shadow">
+              <div class="col-md-12">
+                <div class="card-body d-flex-row" style=";">
+                  <?php if ($val2['url_tugas'] != null) : ?>
+                                        <div class="col" style="margin-bottom: -20px;">
+                                          <div class="notice notice-info">
+                                            <div class="row mb-0" style="padding: 0px; width: 900px;">
+                                             
+                                              <a href="<?= base_url() ?>classes/download_assignment/<?= $val2['url_tugas']; ?>"><?= $val2['url_tugas']; ?></a>
+                                            </div>
+                                          </div>
+                                        </div>
+                    <?php endif; ?>
+                    <p class="card-text mb-5"><?= $val2['deskripsi_tugas']; ?></p>
+                </div>
+            </div>
+            </div>
         </div>
+        </div>
+
+        
       </div>
       <?php endforeach; ?>  
       <?php endforeach; ?>  

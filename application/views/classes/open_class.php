@@ -1,6 +1,8 @@
 <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" /> -->
 <!-- <link href="<?= base_url() ?>assets/datetimepicker/bootstrap.min.css" rel="stylesheet" media="screen"> -->
 <link href="<?= base_url() ?>assets/datetimepicker/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 <?php
 $_SESSION['url_login'] = "open_class";
@@ -83,12 +85,12 @@ $this->session->set_userdata('workshop', null);
                 <?php if ($val['pembuat_kelas'] != $this->session->userdata('id_user')) : ?>
                   <?php if ($peserta != null) : ?>
                     <li class="nav-item">
-                      <a class="nav-link" href="<?= base_url() ?>classes/list_tugas/<?= $val['id_kelas']; ?>" role="tab"><i class="fa fa-tasks"></i> Tugas Kelas</a>
+                      <a class="nav-link" href="<?= base_url() ?>classes/list_tugas/<?= $val['id_kelas']; ?>" role="tab"><i class="fa fa-tasks"></i> Lihat Tugas</a>
                     </li>
                   <?php endif; ?>
                 <?php else : ?>
                   <li class="nav-item">
-                    <a class="nav-link" href="<?= base_url() ?>classes/list_tugas/<?= $val['id_kelas']; ?>" role="tab"><i class="fa fa-cog"></i> Atur Kelas</a>
+                    <a class="nav-link" href="<?= base_url() ?>classes/list_tugas/<?= $val['id_kelas']; ?>" role="tab"><i class="fa fa-cog"></i> Lihat Tugas</a>
                   </li>
                 <?php endif; ?>
               </ul>
@@ -205,7 +207,7 @@ $this->session->set_userdata('workshop', null);
                 <h2>Jadwal Kegiatan Kelas</h2>
               </div>
 
-              <div class="card-body">
+              <div class="card-body table-responsive">
                 <table class="table">
                   <thead>
                     <tr>
@@ -213,17 +215,19 @@ $this->session->set_userdata('workshop', null);
                       <th scope="col">Hari/Tanggal</th>
                       <th scope="col">Waktu</th>
                       <th scope="col" style="text-align: center;">Status</th>
-                      <?php if ($val['pembuat_kelas'] != $this->session->userdata('id_user')) : ?>
+                      <?php foreach ($kelas as $val2) : ?>
+                      <?php if ($val2['pembuat_kelas'] != $this->session->userdata('id_user')) : ?>
                         <?php if ($cek == true) : ?>
                         <?php elseif ($peserta != null) : ?>
                           <th scope="col" style="text-align: center;">Aksi</th>
-                          <th scope="col">Materi</th>
+                          <th scope="col" style="text-align: center;">Materi</th>
                         <?php elseif ($cek == false) : ?>
                         <?php endif; ?>
                       <?php else : ?>
                         <th scope="col" style="text-align: center ;">Aksi</th>
-                        <th scope="col">Materi</th>
+                        <th scope="col" style="text-align: center;">Materi</th>
                       <?php endif; ?>
+                      <?php endforeach?>
 
 
 
@@ -302,7 +306,7 @@ $this->session->set_userdata('workshop', null);
             <?php if ($val['pembuat_kelas'] != $this->session->userdata('id_user')) : ?>
               <?php if ($cek == true) : ?>
               <?php elseif ($peserta != null) : ?>
-                <td>
+                <td class="text-center">
                   <?php $notPembuatMateri = 0; ?>
                   <?php foreach ($materi as $val4) : ?>
                     <?php if ($val2['id_kegiatan'] == $val4['id_kegiatan']) : ?>
@@ -359,8 +363,8 @@ $this->session->set_userdata('workshop', null);
                           <div class="row">
 
                             <div class="col-md-12 border-bottom pb-3 mt-3"><b>Nama File</b></div>
-                            <?php foreach ($materi as $val4) : ?>
                               <?php $a = 0; ?>
+                            <?php foreach ($materi as $val4) : ?>
                               <?php if ($val2['id_kegiatan'] == $val4['id_kegiatan']) : ?>
                                 <?php if ($val4['kategori_materi'] == 1) : ?>
                                   <div class="col-md-12 border-bottom pb-3 mt-3"><a href="<?= base_url(); ?>classes/download_materi/<?= $val4['url_materi'] ?>"><?= $val4['url_materi'] ?></a></div>
@@ -405,12 +409,13 @@ $this->session->set_userdata('workshop', null);
                 </div>
               </div>
             </div>
-
+            
             </tr>
-          <?php endforeach; ?>
+            <?php endforeach; ?>
           </tbody>
           </table>
             </div>
+            <?php foreach ($kelas as $val) : ?>
             <?php if ($val['pembuat_kelas'] == $this->session->userdata('id_user')) : ?>
               <div class="card-footer white py-3 d-flex justify-content-between">
                 <button class="btn btn-light btn-md px-3 my-0 ml-0" type="button" data-toggle="modal" data-target="#tambahKegiatan">Tambah Jadwal Kegiatan</button>
@@ -427,9 +432,9 @@ $this->session->set_userdata('workshop', null);
                         <span aria-hidden="true">&times;</span>
                       </button>
                     </div>
-
-
-
+                    
+                    
+                    
                     <!--Body-->
                     <div class="modal-body mx-4">
                       <!--Body-->
@@ -441,7 +446,7 @@ $this->session->set_userdata('workshop', null);
                         <div class="form-group">
                           <label>Jadwal Kegiatan</label>
                           <div class="input-group date form_datetime " data-date-format="yyyy/mm/dd hh:ii" data-link-field="dtp_input1">
-                            <input class="form-control" id="inputdatetimepicker" size="16" type="text" name="tanggal" readonly required>
+                          <input class="form-control" id="inputdatetimepicker" size="16" type="text" name="tanggal" readonly required>
                             <span class="input-group-addon" style="width:40px;"><span class="glyphicon glyphicon-remove"></span></span>
                             <span class="input-group-addon" style="width:40px;"><span class="glyphicon glyphicon-th"></span></span>
                           </div>
@@ -466,10 +471,11 @@ $this->session->set_userdata('workshop', null);
                 </div>
               </div>
             <?php endif; ?>
+            <?php endforeach; ?>
           </div>
         </div>
-    </div>
-</section>
+      </div>
+    </section>
 </div>
 </div>
 
@@ -523,10 +529,10 @@ $this->session->set_userdata('workshop', null);
     </div>
     <div class="row justify-content-center">
       <a class="carousel-control-prev" href="#myCarousel" data-slide="prev">
-        <span class="customPrevBtn carousel-control-prev-icon"></span>
+        <span class="customPrevBtn carousel-control-prev-icon" style="margin-left: 140px;"></span>
       </a>
       <a class="carousel-control-next" href="#myCarousel" data-slide="next">
-        <span class="customNextBtn carousel-control-next-icon"></span>
+        <span class="customNextBtn carousel-control-next-icon" style="margin-right: 140px;"></span>
       </a>
     </div>
   </div>

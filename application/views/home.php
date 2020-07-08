@@ -11,16 +11,26 @@
               <div class="row align-items-center">
                 <div class="col-lg-6 mb-4 mt-5">
                   <h1  data-aos="fade-up" data-aos-delay="100">Pengalaman Adalah Ilmu Terbaik yang semua orang cari</h1>
-                  <p class="mb-4"  data-aos="fade-up" data-aos-delay="200">Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime ipsa nulla sed quis rerum amet natus quas necessitatibus.</p>
-				          <?php if(isset($_SESSION['logged_in'])) : ?>
-                    <p data-aos="fade-up" data-aos-delay="300"><a href="<?= base_url() ?>classes/new_class" class="btn btn text-white py-3 px-5 btn-pill" style="background-color: #3232aa">Buat Kelas</a></p>
-                    <p data-aos="fade-up" data-aos-delay="300"><a href="<?= base_url() ?>workshops/new_workshop" class="btn btn text-white py-3 px-5 btn-pill" style="background-color: #3232aa">Buat Workshop</a></p>
+                  <p class="mb-4"  data-aos="fade-up" data-aos-delay="200">Segera temukan kelas-kelas yang mampu menginspirasi kamu disini.</p>
+                  <?php if(isset($_SESSION['logged_in'])) : ?>
+                  <div class="row">  
+                    <a href="<?= base_url() ?>classes/new_class" class="btn btn text-white py-3 px-5 btn-pill ml-2 mt-1" data-aos="fade-up" data-aos-delay="300" style="background-color: #3232aa;">Buat Kelas</a>
+                    <a href="<?= base_url() ?>workshops/new_workshop" class="btn btn text-white py-3 px-5 btn-pill ml-2 mt-1" data-aos="fade-up" data-aos-delay="300" style="background-color: #3232aa">Buat Workshop</a>
+                  </div>
                   <?php else : ?>
-                    <p data-aos="fade-up" data-aos-delay="300"><a data-toggle="modal" data-target="#elegantModalForm" class="btn btn text-white py-3 px-5 btn-pill" style="background-color: #3232aa">Buat Kelas</a></p>
-                    <p data-aos="fade-up" data-aos-delay="300"><a data-toggle="modal" data-target="#elegantModalForm" class="btn btn text-white py-3 px-5 btn-pill" style="background-color: #3232aa">Buat Workshop</a></p>
-                 
-                    <?php endif; ?>  
+                  <div class="row">
+                   <a data-toggle="modal" data-target="#elegantModalForm" class="btn btn text-white py-3 px-5 btn-pill ml-2 mt-1" data-aos="fade-up" data-aos-delay="300" style="background-color: #3232aa;">Buat Kelas</a>
+                   <a data-toggle="modal" data-target="#elegantModalForm" class="btn btn text-white py-3 px-5 btn-pill ml-2 mt-1" data-aos="fade-up" data-aos-delay="300" style="background-color: #3232aa">Buat Workshop</a>
+                  </div>
+                   <?php endif; ?>  
+                    
+                    <!-- <div class="row">
+                      <a href="<?= base_url() ?>classes/new_class" class="btn btn text-white py-3 px-5 btn-pill ml-2 mt-1" data-aos="fade-up" data-aos-delay="300" style="background-color: #3232aa;">Buat Kelas</a>
+                    
+                      <a href="<?= base_url() ?>workshops/new_workshop" class="btn btn text-white py-3 px-5 btn-pill ml-2 mt-1" data-aos="fade-up" data-aos-delay="300" style="background-color: #3232aa">Buat Workshop</a>
+                  </div> -->
 
+                 </div>
                 </div>
 
                
@@ -33,7 +43,9 @@
     </div>
 
     
-    <div class="site-section courses-title" id="courses-section">
+
+
+    <div class="site-section courses-title" id="courses-section" style="background-color: #3232aa;">
       <div class="container">
         <div class="row mb-5 justify-content-center">
           <div class="col-lg-7 text-center" data-aos="fade-up" data-aos-delay="">
@@ -42,7 +54,7 @@
         </div>
       </div>
     </div>
-    <div class="site-section courses-entry-wrap"  data-aos="fade-up" data-aos-delay="100">
+    <div class="site-section courses-entry-wrap"  data-aos="fade-up" data-aos-delay="100" style="background-color: #3232aa;"> 
       <div class="container">
         <div class="row">
 
@@ -53,7 +65,7 @@
           <?php foreach ($class as $val) : ?>
             <div class="course bg-white h-100 align-self-stretch">
               <figure class="m-0">
-                <a href="<?=base_url()?>classes/open_class/<?= $val['id_kelas'] ?>"><img src="<?= base_url().'assets/images/'.$val['poster_kelas']?>" alt="Image" class="img-fluid" style="height: 180px; object-fit: cover;"></a>
+                <a href="<?=base_url()?>classes/open_class/<?= $val['id_kelas'] ?>"><img src="<?= base_url().'assets/images/'.$val['poster_kelas']?>" alt="Image" class="img-fluid darkbg" style="height: 180px; object-fit: cover;"></a>
               </figure>
               <div class="course-inner-text py-4 px-4" style="height: 200px;">
                 <span class="course-price"><?php
@@ -73,19 +85,48 @@
               <div class="d-flex border-top stats">
                 <div class="py-3 px-4"><span class="icon-users"></span> <?= $val['peserta'] ?> peserta</div>
               </div>
+              
             </div>
-          <?php endforeach; ?>
             
-
+          <?php endforeach; ?>
+          
+            <!--  -->
+            <!-- <div class="course bg-white h-100 align-self-stretch">
+              <figure class="m-0">
+                <a href="#"><img src="<?php echo base_url(); ?>assets/images/logo.png" alt="Image" class="img-fluid darkbg" style="height: 180px; object-fit: cover;"></a>
+              </figure>
+              <div class="course-inner-text py-4 px-4" style="height: 200px;">
+                <span class="course-price">N/A</span>
+                <div class="meta">
+                      <div class="meta"></div>
+                </div>
+                <h3><a href="">Kelas Belum Tersedia</a></h3>
+                <p>Kelas belum tersedia utk saat ini. Kami akan menyediakan kelas-kelas lain untuk anda dalam beberapa waktu</p>
+              </div>
+              <div class="d-flex border-top stats">
+                <div class="py-3 px-4"><span class="icon-users"></span> 0 peserta</div>
+              </div>
+            </div> -->
+                  
 
           </div>
 
           <a class="carousel-control-prev" href="#myCarousel" data-slide="prev">
-              <span class="customPrevBtn carousel-control-prev-icon"></span>
+              <span class="customPrevBtn carousel-control-prev-icon" style="margin-left: 140px;"></span>
           </a>
           <a class="carousel-control-next" href="#myCarousel" data-slide="next">
-              <span class="customNextBtn carousel-control-next-icon"></span>
+              <span class="customNextBtn carousel-control-next-icon" style="margin-right: 140px;"></span>
           </a>
+
+          <!-- <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+              <span class="carousel-control-prev-icon icon-success" aria-hidden="true" style="color: white;"></span>
+              <span class="sr-only">Previous</span>
+          </a>
+
+          <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+              <span class="carousel-control-next-icon icon-success" aria-hidden="true" style="color: white;"></span>
+              <span class="sr-only">Next</span>
+          </a> -->
         
 
             <script>
@@ -105,11 +146,128 @@
         </div> 
       </div>
 
-    <div class="site-section courses-title" id="courses-section">
+<!-- 
+      <div class="site-section" id="programs-section" style="padding-bottom: 100px;">
+
+      <section class="ftco-section" id="inputs">
+		  
+          <div class="bg-light py-5 mt-md-5">
+          <div class="back1">
+            <div class="container py-md-5">
+              <div class="row">
+                <h2>Bergabung Gratis Untuk Selamanya</h2> <br>
+                
+              </div>
+              <div class="row">
+              <a href="<?= base_url() ?>classes/new_class" class="btn btn-primary">Daftar</a>
+              </div>
+            </div>
+          </div>
+          </div>
+        </section>
+      <div class="container">
+
+       
+        <div class="row mb-5 justify-content-center">
+          <div class="col-lg-7 text-center"  data-aos="fade-up" data-aos-delay="">
+            <h2 class="section-title mt-5" style="font-weight: 600;">Free Account</h2><hr>
+          
+          </div>
+        </div>
+
+        <div class="compa">
+        <div class="table ">
+            <div class="table-cell" style="padding: 50px;"></div>
+            <div class="table-cell plattform" style="padding: 50px;">
+              <h3>FREE CLASS</h3>
+              <a href="<?= base_url() ?>classes/new_class" class="btn">Daftar Sekarang</a>
+            </div>
+            <div class="table-cell enterprise" style="padding: 50px;">
+              <h3>PREMIUM CLASS</h3>
+              <a href="<?= base_url() ?>classes/new_class" class="btn">Gabung Sekarang</a>
+            </div>
+            <div class="table-cell  cell-feature">Kelas Publik</div>
+            <div class="table-cell">
+              <svg width="18" height="18" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
+                <title>check_blue</title>
+                <path d="M6.116 14.884c.488.488 1.28.488 1.768 0l10-10c.488-.488.488-1.28 0-1.768s-1.28-.488-1.768 0l-9.08 9.15-4.152-4.15c-.488-.488-1.28-.488-1.768 0s-.488 1.28 0 1.768l5 5z" fill="limegreen" fill-rule="evenodd"/>
+              </svg>
+            </div>
+            <div class="table-cell">
+              <svg class="enterprise-check" width="18" height="18" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
+                <title>check_blue</title>
+                <path d="M6.116 14.884c.488.488 1.28.488 1.768 0l10-10c.488-.488.488-1.28 0-1.768s-1.28-.488-1.768 0l-9.08 9.15-4.152-4.15c-.488-.488-1.28-.488-1.768 0s-.488 1.28 0 1.768l5 5z" fill="limegreen" fill-rule="evenodd"/>
+              </svg>
+            </div>
+            <div class="table-cell cell-feature">Tanpa Record</div>
+            <div class="table-cell">
+              <svg width="18" height="18" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
+                <title>check_blue</title>
+                <path d="M6.116 14.884c.488.488 1.28.488 1.768 0l10-10c.488-.488.488-1.28 0-1.768s-1.28-.488-1.768 0l-9.08 9.15-4.152-4.15c-.488-.488-1.28-.488-1.768 0s-.488 1.28 0 1.768l5 5z" fill="limegreen" fill-rule="evenodd"/>
+              </svg>
+            </div>
+            <div class="table-cell">
+              <svg class="enterprise-check" width="18" height="18" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
+                <title>check_blue</title>
+                <path d="M6.116 14.884c.488.488 1.28.488 1.768 0l10-10c.488-.488.488-1.28 0-1.768s-1.28-.488-1.768 0l-9.08 9.15-4.152-4.15c-.488-.488-1.28-.488-1.768 0s-.488 1.28 0 1.768l5 5z" fill="limegreen" fill-rule="evenodd"/>
+              </svg>
+            </div>
+            <div class="table-cell cell-feature">Tanpa Preview Materi</div>
+            <div class="table-cell">
+              <svg width="18" height="18" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
+                <title>check_blue</title>
+                <path d="M6.116 14.884c.488.488 1.28.488 1.768 0l10-10c.488-.488.488-1.28 0-1.768s-1.28-.488-1.768 0l-9.08 9.15-4.152-4.15c-.488-.488-1.28-.488-1.768 0s-.488 1.28 0 1.768l5 5z" fill="limegreen" fill-rule="evenodd"/>
+              </svg>
+            </div>
+            <div class="table-cell">
+              <svg class="enterprise-check" width="18" height="18" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
+                <title>check_blue</title>
+                <path d="M6.116 14.884c.488.488 1.28.488 1.768 0l10-10c.488-.488.488-1.28 0-1.768s-1.28-.488-1.768 0l-9.08 9.15-4.152-4.15c-.488-.488-1.28-.488-1.768 0s-.488 1.28 0 1.768l5 5z" fill="limegreen" fill-rule="evenodd"/>
+              </svg>
+            </div>
+            <div class="table-cell cell-feature">Sertifikat Copyright Classic</div>
+            <div class="table-cell">
+              <svg width="18" height="18" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
+                <title>check_blue</title>
+                <path d="M6.116 14.884c.488.488 1.28.488 1.768 0l10-10c.488-.488.488-1.28 0-1.768s-1.28-.488-1.768 0l-9.08 9.15-4.152-4.15c-.488-.488-1.28-.488-1.768 0s-.488 1.28 0 1.768l5 5z" fill="limegreen" fill-rule="evenodd"/>
+              </svg>
+            </div>
+            <div class="table-cell">
+              <svg class="enterprise-check" width="18" height="18" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
+                <title>check_blue</title>
+                <path d="M6.116 14.884c.488.488 1.28.488 1.768 0l10-10c.488-.488.488-1.28 0-1.768s-1.28-.488-1.768 0l-9.08 9.15-4.152-4.15c-.488-.488-1.28-.488-1.768 0s-.488 1.28 0 1.768l5 5z" fill="limegreen" fill-rule="evenodd"/>
+              </svg>
+            </div>
+            <div class="table-cell cell-feature">Potongan dari Kelas Berbayar</div>
+            <div class="table-cell"></div>
+            <div class="table-cell">
+              <svg class="enterprise-check" width="18" height="18" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
+                <title>check_blue</title>
+                <path d="M6.116 14.884c.488.488 1.28.488 1.768 0l10-10c.488-.488.488-1.28 0-1.768s-1.28-.488-1.768 0l-9.08 9.15-4.152-4.15c-.488-.488-1.28-.488-1.768 0s-.488 1.28 0 1.768l5 5z" fill="limegreen"/>
+              </svg>
+            </div>
+          
+            <div class="table-cell cell-feature">Gratis 2 Kelas</div>
+            <div class="table-cell"></div>
+            <div class="table-cell">
+              <svg class="enterprise-check" width="18" height="18" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
+                <title>check_blue</title>
+                <path d="M6.116 14.884c.488.488 1.28.488 1.768 0l10-10c.488-.488.488-1.28 0-1.768s-1.28-.488-1.768 0l-9.08 9.15-4.152-4.15c-.488-.488-1.28-.488-1.768 0s-.488 1.28 0 1.768l5 5z" fill="limegreen" fill-rule="evenodd"/>
+              </svg>
+            </div>
+          
+           
+          </div>
+        </div>
+      </div>
+    </div> -->
+
+
+    <div class="site-section courses-title" id="courses-section" style="background-color: white;">
       <div class="container">
         <div class="row mb-5 justify-content-center">
           <div class="col-lg-7 text-center" data-aos="fade-up" data-aos-delay="">
-            <h2 class="section-title">Workshop Terbaik</h2>
+            <h2 class="section-title" style="color: #3232aa;">Workshop Terbaik</h2>
           </div>
         </div>
       </div>
@@ -125,7 +283,7 @@
           <?php foreach ($class2 as $val) : ?>
             <div class="course bg-white h-100 align-self-stretch">
               <figure class="m-0">
-                <a href="<?=base_url()?>workshops/open_workshop/<?= $val['id_workshop'] ?>"><img src="<?= base_url().'assets/images/'.$val['poster_workshop']?>" alt="Image" class="img-fluid" style="height: 180px; object-fit: cover;"></a>
+                <a href="<?=base_url()?>workshops/open_workshop/<?= $val['id_workshop'] ?>"><img src="<?= base_url().'assets/images/'.$val['poster_workshop']?>" alt="Image" class="img-fluid darkbg" style="height: 180px; object-fit: cover;"></a>
               </figure>
               <div class="course-inner-text py-4 px-4" style="height: 200px;">
                 <span class="course-price"><?php
@@ -147,16 +305,32 @@
               </div>
             </div>
           <?php endforeach; ?>
-            
+            <!--  -->
+            <!-- <div class="course bg-white h-100 align-self-stretch">
+              <figure class="m-0">
+                <a href="#"><img src="<?php echo base_url(); ?>assets/images/logo.png" class="img-fluid darkbg" style="height: 180px; object-fit: cover;"></a>
+              </figure>
+              <div class="course-inner-text py-4 px-4" style="height: 200px;">
+                <span class="course-price">N/A</span>
+                <div class="meta">
+                      <div class="meta"></div>
+                </div>
+                <h3><a href="#">Workshop Belum Tersedia</a></h3>
+                <p>Workshop belum tersedia untuk saat ini. Kami akan menyediakan Workshop lain untuk anda dalam beberapa waktu</p>
+              </div>
+              <div class="d-flex border-top stats">
+                <div class="py-3 px-4"><span class="icon-users"></span> 0 peserta</div>
+              </div>
+            </div> -->
 
 
           </div>
 
           <a class="carousel-control-prev" href="#myCarousel" data-slide="prev">
-              <span class="customPrevBtn carousel-control-prev-icon"></span>
+              <span class="customPrevBtn carousel-control-prev-icon blck" style="margin-left: 140px;"></span>
           </a>
           <a class="carousel-control-next" href="#myCarousel" data-slide="next">
-              <span class="customNextBtn carousel-control-next-icon"></span>
+              <span class="customNextBtn carousel-control-next-icon blck" style="margin-right: 140px;"></span>
           </a>
         
 
@@ -176,7 +350,7 @@
           </div>
         </div> 
       </div>
-    </div>
+
 
     <!-- <script>
       
@@ -212,13 +386,126 @@
 
     </script> -->
 
+    <!-- <div class="site-section" id="programs-section" style="padding-bottom: 100px;">
+    <section class="ftco-section" id="inputs">
+		  
+      <div class="bg-light py-5 mt-md-5">
+      <div class="back2">
+        <div class="container py-md-5">
+          <div class="row">
+            <h2 style="color:white">Upgrade Akun Premium dan Nikmati fitur yang lebih Banyak</h2> <br>
+            
+          </div>
+          <div class="row">
+          <a href="<?= base_url() ?>classes/new_class" class="btn btn-primary" style="background-color: white; color: black;">Gabung</a>
+          </div>
+        </div>
+      </div>
+      </div>
+    </section>
+      <div class="container">
+       
+        <div class="row mb-5 justify-content-center">
+          <div class="col-lg-7 text-center"  data-aos="fade-up" data-aos-delay="">
+            <h2 class="section-title" style="font-weight: 600;">Premium Account</h2><hr>
+          
+          </div>
+        </div>
 
+
+        <div class="compa">
+        <div class="table ">
+            <div class="table-cell" style="padding: 50px;"></div>
+            <div class="table-cell plattform" style="padding: 50px;">
+              <h3>FREE CLASS</h3>
+              <a href="<?= base_url() ?>classes/new_class" class="btn">Daftar Sekarang</a>
+            </div>
+            <div class="table-cell enterprise" style="padding: 50px;">
+              <h3>PREMIUM CLASS</h3>
+              <a href="<?= base_url() ?>classes/new_class" class="btn">Gabung Sekarang</a>
+            </div>
+            <div class="table-cell  cell-feature">Record Kelas</div>
+            <div class="table-cell">
+              <svg width="18" height="18" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
+                <title>check_blue</title>
+                <path d="M6.116 14.884c.488.488 1.28.488 1.768 0l10-10c.488-.488.488-1.28 0-1.768s-1.28-.488-1.768 0l-9.08 9.15-4.152-4.15c-.488-.488-1.28-.488-1.768 0s-.488 1.28 0 1.768l5 5z" fill="limegreen" fill-rule="evenodd"/>
+              </svg>
+            </div>
+            <div class="table-cell">
+              <svg class="enterprise-check" width="18" height="18" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
+                <title>check_blue</title>
+                <path d="M6.116 14.884c.488.488 1.28.488 1.768 0l10-10c.488-.488.488-1.28 0-1.768s-1.28-.488-1.768 0l-9.08 9.15-4.152-4.15c-.488-.488-1.28-.488-1.768 0s-.488 1.28 0 1.768l5 5z" fill="limegreen" fill-rule="evenodd"/>
+              </svg>
+            </div>
+            <div class="table-cell cell-feature">Preview Kelas</div>
+            <div class="table-cell">
+              <svg width="18" height="18" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
+                <title>check_blue</title>
+                <path d="M6.116 14.884c.488.488 1.28.488 1.768 0l10-10c.488-.488.488-1.28 0-1.768s-1.28-.488-1.768 0l-9.08 9.15-4.152-4.15c-.488-.488-1.28-.488-1.768 0s-.488 1.28 0 1.768l5 5z" fill="limegreen" fill-rule="evenodd"/>
+              </svg>
+            </div>
+            <div class="table-cell">
+              <svg class="enterprise-check" width="18" height="18" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
+                <title>check_blue</title>
+                <path d="M6.116 14.884c.488.488 1.28.488 1.768 0l10-10c.488-.488.488-1.28 0-1.768s-1.28-.488-1.768 0l-9.08 9.15-4.152-4.15c-.488-.488-1.28-.488-1.768 0s-.488 1.28 0 1.768l5 5z" fill="limegreen" fill-rule="evenodd"/>
+              </svg>
+            </div>
+            <div class="table-cell cell-feature">Sertifikat Copyright Pemateri</div>
+            <div class="table-cell">
+              <svg width="18" height="18" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
+                <title>check_blue</title>
+                <path d="M6.116 14.884c.488.488 1.28.488 1.768 0l10-10c.488-.488.488-1.28 0-1.768s-1.28-.488-1.768 0l-9.08 9.15-4.152-4.15c-.488-.488-1.28-.488-1.768 0s-.488 1.28 0 1.768l5 5z" fill="limegreen" fill-rule="evenodd"/>
+              </svg>
+            </div>
+            <div class="table-cell">
+              <svg class="enterprise-check" width="18" height="18" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
+                <title>check_blue</title>
+                <path d="M6.116 14.884c.488.488 1.28.488 1.768 0l10-10c.488-.488.488-1.28 0-1.768s-1.28-.488-1.768 0l-9.08 9.15-4.152-4.15c-.488-.488-1.28-.488-1.768 0s-.488 1.28 0 1.768l5 5z" fill="limegreen" fill-rule="evenodd"/>
+              </svg>
+            </div>
+            <div class="table-cell cell-feature">Potongan dari Kelas Berbayar</div>
+            <div class="table-cell">
+             
+            </div>
+            <div class="table-cell">
+              <svg class="enterprise-check" width="18" height="18" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
+                <title>check_blue</title>
+                <path d="M6.116 14.884c.488.488 1.28.488 1.768 0l10-10c.488-.488.488-1.28 0-1.768s-1.28-.488-1.768 0l-9.08 9.15-4.152-4.15c-.488-.488-1.28-.488-1.768 0s-.488 1.28 0 1.768l5 5z" fill="limegreen" fill-rule="evenodd"/>
+              </svg>
+            </div>
+            <div class="table-cell cell-feature">Gratis Kelas Privat</div>
+            <div class="table-cell"></div>
+            <div class="table-cell">
+              <svg class="enterprise-check" width="18" height="18" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
+                <title>check_blue</title>
+                <path d="M6.116 14.884c.488.488 1.28.488 1.768 0l10-10c.488-.488.488-1.28 0-1.768s-1.28-.488-1.768 0l-9.08 9.15-4.152-4.15c-.488-.488-1.28-.488-1.768 0s-.488 1.28 0 1.768l5 5z" fill="limegreen"/>
+              </svg>
+            </div>
+          
+            <div class="table-cell cell-feature">Rekomendasi Kelas</div>
+            <div class="table-cell"></div>
+            <div class="table-cell">
+              <svg class="enterprise-check" width="18" height="18" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
+                <title>check_blue</title>
+                <path d="M6.116 14.884c.488.488 1.28.488 1.768 0l10-10c.488-.488.488-1.28 0-1.768s-1.28-.488-1.768 0l-9.08 9.15-4.152-4.15c-.488-.488-1.28-.488-1.768 0s-.488 1.28 0 1.768l5 5z" fill="limegreen" fill-rule="evenodd"/>
+              </svg>
+            </div>
+          
+           
+          </div>
+        </div>
+      </div>
+    </div> -->
+
+
+<!-- rapiin padding style="padding-top: 180px;" -->
+    
     <div class="site-section" id="programs-section">
       <div class="container">
         <div class="row mb-5 justify-content-center">
           <div class="col-lg-7 text-center"  data-aos="fade-up" data-aos-delay="">
             <h2 class="section-title">Program Kami</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam repellat aut neque! Doloribus sunt non aut reiciendis, vel recusandae obcaecati hic dicta repudiandae in quas quibusdam ullam, illum sed veniam!</p>
+            <p>Memberikan ruang belajar online untuk menciptakan interaksi yang baik dan menyenangkan bagi para mentor dan peserta kelas, serta memberikan kesempatan bagi siapapun untuk menjadi mentor terbaik ditiap kelas tanpa ada batasan apapun dengan fasilitas terbaik yang kami tawarkan.</p>
           </div>
         </div>
         <div class="row mb-5 align-items-center">
@@ -227,7 +514,7 @@
           </div>
           <div class="col-lg-4 ml-auto" data-aos="fade-up" data-aos-delay="200">
             <h2 class="text-black mb-4">Kami Memiliki Pengalaman dalam Mengajar</h2>
-            <p class="mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem maxime nam porro possimus fugiat quo molestiae illo.</p>
+            <p class="mb-4">Kami Menyiapkan para Mentor yang berpengalaman demi Kualitas dalam Pembelajaran Anda.</p>
 
             <div class="d-flex align-items-center custom-icon-wrap mb-3">
               <span class="custom-icon-inner mr-3"><span class="icon icon-graduation-cap"></span></span>
@@ -236,7 +523,7 @@
 
             <div class="d-flex align-items-center custom-icon-wrap">
               <span class="custom-icon-inner mr-3"><span class="icon icon-university"></span></span>
-              <div><h3 class="m-0">Para Pengajar yang sudah Berpengalaman</h3></div>
+              <div><h3 class="m-0">Para Pengajar yang Berpengalaman</h3></div>
             </div>
 
           </div>
@@ -248,7 +535,7 @@
           </div>
           <div class="col-lg-4 mr-auto order-2 order-lg-1" data-aos="fade-up" data-aos-delay="200">
             <h2 class="text-black mb-4">Konsep Belajar Yang Simple dan Mudah Dipahami</h2>
-            <p class="mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem maxime nam porro possimus fugiat quo molestiae illo.</p>
+            <p class="mb-4">Disini Anda akan diajak tentang Bagaimana anda menemukan pola belajar terbaik bagi Anda</p>
 
             <div class="d-flex align-items-center custom-icon-wrap mb-3">
               <span class="custom-icon-inner mr-3"><span class="icon icon-graduation-cap"></span></span>
@@ -269,7 +556,7 @@
           </div>
           <div class="col-lg-4 ml-auto" data-aos="fade-up" data-aos-delay="200">
             <h2 class="text-black mb-4">Teknologi dan Pembelajaran yang Efesien</h2>
-            <p class="mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem maxime nam porro possimus fugiat quo molestiae illo.</p>
+            <p class="mb-4">Classic Memberikan Pengalaman Anda dalam Penerapan Teknologi Pembelajaran</p>
 
             <div class="d-flex align-items-center custom-icon-wrap mb-3">
               <span class="custom-icon-inner mr-3"><span class="icon icon-graduation-cap"></span></span>
@@ -292,10 +579,10 @@
       <div class="container">
         <div class="row justify-content-center align-items-center">
           <div class="col-md-8 text-center testimony">
-            <img src="<?php echo base_url(); ?>assets/images/person_4.jpg" alt="Image" class="img-fluid w-25 mb-4 rounded-circle">
-            <h3 class="mb-4">Jerome Jensen</h3>
+            <img src="<?php echo base_url(); ?>assets/images/original.jpg" alt="Image" class="img-fluid w-25 mb-4 rounded-circle">
+            <h3 class="mb-4">Setsuna F Say Yeah</h3>
             <blockquote>
-              <p>&ldquo; Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum rem soluta sit eius necessitatibus voluptate excepturi beatae ad eveniet sapiente impedit quae modi quo provident odit molestias! Rem reprehenderit assumenda &rdquo;</p>
+              <p>&ldquo; Teknologi adalah Harapan bagi Mimpi Para Anak muda di esok hari kelak &rdquo;</p>
             </blockquote>
           </div>
         </div>
@@ -325,7 +612,7 @@
 
               <div class="d-flex align-items-center custom-icon-wrap custom-icon-light mb-3">
                 <div class="mr-3"><span class="custom-icon-inner"><span class="icon icon-graduation-cap"></span></span></div>
-                <div><h3 class="m-0">Mentor Terbaik dengan Pengalaman Mengajar</h3></div>
+                <div><h3 class="m-0">Memberikan mentor terbaik dengan pengalaman mengajar</h3></div>
               </div>
 
               <div class="d-flex align-items-center custom-icon-wrap custom-icon-light mb-3">
@@ -335,29 +622,34 @@
 
               <div class="d-flex align-items-center custom-icon-wrap custom-icon-light mb-3">
                 <div class="mr-3"><span class="custom-icon-inner"><span class="icon icon-graduation-cap"></span></span></div>
-                <div><h3 class="m-0">Konsep Belajar yang Simple</h3></div>
+                <div><h3 class="m-0">Tersedia kelas pembelajaran sesuai minat</h3></div>
               </div>
 
               <div class="d-flex align-items-center custom-icon-wrap custom-icon-light mb-3">
                 <div class="mr-3"><span class="custom-icon-inner"><span class="icon icon-university"></span></span></div>
-                <div><h3 class="m-0">Kelas Belajar yang Banyak</h3></div>
+                <div><h3 class="m-0">Teknologi yang mendukung pembelajaran</h3></div>
               </div>
 
               <div class="d-flex align-items-center custom-icon-wrap custom-icon-light mb-3">
                 <div class="mr-3"><span class="custom-icon-inner"><span class="icon icon-graduation-cap"></span></span></div>
-                <div><h3 class="m-0">Harga Kursus yang murah dan Terjangkau</h3></div>
+                <div><h3 class="m-0">Harga kursus yang murah dan terjangkau</h3></div>
               </div>
 
-              <div class="d-flex align-items-center custom-icon-wrap custom-icon-light">
+              <div class="d-flex align-items-center custom-icon-wrap custom-icon-light mb-3">
                 <div class="mr-3"><span class="custom-icon-inner"><span class="icon icon-university"></span></span></div>
-                <div><h3 class="m-0">Belajar yang fleksibel dan bisa dimana saja</h3></div>
+                <div><h3 class="m-0">Fleksibelitas waktu dan tempat</h3></div>
+              </div>
+
+              <div class="d-flex align-items-center custom-icon-wrap custom-icon-light mb-3">
+                <div class="mr-3"><span class="custom-icon-inner"><span class="icon icon-graduation-cap"></span></span></div>
+                <div><h3 class="m-0">Sertifikat online bagi semua mentor dan peserta kelas</h3></div>
               </div>
 
             </div>
 
 
           </div>
-          <div class="col-lg-7 align-self-end"  data-aos="fade-left" data-aos-delay="200">
+          <div class="col-lg-7 align-self-end"  data-aos="fade-right" data-aos-delay="200">
             <img src="<?php echo base_url(); ?>assets/images/gambar1.png" alt="Image" class="img-fluid" height="400px" >
           </div>
         </div>

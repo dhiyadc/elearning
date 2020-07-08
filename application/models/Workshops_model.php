@@ -9,14 +9,6 @@ class workshops_model extends CI_Model
     public function getMyClasses()
     {
         $this->db->where('pembuat_workshop',$this->session->userdata('id_user'));
-        $this->db->where('tipe_workshop', 1);
-        return $this->db->get('workshop')->result_array();
-    }
-
-    public function getMyPrivateClasses()
-    {
-        $this->db->where('pembuat_workshop',$this->session->userdata('id_user'));
-        $this->db->where('tipe_workshop', 2);
         return $this->db->get('workshop')->result_array();
     }
 
@@ -24,8 +16,6 @@ class workshops_model extends CI_Model
     {
         return $this->db->get('jadwal_workshop')->result_array();
     }
-
-    
 
     public function getKategori()
     {
@@ -89,9 +79,6 @@ class workshops_model extends CI_Model
         }
     }
 
-
-
-
     public function getPesertaByUserId()
     {
         $this->db->select('id_workshop');
@@ -115,8 +102,6 @@ class workshops_model extends CI_Model
     {
         return $this->db->get('detail_user')->result_array();
     }
-
-
 
     public function getKelasKegiatan($id)
     {
@@ -147,7 +132,7 @@ class workshops_model extends CI_Model
                     'poster_workshop' => $file_name,
                     // 'jenis_kelas' => $this->input->post('jenis'),
                     'jenis_workshop' => 1,
-                    'status_workshop' => 1,
+                    'status_workshop' => 3,
                     'batas_jumlah' => 0,
                     'tipe_workshop' => $this->input->post('tipe')
                 ];
@@ -161,7 +146,7 @@ class workshops_model extends CI_Model
                     'poster_workshop' => $file_name,
                     // 'jenis_kelas' => $this->input->post('jenis'),
                     'jenis_workshop' => 1,
-                    'status_workshop' => 1,
+                    'status_workshop' => 3,
                     'batas_jumlah' => $this->input->post('jumlah_peserta'),
                     'tipe_workshop' => $this->input->post('tipe')
                 ];
@@ -269,7 +254,7 @@ class workshops_model extends CI_Model
             $this->load->library('upload', $config);
             if ($this->upload->do_upload('poster')) {
                 $data = $this->db->get_where('workshop',['id_workshop' => $id])->row();
-                unlink("assets/images/".$data->poster_kelas);
+                unlink("assets/images/".$data->poster_workshop);
 
                 $file_name = $this->upload->data('file_name');
                 $data = [
@@ -479,83 +464,12 @@ class workshops_model extends CI_Model
                     ON peserta_workshop.id_workshop = workshop.id_workshop
             LEFT JOIN status_kegiatan
                 ON status_kegiatan.id_status = workshop.status_workshop
+            WHERE workshop.tipe_workshop = 1
             GROUP BY workshop.id_workshop
             ORDER BY COUNT(peserta_workshop.id_workshop) DESC
             LIMIT 10";
         $query = $this->db->query($sql);
         return $query->result_array();
-    }
-
-    public function getMyPrivateClassesDetail($keyword = null){
-        if($keyword){
-            $user = $this->session->userdata('id_user');
-            $sql = "SELECT workshop.id_workshop, workshop.status_workshop, workshop.judul_workshop, workshop.poster_workshop, workshop.deskripsi_workshop, kategori_workshop.nama_kategori, jenis_kelas.nama_jenis, harga_workshop.harga_workshop, COUNT(peserta_workshop.id_workshop) as 'peserta'
-            FROM workshop
-            LEFT JOIN kategori_workshop
-                    ON kategori_workshop.id_kategori = workshop.kategori_workshop 
-            LEFT JOIN jenis_kelas
-                    ON jenis_kelas.id_jenis = workshop.jenis_workshop
-            LEFT JOIN harga_workshop
-                    ON harga_workshop.id_workshop = workshop.id_workshop
-            LEFT JOIN peserta_workshop
-                    ON peserta_workshop.id_workshop = workshop.id_workshop
-                WHERE workshop.judul_workshop LIKE '%$keyword%' AND workshop.pembuat_workshop LIKE '$user' AND workshop.tipe_workshop = 2
-            GROUP BY workshop.id_workshop";
-            $query = $this->db->query($sql);
-            return $query->result_array();
-        } else {
-            $user = $this->session->userdata('id_user');
-            $sql = "SELECT workshop.id_workshop, workshop.status_workshop, workshop.judul_workshop, workshop.poster_workshop, workshop.deskripsi_workshop, kategori_workshop.nama_kategori, jenis_kelas.nama_jenis, harga_workshop.harga_workshop, COUNT(peserta_workshop.id_workshop) as 'peserta'
-            FROM workshop
-            LEFT JOIN kategori_workshop
-                    ON kategori_workshop.id_kategori = workshop.kategori_workshop 
-            LEFT JOIN jenis_kelas
-                    ON jenis_kelas.id_jenis = workshop.jenis_workshop
-            LEFT JOIN harga_workshop
-                    ON harga_workshop.id_workshop = workshop.id_workshop
-            LEFT JOIN peserta_workshop
-                    ON peserta_workshop.id_workshop = workshop.id_workshop
-                WHERE workshop.pembuat_workshop LIKE '$user' AND workshop.tipe_workshop = 2
-            GROUP BY workshop.id_workshop";
-            $query = $this->db->query($sql);
-            return $query->result_array();
-        }
-    }
-
-    public function getMyClassesDetail($keyword = null){
-        if($keyword){
-            $user = $this->session->userdata('id_user');
-            $sql = "SELECT workshop.id_workshop, workshop.status_workshop, workshop.judul_workshop, workshop.poster_workshop, workshop.deskripsi_workshop, kategori_workshop.nama_kategori, jenis_kelas.nama_jenis, harga_workshop.harga_workshop, COUNT(peserta_workshop.id_workshop) as 'peserta'
-            FROM workshop
-            LEFT JOIN kategori_workshop
-                    ON kategori_workshop.id_kategori = workshop.kategori_workshop 
-            LEFT JOIN jenis_kelas
-                    ON jenis_kelas.id_jenis = workshop.jenis_workshop
-            LEFT JOIN harga_workshop
-                    ON harga_workshop.id_workshop = workshop.id_workshop
-            LEFT JOIN peserta_workshop
-                    ON peserta_workshop.id_workshop = workshop.id_workshop
-                WHERE workshop.judul_workshop LIKE '%$keyword%' AND workshop.pembuat_workshop LIKE '$user' AND workshop.tipe_workshop = 1
-            GROUP BY workshop.id_workshop";
-            $query = $this->db->query($sql);
-            return $query->result_array();
-        } else {
-            $user = $this->session->userdata('id_user');
-            $sql = "SELECT workshop.id_workshop, workshop.status_workshop, workshop.judul_workshop, workshop.poster_workshop, workshop.deskripsi_workshop, kategori_workshop.nama_kategori, jenis_kelas.nama_jenis, harga_workshop.harga_workshop, COUNT(peserta_workshop.id_workshop) as 'peserta'
-            FROM workshop
-            LEFT JOIN kategori_workshop
-                    ON kategori_workshop.id_kategori = workshop.kategori_workshop 
-            LEFT JOIN jenis_kelas
-                    ON jenis_kelas.id_jenis = workshop.jenis_workshop
-            LEFT JOIN harga_workshop
-                    ON harga_workshop.id_workshop = workshop.id_workshop
-            LEFT JOIN peserta_workshop
-                    ON peserta_workshop.id_workshop = workshop.id_workshop
-                WHERE workshop.pembuat_workshop LIKE '$user' AND workshop.tipe_workshop = 1
-            GROUP BY workshop.id_workshop";
-            $query = $this->db->query($sql);
-            return $query->result_array();
-        }
     }
 
     public function leaveClass($id)

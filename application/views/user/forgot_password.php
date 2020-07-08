@@ -44,13 +44,21 @@
 
 
 <div class="container">
-    <form class="form-horizontal" role="form" method="POST" action="/register">
+    <form class="form-horizontal" role="form" method="POST" action="<?= base_url(); ?>forgot_password/request">
         <div class="row">
             <div class="col-md-3 mb-3"><h2>Lupa Password</h2><hr></div>
             <div class="col-md-6">
                 
             </div>
         </div>
+
+        <?php if ($this->session->flashdata('error_message')) { ?>
+                        <div class="alert alert-danger" style="text-align: center;"><p></p> <?= $this->session->flashdata('error_message') ?> </div>
+                    <?php } ?>
+
+                    <?php if ($this->session->flashdata('message_display')) { ?>
+                        <div class="alert alert-success" style="text-align: center;"><p></p> <?= $this->session->flashdata('message_display') ?> </div>
+                    <?php } ?>
        
         <div class="row">
             <div class="col-md-3 field-label-responsive">
@@ -60,7 +68,7 @@
                 <div class="form-group">
                     <div class="input-group mb-2 mr-sm-2 mb-sm-0">
                       
-                        <input type="email" name="newpass" class="form-control" id="emailver"
+                        <input type="email" name="email" class="form-control" id="emailver"
                                placeholder="" required autofocus>
                     </div>
                 </div>

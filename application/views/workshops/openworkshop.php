@@ -2,6 +2,8 @@
 <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" /> -->
 <!-- <link href="<?= base_url() ?>assets/datetimepicker/bootstrap.min.css" rel="stylesheet" media="screen"> -->
 <link href="<?= base_url() ?>assets/datetimepicker/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 <?php 
   $_SESSION['url_login'] = "open_workshop";
@@ -186,23 +188,29 @@
                       <h2>Jadwal Workshop</h2>
                     </div>
                   
-                    <div class="card-body">
+                    <div class="card-body table-responsive">
                       <table class="table">
                         <thead>
                           <tr>
                             <th scope="col">Deskripsi</th>
-                            <th scope="col">Hari/Tanggal</th>
-                            <th scope="col">Waktu</th>
+                            <th scope="col" class="text-center">Hari/Tanggal</th>
+                            <th scope="col" class="text-center">Waktu</th>
                             <th scope="col" style="text-align: center;">Status</th>
+                            <?php foreach ($kegiatan as $val2) :
+                                if($val2['status_kegiatan'] != 2) : ?>
                             <?php if ($val['pembuat_workshop'] != $this->session->userdata('id_user')) : ?>
                               <?php if ($cek == true) : ?>
                               <?php elseif ($peserta != null) : ?>
+                                <?php if($val2['status_kegiatan'] == 1) : ?>
                                 <th scope="col" style="text-align: center;">Aksi</th>
+                                <?php endif?> 
                               <?php elseif ($cek == false) : ?>
                               <?php endif; ?>
                             <?php else : ?>
                               <th scope="col" style="text-align: center ;">Aksi</th>
                             <?php endif; ?>
+                            <?php endif; ?>
+                            <?php endforeach?>
 
                             
 
@@ -212,21 +220,21 @@
                         <?php $modalMateri = 0; ?>
                         <?php foreach ($kegiatan as $val2) : ?>
                           <tr>
-                              <td><?= $val2['deskripsi_kegiatan']; ?></td>
-                              <td><?= $val2['tanggal']; ?></td>
-                              <td><?= $val2['waktu']; ?></td>
+                              <td style="padding-top: 30px;"><?= $val2['deskripsi_kegiatan']; ?></td>
+                              <td class="text-center" style="padding-top: 30px;"><?= $val2['tanggal']; ?></td>
+                              <td  class="text-center"style="padding-top: 30px;"><?= $val2['waktu']; ?></td>
                               <?php foreach ($status as $val3) : ?>
                                   <?php if ($val3['id_status'] == $val2['status_kegiatan']) : ?> 
                                     <?php if ($val3['nama_status'] == "Selesai") : ?>
-                                      <td style="text-align: center ;"><span class="badge badge-success"><?= $val3['nama_status']; ?></span></td>
+                                      <td style="text-align: center ;padding-top: 30px;"><span class="badge badge-success"><?= $val3['nama_status']; ?></span></td>
                                     <?php elseif ($val3['nama_status'] == "Belum Mulai") : ?>
-                                      <td style="text-align: center ;"><span class="badge badge-danger"><?= $val3['nama_status']; ?></span></td>
+                                      <td style="text-align: center ;padding-top: 30px;"><span class="badge badge-danger"><?= $val3['nama_status']; ?></span></td>
                                     <?php else : ?>
-                                      <td style="text-align: center ;"><span class="badge badge-warning"><?= $val3['nama_status']; ?></span></td>
+                                      <td style="text-align: center ; padding-top: 30px;"><span class="badge badge-warning"><?= $val3['nama_status']; ?></span></td>
                                     <?php endif; ?>
                                   <?php endif; ?>
                               <?php endforeach; ?>
-                              <td>
+                              <td class="text-center">
                                   <?php if ($val['pembuat_workshop'] != $this->session->userdata('id_user')) : ?>
                                     <?php if ($cek == true) : ?>
                                     <?php elseif ($peserta != null && $val2['status_kegiatan'] == CLASS_STARTED) : ?>
@@ -331,10 +339,10 @@
         </div>
         <div class="row justify-content-center">
         <a class="carousel-control-prev" href="#myCarousel" data-slide="prev">
-              <span class="customPrevBtn carousel-control-prev-icon"></span>
+              <span class="customPrevBtn carousel-control-prev-icon" style="margin-left: 140px;"></span>
           </a>
           <a class="carousel-control-next" href="#myCarousel" data-slide="next">
-              <span class="customNextBtn carousel-control-next-icon"></span>
+              <span class="customNextBtn carousel-control-next-icon" style="margin-right: 140px;"></span>
           </a>
           </div>
         </div>

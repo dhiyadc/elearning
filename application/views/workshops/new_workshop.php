@@ -8,9 +8,9 @@
 
             <div class="col-lg-6 pb-lg-4 pb-sm-3 ">
                 <!-- <h5 class="h5 orange-text"><i class="fa fa-camera-retro"></i>#STAYATHOME</h5> -->
-                <h1 style="color: black;" class="card-title h2 my-4 py-5">#STAY AT HOME Upgrade Skill</h1>
-                <p style="color: black;" class="mb-4 pb-2 px-md-5 mx-md-5">Dapatkan Penawaran Kursus terbaik dan pengalaman terbaik disaat Pandemi dan Upgrade diri Kamu! .</p>
-
+                <h1 style="color: black;" class="card-title h2 my-4 py-4"><strong>#Stay at home</strong><br> and <br><strong>#Upgrade your skill</strong></h1>
+                <p class="mb-4 pb-2 px-md-5 mx-md-5" style="color: black; text-shadow: floralwhite; text-align: justify;">Temukan Workshop terbaik disini untuk buat kamu tetap <strong>#Produktif</strong> dimasa
+                    Pandemi. </p>
             </div>
         </div>
     </div>
@@ -323,7 +323,7 @@
         <div class="row">
             <div class="col-md-3"></div>
             <div class="col-md-6">
-                <button type="submit" class="btn btn-primary"><i class="fa fa-user-plus"></i>Buat Kelas</button>
+                <button type="submit" class="btn btn-primary"><i class="fa fa-user-plus"></i>Buat Workshop</button>
                 <button type="submit" class="btn btn-blue-gradient"></i>Kembali</button>
             </div>
         </div>

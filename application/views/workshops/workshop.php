@@ -8,10 +8,9 @@ $_SESSION['url_login'] = "kelasview";
 
             <div class="col-lg-6 pb-lg-4 pb-sm-3 ">
                 <!-- <h5 class="h5 orange-text"><i class="fa fa-camera-retro"></i>#STAYATHOME</h5> -->
-                <h1 class="card-title h2 my-4 py-5" style="font-weight: bold; color: black	;">#STAY AT HOME Upgrade Skill</h1>
-                <p class="mb-4 pb-2 px-md-5 mx-md-5" style="color: black; text-shadow: floralwhite;">Dapatkan Penawaran Kursus terbaik dan pengalaman terbaik disaat
-                    Pandemi dan
-                    Upgrade diri Kamu! .</p>
+                <h1 style="color: black;" class="card-title h2 my-4 py-4"><strong>#Stay at home</strong><br> and <br><strong>#Upgrade your skill</strong></h1>
+                <p class="mb-4 pb-2 px-md-5 mx-md-5" style="color: black; text-shadow: floralwhite; text-align: justify;">Temukan Workshop terbaik disini untuk buat kamu tetap <strong>#Produktif</strong> dimasa
+                    Pandemi. </p>
                 <div class="row">
                     <div class="col-md-12">
                         <?php if (isset($_SESSION['logged_in'])) { ?>
@@ -21,10 +20,11 @@ $_SESSION['url_login'] = "kelasview";
                         <?php } else { ?>
                             <?php $_SESSION['new_class_url_login'] = "newworkshop"; ?>
 
-                            <a href="" class="btn btn-black" data-toggle="modal" data-target="#elegantModalFormcreateClass"><i class="fa fa-clone left"></i> Buat
+                            <a href="" class="btn btn-black ml-2 mt-1 " data-toggle="modal" data-target="#elegantModalFormcreateClass"><i class="fa fa-clone left"></i> Buat
+                                Workshop</a>
+                            <a href="" class="btn btn-black ml-2 mt-1" data-toggle="modal" data-target="#elegantModalFormcreateClass"><i class="fa fa-clone left"></i> Gabung
                                 Workshop</a>
                         <?php } ?>
-                        <a href="register" class="btn btn-black mt-1"><i class="fa fa-clone left"></i> Gabung Workshop</a>
                     </div>
                 </div>
             </div>
@@ -249,7 +249,7 @@ $_SESSION['url_login'] = "kelasview";
                             <div class="col-lg-4 mt-5 mb-5 classBox moreBox" style="display: none;">
                                 <div class="course bg-white h-100 align-self-stretch">
                                     <figure class="m-0">
-                                        <a href="<?= base_url() ?>workshops/open_workshop/<?= $val['id_workshop'] ?>"><img src="<?= base_url() . 'assets/images/' . $val['poster_workshop'] ?>" alt="Image" class="img-fluid" style="height: 180px; width: 330px; object-fit: cover;"></a>
+                                        <a href="<?= base_url() ?>workshops/open_workshop/<?= $val['id_workshop'] ?>"><img src="<?= base_url() . 'assets/images/' . $val['poster_workshop'] ?>" alt="Image" class="img-fluid darkbg" style="height: 180px; width: 330px; object-fit: cover;"></a>
                                     </figure>
                                     <div class="course-inner-text py-4 px-4" style="height: 200px;">
                                         <span class="course-price"><?php
