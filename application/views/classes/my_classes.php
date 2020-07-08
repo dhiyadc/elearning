@@ -473,14 +473,7 @@
 																														</div>
 																														<!--Body-->
 																														<div class="modal-body mx-4">
-																															<!--Body-->
-																															<form enctype="multipart/form-data" action="<?= base_url() ?>classes/edit_kegiatan/<?= $val['id_kelas'] ?>/<?= $val5['id_kegiatan'] ?>" method="POST">
-																																<div class="form-group">
-																																	<label>Deskripsi Kegiatan</label>
-																																	<textarea class="form-control" name="deskripsi" required><?= $val5['deskripsi_kegiatan'] ?></textarea>
-																																</div>
 																																<!--Body-->
-																																<div class="modal-body mx-4">
 																																	<!--Body-->
 																																	<form enctype="multipart/form-data" action="<?= base_url() ?>classes/edit_kegiatan/<?= $val['id_kelas'] ?>/<?= $val5['id_kegiatan'] ?>/akademik" method="POST">
 																																		<div class="form-group">
@@ -509,7 +502,17 @@
 																											</div>
 																										<?php endif; ?>
 																									<td>
+																									<?php $PembuatMateri = 0; ?>
+																								<?php foreach ($materi2 as $val40) : ?>
+																								<?php if ($val5['id_kegiatan'] == $val40['id_kegiatan']) : ?>
+
+																									<?php if ($PembuatMateri < 1) : ?>
 																										<button class="btn btn-light btn-md px-3 my-0 ml-0" type="button" data-toggle="modal" data-target="#lihatMateri<?= $val5['id_kegiatan']; ?>">Lihat Materi</button>
+																									<?php endif; ?>
+																									<?php $PembuatMateri++; ?>
+																								<?php else : ?>
+																								<?php endif; ?>
+																								<?php endforeach; ?>
 																									</td>
 																								</tr>
 																								<div class="modal fade" id="lihatMateri<?= $val5['id_kegiatan']; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="padding-right: 60px; padding-left: 17px;">
@@ -521,6 +524,8 @@
 																											<div class="modal-header text-center">
 																												<h3 class="modal-title w-100 dark-grey-text font-weight-bold my-3" id="myModalLabel">
 																													<strong>Materi <?= $val['judul_kelas']; ?></strong></h3>
+																													<h3 class="modal-title w-100 dark-grey-text font-weight-bold my-3" id="myModalLabel">
+																													<strong>Kegiatan <?= $val5['deskripsi_kegiatan']; ?></strong></h3>
 																												<?php $id_kelass = $val['id_kelas']; ?>
 																												<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 																													<span aria-hidden="true">&times;</span>
@@ -531,8 +536,9 @@
 																												<!--Body-->
 																												<div class="container-fluid">
 																													<div class="row">
-																														<div class="col-xl-6 border-bottom  mt-3" style="width: 110px;"><b>Kegiatan</b></div>
-																														<div class="col-xl-6 border-bottom  mt-3" style="width: 110px;"><b>Nama File</b></div>
+																														<div class="col-xl-4 border-bottom  mt-3 pb-3" style="width: 110px;"><b>Kegiatan</b></div>
+																														<div class="col-xl-6 border-bottom  mt-3 pb-3" style="width: 110px;"><b>Nama File</b></div>
+																														<div class="col-xl-2 border-bottom  mt-3 pb-3" style="width: 110px;"><b>Aksi</b></div>
 																													</div>
 																													<div class="row">
 
@@ -547,17 +553,17 @@
 																																		$val13['id_kegiatan']
 																																	) : ?>
 
-																																		<div class="col-xl-6 border-bottom pb-3 mt-3" style="width: 120px;">
+																																		<div class="col-xl-4 border-bottom pb-3 mt-3" style="width: 120px;">
 																																			<?= $val12['deskripsi_kegiatan']; ?></div>
 																																		<?php if ($val13['kategori_materi'] == 1) : ?>
-																																			<div class="col-xl-6 border-bottom pb-3 mt-3" style="width: 120px;"><a href="<?= base_url(); ?>classes/download_materi/<?= $val13['url_materi']; ?>"><i class="fa fa-file"></i> <?= wordwrap($val13['url_materi'], 26, '<br>', true); ?></a>
-																																			</div>
+																																			<div class="col-xl-6 border-bottom pb-3 mt-3" style="width: 120px;"><a href="<?= base_url(); ?>classes/download_materi/<?= $val13['url_materi']; ?>"><i class="fa fa-file"></i> <?= wordwrap($val13['url_materi'], 26, '<br>', true); ?></a></div>
+																																			<div class="col-md-2 ml-auto border-bottom"><button type="button" class="btn btn-danger"><a href="<?= base_url(); ?>classes/hapus_materi/<?= $val['id_kelas'] ?>/<?= $val13['url_materi'] ?>/akademik">Hapus</a></button></div>
 
 																																		<?php else : ?>
 																																			<?php $a++ ?>
 																																			<?php $strvid = "Video " . $a . " Kegiatan " . $val12['deskripsi_kegiatan'] . " <b>(" . $val['judul_kelas'] . ")</b>"; ?>
-																																			<div class="col-xl-6 border-bottom pb-3 mt-3" style="width: 120px;"> <a href="<?= base_url(); ?>classes/video_class/<?= $val['id_kelas'] ?>/<?= $val12['id_kegiatan'] ?>/<?= $val13['id_materi'] ?>/<?= $a ?>"><i class="fa fa-video-camera"></i> <?= wordwrap($strvid, 26, '<br>', true); ?> </a>
-																																			</div>
+																																			<div class="col-xl-4 border-bottom pb-3 mt-3" style="width: 120px;"> <a href="<?= base_url(); ?>classes/video_class/<?= $val['id_kelas'] ?>/<?= $val12['id_kegiatan'] ?>/<?= $val13['id_materi'] ?>/<?= $a ?>"><i class="fa fa-video-camera"></i> <?= wordwrap($strvid, 26, '<br>', true); ?> </a></div>
+																																			<div class="col-md-2 ml-auto border-bottom"><button type="button" class="btn btn-danger"><a href="<?= base_url(); ?>classes/hapus_materi/<?= $val['id_kelas'] ?>/<?= $val13['url_materi'] ?>/akademik">Hapus</a></button></div>
 																																		<?php endif; ?>
 																																	<?php endif; ?>
 																																<?php endforeach; ?>
@@ -1321,7 +1327,17 @@
 																													<?php endif; ?>
 																												</td>
 																												<td>
-																													<button class="btn btn-light btn-md px-3 my-0 ml-0" type="button" data-toggle="modal" data-target="#lihatMateri<?= $val5['id_kegiatan']; ?>">Lihat Materi</button>
+																												<?php $PembuatMateri = 0; ?>
+																												<?php foreach ($materi2 as $val40) : ?>
+																												<?php if ($val5['id_kegiatan'] == $val40['id_kegiatan']) : ?>
+
+																													<?php if ($PembuatMateri < 1) : ?>
+																														<button class="btn btn-light btn-md px-3 my-0 ml-0" type="button" data-toggle="modal" data-target="#lihatMateri<?= $val5['id_kegiatan']; ?>">Lihat Materi</button>
+																													<?php endif; ?>
+																													<?php $PembuatMateri++; ?>
+																												<?php else : ?>
+																												<?php endif; ?>
+																												<?php endforeach; ?>
 																												</td>
 																											</tr>
 
