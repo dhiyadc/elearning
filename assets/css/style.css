@@ -879,7 +879,9 @@ h1, h2, h3, h4, h5,
   padding: 3em 0;
   background-color: #fafafa; }
   .footer-section p {
-    font-size: 1rem; }
+    font-size: 1rem; 
+    line-height: 20px;
+  }
   .footer-section h3 {
     font-size: .9rem;
     letter-spacing: .1rem;
@@ -888,7 +890,9 @@ h1, h2, h3, h4, h5,
     margin-bottom: 1.5rem;
     font-weight: 900; }
   .footer-section .footer-links li {
-    margin-bottom: 10px; }
+    margin-bottom: 10px;
+  
+  }
 
 .footer-subscribe .btn {
   height: 48px;
@@ -1228,9 +1232,15 @@ color: #000;
 
 .bannerkelas{
   background-image: url("../images/banner2.jpg");
-  
+  opacity:0.8;
+  background-color: black;
+  z-index:10;
   background-size: cover;
   background-position: 0 0;
+}
+
+.bannerkelas .img{
+  Z-index: 5;
 }
 
 .barbawah{
@@ -2210,7 +2220,7 @@ svg.enterprise-check path {
 }
 
 .darkbg{
-  opacity:0.5;
+  opacity:0.7;
   background-color: Black;
   z-index:10;
 }
@@ -2233,5 +2243,57 @@ svg.enterprise-check path {
   #notifis { 
     display: none;
   }
-}
 
+  @media screen and (max-width: 767px) {
+    .footer-subscribe .btn{
+      font-size: 9px;
+    }
+    .footer-subscribe .form-control{
+      font-size: 9px;
+    }
+  }
+
+ 
+
+  @media screen and (max-width: 767px) {
+     .p-luar{
+          width: 250px;
+          font-size: 13px;
+          
+      }
+      .p-luar card-text{
+        margin-right: 20px;
+      }
+  }
+
+  @media screen and (max-width: 568px) {
+    .p-luar{
+         width: 200px;
+         
+     }
+     .p-luar card-text{
+       margin-right: 20px;
+     }
+ }
+
+ @media screen and (max-width: 767px) {
+  #hiddendaftar { 
+    display: none;
+  }
+
+  #posleft{
+    margin-right: 140px;
+  }
+
+  #posright{
+    margin-left: 140px;
+  }
+
+  /* .bannerkelas .darkbanner{
+    opacity:0.7;
+    background-color: Black;
+    z-index:10;
+  }
+  .bannerkelas .darkbanner .img{
+    Z-index: 5;
+  } */

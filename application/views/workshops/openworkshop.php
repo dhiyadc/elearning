@@ -2,6 +2,8 @@
 <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" /> -->
 <!-- <link href="<?= base_url() ?>assets/datetimepicker/bootstrap.min.css" rel="stylesheet" media="screen"> -->
 <link href="<?= base_url() ?>assets/datetimepicker/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 <?php 
   $_SESSION['url_login'] = "open_workshop";
@@ -97,8 +99,14 @@
             <?php endforeach; ?>
               </p>
               <div class="row mb-4">
-                <div class="col">
+                <div class="col-md-2">
+
+                </div>
+                <div class="col-md-8">
                   <img src="<?= base_url().'assets/images/'.$val['poster_workshop']?>" alt="Image" class="img-fluid rounded" style="width: 500px">
+                </div>
+                <div class="col-md-2">
+
                 </div>
               </div>
               <p><?= $val['deskripsi_workshop']; ?></p>
@@ -186,7 +194,7 @@
                       <h2>Jadwal Workshop</h2>
                     </div>
                   
-                    <div class="card-body">
+                    <div class="card-body table-responsive">
                       <table class="table">
                         <thead>
                           <tr>
@@ -337,10 +345,10 @@
         </div>
         <div class="row justify-content-center">
         <a class="carousel-control-prev" href="#myCarousel" data-slide="prev">
-              <span class="customPrevBtn carousel-control-prev-icon" style="background-color: grey;"></span>
+              <span class="customPrevBtn carousel-control-prev-icon" style="margin-left: 140px;"></span>
           </a>
           <a class="carousel-control-next" href="#myCarousel" data-slide="next">
-              <span class="customNextBtn carousel-control-next-icon" style="background-color: grey;"></span>
+              <span class="customNextBtn carousel-control-next-icon" style="margin-right: 140px;"></span>
           </a>
           </div>
         </div>

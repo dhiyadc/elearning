@@ -58,7 +58,12 @@
 			if (!isGuest) {
 				window.location.replace("<?= base_url("class/$classId/$classActivity[activityId]/close") ?>");
 			} else {
-				window.location.replace("<?= base_url("class/$classId") ?>");
+				let isWorkshop = '<?= $this->session->userdata('workshop') == null ?>'
+				if (isWorkshop) {
+					window.location.replace("<?= base_url("class/$classId") ?>");
+				} else {
+					window.location.replace("<?= base_url("workshop/$classId") ?>");
+				}
 			}
 			api.dispose()
 		}).addListener('participantKickedOut', ({kicked}) => {
