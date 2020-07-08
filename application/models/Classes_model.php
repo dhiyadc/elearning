@@ -27,7 +27,7 @@ class Classes_model extends CI_Model
                     ON peserta.id_kelas = kelas.id_kelas
             LEFT JOIN status_kegiatan
                 ON status_kegiatan.id_status = kelas.status_kelas
-                WHERE kelas.judul_kelas LIKE '%$keyword%' AND kelas.tipe_kelas = 1
+                WHERE kelas.judul_kelas LIKE '%$keyword%' AND kelas.tipe_kelas = 1 AND kelas.status_kelas = 1
             GROUP BY kelas.id_kelas";
             $query = $this->db->query($sql);
             return $query->result_array();
@@ -44,7 +44,7 @@ class Classes_model extends CI_Model
                     ON peserta.id_kelas = kelas.id_kelas
             LEFT JOIN status_kegiatan
                 ON status_kegiatan.id_status = kelas.status_kelas
-            WHERE kelas.tipe_kelas = 1
+            WHERE kelas.tipe_kelas = 1 AND kelas.status_kelas = 1
             GROUP BY kelas.id_kelas";
             $query = $this->db->query($sql);
             return $query->result_array();
@@ -65,7 +65,7 @@ class Classes_model extends CI_Model
                 ON peserta.id_kelas = kelas.id_kelas
         LEFT JOIN status_kegiatan
             ON status_kegiatan.id_status = kelas.status_kelas
-        WHERE kelas.tipe_kelas = 1
+        WHERE kelas.tipe_kelas = 1 AND kelas.status_kelas = 1
         GROUP BY kelas.id_kelas
         ORDER BY Rand()";
         $query = $this->db->query($sql);
@@ -87,7 +87,7 @@ class Classes_model extends CI_Model
                     ON peserta.id_kelas = kelas.id_kelas
             LEFT JOIN status_kegiatan
                 ON status_kegiatan.id_status = kelas.status_kelas
-            WHERE kelas.tipe_kelas = 1
+            WHERE kelas.tipe_kelas = 1 AND kelas.status_kelas = 1
             GROUP BY kelas.id_kelas
             ORDER BY COUNT(peserta.id_kelas) DESC
             LIMIT 10";
@@ -109,7 +109,7 @@ class Classes_model extends CI_Model
                  ON peserta.id_kelas = kelas.id_kelas
         LEFT JOIN status_kegiatan
             ON status_kegiatan.id_status = kelas.status_kelas
-        WHERE kategori_kelas.nama_kategori = '$kategori' AND kelas.tipe_kelas = 1
+        WHERE kategori_kelas.nama_kategori = '$kategori' AND kelas.tipe_kelas = 1 AND kelas.status_kelas = 1
         GROUP BY kelas.id_kelas";
         $query = $this->db->query($sql);
         return $query->result_array();
@@ -130,7 +130,7 @@ class Classes_model extends CI_Model
                  ON peserta.id_kelas = kelas.id_kelas
         LEFT JOIN status_kegiatan
             ON status_kegiatan.id_status = kelas.status_kelas
-        WHERE kelas.tipe_kelas = 1
+        WHERE kelas.tipe_kelas = 1 AND kelas.status_kelas = 1
         GROUP BY kelas.id_kelas
         ORDER BY kelas.id_kelas DESC";
             $query = $this->db->query($sql);
@@ -148,7 +148,7 @@ class Classes_model extends CI_Model
                     ON peserta.id_kelas = kelas.id_kelas
             LEFT JOIN status_kegiatan
                 ON status_kegiatan.id_status = kelas.status_kelas
-            WHERE kelas.tipe_kelas = 1
+            WHERE kelas.tipe_kelas = 1 AND kelas.status_kelas = 1
             GROUP BY kelas.id_kelas
             ORDER BY COUNT(peserta.id_kelas) DESC
             LIMIT 12";

@@ -344,7 +344,7 @@
 
 												</th>
 												<td style="padding-top: 30px;">
-													<span><a id="btnCopy" href="" onclick="return false" data-toggle="tooltip" data-original-title="Click to copy" data-clipboard-text="Hey, saya sudah membuat kelas baru silahkan cek disini: <?= base_url(); ?>classes/open_class/<?= $val['id_kelas'] ?>"><i class="fa fa-share-alt" aria-hidden="true"></i></a></span>
+													<span><a id="btnCopy" href="" onclick="return false" data-toggle="tooltip" data-original-title="Click to copy" data-clipboard-text="Hey, <?= $nama[0]; ?> sudah membuat kelas baru silahkan cek disini: <?= base_url(); ?>classes/open_class/<?= $val['id_kelas'] ?>"><i class="fa fa-share-alt" aria-hidden="true"></i></a></span>
 												</td>
 
 												<td style="padding-top: 30px;">
