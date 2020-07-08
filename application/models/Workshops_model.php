@@ -1,78 +1,135 @@
 <?php
 class workshops_model extends CI_Model
 {
+
+    public function http_request_get($url)
+    {
+
+        $curl = curl_init();
+        $url = "http://classico.co.id".$url;
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
+        $result = curl_exec($curl);
+        curl_close($curl);
+
+        return json_decode($result, TRUE);
+    }
+
+    public function http_request_post($data, $url)
+    {
+        $curl = curl_init();
+        $url = "http://classico.co.id".$url;
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_POST, TRUE);
+        curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
+        $result = curl_exec($curl);
+        curl_close($curl);
+
+        return json_decode($result, TRUE);
+    }
+
+    public function http_request_update($data, $url)
+    {
+        $curl = curl_init();
+        $url = "http://classico.co.id".$url;
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "UPDATE");
+        curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
+        $result = curl_exec($curl);
+        curl_close($curl);
+
+        return json_decode($result, TRUE);
+    }
+    public function http_request_delete($url)
+    {
+        $curl = curl_init();
+        $url = "http://classico.co.id".$url;
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "DELETE");
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
+        $result = curl_exec($curl);
+        curl_close($curl);
+
+        return json_decode($result, TRUE);
+    }
+
     public function getAllClasses()
     {
-        return $this->db->get('workshop')->result_array();
+        return $this->http_request_get("");
     }
 
     public function getMyClasses()
     {
-        $this->db->where('pembuat_workshop',$this->session->userdata('id_user'));
-        return $this->db->get('workshop')->result_array();
+        $id_user = $this->session->userdata('id_user');
+        return $this->http_request_get("?id_user=$id_user");
+    }
+
+
+    public function getMyPrivateClasses()
+    {
+        $id_user = $this->session->userdata('id_user');
+        return $this->http_request_get("?id_user=$id_user&tipe_workshop=2");
     }
 
     public function getAllKegiatan()
     {
-        return $this->db->get('jadwal_workshop')->result_array();
+        return $this->http_request_get("");
     }
 
     public function getKategori()
     {
-        return $this->db->get('kategori_workshop')->result_array();
+        return $this->http_request_get("");
     }
 
     public function getJenis()
     {
-        return $this->db->get('jenis_kelas')->result_array();
+        return $this->http_request_get("");
     }
 
     public function getStatus()
     {
-        return $this->db->get('status_kegiatan')->result_array();
+        return $this->http_request_get("");
     }
 
     public function getAllHarga()
     {
-        return $this->db->get('harga_workshop')->result_array();
+        return $this->http_request_get("");
     }
 
-    public function getUserDetail($userId) {
-        $this->db->select('*')
-            ->from('user')
-            ->join('detail_user', 'user.id_user = detail_user.id_user')
-            ->where('user.id_user', $userId);
-        return $this->db->get()->result_array();
+    public function getUserDetail($userId)
+    {
+        return $this->http_request_get("?id_user=$userId");
     }
 
     public function getMyName()
     {
-        $this->db->select('nama');
-        $this->db->where('id_user', $this->session->userdata('id_user'));
-        return $this->db->get('detail_user')->result_array()[0];
+        $id_user = $this->session->userdata('id_user');
+
+        return $this->http_request_get("?id_user=$id_user");
     }
 
     public function getPeserta()
     {
-        return $this->db->get('peserta_workshop')->result_array();
+        return $this->http_request_get("");
     }
 
     public function getHarga($id)
     {
-        $this->db->where('id_workshop', $id);
-        return $this->db->get('harga_workshop')->result_array();
+        return $this->http_request_get("?id_workshop=$id");
     }
 
     public function getPesertaByUserIdClassId($id)
     {
-        $this->db->where('id_user', $this->session->userdata('id_user'));
-        $this->db->where('id_workshop', $id);
-        return $this->db->get('peserta_workshop')->result_array();
+        $id_user = $this->session->userdata('id_user');
+        return $this->db->http_request_get("?id_user=$id_user&id_workshop=$id");
     }
 
     public function cekPeserta($id)
     {
-        if ($this->db->get_where('peserta_workshop', ['id_workshop' => $id])->row_array() == null) {
+        $data = $this->http_request_get("?id_workshop=$id");
+        if ($data['status'] == 200 && count($data['data']) == null || count($data['data']) == 0) {
             return true;
         } else {
             return false;
@@ -81,34 +138,28 @@ class workshops_model extends CI_Model
 
     public function getPesertaByUserId()
     {
-        $this->db->select('id_workshop');
-        $this->db->where('id_user', $this->session->userdata('id_user'));
-        return $this->db->get('peserta_workshop')->result_array();
+        $id_user = $this->session->userdata('id_user');
+        return $this->http_request_get("?id_user=$id_user");
     }
 
     public function getPesertaByClassId($id)
     {
-        $this->db->where('id_workshop', $id);
-        return $this->db->get('peserta_workshop')->result_array();
+        return $this->http_request_get("?id_workshop=$id");
     }
 
     public function getClassById($id)
     {
-        $this->db->where('id_workshop', $id);
-        return $this->db->get('workshop')->result_array();
+        return $this->http_request_get("?id_workshop=$id");
     }
 
     public function getPembuat()
     {
-        return $this->db->get('detail_user')->result_array();
+        return $this->http_request_get("");
     }
 
     public function getKelasKegiatan($id)
     {
-        $sql = "SELECT detail_user.nama, jadwal_workshop.id_kegiatan, jadwal_workshop.status_kegiatan, workshop.id_workshop, workshop.judul_workshop, workshop.poster_workshop, DATE_FORMAT(jadwal_workshop.tanggal_kegiatan, '%W, %d %M %Y (%H:%i)') as tanggal
-                FROM jadwal_workshop, workshop, detail_user
-                WHERE workshop.id_workshop = '$id' AND jadwal_workshop.id_workshop = workshop.id_workshop AND jadwal_workshop.status_kegiatan = 1 AND workshop.pembuat_workshop = detail_user.id_user";
-        return $this->db->query($sql)->result_array();
+        return $this->http_request_get("?id_workshop=$id");
     }
 
     public function createClass()
@@ -121,10 +172,10 @@ class workshops_model extends CI_Model
         $this->load->library('upload', $config);
         if ($this->upload->do_upload('poster')) {
             $file_name = $this->upload->data('file_name');
-
+            $id_workshop = uniqid();
             if ($this->input->post('batas') == 0) {
                 $data = [
-                    'id_workshop' => uniqid(),
+                    'id_workshop' => $id_workshop,
                     'pembuat_workshop' => $this->session->userdata('id_user'),
                     'judul_workshop' => $this->input->post('judul'),
                     'deskripsi_workshop' => $this->input->post('deskripsi'),
@@ -138,7 +189,7 @@ class workshops_model extends CI_Model
                 ];
             } else {
                 $data = [
-                    'id_workshop' => uniqid(),
+                    'id_workshop' => $id_workshop,
                     'pembuat_workshop' => $this->session->userdata('id_user'),
                     'judul_workshop' => $this->input->post('judul'),
                     'deskripsi_workshop' => $this->input->post('deskripsi'),
@@ -152,13 +203,12 @@ class workshops_model extends CI_Model
                 ];
             }
 
-            $this->db->insert('workshop', $data);
+            $this->http_request_post($data, "");
 
             $deskripsi_kegiatan = $this->input->post('deskripsi_kegiatan');
             $tanggal_kegiatan = $this->input->post('tanggal_kegiatan');
-            $id_workshop = $this->getIdNewClass()['id_workshop'];
             $this->setKegiatan($id_workshop, $deskripsi_kegiatan, $tanggal_kegiatan);
-            $this->setHarga($this->getIdNewClass()['id_workshop']);
+            $this->setHarga($id_workshop);
         } else {
             return "fail";
         }
@@ -171,15 +221,12 @@ class workshops_model extends CI_Model
             'id_user' => $this->session->userdata('id_user')
         ];
 
-        $this->db->insert('peserta_workshop', $data);
+        $this->http_request_post($data, "");
     }
     public function getIdNewClass()
     {
-        $this->db->select('id_workshop');
-        $this->db->where('pembuat_workshop', $this->session->userdata('id_user'));
-        $this->db->order_by('id_workshop', 'DESC');
-        $this->db->limit('1');
-        return $this->db->get('workshop')->result_array()[0];
+        $id_user = $this->session->userdata('id_user');
+        return $this->http_request_get("?id_user=$id_user");
     }
 
     public function setHarga($id)
@@ -197,7 +244,7 @@ class workshops_model extends CI_Model
             ];
         }
 
-        $this->db->insert('harga_workshop', $data);
+        $this->http_request_post($data, "");
     }
 
 
@@ -212,40 +259,38 @@ class workshops_model extends CI_Model
             'status_kegiatan' => 3
         ];
 
-        $this->db->insert('jadwal_workshop', $data);
+        $this->http_request_post($data, "");
     }
 
     public function updateKegiatan($id_kegiatan)
     {
 
-            $data = [
-                'deskripsi_kegiatan' => $this->input->post('deskripsi')
-                
-            ];
-            
-            $this->db->where('id_kegiatan',$id_kegiatan);
-            $this->db->update('jadwal_workshop',$data);
+        $data = [
+            'deskripsi_kegiatan' => $this->input->post('deskripsi')
+
+        ];
+
+        $this->http_request_update($data, "?id_kegiatan=$id_kegiatan");
 
         return "success";
-
     }
 
-    public function getKegiatanByIdKegiatan($activityId) {
-        $this->db->select("*, DATE_FORMAT(tanggal_kegiatan, '%W, %d %M %Y') as tanggal, DATE_FORMAT(tanggal_kegiatan, '%H:%i') as waktu")
-            ->from('jadwal_workshop')
-            ->where('id_kegiatan', $activityId);
-
-        return $this->db->get()->result_array();
+    public function getKegiatanByIdKegiatan($activityId)
+    {
+        return $this->http_request_get("?id_kegiatan=$activityId");
     }
 
-    public function updateKegiatanStatus($activityId, $status) {
-        $this->db->set('status_kegiatan', $status)->where('id_kegiatan', $activityId);
-        return $this->db->update('jadwal_workshop');
+    public function updateKegiatanStatus($activityId, $status)
+    {
+        $data = [
+            'status_kegiatan' => $status
+        ];
+        return $this->http_request_update($data, "?id_kegiatan=$activityId");
     }
 
     public function updateClass($id)
     {
-        if(!empty($_FILES['poster']['name'])) {
+        if (!empty($_FILES['poster']['name'])) {
             $config['upload_path'] = './assets/images/';
             $config['allowed_types'] = 'jpg|png|jpeg';
             $config['max_size'] = '3000';
@@ -253,8 +298,11 @@ class workshops_model extends CI_Model
 
             $this->load->library('upload', $config);
             if ($this->upload->do_upload('poster')) {
-                $data = $this->db->get_where('workshop',['id_workshop' => $id])->row();
-                unlink("assets/images/".$data->poster_workshop);
+
+                $data = $this->http_request_get("?id_workshop=$id");
+                foreach ($data['data'] as $data2) {
+                    unlink("assets/images/" . $data2['poster_workshop']);
+                }
 
                 $file_name = $this->upload->data('file_name');
                 $data = [
@@ -266,9 +314,7 @@ class workshops_model extends CI_Model
             } else {
                 return "fail";
             }
-           
-        }
-        else {
+        } else {
             $data = [
                 'judul_workshop' => $this->input->post('judul'),
                 'deskripsi_workshop' => $this->input->post('deskripsi'),
@@ -277,147 +323,50 @@ class workshops_model extends CI_Model
             ];
         }
 
-        $this->db->where('id_workshop',$id);
-        $this->db->update('workshop',$data);
+        $this->http_request_update($data, "?id_workshop=$id");
     }
 
 
     public function getClassesbyCategories($kategori)
     {
-        $sql = "SELECT workshop.id_workshop, workshop.judul_workshop, workshop.poster_workshop, workshop.deskripsi_workshop, kategori_workshop.nama_kategori, jenis_kelas.nama_jenis, harga_workshop.harga_workshop, COUNT(peserta_workshop.id_workshop) as 'peserta', status_kegiatan.nama_status
-        FROM workshop
-        LEFT JOIN kategori_workshop
-                 ON kategori_workshop.id_kategori = workshop.kategori_workshop 
-        LEFT JOIN jenis_kelas
-                 ON jenis_kelas.id_jenis = workshop.jenis_workshop
-        LEFT JOIN harga_workshop
-                 ON harga_workshop.id_workshop = workshop.id_workshop
-        LEFT JOIN peserta_workshop
-                 ON peserta_workshop.id_workshop = workshop.id_workshop
-        LEFT JOIN status_kegiatan
-            ON status_kegiatan.id_status = workshop.status_workshop
-        WHERE kategori_workshop.nama_kategori = '$kategori' AND workshop.tipe_workshop = 1
-        GROUP BY workshop.id_workshop";
-        $query = $this->db->query($sql);
-        return $query->result_array();
+        return $this->http_request_get("?kategori=$kategori");
     }
 
     public function getClassesbySorting($sorting)
     {
         if ($sorting == "terbaru") {
-            $sql = "SELECT workshop.id_workshop, workshop.judul_workshop, workshop.poster_workshop, workshop.deskripsi_workshop, kategori_workshop.nama_kategori, jenis_kelas.nama_jenis, harga_workshop.harga_workshop, COUNT(peserta_workshop.id_workshop) as 'peserta', status_kegiatan.nama_status
-        FROM workshop
-        LEFT JOIN kategori_workshop
-                 ON kategori_workshop.id_kategori = workshop.kategori_workshop 
-        LEFT JOIN jenis_kelas
-                 ON jenis_kelas.id_jenis = workshop.jenis_workshop
-        LEFT JOIN harga_workshop
-                 ON harga_workshop.id_workshop = workshop.id_workshop
-        LEFT JOIN peserta_workshop
-                 ON peserta_workshop.id_workshop = workshop.id_workshop
-        LEFT JOIN status_kegiatan
-            ON status_kegiatan.id_status = workshop.status_workshop
-        WHERE workshop.tipe_workshop = 1
-        GROUP BY workshop.id_workshop
-        ORDER BY workshop.id_workshop DESC";
-            $query = $this->db->query($sql);
-            return $query->result_array();
+            return $this->http_request_get("");
         } else if ($sorting == "terbaik") {
-            $sql = "SELECT workshop.id_workshop, workshop.judul_workshop, workshop.poster_workshop, workshop.deskripsi_workshop, kategori_workshop.nama_kategori, jenis_kelas.nama_jenis, harga_workshop.harga_workshop, COUNT(workshop.id_workshop) as 'peserta', status_kegiatan.nama_status
-            FROM workshop
-            LEFT JOIN kategori_workshop
-                    ON kategori_workshop.id_kategori = workshop.kategori_workshop 
-            LEFT JOIN jenis_kelas
-                    ON jenis_kelas.id_jenis = workshop.jenis_workshop
-            LEFT JOIN harga_workshop
-                    ON harga_workshop.id_workshop = workshop.id_workshop
-            LEFT JOIN peserta_workshop
-                    ON peserta_workshop.id_workshop = workshop.id_workshop
-            LEFT JOIN status_kegiatan
-                ON status_kegiatan.id_status = workshop.status_workshop
-            WHERE workshop.tipe_workshop = 1
-            GROUP BY workshop.id_workshop
-            ORDER BY COUNT(peserta_workshop.id_workshop) DESC
-            LIMIT 12";
-            $query = $this->db->query($sql);
-            return $query->result_array();
+            return $this->http_request_get("");
         }
     }
 
-    public function getAllClassesDetail($keyword = null){
-        if($keyword){
-            $sql = "SELECT workshop.id_workshop, workshop.status_workshop, workshop.judul_workshop, workshop.poster_workshop, workshop.deskripsi_workshop, kategori_workshop.nama_kategori, jenis_kelas.nama_jenis, harga_workshop.harga_workshop, COUNT(peserta_workshop.id_workshop) as 'peserta', status_kegiatan.nama_status
-            FROM workshop
-            LEFT JOIN kategori_workshop
-                    ON kategori_workshop.id_kategori = workshop.kategori_workshop 
-            LEFT JOIN jenis_kelas
-                    ON jenis_kelas.id_jenis = workshop.jenis_workshop
-            LEFT JOIN harga_workshop
-                    ON harga_workshop.id_workshop = workshop.id_workshop
-            LEFT JOIN peserta_workshop
-                    ON peserta_workshop.id_workshop = workshop.id_workshop
-            LEFT JOIN status_kegiatan
-                ON status_kegiatan.id_status = workshop.status_workshop
-                WHERE workshop.judul_workshop LIKE '%$keyword%' AND workshop.tipe_workshop = 1
-            GROUP BY workshop.id_workshop";
-            $query = $this->db->query($sql);
-            return $query->result_array();
+    public function getAllClassesDetail($keyword = null)
+    {
+        if ($keyword) {
+            return $this->http_request_get("?keyword=$keyword");
         } else {
-            $sql = "SELECT workshop.id_workshop, workshop.judul_workshop, workshop.poster_workshop, workshop.deskripsi_workshop, kategori_workshop.nama_kategori, jenis_kelas.nama_jenis, harga_workshop.harga_workshop, COUNT(peserta_workshop.id_workshop) as 'peserta', status_kegiatan.nama_status
-            FROM workshop
-            LEFT JOIN kategori_workshop
-                    ON kategori_workshop.id_kategori = workshop.kategori_workshop 
-            LEFT JOIN jenis_kelas
-                    ON jenis_kelas.id_jenis = workshop.jenis_workshop
-            LEFT JOIN harga_workshop
-                    ON harga_workshop.id_workshop = workshop.id_workshop
-            LEFT JOIN peserta_workshop
-                    ON peserta_workshop.id_workshop = workshop.id_workshop
-            LEFT JOIN status_kegiatan
-                ON status_kegiatan.id_status = workshop.status_workshop
-            WHERE workshop.tipe_workshop = 1
-            GROUP BY workshop.id_workshop";
-            $query = $this->db->query($sql);
-            return $query->result_array();
+            return $this->http_request_get("?keyword=null");
         }
     }
 
     public function getAllRandomClasses()
     {
-        $sql = "SELECT workshop.id_workshop, workshop.judul_workshop, workshop.poster_workshop, workshop.deskripsi_workshop, kategori_workshop.nama_kategori, jenis_kelas.nama_jenis, harga_workshop.harga_workshop, COUNT(peserta_workshop.id_workshop) as 'peserta', status_kegiatan.nama_status
-            FROM workshop
-            LEFT JOIN kategori_workshop
-                    ON kategori_workshop.id_kategori = workshop.kategori_workshop 
-            LEFT JOIN jenis_kelas
-                    ON jenis_kelas.id_jenis = workshop.jenis_workshop
-            LEFT JOIN harga_workshop
-                    ON harga_workshop.id_workshop = workshop.id_workshop
-            LEFT JOIN peserta_workshop
-                    ON peserta_workshop.id_workshop = workshop.id_workshop
-            LEFT JOIN status_kegiatan
-                ON status_kegiatan.id_status = workshop.status_workshop
-            WHERE workshop.tipe_workshop = 1
-            GROUP BY workshop.id_workshop
-        ORDER BY Rand()";
-        $query = $this->db->query($sql);
-        return $query->result_array();
+        return $this->http_request_get("");
     }
 
-    
+
     public function getKegiatan($id)
     {
-        $sql = "SELECT *, DATE_FORMAT(tanggal_kegiatan, '%W, %d %M %Y') as tanggal, DATE_FORMAT(tanggal_kegiatan, '%H:%i') as waktu
-                FROM jadwal_workshop
-                WHERE id_workshop = '$id'";
-        return $this->db->query($sql)->result_array();
+        return $this->http_request_get("?id_workshop=$id");
     }
 
     public function getTanggalKegiatan($id)
     {
-        $data = $this->db->get_where('jadwal_workshop', ['id_workshop' => $id])->result_array();
-        if ($data != null) {
+        $data = $this->http_request_get("?id_workshop=$id");
+        if ($data['status'] == 200 && count($data['data']) != null || count($data['data']) != 0) {
             $selesai = true;
-            foreach ($data as $key => $value) {
+            foreach ($data['data'] as $key => $value) {
                 if ($value['status_kegiatan'] == 1 || $value['status_kegiatan'] == 3) {
                     $selesai = false;
                     break;
@@ -436,46 +385,44 @@ class workshops_model extends CI_Model
             $data = [
                 'status_workshop' => 2
             ];
-
-            $this->db->where('id_workshop', $id);
-            $this->db->update('workshop', $data);
         } else if ($selesai == false) {
             $data = [
                 'status_workshop' => 1
             ];
-
-            $this->db->where('id_workshop', $id);
-            $this->db->update('workshop', $data);
         }
+        $this->http_request_update($data, "?id_workshop=$id");
     }
 
     public function getAllTopClasses()
     {
 
-        $sql = "SELECT workshop.id_workshop, workshop.judul_workshop, workshop.poster_workshop, workshop.deskripsi_workshop, kategori_workshop.nama_kategori, jenis_kelas.nama_jenis, harga_workshop.harga_workshop, COUNT(peserta_workshop.id_workshop) as 'peserta', status_kegiatan.nama_status
-            FROM workshop
-            LEFT JOIN kategori_workshop
-                    ON kategori_workshop.id_kategori = workshop.kategori_workshop 
-            LEFT JOIN jenis_kelas
-                    ON jenis_kelas.id_jenis = workshop.jenis_workshop
-            LEFT JOIN harga_workshop
-                    ON harga_workshop.id_workshop = workshop.id_workshop
-            LEFT JOIN peserta_workshop
-                    ON peserta_workshop.id_workshop = workshop.id_workshop
-            LEFT JOIN status_kegiatan
-                ON status_kegiatan.id_status = workshop.status_workshop
-            WHERE workshop.tipe_workshop = 1
-            GROUP BY workshop.id_workshop
-            ORDER BY COUNT(peserta_workshop.id_workshop) DESC
-            LIMIT 10";
-        $query = $this->db->query($sql);
-        return $query->result_array();
+        return $this->http_request_get("");
+    }
+
+    public function getMyPrivateClassesDetail($keyword = null)
+    {
+        $user = $this->session->userdata('id_user');
+        if ($keyword) {
+            return $this->http_request_get("keyword=$keyword&id_user=$user");
+        } else {
+            return $this->http_request_get("keyword=null&id_user=$user");
+        }
+    }
+
+    public function getMyClassesDetail($keyword = null)
+    {
+        $user = $this->session->userdata('id_user');
+        if ($keyword) {
+            return $this->http_request_get("keyword=$keyword&id_user=$user");
+        } else {
+            return $this->http_request_get("keyword=null&id_user=$user");
+        }
+
     }
 
     public function leaveClass($id)
     {
-        $this->db->where('id_user',$this->session->userdata('id_user'));
-        $this->db->where('id_workshop',$id);
-        $this->db->delete('peserta_workshop');
+        $id_user = $this->session->userdata('id_user');
+        $this->http_request_delete("id_user=$id_user&id_workshop=$id");
     }
 }
