@@ -1232,9 +1232,15 @@ color: #000;
 
 .bannerkelas{
   background-image: url("../images/banner2.jpg");
-  
+  opacity:0.8;
+  background-color: pink;
+  z-index:10;
   background-size: cover;
   background-position: 0 0;
+}
+
+.bannerkelas .img{
+  Z-index: 5;
 }
 
 .barbawah{
@@ -2214,7 +2220,7 @@ svg.enterprise-check path {
 }
 
 .darkbg{
-  opacity:0.5;
+  opacity:0.7;
   background-color: Black;
   z-index:10;
 }
@@ -2274,3 +2280,20 @@ svg.enterprise-check path {
   #hiddendaftar { 
     display: none;
   }
+
+  #posleft{
+    margin-right: 140px;
+  }
+
+  #posright{
+    margin-left: 140px;
+  }
+
+  /* .bannerkelas .darkbanner{
+    opacity:0.7;
+    background-color: Black;
+    z-index:10;
+  }
+  .bannerkelas .darkbanner .img{
+    Z-index: 5;
+  } */

@@ -2,7 +2,7 @@
 $_SESSION['url_login'] = "kelasview";
 ?>
 <!-- Jumbotron -->
-<div class="card-image bannerkelas">
+<div class="card-image bannerkelas darkbanner">
 	<div class="text-white text-center rgba-stylish-strong py-5 px-4">
 		<div class="py-5">
 

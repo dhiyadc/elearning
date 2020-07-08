@@ -85,8 +85,11 @@
               <div class="d-flex border-top stats">
                 <div class="py-3 px-4"><span class="icon-users"></span> <?= $val['peserta'] ?> peserta</div>
               </div>
+              
             </div>
+            
           <?php endforeach; ?>
+          
             <!--  -->
             <!-- <div class="course bg-white h-100 align-self-stretch">
               <figure class="m-0">
@@ -104,15 +107,15 @@
                 <div class="py-3 px-4"><span class="icon-users"></span> 0 peserta</div>
               </div>
             </div> -->
-
+                  
 
           </div>
 
           <a class="carousel-control-prev" href="#myCarousel" data-slide="prev">
-              <span class="customPrevBtn carousel-control-prev-icon"></span>
+              <span class="customPrevBtn carousel-control-prev-icon" style="margin-left: 140px;"></span>
           </a>
           <a class="carousel-control-next" href="#myCarousel" data-slide="next">
-              <span class="customNextBtn carousel-control-next-icon"></span>
+              <span class="customNextBtn carousel-control-next-icon" style="margin-right: 140px;"></span>
           </a>
 
           <!-- <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -324,10 +327,10 @@
           </div>
 
           <a class="carousel-control-prev" href="#myCarousel" data-slide="prev">
-              <span class="customPrevBtn carousel-control-prev-icon blck"></span>
+              <span class="customPrevBtn carousel-control-prev-icon blck" style="margin-left: 140px;"></span>
           </a>
           <a class="carousel-control-next" href="#myCarousel" data-slide="next">
-              <span class="customNextBtn carousel-control-next-icon blck"></span>
+              <span class="customNextBtn carousel-control-next-icon blck" style="margin-right: 140px;"></span>
           </a>
         
 
