@@ -108,8 +108,14 @@ $this->session->set_userdata('workshop', null);
                     <?php endforeach; ?>
                   </p>
                   <div class="row mb-4">
-                    <div class="col">
+                    <div class="col-md-2">
+
+                    </div>
+                    <div class="col-md-8">
                       <img src="<?= base_url() . 'assets/images/' . $val['poster_kelas'] ?>" alt="Image" class="img-fluid rounded" style="width: 500px">
+                    </div>
+                    <div class="col-md-2">
+
                     </div>
                   </div>
                   <p><?= $val['deskripsi_kelas']; ?></p>
