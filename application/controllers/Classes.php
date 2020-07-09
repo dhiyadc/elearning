@@ -83,6 +83,7 @@ class Classes extends CI_Controller
         if (isset($this->session->userdata['logged_in'])) {
             $this->session->set_flashdata('buttonJoin', 'Anda telah mengikuti kelas ini');
             $this->session->set_flashdata('batasPeserta', 'Maaf, kelas ini telah penuh');
+            $this->session->set_flashdata('kelasSelesai', 'Kelas ini telah selesai');
             $header['nama'] = explode(" ", $this->Classes_model->getMyName()['nama']);
             $notif = $this->Classes_model->getPesertaByUserId();
             $datanotif = array();

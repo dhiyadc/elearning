@@ -76,6 +76,11 @@ $this->session->set_userdata('workshop', null);
                   <?php echo $this->session->flashdata("success"); ?>
                 </div>
               <?php } ?>
+              <?php if ($val['status_kelas'] == 2 && $val['pembuat_kelas'] != $this->session->userdata('id_user')) { ?>
+                <div class="alert alert-danger text-center" role="alert">
+                  <?php echo $this->session->flashdata("kelasSelesai"); ?>
+                </div>
+              <?php } ?>
 
 
               <ul class="nav nav-tabs" role="tablist" style="font-weight: bolder;">
@@ -127,7 +132,7 @@ $this->session->set_userdata('workshop', null);
                   <?php endforeach; ?>
 
                   <?php if (isset($this->session->userdata['logged_in'])) : ?>
-                    <?php if ($val['pembuat_kelas'] != $this->session->userdata('id_user')) : ?>
+                    <?php if ($val['status_kelas'] != 2 && $val['pembuat_kelas'] != $this->session->userdata('id_user')) : ?>
                       <?php if ($val['batas_jumlah'] > count($peserta_kelas) || $val['batas_jumlah'] == 0) : ?>
                         <?php if ($cek == true) : ?>
                           <?php if ($val['jenis_kelas'] == 1) : ?>
