@@ -51,7 +51,8 @@ class Workshops extends CI_Controller
         $this->load->view('partials/common/footer');
     }
 
-    public function set_sess(){
+    public function set_sess()
+    {
         $this->session->set_userdata('workshop', true);
     }
     public function new_workshop()
@@ -399,7 +400,7 @@ class Workshops extends CI_Controller
         }
         redirect('workshops/open_workshop/' . $id_kelas);
     }
-    
+
     public function lihat_kegiatan($id_kelas)
     {
         if (isset($this->session->userdata['logged_in'])) {
@@ -420,4 +421,25 @@ class Workshops extends CI_Controller
         }
     }
 
+    public function isactive_workshop($id_workshop)
+    {
+        if (isset($this->session->userdata['logged_in'])) {
+            $data = $this->Workshops_model->getClassById($id_workshop);
+            foreach ($data as $val) {
+                $is_active = $val['is_active'];
+                $nama = $val['judul_workshop'];
+            }
+
+            if ($is_active == 1) {
+                $this->Workshops_model->isactive_workshop($id_workshop, 0);
+                $this->session->set_flashdata('active', 0);
+            } else{
+            $this->Workshops_model->isactive_workshop($id_workshop, 1);
+            $this->session->set_flashdata('active', 1 );
+            }
+            $x['nama'] = $nama;
+            redirect("classes/my_classes", $nama);
+        } else
+            redirect("home");
+    }
 }

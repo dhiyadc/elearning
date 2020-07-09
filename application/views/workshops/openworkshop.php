@@ -78,6 +78,12 @@
                         <?php echo $this->session->flashdata("success"); ?>
                       </div>
                 <?php } ?>
+              <?php if($val['status_workshop'] == 2){ ?>
+                      <div class="alert alert-danger" role="alert">
+                        Workshop sudah tidak tersedia lagi.
+                      </div>
+                <?php } else { ?>
+                <?php } ?>
               
 
             <ul class="nav nav-tabs" role="tablist" style="font-weight: bolder;">
@@ -121,20 +127,26 @@
               <?php if ($val['pembuat_workshop'] != $this->session->userdata('id_user')) : ?>
                 <?php if ($val['batas_jumlah'] > count($peserta_kelas) || $val['batas_jumlah'] == 0) : ?>
                   <?php if ($cek == true) : ?>
+                    <?php if($val['status_workshop']!=2) :?>
                       <?php if ($val['jenis_workshop'] == 1) : ?>
                           <p class="mt-4"><a href="<?= base_url()?>workshops/join_workshop/<?= $val['id_workshop']; ?>" class="btn btn-dark mr-1">Gabung Workshop</a></p>
                       <?php else : ?>
                           <p class="mt-4"><a href="<?= base_url()?>workshops/pembayaran_workshop/<?= $val['id_workshop']; ?>" class="btn btn-dark mr-1">Gabung Workshop</a></p>
                       <?php endif; ?>
+                      <?php endif;?>
                   <?php elseif ($peserta != null) : ?>
+                    <?php if($val['status_workshop'] != 2) : ?>
                     <div class="alert alert-dark" role="alert">
                       <center><?= $this->session->flashdata('buttonJoin') ?></center>
                     </div>
+                    <?php endif; ?>
                   <?php elseif ($cek == false) : ?>
+                    <?php if($val['status_workshop']!=2) :?>
                       <?php if ($val['jenis_workshop'] == 1) : ?>
                           <p class="mt-4"><a href="<?= base_url()?>workshops/join_workshop/<?= $val['id_workshop']; ?>" class="btn btn-dark mr-1">Gabung Workshop</a></p>
                       <?php else : ?>
                           <p class="mt-4"><a href="<?= base_url()?>workshops/pembayaran_workshop/<?= $val['id_kelas']; ?>" class="btn btn-dark mr-1">Gabung Workshop</a></p>
+                      <?php endif; ?>
                       <?php endif; ?>
                   <?php endif; ?>
                 <?php else : ?>

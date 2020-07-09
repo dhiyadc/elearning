@@ -3,6 +3,7 @@ class workshops_model extends CI_Model
 {
     public function getAllClasses()
     {
+        $this->db->where('status_workshop' != 2);
         return $this->db->get('workshop')->result_array();
     }
 
@@ -91,6 +92,10 @@ class workshops_model extends CI_Model
         $this->db->where('id_workshop', $id);
         return $this->db->get('peserta_workshop')->result_array();
     }
+
+    // public function isactive_workshop($id, $stat){
+    //     $this->db->query("UPDATE workshop SET is_active='$stat' WHERE id_workshop='$id'");
+    // }
 
     public function getClassById($id)
     {
@@ -296,7 +301,7 @@ class workshops_model extends CI_Model
                  ON peserta_workshop.id_workshop = workshop.id_workshop
         LEFT JOIN status_kegiatan
             ON status_kegiatan.id_status = workshop.status_workshop
-        WHERE kategori_workshop.nama_kategori = '$kategori' AND workshop.tipe_workshop = 1
+        WHERE kategori_workshop.nama_kategori = '$kategori' AND workshop.tipe_workshop = 1 AND workshop.status_workshop != 2
         GROUP BY workshop.id_workshop";
         $query = $this->db->query($sql);
         return $query->result_array();
@@ -317,7 +322,7 @@ class workshops_model extends CI_Model
                  ON peserta_workshop.id_workshop = workshop.id_workshop
         LEFT JOIN status_kegiatan
             ON status_kegiatan.id_status = workshop.status_workshop
-        WHERE workshop.tipe_workshop = 1
+        WHERE workshop.tipe_workshop = 1 AND workshop.status_workshop != 2
         GROUP BY workshop.id_workshop
         ORDER BY workshop.id_workshop DESC";
             $query = $this->db->query($sql);
@@ -335,7 +340,7 @@ class workshops_model extends CI_Model
                     ON peserta_workshop.id_workshop = workshop.id_workshop
             LEFT JOIN status_kegiatan
                 ON status_kegiatan.id_status = workshop.status_workshop
-            WHERE workshop.tipe_workshop = 1
+            WHERE workshop.tipe_workshop = 1 AND workshop.status_workshop != 2
             GROUP BY workshop.id_workshop
             ORDER BY COUNT(peserta_workshop.id_workshop) DESC
             LIMIT 12";
@@ -358,7 +363,7 @@ class workshops_model extends CI_Model
                     ON peserta_workshop.id_workshop = workshop.id_workshop
             LEFT JOIN status_kegiatan
                 ON status_kegiatan.id_status = workshop.status_workshop
-                WHERE workshop.judul_workshop LIKE '%$keyword%' AND workshop.tipe_workshop = 1
+                WHERE workshop.judul_workshop LIKE '%$keyword%' AND workshop.tipe_workshop = 1 AND workshop.status_workshop != 2
             GROUP BY workshop.id_workshop";
             $query = $this->db->query($sql);
             return $query->result_array();
@@ -375,7 +380,7 @@ class workshops_model extends CI_Model
                     ON peserta_workshop.id_workshop = workshop.id_workshop
             LEFT JOIN status_kegiatan
                 ON status_kegiatan.id_status = workshop.status_workshop
-            WHERE workshop.tipe_workshop = 1
+            WHERE workshop.tipe_workshop = 1 AND workshop.status_workshop != 2
             GROUP BY workshop.id_workshop";
             $query = $this->db->query($sql);
             return $query->result_array();
@@ -396,7 +401,7 @@ class workshops_model extends CI_Model
                     ON peserta_workshop.id_workshop = workshop.id_workshop
             LEFT JOIN status_kegiatan
                 ON status_kegiatan.id_status = workshop.status_workshop
-            WHERE workshop.tipe_workshop = 1
+            WHERE workshop.tipe_workshop = 1 AND workshop.status_workshop != 2
             GROUP BY workshop.id_workshop
         ORDER BY Rand()";
         $query = $this->db->query($sql);
@@ -464,7 +469,7 @@ class workshops_model extends CI_Model
                     ON peserta_workshop.id_workshop = workshop.id_workshop
             LEFT JOIN status_kegiatan
                 ON status_kegiatan.id_status = workshop.status_workshop
-            WHERE workshop.tipe_workshop = 1
+            WHERE workshop.tipe_workshop = 1 AND workshop.status_workshop != 2
             GROUP BY workshop.id_workshop
             ORDER BY COUNT(peserta_workshop.id_workshop) DESC
             LIMIT 10";
