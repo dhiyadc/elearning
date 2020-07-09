@@ -3,25 +3,30 @@
 class Admin_database extends CI_Model
 {
 
-    public function http_request_get($data = null, $url)
+    public function http_request_get($dataparam = null, $function)
     {
-
         $curl = curl_init();
-        if($data)
-        $data = http_build_query($data);
-        $url = "http://classico.co.id/".$url;
+        if ($dataparam != null) {
+            $dataparam = http_build_query($dataparam);
+            $url = "http://classico.co.id/" . $function . ":" . $dataparam;
+        } else
+            $url = "http://classico.co.id/" . $function;
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
         $result = curl_exec($curl);
         curl_close($curl);
-        
-        return json_decode($result, true);
+
+        return json_decode($result, TRUE);
     }
 
-    public function http_request_post($data, $url)
+    public function http_request_post($data, $dataparam = null, $function)
     {
         $curl = curl_init();
-        $url = "http://classico.co.id/".$url;
+        if ($dataparam != null) {
+            $dataparam = http_build_query($dataparam);
+            $url = "http://classico.co.id/" . $function . ":" . $dataparam;
+        } else
+            $url = "http://classico.co.id/" . $function;
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_POST, TRUE);
         curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
@@ -29,13 +34,17 @@ class Admin_database extends CI_Model
         $result = curl_exec($curl);
         curl_close($curl);
 
-        return json_decode($result, true);
+        return json_decode($result, TRUE);
     }
 
-    public function http_request_update($data, $url)
+    public function http_request_update($data, $dataparam = null, $function)
     {
         $curl = curl_init();
-        $url = "http://classico.co.id/".$url;
+        if ($dataparam != null) {
+            $dataparam = http_build_query($dataparam);
+            $url = "http://classico.co.id/" . $function . ":" . $dataparam;
+        } else
+            $url = "http://classico.co.id/" . $function;
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "UPDATE");
         curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
@@ -43,19 +52,23 @@ class Admin_database extends CI_Model
         $result = curl_exec($curl);
         curl_close($curl);
 
-        return json_decode($result, true);
+        return json_decode($result, TRUE);
     }
-    public function http_request_delete($id)
+    public function http_request_delete($dataparam = null, $function)
     {
         $curl = curl_init();
-        $url = "http://classico.co.id/".$id;
+        if ($dataparam != null) {
+            $dataparam = http_build_query($dataparam);
+            $url = "http://classico.co.id/" . $function . ":" . $dataparam;
+        } else
+            $url = "http://classico.co.id/" . $function;
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "DELETE");
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
         $result = curl_exec($curl);
         curl_close($curl);
 
-        return json_decode($result, true);
+        return json_decode($result, TRUE);
     }
 
 
@@ -120,12 +133,15 @@ class Admin_database extends CI_Model
 
     public function getAllClasses()
     {
-        return $this->http_request_get("");
+        return $this->http_request_get("classes");
     }
 
     public function getClassById($id)
     {
-        return $this->http_request_get("?id_kelas=$id");
+        $dataparam = [
+            'id_kelas' => $id
+        ];
+        return $this->http_request_get($dataparam, "classes/");
     }
 
     public function getPembuat()
@@ -171,7 +187,7 @@ class Admin_database extends CI_Model
 
     public function getAllUser()
     {
-        return $this->http_request_get("");
+        return $this->http_request_get("users/");
     }
 
     private function updateImage($id)
@@ -182,7 +198,7 @@ class Admin_database extends CI_Model
         $config['remove_space'] = true;
 
         $data = $this->http_request_get("?id_kelas=$id");
-        foreach($data['data'] as $data2){
+        foreach ($data['data'] as $data2) {
             unlink("images/" . $data2['poster_kelas']);
         }
 
@@ -234,7 +250,7 @@ class Admin_database extends CI_Model
 
     public function getAllUsersDetail()
     {
-        return $this->http_request_get("");
+        return $this->http_request_get("users/detail/");
     }
 
     public function getAllClassesOwner()

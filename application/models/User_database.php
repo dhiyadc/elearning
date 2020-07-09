@@ -2,11 +2,14 @@
 
 class User_database extends CI_Model
 {
-    public function http_request_get($url)
+    public function http_request_get($dataparam = null, $function)
     {
-
         $curl = curl_init();
-        $url = "http://classico.co.id".$url;
+        if ($dataparam != null) {
+            $dataparam = http_build_query($dataparam);
+            $url = "http://classico.co.id/" . $function . ":" . $dataparam;
+        } else
+            $url = "http://classico.co.id/" . $function;
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
         $result = curl_exec($curl);
@@ -15,10 +18,14 @@ class User_database extends CI_Model
         return json_decode($result, TRUE);
     }
 
-    public function http_request_post($data, $url)
+    public function http_request_post($data, $dataparam = null, $function)
     {
         $curl = curl_init();
-        $url = "http://classico.co.id".$url;
+        if ($dataparam != null) {
+            $dataparam = http_build_query($dataparam);
+            $url = "http://classico.co.id/" . $function . ":" . $dataparam;
+        } else
+            $url = "http://classico.co.id/" . $function;
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_POST, TRUE);
         curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
@@ -29,10 +36,14 @@ class User_database extends CI_Model
         return json_decode($result, TRUE);
     }
 
-    public function http_request_update($data, $url)
+    public function http_request_update($data, $dataparam = null, $function)
     {
         $curl = curl_init();
-        $url = "http://classico.co.id".$url;
+        if ($dataparam != null) {
+            $dataparam = http_build_query($dataparam);
+            $url = "http://classico.co.id/" . $function . ":" . $dataparam;
+        } else
+            $url = "http://classico.co.id/" . $function;
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "UPDATE");
         curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
@@ -42,10 +53,14 @@ class User_database extends CI_Model
 
         return json_decode($result, TRUE);
     }
-    public function http_request_delete($url)
+    public function http_request_delete($dataparam = null, $function)
     {
         $curl = curl_init();
-        $url = "http://classico.co.id".$url;
+        if ($dataparam != null) {
+            $dataparam = http_build_query($dataparam);
+            $url = "http://classico.co.id/" . $function . ":" . $dataparam;
+        } else
+            $url = "http://classico.co.id/" . $function;
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "DELETE");
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
@@ -54,6 +69,7 @@ class User_database extends CI_Model
 
         return json_decode($result, TRUE);
     }
+
 
     //Login Function
     public function login($data)
@@ -78,8 +94,10 @@ class User_database extends CI_Model
 
     public function getFirstAccount($email)
     {
-
-        return $this->http_request_get("?email=$email");
+        $dataparam = [
+            'email' => $email
+        ];
+        return $this->http_request_get($dataparam, "user/account/");
     }
 
     // Register Function
@@ -106,7 +124,10 @@ class User_database extends CI_Model
 
     public function getEmailUser($id_user)
     {
-        return $this->http_request_get("?id_user=$id_user");
+        $dataparam = [
+            'id_user' => $id_user
+        ];
+        return $this->http_request_get($dataparam, "user/account/email/");
     }
 
     //Set token for reset password request
@@ -130,7 +151,10 @@ class User_database extends CI_Model
 
     public function getIDbyToken($token)
     {
-        return $this->http_request_get("?token=$token");
+        $dataparam = [
+            'token' => $token
+        ];
+        return $this->http_request_get($dataparam, "users/lupapassword/");
     }
 
     public function updatePasswordUser($id_user, $newPassword)

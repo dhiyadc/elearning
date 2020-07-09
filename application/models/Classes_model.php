@@ -3,16 +3,14 @@
 class Classes_model extends CI_Model
 {
 
-    public function http_request_get($data = null, $function)
+    public function http_request_get($dataparam = null, $function)
     {
-        if($data!=null){
-            $data=http_build_query($data);
-            $url = "http://classico.co.id/".$function.":?".$data;
-        }
-        else
-        $url = "http://classico.co.id/".$function;
-
         $curl = curl_init();
+        if ($dataparam != null) {
+            $dataparam = http_build_query($dataparam);
+            $url = "http://classico.co.id/" . $function . ":" . $dataparam;
+        } else
+            $url = "http://classico.co.id/" . $function;
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
         $result = curl_exec($curl);
@@ -21,10 +19,14 @@ class Classes_model extends CI_Model
         return json_decode($result, TRUE);
     }
 
-    public function http_request_post($data, $url)
+    public function http_request_post($data, $dataparam = null, $function)
     {
         $curl = curl_init();
-        $url = "http://classico.co.id/".$url;
+        if ($dataparam != null) {
+            $dataparam = http_build_query($dataparam);
+            $url = "http://classico.co.id/" . $function . ":" . $dataparam;
+        } else
+            $url = "http://classico.co.id/" . $function;
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_POST, TRUE);
         curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
@@ -35,10 +37,14 @@ class Classes_model extends CI_Model
         return json_decode($result, TRUE);
     }
 
-    public function http_request_update($data, $url)
+    public function http_request_update($data, $dataparam = null, $function)
     {
         $curl = curl_init();
-        $url = "http://classico.co.id/".$url;
+        if ($dataparam != null) {
+            $dataparam = http_build_query($dataparam);
+            $url = "http://classico.co.id/" . $function . ":" . $dataparam;
+        } else
+            $url = "http://classico.co.id/" . $function;
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "UPDATE");
         curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
@@ -48,16 +54,14 @@ class Classes_model extends CI_Model
 
         return json_decode($result, TRUE);
     }
-    public function http_request_delete($data=null, $function)
+    public function http_request_delete($dataparam = null, $function)
     {
-        if($data!=null){
-            $data=http_build_query($data);
-            $url = "http://classico.co.id/".$function.":?".$data;
-        }
-        else
-        $url = "http://classico.co.id/".$function;
-
         $curl = curl_init();
+        if ($dataparam != null) {
+            $dataparam = http_build_query($dataparam);
+            $url = "http://classico.co.id/" . $function . ":" . $dataparam;
+        } else
+            $url = "http://classico.co.id/" . $function;
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "DELETE");
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
@@ -69,161 +73,46 @@ class Classes_model extends CI_Model
 
     public function getAllClasses()
     {
-        return $this->http_request_get("");
+        return $this->http_request_get("classes");
     }
 
     public function getAllHarga()
     {
-        return $this->http_request_get("");
+        return $this->http_request_get("classes/class_harga/");
     }
 
     public function getAllClassesDetail($keyword = null)
     {
-        if ($keyword) {
-            $sql = "SELECT kelas.id_kelas, kelas.status_kelas, kelas.judul_kelas, kelas.poster_kelas, kelas.deskripsi_kelas, kategori_kelas.nama_kategori, jenis_kelas.nama_jenis, harga_kelas.harga_kelas, COUNT(peserta.id_kelas) as 'peserta', status_kegiatan.nama_status
-            FROM kelas
-            LEFT JOIN kategori_kelas
-                    ON kategori_kelas.id_kategori = kelas.kategori_kelas 
-            LEFT JOIN jenis_kelas
-                    ON jenis_kelas.id_jenis = kelas.jenis_kelas
-            LEFT JOIN harga_kelas
-                    ON harga_kelas.id_kelas = kelas.id_kelas
-            LEFT JOIN peserta
-                    ON peserta.id_kelas = kelas.id_kelas
-            LEFT JOIN status_kegiatan
-                ON status_kegiatan.id_status = kelas.status_kelas
-                WHERE kelas.judul_kelas LIKE '%$keyword%' AND kelas.tipe_kelas = 1 AND kelas.status_kelas = 1
-            GROUP BY kelas.id_kelas";
-            $query = $this->db->query($sql);
-            return $query->result_array();
-        } else {
-            $sql = "SELECT kelas.id_kelas, kelas.judul_kelas, kelas.poster_kelas, kelas.deskripsi_kelas, kategori_kelas.nama_kategori, jenis_kelas.nama_jenis, harga_kelas.harga_kelas, COUNT(peserta.id_kelas) as 'peserta', status_kegiatan.nama_status
-            FROM kelas
-            LEFT JOIN kategori_kelas
-                    ON kategori_kelas.id_kategori = kelas.kategori_kelas 
-            LEFT JOIN jenis_kelas
-                    ON jenis_kelas.id_jenis = kelas.jenis_kelas
-            LEFT JOIN harga_kelas
-                    ON harga_kelas.id_kelas = kelas.id_kelas
-            LEFT JOIN peserta
-                    ON peserta.id_kelas = kelas.id_kelas
-            LEFT JOIN status_kegiatan
-                ON status_kegiatan.id_status = kelas.status_kelas
-            WHERE kelas.tipe_kelas = 1 AND kelas.status_kelas = 1
-            GROUP BY kelas.id_kelas";
-            $query = $this->db->query($sql);
-            return $query->result_array();
-
-        }
+        $dataparam = [
+            'keyword' => $keyword
+        ];
+        $this->http_request_get($dataparam, "classes/open_class/");
     }
 
     public function getAllRandomClasses()
     {
-        $sql = "SELECT kelas.id_kelas, kelas.judul_kelas, kelas.poster_kelas, kelas.deskripsi_kelas, kategori_kelas.nama_kategori, jenis_kelas.nama_jenis, harga_kelas.harga_kelas, COUNT(peserta.id_kelas) as 'peserta', status_kegiatan.nama_status, kelas.tipe_kelas
-        FROM kelas
-        LEFT JOIN kategori_kelas
-                ON kategori_kelas.id_kategori = kelas.kategori_kelas 
-        LEFT JOIN jenis_kelas
-                ON jenis_kelas.id_jenis = kelas.jenis_kelas
-        LEFT JOIN harga_kelas
-                ON harga_kelas.id_kelas = kelas.id_kelas
-        LEFT JOIN peserta
-                ON peserta.id_kelas = kelas.id_kelas
-        LEFT JOIN status_kegiatan
-            ON status_kegiatan.id_status = kelas.status_kelas
-        WHERE kelas.tipe_kelas = 1 AND kelas.status_kelas = 1
-        GROUP BY kelas.id_kelas
-        ORDER BY Rand()";
-        $query = $this->db->query($sql);
-        return $query->result_array();
-
+        $this->http_request_get("classes/randomclasses/");
     }
 
     public function getAllTopClasses()
     {
-
-        $sql = "SELECT kelas.id_kelas, kelas.judul_kelas, kelas.poster_kelas, kelas.deskripsi_kelas, kategori_kelas.nama_kategori, jenis_kelas.nama_jenis, harga_kelas.harga_kelas, COUNT(peserta.id_kelas) as 'peserta', status_kegiatan.nama_status
-            FROM kelas
-            LEFT JOIN kategori_kelas
-                    ON kategori_kelas.id_kategori = kelas.kategori_kelas 
-            LEFT JOIN jenis_kelas
-                    ON jenis_kelas.id_jenis = kelas.jenis_kelas
-            LEFT JOIN harga_kelas
-                    ON harga_kelas.id_kelas = kelas.id_kelas
-            LEFT JOIN peserta
-                    ON peserta.id_kelas = kelas.id_kelas
-            LEFT JOIN status_kegiatan
-                ON status_kegiatan.id_status = kelas.status_kelas
-            WHERE kelas.tipe_kelas = 1 AND kelas.status_kelas = 1
-            GROUP BY kelas.id_kelas
-            ORDER BY COUNT(peserta.id_kelas) DESC
-            LIMIT 10";
-        $query = $this->db->query($sql);
-        return $query->result_array();
-
+        $this->http_request_get("classes/top_classes/");
     }
 
     public function getClassesbyCategories($kategori)
     {
-        $sql = "SELECT kelas.id_kelas, kelas.judul_kelas, kelas.poster_kelas, kelas.deskripsi_kelas, kategori_kelas.nama_kategori, jenis_kelas.nama_jenis, harga_kelas.harga_kelas, COUNT(peserta.id_kelas) as 'peserta', status_kegiatan.nama_status
-        FROM kelas
-        LEFT JOIN kategori_kelas
-                 ON kategori_kelas.id_kategori = kelas.kategori_kelas 
-        LEFT JOIN jenis_kelas
-                 ON jenis_kelas.id_jenis = kelas.jenis_kelas
-        LEFT JOIN harga_kelas
-                 ON harga_kelas.id_kelas = kelas.id_kelas
-        LEFT JOIN peserta
-                 ON peserta.id_kelas = kelas.id_kelas
-        LEFT JOIN status_kegiatan
-            ON status_kegiatan.id_status = kelas.status_kelas
-        WHERE kategori_kelas.nama_kategori = '$kategori' AND kelas.tipe_kelas = 1 AND kelas.status_kelas = 1
-        GROUP BY kelas.id_kelas";
-        $query = $this->db->query($sql);
-        return $query->result_array();
-
+        $dataparam = [
+            'kategori' => $kategori
+        ];
+        return $this->http_request_get($dataparam, "classes/categories_classes/");
     }
 
     public function getClassesbySorting($sorting)
     {
-        if ($sorting == "terbaru") {
-            $sql = "SELECT kelas.id_kelas, kelas.judul_kelas, kelas.poster_kelas, kelas.deskripsi_kelas, kategori_kelas.nama_kategori, jenis_kelas.nama_jenis, harga_kelas.harga_kelas, COUNT(peserta.id_kelas) as 'peserta', status_kegiatan.nama_status
-        FROM kelas
-        LEFT JOIN kategori_kelas
-                 ON kategori_kelas.id_kategori = kelas.kategori_kelas 
-        LEFT JOIN jenis_kelas
-                 ON jenis_kelas.id_jenis = kelas.jenis_kelas
-        LEFT JOIN harga_kelas
-                 ON harga_kelas.id_kelas = kelas.id_kelas
-        LEFT JOIN peserta
-                 ON peserta.id_kelas = kelas.id_kelas
-        LEFT JOIN status_kegiatan
-            ON status_kegiatan.id_status = kelas.status_kelas
-        WHERE kelas.tipe_kelas = 1 AND kelas.status_kelas = 1
-        GROUP BY kelas.id_kelas
-        ORDER BY kelas.id_kelas DESC";
-            $query = $this->db->query($sql);
-            return $query->result_array();
-        } else if ($sorting == "terbaik") {
-            $sql = "SELECT kelas.id_kelas, kelas.judul_kelas, kelas.poster_kelas, kelas.deskripsi_kelas, kategori_kelas.nama_kategori, jenis_kelas.nama_jenis, harga_kelas.harga_kelas, COUNT(peserta.id_kelas) as 'peserta', status_kegiatan.nama_status
-            FROM kelas
-            LEFT JOIN kategori_kelas
-                    ON kategori_kelas.id_kategori = kelas.kategori_kelas 
-            LEFT JOIN jenis_kelas
-                    ON jenis_kelas.id_jenis = kelas.jenis_kelas
-            LEFT JOIN harga_kelas
-                    ON harga_kelas.id_kelas = kelas.id_kelas
-            LEFT JOIN peserta
-                    ON peserta.id_kelas = kelas.id_kelas
-            LEFT JOIN status_kegiatan
-                ON status_kegiatan.id_status = kelas.status_kelas
-            WHERE kelas.tipe_kelas = 1 AND kelas.status_kelas = 1
-            GROUP BY kelas.id_kelas
-            ORDER BY COUNT(peserta.id_kelas) DESC
-            LIMIT 12";
-            $query = $this->db->query($sql);
-            return $query->result_array();
-        }
+        $dataparam = [
+            'sorting' => $sorting
+        ];
+        return $this->http_request_get($dataparam, "classes/classes_by_sort/");
     }
 
     public function getMyClasses()
@@ -258,7 +147,10 @@ class Classes_model extends CI_Model
 
     public function getClassById($id)
     {
-        return $this->http_request_get("?id_kelas=$id");
+        $dataparam = [
+            'id_kelas' => $id
+        ];
+        return $this->http_request_get($dataparam, "classes/");
     }
 
     public function getPesertabyClass($id)
@@ -322,8 +214,10 @@ class Classes_model extends CI_Model
 
     public function getHarga($id)
     {
-        $this->db->where('id_kelas', $id);
-        return $this->http_request_get("?id_kelas=$id");
+        $dataparam = [
+            'id_kelas' => $id
+        ];
+        return $this->http_request_get($dataparam, "classes/class_harga/");
     }
 
     public function getMateriByClassId($id)
@@ -339,7 +233,10 @@ class Classes_model extends CI_Model
     public function getIdNewClass()
     {
         $id_user = $this->session->userdata('id_user');
-        return $this->http_request_get("?id_user=$id_user");
+        $dataparam = [
+            'id_user' => $id_user
+        ];
+        return $this->http_request_get($dataparam, "classes/new_class/");
     }
 
     public function getKegiatan($id)
@@ -354,7 +251,7 @@ class Classes_model extends CI_Model
 
     public function getAllKegiatan()
     {
-        return $this->http_request_get("");
+        return $this->http_request_get("classes/open_class/kegiatan/");
     }
 
     public function getTanggalKegiatan($id)
@@ -440,7 +337,7 @@ class Classes_model extends CI_Model
                 ];
             }
 
-            $this->http_request_post($data, "/classes/create_class");
+            $this->http_request_post($data, "classes/create_class");
 
             if (!empty($this->input->post('harga'))) {
                 $harga_str = preg_replace("/[^0-9]/", "", $this->input->post('harga'));
@@ -909,8 +806,9 @@ class Classes_model extends CI_Model
 
     public function delMateri($url_materi)
     {
+        $data = ['url_materi' => $url_materi];
         unlink("assets/docs/" . $url_materi);
-        return $this->http_request_delete("?url_materi=$url_materi");
+        return $this->http_request_delete($data, "classes/open_class/materi/url/");
     }
 
 
@@ -921,7 +819,10 @@ class Classes_model extends CI_Model
 
     public function getDeadlineTugas($id)
     {
-        return $this->$this->http_request_get("?id_tugas=$id");
+        $dataparam = [
+            'id_tugas' => $id
+        ];
+        return $this->http_request_get($dataparam, "classes/my_class/assignment/deadline/");
     }
 
     public function getTugasByClassId($id)
@@ -1079,10 +980,10 @@ class Classes_model extends CI_Model
 
     public function deleteJawaban($id)
     {
-        $data = $this->http_request_get("?id_submit=$id");
-        $deldata = $this->http_request_delete("?id_submit=$id");
+        $data = ['id_submit => $id'];
+        $deldata = $this->http_request_delete($data, "classes/my_class/assignment/");
         if ($deldata['status'] == 200) {
-            foreach ($data['data'] as $data2) {
+            foreach ($deldata['data'] as $data2) {
                 unlink("assets/docs/" . $data2['url_file']);
             }
         }
@@ -1091,6 +992,6 @@ class Classes_model extends CI_Model
     public function cekTugas($id)
     {
         $id_user = $this->session->userdata('id_user');
-        return $this->http_request_get("/classes/my_class/assignment/$id/$id_user");
+        return $this->http_request_get("classes/my_class/assignment/$id/$id_user");
     }
 }

@@ -2,11 +2,14 @@
 
 class Profile_model extends CI_Model
 {
-    public function http_request_get($url)
+    public function http_request_get($dataparam = null, $function)
     {
-
         $curl = curl_init();
-        $url = "http://classico.co.id".$url;
+        if ($dataparam != null) {
+            $dataparam = http_build_query($dataparam);
+            $url = "http://classico.co.id/" . $function . ":" . $dataparam;
+        } else
+            $url = "http://classico.co.id/" . $function;
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
         $result = curl_exec($curl);
@@ -15,10 +18,14 @@ class Profile_model extends CI_Model
         return json_decode($result, TRUE);
     }
 
-    public function http_request_post($data, $url)
+    public function http_request_post($data, $dataparam = null, $function)
     {
         $curl = curl_init();
-        $url = "http://classico.co.id".$url;
+        if ($dataparam != null) {
+            $dataparam = http_build_query($dataparam);
+            $url = "http://classico.co.id/" . $function . ":" . $dataparam;
+        } else
+            $url = "http://classico.co.id/" . $function;
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_POST, TRUE);
         curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
@@ -29,10 +36,14 @@ class Profile_model extends CI_Model
         return json_decode($result, TRUE);
     }
 
-    public function http_request_update($data, $url)
+    public function http_request_update($data, $dataparam = null, $function)
     {
         $curl = curl_init();
-        $url = "http://classico.co.id".$url;
+        if ($dataparam != null) {
+            $dataparam = http_build_query($dataparam);
+            $url = "http://classico.co.id/" . $function . ":" . $dataparam;
+        } else
+            $url = "http://classico.co.id/" . $function;
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "UPDATE");
         curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
@@ -42,10 +53,14 @@ class Profile_model extends CI_Model
 
         return json_decode($result, TRUE);
     }
-    public function http_request_delete($url)
+    public function http_request_delete($dataparam = null, $function)
     {
         $curl = curl_init();
-        $url = "http://classico.co.id".$url;
+        if ($dataparam != null) {
+            $dataparam = http_build_query($dataparam);
+            $url = "http://classico.co.id/" . $function . ":" . $dataparam;
+        } else
+            $url = "http://classico.co.id/" . $function;
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "DELETE");
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
@@ -54,6 +69,7 @@ class Profile_model extends CI_Model
 
         return json_decode($result, TRUE);
     }
+
 
     public function getProfile()
     {
@@ -91,9 +107,10 @@ class Profile_model extends CI_Model
             return $this->upload->data('file_name');
         }
     }
-
+    
     public function editProfile()
     {
+        $id_user =  $this->session->userdata('id_user');
         if (!empty($_FILES['foto']['name'])) {
             $config['upload_path'] = './assets/images/';
             $config['allowed_types'] = 'jpg|png|jpeg';
@@ -101,11 +118,10 @@ class Profile_model extends CI_Model
             $config['remove_space'] = true;
 
 
-            $id_user =  $this->session->userdata('id_user');
             $this->load->library('upload', $config);
             if ($this->upload->do_upload('foto')) {
                 $data = $this->http_request_get("?id_user=$id_user");
-                foreach($data['data'] as $data2){
+                foreach ($data['data'] as $data2) {
                     unlink("./assets/images/" . $data2['foto']);
                 }
 
@@ -128,17 +144,19 @@ class Profile_model extends CI_Model
                 'deskripsi' => $this->input->post('deskripsi')
             ];
         }
-
-        $this->http_request_update($data, "?id_user=$id_user");
+        $dataparam = [
+            'id_user' => $id_user
+        ];
+        $this->http_request_update($data, $dataparam, "user/account/profile/");
     }
 
     public function deleteAccount()
     {
-        $id_user=$this->session->userdata('id_user');
+        $id_user = $this->session->userdata('id_user');
         $data = $this->http_request_get("?id_user=$id_user");
         $deldata = $this->http_request_delete("?id_user=$id_user");
-        if ($deldata['status']==200) {
-            foreach($data['data'] as $data2){
+        if ($deldata['status'] == 200) {
+            foreach ($data['data'] as $data2) {
                 unlink("./assets/images/" . $data2['foto']);
             }
         }
@@ -148,17 +166,16 @@ class Profile_model extends CI_Model
     {
         $id_user = $_SESSION['id_user'];
         return $this->http_request_get("?id_user=$id_user");
-        
     }
 
     public function updatePassword($newPassword)
     {
         $id_user = $_SESSION['id_user'];
         $newPasswordHashed = hash('sha256', $newPassword);
-        
-    $data = [
-        'password'=> $newPasswordHashed
-    ];
+
+        $data = [
+            'password' => $newPasswordHashed
+        ];
 
         return $this->http_request_update($data, "?id_user=$id_user");
     }
