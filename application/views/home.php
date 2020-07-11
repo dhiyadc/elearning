@@ -11,7 +11,7 @@
               <div class="row align-items-center">
                 <div class="col-lg-6 mb-4 mt-5">
                   <h1  data-aos="fade-up" data-aos-delay="100">Pengalaman Adalah Ilmu Terbaik yang semua orang cari</h1>
-                  <p class="mb-4"  data-aos="fade-up" data-aos-delay="200">Segera temukan kelas-kelas yang mampu menginspirasi kamu disini.</p>
+                  <p class="mb-4"  data-aos="fade-up" data-aos-delay="200" style="line-height: 25px;">Segera temukan kelas-kelas yang mampu menginspirasi kamu disini.</p>
                   <?php if(isset($_SESSION['logged_in'])) : ?>
                   <div class="row">  
                     <a href="<?= base_url() ?>classes/new_class" class="btn btn text-white py-3 px-5 btn-pill ml-2 mt-1" data-aos="fade-up" data-aos-delay="300" style="background-color: #3232aa;">Buat Kelas</a>
@@ -505,7 +505,7 @@
         <div class="row mb-5 justify-content-center">
           <div class="col-lg-7 text-center"  data-aos="fade-up" data-aos-delay="">
             <h2 class="section-title">Program Kami</h2>
-            <p>Memberikan ruang belajar online untuk menciptakan interaksi yang baik dan menyenangkan bagi para mentor dan peserta kelas, serta memberikan kesempatan bagi siapapun untuk menjadi mentor terbaik ditiap kelas tanpa ada batasan apapun dengan fasilitas terbaik yang kami tawarkan.</p>
+            <p  style="line-height: 25px;">Memberikan ruang belajar online untuk menciptakan interaksi yang baik dan menyenangkan bagi para mentor dan peserta kelas, serta memberikan kesempatan bagi siapapun untuk menjadi mentor terbaik ditiap kelas tanpa ada batasan apapun dengan fasilitas terbaik yang kami tawarkan.</p>
           </div>
         </div>
         <div class="row mb-5 align-items-center">
@@ -514,7 +514,7 @@
           </div>
           <div class="col-lg-4 ml-auto" data-aos="fade-up" data-aos-delay="200">
             <h2 class="text-black mb-4">Kami Memiliki Pengalaman dalam Mengajar</h2>
-            <p class="mb-4">Kami Menyiapkan para Mentor yang berpengalaman demi Kualitas dalam Pembelajaran Anda.</p>
+            <p class="mb-4"  style="line-height: 25px;">Kami menyiapkan para mentor yang berpengalaman demi kualitas dalam pembelajaran anda.</p>
 
             <div class="d-flex align-items-center custom-icon-wrap mb-3">
               <span class="custom-icon-inner mr-3"><span class="icon icon-graduation-cap"></span></span>
@@ -534,8 +534,8 @@
             <img src="<?php echo base_url(); ?>assets/images/gambar2.jpg" alt="Image" class="img-fluid">
           </div>
           <div class="col-lg-4 mr-auto order-2 order-lg-1" data-aos="fade-up" data-aos-delay="200">
-            <h2 class="text-black mb-4">Konsep Belajar Yang Simple dan Mudah Dipahami</h2>
-            <p class="mb-4">Disini Anda akan diajak tentang Bagaimana anda menemukan pola belajar terbaik bagi Anda</p>
+            <h2 class="text-black mb-4">Konsep Belajar yang Simple dan Mudah Dipahami</h2>
+            <p class="mb-4"  style="line-height: 25px;">Disini Anda akan diajak tentang bagaimana anda menemukan pola belajar terbaik bagi anda.</p>
 
             <div class="d-flex align-items-center custom-icon-wrap mb-3">
               <span class="custom-icon-inner mr-3"><span class="icon icon-graduation-cap"></span></span>
@@ -556,7 +556,7 @@
           </div>
           <div class="col-lg-4 ml-auto" data-aos="fade-up" data-aos-delay="200">
             <h2 class="text-black mb-4">Teknologi dan Pembelajaran yang Efesien</h2>
-            <p class="mb-4">Classic Memberikan Pengalaman Anda dalam Penerapan Teknologi Pembelajaran</p>
+            <p class="mb-4"  style="line-height: 25px;">Classico memberikan pengalaman anda dalam penerapan teknologi pembelajaran.</p>
 
             <div class="d-flex align-items-center custom-icon-wrap mb-3">
               <span class="custom-icon-inner mr-3"><span class="icon icon-graduation-cap"></span></span>
@@ -565,7 +565,7 @@
 
             <div class="d-flex align-items-center custom-icon-wrap">
               <span class="custom-icon-inner mr-3"><span class="icon icon-university"></span></span>
-              <div><h3 class="m-0">Pembelajaran yang bisa dimana saja</h3></div>
+              <div><h3 class="m-0">Pembelajaran yang Bisa Dimana Saja</h3></div>
             </div>
 
           </div>
