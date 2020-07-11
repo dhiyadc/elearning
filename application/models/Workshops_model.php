@@ -155,7 +155,7 @@ class workshops_model extends CI_Model
     public function getPesertaByUserId()
     {
         $id_user = $this->session->userdata('id_user');
-        return $this->http_request_get("?id_user=$id_user");
+        return $this->http_request_get(null, "?id_user=$id_user");
     }
 
     public function getPesertaByClassId($id)

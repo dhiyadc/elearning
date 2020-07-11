@@ -156,7 +156,7 @@ class Classes_model extends CI_Model
     public function getPesertabyClass($id)
     {
         $id_user = $this->session->userdata('id_user');
-        return $this->http_request_get("?id_user=$id_user&id_kelas=$id");
+        return $this->http_request_get(null, "?id_user=$id_user&id_kelas=$id");
     }
 
     public function getPembuat()
@@ -167,22 +167,22 @@ class Classes_model extends CI_Model
     public function getMyName()
     {
         $id_user = $this->session->userdata('id_user');
-        return $this->http_request_get("?id_user=$id_user");
+        return $this->http_request_get(null, "?id_user=$id_user");
     }
 
     public function getKategori()
     {
-        return $this->http_request_get("");
+        return $this->http_request_get(null, " ");
     }
 
     public function getJenis()
     {
-        return $this->http_request_get("");
+        return $this->http_request_get(null, "");
     }
 
     public function getStatus()
     {
-        return $this->http_request_get("");
+        return $this->http_request_get(null, "");
     }
 
     public function getUserDetail($userId)
@@ -204,7 +204,7 @@ class Classes_model extends CI_Model
     public function getPesertaByUserId()
     {
         $id_user = $this->session->userdata('id_user');
-        return $this->http_request_get("?id_user=$id_user");
+        return $this->http_request_get(null, "?id_user=$id_user");
     }
 
     public function getPeserta()
