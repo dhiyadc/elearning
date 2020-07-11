@@ -24,28 +24,64 @@ class Profile extends CI_Controller
         $id_user = $_SESSION['id_user'];
 
         $data['profile'] = $this->Profile_model->getProfile();
+        if ($data['profile']['status'] == 200)
+            $data['profile'] = $data['profile']['data'];
+        else
+            $this->session->set_flashdata("errorAPI", $data['profile']['message']);
+
         $data['peserta'] = $this->Classes_model->getPeserta();
+        if ($data['peserta']['status'] == 200)
+            $data['peserta'] = $data['peserta']['data'];
+        else
+            $this->session->set_flashdata("errorAPI", $data['peserta']['message']);
+
         $data['kelas'] = $this->Classes_model->getMyClasses();
-        $header['nama'] = explode(" ", $this->Classes_model->getMyName()['nama']);
+        if ($data['kelas']['status'] == 200)
+            $data['kelas'] = $data['kelas']['data'];
+        else
+            $this->session->set_flashdata("errorAPI", $data['kelas']['message']);
+
+        $header['nama'] = $this->Classes_model->getMyName();
+        if ($header['nama']['status'] == 200)
+            $header['nama'] = explode(" ", $header['nama']['data']['nama']);
+        else
+            $this->session->set_flashdata("errorAPI", $header['nama']['message']);
+
         $notif = $this->Classes_model->getPesertaByUserId();
-        $datanotif = array();
-        foreach ($notif as $value) {
-            $cek = $this->Classes_model->getKelasKegiatan($value['id_kelas']);
-            if ($cek != null) {
-                $datanotif[] = $cek;
+        if ($notif['status'] == 200) {
+            $datanotif = array();
+            foreach ($notif['data'] as $value) {
+                $cek = $this->Classes_model->getKelasKegiatan($value['id_kelas']);
+                if ($cek['status'] == 200) {
+                    if ($cek['data'] != null) {
+                        $datanotif[] = $cek['data'];
+                    }
+                } else {
+                    $this->session->set_flashdata("errorAPI", $cek['message']);
+                }
             }
+            $header['notif'] = $datanotif;
+        } else {
+            $this->session->set_flashdata("errorAPI", $notif['message']);
         }
-        $header['notif'] = $datanotif;
 
         $notif2 = $this->Workshops_model->getPesertaByUserId();
-        $datanotif2 = array();
-        foreach ($notif2 as $value) {
-            $cek2 = $this->Workshops_model->getKelasKegiatan($value['id_workshop']);
-            if ($cek2 != null) {
-                $datanotif2[] = $cek2;
+        if ($notif2['status'] == 200) {
+            $datanotif2 = array();
+            foreach ($notif2['data'] as $value) {
+                $cek2 = $this->Workshops_model->getKelasKegiatan($value['id_workshop']);
+                if ($cek2['status'] == 200) {
+                    if ($cek2['data'] != null) {
+                        $datanotif2[] = $cek2['data'];
+                    }
+                } else {
+                    $this->session->set_flashdata("errorAPI", $cek2['message']);
+                }
             }
+            $header['notif2'] = $datanotif2;
+        } else {
+            $this->session->set_flashdata("errorAPI", $notif2['message']);
         }
-        $header['notif2'] = $datanotif2;
 
         $this->load->view('partials/user/header', $header);
         $this->load->view('profile/my_profile', $data);
@@ -62,27 +98,52 @@ class Profile extends CI_Controller
         }
 
         $data['profile'] = $this->Profile_model->getProfile();
-        $header['nama'] = explode(" ", $this->Classes_model->getMyName()['nama']);
+        if ($data['profile']['status'] == 200)
+            $data['profile'] = $data['profile']['data'];
+        else
+            $this->session->set_flashdata("errorAPI", $data['profile']['message']);
+
+        $header['nama'] = $this->Classes_model->getMyName();
+        if ($header['nama']['status'] == 200)
+            $header['nama'] = explode(" ", $header['nama']['data']['nama']);
+        else
+            $this->session->set_flashdata("errorAPI", $header['nama']['message']);
+
         $notif = $this->Classes_model->getPesertaByUserId();
-        $datanotif = array();
-        foreach ($notif as $value) {
-            $cek = $this->Classes_model->getKelasKegiatan($value['id_kelas']);
-            if ($cek != null) {
-                $datanotif[] = $cek;
+        if ($notif['status'] == 200) {
+            $datanotif = array();
+            foreach ($notif['data'] as $value) {
+                $cek = $this->Classes_model->getKelasKegiatan($value['id_kelas']);
+                if ($cek['status'] == 200) {
+                    if ($cek['data'] != null) {
+                        $datanotif[] = $cek['data'];
+                    }
+                } else {
+                    $this->session->set_flashdata("errorAPI", $cek['message']);
+                }
             }
+            $header['notif'] = $datanotif;
+        } else {
+            $this->session->set_flashdata("errorAPI", $notif['message']);
         }
-        $header['notif'] = $datanotif;
 
         $notif2 = $this->Workshops_model->getPesertaByUserId();
-        $datanotif2 = array();
-        foreach ($notif2 as $value) {
-            $cek2 = $this->Workshops_model->getKelasKegiatan($value['id_workshop']);
-            if ($cek2 != null) {
-                $datanotif2[] = $cek2;
+        if ($notif2['status'] == 200) {
+            $datanotif2 = array();
+            foreach ($notif2['data'] as $value) {
+                $cek2 = $this->Workshops_model->getKelasKegiatan($value['id_workshop']);
+                if ($cek2['status'] == 200) {
+                    if ($cek2['data'] != null) {
+                        $datanotif2[] = $cek2['data'];
+                    }
+                } else {
+                    $this->session->set_flashdata("errorAPI", $cek2['message']);
+                }
             }
+            $header['notif2'] = $datanotif2;
+        } else {
+            $this->session->set_flashdata("errorAPI", $notif2['message']);
         }
-        $header['notif2'] = $datanotif2;
-
 
         $this->load->view('partials/user/header', $header);
         $this->load->view('profile/edit_profile', $data);
@@ -99,6 +160,11 @@ class Profile extends CI_Controller
         }
 
         $edit_profile = $this->Profile_model->editProfile();
+        if ($edit_profile['status'] == 200)
+            $edit_profile = $edit_profile['data'];
+        else
+            $this->session->set_flashdata("errorAPI", $edit_profile['message']);
+
         if ($edit_profile == "fail") {
             $this->session->set_flashdata("invalidImage", "Invalid Image Size (Max Size: 3 MB)");
             redirect("profile/edit_profile");
@@ -115,7 +181,10 @@ class Profile extends CI_Controller
             redirect("home");
         }
 
-        $this->Profile_model->deleteAccount();
+        $temp = $this->Profile_model->deleteAccount();
+        if ($temp['status'] != 200)
+            $this->session->set_flashdata("errorAPI", $temp['messages']);
+            
         redirect('login/logout');
     }
 
@@ -128,27 +197,47 @@ class Profile extends CI_Controller
             redirect("home");
         }
 
-        $header['nama'] = explode(" ", $this->Classes_model->getMyName()['nama']);
+        $header['nama'] = $this->Classes_model->getMyName();
+        if ($header['nama']['status'] == 200)
+            $header['nama'] = explode(" ", $header['nama']['data']['nama']);
+        else
+            $this->session->set_flashdata("errorAPI", $header['nama']['message']);
+
         $notif = $this->Classes_model->getPesertaByUserId();
-        $datanotif = array();
-        foreach ($notif as $value) {
-            $cek = $this->Classes_model->getKelasKegiatan($value['id_kelas']);
-            if ($cek != null) {
-                $datanotif[] = $cek;
+        if ($notif['status'] == 200) {
+            $datanotif = array();
+            foreach ($notif['data'] as $value) {
+                $cek = $this->Classes_model->getKelasKegiatan($value['id_kelas']);
+                if ($cek['status'] == 200) {
+                    if ($cek['data'] != null) {
+                        $datanotif[] = $cek['data'];
+                    }
+                } else {
+                    $this->session->set_flashdata("errorAPI", $cek['message']);
+                }
             }
+            $header['notif'] = $datanotif;
+        } else {
+            $this->session->set_flashdata("errorAPI", $notif['message']);
         }
-        $header['notif'] = $datanotif;
 
         $notif2 = $this->Workshops_model->getPesertaByUserId();
-        $datanotif2 = array();
-        foreach ($notif2 as $value) {
-            $cek2 = $this->Workshops_model->getKelasKegiatan($value['id_workshop']);
-            if ($cek2 != null) {
-                $datanotif2[] = $cek2;
+        if ($notif2['status'] == 200) {
+            $datanotif2 = array();
+            foreach ($notif2['data'] as $value) {
+                $cek2 = $this->Workshops_model->getKelasKegiatan($value['id_workshop']);
+                if ($cek2['status'] == 200) {
+                    if ($cek2['data'] != null) {
+                        $datanotif2[] = $cek2['data'];
+                    }
+                } else {
+                    $this->session->set_flashdata("errorAPI", $cek2['message']);
+                }
             }
+            $header['notif2'] = $datanotif2;
+        } else {
+            $this->session->set_flashdata("errorAPI", $notif2['message']);
         }
-        $header['notif2'] = $datanotif2;
-
         $this->load->view('partials/user/header', $header);
         $this->load->view('profile/change_password');
         $this->load->view('partials/user/footer');
@@ -162,31 +251,38 @@ class Profile extends CI_Controller
         if (!$isUserLoggedIn) {
             redirect("home");
         }
-            $oldPass = $this->input->post('old_password');
-            $hashed = hash('sha256', $oldPass);
-            $getPass = $this->Profile_model->getOldPassword();
-            $getPassword = $getPass['password'];
+        $oldPass = $this->input->post('old_password');
+        $hashed = hash('sha256', $oldPass);
+        $getPass = $this->Profile_model->getOldPassword();
+        if ($getPass['status'] == 200)
+            $getPass = $getPass['data'];
+        else
+            $this->session->set_flashdata("errorAPI", $getPass['message']);
 
-            $newPassword = $this->input->post('password');
-            $hashedNewPass = hash('sha256', $newPassword);
-            if($hashed == $getPassword){
+        $getPassword = $getPass['password'];
 
-                if($getPassword == $hashedNewPass){
-                    $this->session->set_flashdata('same_pass', 'Password baru yang anda input sama dengan password lama anda');
-                    redirect('profile/change_password');
-                } 
+        $newPassword = $this->input->post('password');
+        $hashedNewPass = hash('sha256', $newPassword);
+        if ($hashed == $getPassword) {
 
-                $this->Profile_model->updatePassword($newPassword);
-                //nanti pake flashdata
-                //redirect('profile');
-
-
-                
-                $this->session->set_flashdata('pass', 'Password berhasil diubah');
-			    redirect('profile/change_password');
-            } else {   
-                $this->session->set_flashdata('invalid_pass', 'Password lama yang anda input salah');
-			    redirect('profile/change_password');
+            if ($getPassword == $hashedNewPass) {
+                $this->session->set_flashdata('same_pass', 'Password baru yang anda input sama dengan password lama anda');
+                redirect('profile/change_password');
             }
+
+            $temp = $this->Profile_model->updatePassword($newPassword);
+            if($temp['status'] != 200)
+            $this->session->set_flashdata("errorAPI", $temp['message']);
+            //nanti pake flashdata
+            //redirect('profile');
+
+
+
+            $this->session->set_flashdata('pass', 'Password berhasil diubah');
+            redirect('profile/change_password');
+        } else {
+            $this->session->set_flashdata('invalid_pass', 'Password lama yang anda input salah');
+            redirect('profile/change_password');
+        }
     }
 }

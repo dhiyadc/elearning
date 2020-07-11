@@ -2017,9 +2017,29 @@ class Classes extends CI_Controller
 
             $data['cek'] = $datacek;
             $data['submit'] = $this->Classes_model->getSubmit();
+            if ($data['submit']['status'] == 200)
+                $data['submit'] = $data['submit']['data'];
+            else
+                $this->session->set_flashdata("errorAPI", $data['submit']['message']);
+
             $data['kelas'] = $this->Classes_model->getClassById($id_kelas);
+            if ($data['kelas']['status'] == 200)
+                $data['kelas'] = $data['kelas']['data'];
+            else
+                $this->session->set_flashdata("errorAPI", $data['kelas']['message']);
+
             $data['peserta'] = $this->Classes_model->getPesertaByClassId($id_kelas);
-            $header['nama'] = explode(" ", $this->Classes_model->getMyName()['nama']);
+            if ($data['peserta']['status'] == 200)
+                $data['peserta'] = $data['peserta']['data'];
+            else
+                $this->session->set_flashdata("errorAPI", $data['peserta']['message']);
+
+            $header['nama'] = $this->Classes_model->getMyName();
+            if ($header['nama']['status'] == 200)
+                $header['nama'] = explode(" ", $header['nama']['data']['nama']);
+            else
+                $this->session->set_flashdata("errorAPI", $header['nama']['message']);
+
             $notif = $this->Classes_model->getPesertaByUserId();
             $datanotif = array();
             $notif = $this->Classes_model->getPesertaByUserId();
@@ -2075,8 +2095,12 @@ class Classes extends CI_Controller
             redirect("home");
         }
 
-        $classDetail = $this->Classes_model->getClassById($id_kelas)[0];
-        $isClassOwner = $classDetail['pembuat_kelas'] == $userId;
+        $classDetail = $this->Classes_model->getClassById($id_kelas);
+        if ($classDetail['status'] == 200) {
+            $classDetail = $classDetail['data'][0];
+            $isClassOwner = $classDetail['pembuat_kelas'] == $userId;
+        } else
+            $this->session->set_flashdata("errorAPI", $classDetail['message']);
 
         if ($isClassOwner) {
 
@@ -2099,8 +2123,24 @@ class Classes extends CI_Controller
                 $this->session->set_flashdata("errorAPI", $data['submit']['message']);
 
             $data['kelas'] = $this->Classes_model->getClassById($id_kelas);
+            if ($data['kelas']['status'] == 200)
+                $data['kelas'] = $data['kelas']['data'];
+            else
+                $this->session->set_flashdata("errorAPI", $data['kelas']['message']);
+
             $data['user'] = $this->Classes_model->getUserDetail($data['kelas'][0]['pembuat_kelas']);
-            $header['nama'] = explode(" ", $this->Classes_model->getMyName()['nama']);
+
+            if ($data['user']['status'] == 200)
+                $data['user'] = $data['user']['data'];
+            else
+                $this->session->set_flashdata("errorAPI", $data['user']['message']);
+
+            $header['nama'] =  $this->Classes_model->getMyName();
+            if ($header['nama']['status'] == 200)
+                $header['nama'] = explode(" ", $header['nama']['data']['nama']);
+            else
+                $this->session->set_flashdata("errorAPI", $header['nama']['message']);
+
             $notif = $this->Classes_model->getPesertaByUserId();
             if ($notif['status'] == 200) {
                 $datanotif = array();
@@ -2141,18 +2181,53 @@ class Classes extends CI_Controller
             $this->load->view('classes/detail_tugaskuis', $data);
             $this->load->view('partials/user/footer');
         } else {
-            $classDetail2 = $this->Classes_model->getPesertabyClass($id_kelas)[0];
-            $isPeserta = $classDetail2['id_user'] == $userId;
+            $classDetail2 = $this->Classes_model->getPesertabyClass($id_kelas);
+            if ($classDetail2['status'] == 200) {
+                $classDetail2 = $classDetail2['data'][0];
+                $isPeserta = $classDetail2['id_user'] == $userId;
+            } else
+                $this->session->set_flashdata("errorAPI", $classDetail2['message']);
 
             if (!$isPeserta) {
                 redirect("home");
             }
+
             $data['tugas'] = $this->Classes_model->getTugasByTugasId($id_tugas);
+            if ($data['tugas']['status'] == 200)
+                $data['tugas'] = $data['tugas']['data'];
+            else
+                $this->session->set_flashdata("errorAPI", $data['tugas']['message']);
+
             $data['cek'] = $this->Classes_model->cekTugas($data['tugas'][0]['id_tugas']);
+            if ($data['cek']['status'] == 200)
+                $data['cek'] = $data['cek']['data'];
+            else
+                $this->session->set_flashdata("errorAPI", $data['cek']['message']);
+
             $data['submit'] = $this->Classes_model->getSubmit();
+            if ($data['submit']['status'] == 200)
+                $data['submit'] = $data['submit']['data'];
+            else
+                $this->session->set_flashdata("errorAPI", $data['submit']['message']);
+
             $data['kelas'] = $this->Classes_model->getClassById($id_kelas);
+            if ($data['kelas']['status'] == 200)
+                $data['kelas'] = $data['kelas']['data'];
+            else
+                $this->session->set_flashdata("errorAPI", $data['kelas']['message']);
+
             $data['user'] = $this->Classes_model->getUserDetail($data['kelas'][0]['pembuat_kelas']);
-            $header['nama'] = explode(" ", $this->Classes_model->getMyName()['nama']);
+            if ($data['user']['status'] == 200)
+                $data['user'] = $data['user']['data'];
+            else
+                $this->session->set_flashdata("errorAPI", $data['user']['message']);
+
+            $header['nama'] = $this->Classes_model->getMyName();
+            if ($header['nama']['status'] == 200)
+                $header['nama'] = explode(" ", $header['nama']['data']['nama']);
+            else
+                $this->session->set_flashdata("errorAPI", $header['nama']['message']);
+
             $notif = $this->Classes_model->getPesertaByUserId();
             if ($notif['status'] == 200) {
                 $datanotif = array();
@@ -2205,19 +2280,53 @@ class Classes extends CI_Controller
             redirect("home");
         }
 
-        $classDetail = $this->Classes_model->getClassById($id_kelas)[0];
-        $isClassOwner = $classDetail['pembuat_kelas'] == $userId;
+        $classDetail = $this->Classes_model->getClassById($id_kelas);
+        if ($classDetail['status'] == 200) {
+            $classDetail = $classDetail['data'][0];
+            $isClassOwner = $classDetail['pembuat_kelas'] == $userId;
+        } else
+            $this->session->set_flashdata("errorAPI", $classDetail['message']);
 
         if (!$isClassOwner) {
             redirect("home");
         }
 
         $data['tugas'] = $this->Classes_model->getTugasByTugasId($id_tugas);
+        if ($data['tugas']['status'] == 200) {
+            $data['tugas'] = $data['tugas']['data'];
+        } else
+            $this->session->set_flashdata("errorAPI", $data['tugas']['message']);
+
         $data['cek'] = $this->Classes_model->cekTugas($data['tugas'][0]['id_tugas']);
+        if ($data['cek']['status'] == 200) {
+            $data['cek'] = $data['cek']['data'];
+        } else
+            $this->session->set_flashdata("errorAPI", $data['cek']['message']);
+
         $data['submit'] = $this->Classes_model->getSubmit();
+        if ($data['submit']['status'] == 200) {
+            $data['submit'] = $data['submit']['data'];
+        } else
+            $this->session->set_flashdata("errorAPI", $data['submit']['message']);
+
         $data['kelas'] = $this->Classes_model->getClassById($id_kelas);
+        if ($data['kelas']['status'] == 200) {
+            $data['kelas'] = $data['kelas']['data'];
+        } else
+            $this->session->set_flashdata("errorAPI", $data['kelas']['message']);
+
         $data['user'] = $this->Classes_model->getUserDetail($data['kelas'][0]['pembuat_kelas']);
-        $header['nama'] = explode(" ", $this->Classes_model->getMyName()['nama']);
+        if ($data['user']['status'] == 200) {
+            $data['user'] = $data['user']['data'];
+        } else
+            $this->session->set_flashdata("errorAPI", $data['user']['message']);
+
+        $header['nama'] = $this->Classes_model->getMyName();
+        if ($header['nama']['status'] == 200)
+            $header['nama'] = explode(" ", $header['nama']['data']['nama']);
+        else
+            $this->session->set_flashdata("errorAPI", $header['nama']['message']);
+
         $notif = $this->Classes_model->getPesertaByUserId();
         if ($notif['status'] == 200) {
             $datanotif = array();
