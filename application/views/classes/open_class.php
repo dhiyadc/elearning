@@ -524,7 +524,8 @@ $this->session->set_userdata('workshop', null);
                 <div class="meta"># <?= $val['nama_kategori']; ?></div>
               </div>
               <h3><a href="<?= base_url() ?>classes/open_class/<?= $val['id_kelas'] ?>"><?= $val['judul_kelas'] ?></a></h3>
-              <p><?php echo substr($val['deskripsi_kelas'], 0, 100);  ?></p>
+              <?php $temp = strip_tags($val['deskripsi_kelas']); ?>
+										<p><?php echo substr($temp, 0, 100);  ?></p>
             </div>
             <div class="d-flex border-top stats">
               <div class="py-3 px-4"><span class="icon-users"></span> <?= $val['peserta'] ?> peserta</div>

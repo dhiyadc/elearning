@@ -15,10 +15,10 @@ $_SESSION['url_login'] = "kelasfilter";
 				<?php if (isset($_SESSION['logged_in'])) { ?>
 					<a href="<?= base_url() ?>classes/new_class" class="btn btn-black"><i class="fa fa-clone left"></i> Buat
 						Kelas</a>
-						<?php } else { ?>
-							<a href="" class="btn btn-black" data-toggle="modal" data-target="#elegantModalForm"><i class="fa fa-clone left"></i> Buat
-							Kelas</a>
-							<a href="" class="btn btn-black" data-toggle="modal" data-target="#elegantModalForm"><i class="fa fa-clone left"></i> Gabung Kelas</a>
+				<?php } else { ?>
+					<a href="" class="btn btn-black" data-toggle="modal" data-target="#elegantModalForm"><i class="fa fa-clone left"></i> Buat
+						Kelas</a>
+					<a href="" class="btn btn-black" data-toggle="modal" data-target="#elegantModalForm"><i class="fa fa-clone left"></i> Gabung Kelas</a>
 				<?php } ?>
 
 			</div>
@@ -243,7 +243,8 @@ $_SESSION['url_login'] = "kelasfilter";
 																		?></span>
 											<div class="meta"># <?= $val['nama_kategori']; ?></div>
 											<h3><a href="<?= base_url() ?>classes/open_class/<?= $val['id_kelas'] ?>"><?= $val['judul_kelas'] ?></a></h3>
-											<p><?php echo substr($val['deskripsi_kelas'], 0, 50);  ?></p>
+											<?php $temp = strip_tags($val['deskripsi_kelas']); ?>
+											<p><?php echo substr($temp, 0, 100);  ?></p>
 										</div>
 										<div class="d-flex border-top stats">
 											<div class="py-3 px-4"><span class="icon-users"></span> <?= $val['peserta'] ?>
