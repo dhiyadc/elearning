@@ -3,8 +3,8 @@ class workshops_model extends CI_Model
 {
     public function getAllClasses()
     {
-        $this->db->where('status_workshop' != 2);
-        return $this->db->get('workshop')->result_array();
+        return $this->db->query("SELECT * FROM workshop where status_workshop!=2")->result_array();
+
     }
 
     public function getMyClasses()
