@@ -1,5 +1,5 @@
 
-<?php $this->load->view('partials/header'); ?>
+<?php $this->load->view('partials/common/header'); ?>
 <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
 <section class="user_dashboard">
 <div class="row mt-0">
@@ -119,4 +119,4 @@
             });
         });
     </script> -->
-    <?php $this->load->view('partials/footer'); ?>
+    <?php $this->load->view('partials/common/footer'); ?>
