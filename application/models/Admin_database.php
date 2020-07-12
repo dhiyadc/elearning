@@ -3,14 +3,10 @@
 class Admin_database extends CI_Model
 {
 
-    public function http_request_get($dataparam = null, $function)
+    public function http_request_get($function)
     {
         $curl = curl_init();
-        if ($dataparam != null) {
-            $dataparam = http_build_query($dataparam);
-            $url = "http://classico.co.id/" . $function . ":" . $dataparam;
-        } else
-            $url = "http://classico.co.id/" . $function;
+        $url = "http://classico.co.id/" . $function;
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
         $result = curl_exec($curl);
@@ -19,14 +15,10 @@ class Admin_database extends CI_Model
         return json_decode($result, TRUE);
     }
 
-    public function http_request_post($data, $dataparam = null, $function)
+    public function http_request_post($data, $function)
     {
         $curl = curl_init();
-        if ($dataparam != null) {
-            $dataparam = http_build_query($dataparam);
-            $url = "http://classico.co.id/" . $function . ":" . $dataparam;
-        } else
-            $url = "http://classico.co.id/" . $function;
+        $url = "http://classico.co.id/" . $function;
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_POST, TRUE);
         curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
@@ -37,14 +29,10 @@ class Admin_database extends CI_Model
         return json_decode($result, TRUE);
     }
 
-    public function http_request_update($data, $dataparam = null, $function)
+    public function http_request_update($data, $function)
     {
         $curl = curl_init();
-        if ($dataparam != null) {
-            $dataparam = http_build_query($dataparam);
-            $url = "http://classico.co.id/" . $function . ":" . $dataparam;
-        } else
-            $url = "http://classico.co.id/" . $function;
+        $url = "http://classico.co.id/" . $function;
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "UPDATE");
         curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
@@ -54,14 +42,11 @@ class Admin_database extends CI_Model
 
         return json_decode($result, TRUE);
     }
-    public function http_request_delete($dataparam = null, $function)
+    
+    public function http_request_delete($function)
     {
         $curl = curl_init();
-        if ($dataparam != null) {
-            $dataparam = http_build_query($dataparam);
-            $url = "http://classico.co.id/" . $function . ":" . $dataparam;
-        } else
-            $url = "http://classico.co.id/" . $function;
+        $url = "http://classico.co.id/" . $function;
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "DELETE");
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
@@ -71,7 +56,6 @@ class Admin_database extends CI_Model
         return json_decode($result, TRUE);
     }
 
-
     //Login Function
     public function isAdmin($data)
     {
@@ -80,17 +64,11 @@ class Admin_database extends CI_Model
         $password = $data['password'];
         $hashed = hash('sha256', $password);
 
-        $user = $this->http_request_get("?email=$username");
-        if ($user['status'] == 200 && count($user['data']) != 0 || count($user['data']) != null) {
-            $cekpassword = $this->http_request_get("?password=$hashed");
-            if ($cekpassword['status'] == 200 && count($cekpassword['data']) != 0 || count($cekpassword['data']) != null) {
-                return true;
-            } else {
-                return false;
-            }
-        } else {
-            return false;
-        }
+        $dataparam = [
+            'email' => $username,
+            'hashpass' => $hashed
+        ];
+        $this->http_request_get($dataparam, "login/admin/admincheck");
     }
 
     public function isOwner($data)
@@ -99,24 +77,16 @@ class Admin_database extends CI_Model
         $password = $data['password'];
         $hashed = hash('sha256', $password);
 
-        $owner = $this->http_request_get("?email=$email");
-
-        if ($owner['status'] == 200 && count($owner['data']) != 0 || count($owner['data']) != null) {
-            $cekpassword = $this->http_request_get("?password=$hashed");
-
-            if ($cekpassword['status'] == 200 && count($cekpassword['data']) != 0 || count($cekpassword['data']) != null) {
-                return true;
-            } else {
-                return false;
-            }
-        } else {
-            return false;
-        }
+        $dataparam = [
+            'email' => $email,
+            'hashpass' => $hashed
+        ];
+        $owner = $this->http_request_get($dataparam, "login/owner");
     }
 
     public function getIDUser($email)
     {
-        return $this->http_request_get("?email=$email");
+        return $this->http_request_get("user/id_user/$email");
     }
 
     // Read data from database to show data in any page
@@ -133,7 +103,7 @@ class Admin_database extends CI_Model
 
     public function getAllClasses()
     {
-        return $this->http_request_get("classes");
+        return $this->http_request_get("classes/all_class/owner");
     }
 
     public function getClassById($id)
@@ -187,7 +157,7 @@ class Admin_database extends CI_Model
 
     public function getAllUser()
     {
-        return $this->http_request_get("users/");
+        return $this->http_request_get("account/users");
     }
 
     private function updateImage($id)
@@ -240,7 +210,7 @@ class Admin_database extends CI_Model
 
     public function hapusKelas($id)
     {
-        $this->http_request_delete("?id_kelas=$id");
+        $this->http_request_delete("classes/my_classes/$id");
     }
 
     public function hapusWorkshop($id)
@@ -250,16 +220,16 @@ class Admin_database extends CI_Model
 
     public function getAllUsersDetail()
     {
-        return $this->http_request_get("users/detail/");
+        return $this->http_request_get(null, "users/detail");
     }
 
     public function getAllClassesOwner()
     {
-        $this->http_request_get("");
+        $this->http_request_get(null, "classes/all_class/owner");
     }
 
     public function getAllWorkshopsOwner()
     {
-        $this->http_request_get("");
+        $this->http_request_get("workshop/allworkshop/owner");
     }
 }

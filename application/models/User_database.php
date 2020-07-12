@@ -2,13 +2,9 @@
 
 class User_database extends CI_Model
 {
-    public function http_request_get($dataparam = null, $function)
+    public function http_request_get($function)
     {
         $curl = curl_init();
-        if ($dataparam != null) {
-            $dataparam = http_build_query($dataparam);
-            $url = "http://classico.co.id/" . $function . ":" . $dataparam;
-        } else
             $url = "http://classico.co.id/" . $function;
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
@@ -18,13 +14,9 @@ class User_database extends CI_Model
         return json_decode($result, TRUE);
     }
 
-    public function http_request_post($data, $dataparam = null, $function)
+    public function http_request_post($data, $function)
     {
         $curl = curl_init();
-        if ($dataparam != null) {
-            $dataparam = http_build_query($dataparam);
-            $url = "http://classico.co.id/" . $function . ":" . $dataparam;
-        } else
             $url = "http://classico.co.id/" . $function;
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_POST, TRUE);
@@ -36,13 +28,9 @@ class User_database extends CI_Model
         return json_decode($result, TRUE);
     }
 
-    public function http_request_update($data, $dataparam = null, $function)
+    public function http_request_update($data, $function)
     {
         $curl = curl_init();
-        if ($dataparam != null) {
-            $dataparam = http_build_query($dataparam);
-            $url = "http://classico.co.id/" . $function . ":" . $dataparam;
-        } else
             $url = "http://classico.co.id/" . $function;
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "UPDATE");
@@ -53,13 +41,10 @@ class User_database extends CI_Model
 
         return json_decode($result, TRUE);
     }
-    public function http_request_delete($dataparam = null, $function)
+    
+    public function http_request_delete( $function)
     {
         $curl = curl_init();
-        if ($dataparam != null) {
-            $dataparam = http_build_query($dataparam);
-            $url = "http://classico.co.id/" . $function . ":" . $dataparam;
-        } else
             $url = "http://classico.co.id/" . $function;
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "DELETE");
@@ -70,7 +55,6 @@ class User_database extends CI_Model
         return json_decode($result, TRUE);
     }
 
-
     //Login Function
     public function login($data)
     {
@@ -78,18 +62,12 @@ class User_database extends CI_Model
         $username = $data['email'];
         $password = $data['password'];
         $hashed = hash('sha256', $password);
-        $user = $this->http_request_get("?email=$username");
+        
+        $data = ['email' => $username,
+        'password' => $hashed];
+        $user = $this->http_request_post($data, "home/login");
 
-        if ($user['status'] == 200 && count($user['data']) != 0 || count($user['data']) != null) {
-            $passwordcek = $this->http_request_get("?password=$hashed");
-            if ($passwordcek['status'] == 200 && count($passwordcek['data']) != 0 || count($passwordcek['data']) != null) {
-                return true;
-            } else {
-                return false;
-            }
-        } else {
-            return false;
-        }
+        return $user;
     }
 
     public function getFirstAccount($email)
@@ -97,24 +75,21 @@ class User_database extends CI_Model
         $dataparam = [
             'email' => $email
         ];
-        return $this->http_request_get($dataparam, "user/account/");
+        return $this->http_request_get($dataparam, "user/account/$email");
     }
 
     // Register Function
     public function register($data)
     {
-        $data1 = [
+        $data = [
             "id_user" => $data['user_id'],
             "email" => $data['email'],
-            'hashed' => hash('sha256', $data['password'])
-        ];
-        $data2 = [
-            "id_user" => $data['user_id'],
+            'hashed' => hash('sha256', $data['password']),
             "nama" => $data['nama'],
-            "no_telepon" => $data['no_telepon'],
+            "no_telepon" => $data['no_telepon']
         ];
-        $this->http_request_post($data1, "");
-        return $this->http_request_post($data2, "");
+
+        return $this->http_request_post($data, "home/register");
     }
 
     public function getIDUser($email)
@@ -127,7 +102,7 @@ class User_database extends CI_Model
         $dataparam = [
             'id_user' => $id_user
         ];
-        return $this->http_request_get($dataparam, "user/account/email/");
+        return $this->http_request_get($dataparam, "user/account/email/$id_user");
     }
 
     //Set token for reset password request
@@ -140,13 +115,13 @@ class User_database extends CI_Model
             'expire_date' => "DATE_ADD(NOW(), INTERVAL 5 MINUTE)"
         ];
 
-        $this->http_request_post($data, "");
+        $this->http_request_post($data, "users/lupapassword/token");
     }
 
     public function getValidToken($token)
     {
 
-        return $this->http_request_get("?token=$token");
+        return $this->http_request_get("users/validtoken/$token");
     }
 
     public function getIDbyToken($token)
@@ -154,7 +129,7 @@ class User_database extends CI_Model
         $dataparam = [
             'token' => $token
         ];
-        return $this->http_request_get($dataparam, "users/lupapassword/");
+        return $this->http_request_get("users/lupapassword/$token");
     }
 
     public function updatePasswordUser($id_user, $newPassword)
@@ -164,9 +139,7 @@ class User_database extends CI_Model
         $data = [
             'password' => $newPasswordHashed
         ];
-        $this->http_request_update($data, "?id_user=$id_user");
-
-        return $this->http_request_delete("?id_user=$id_user");
+        return $this->http_request_update($data, "users/lupapassword/change_password/$id_user");
     }
 
     // Read data from database to show data in any page
