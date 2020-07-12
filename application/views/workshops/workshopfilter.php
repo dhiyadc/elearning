@@ -61,7 +61,7 @@ $_SESSION['url_login'] = "kelasfilter";
 	<div class="container">
 		<div class="row mt-5" style="padding-bottom :15px; border-bottom: 1px solid #dedfe0;">
 			<div class="col-xs-2">
-				<div class="col-md-2"><a href="<?= base_url() ?>workshops" class="btn btn-primary" style="background-color: dimgrey; border-color: white">Workshop <?= $kategori_text; ?></a>
+				<div class="col-md-2"><a href="<?= base_url() ?>workshops" class="btn btn-primary" style="background-color: dimgrey; border-color: white; margin-left: 20px;">Workshop <?= $kategori_text; ?></a>
 				</div>
 			</div>
 			<div class="col-xs-10 no-margin" style="padding-right: 36px;">
