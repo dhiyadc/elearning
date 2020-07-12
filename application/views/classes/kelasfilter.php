@@ -60,11 +60,11 @@ $_SESSION['url_login'] = "kelasfilter";
 <section class="menutop">
 	<div class="container">
 		<div class="row mt-5" style="padding-bottom :15px; border-bottom: 1px solid #dedfe0;">
-			<div class="col-xs-2">
+			<div class="col-xs-2" style="padding-left: 25px;">
 				<div class="col-md-2"><a href="<?= base_url() ?>classes" class="btn btn-primary" style="background-color: dimgrey; border-color: white">Kelas <?= $kategori_text; ?></a>
 				</div>
 			</div>
-			<div class="col-xs-10 no-margin">
+			<div class="col-xs-10 no-margin" style="padding-right: 36px;">
 
 
 				<div class="row">
@@ -116,7 +116,7 @@ $_SESSION['url_login'] = "kelasfilter";
 				</div>
 			</div>
 
-			<div class="ml-auto w-25">
+			<div class="ml-auto w-35" style="padding-left: 40px; padding-right: 100px;">
 
 				<!-- <nav class="site-navigation position-relative text-right" role="navigation">
               <ul class="site-menu  mr-auto d-none d-lg-block m-0 p-0">
