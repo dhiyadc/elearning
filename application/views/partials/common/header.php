@@ -43,7 +43,7 @@
     <div class="modal fade" id="elegantModalForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <!--Content-->
-        <div class="modal-content form-elegant">
+        <div class="modal-content form-elegant" style="top: 90px;">
           <!--Header-->
           <div class="modal-header text-center">
             <h3 class="modal-title w-100 dark-grey-text font-weight-bold my-3" id="myModalLabel"><strong>Masuk</strong></h3>
