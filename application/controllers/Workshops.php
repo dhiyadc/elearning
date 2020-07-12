@@ -266,6 +266,7 @@ class Workshops extends CI_Controller
         $data['harga'] = $this->Workshops_model->getHarga($id_kelas);
         $data['peserta'] = $this->Workshops_model->getPesertaByUserIdClassId($id_kelas);
         $data['cek'] = $this->Workshops_model->cekPeserta($id_kelas);
+        $data['error_bagian'] = "workshop";
         //$data['materi'] = $this->Workshops_model->getMateri($id_kelas);
         //$data['materiKegiatan'] = $this->Workshops_model->getMateribyKegiatan();
         if (isset($this->session->userdata['logged_in'])) {
@@ -292,10 +293,16 @@ class Workshops extends CI_Controller
             }
             $header['notif2'] = $datanotif2;
             $this->load->view('partials/user/header', $header);
-            $this->load->view('workshops/openworkshop', $data);
+            if (count($data['kelas']) == 0 || count($data['kelas']) == null)
+                $this->load->view('classes/error_class', $data);
+            else
+                $this->load->view('workshops/openworkshop', $data);
             $this->load->view('partials/user/footer');
         } else {
             $this->load->view('partials/common/header');
+            if (count($data['kelas']) == 0 || count($data['kelas']) == null)
+                    $this->load->view('classes/error_class', $data);
+                else
             $this->load->view('workshops/openworkshop', $data);
             $this->load->view('partials/common/footer');
         }
@@ -433,9 +440,9 @@ class Workshops extends CI_Controller
             if ($is_active == 1) {
                 $this->Workshops_model->isactive_workshop($id_workshop, 0);
                 $this->session->set_flashdata('active', 0);
-            } else{
-            $this->Workshops_model->isactive_workshop($id_workshop, 1);
-            $this->session->set_flashdata('active', 1 );
+            } else {
+                $this->Workshops_model->isactive_workshop($id_workshop, 1);
+                $this->session->set_flashdata('active', 1);
             }
             $x['nama'] = $nama;
             redirect("classes/my_classes", $nama);

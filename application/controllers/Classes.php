@@ -54,7 +54,7 @@ class Classes extends CI_Controller
             if ($newClass) {
                 $this->session->set_flashdata("invalidImage", "$newClass");
                 redirect("classes/new_class");
-            } 
+            }
 
             $id = $this->Classes_model->getIdNewClass();
             redirect('classes/open_class/' . $id['id_kelas']);
@@ -80,6 +80,7 @@ class Classes extends CI_Controller
         $data['cek'] = $this->Classes_model->cekPeserta($id_kelas);
         $data['materi'] = $this->Classes_model->getMateri($id_kelas);
         $data['materiKegiatan'] = $this->Classes_model->getMateribyKegiatan();
+        $data['error_bagian'] = "kelas";
         if (isset($this->session->userdata['logged_in'])) {
             $this->session->set_flashdata('buttonJoin', 'Anda telah mengikuti kelas ini');
             $this->session->set_flashdata('batasPeserta', 'Maaf, kelas ini telah penuh');
@@ -103,14 +104,21 @@ class Classes extends CI_Controller
                     $datanotif2[] = $cek2;
                 }
             }
-            $header['notif2'] = $datanotif2;           
+            $header['notif2'] = $datanotif2;
             $this->load->view('partials/user/header', $header);
-            $this->load->view('classes/open_class', $data);
+
+            if (count($data['kelas']) == 0 || count($data['kelas']) == null)
+                $this->load->view('classes/error_class', $data);
+            else
+                $this->load->view('classes/open_class', $data);
             $this->load->view('partials/user/footer');
             $this->session->set_userdata('workshop', null);
         } else {
             $this->load->view('partials/common/header');
-            $this->load->view('classes/open_class', $data);
+            if (count($data['kelas']) == 0 || count($data['kelas']) == null)
+                $this->load->view('classes/error_class', $data);
+            else
+                $this->load->view('classes/open_class', $data);
             $this->load->view('partials/common/footer');
             $this->session->set_userdata('workshop', null);
         }
@@ -136,6 +144,7 @@ class Classes extends CI_Controller
             $data['materiKegiatan'] = $this->Classes_model->getMateribyIdMateri($id_materi);
             $data['materiLain'] = $this->Classes_model->getMateriLain($id_kegiatan, $id_materi);
             $data['indexvideo'] = $index;
+            $data['error_bagian'] = "materi";
             if (isset($this->session->userdata['logged_in'])) {
                 $this->session->set_flashdata('buttonJoin', 'Anda telah mengikuti kelas ini');
                 $this->session->set_flashdata('batasPeserta', 'Maaf, kelas ini telah penuh');
@@ -160,12 +169,18 @@ class Classes extends CI_Controller
                 }
                 $header['notif2'] = $datanotif2;
                 $this->load->view('partials/user/header', $header);
-                $this->load->view('classes/video_kelas', $data);
+                if (count($data['materiKegiatan']) == 0 || count($data['materiKegiatan']) == null)
+                    $this->load->view('classes/error_class', $data);
+                else
+                    $this->load->view('classes/video_kelas', $data);
                 $this->load->view('partials/user/footer');
                 $this->session->set_userdata('workshop', null);
             } else {
                 $this->load->view('partials/common/header');
-                $this->load->view('classes/video_kelas', $data);
+                if (count($data['materiKegiatan']) == 0 || count($data['materiKegiatan']) == null)
+                    $this->load->view('classes/error_class', $data);
+                else
+                    $this->load->view('classes/video_kelas', $data);
                 $this->load->view('partials/common/footer');
                 $this->session->set_userdata('workshop', null);
             }
@@ -441,7 +456,7 @@ class Classes extends CI_Controller
                 $this->session->set_flashdata("invalidFile", "$kegiatan (only pdf, doc, ppt). Max Size : 25MB");
             }
 
-            if($redirect == "akademik"){
+            if ($redirect == "akademik") {
                 redirect('classes/my_classes');
             }
 
@@ -470,12 +485,12 @@ class Classes extends CI_Controller
 
         $kegiatan = $this->Classes_model->updateKegiatan($id_kelas, $id_kegiatan);
         if ($kegiatan == "success") {
-                $this->session->set_flashdata("success", "Jadwal Kegiatan anda berhasil di tambah!");
-            } else if ($kegiatan) {
-                $this->session->set_flashdata("invalidFile", "$kegiatan (only pdf, doc, ppt). Max Size : 25MB");
-            }
+            $this->session->set_flashdata("success", "Jadwal Kegiatan anda berhasil di tambah!");
+        } else if ($kegiatan) {
+            $this->session->set_flashdata("invalidFile", "$kegiatan (only pdf, doc, ppt). Max Size : 25MB");
+        }
 
-        if($redirect == "akademik"){
+        if ($redirect == "akademik") {
             redirect('classes/my_classes');
         }
         redirect('classes/open_class/' . $id_kelas);
@@ -574,9 +589,9 @@ class Classes extends CI_Controller
             $data['kegiatan_diikuti'] = $datakegiatandiikuti;
             $header['notif'] = $datanotif;
 
-            foreach ($data['kelas'] as $value) { 
+            foreach ($data['kelas'] as $value) {
                 $kegiatansaya = $this->Classes_model->getKegiatan($value['id_kelas']);
-                
+
                 if ($kegiatansaya != null) {
                     $datakegiatansaya[] = $kegiatansaya;
                 }
@@ -666,7 +681,8 @@ class Classes extends CI_Controller
         $this->load->view('partials/common/footer');
     }
 
-    public function set_sess(){
+    public function set_sess()
+    {
         $this->session->set_userdata('workshop', null);
     }
     public function categories($kategori)
@@ -817,7 +833,7 @@ class Classes extends CI_Controller
 
         $this->Classes_model->delMateri($url_materi);
 
-        if($redirect == "akademik"){
+        if ($redirect == "akademik") {
             redirect("classes/my_classes");
         }
 
@@ -949,10 +965,10 @@ class Classes extends CI_Controller
         $status = $this->Classes_model->collectAssignment($id_tugas, $deadline["batas_pengiriman_tugas"]);
         if ($status) {
             $this->session->set_flashdata("failedInputFile", "$status (Maz Size: 25 MB) (.pdf, .doc, .docx only)");
-            redirect('classes/detail_tugaskuis/'.$id_kelas.'/'.$id_tugas);
+            redirect('classes/detail_tugaskuis/' . $id_kelas . '/' . $id_tugas);
         }
 
-        if($redirect == "akademik"){
+        if ($redirect == "akademik") {
             redirect('classes/my_classes');
         }
         redirect('classes/detail_tugaskuis/' . $id_kelas . '/' . $id_tugas);
@@ -971,7 +987,7 @@ class Classes extends CI_Controller
     {
         $this->Classes_model->deleteJawaban($id_submit);
 
-        if($redirect == "akademik"){
+        if ($redirect == "akademik") {
             redirect('classes/my_classes');
         }
         redirect('classes/detail_tugaskuis/' . $id_kelas . '/' . $id_tugas);
@@ -1042,7 +1058,7 @@ class Classes extends CI_Controller
         $status = $this->Classes_model->updateAssignment($id_tugas);
         if ($status) {
             $this->session->set_flashdata("failedInputFile", "$status (Maz Size: 25 MB) (.pdf, .doc, .docx only)");
-            redirect('classes/edit_assignment/' .$id_kelas.'/'.$id_tugas);
+            redirect('classes/edit_assignment/' . $id_kelas . '/' . $id_tugas);
         }
         redirect('classes/list_tugas/' . $id_kelas);
     }
