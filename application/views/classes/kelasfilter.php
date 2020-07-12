@@ -16,9 +16,9 @@ $_SESSION['url_login'] = "kelasfilter";
 					<a href="<?= base_url() ?>classes/new_class" class="btn btn-black"><i class="fa fa-clone left"></i> Buat
 						Kelas</a>
 				<?php } else { ?>
-					<a href="" class="btn btn-black" data-toggle="modal" data-target="#elegantModalForm"><i class="fa fa-clone left"></i> Buat
+					<a href="" class="btn btn-black ml-2 mt-1" data-toggle="modal" data-target="#elegantModalForm"><i class="fa fa-clone left"></i> Buat
 						Kelas</a>
-					<a href="" class="btn btn-black" data-toggle="modal" data-target="#elegantModalForm"><i class="fa fa-clone left"></i> Gabung Kelas</a>
+					<a href="" class="btn btn-black  ml-2 mt-1" data-toggle="modal" data-target="#elegantModalForm"><i class="fa fa-clone left"></i> Gabung Kelas</a>
 				<?php } ?>
 
 			</div>
