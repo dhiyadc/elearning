@@ -29,6 +29,11 @@ class Owner extends CI_Controller{
         if(isset($_SESSION['owner_logged_in']))
         {
             $data['user'] = $this->Admin_database->getAllUsersDetail();
+            if($data['user']['status'] == 200)
+            $data['user'] = $data['user']['data'];
+            else
+            $this->session->set_flashdata("errorAPI", $data['user']['message']);
+
             $this->load->view('nonuser/owner/pages/navbar.php');
             $this->load->view('nonuser/owner/pages/users.php', $data);
             $this->load->view('nonuser/owner/pages/footer.php');
@@ -42,6 +47,11 @@ class Owner extends CI_Controller{
         if(isset($_SESSION['owner_logged_in']))
         {
             $data['class'] = $this->Admin_database->getAllClassesOwner();
+            if($data['class']['status'] == 200)
+            $data['class'] = $data['class']['data'];
+            else
+            $this->session->set_flashdata("errorAPI", $data['class']['message']);
+
             $this->load->view('nonuser/owner/pages/navbar.php');
             $this->load->view('nonuser/owner/pages/classes.php', $data);
             $this->load->view('nonuser/owner/pages/footer.php');
@@ -54,6 +64,11 @@ class Owner extends CI_Controller{
         if(isset($_SESSION['owner_logged_in']))
         {
             $data['class'] = $this->Admin_database->getAllWorkshopsOwner();
+            if($data['class']['status'] == 200)
+            $data['class'] = $data['class']['data'];
+            else
+            $this->session->set_flashdata("errorAPI", $data['class']['message']);
+
             $this->load->view('nonuser/owner/pages/navbar.php');
             $this->load->view('nonuser/owner/pages/workshops.php', $data);
             $this->load->view('nonuser/owner/pages/footer.php');

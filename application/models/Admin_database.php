@@ -1,73 +1,101 @@
 <?php
 
-Class Admin_database extends CI_Model {
+class Admin_database extends CI_Model
+{
 
-//Login Function
-    public function isAdmin($data){
-        
+    public function http_request_get($function)
+    {
+        $curl = curl_init();
+        $url = "http://classico.co.id/" . $function;
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
+        $result = curl_exec($curl);
+        curl_close($curl);
+
+        return json_decode($result, TRUE);
+    }
+
+    public function http_request_post($data, $function)
+    {
+        $curl = curl_init();
+        $url = "http://classico.co.id/" . $function;
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_POST, TRUE);
+        curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
+        $result = curl_exec($curl);
+        curl_close($curl);
+
+        return json_decode($result, TRUE);
+    }
+
+    public function http_request_update($data, $function)
+    {
+        $curl = curl_init();
+        $url = "http://classico.co.id/" . $function;
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "UPDATE");
+        curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
+        $result = curl_exec($curl);
+        curl_close($curl);
+
+        return json_decode($result, TRUE);
+    }
+    
+    public function http_request_delete($function)
+    {
+        $curl = curl_init();
+        $url = "http://classico.co.id/" . $function;
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "DELETE");
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
+        $result = curl_exec($curl);
+        curl_close($curl);
+
+        return json_decode($result, TRUE);
+    }
+
+    //Login Function
+    public function isAdmin($data)
+    {
+
         $username = $data['email'];
         $password = $data['password'];
         $hashed = hash('sha256', $password);
-        $user = $this->db->get_where('admin', ['email' => $username])->row_array();
-    
-        if($user){
-            if($this->db->get_where('admin', ['password' => $hashed])->row_array()){
-                return true;
-            } else {
-                return false;
-            }
-        } else {
-            return false;
-        }
+
+        $dataparam = [
+            'email' => $username,
+            'hashpass' => $hashed
+        ];
+        $this->http_request_get($dataparam, "login/admin/admincheck");
     }
 
-    public function isOwner($data){
+    public function isOwner($data)
+    {
         $email = $data['email'];
         $password = $data['password'];
         $hashed = hash('sha256', $password);
-        
-        $owner = $this->db->get_where('owner', ['email' => $email])->row_array();
-    
-        if($owner){
-            if($this->db->get_where('owner', ['password' => $hashed])->row_array()){
-                return true;
-            } else {
-                return false;
-            }
-        } else {
-            return false;
-        }
-    }
-  
-    public function getIDUser($email){
-        /*$sql = "SELECT id_user FROM user
-            WHERE email='$email'";
-        $query = $this->db->query($sql);
-        return $query->getFirstRow(); */
-        
-        
-        $condition = "email =" . "'" . $email . "'";
-        $this->db->select('id_user');
-        $this->db->from('user');
-        $this->db->where($condition);
-        //$this->db->limit(1);
-        $query = $this->db->get(); 
 
-        return $query->result_array()[0];
+        $dataparam = [
+            'email' => $email,
+            'hashpass' => $hashed
+        ];
+        $owner = $this->http_request_get($dataparam, "login/owner");
+    }
+
+    public function getIDUser($email)
+    {
+        return $this->http_request_get("user/id_user/$email");
     }
 
     // Read data from database to show data in any page
-    public function read_user_information($email) {
+    public function read_user_information($email)
+    {
 
-        $condition = "email =" . "'" . $email . "'";
-        $this->db->select('*');
-        $this->db->from('user');
-        $this->db->where($condition);
-        $this->db->limit(1);
-        $query = $this->db->get();
-
-        if ($query->num_rows() == 1) {
-            return $query->result();
+        $result = $this->http_request_get("?email=$email");
+        if (count($result['data']) == 1) {
+            return $result;
         } else {
             return false;
         }
@@ -75,78 +103,74 @@ Class Admin_database extends CI_Model {
 
     public function getAllClasses()
     {
-        return $this->db->get('kelas')->result_array();
+        return $this->http_request_get("classes/all_class/owner");
     }
 
     public function getClassById($id)
     {
-        $this->db->where('id_kelas',$id);
-        return $this->db->get('kelas')->result_array();
+        $dataparam = [
+            'id_kelas' => $id
+        ];
+        return $this->http_request_get($dataparam, "classes/");
     }
 
     public function getPembuat()
     {
-        return $this->db->get('detail_user')->result_array();
+        return $this->http_request_get("");
     }
 
     public function getPeserta()
     {
-        return $this->db->get('peserta')->result_array();
+        return $this->db->http_request_get("");
     }
 
     public function getKategori()
     {
-        return $this->db->get('kategori_kelas')->result_array();
+        return $this->http_request_get("");
     }
 
     public function getJenis()
     {
-        return $this->db->get('jenis_kelas')->result_array();
+        return $this->http_request_get("");
     }
 
     public function getStatus()
     {
-        return $this->db->get('status_kegiatan')->result_array();
+        return $this->http_request_get("");
     }
 
     public function getPesertaByUserIdClassId($id)
     {
-        $this->db->where('id_user',$this->session->userdata('id_user'));
-        $this->db->where('id_kelas',$id);
-        return $this->db->get('peserta')->result_array();
+        $id_user = $this->session->userdata('id_user');
+        return $this->http_request_get("?id_user=$id_user&id_kelas=$id");
     }
 
     public function getHarga($id)
     {
-        $this->db->where('id_kelas',$id);
-        return $this->db->get('harga_kelas')->result_array();
+        return $this->http_request_get("?id_kelas=$id");
     }
 
     public function getKegiatan($id)
     {
-        $sql = "SELECT *, DATE_FORMAT(tanggal_kegiatan, '%W, %d %M %Y') as tanggal, DATE_FORMAT(tanggal_kegiatan, '%H:%i') as waktu
-                FROM jadwal_kegiatan
-                WHERE id_kelas = '$id'";
-        return $this->db->query($sql)->result_array();
+        return $this->http_request_get("?id_kelas=$id");
     }
 
     public function getAllUser()
     {
-        $sql = "SELECT user.*,detail_user.*
-                FROM user,detail_user
-                WHERE user.id_user = detail_user.id_user";
-        return $this->db->query($sql)->result_array();
+        return $this->http_request_get("account/users");
     }
 
-    private function updateImage($id) 
+    private function updateImage($id)
     {
         $config['upload_path'] = './images/';
         $config['allowed_types'] = 'jpg|png|jpeg';
         $config['max_size'] = '3000';
         $config['remove_space'] = true;
 
-        $data = $this->db->get_where('kelas',['id_kelas' => $id])->row();
-        unlink("images/".$data->poster_kelas);
+        $data = $this->http_request_get("?id_kelas=$id");
+        foreach ($data['data'] as $data2) {
+            unlink("images/" . $data2['poster_kelas']);
+        }
 
         $this->load->library('upload', $config);
         if ($this->upload->do_upload('poster')) {
@@ -156,15 +180,14 @@ Class Admin_database extends CI_Model {
 
     public function updateKelas($id)
     {
-        if(!empty($_FILES['poster']['name'])) {
+        if (!empty($_FILES['poster']['name'])) {
             $data = [
                 'judul_kelas' => $this->input->post('judul'),
                 'deskripsi_kelas' => $this->input->post('deskripsi'),
                 'kategori_kelas' => $this->input->post('kategori'),
                 'poster_kelas' => $this->updateImage($id)
             ];
-        }
-        else {
+        } else {
             $data = [
                 'judul_kelas' => $this->input->post('judul'),
                 'deskripsi_kelas' => $this->input->post('deskripsi'),
@@ -172,9 +195,7 @@ Class Admin_database extends CI_Model {
                 'poster_kelas' => $this->input->post('old_image')
             ];
         }
-
-        $this->db->where('id_kelas',$id);
-        $this->db->update('kelas',$data);
+        $this->http_request_update($data, "?id_kelas=$id");
     }
 
     public function updateKegiatan($id)
@@ -183,68 +204,32 @@ Class Admin_database extends CI_Model {
             $data = [
                 'deskripsi_kegiatan' => $this->input->post('deskripsi_kegiatan')
             ];
-
-            $this->db->where('id_kelas',$id);
-            $this->db->where('id_kegiatan',$value);
-            $this->db->update('jadwal_kegiatan',$data);
+            $this->http_request_update($data, "?id_kelas=$id&id_kegiatan=$value");
         }
     }
 
     public function hapusKelas($id)
     {
-        $this->db->delete('kelas',['id_kelas' => $id]);
+        $this->http_request_delete("classes/my_classes/$id");
     }
 
     public function hapusWorkshop($id)
     {
-        $this->db->delete('workshop',['id_workshop' => $id]);
-    } 
+        $this->http_request_delete("$id");
+    }
 
-public function getAllUsersDetail(){
-    $sql = "SELECT user.id_user, user.email, detail_user.nama, detail_user.no_telepon
-    FROM user
-    INNER JOIN detail_user
-    ON user.id_user = detail_user.id_user";
-    $query = $this->db->query($sql);
-    return $query->result_array();
+    public function getAllUsersDetail()
+    {
+        return $this->http_request_get(null, "users/detail");
+    }
+
+    public function getAllClassesOwner()
+    {
+        $this->http_request_get(null, "classes/all_class/owner");
+    }
+
+    public function getAllWorkshopsOwner()
+    {
+        $this->http_request_get("workshop/allworkshop/owner");
+    }
 }
-
-public function getAllClassesOwner(){
-    $sql = "SELECT kelas.id_kelas, kelas.judul_kelas, kelas.deskripsi_kelas, kategori_kelas.nama_kategori, jenis_kelas.nama_jenis, harga_kelas.harga_kelas, COUNT(peserta.id_kelas) as 'peserta', status_kegiatan.nama_status
-    FROM kelas
-    LEFT JOIN kategori_kelas
-             ON kategori_kelas.id_kategori = kelas.kategori_kelas 
-    LEFT JOIN jenis_kelas
-             ON jenis_kelas.id_jenis = kelas.jenis_kelas
-    LEFT JOIN harga_kelas
-             ON harga_kelas.id_kelas = kelas.id_kelas
-    LEFT JOIN peserta
-             ON peserta.id_kelas = kelas.id_kelas
-    LEFT JOIN status_kegiatan
-        ON status_kegiatan.id_status = kelas.status_kelas
-    GROUP BY kelas.id_kelas";
-    $query = $this->db->query($sql);
-    return $query->result_array();
-}
-public function getAllWorkshopsOwner(){
-    $sql = "SELECT workshop.id_workshop, workshop.judul_workshop, workshop.deskripsi_workshop, kategori_workshop.nama_kategori, jenis_kelas.nama_jenis, harga_workshop.harga_workshop, COUNT(peserta_workshop.id_workshop) as 'peserta', status_kegiatan.nama_status
-    FROM workshop
-    LEFT JOIN kategori_workshop
-             ON kategori_workshop.id_kategori = workshop.kategori_workshop 
-    LEFT JOIN jenis_kelas
-             ON jenis_kelas.id_jenis = workshop.jenis_workshop
-    LEFT JOIN harga_workshop
-             ON harga_workshop.id_workshop = workshop.id_workshop
-    LEFT JOIN peserta_workshop
-             ON peserta_workshop.id_workshop = workshop.id_workshop
-    LEFT JOIN status_kegiatan
-        ON status_kegiatan.id_status = workshop.status_workshop
-    GROUP BY workshop.id_workshop";
-    $query = $this->db->query($sql);
-    return $query->result_array();
-}
-
-
-}
-
-?>
