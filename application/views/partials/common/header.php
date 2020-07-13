@@ -40,10 +40,10 @@
 <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
   <!-- Modal -->
   <div id="login-page">
-    <div class="modal fade" id="elegantModalForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal fade" id="elegantModalForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="top:90px">
       <div class="modal-dialog" role="document">
         <!--Content-->
-        <div class="modal-content form-elegant">
+        <div class="modal-content form-elegant" >
           <!--Header-->
           <div class="modal-header text-center">
             <h3 class="modal-title w-100 dark-grey-text font-weight-bold my-3" id="myModalLabel"><strong>Masuk</strong></h3>
@@ -123,7 +123,7 @@
     <div class="modal fade" id="elegantModalFormcreateClass" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document" >
         <!--Content-->
-        <div class="modal-content form-elegant">
+        <div class="modal-content form-elegant" style="top: 90px;">
           <!--Header-->
           <div class="modal-header text-center">
             <h3 class="modal-title w-100 dark-grey-text font-weight-bold my-3" id="myModalLabel"><strong>Masuk</strong></h3>

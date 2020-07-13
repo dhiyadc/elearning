@@ -33,9 +33,9 @@
           <div class="col-md-12">
             <div class="border-top pt-5">
             <p>
-        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+
         Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved <a href="" target="_blank" >CLASSICO</a>
-        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+  
       </p>
             </div>
           </div>
@@ -49,7 +49,7 @@
   </div> <!-- .site-wrap -->
 
   <script src="<?php echo base_url(); ?>assets/js/jquery-3.3.1.min.js"></script>
-  <script src="<?php echo base_url(); ?>assets/js/jquery-migrate-3.0.1.min.js"></script>
+  
   <script src="<?php echo base_url(); ?>assets/js/jquery-ui.js"></script>
   <script src="<?php echo base_url(); ?>assets/js/popper.min.js"></script>
   <script src="<?php echo base_url(); ?>assets/js/bootstrap.min.js"></script>

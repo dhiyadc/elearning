@@ -624,7 +624,7 @@ h1, h2, h3, h4, h5,
 .intro-section {
   position: relative; }
   .intro-section, .intro-section .container > .row {
-    height: 100vh;
+    /* height: 100vh; */
     min-height: 900px; }
   .intro-section.single-cover, .intro-section.single-cover .container > .row {
     height: 50vh;
@@ -2297,3 +2297,17 @@ svg.enterprise-check path {
   .bannerkelas .darkbanner .img{
     Z-index: 5;
   } */
+  
+  @media screen and (max-width: 568px) {
+    .modal-footer{
+     font-size: 11px; 
+     
+    }
+  }
+
+  .fixed {
+    position: fixed;
+    top:0; left:0;
+    width: 100%; }
+
+    

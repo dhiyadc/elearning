@@ -76,6 +76,11 @@ $this->session->set_userdata('workshop', null);
                   <?php echo $this->session->flashdata("success"); ?>
                 </div>
               <?php } ?>
+              <?php if ($val['status_kelas'] == 2 && $val['pembuat_kelas'] != $this->session->userdata('id_user')) { ?>
+                <div class="alert alert-danger text-center" role="alert">
+                  <?php echo $this->session->flashdata("kelasSelesai"); ?>
+                </div>
+              <?php } ?>
 
 
               <ul class="nav nav-tabs" role="tablist" style="font-weight: bolder;">
@@ -127,7 +132,7 @@ $this->session->set_userdata('workshop', null);
                   <?php endforeach; ?>
 
                   <?php if (isset($this->session->userdata['logged_in'])) : ?>
-                    <?php if ($val['pembuat_kelas'] != $this->session->userdata('id_user')) : ?>
+                    <?php if ($val['status_kelas'] != 2 && $val['pembuat_kelas'] != $this->session->userdata('id_user')) : ?>
                       <?php if ($val['batas_jumlah'] > count($peserta_kelas) || $val['batas_jumlah'] == 0) : ?>
                         <?php if ($cek == true) : ?>
                           <?php if ($val['jenis_kelas'] == 1) : ?>
@@ -519,7 +524,8 @@ $this->session->set_userdata('workshop', null);
                 <div class="meta"># <?= $val['nama_kategori']; ?></div>
               </div>
               <h3><a href="<?= base_url() ?>classes/open_class/<?= $val['id_kelas'] ?>"><?= $val['judul_kelas'] ?></a></h3>
-              <p><?php echo substr($val['deskripsi_kelas'], 0, 100);  ?></p>
+              <?php $temp = strip_tags($val['deskripsi_kelas']); ?>
+										<p><?php echo substr($temp, 0, 100);  ?></p>
             </div>
             <div class="d-flex border-top stats">
               <div class="py-3 px-4"><span class="icon-users"></span> <?= $val['peserta'] ?> peserta</div>

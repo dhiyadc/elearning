@@ -1,6 +1,9 @@
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
 <section class="user_dashboard">
-<div class="row mt-0">
-  <div class="col-lg-12" style="background-color: aquamarine;" >
+
+  <div class="col-lg-12" style="background-color: darkcyan;" >
     <div class="card" style="border-radius: 0px; background-color: darkcyan;"> 
     <div class="container my-5 pt-5 pb-3 px-4 z-depth-1">
 
@@ -28,7 +31,7 @@
   <!--Section: Block Content-->
 
 
-</div>
+
     </div>
   </div>
 </div>
@@ -137,5 +140,3 @@
 </div>
 </section>
 
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

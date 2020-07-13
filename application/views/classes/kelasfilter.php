@@ -15,10 +15,10 @@ $_SESSION['url_login'] = "kelasfilter";
 				<?php if (isset($_SESSION['logged_in'])) { ?>
 					<a href="<?= base_url() ?>classes/new_class" class="btn btn-black"><i class="fa fa-clone left"></i> Buat
 						Kelas</a>
-						<?php } else { ?>
-							<a href="" class="btn btn-black" data-toggle="modal" data-target="#elegantModalForm"><i class="fa fa-clone left"></i> Buat
-							Kelas</a>
-							<a href="" class="btn btn-black" data-toggle="modal" data-target="#elegantModalForm"><i class="fa fa-clone left"></i> Gabung Kelas</a>
+				<?php } else { ?>
+					<a href="" class="btn btn-black ml-2 mt-1" data-toggle="modal" data-target="#elegantModalForm"><i class="fa fa-clone left"></i> Buat
+						Kelas</a>
+					<a href="" class="btn btn-black  ml-2 mt-1" data-toggle="modal" data-target="#elegantModalForm"><i class="fa fa-clone left"></i> Gabung Kelas</a>
 				<?php } ?>
 
 			</div>
@@ -60,11 +60,11 @@ $_SESSION['url_login'] = "kelasfilter";
 <section class="menutop">
 	<div class="container">
 		<div class="row mt-5" style="padding-bottom :15px; border-bottom: 1px solid #dedfe0;">
-			<div class="col-xs-2">
+			<div class="col-xs-2" style="padding-left: 25px;">
 				<div class="col-md-2"><a href="<?= base_url() ?>classes" class="btn btn-primary" style="background-color: dimgrey; border-color: white">Kelas <?= $kategori_text; ?></a>
 				</div>
 			</div>
-			<div class="col-xs-10 no-margin">
+			<div class="col-xs-10 no-margin" style="padding-right: 36px;">
 
 
 				<div class="row">
@@ -116,7 +116,7 @@ $_SESSION['url_login'] = "kelasfilter";
 				</div>
 			</div>
 
-			<div class="ml-auto w-25">
+			<div class="ml-auto w-35" style="padding-left: 40px; padding-right: 100px;">
 
 				<!-- <nav class="site-navigation position-relative text-right" role="navigation">
               <ul class="site-menu  mr-auto d-none d-lg-block m-0 p-0">
@@ -243,7 +243,8 @@ $_SESSION['url_login'] = "kelasfilter";
 																		?></span>
 											<div class="meta"># <?= $val['nama_kategori']; ?></div>
 											<h3><a href="<?= base_url() ?>classes/open_class/<?= $val['id_kelas'] ?>"><?= $val['judul_kelas'] ?></a></h3>
-											<p><?php echo substr($val['deskripsi_kelas'], 0, 50);  ?></p>
+											<?php $temp = strip_tags($val['deskripsi_kelas']); ?>
+											<p><?php echo substr($temp, 0, 100);  ?></p>
 										</div>
 										<div class="d-flex border-top stats">
 											<div class="py-3 px-4"><span class="icon-users"></span> <?= $val['peserta'] ?>

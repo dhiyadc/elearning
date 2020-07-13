@@ -536,6 +536,8 @@ class Workshops extends CI_Controller
             $this->session->set_flashdata("errorAPI", $data['peserta']['message']);
 
         $data['cek'] = $this->Workshops_model->cekPeserta($id_kelas);
+        $data['error_bagian'] = "workshop";
+
         if ($data['cek']['status'] == 200)
             $data['cek'] = $data['kegiatan']['data'];
         else
@@ -591,10 +593,16 @@ class Workshops extends CI_Controller
 
 
             $this->load->view('partials/user/header', $header);
-            $this->load->view('workshops/openworkshop', $data);
+            if (count($data['kelas']) == 0 || count($data['kelas']) == null)
+                $this->load->view('classes/error_class', $data);
+            else
+                $this->load->view('workshops/openworkshop', $data);
             $this->load->view('partials/user/footer');
         } else {
             $this->load->view('partials/common/header');
+            if (count($data['kelas']) == 0 || count($data['kelas']) == null)
+                    $this->load->view('classes/error_class', $data);
+                else
             $this->load->view('workshops/openworkshop', $data);
             $this->load->view('partials/common/footer');
         }
@@ -795,4 +803,5 @@ class Workshops extends CI_Controller
             redirect('home');
         }
     }
+
 }

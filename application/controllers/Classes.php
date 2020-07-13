@@ -201,14 +201,17 @@ class Classes extends CI_Controller
             $this->session->set_flashdata("errorAPI", $data['materi']['message']);
 
         $data['materiKegiatan'] = $this->Classes_model->getMateribyKegiatan();
+
         if ($data['materiKegiatan']['status'] == 200) {
             $data['materiKegiatan'] = $data['materiKegiatan']['data'];
         } else
             $this->session->set_flashdata("errorAPI", $data['materiKegiatan']['message']);
+        $data['error_bagian'] = "kelas";
 
         if (isset($this->session->userdata['logged_in'])) {
             $this->session->set_flashdata('buttonJoin', 'Anda telah mengikuti kelas ini');
             $this->session->set_flashdata('batasPeserta', 'Maaf, kelas ini telah penuh');
+                      $this->session->set_flashdata('kelasSelesai', 'Kelas ini telah selesai');
 
             $header['nama'] = explode(" ", $this->Classes_model->getMyName()['nama']);
             if ($header['nama']['status'] == 200) {
@@ -253,12 +256,19 @@ class Classes extends CI_Controller
             }
 
             $this->load->view('partials/user/header', $header);
-            $this->load->view('classes/open_class', $data);
+
+            if (count($data['kelas']) == 0 || count($data['kelas']) == null)
+                $this->load->view('classes/error_class', $data);
+            else
+                $this->load->view('classes/open_class', $data);
             $this->load->view('partials/user/footer');
             $this->session->set_userdata('workshop', null);
         } else {
             $this->load->view('partials/common/header');
-            $this->load->view('classes/open_class', $data);
+            if (count($data['kelas']) == 0 || count($data['kelas']) == null)
+                $this->load->view('classes/error_class', $data);
+            else
+                $this->load->view('classes/open_class', $data);
             $this->load->view('partials/common/footer');
             $this->session->set_userdata('workshop', null);
         }
@@ -364,6 +374,7 @@ class Classes extends CI_Controller
                 $this->session->set_flashdata("errorAPI", $data['materiLain']['message']);
 
             $data['indexvideo'] = $index;
+            $data['error_bagian'] = "materi";
             if (isset($this->session->userdata['logged_in'])) {
                 $this->session->set_flashdata('buttonJoin', 'Anda telah mengikuti kelas ini');
                 $this->session->set_flashdata('batasPeserta', 'Maaf, kelas ini telah penuh');
@@ -410,12 +421,18 @@ class Classes extends CI_Controller
                 }
 
                 $this->load->view('partials/user/header', $header);
-                $this->load->view('classes/video_kelas', $data);
+                if (count($data['materiKegiatan']) == 0 || count($data['materiKegiatan']) == null)
+                    $this->load->view('classes/error_class', $data);
+                else
+                    $this->load->view('classes/video_kelas', $data);
                 $this->load->view('partials/user/footer');
                 $this->session->set_userdata('workshop', null);
             } else {
                 $this->load->view('partials/common/header');
-                $this->load->view('classes/video_kelas', $data);
+                if (count($data['materiKegiatan']) == 0 || count($data['materiKegiatan']) == null)
+                    $this->load->view('classes/error_class', $data);
+                else
+                    $this->load->view('classes/video_kelas', $data);
                 $this->load->view('partials/common/footer');
                 $this->session->set_userdata('workshop', null);
             }
@@ -838,6 +855,7 @@ class Classes extends CI_Controller
         }
 
         $kegiatan = $this->Classes_model->updateKegiatan($id_kelas, $id_kegiatan);
+
         if ($kegiatan['status'] == 200) {
             $this->session->set_flashdata("success", "Jadwal Kegiatan anda berhasil di tambah!");
         } else if ($kegiatan) {
@@ -1068,6 +1086,7 @@ class Classes extends CI_Controller
 
             foreach ($data['kelas'] as $value) {
                 $kegiatansaya = $this->Classes_model->getKegiatan($value['id_kelas']);
+
                 if ($kegiatansaya['status'] == 200) {
                     $kegiatansaya = $kegiatansaya['data'];
                 }

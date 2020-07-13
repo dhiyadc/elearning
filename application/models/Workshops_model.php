@@ -57,6 +57,7 @@ class workshops_model extends CI_Model
 
     public function getAllClasses()
     {
+
         return $this->http_request_get("workshop/allworkshop");
     }
 
@@ -152,6 +153,10 @@ class workshops_model extends CI_Model
     {
         return $this->http_request_get("workshop/peserta_workshop/$id");
     }
+
+    // public function isactive_workshop($id, $stat){
+    //     $this->db->query("UPDATE workshop SET is_active='$stat' WHERE id_workshop='$id'");
+    // }
 
     public function getClassById($id)
     {
@@ -338,6 +343,7 @@ class workshops_model extends CI_Model
 
     public function getClassesbyCategories($kategori)
     {
+
         return $this->http_request_get("workshop/bykategori/$kategori");
     }
 
@@ -358,6 +364,7 @@ class workshops_model extends CI_Model
 
     public function getAllRandomClasses()
     {
+
         return $this->http_request_get("workshop/randomworkshop");
     }
 
@@ -401,7 +408,6 @@ class workshops_model extends CI_Model
 
     public function getAllTopClasses()
     {
-
         return $this->http_request_get("workshop/topworkshop");
     }
 

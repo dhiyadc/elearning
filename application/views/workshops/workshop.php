@@ -262,7 +262,8 @@ $_SESSION['url_login'] = "kelasview";
                                                                     ?></span>
                                         <div class="meta"># <?= $val['nama_kategori']; ?></div>
                                         <h3><a href="<?= base_url() ?>workshops/open_workshop/<?= $val['id_workshop'] ?>"><?= $val['judul_workshop'] ?></a></h3>
-                                        <p><?php echo substr($val['deskripsi_workshop'], 0, 50);  ?></p>
+                                        <?php $temp = strip_tags($val['deskripsi_workshop']); ?>
+                                        <p><?php echo substr($temp, 0, 100);  ?></p>
                                     </div>
                                     <div class="d-flex border-top stats">
                                         <div class="py-3 px-4"><span class="icon-users"></span> <?= $val['peserta'] ?>
