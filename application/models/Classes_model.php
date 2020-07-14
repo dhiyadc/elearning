@@ -272,7 +272,8 @@ class Classes_model extends CI_Model
     {
         $sql = "SELECT *, DATE_FORMAT(tanggal_kegiatan, '%W, %d %M %Y') as tanggal, DATE_FORMAT(tanggal_kegiatan, '%H:%i') as waktu
                 FROM jadwal_kegiatan
-                WHERE id_kelas = '$id'";
+                WHERE id_kelas = '$id'
+                ORDER BY tanggal_kegiatan";
         return $this->db->query($sql)->result_array();
     }
 
@@ -280,7 +281,8 @@ class Classes_model extends CI_Model
     {
         $this->db->select("*, DATE_FORMAT(tanggal_kegiatan, '%W, %d %M %Y') as tanggal, DATE_FORMAT(tanggal_kegiatan, '%H:%i') as waktu")
             ->from('jadwal_kegiatan')
-            ->where('id_kegiatan', $activityId);
+            ->where('id_kegiatan', $activityId)
+            ->order_by('tanggal_kegiatan');
 
         return $this->db->get()->result_array();
     }
