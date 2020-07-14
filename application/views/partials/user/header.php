@@ -175,10 +175,10 @@
 
                 <li class="nav-item dropdown">
                   <?php if ((count($notif) + count($notif2)) == 0) : ?>
-                    <a class="nav-link" id="notifis" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-bell"></i>
+                    <a class="nav-link dropdown-toggle notification" id="notifis" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-bell"></i>
                     </a>
                   <?php else : ?>
-                    <a class="nav-link" id="notifis" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-bell"></i><span class="badge" style="font-size: 10px;"><?= count($notif) + count($notif2); ?></span>
+                    <a class="nav-link dropdown-toggle notification" id="notifis" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-bell"></i><span class="badge" style="font-size: 10px;"><?= count($notif) + count($notif2); ?></span>
                     </a>
                   <?php endif; ?>
                   <div class="notif" aria-labelledby="notifis">
@@ -268,7 +268,7 @@
 
 
                 <li class="nav-item dropdown">
-                  <a class="nav-link" id="navbarDropdownMenuLink-333" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Hi, <?= $nama[0]; ?> <i class="fa fa-user"></i>
+                  <a class="nav-link dropdown-toggle notification" id="navbarDropdownMenuLink-333" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Hi, <?= $nama[0]; ?> <i class="fa fa-user"></i>
                   </a>
                   <div class="dropdown-menu dropdown-menu-right dropdown-default" aria-labelledby="navbarDropdownMenuLink-333" style="text-shadow: 0px 0px white;">
                     <a class="dropdown-item" href="<?= base_url(); ?>profile">Profile</a>
