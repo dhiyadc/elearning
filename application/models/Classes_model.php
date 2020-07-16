@@ -789,8 +789,14 @@ class Classes_model extends CI_Model
 
     public function updateKegiatanStatus($activityId, $status)
     {
-        $this->db->set('status_kegiatan', $status)->where('id_kegiatan', $activityId);
-        return $this->db->update('jadwal_kegiatan');
+        $tanggal = $this->getKegiatanByIdKegiatan($activityId)[0]['tanggal_kegiatan'];
+        $data = [
+            'status_kegiatan' => $status,
+            'tanggal_kegiatan' => $tanggal
+        ];
+
+        $this->db->where('id_kegiatan', $activityId);
+        return $this->db->update('jadwal_kegiatan', $data);
     }
 
     public function joinClass($id)
