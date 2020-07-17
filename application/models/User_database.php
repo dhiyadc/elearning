@@ -5,7 +5,7 @@ class User_database extends CI_Model
     public function http_request_get($function)
     {
         $curl = curl_init();
-            $url = "http://classico.co.id/" . $function;
+        $url = "http://classico.id:9090/$function";
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
         $result = curl_exec($curl);
@@ -17,7 +17,7 @@ class User_database extends CI_Model
     public function http_request_post($data, $function)
     {
         $curl = curl_init();
-            $url = "http://classico.co.id/" . $function;
+        $url = "http://classico.id:9090/$function";
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_POST, TRUE);
         curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
@@ -31,7 +31,7 @@ class User_database extends CI_Model
     public function http_request_update($data, $function)
     {
         $curl = curl_init();
-            $url = "http://classico.co.id/" . $function;
+        $url = "http://classico.id:9090/$function";
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "UPDATE");
         curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
@@ -41,11 +41,11 @@ class User_database extends CI_Model
 
         return json_decode($result, TRUE);
     }
-    
-    public function http_request_delete( $function)
+
+    public function http_request_delete($function)
     {
         $curl = curl_init();
-            $url = "http://classico.co.id/" . $function;
+        $url = "http://classico.id:9090/$function";
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "DELETE");
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
@@ -62,9 +62,11 @@ class User_database extends CI_Model
         $username = $data['email'];
         $password = $data['password'];
         $hashed = hash('sha256', $password);
-        
-        $data = ['email' => $username,
-        'password' => $hashed];
+
+        $data = [
+            'email' => $username,
+            'password' => $hashed
+        ];
         $user = $this->http_request_post($data, "home/login");
 
         return $user;
@@ -75,7 +77,7 @@ class User_database extends CI_Model
         $dataparam = [
             'email' => $email
         ];
-        return $this->http_request_get($dataparam, "user/account/$email");
+        return $this->http_request_get("user/account/$email");
     }
 
     // Register Function
@@ -94,7 +96,7 @@ class User_database extends CI_Model
 
     public function getIDUser($email)
     {
-        return $this->http_request_get("?email=$email");
+        return $this->http_request_get("user/id_user/$email");
     }
 
     public function getEmailUser($id_user)
@@ -102,7 +104,7 @@ class User_database extends CI_Model
         $dataparam = [
             'id_user' => $id_user
         ];
-        return $this->http_request_get($dataparam, "user/account/email/$id_user");
+        return $this->http_request_get("user/account/email/$id_user");
     }
 
     //Set token for reset password request
@@ -110,9 +112,7 @@ class User_database extends CI_Model
     {
         $data = [
             'id_user' => $id_user,
-            'token' => $token,
-            'status_token' => 0,
-            'expire_date' => "DATE_ADD(NOW(), INTERVAL 5 MINUTE)"
+            'token' => $token
         ];
 
         $this->http_request_post($data, "users/lupapassword/token");

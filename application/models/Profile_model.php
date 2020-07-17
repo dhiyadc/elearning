@@ -5,7 +5,7 @@ class Profile_model extends CI_Model
     public function http_request_get($function)
     {
         $curl = curl_init();
-            $url = "http://classico.co.id/" . $function;
+        $url = "http://classico.id:9090/$function";
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
         $result = curl_exec($curl);
@@ -17,7 +17,7 @@ class Profile_model extends CI_Model
     public function http_request_post($data, $function)
     {
         $curl = curl_init();
-            $url = "http://classico.co.id/" . $function;
+        $url = "http://classico.id:9090/$function";
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_POST, TRUE);
         curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
@@ -31,7 +31,7 @@ class Profile_model extends CI_Model
     public function http_request_update($data, $function)
     {
         $curl = curl_init();
-            $url = "http://classico.co.id/" . $function;
+        $url = "http://classico.id:9090/$function";
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "UPDATE");
         curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
@@ -41,11 +41,11 @@ class Profile_model extends CI_Model
 
         return json_decode($result, TRUE);
     }
-    
-    public function http_request_delete( $function)
+
+    public function http_request_delete($function)
     {
         $curl = curl_init();
-            $url = "http://classico.co.id/" . $function;
+        $url = "http://classico.id:9090/$function";
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "DELETE");
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
@@ -57,10 +57,8 @@ class Profile_model extends CI_Model
 
     public function getProfile()
     {
-        $dataparam = [
-            'id_user' => $this->session->userdata('id_user')
-        ];
-        return $this->http_request_get($dataparam, "account/users/profile");
+        $id_user = $this->session->userdata('id_user');
+        return $this->http_request_get("account/users/profile/$id_user");
     }
 
     private function insertImage()
@@ -83,7 +81,7 @@ class Profile_model extends CI_Model
         $config['max_size'] = '3000';
         $config['remove_space'] = true;
         $id_user = $this->session->userdata('id_user');
-        $data = $this->http_request_get("?id_user=$id_user");
+        $data = $this->http_request_get("account/users/profile/$id_user");
         foreach ($data['data'] as $data2) {
             unlink("./assets/images/" . $data2['foto']);
         }
@@ -106,7 +104,7 @@ class Profile_model extends CI_Model
 
             $this->load->library('upload', $config);
             if ($this->upload->do_upload('foto')) {
-                $data = $this->http_request_get("?id_user=$id_user");
+                $data = $this->http_request_get("account/users/profile/$id_user");
                 foreach ($data['data'] as $data2) {
                     unlink("./assets/images/" . $data2['foto']);
                 }
@@ -130,9 +128,6 @@ class Profile_model extends CI_Model
                 'deskripsi' => $this->input->post('deskripsi')
             ];
         }
-        $dataparam = [
-            'id_user' => $id_user
-        ];
         $this->http_request_update($data, "user/account/profile/$id_user");
     }
 

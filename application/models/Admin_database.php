@@ -6,7 +6,7 @@ class Admin_database extends CI_Model
     public function http_request_get($function)
     {
         $curl = curl_init();
-        $url = "http://classico.co.id/" . $function;
+        $url = "http://classico.id:9090/$function";
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
         $result = curl_exec($curl);
@@ -18,7 +18,7 @@ class Admin_database extends CI_Model
     public function http_request_post($data, $function)
     {
         $curl = curl_init();
-        $url = "http://classico.co.id/" . $function;
+        $url = "http://classico.id:9090/$function";
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_POST, TRUE);
         curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
@@ -32,7 +32,7 @@ class Admin_database extends CI_Model
     public function http_request_update($data, $function)
     {
         $curl = curl_init();
-        $url = "http://classico.co.id/" . $function;
+        $url = "http://classico.id:9090/$function";
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "UPDATE");
         curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
@@ -42,11 +42,11 @@ class Admin_database extends CI_Model
 
         return json_decode($result, TRUE);
     }
-    
+
     public function http_request_delete($function)
     {
         $curl = curl_init();
-        $url = "http://classico.co.id/" . $function;
+        $url = "http://classico.id:9090/$function";
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "DELETE");
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
@@ -68,7 +68,7 @@ class Admin_database extends CI_Model
             'email' => $username,
             'hashpass' => $hashed
         ];
-        $this->http_request_get($dataparam, "login/admin/admincheck");
+        return $this->http_request_post($dataparam, "account/isadmin");
     }
 
     public function isOwner($data)
@@ -81,7 +81,7 @@ class Admin_database extends CI_Model
             'email' => $email,
             'hashpass' => $hashed
         ];
-        $owner = $this->http_request_get($dataparam, "login/owner");
+        return $this->http_request_post($dataparam, "account/isowner");
     }
 
     public function getIDUser($email)
@@ -103,7 +103,7 @@ class Admin_database extends CI_Model
 
     public function getAllClasses()
     {
-        return $this->http_request_get("classes/all_class/owner");
+        return $this->http_request_get("classes");
     }
 
     public function getClassById($id)
@@ -111,48 +111,48 @@ class Admin_database extends CI_Model
         $dataparam = [
             'id_kelas' => $id
         ];
-        return $this->http_request_get($dataparam, "classes/");
+        return $this->http_request_get("classes/$id");
     }
 
     public function getPembuat()
     {
-        return $this->http_request_get("");
+        return $this->http_request_get("classes/pembuat");
     }
 
     public function getPeserta()
     {
-        return $this->db->http_request_get("");
+        return $this->db->http_request_get("classes/peserta");
     }
 
     public function getKategori()
     {
-        return $this->http_request_get("");
+        return $this->http_request_get("classes/kategori_kelas");
     }
 
     public function getJenis()
     {
-        return $this->http_request_get("");
+        return $this->http_request_get("classes/jenis_kelas");
     }
 
     public function getStatus()
     {
-        return $this->http_request_get("");
+        return $this->http_request_get("classes/kegiatan/status");
     }
 
     public function getPesertaByUserIdClassId($id)
     {
         $id_user = $this->session->userdata('id_user');
-        return $this->http_request_get("?id_user=$id_user&id_kelas=$id");
+        return $this->http_request_get("classes/peserta/userclass/$id?id_user=$id_user");
     }
 
     public function getHarga($id)
     {
-        return $this->http_request_get("?id_kelas=$id");
+        return $this->http_request_get("classes/class_harga/$id");
     }
 
     public function getKegiatan($id)
     {
-        return $this->http_request_get("?id_kelas=$id");
+        return $this->http_request_get("classes/open_class/kegiatan/kelas/$id");
     }
 
     public function getAllUser()
@@ -167,7 +167,7 @@ class Admin_database extends CI_Model
         $config['max_size'] = '3000';
         $config['remove_space'] = true;
 
-        $data = $this->http_request_get("?id_kelas=$id");
+        $data = $this->http_request_get("classes/$id");
         foreach ($data['data'] as $data2) {
             unlink("images/" . $data2['poster_kelas']);
         }
@@ -195,7 +195,7 @@ class Admin_database extends CI_Model
                 'poster_kelas' => $this->input->post('old_image')
             ];
         }
-        $this->http_request_update($data, "?id_kelas=$id");
+        $this->http_request_update($data, "classes/my_classes/update/$id");
     }
 
     public function updateKegiatan($id)
@@ -204,15 +204,16 @@ class Admin_database extends CI_Model
             $data = [
                 'deskripsi_kegiatan' => $this->input->post('deskripsi_kegiatan')
             ];
-            $this->http_request_update($data, "?id_kelas=$id&id_kegiatan=$value");
+            $this->http_request_update($data, "classes/open_class/kegiatan/$id");
         }
     }
 
     public function hapusKelas($id)
     {
-        $this->http_request_delete("classes/my_classes/$id");
+        $this->http_request_delete("classes/my_classes/delete/$id");
     }
 
+    //belum digawein
     public function hapusWorkshop($id)
     {
         $this->http_request_delete("$id");
@@ -220,12 +221,12 @@ class Admin_database extends CI_Model
 
     public function getAllUsersDetail()
     {
-        return $this->http_request_get(null, "users/detail");
+        return $this->http_request_get("account/users/detail");
     }
 
     public function getAllClassesOwner()
     {
-        $this->http_request_get(null, "classes/all_class/owner");
+        $this->http_request_get("classes/all_class/owner");
     }
 
     public function getAllWorkshopsOwner()

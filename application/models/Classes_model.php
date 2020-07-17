@@ -6,7 +6,7 @@ class Classes_model extends CI_Model
     public function http_request_get($function)
     {
         $curl = curl_init();
-            $url = "http://classico.co.id/" . $function;
+        $url = "http://classico.id:9090/$function";
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
         $result = curl_exec($curl);
@@ -18,7 +18,7 @@ class Classes_model extends CI_Model
     public function http_request_post($data, $function)
     {
         $curl = curl_init();
-            $url = "http://classico.co.id/" . $function;
+        $url = "http://classico.id:9090/$function";
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_POST, TRUE);
         curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
@@ -32,7 +32,7 @@ class Classes_model extends CI_Model
     public function http_request_update($data, $function)
     {
         $curl = curl_init();
-            $url = "http://classico.co.id/" . $function;
+        $url = "http://classico.id:9090/$function";
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "UPDATE");
         curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
@@ -42,11 +42,11 @@ class Classes_model extends CI_Model
 
         return json_decode($result, TRUE);
     }
-    
+
     public function http_request_delete($function)
     {
         $curl = curl_init();
-            $url = "http://classico.co.id/" . $function;
+        $url = "http://classico.id:9090/$function";
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "DELETE");
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
@@ -58,7 +58,7 @@ class Classes_model extends CI_Model
 
     public function getAllClasses()
     {
-        return $this->http_request_get("classes/all_class/detail");
+        return $this->http_request_get("classes");
     }
 
     public function getAllHarga()
@@ -71,17 +71,17 @@ class Classes_model extends CI_Model
         $dataparam = [
             'keyword' => $keyword
         ];
-        $this->http_request_post($dataparam, "classes/all_detail");
+        return $this->http_request_get("classes/all_class/detail?keyword=$keyword");
     }
 
     public function getAllRandomClasses()
     {
-        $this->http_request_get("classes/all_class/random");
+        return $this->http_request_get("classes/all_class/random");
     }
 
     public function getAllTopClasses()
     {
-        $this->http_request_get("classes/all_class/top");
+        return $this->http_request_get("classes/all_class/top");
     }
 
     public function getClassesbyCategories($kategori)
@@ -106,42 +106,18 @@ class Classes_model extends CI_Model
         return $this->http_request_get("classes/my_classes/$id_user");
     }
 
-
-    public function getMyPublicClasses()
-    {
-        $id_user = $this->session->userdata('id_user');
-        return $this->http_request_get("?id_user=$id_user&tipe_kelas=1");
-    }
-
-    public function getMyPrivateClasses()
-    {
-        $id_user = $this->session->userdata('id_user');
-        return $this->http_request_get("?id_user=$id_user&tipe_kelas=2");
-    }
-
-    public function getMyPrivateClassesDetail($keyword = null)
-    {
-        if ($keyword) {
-            $user = $this->session->userdata('id_user');
-            return $this->http_request_get("?keyword=$keyword&id_user=$user");
-        } else {
-            $user = $this->session->userdata('id_user');
-            return $this->http_request_get("?keyword=null&id_user=$user");
-        }
-    }
-
     public function getClassById($id)
     {
         $dataparam = [
             'id_kelas' => $id
         ];
-        return $this->http_request_get("classes/$id");
+        return $this->http_request_get("/classes/$id");
     }
 
     public function getPesertabyClass($id)
     {
         $id_user = $this->session->userdata('id_user');
-        return $this->http_request_get(null, "classes/peserta/byclass/$id?id_user=$id_user");
+        return $this->http_request_get("classes/peserta/byclass/$id?id_user=$id_user");
     }
 
     public function getPembuat()
@@ -175,7 +151,7 @@ class Classes_model extends CI_Model
         $dataparam = [
             'id_user' => $userId
         ];
-        return $this->$this->http_request_get($dataparam, "users/detail");
+        return $this->$this->http_request_get("account/users/detail/by/$userId");
     }
 
     public function getPesertaByUserIdClassId($id)
@@ -272,7 +248,7 @@ class Classes_model extends CI_Model
         $dataparam = [
             'id_kelas' => $id
         ];
-        $peserta = $this->http_request_get($dataparam, "class/cekpeserta");
+        $peserta = $this->http_request_get($dataparam, "classes/peserta/cek/$id");
         if ($peserta['status'] == 200 && count($peserta['data']) == null || count($peserta['data']) == 0) {
             return true;
         } else {
@@ -305,7 +281,13 @@ class Classes_model extends CI_Model
             $file_name = $this->upload->data('file_name');
             $uniqid = uniqid();
 
+            if (!empty($this->input->post('harga')))
+                $harga_str = preg_replace("/[^0-9]/", "", $this->input->post('harga'));
+            else
+                $harga_str = 0;
+
             if ($this->input->post('batas') == 0) {
+
                 $data = [
                     'id_kelas' => $uniqid,
                     'pembuat_kelas' => $this->session->userdata('id_user'),
@@ -317,7 +299,8 @@ class Classes_model extends CI_Model
                     'jenis_kelas' => 1,
                     'status_kelas' => 1,
                     'batas_jumlah' => 0,
-                    'tipe_kelas' => $this->input->post('tipe')
+                    'tipe_kelas' => $this->input->post('tipe'),
+                    'harga_kelas' => $harga_str
                 ];
             } else {
                 $data = [
@@ -331,25 +314,13 @@ class Classes_model extends CI_Model
                     'jenis_kelas' => 1,
                     'status_kelas' => 1,
                     'batas_jumlah' => $this->input->post('jumlah_peserta'),
-                    'tipe_kelas' => $this->input->post('tipe')
+                    'tipe_kelas' => $this->input->post('tipe'),
+                    'harga_kelas' => $harga_str
                 ];
             }
 
             $this->http_request_post($data, "classes/create_class");
 
-            if (!empty($this->input->post('harga'))) {
-                $harga_str = preg_replace("/[^0-9]/", "", $this->input->post('harga'));
-                $data = [
-                    'id_kelas' => $uniqid,
-                    'harga_kelas' => $harga_str
-                ];
-            } else {
-                $data = [
-                    'id_kelas' => $uniqid,
-                    'harga_kelas' => '0'
-                ];
-            }
-            $this->db->insert('harga_kelas', $data);
 
             if (!empty($this->input->post('addmore'))) {
                 $this->setKegiatan($uniqid);
@@ -370,7 +341,7 @@ class Classes_model extends CI_Model
                 'status_kelas' => 1
             ];
         }
-        $this->http_request_update($data, null,  "classes/kegiatan/status/$id");
+        $this->http_request_update($data, "classes/my_class/status/$id");
     }
 
     private function updateImage($id)
@@ -381,7 +352,7 @@ class Classes_model extends CI_Model
         $config['remove_space'] = true;
 
 
-        $data = $this->http_request_get("?id_kelas=$id");
+        $data = $this->http_request_get("classes/$id");
         foreach ($data['data'] as $data2) {
             unlink("images/" . $data2['poster_kelas']);
         }
@@ -407,7 +378,7 @@ class Classes_model extends CI_Model
 
             $this->load->library('upload', $config);
             if ($this->upload->do_upload('poster')) {
-                $data = $this->http_request_get("?id_kelas=$id");
+                $data = $this->http_request_get("classes/$id");
                 foreach ($data['data'] as $data2) {
                     unlink("assets/images/" . $data2['poster_kelas']);
                 }
@@ -433,29 +404,11 @@ class Classes_model extends CI_Model
         $this->http_request_update($data, "classes/my_classes/update/$id");
     }
 
-    public function setHarga($id)
-    {
-        if (!empty($this->input->post('harga'))) {
-            $harga_str = preg_replace("/[^0-9]/", "", $this->input->post('harga'));
-            $data = [
-                'id_kelas' => $id,
-                'harga_kelas' => $harga_str
-            ];
-        } else {
-            $data = [
-                'id_kelas' => $id,
-                'harga_kelas' => '0'
-            ];
-        }
-
-        $this->http_request_post($data, "");
-    }
-
     public function setKegiatanByClass($id)
     {
         $data = [];
         $id_kegiatan_uniq = uniqid();
-
+        $fileArr[] = "";
         if (!empty($_FILES['materi']['name'][0])) {
             $data = [
                 'id_kegiatan' => $id_kegiatan_uniq,
@@ -465,7 +418,7 @@ class Classes_model extends CI_Model
                 'status_kegiatan' => 3
             ];
 
-            $this->http_request_post($data, "");
+            $this->http_request_post($data, "classes/open_class/kegiatan/class");
             $id_keg = $data['id_kegiatan'];
 
             $video = $this->input->post('video');
@@ -482,7 +435,7 @@ class Classes_model extends CI_Model
                         'kategori_materi' => 2
                     ];
                     $materi_id[] = $data['id_materi'];
-                    $this->http_request_post($data, "");
+                    $this->http_request_post($data, "classes/open_class/materi");
                 }
             }
         }
@@ -504,7 +457,7 @@ class Classes_model extends CI_Model
                 if ($this->upload->do_upload('file')) {
                     $file_name = $this->upload->data('file_name');
                     // $data['totalFiles'][] = $file_name;
-                    $fileArr[] = $file_name;
+                    $fileArr = $file_name;
 
 
                     $data = [
@@ -515,13 +468,13 @@ class Classes_model extends CI_Model
                         'kategori_materi' => 1
                     ];
                     $materi_id[] = $data['id_materi'];
-                    $this->http_request_post($data, "");
+                    $this->http_request_post($data, "classes/open_class/materi");
                 } else {
-                    $this->http_request_delete("?id_kegiatan=$id_keg");
+                    $this->http_request_delete("classes/open_class/kegiatan/$id_keg");
 
                     $countFile = count($fileArr);
                     for ($j = 0; $j < $countFile; $j++) {
-                        $this->http_request_delete("?id_materi=$materi_id[$j]");
+                        $this->http_request_delete("classes/open_class/materi/$materi_id[$j]");
                         unlink("assets/docs/" . $fileArr[$j]);
                     }
                     return $this->upload->display_errors();
@@ -537,7 +490,7 @@ class Classes_model extends CI_Model
                     'status_kegiatan' => 3
                 ];
 
-                $this->http_request_post($data, "");
+                $this->http_request_post($data, "classes/open_class/kegiatan/class");
 
                 $video = $this->input->post('video');
                 if ($video != 0 || $video != null) {
@@ -553,7 +506,7 @@ class Classes_model extends CI_Model
                             'kategori_materi' => 2
                         ];
                         $materi_id[] = $data['id_materi'];
-                        $this->http_request_post($data, "");
+                        $this->http_request_post($data, "classes/open_class/materi");
                     }
                 }
             }
@@ -665,7 +618,7 @@ class Classes_model extends CI_Model
                 'tanggal_kegiatan' => $this->input->post('tanggal')
             ];
 
-            $this->http_request_update($data, "?id_kegiatan=$id_kegiatan");
+            $this->http_request_update($data, "classes/open_class/kegiatan/$id_kegiatan");
 
             $video = $this->input->post('video');
             if ($video != 0 || $video != null) {
@@ -681,7 +634,7 @@ class Classes_model extends CI_Model
                         'kategori_materi' => 2
                     ];
                     $materi_id[] = $data['id_materi'];
-                    $this->http_request_post($data, "");
+                    $this->http_request_post($data, "classes/open_class/materi");
                 }
             }
         }
@@ -714,12 +667,12 @@ class Classes_model extends CI_Model
                         'kategori_materi' => 1
                     ];
                     $materi_id[] = $data['id_materi'];
-                    $this->http_request_post($data, "");
+                    $this->http_request_post($data, "classes/open_class/materi");
                 } else {
 
                     $countFile = count($fileArr);
                     for ($j = 0; $j < $countFile; $j++) {
-                        $this->http_request_delete("?id_materi=$materi_id[$j]");
+                        $this->http_request_delete("classes/open_class/materi/$materi_id[$j]");
                         unlink("assets/docs/" . $fileArr[$j]);
                     }
 
@@ -735,7 +688,7 @@ class Classes_model extends CI_Model
                 ];
 
 
-                $this->http_request_update($data, "?id_kegiatan=$id_kegiatan");
+                $this->http_request_update($data, "classes/open_class/kegiatan/$id_kegiatan");
 
                 $video = $this->input->post('video');
                 if ($video != 0 || $video != null) {
@@ -751,7 +704,7 @@ class Classes_model extends CI_Model
                             'kategori_materi' => 2
                         ];
                         $materi_id[] = $data['id_materi'];
-                        $this->http_request_post($data, "");
+                        $this->http_request_post($data, "classes/open_class/materi");
                     }
                 }
             }
@@ -780,13 +733,12 @@ class Classes_model extends CI_Model
     public function leaveClass($id)
     {
         $id_user = $this->session->userdata('id_user');
-        $this->db->where('id_kelas', $id);
-        $this->http_request_delete(null,"classes/leaveclass/$id?id_user=$id_user");
+        $this->http_request_delete("classes/leaveclass/$id?id_user=$id_user");
     }
 
     public function getMateri($id_kelas)
     {
-        return $this->http_request_get("?id_kelas=$id_kelas");
+        return $this->http_request_get("classes/open_class/materi/by/idkelas/$id_kelas");
     }
     public function getMateriAll()
     {
@@ -797,6 +749,7 @@ class Classes_model extends CI_Model
     {
         return $this->http_request_get("classes/open_class/materi/by/kegiatan");
     }
+
     public function getMateribyIdMateri($id_materi)
     {
         return $this->http_request_get("classes/open_class/materi/$id_materi");
@@ -806,7 +759,7 @@ class Classes_model extends CI_Model
     {
         $data = ['url_materi' => $url_materi];
         unlink("assets/docs/" . $url_materi);
-        return $this->http_request_delete($data, "classes/open_class/materi/url/$url_materi");
+        return $this->http_request_delete("classes/open_class/materi/url/$url_materi");
     }
 
 
@@ -828,7 +781,7 @@ class Classes_model extends CI_Model
         $dataparam = [
             'id_kelas' => $id
         ];
-        return $this->http_request_get($dataparam, "classes/my_class/assignment/by/kelas/$id");
+        return $this->http_request_get("/classes/my_class/assignment/by/kelas/$id");
     }
 
     public function getTugasByTugasId($id)
@@ -836,12 +789,12 @@ class Classes_model extends CI_Model
         $dataparam = [
             'id_tugas' => $id
         ];
-        return $this->http_request_get($dataparam, "classes/my_class/assignment/by/tugas/$id");
+        return $this->http_request_get("classes/my_class/assignment/by/tugas/$id");
     }
 
     public function getSubmit()
     {
-        return $this->http_request_get(null, "classes/submitview");
+        return $this->http_request_get("classes/assignment/submit");
     }
 
     public function createAssignment($id)
@@ -982,13 +935,13 @@ class Classes_model extends CI_Model
             'tanggal_submit' => $this->input->post('tanggal_submit')
         ];
 
-        $this->http_request_update($data, "classes/my_class/assigclasses/my_class/assignment/nilai/$id");
+        $this->http_request_update($data, "classes/my_class/assignment/nilai/$id");
     }
 
     public function deleteJawaban($id)
     {
         //$data = ['id_submit => $id'];
-        $deldata = $this->http_request_delete("/");
+        $deldata = $this->http_request_delete("classes/my_class/assignment/$id");
         if ($deldata['status'] == 200) {
             foreach ($deldata['data'] as $data2) {
                 unlink("assets/docs/" . $data2['url_file']);
@@ -999,6 +952,6 @@ class Classes_model extends CI_Model
     public function cekTugas($id)
     {
         $id_user = $this->session->userdata('id_user');
-        return $this->http_request_get("classes/my_class/assignment/$id/$id_user");
+        return $this->http_request_get("classes/my_class/assignment/$id?id_user=$id_user");
     }
 }

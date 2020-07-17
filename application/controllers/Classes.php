@@ -1385,7 +1385,7 @@ class Classes extends CI_Controller
         } else
             $this->session->set_flashdata("errorAPI", $data['class']['message']);
 
-        $data['classNum'] = count($this->Classes_model->getClassesbySorting($sorting));
+        $data['classNum'] = $this->Classes_model->getClassesbySorting($sorting);
         if ($data['classNum']['status'] == 200) {
             $data['classNum'] = count($data['classNum']['data']);
         } else
