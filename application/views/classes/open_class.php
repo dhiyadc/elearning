@@ -270,7 +270,7 @@ $this->session->set_userdata('workshop', null);
                             <?php elseif ($cek == false) : ?>
                             <?php endif; ?>
                           <?php elseif ($val2['status_kegiatan'] != CLASS_FINISHED) : ?>
-                            <button type="button" class="btn btn-light btn-block" data-toggle="modal" data-target="#editKegiatan<?= $val2['id_kegiatan']; ?>">Edit</button><br>
+                            <button type="button" class="btn btn-light btn-block" data-toggle="modal" data-target="#editKegiatan<?= $val2['id_kegiatan']; ?>">Edit Kegiatan</button><br>
                             <a href="<?= base_url('class/') ?><?= $val['id_kelas'] ?>/<?= $val2['id_kegiatan']; ?>" class="btn btn-dark mr-1 btn-block">Mulai</a>
                             <div class="modal fade" id="editKegiatan<?= $val2['id_kegiatan']; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="padding-right: 90px;">
                               <div class="modal-dialog" role="document">
@@ -291,15 +291,6 @@ $this->session->set_userdata('workshop', null);
                                         <label>Deskripsi Kegiatan</label>
                                         <textarea class="form-control" name="deskripsi" required><?= $val2['deskripsi_kegiatan'] ?></textarea>
                                       </div>
-                                      <div class="form-group">
-                                        <label for="materiForm">Video (Opsional)</label>
-                                        <div id="kegiatan_field">
-                                          <textarea class="form-control" name="video" placeholder="Tambahkan link Youtube Embed. Jika Banyak, pisahkan dengan koma ( , )" style="margin-bottom: 5px;"></textarea>
-                                        </div>
-                                      </div>
-                                      <label for="materiForm">Tambah Materi</label>
-                                      <input type="file" name="materi[]" accept=".doc, .docx, .ppt, .pptx, .pdf" class="form-control-file" id="materiForm" multiple>
-
                                   </div>
                                   <input type="hidden" name="tanggal" value="<?= $val2['tanggal_kegiatan'] ?>">
 
@@ -340,7 +331,8 @@ $this->session->set_userdata('workshop', null);
                   <?php if ($val2['id_kegiatan'] == $val4['id_kegiatan']) : ?>
 
                     <?php if ($PembuatMateri < 1) : ?>
-                      <button class="btn btn-light btn-md px-3 my-0 ml-0" type="button" data-toggle="modal" data-target="#lihatMateri<?= $modalMateri ?>">Lihat Materi</button>
+                      <button class="btn btn-light btn-md px-3 my-0 ml-0 btn-block" type="button" data-toggle="modal" data-target="#lihatMateri<?= $modalMateri ?>">Lihat Materi</button><br>
+                      <button class="btn btn-dark btn-md px-3 my-0 ml-0 btn-block" type="button" data-toggle="modal" data-target="#editMateri<?= $modalMateri ?>">Edit Materi</button>
                     <?php endif; ?>
                     <?php $PembuatMateri++; ?>
                   <?php else : ?>
@@ -350,6 +342,42 @@ $this->session->set_userdata('workshop', null);
 
               </td>
             <?php endif; ?>
+                            <div class="modal fade" id="editMateri<?= $modalMateri ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="padding-right: 90px;">
+                              <div class="modal-dialog" role="document">
+                                <!--Content-->
+                                <div class="modal-content form-elegant">
+                                  <!--Header-->
+                                  <div class="modal-header text-center">
+                                    <h3 class="modal-title w-100 dark-grey-text font-weight-bold my-3" id="myModalLabel"><strong>Edit Materi</strong></h3>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                    </button>
+                                  </div>
+                                  <!--Body-->
+                                  <div class="modal-body mx-4">
+                                    <!--Body-->
+                                    <form enctype="multipart/form-data" action="<?= base_url() ?>classes/edit_kegiatan/<?= $val['id_kelas'] ?>/<?= $val2['id_kegiatan'] ?>" method="POST">
+                                      <div class="form-group">
+                                        <label for="materiForm">Video (Opsional)</label>
+                                        <div id="kegiatan_field">
+                                          <textarea class="form-control" name="video" placeholder="Tambahkan link Youtube Embed. Jika Banyak, pisahkan dengan koma ( , )" style="margin-bottom: 5px;"></textarea>
+                                        </div>
+                                      </div>
+                                      <label for="materiForm">Tambah Materi</label>
+                                      <input type="file" name="materi[]" accept=".doc, .docx, .ppt, .pptx, .pdf" class="form-control-file" id="materiForm" multiple>
+
+                                  </div>
+                                  <input type="hidden" name="deskripsi" value="<?= $val2['deskripsi_kegiatan'] ?>">
+                                  <input type="hidden" name="tanggal" value="<?= $val2['tanggal_kegiatan'] ?>">
+
+                                  <div class="text-center mb-3">
+                                    <button type="submit" class="btn btn-light blue-gradient btn-block btn-rounded z-depth-1a">Simpan</button>
+                                  </div>
+                                  </form>
+                                </div>
+                              </div>
+                            </div>
+
 
             <div class="modal fade" id="lihatMateri<?= $modalMateri ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="padding-right: 90px;">
               <?php $modalMateri++; ?>
