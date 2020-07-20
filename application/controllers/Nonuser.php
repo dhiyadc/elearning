@@ -39,6 +39,7 @@ class Nonuser extends CI_Controller
     //User Login Process
     public function admin_login_process()
     {
+        $null = false;
         if (isset($_SESSION['admin_logged_in'])) {
             redirect('admin');
         }
@@ -50,38 +51,56 @@ class Nonuser extends CI_Controller
 
         $email = $this->input->post('email');
         $owner = $this->Admin_database->isOwner($data);
-        if ($owner['status'] == 200)
-            $owner = $owner['data'];
-        else
-            $this->session->set_flashdata("errorAPI", $owner['message']);
-
-        if ($owner) {
-
-            // Add user data in session if owner is login
-            $this->session->set_userdata('owner_logged_in', TRUE);
-            // $this->session->set_userdata('admin_logged_in', TRUE);
-            $this->session->set_userdata('owner_email', $email);
-
-            redirect('owner');
-        } else {
-            $result = $this->Admin_database->isAdmin($data);
-            if ($result['status'] == 200)
-                $result = $owner['data'];
+        if ($owner == null)
+            $null = true;
+        else {
+            if ($owner['status'] == 200)
+                $owner = $owner['data'];
             else
-                $this->session->set_flashdata("errorAPI", $result['message']);
+                $this->session->set_flashdata("errorAPI", $owner['message']);
 
-            if ($result == TRUE) {
+            if ($owner) {
 
-                // Add user data in session
-                $this->session->set_userdata('admin_logged_in', TRUE);
-                $this->session->set_userdata('admin_email', $email);
-
-                redirect('admin');
+                // Add user data in session if owner is login
+                $this->session->set_userdata('owner_logged_in', TRUE);
+                // $this->session->set_userdata('admin_logged_in', TRUE);
+                $this->session->set_userdata('owner_email', $email);
+                if ($null)
+                    $this->load->view('server_error');
+                else
+                    redirect('owner');
             } else {
-                $data = array(
-                    'error_message' => 'Invalid Email or Password'
-                );
-                $this->load->view('nonuser/admin_login', $data);
+                $result = $this->Admin_database->isAdmin($data);
+                if ($result == null)
+                    $null = true;
+                else {
+                    if ($result['status'] == 200)
+                        $result = $owner['data'];
+                    else
+                        $this->session->set_flashdata("errorAPI", $result['message']);
+                }
+
+                if (!$null) {
+                    if ($result == TRUE) {
+
+                        // Add user data in session
+                        $this->session->set_userdata('admin_logged_in', TRUE);
+                        $this->session->set_userdata('admin_email', $email);
+
+                        if ($null)
+                            $this->load->view('server_error');
+                        else
+                            redirect('admin');
+                    } else {
+                        $data = array(
+                            'error_message' => 'Invalid Email or Password'
+                        );
+                        if ($null)
+                            $this->load->view('server_error');
+                        else
+                            $this->load->view('nonuser/admin_login', $data);
+                    }
+                }
             }
         }
     }

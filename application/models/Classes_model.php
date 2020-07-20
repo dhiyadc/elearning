@@ -248,11 +248,15 @@ class Classes_model extends CI_Model
         $dataparam = [
             'id_kelas' => $id
         ];
-        $peserta = $this->http_request_get($dataparam, "classes/peserta/cek/$id");
-        if ($peserta['status'] == 200 && count($peserta['data']) == null || count($peserta['data']) == 0) {
-            return true;
-        } else {
-            return false;
+        $peserta = $this->http_request_get("classes/peserta/cek/$id");
+        if ($peserta == null)
+            return 'server_error';
+        else {
+            if ($peserta['status'] == 200 && count($peserta['data']) == null || count($peserta['data']) == 0) {
+                return true;
+            } else {
+                return false;
+            }
         }
     }
 
@@ -319,14 +323,14 @@ class Classes_model extends CI_Model
                 ];
             }
 
-            $this->http_request_post($data, "classes/create_class");
+            return $this->http_request_post($data, "classes/create_class");
 
 
             if (!empty($this->input->post('addmore'))) {
                 $this->setKegiatan($uniqid);
             }
         } else {
-            return $this->upload->display_errors();
+            return "error";
         }
     }
 
@@ -379,8 +383,10 @@ class Classes_model extends CI_Model
             $this->load->library('upload', $config);
             if ($this->upload->do_upload('poster')) {
                 $data = $this->http_request_get("classes/$id");
-                foreach ($data['data'] as $data2) {
-                    unlink("assets/images/" . $data2['poster_kelas']);
+                if ($data['status'] == 200 && $data != null) {
+                    foreach ($data['data'] as $data2) {
+                        unlink("assets/images/" . $data2['poster_kelas']);
+                    }
                 }
 
                 $file_name = $this->upload->data('file_name');
@@ -391,7 +397,7 @@ class Classes_model extends CI_Model
                     'poster_kelas' => $file_name
                 ];
             } else {
-                return $this->upload->display_errors();
+                return "error";
             }
         } else {
             $data = [
@@ -401,7 +407,7 @@ class Classes_model extends CI_Model
                 'poster_kelas' => $this->input->post('old_image')
             ];
         }
-        $this->http_request_update($data, "classes/my_classes/update/$id");
+        return $this->http_request_update($data, "classes/my_classes/update/$id");
     }
 
     public function setKegiatanByClass($id)
@@ -418,7 +424,9 @@ class Classes_model extends CI_Model
                 'status_kegiatan' => 3
             ];
 
-            $this->http_request_post($data, "classes/open_class/kegiatan/class");
+            if ($this->http_request_post($data, "classes/open_class/kegiatan/class") == null)
+                return 'server_error';
+
             $id_keg = $data['id_kegiatan'];
 
             $video = $this->input->post('video');
@@ -435,7 +443,8 @@ class Classes_model extends CI_Model
                         'kategori_materi' => 2
                     ];
                     $materi_id[] = $data['id_materi'];
-                    $this->http_request_post($data, "classes/open_class/materi");
+                    if ($this->http_request_post($data, "classes/open_class/materi") == null)
+                        return 'server_error';
                 }
             }
         }
@@ -468,16 +477,18 @@ class Classes_model extends CI_Model
                         'kategori_materi' => 1
                     ];
                     $materi_id[] = $data['id_materi'];
-                    $this->http_request_post($data, "classes/open_class/materi");
+                    if ($this->http_request_post($data, "classes/open_class/materi") == null)
+                        return 'server_error';
                 } else {
-                    $this->http_request_delete("classes/open_class/kegiatan/$id_keg");
-
+                    if ($this->http_request_delete("classes/open_class/kegiatan/$id_keg") == null)
+                        return 'server_error';
                     $countFile = count($fileArr);
                     for ($j = 0; $j < $countFile; $j++) {
-                        $this->http_request_delete("classes/open_class/materi/$materi_id[$j]");
+                        if ($this->http_request_delete("classes/open_class/materi/$materi_id[$j]") == null)
+                            return 'server_error';
                         unlink("assets/docs/" . $fileArr[$j]);
                     }
-                    return $this->upload->display_errors();
+                    return "error";
 
                     //return $_FILES['materi']['name'][$i];
                 }
@@ -490,7 +501,8 @@ class Classes_model extends CI_Model
                     'status_kegiatan' => 3
                 ];
 
-                $this->http_request_post($data, "classes/open_class/kegiatan/class");
+                if ($this->http_request_post($data, "classes/open_class/kegiatan/class") == null)
+                    return 'server_error';
 
                 $video = $this->input->post('video');
                 if ($video != 0 || $video != null) {
@@ -506,7 +518,8 @@ class Classes_model extends CI_Model
                             'kategori_materi' => 2
                         ];
                         $materi_id[] = $data['id_materi'];
-                        $this->http_request_post($data, "classes/open_class/materi");
+                        if ($this->http_request_post($data, "classes/open_class/materi") == null)
+                            return 'server_error';
                     }
                 }
             }
@@ -618,7 +631,9 @@ class Classes_model extends CI_Model
                 'tanggal_kegiatan' => $this->input->post('tanggal')
             ];
 
-            $this->http_request_update($data, "classes/open_class/kegiatan/$id_kegiatan");
+            if ($this->http_request_update($data, "classes/open_class/kegiatan/$id_kegiatan") == null)
+                return 'server_error';
+
 
             $video = $this->input->post('video');
             if ($video != 0 || $video != null) {
@@ -634,7 +649,8 @@ class Classes_model extends CI_Model
                         'kategori_materi' => 2
                     ];
                     $materi_id[] = $data['id_materi'];
-                    $this->http_request_post($data, "classes/open_class/materi");
+                    if ($this->http_request_post($data, "classes/open_class/materi") == null)
+                        return 'server_error';
                 }
             }
         }
@@ -667,16 +683,18 @@ class Classes_model extends CI_Model
                         'kategori_materi' => 1
                     ];
                     $materi_id[] = $data['id_materi'];
-                    $this->http_request_post($data, "classes/open_class/materi");
+                    if ($this->http_request_post($data, "classes/open_class/materi") == null)
+                        return 'server_error';
                 } else {
 
                     $countFile = count($fileArr);
                     for ($j = 0; $j < $countFile; $j++) {
-                        $this->http_request_delete("classes/open_class/materi/$materi_id[$j]");
+                        if ($this->http_request_delete("classes/open_class/materi/$materi_id[$j]") == null)
+                            return 'server_error';
                         unlink("assets/docs/" . $fileArr[$j]);
                     }
 
-                    return $this->upload->display_errors();
+                    return "error";
 
                     //return $_FILES['materi']['name'][$i];
                 }
@@ -688,7 +706,8 @@ class Classes_model extends CI_Model
                 ];
 
 
-                $this->http_request_update($data, "classes/open_class/kegiatan/$id_kegiatan");
+                if ($this->http_request_update($data, "classes/open_class/kegiatan/$id_kegiatan") == null)
+                    return 'server_error';
 
                 $video = $this->input->post('video');
                 if ($video != 0 || $video != null) {
@@ -704,7 +723,8 @@ class Classes_model extends CI_Model
                             'kategori_materi' => 2
                         ];
                         $materi_id[] = $data['id_materi'];
-                        $this->http_request_post($data, "classes/open_class/materi");
+                        if ($this->http_request_post($data, "classes/open_class/materi") == null)
+                            return 'server_error';
                     }
                 }
             }
@@ -865,7 +885,8 @@ class Classes_model extends CI_Model
                     'id_tugas' => $id_tugas
                 ];
 
-                $this->http_request_post($data, "classes/my_class/submit_assignment");
+                if ($this->http_request_post($data, "classes/my_class/submit_assignment") == null)
+                    return 'server_error';
                 $data = [
                     'id_tugas' => $id_tugas,
                     'url_file' => $filename,
@@ -878,10 +899,11 @@ class Classes_model extends CI_Model
                     'id_tugas' => $id_tugas
                 ];
 
-                $this->http_request_post($data, "classes/my_class/submit_assignment");
+                if ($this->http_request_post($data, "classes/my_class/submit_assignment") == null)
+                    return 'server_error';
             }
         } else {
-            return $this->upload->display_errors();
+            return "error";
         }
     }
 
@@ -905,9 +927,10 @@ class Classes_model extends CI_Model
                     'batas_pengiriman_tugas' => $this->input->post('deadline')
                 ];
 
-                $this->http_request_update($data, "classes/my_class/assignment/kuis/$id");
+                if ($this->http_request_update($data, "classes/my_class/assignment/kuis/$id") == null)
+                    return 'server_error';
             } else {
-                return $this->upload->display_errors();
+                return "error";
             }
         } else {
             $data = [
@@ -918,7 +941,8 @@ class Classes_model extends CI_Model
                 'batas_pengiriman_tugas' => $this->input->post('deadline')
             ];
 
-            $this->http_request_update($data, "classes/my_class/assignment/kuis/$id");
+            if ($this->http_request_update($data, "classes/my_class/assignment/kuis/$id") == null)
+                return 'server_error';
         }
     }
 
@@ -935,16 +959,20 @@ class Classes_model extends CI_Model
             'tanggal_submit' => $this->input->post('tanggal_submit')
         ];
 
-        $this->http_request_update($data, "classes/my_class/assignment/nilai/$id");
+        return $this->http_request_update($data, "classes/my_class/assignment/nilai/$id");
     }
 
     public function deleteJawaban($id)
     {
         //$data = ['id_submit => $id'];
         $deldata = $this->http_request_delete("classes/my_class/assignment/$id");
-        if ($deldata['status'] == 200) {
-            foreach ($deldata['data'] as $data2) {
-                unlink("assets/docs/" . $data2['url_file']);
+        if ($deldata == null)
+            return 'server_error';
+        else {
+            if ($deldata['status'] == 200) {
+                foreach ($deldata['data'] as $data2) {
+                    unlink("assets/docs/" . $data2['url_file']);
+                }
             }
         }
     }

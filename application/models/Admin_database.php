@@ -216,7 +216,7 @@ class Admin_database extends CI_Model
     //belum digawein
     public function hapusWorkshop($id)
     {
-        $this->http_request_delete("$id");
+        $this->http_request_delete("workshop/my_workshop/$id");
     }
 
     public function getAllUsersDetail()

@@ -64,34 +64,27 @@ class workshops_model extends CI_Model
     public function getMyClasses()
     {
         $id_user = $this->session->userdata('id_user');
-        return $this->http_request_get("workshop/my_workshop/$id_user");
-    }
-
-
-    public function getMyPrivateClasses()
-    {
-        $id_user = $this->session->userdata('id_user');
-        return $this->http_request_get("?id_user=$id_user&tipe_workshop=2");
+        return $this->http_request_get("workshop/my_workshop/all/$id_user");
     }
 
     public function getAllKegiatan()
     {
-        return $this->http_request_get("workshop/kegiatan");
+        return $this->http_request_get("workshop/allkegiatan");
     }
 
     public function getKategori()
     {
-        return $this->http_request_get("workshop/kategori");
+        return $this->http_request_get("classes/kategori_kelas");
     }
 
     public function getJenis()
     {
-        return $this->http_request_get("");
+        return $this->http_request_get("classes/jenis_kelas");
     }
 
     public function getStatus()
     {
-        return $this->http_request_get("");
+        return $this->http_request_get("classes/kegiatan/status");
     }
 
     public function getAllHarga()
@@ -104,14 +97,14 @@ class workshops_model extends CI_Model
         $dataparam = [
             'id_user' => $userId
         ];
-        return $this->http_request_get($dataparam, "users/detail");
+        return $this->http_request_get("account/users/detail/by/$id_user");
     }
 
     public function getMyName()
     {
         $id_user = $this->session->userdata('id_user');
 
-        return $this->http_request_get("?id_user=$id_user");
+        return $this->http_request_get("user/account/name/$id_user");
     }
 
     public function getPeserta()
@@ -127,7 +120,7 @@ class workshops_model extends CI_Model
     public function getPesertaByUserIdClassId($id)
     {
         $id_user = $this->session->userdata('id_user');
-        return $this->db->http_request_get("workshop/peserta/userworkshop/$id_user?id_workshop=$id");
+        return $this->db->http_request_get("workshop/peserta/userworkshop/$id?id_user=$id_user");
     }
 
     public function cekPeserta($id)
@@ -135,11 +128,15 @@ class workshops_model extends CI_Model
         $dataparam = [
             'id_workshop' => $id
         ];
-        $data = $this->http_request_get($dataparam, "classes/workshop");
-        if ($data['status'] == 200 && count($data['data']) == null || count($data['data']) == 0) {
-            return true;
-        } else {
-            return false;
+        $data = $this->http_request_get("workshop/peserta/cek/$id");
+        if ($data == null)
+            return 'server_error';
+        else {
+            if ($data['status'] == 200 && count($data['data']) == null || count($data['data']) == 0) {
+                return true;
+            } else {
+                return false;
+            }
         }
     }
 
@@ -165,12 +162,12 @@ class workshops_model extends CI_Model
 
     public function getPembuat()
     {
-        return $this->http_request_get("");
+        return $this->http_request_get("classes/pembuat");
     }
 
     public function getKelasKegiatan($id)
     {
-        return $this->http_request_get("workshop/kegiatan/$id");
+        return $this->http_request_get("workshop/kegiatan/by_id/$id");
     }
 
     public function createClass()
@@ -184,6 +181,13 @@ class workshops_model extends CI_Model
         if ($this->upload->do_upload('poster')) {
             $file_name = $this->upload->data('file_name');
             $id_workshop = uniqid();
+            if (!empty($this->input->post('harga'))) {
+                $harga_str = preg_replace("/[^0-9]/", "", $this->input->post('harga'));
+                $harga = $harga_str;
+            } else {
+                $harga = 0;
+            }
+
             if ($this->input->post('batas') == 0) {
                 $data = [
                     'id_workshop' => $id_workshop,
@@ -195,6 +199,7 @@ class workshops_model extends CI_Model
                     // 'jenis_kelas' => $this->input->post('jenis'),
                     'jenis_workshop' => 1,
                     'status_workshop' => 3,
+                    'harga_workshop' => $harga,
                     'batas_jumlah' => 0,
                     'tipe_workshop' => $this->input->post('tipe')
                 ];
@@ -207,6 +212,7 @@ class workshops_model extends CI_Model
                     'kategori_workshop' => $this->input->post('kategori'),
                     'poster_workshop' => $file_name,
                     // 'jenis_kelas' => $this->input->post('jenis'),
+                    'harga_workshop' => $harga,
                     'jenis_workshop' => 1,
                     'status_workshop' => 3,
                     'batas_jumlah' => $this->input->post('jumlah_peserta'),
@@ -214,12 +220,12 @@ class workshops_model extends CI_Model
                 ];
             }
 
-            $this->http_request_post($data, "workshop/create_workshop");
+            if ($this->http_request_post($data, "workshop/create_workshop") == null)
+                return 'server_error';
 
             $deskripsi_kegiatan = $this->input->post('deskripsi_kegiatan');
             $tanggal_kegiatan = $this->input->post('tanggal_kegiatan');
             $this->setKegiatan($id_workshop, $deskripsi_kegiatan, $tanggal_kegiatan);
-            $this->setHarga($id_workshop);
         } else {
             return "fail";
         }
@@ -232,32 +238,14 @@ class workshops_model extends CI_Model
             'id_user' => $this->session->userdata('id_user')
         ];
 
-        $this->http_request_post($data, "workshop/join");
+        return $this->http_request_post($data, "workshop/join");
     }
+
     public function getIdNewClass()
     {
         $id_user = $this->session->userdata('id_user');
         return $this->http_request_get("workshop/new_workshop/$id_user");
     }
-
-    public function setHarga($id)
-    {
-        if (!empty($this->input->post('harga'))) {
-            $harga_str = preg_replace("/[^0-9]/", "", $this->input->post('harga'));
-            $data = [
-                'id_workshop' => $id,
-                'harga_workshop' => $harga_str
-            ];
-        } else {
-            $data = [
-                'id_workshop' => $id,
-                'harga_workshop' => '0'
-            ];
-        }
-
-        $this->http_request_post($data, "");
-    }
-
 
     public function setKegiatan($id_workshop, $deskripsi_kegiatan, $tanggal_kegiatan)
     {
@@ -270,7 +258,7 @@ class workshops_model extends CI_Model
             'status_kegiatan' => 3
         ];
 
-        $this->http_request_post($data, "workshop/kegiatan");
+        return $this->http_request_post($data, "workshop/kegiatan");
     }
 
     public function updateKegiatan($id_kegiatan)
@@ -281,9 +269,7 @@ class workshops_model extends CI_Model
 
         ];
 
-        $this->http_request_update($data, "workshop/kegiatan/$id_kegiatan");
-
-        return "success";
+        return $this->http_request_update($data, "workshop/kegiatan/$id_kegiatan");
     }
 
     public function getKegiatanByIdKegiatan($activityId)
@@ -299,7 +285,7 @@ class workshops_model extends CI_Model
         $data = [
             'status_kegiatan' => $status
         ];
-        return $this->http_request_update($data, "workshop/kegiatan/status/$activityId");
+        return $this->http_request_update($data, "workshop/kegiatan/$activityId");
     }
 
     public function updateClass($id)
@@ -313,9 +299,15 @@ class workshops_model extends CI_Model
             $this->load->library('upload', $config);
             if ($this->upload->do_upload('poster')) {
 
-                $data = $this->http_request_get("?id_workshop=$id");
-                foreach ($data['data'] as $data2) {
-                    unlink("assets/images/" . $data2['poster_workshop']);
+                $data = $this->http_request_get("workshop/detail/$id");
+                if ($data == null)
+                    return 'server_error';
+                else {
+                    if ($data['status'] == 200) {
+                        foreach ($data['data'] as $data2) {
+                            unlink("assets/images/" . $data2['poster_workshop']);
+                        }
+                    }
                 }
 
                 $file_name = $this->upload->data('file_name');
@@ -337,7 +329,8 @@ class workshops_model extends CI_Model
             ];
         }
 
-        $this->http_request_update($data, "workshop/my_workshop/$id");
+        if ($this->http_request_update($data, "workshop/my_workshop/$id") == null)
+            return 'server_error';
     }
 
 
@@ -350,15 +343,16 @@ class workshops_model extends CI_Model
     public function getClassesbySorting($sorting)
     {
         $data = ['sorting' => $sorting];
-        return $this->http_request_post($data, "workshop/bysorting");
+        return $this->http_request_get("workshop/bysorting?sorting=$sorting");
     }
 
     public function getAllClassesDetail($keyword = null)
     {
-        $dataparam = [
-            'keyword' => $keyword
-        ];
-        return $this->http_request_post($dataparam, "workshop/allworkshop/detail");
+
+        if ($keyword == null)
+        return $this->http_request_get("workshop/allworkshop/detail");
+        else
+        return $this->http_request_get("workshop/allworkshop/detail?keyword=$keyword");
     }
 
     public function getAllRandomClasses()
@@ -375,20 +369,24 @@ class workshops_model extends CI_Model
 
     public function getTanggalKegiatan($id)
     {
-        return $data = $this->http_request_get("workshop/tanggal_kegiatan/$id");
-        if ($data['status'] == 200 && count($data['data']) != null || count($data['data']) != 0) {
-            $selesai = true;
-            foreach ($data['data'] as $key => $value) {
-                if ($value['status_kegiatan'] == 1 || $value['status_kegiatan'] == 3) {
-                    $selesai = false;
-                    break;
+        $data = $this->http_request_get("workshop/tanggal_kegiatan/$id");
+        if ($data == null)
+            return 'server_error';
+        else {
+            if ($data['status'] == 200 && count($data['data']) != null || count($data['data']) != 0) {
+                $selesai = true;
+                foreach ($data['data'] as $key => $value) {
+                    if ($value['status_kegiatan'] == 1 || $value['status_kegiatan'] == 3) {
+                        $selesai = false;
+                        break;
+                    }
                 }
+            } else {
+                $selesai = false;
             }
-        } else {
-            $selesai = false;
-        }
 
-        $this->updateStatus($id, $selesai);
+            $this->updateStatus($id, $selesai);
+        }
     }
 
     public function updateStatus($id, $selesai)
@@ -402,7 +400,7 @@ class workshops_model extends CI_Model
                 'status_workshop' => 1
             ];
         }
-        $this->http_request_update($data, "?id_workshop=$id");
+        return $this->http_request_update($data, "workshop/my_workshop/status/$id");
     }
 
     public function getAllTopClasses()
@@ -410,29 +408,10 @@ class workshops_model extends CI_Model
         return $this->http_request_get("workshop/topworkshop");
     }
 
-    public function getMyPrivateClassesDetail($keyword = null)
-    {
-        $user = $this->session->userdata('id_user');
-        if ($keyword) {
-            return $this->http_request_get("keyword=$keyword&id_user=$user");
-        } else {
-            return $this->http_request_get("keyword=null&id_user=$user");
-        }
-    }
-
-    public function getMyClassesDetail($keyword = null)
-    {
-        $user = $this->session->userdata('id_user');
-        if ($keyword) {
-            return $this->http_request_get("keyword=$keyword&id_user=$user");
-        } else {
-            return $this->http_request_get("keyword=null&id_user=$user");
-        }
-    }
 
     public function leaveClass($id)
     {
         $id_user = $this->session->userdata('id_user');
-        $this->http_request_delete("workshop/leave/$id?id_user=$id_user");
+        return $this->http_request_delete("workshop/leave/$id?id_user=$id_user");
     }
 }

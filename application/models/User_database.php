@@ -86,11 +86,10 @@ class User_database extends CI_Model
         $data = [
             "id_user" => $data['user_id'],
             "email" => $data['email'],
-            'hashed' => hash('sha256', $data['password']),
+            'password' => hash('sha256', $data['password']),
             "nama" => $data['nama'],
             "no_telepon" => $data['no_telepon']
         ];
-
         return $this->http_request_post($data, "home/register");
     }
 

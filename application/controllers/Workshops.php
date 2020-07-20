@@ -14,79 +14,116 @@ class Workshops extends CI_Controller
 
     public function index()
     {
+        $null = false;
         if (isset($_SESSION['logged_in'])) {
-            $header['nama'] = explode(" ", $this->Workshops_model->getMyName()['nama']);
-            if ($header['nama']['status'] == 200)
-                $header['nama'] = explode(" ", $header['nama']['data']['nama']);
-            else
-                $this->session->set_flashdata("errorAPI", $header['nama']['message']);
+            $header['nama'] = $this->Workshops_model->getMyName();
+            if ($header['nama'] == null)
+                $null = true;
+            else {
+                if ($header['nama']['status'] == 200 || $header['nama']['status'] == 202)
+                    $header['nama'] = explode(" ", $header['nama']['data']);
+                else
+                    $this->session->set_flashdata("errorAPI", $header['nama']['message']);
+            }
 
             $notif = $this->Classes_model->getPesertaByUserId();
-            if ($notif['status'] == 200) {
-                $datanotif = array();
-                foreach ($notif['data'] as $value) {
-                    $cek = $this->Classes_model->getKelasKegiatan($value['id_kelas']);
-                    if ($cek['status'] == 200)
-                        $cek = $cek['data'];
-                    else
-                        $this->session->set_flashdata("errorAPI", $cek['message']);
+            if ($notif == null)
+                $null = true;
+            else {
+                if ($notif['status'] == 200 || $notif['status'] == 202) {
+                    $datanotif = array();
+                    foreach ($notif['data'] as $value) {
+                        $cek = $this->Classes_model->getKelasKegiatan($value['id_kelas']);
+                        if ($cek == null)
+                            $null = true;
+                        else {
+                            if ($cek['status'] == 200 || $cek['status'] == 202)
+                                $cek = $cek['data'];
+                            else
+                                $this->session->set_flashdata("errorAPI", $cek['message']);
 
-                    if ($cek != null) {
-                        $datanotif[] = $cek;
+                            if ($cek != null) {
+                                $datanotif[] = $cek;
+                            }
+                        }
                     }
-                }
-                $header['notif'] = $datanotif;
-            } else
-                $this->session->set_flashdata("errorAPI", $notif['message']);
+                    $header['notif'] = $datanotif;
+                } else
+                    $this->session->set_flashdata("errorAPI", $notif['message']);
+            }
 
             $notif2 = $this->Workshops_model->getPesertaByUserId();
-            if ($notif2['status'] == 200) {
-                $datanotif2 = array();
-                foreach ($notif2['data'] as $value) {
-                    $cek2 = $this->Workshops_model->getKelasKegiatan($value['id_workshop']);
-                    if ($cek2['status'] == 200)
-                        $cek2 = $cek2['data'];
-                    else
-                        $this->session->set_flashdata("errorAPI", $cek2['message']);
+            if ($notif2 == null)
+                $null = true;
+            else {
+                if ($notif2['status'] == 200 || $notif2['status'] == 202) {
+                    $datanotif2 = array();
+                    foreach ($notif2['data'] as $value) {
+                        $cek2 = $this->Workshops_model->getKelasKegiatan($value['id_workshop']);
+                        if ($cek2 == null)
+                            $null = true;
+                        else {
+                            if ($cek2['status'] == 200 || $cek2['status'] == 202)
+                                $cek2 = $cek2['data'];
+                            else
+                                $this->session->set_flashdata("errorAPI", $cek2['message']);
 
-                    if ($cek2 != null) {
-                        $datanotif2[] = $cek;
+                            if ($cek2 != null) {
+                                $datanotif2[] = $cek;
+                            }
+                        }
                     }
-                }
-                $header['notif2'] = $datanotif2;
-            } else
-                $this->session->set_flashdata("errorAPI", $notif2['message']);
+                    $header['notif2'] = $datanotif2;
+                } else
+                    $this->session->set_flashdata("errorAPI", $notif2['message']);
+            }
 
-
-            $this->session->set_userdata('workshop', true);
-
-            $this->load->view('partials/user/header', $header);
-        } else {
-            $this->load->view('partials/common/header');
+            if (!$null) {
+                $this->session->set_userdata('workshop', true);
+                $this->load->view('partials/user/header', $header);
+            }
         }
 
-
         $data['categories'] = $this->Workshops_model->getKategori();
-        if ($data['categories']['status'] == 200)
-            $data['categories'] = $data['categories']['data'];
-        else
-            $this->session->set_flashdata("errorAPI", $data['categories']['message']);
+        if ($data['categories'] == null)
+            $null = true;
+        else {
+            if ($data['categories']['status'] == 200 || $data['categories']['status'] == 202)
+                $data['categories'] = $data['categories']['data'];
+            else
+                $this->session->set_flashdata("errorAPI", $data['categories']['message']);
+        }
 
         $data['class'] = $this->Workshops_model->getAllRandomClasses();
-        if ($data['class']['status'] == 200)
-            $data['class'] = $data['class']['data'];
-        else
-            $this->session->set_flashdata("errorAPI", $data['class']['message']);
+        if ($data['class'] == null)
+            $null = true;
+        else {
+            if ($data['class']['status'] == 200 || $data['class']['status'] == 202)
+                $data['class'] = $data['class']['data'];
+            else
+                $this->session->set_flashdata("errorAPI", $data['class']['message']);
+        }
 
         $data['classNum'] = $this->Workshops_model->getAllClassesDetail();
-        if ($data['classNum']['status'] == 200)
-            $data['classNum'] = count($data['class']['data']);
-        else
-            $this->session->set_flashdata("errorAPI", $data['classNum']['message']);
+        if ($data['classNum'] == null)
+            $null = true;
+        else {
+            if ($data['classNum']['status'] == 200 || $data['classNum']['status'] == 202)
+                $data['classNum'] = count($data['classNum']['data']);
+            else
+                $this->session->set_flashdata("errorAPI", $data['classNum']['message']);
+        }
 
-        $this->session->set_userdata('workshop', true);
-        $this->load->view('workshops/workshop', $data);
-        $this->load->view('partials/common/footer');
+        if ($null)
+            $this->load->view('server_error');
+        else {
+            if (!isset($_SESSION['logged_in']))
+                $this->load->view('partials/common/header');
+
+            $this->session->set_userdata('workshop', true);
+            $this->load->view('workshops/workshop', $data);
+            $this->load->view('partials/common/footer');
+        }
     }
 
     public function set_sess()
@@ -96,71 +133,108 @@ class Workshops extends CI_Controller
 
     public function new_workshop()
     {
+        $null = false;
         if (isset($this->session->userdata['logged_in'])) {
+
             $data['kategori'] = $this->Workshops_model->getKategori();
-            if ($data['kategori']['status'] == 200)
-                $data['kategori'] = $data['kategori']['data'];
-            else
-                $this->session->set_flashdata("errorAPI", $data['kategori']['message']);
+            if ($data['kategori'] == null)
+                $null = true;
+            else {
+                if ($data['kategori']['status'] == 200 || $data['kategori']['status'] == 202)
+                    $data['kategori'] = $data['kategori']['data'];
+                else
+                    $this->session->set_flashdata("errorAPI", $data['kategori']['message']);
+            }
 
             $data['jenis'] = $this->Workshops_model->getJenis();
-            if ($data['jenis']['status'] == 200)
-                $data['jenis'] = $data['jenis']['data'];
-            else
-                $this->session->set_flashdata("errorAPI", $data['jenis']['message']);
+            if ($data['jenis'] == null)
+                $null = true;
+            else {
+                if ($data['jenis']['status'] == 200 || $data['jenis']['status'] == 202)
+                    $data['jenis'] = $data['jenis']['data'];
+                else
+                    $this->session->set_flashdata("errorAPI", $data['jenis']['message']);
+            }
 
             $data['pembuat'] = $this->Workshops_model->getMyName();
-            if ($data['pembuat']['status'] == 200)
-                $data['pembuat'] = $data['pembuat']['data'];
-            else
-                $this->session->set_flashdata("errorAPI", $data['pembuat']['message']);
+            if ($data['pembuat'] == null)
+                $null = true;
+            else {
+                if ($data['pembuat']['status'] == 200 || $data['pembuat']['status'] == 202)
+                    $data['pembuat'] = $data['pembuat']['data'];
+                else
+                    $this->session->set_flashdata("errorAPI", $data['pembuat']['message']);
+            }
 
-            $header['nama'] = explode(" ", $this->Workshops_model->getMyName()['nama']);
-            if ($header['nama']['status'] == 200)
-                $header['nama'] = explode(" ", $header['nama']['data']['nama']);
-            else
-                $this->session->set_flashdata("errorAPI", $header['nama']['message']);
+            $header['nama'] = $this->Workshops_model->getMyName();
+            if ($header['nama'] == null)
+                $null = true;
+            else {
+                if ($header['nama']['status'] == 200 || $header['nama']['status'] == 202)
+                    $header['nama'] = explode(" ", $header['nama']['data']);
+                else
+                    $this->session->set_flashdata("errorAPI", $header['nama']['message']);
+            }
 
             $notif = $this->Classes_model->getPesertaByUserId();
-            if ($notif['status'] == 200) {
-                $datanotif = array();
-                foreach ($notif['data'] as $value) {
-                    $cek = $this->Classes_model->getKelasKegiatan($value['id_kelas']);
-                    if ($cek['status'] == 200)
-                        $cek = $cek['data'];
-                    else
-                        $this->session->set_flashdata("errorAPI", $cek['message']);
+            if ($notif == null)
+                $null = true;
+            else {
+                if ($notif['status'] == 200 || $notif['status'] == 202) {
+                    $datanotif = array();
+                    foreach ($notif['data'] as $value) {
+                        $cek = $this->Classes_model->getKelasKegiatan($value['id_kelas']);
+                        if ($cek == null)
+                            $null = true;
+                        else {
+                            if ($cek['status'] == 200 || $cek['status'] == 202)
+                                $cek = $cek['data'];
+                            else
+                                $this->session->set_flashdata("errorAPI", $cek['message']);
 
-                    if ($cek != null) {
-                        $datanotif[] = $cek;
+                            if ($cek != null) {
+                                $datanotif[] = $cek;
+                            }
+                        }
                     }
-                }
-                $header['notif'] = $datanotif;
-            } else
-                $this->session->set_flashdata("errorAPI", $notif['message']);
+                    $header['notif'] = $datanotif;
+                } else
+                    $this->session->set_flashdata("errorAPI", $notif['message']);
+            }
 
             $notif2 = $this->Workshops_model->getPesertaByUserId();
-            if ($notif2['status'] == 200) {
-                $datanotif2 = array();
-                foreach ($notif2['data'] as $value) {
-                    $cek2 = $this->Workshops_model->getKelasKegiatan($value['id_workshop']);
-                    if ($cek2['status'] == 200)
-                        $cek2 = $cek2['data'];
-                    else
-                        $this->session->set_flashdata("errorAPI", $cek2['message']);
+            if ($notif2 == null)
+                $null = true;
+            else {
+                if ($notif2['status'] == 200 || $notif2['status'] == 202) {
+                    $datanotif2 = array();
+                    foreach ($notif2['data'] as $value) {
+                        $cek2 = $this->Workshops_model->getKelasKegiatan($value['id_workshop']);
+                        if ($cek2 == null)
+                            $null = true;
+                        else {
+                            if ($cek2['status'] == 200 || $cek2['status'] == 202)
+                                $cek2 = $cek2['data'];
+                            else
+                                $this->session->set_flashdata("errorAPI", $cek2['message']);
 
-                    if ($cek2 != null) {
-                        $datanotif2[] = $cek;
+                            if ($cek2 != null) {
+                                $datanotif2[] = $cek;
+                            }
+                        }
                     }
-                }
-                $header['notif2'] = $datanotif2;
-            } else
-                $this->session->set_flashdata("errorAPI", $notif2['message']);
+                    $header['notif2'] = $datanotif2;
+                } else
+                    $this->session->set_flashdata("errorAPI", $notif2['message']);
+            }
 
-
-            $this->load->view('partials/user/header', $header);
-            $this->load->view('workshops/new_workshop', $data);
-            $this->load->view('partials/user/footer');
+            if ($null)
+                $this->load->view('server_error');
+            else {
+                $this->load->view('partials/user/header', $header);
+                $this->load->view('workshops/new_workshop', $data);
+                $this->load->view('partials/user/footer');
+            }
         } else {
             redirect('home');
         }
@@ -168,175 +242,270 @@ class Workshops extends CI_Controller
 
     public function new_class_action()
     {
+        $null = false;
         if (isset($this->session->userdata['logged_in'])) {
+
             $newClass = $this->Workshops_model->createClass();
-            if ($newClass['status'] == 200)
-                $newClass = $newClass['data'];
-            else
-                $this->session->set_flashdata("errorAPI", $newClass['message']);
-
-            if ($newClass == "fail") {
-                $this->session->set_flashdata("invalidImage", "Invalid Image Size (Max Size: 3 MB)");
-                redirect("workshops/new_workshop");
+            if ($newClass == null)
+                $null = true;
+            else {
+                if ($newClass == 200 || $newClass == 202)
+                    $newClass = $newClass['data'];
+                else
+                    $this->session->set_flashdata("errorAPI", $newClass['message']);
             }
-            $id = $this->Workshops_model->getIdNewClass();
-            if ($id['status'] == 200)
-                $id = $id['data'];
-            else
-                $this->session->set_flashdata("errorAPI", $id['message']);
 
-            redirect('workshops/open_workshop/' . $id['id_workshop']);
-        } else {
+            if (!$null) {
+                if ($newClass == "fail") {
+                    $this->session->set_flashdata("invalidImage", "Invalid Image Size (Max Size: 3 MB)");
+                    redirect("workshops/new_workshop");
+                }
+            }
+
+            $id = $this->Workshops_model->getIdNewClass();
+            if ($id == null)
+                $null = true;
+            else {
+                if ($id['status'] == 200 || $id['status'] == 202)
+                    $id = $id['data'];
+                else
+                    $this->session->set_flashdata("errorAPI", $id['message']);
+            }
+
+            if ($null)
+                $this->load->view('server_error');
+            else
+                redirect('workshops/open_workshop/' . $id['id_workshop']);
+        } else
             redirect('home');
-        }
     }
 
     public function categories($kategori)
     {
+        $null = false;
         $kategorii = str_replace("%20", " ", $kategori);
         if (isset($_SESSION['logged_in'])) {
-            $header['nama'] = explode(" ", $this->Workshops_model->getMyName()['nama']);
-            if ($header['nama']['status'] == 200)
-                $header['nama'] = explode(" ", $header['nama']['data']['nama']);
-            else
-                $this->session->set_flashdata("errorAPI", $header['nama']['message']);
+            $header['nama'] = $this->Workshops_model->getMyName();
+            if ($header['nama'] == null)
+                $null = true;
+            else {
+                if ($header['nama']['status'] == 200 || $header['nama']['status'] == 202)
+                    $header['nama'] = explode(" ", $header['nama']['data']);
+                else
+                    $this->session->set_flashdata("errorAPI", $header['nama']['message']);
+            }
 
             $notif = $this->Classes_model->getPesertaByUserId();
-            if ($notif['status'] == 200) {
-                $datanotif = array();
-                foreach ($notif['data'] as $value) {
-                    $cek = $this->Classes_model->getKelasKegiatan($value['id_kelas']);
-                    if ($cek['status'] == 200)
-                        $cek = $cek['data'];
-                    else
-                        $this->session->set_flashdata("errorAPI", $cek['message']);
+            if ($notif == null)
+                $null = true;
+            else {
+                if ($notif['status'] == 200 || $notif['status'] == 202) {
+                    $datanotif = array();
+                    foreach ($notif['data'] as $value) {
+                        $cek = $this->Classes_model->getKelasKegiatan($value['id_kelas']);
+                        if ($cek == null)
+                            $null = true;
+                        else {
+                            if ($cek['status'] == 200 || $cek['status'] == 202)
+                                $cek = $cek['data'];
+                            else
+                                $this->session->set_flashdata("errorAPI", $cek['message']);
 
-                    if ($cek != null) {
-                        $datanotif[] = $cek;
+                            if ($cek != null) {
+                                $datanotif[] = $cek;
+                            }
+                        }
                     }
-                }
-                $header['notif'] = $datanotif;
-            } else
-                $this->session->set_flashdata("errorAPI", $notif['message']);
+                    $header['notif'] = $datanotif;
+                } else
+                    $this->session->set_flashdata("errorAPI", $notif['message']);
+            }
 
             $notif2 = $this->Workshops_model->getPesertaByUserId();
-            if ($notif2['status'] == 200) {
-                $datanotif2 = array();
-                foreach ($notif2['data'] as $value) {
-                    $cek2 = $this->Workshops_model->getKelasKegiatan($value['id_workshop']);
-                    if ($cek2['status'] == 200)
-                        $cek2 = $cek2['data'];
-                    else
-                        $this->session->set_flashdata("errorAPI", $cek2['message']);
+            if ($notif2 == null)
+                $null = true;
+            else {
+                if ($notif2['status'] == 200 || $notif2['status'] == 202) {
+                    $datanotif2 = array();
+                    foreach ($notif2['data'] as $value) {
+                        $cek2 = $this->Workshops_model->getKelasKegiatan($value['id_workshop']);
+                        if ($cek2 == null)
+                            $null = true;
+                        else {
+                            if ($cek2['status'] == 200 || $cek2['status'] == 202)
+                                $cek2 = $cek2['data'];
+                            else
+                                $this->session->set_flashdata("errorAPI", $cek2['message']);
 
-                    if ($cek2 != null) {
-                        $datanotif2[] = $cek;
+                            if ($cek2 != null) {
+                                $datanotif2[] = $cek;
+                            }
+                        }
                     }
-                }
-                $header['notif2'] = $datanotif2;
-            } else
-                $this->session->set_flashdata("errorAPI", $notif2['message']);
+                    $header['notif2'] = $datanotif2;
+                } else
+                    $this->session->set_flashdata("errorAPI", $notif2['message']);
+            }
 
-
-            $this->load->view('partials/user/header', $header);
-        } else {
-            $this->load->view('partials/common/header');
+            if (!$null) {
+                $this->session->set_userdata('workshop', true);
+                $this->load->view('partials/user/header', $header);
+            }
         }
 
         $data['kategori_text'] = $kategorii;
         $data['categories'] = $this->Workshops_model->getKategori();
-        if ($data['categories']['status'] == 200)
-            $data['categories'] = $data['categories']['data'];
-        else
-            $this->session->set_flashdata("errorAPI", $data['categories']['message']);
+        if ($data['categories'] == null)
+            $null = true;
+        else {
+            if ($data['categories']['status'] == 200 || $data['categories']['status'] == 202)
+                $data['categories'] = $data['categories']['data'];
+            else
+                $this->session->set_flashdata("errorAPI", $data['categories']['message']);
+        }
 
         $data['class'] = $this->Workshops_model->getClassesbyCategories($kategorii);
-        if ($data['class']['status'] == 200)
-            $data['class'] = $data['class']['data'];
-        else
-            $this->session->set_flashdata("errorAPI", $data['class']['message']);
+        if ($data['class'] == null)
+            $null = true;
+        else {
+            if ($data['class']['status'] == 200 || $data['class']['status'] == 202)
+                $data['class'] = $data['class']['data'];
+            else
+                $this->session->set_flashdata("errorAPI", $data['class']['message']);
+        }
 
         $data['classNum'] = $this->Workshops_model->getClassesbyCategories($kategorii);
-        if ($data['classNum']['status'] == 200)
-            $data['classNum'] = count($data['classNum']['data']);
-        else
-            $this->session->set_flashdata("errorAPI", $data['classNum']['message']);
+        if ($data['classNum'] == null)
+            $null = true;
+        else {
+            if ($data['classNum']['status'] == 200 || $data['classNum']['status'] == 202)
+                $data['classNum'] = count($data['classNum']['data']);
+            else
+                $this->session->set_flashdata("errorAPI", $data['classNum']['message']);
+        }
 
-        $this->load->view('workshops/workshopfilter', $data);
-        $this->load->view('partials/common/footer');
+        if ($null)
+            $this->load->view('server_error');
+        else {
+            if (isset($_SESSION['logged_in']))
+                $this->load->view('partials/common/header');
+            $this->load->view('workshops/workshopfilter', $data);
+            $this->load->view('partials/common/footer');
+        }
     }
 
     public function sort($sorting)
     {
+        $null = false;
         if (isset($_SESSION['logged_in'])) {
-            $header['nama'] = explode(" ", $this->Workshops_model->getMyName()['nama']);
-            if ($header['nama']['status'] == 200)
-                $header['nama'] = explode(" ", $header['nama']['data']['nama']);
-            else
-                $this->session->set_flashdata("errorAPI", $header['nama']['message']);
+            $header['nama'] = $this->Workshops_model->getMyName();
+            if ($header['nama'] == null)
+                $null = true;
+            else {
+                if ($header['nama']['status'] == 200 || $header['nama']['status'] == 202)
+                    $header['nama'] = explode(" ", $header['nama']['data']);
+                else
+                    $this->session->set_flashdata("errorAPI", $header['nama']['message']);
+            }
 
             $notif = $this->Classes_model->getPesertaByUserId();
-            if ($notif['status'] == 200) {
-                $datanotif = array();
-                foreach ($notif['data'] as $value) {
-                    $cek = $this->Classes_model->getKelasKegiatan($value['id_kelas']);
-                    if ($cek['status'] == 200)
-                        $cek = $cek['data'];
-                    else
-                        $this->session->set_flashdata("errorAPI", $cek['message']);
+            if ($notif == null)
+                $null = true;
+            else {
+                if ($notif['status'] == 200 || $notif['status'] == 202) {
+                    $datanotif = array();
+                    foreach ($notif['data'] as $value) {
+                        $cek = $this->Classes_model->getKelasKegiatan($value['id_kelas']);
+                        if ($cek == null)
+                            $null = true;
+                        else {
+                            if ($cek['status'] == 200 || $cek['status'] == 202)
+                                $cek = $cek['data'];
+                            else
+                                $this->session->set_flashdata("errorAPI", $cek['message']);
 
-                    if ($cek != null) {
-                        $datanotif[] = $cek;
+                            if ($cek != null) {
+                                $datanotif[] = $cek;
+                            }
+                        }
                     }
-                }
-                $header['notif'] = $datanotif;
-            } else
-                $this->session->set_flashdata("errorAPI", $notif['message']);
+                    $header['notif'] = $datanotif;
+                } else
+                    $this->session->set_flashdata("errorAPI", $notif['message']);
+            }
 
             $notif2 = $this->Workshops_model->getPesertaByUserId();
-            if ($notif2['status'] == 200) {
-                $datanotif2 = array();
-                foreach ($notif2['data'] as $value) {
-                    $cek2 = $this->Workshops_model->getKelasKegiatan($value['id_workshop']);
-                    if ($cek2['status'] == 200)
-                        $cek2 = $cek2['data'];
-                    else
-                        $this->session->set_flashdata("errorAPI", $cek2['message']);
+            if ($notif2 == null)
+                $null = true;
+            else {
+                if ($notif2['status'] == 200 || $notif2['status'] == 202) {
+                    $datanotif2 = array();
+                    foreach ($notif2['data'] as $value) {
+                        $cek2 = $this->Workshops_model->getKelasKegiatan($value['id_workshop']);
+                        if ($cek2 == null)
+                            $null = true;
+                        else {
+                            if ($cek2['status'] == 200 || $cek2['status'] == 202)
+                                $cek2 = $cek2['data'];
+                            else
+                                $this->session->set_flashdata("errorAPI", $cek2['message']);
 
-                    if ($cek2 != null) {
-                        $datanotif2[] = $cek;
+                            if ($cek2 != null) {
+                                $datanotif2[] = $cek;
+                            }
+                        }
                     }
-                }
-                $header['notif2'] = $datanotif2;
-            } else
-                $this->session->set_flashdata("errorAPI", $notif2['message']);
+                    $header['notif2'] = $datanotif2;
+                } else
+                    $this->session->set_flashdata("errorAPI", $notif2['message']);
+            }
 
-            $this->load->view('partials/user/header', $header);
-        } else {
-            $this->load->view('partials/common/header');
+            if (!$null) {
+                $this->session->set_userdata('workshop', true);
+                $this->load->view('partials/user/header', $header);
+            }
         }
+
         $data['kategori_text'] = $sorting;
 
         $data['categories'] = $this->Workshops_model->getKategori();
-        if ($data['categories']['status'] == 200)
-            $data['categories'] = $data['categories']['data'];
-        else
-            $this->session->set_flashdata("errorAPI", $data['categories']['message']);
+        if ($data['categories'] == null)
+            $null = true;
+        else {
+            if ($data['categories']['status'] == 200 || $data['categories']['status'] == 202)
+                $data['categories'] = $data['categories']['data'];
+            else
+                $this->session->set_flashdata("errorAPI", $data['categories']['message']);
+        }
 
         $data['class'] = $this->Workshops_model->getClassesbySorting($sorting);
-        if ($data['class']['status'] == 200)
-            $data['class'] = $data['class']['data'];
-        else
-            $this->session->set_flashdata("errorAPI", $data['class']['message']);
+        if ($data['class'] == null)
+            $null = true;
+        else {
+            if ($data['class']['status'] == 200 || $data['class']['status'] == 202)
+                $data['class'] = $data['class']['data'];
+            else
+                $this->session->set_flashdata("errorAPI", $data['class']['message']);
+        }
 
         $data['classNum'] = $this->Workshops_model->getClassesbySorting($sorting);
-        if ($data['classNum']['status'] == 200)
-            $data['classNum'] = count($data['classNum']['data']);
-        else
-            $this->session->set_flashdata("errorAPI", $data['classNum']['message']);
+        if ($data['classNum'] == null)
+            $null = true;
+        else {
+            if ($data['classNum']['status'] == 200 || $data['classNum']['status'] == 202)
+                $data['classNum'] = count($data['classNum']['data']);
+            else
+                $this->session->set_flashdata("errorAPI", $data['classNum']['message']);
+        }
 
-        $this->load->view('workshops/workshopfilter', $data);
-        $this->load->view('partials/common/footer');
+        if ($null)
+            $this->load->view('server_error');
+        else {
+            if (isset($_SESSION['logged_in']))
+                $this->load->view('partials/common/header');
+            $this->load->view('workshops/workshopfilter', $data);
+            $this->load->view('partials/common/footer');
+        }
     }
 
     public function search()
@@ -344,7 +513,7 @@ class Workshops extends CI_Controller
         if (isset($_SESSION['logged_in'])) {
             $header['nama'] = explode(" ", $this->Workshops_model->getMyName()['nama']);
             if ($header['nama']['status'] == 200)
-                $header['nama'] = explode(" ", $header['nama']['data']['nama']);
+                $header['nama'] = explode(" ", $header['nama']['data']);
             else
                 $this->session->set_flashdata("errorAPI", $header['nama']['message']);
 
@@ -536,6 +705,9 @@ class Workshops extends CI_Controller
             $this->session->set_flashdata("errorAPI", $data['peserta']['message']);
 
         $data['cek'] = $this->Workshops_model->cekPeserta($id_kelas);
+        if ($data['cek'] == 'server_error')
+            $null = true;
+
         $data['error_bagian'] = "workshop";
 
         if ($data['cek']['status'] == 200)
@@ -551,7 +723,7 @@ class Workshops extends CI_Controller
 
             $header['nama'] = explode(" ", $this->Workshops_model->getMyName()['nama']);
             if ($header['nama']['status'] == 200)
-                $header['nama'] = explode(" ", $header['nama']['data']['nama']);
+                $header['nama'] = explode(" ", $header['nama']['data']);
             else
                 $this->session->set_flashdata("errorAPI", $header['nama']['message']);
 
@@ -601,9 +773,9 @@ class Workshops extends CI_Controller
         } else {
             $this->load->view('partials/common/header');
             if (count($data['kelas']) == 0 || count($data['kelas']) == null)
-                    $this->load->view('classes/error_class', $data);
-                else
-            $this->load->view('workshops/openworkshop', $data);
+                $this->load->view('classes/error_class', $data);
+            else
+                $this->load->view('workshops/openworkshop', $data);
             $this->load->view('partials/common/footer');
         }
     }
@@ -613,7 +785,7 @@ class Workshops extends CI_Controller
         if (isset($this->session->userdata['logged_in'])) {
             $header['nama'] = explode(" ", $this->Workshops_model->getMyName()['nama']);
             if ($header['nama']['status'] == 200)
-                $header['nama'] = explode(" ", $header['nama']['data']['nama']);
+                $header['nama'] = explode(" ", $header['nama']['data']);
             else
                 $this->session->set_flashdata("errorAPI", $header['nama']['message']);
 
@@ -707,7 +879,7 @@ class Workshops extends CI_Controller
 
         $header['nama'] = explode(" ", $this->Workshops_model->getMyName()['nama']);
         if ($header['nama']['status'] == 200)
-            $header['nama'] = explode(" ", $header['nama']['data']['nama']);
+            $header['nama'] = explode(" ", $header['nama']['data']);
         else
             $this->session->set_flashdata("errorAPI", $header['nama']['message']);
 
@@ -803,5 +975,4 @@ class Workshops extends CI_Controller
             redirect('home');
         }
     }
-
 }
