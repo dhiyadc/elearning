@@ -7,7 +7,7 @@
 
 <section class="user_dashboard">
 
-  <div class="col-lg-12" style="background-color: darkcyan;" >
+<div class="col-lg-12" style="background-color: darkcyan; padding-left: 0px; padding-right: 0px;" >
     <div class="card" style="border-radius: 0px; background-color: darkcyan;"> 
     <div class="container my-5 pt-5 pb-3 px-4 z-depth-1">
 

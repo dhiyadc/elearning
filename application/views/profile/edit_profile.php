@@ -3,38 +3,38 @@
 
 <section class="user_dashboard">
 
-  <div class="col-lg-12" style="background-color: darkcyan;" >
+  <div class="col-lg-12" style="background-color: darkcyan; padding-left: 0px; padding-right: 0px;" >
     <div class="card" style="border-radius: 0px; background-color: darkcyan;"> 
     <div class="container my-5 pt-5 pb-3 px-4 z-depth-1">
 
 
-<!--Section: Block Content-->
-<section>
+        <!--Section: Block Content-->
+        <section>
 
-  <!--Grid row-->
-  <div class="row">
+        <!--Grid row-->
+        <div class="row">
 
-    <!--Grid column-->
-    <div class="col-md-12 mb-4">
+            <!--Grid column-->
+            <div class="col-md-12 mb-4">
 
-        <h5 class="text-center font-weight-bold mb-4" style="color: white">Pengaturan Akun</h5>
+                <h5 class="text-center font-weight-bold mb-4" style="color: white">Pengaturan Akun</h5>
 
 
-      </div>
-      <!--Grid column-->
+            </div>
+            <!--Grid column-->
 
-      
+            
+            </div>
+            <!--Grid row-->
+
+        </section>
+        <!--Section: Block Content-->
+
+
+
+            </div>
+        </div>
     </div>
-    <!--Grid row-->
-
-  </section>
-  <!--Section: Block Content-->
-
-
-
-    </div>
-  </div>
-</div>
 
 
   
