@@ -43,6 +43,10 @@ class Register extends CI_Controller {
 			
 			$email = $this->input->post('email');
 			$getEmail = $this->user_database->getFirstAccount($email);
+			if($getEmail['status'] == 200)
+			$getEmail = $getEmail['data'];
+			else
+			$this->session->set_flashdata("errorAPI", $getEmail['message']);
 			$getUserEmail = $getEmail['email'];
 
 			if($email == $getUserEmail){
@@ -73,7 +77,9 @@ class Register extends CI_Controller {
 			'nama' => $this->input->post('nama'),
 			'no_telepon' => $this->input->post('no_telepon')
 			);
-			$this->user_database->register($data);
+			$temp = $this->user_database->register($data);
+			if($temp['status'] != 200)
+			$this->session->set_flashdata("errorAPI", $temp['message']);
 			
 			$data = array(
 			'message_display' => 'Regristation Successfull'

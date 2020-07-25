@@ -33,9 +33,15 @@ class Reset_password extends CI_Controller{
         $newPassword = $this->input->post('password');
 
         $user = $this->user_database->getIDbyToken($token);
+        if($user['status'] == 200)
+        $user = $user['data'];
+        else
+        $this->session->set_flashdata("errorAPI", $user['message']);
         $id_user = $user['id_user'];
 
-        $this->user_database->updatePasswordUser($id_user, $newPassword);
+        $temp = $this->user_database->updatePasswordUser($id_user, $newPassword);
+        if($temp['status']!=200)
+        $this->session->set_flashdata("errorAPI", $temp['message']);
             $this->session->set_flashdata('success', 'Your password has been updated');
             redirect('home');
     }
