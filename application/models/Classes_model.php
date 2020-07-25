@@ -6,7 +6,7 @@ class Classes_model extends CI_Model
     public function http_request_get($function)
     {
         $curl = curl_init();
-        $url = "http://classico.id:9090/$function";
+        $url = API_URL . $function;
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
         $result = curl_exec($curl);
@@ -18,7 +18,7 @@ class Classes_model extends CI_Model
     public function http_request_post($data, $function)
     {
         $curl = curl_init();
-        $url = "http://classico.id:9090/$function";
+        $url = API_URL . $function;
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_POST, TRUE);
         curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
@@ -32,9 +32,9 @@ class Classes_model extends CI_Model
     public function http_request_update($data, $function)
     {
         $curl = curl_init();
-        $url = "http://classico.id:9090/$function";
+        $url = API_URL . $function;
         curl_setopt($curl, CURLOPT_URL, $url);
-        curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "UPDATE");
+        curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "PUT");
         curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
         $result = curl_exec($curl);
@@ -46,7 +46,7 @@ class Classes_model extends CI_Model
     public function http_request_delete($function)
     {
         $curl = curl_init();
-        $url = "http://classico.id:9090/$function";
+        $url = API_URL . $function;
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "DELETE");
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
@@ -68,10 +68,10 @@ class Classes_model extends CI_Model
 
     public function getAllClassesDetail($keyword = null)
     {
-        $dataparam = [
-            'keyword' => $keyword
-        ];
-        return $this->http_request_get("classes/all_class/detail?keyword=$keyword");
+        if ($keyword != null)
+            return $this->http_request_get("classes/all_class/detail?keyword=$keyword");
+        else
+            return $this->http_request_get("classes/all_class/detail");
     }
 
     public function getAllRandomClasses()
@@ -111,7 +111,7 @@ class Classes_model extends CI_Model
         $dataparam = [
             'id_kelas' => $id
         ];
-        return $this->http_request_get("/classes/$id");
+        return $this->http_request_get("classes/$id");
     }
 
     public function getPesertabyClass($id)
@@ -252,11 +252,7 @@ class Classes_model extends CI_Model
         if ($peserta == null)
             return 'server_error';
         else {
-            if ($peserta['status'] == 200 && count($peserta['data']) == null || count($peserta['data']) == 0) {
-                return true;
-            } else {
-                return false;
-            }
+            return $peserta['data'];
         }
     }
 
@@ -323,12 +319,22 @@ class Classes_model extends CI_Model
                 ];
             }
 
-            return $this->http_request_post($data, "classes/create_class");
+            if ($this->http_request_post($data, "classes/create_class") == null)
+                return 'server_error';
+
 
 
             if (!empty($this->input->post('addmore'))) {
-                $this->setKegiatan($uniqid);
+                $temp = $this->setKegiatan($uniqid);
+                if ($temp == 'server_error')
+                    return 'server_error';
+                else if ($temp == 'success')
+                    return 'success';
+                else
+                    return $temp;
             }
+
+            return 'success';
         } else {
             return "error";
         }
@@ -383,12 +389,15 @@ class Classes_model extends CI_Model
             $this->load->library('upload', $config);
             if ($this->upload->do_upload('poster')) {
                 $data = $this->http_request_get("classes/$id");
-                if ($data['status'] == 200 && $data != null) {
-                    foreach ($data['data'] as $data2) {
-                        unlink("assets/images/" . $data2['poster_kelas']);
+                if ($data == null)
+                    return 'server_error';
+                else {
+                    if ($data['status'] == 200 && $data != null) {
+                        foreach ($data['data'] as $data2) {
+                            unlink("assets/images/" . $data2['poster_kelas']);
+                        }
                     }
                 }
-
                 $file_name = $this->upload->data('file_name');
                 $data = [
                     'judul_kelas' => $this->input->post('judul'),
@@ -407,7 +416,13 @@ class Classes_model extends CI_Model
                 'poster_kelas' => $this->input->post('old_image')
             ];
         }
-        return $this->http_request_update($data, "classes/my_classes/update/$id");
+        $temp = $this->http_request_update($data, "classes/my_classes/update/$id");
+        if ($temp == null)
+            return 'sever_error';
+        else {
+            if ($temp['status'] != 200)
+                return $temp;
+        }
     }
 
     public function setKegiatanByClass($id)
@@ -535,6 +550,7 @@ class Classes_model extends CI_Model
 
     public function setKegiatan($id)
     {
+        $deskripsi = "";
         if (!empty($this->input->post('addmore'))) {
             foreach ($this->input->post('addmore') as $key => $value) {
                 $i = $key++;
@@ -551,7 +567,15 @@ class Classes_model extends CI_Model
                         'status_kegiatan' => 3
                     ];
 
-                    $this->http_request_post($data, "classes/open_class/kegiatan");
+                    $temp = $this->http_request_post($data, "classes/open_class/kegiatan");
+                    if ($temp == null)
+                        return 'server_error';
+                    else {
+                        if ($temp['status'] == 200)
+                            return 'success';
+                        else
+                            return $temp['message'];
+                    }
                 }
 
                 // if(!empty($this->input->post('addmorefile'))){
@@ -624,7 +648,7 @@ class Classes_model extends CI_Model
     public function updateKegiatan($id_kelas, $id_kegiatan)
     {
         $data = [];
-
+        $fileArr = [];
         if (!empty($_FILES['materi']['name'][0])) {
             $data = [
                 'deskripsi_kegiatan' => $this->input->post('deskripsi'),
@@ -672,7 +696,7 @@ class Classes_model extends CI_Model
                 if ($this->upload->do_upload('file')) {
                     $file_name = $this->upload->data('file_name');
                     // $data['totalFiles'][] = $file_name;
-                    $fileArr[] = $file_name;
+                    $fileArr = $file_name;
 
 
                     $data = [
@@ -747,13 +771,13 @@ class Classes_model extends CI_Model
             'id_user' => $this->session->userdata('id_user')
         ];
 
-        $this->http_request_post($data, "classes/joinclass");
+        return $this->http_request_post($data, "classes/joinclass");
     }
 
     public function leaveClass($id)
     {
         $id_user = $this->session->userdata('id_user');
-        $this->http_request_delete("classes/leaveclass/$id?id_user=$id_user");
+        return $this->http_request_delete("classes/leaveclass/$id?id_user=$id_user");
     }
 
     public function getMateri($id_kelas)
@@ -801,7 +825,7 @@ class Classes_model extends CI_Model
         $dataparam = [
             'id_kelas' => $id
         ];
-        return $this->http_request_get("/classes/my_class/assignment/by/kelas/$id");
+        return $this->http_request_get("classes/my_class/assignment/by/kelas/$id");
     }
 
     public function getTugasByTugasId($id)
@@ -840,9 +864,11 @@ class Classes_model extends CI_Model
                     'batas_pengiriman_tugas' => $this->input->post('deadline'),
                 ];
 
-                $this->http_request_post($data, "classes/my_class/assignment/kuis");
+                if($this->http_request_post($data, "classes/my_class/assignment/kuis") == null)
+                return 'server_error';
+
             } else {
-                return $this->upload->display_errors();
+                return 'error';
             }
         } else {
             $data = [
@@ -855,7 +881,8 @@ class Classes_model extends CI_Model
                 'batas_pengiriman_tugas' => $this->input->post('deadline')
             ];
 
-            $this->http_request_post($data, "classes/my_class/assignment/kuis");
+            if($this->http_request_post($data, "classes/my_class/assignment/kuis") == null)
+            return 'server_error';
         }
     }
 
@@ -973,7 +1000,10 @@ class Classes_model extends CI_Model
                 foreach ($deldata['data'] as $data2) {
                     unlink("assets/docs/" . $data2['url_file']);
                 }
+                return 'success';
             }
+            else
+            return $deldata['message'];
         }
     }
 

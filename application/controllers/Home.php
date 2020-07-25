@@ -38,17 +38,21 @@ class Home extends CI_Controller
             else {
                 if ($notif['status'] == 200 || $notif['status'] == 202) {
                     $datanotif = array();
-                    foreach ($notif['data'] as $value) {
-                        $cek = $this->Classes_model->getKelasKegiatan($value['id_kelas']);
-                        if ($cek == null)
-                            $null = true;
-                        if ($cek['status'] == 200 || $cek['status'] == 202) {
-                            $cek = $cek['data'];
-                        } else
-                            $this->session->set_flashdata("errorAPI", $cek['message']);
+                    if ($notif['data'] != null) {
+                        foreach ($notif['data'] as $value) {
+                            $cek = $this->Classes_model->getKelasKegiatan($value['id_kelas']);
+                            if ($cek == null)
+                                $null = true;
+                            else {
+                                if ($cek['status'] == 200 || $cek['status'] == 202)
+                                    $cek = $cek['data'];
+                                else
+                                    $this->session->set_flashdata("errorAPI", $cek['message']);
 
-                        if ($cek != null) {
-                            $datanotif[] = $cek;
+                                if ($cek != null) {
+                                    $datanotif[] = $cek;
+                                }
+                            }
                         }
                     }
                     $header['notif'] = $datanotif;
@@ -63,17 +67,19 @@ class Home extends CI_Controller
             else {
                 if ($notif2['status'] == 200 || $notif2['status'] == 202) {
                     $datanotif2 = array();
-                    foreach ($notif2['data'] as $value) {
-                        $cek2 = $this->Workshops_model->getKelasKegiatan($value['id_workshop']);
-                        if ($cek2 == null)
-                            $null = true;
-                        if ($cek2['status'] == 200 || $cek2['status'] == 202)
-                            $cek2 = $cek2['data'];
-                        else
-                            $this->session->set_flashdata("errorAPI", $cek2['message']);
+                    if ($notif2['data'] != null) {
+                        foreach ($notif2['data'] as $value) {
+                            $cek2 = $this->Workshops_model->getKelasKegiatan($value['id_workshop']);
+                            if ($cek2 == null)
+                                $null = true;
+                            if ($cek2['status'] == 200 || $cek2['status'] == 202)
+                                $cek2 = $cek2['data'];
+                            else
+                                $this->session->set_flashdata("errorAPI", $cek2['message']);
 
-                        if ($cek2 != null) {
-                            $datanotif2[] = $cek2;
+                            if ($cek2 != null) {
+                                $datanotif2[] = $cek2;
+                            }
                         }
                     }
                     $header['notif2'] = $datanotif2;

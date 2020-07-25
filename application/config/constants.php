@@ -90,3 +90,4 @@ define('CLASS_MEMBER', 2);
 define('CLASS_STARTED', 1);
 define('CLASS_FINISHED', 2);
 define('CLASS_CLOSED', 3);
+define('API_URL', 'http://classico.id:9090/');

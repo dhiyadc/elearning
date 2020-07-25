@@ -119,6 +119,7 @@
       </div>
     </div>
   </div>
+
   <div id="login-page">
     <div class="modal fade" id="elegantModalFormcreateClass" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document" >
@@ -164,7 +165,11 @@
               <div class="alert alert-success"> <?= $this->session->flashdata('success') ?> </div>
             <?php } ?>
             <!--  -->
+            <?php if($_SESSION['new_class_url_login'] == 'newclass') : ?>
             <form class="form-login" action="<?= base_url() ?>login/user_login_process/create_class" method="post">
+            <?php elseif($_SESSION['new_class_url_login'] == 'newworkshop') : ?>
+            <form class="form-login" action="<?= base_url() ?>login/user_login_process/create_workshop" method="post">
+          <?php endif?>
               <div class="md-form mb-3">
                 <h5>Email</h5>
                 <input type="email" class="form-control validate" name="email" placeholder="Masukkan Email" autofocus required>

@@ -43,11 +43,7 @@ $this->session->set_userdata('workshop', true);
               <div class="col-lg-6">
                 <?php foreach ($kelas as $val) : ?>
                   <h1 data-aos="fade-up" data-aos-delay="0"><?= $val['judul_workshop']; ?></h1>
-                  <?php foreach ($kategori as $val2) : ?>
-                    <?php if ($val['kategori_workshop'] == $val2['id_kategori']) : ?>
-                      <p data-aos="fade-up" data-aos-delay="100"> &bullet; <?= count($peserta_kelas); ?> Siswa <span class="text-white"># <?= $val2['nama_kategori']; ?></span></p>
-                    <?php endif; ?>
-                  <?php endforeach; ?>
+                  <p data-aos="fade-up" data-aos-delay="100"> &bullet; <?= count($peserta_kelas); ?> Siswa <span class="text-white"># <?= $val['kategori_workshop']; ?></span></p>
                 <?php endforeach; ?>
               </div>
 
@@ -59,6 +55,7 @@ $this->session->set_userdata('workshop', true);
       </div>
     </div>
   </div>
+
 
   <div class="site-section">
     <div class="container">
@@ -72,17 +69,31 @@ $this->session->set_userdata('workshop', true);
                   <?php echo $this->session->flashdata("invalidFile"); ?>
                 </div>
               <?php } ?>
+              <?php if ($this->session->flashdata("success_update")) { ?>
+                <div class="alert alert-success" role="alert">
+                  <?php echo $this->session->flashdata("success_update"); ?>
+                </div>
+              <?php } ?>
+              <?php if ($this->session->flashdata("errorAPI")) { ?>
+                <div class="alert alert-info" role="alert">
+                  <?php echo $this->session->flashdata("errorAPI"); ?>
+                </div>
+              <?php } ?>
               <?php if ($this->session->flashdata("success")) { ?>
                 <div class="alert alert-success" role="alert">
                   <?php echo $this->session->flashdata("success"); ?>
                 </div>
               <?php } ?>
-              <?php if ($val['status_workshop'] == 2) { ?>
-                <div class="alert alert-danger" role="alert">
-                  Workshop sudah tidak tersedia lagi.
-                </div>
-              <?php } else { ?>
-              <?php } ?>
+              <?php foreach ($kegiatan as $val2) : ?>
+                <?php if ($val['id_workshop'] == $val2['id_workshop']) { ?>
+                  <?php if ($val2['status_kegiatan'] == "selesai") { ?>
+                    <div class="alert alert-danger" role="alert">
+                      Workshop sudah tidak tersedia lagi.
+                    </div>
+                  <?php } ?>
+                <?php } else { ?>
+                <?php } ?>
+              <?php endforeach ?>
 
 
               <ul class="nav nav-tabs" role="tablist" style="font-weight: bolder;">
@@ -94,14 +105,12 @@ $this->session->set_userdata('workshop', true);
                 <div role="tabpanel" class="tab-pane fade show active" id="profile" style="margin-top: 20px;">
 
                   <p class="mb-4">
-                    <?php foreach ($harga as $val2) : ?>
-                      <?php if ($val2['harga_workshop'] == '0' || $val2['harga_workshop'] == null) : ?>
-                        <p>Gratis</p>
-                      <?php else : ?>
-                        <?php $hasil_rupiah = "Rp." . number_format($val2['harga_workshop'], 2, ',', '.'); ?>
-                        <p><strong class="text-black mr-3">Harga: </strong><?= $hasil_rupiah; ?></p>
-                      <?php endif; ?>
-                    <?php endforeach; ?>
+                    <?php if ($harga['harga_workshop'] == '0' || $harga['harga_workshop'] == null) : ?>
+                      <p>Gratis</p>
+                    <?php else : ?>
+                      <?php $hasil_rupiah = "Rp." . number_format($harga['harga_workshop'], 2, ',', '.'); ?>
+                      <p><strong class="text-black mr-3">Harga: </strong><?= $hasil_rupiah; ?></p>
+                    <?php endif; ?>
                   </p>
                   <div class="row mb-4">
                     <div class="col-md-2">
@@ -117,22 +126,29 @@ $this->session->set_userdata('workshop', true);
                   <p><?= $val['deskripsi_workshop']; ?></p>
                   <br>
                   <?php foreach ($status as $val2) : ?>
-                    <?php if ($val2['id_status'] == $val['status_workshop']) : ?>
-                      <p>Status: <?= $val2['nama_status']; ?></p>
-                    <?php endif; ?>
+                    <?php foreach ($kegiatan as $val3) : ?>
+                      <?php if ($val['id_workshop'] == $val3['id_workshop']) : ?>
+                        <?php if ($val2['nama_status'] == $val3['status_kegiatan']) : ?>
+                          <p>Status: <?= $val2['nama_status']; ?></p>
+                        <?php endif; ?>
+                      <?php endif; ?>
+                    <?php endforeach; ?>
                   <?php endforeach; ?>
-
                   <?php if (isset($this->session->userdata['logged_in'])) : ?>
                     <?php if ($val['pembuat_workshop'] != $this->session->userdata('id_user')) : ?>
                       <?php if ($val['batas_jumlah'] > count($peserta_kelas) || $val['batas_jumlah'] == 0) : ?>
                         <?php if ($cek == true) : ?>
-                          <?php if ($val['status_workshop'] != 2) : ?>
-                            <?php if ($val['jenis_workshop'] == 1) : ?>
-                              <p class="mt-4"><a href="<?= base_url() ?>workshops/join_workshop/<?= $val['id_workshop']; ?>" class="btn btn-dark mr-1">Gabung Workshop</a></p>
-                            <?php else : ?>
-                              <p class="mt-4"><a href="<?= base_url() ?>workshops/pembayaran_workshop/<?= $val['id_workshop']; ?>" class="btn btn-dark mr-1">Gabung Workshop</a></p>
+                          <?php foreach ($kegiatan as $val2) : ?>
+                            <?php if ($val2['id_workshop'] == $val2['id_kegiatan']) : ?>
+                              <?php if ($val2['status_kegiatan'] != "Selesai") : ?>
+                                <?php if ($val['tipe_workshop'] == "Gratis") : ?>
+                                  <p class="mt-4"><a href="<?= base_url() ?>workshops/join_workshop/<?= $val['id_workshop']; ?>" class="btn btn-dark mr-1">Gabung Workshop</a></p>
+                                <?php else : ?>
+                                  <p class="mt-4"><a href="<?= base_url() ?>workshops/pembayaran_workshop/<?= $val['id_workshop']; ?>" class="btn btn-dark mr-1">Gabung Workshop</a></p>
+                                <?php endif; ?>
+                              <?php endif; ?>
                             <?php endif; ?>
-                          <?php endif; ?>
+                          <?php endforeach ?>
                         <?php elseif ($peserta != null) : ?>
                           <?php if ($val['status_workshop'] != 2) : ?>
                             <div class="alert alert-dark" role="alert">
@@ -208,92 +224,110 @@ $this->session->set_userdata('workshop', true);
               <div class="card-body table-responsive">
                 <table class="table">
                   <thead>
-                    <tr>
-                      <th scope="col">Deskripsi</th>
-                      <th scope="col" class="text-center">Hari/Tanggal</th>
-                      <th scope="col" class="text-center">Waktu</th>
-                      <th scope="col" style="text-align: center;">Status</th>
-                      <?php foreach ($kegiatan as $val2) :
-                        if ($val2['status_kegiatan'] != 2) : ?>
-                          <?php if ($val['pembuat_workshop'] != $this->session->userdata('id_user')) : ?>
-                            <?php if ($cek == true) : ?>
-                            <?php elseif ($peserta != null) : ?>
-                              <?php if ($val2['status_kegiatan'] == 1) : ?>
-                                <th scope="col" style="text-align: center;">Aksi</th>
-                              <?php endif ?>
-                            <?php elseif ($cek == false) : ?>
+                    <?php $countkegiatan = 0;
+                    foreach ($kegiatan as $val2) {
+                      if ($val2['id_workshop'] == $val['id_workshop']) {
+                        $countkegiatan++;
+                      }
+                    }
+                    if ($countkegiatan != 0) : ?>
+                      <tr>
+                        <th scope="col">Deskripsi</th>
+                        <th scope="col" class="text-center">Hari/Tanggal</th>
+                        <th scope="col" class="text-center">Waktu</th>
+                        <th scope="col" style="text-align: center;">Status</th>
+                        <?php foreach ($kegiatan as $val2) :
+                          if ($val2['status_kegiatan'] != "Selesai") : ?>
+                            <?php if ($val['pembuat_workshop'] != $this->session->userdata('id_user')) : ?>
+                              <?php if ($cek == true) : ?>
+                              <?php elseif ($peserta != null) : ?>
+                                <?php if ($val2['status_kegiatan'] == "Sedang Berlangsung") : ?>
+                                  <th scope="col" style="text-align: center;">Aksi</th>
+                                <?php endif ?>
+                              <?php elseif ($cek == false) : ?>
+                              <?php endif; ?>
+                            <?php else : ?>
+                              <th scope="col" style="text-align: center ;">Aksi</th>
                             <?php endif; ?>
-                          <?php else : ?>
-                            <th scope="col" style="text-align: center ;">Aksi</th>
                           <?php endif; ?>
-                        <?php endif; ?>
-                      <?php endforeach ?>
+                        <?php endforeach ?>
 
 
-
-                    </tr>
+                      <?php endif; ?>
+                      </tr>
                   </thead>
                   <tbody>
                     <?php $modalMateri = 0; ?>
                     <?php foreach ($kegiatan as $val2) : ?>
-                      <tr>
-                        <td style="padding-top: 30px;"><?= $val2['deskripsi_kegiatan']; ?></td>
-                        <td class="text-center" style="padding-top: 30px;"><?= $val2['tanggal']; ?></td>
-                        <td class="text-center" style="padding-top: 30px;"><?= $val2['waktu']; ?></td>
-                        <?php foreach ($status as $val3) : ?>
-                          <?php if ($val3['id_status'] == $val2['status_kegiatan']) : ?>
-                            <?php if ($val3['nama_status'] == "Selesai") : ?>
-                              <td style="text-align: center ;padding-top: 30px;"><span class="badge badge-success"><?= $val3['nama_status']; ?></span></td>
-                            <?php elseif ($val3['nama_status'] == "Belum Mulai") : ?>
-                              <td style="text-align: center ;padding-top: 30px;"><span class="badge badge-danger"><?= $val3['nama_status']; ?></span></td>
-                            <?php else : ?>
-                              <td style="text-align: center ; padding-top: 30px;"><span class="badge badge-warning"><?= $val3['nama_status']; ?></span></td>
-                            <?php endif; ?>
+                      <?php if ($val2['id_workshop'] == $val['id_workshop']) : ?>
+                        <tr>
+                          <td style="padding-top: 30px;"><?= $val2['deskripsi_kegiatan']; ?></td>
+                          <?php
+                          $temp = explode("T", $val2['tanggal_kegiatan']);
+                          $temp2 = strtotime($temp[0]);
+                          $date = date("l, d F Y", $temp2);
+                          $time = explode("Z", $temp[1]);
+                          $time = strtotime($time[0]);
+                          $time = date("G:i", $time);
+                          ?>
+                          <td class="text-center" style="padding-top: 30px;"><?= $date; ?></td>
+                          <td class="text-center" style="padding-top: 30px;"><?= $time; ?></td>
+                          <?php if ($val2['status_kegiatan'] == "Selesai") : ?>
+                            <td style="text-align: center ;padding-top: 30px;"><span class="badge badge-success"><?= $val2['status_kegiatan']; ?></span></td>
+                          <?php elseif ($val2['status_kegiatan'] == "Belum Mulai") : ?>
+                            <td style="text-align: center ;padding-top: 30px;"><span class="badge badge-danger"><?= $val2['status_kegiatan']; ?></span></td>
+                          <?php else : ?>
+                            <td style="text-align: center ; padding-top: 30px;"><span class="badge badge-warning"><?= $val2['status_kegiatan']; ?></span></td>
                           <?php endif; ?>
-                        <?php endforeach; ?>
-                        <td class="text-center">
-                          <?php if ($val['pembuat_workshop'] != $this->session->userdata('id_user')) : ?>
-                            <?php if ($cek == true) : ?>
-                            <?php elseif ($peserta != null && $val2['status_kegiatan'] == CLASS_STARTED) : ?>
-                              <a href="<?= base_url('class/') ?><?= $val['id_workshop'] ?>/<?= $val2['id_kegiatan']; ?>" class="btn btn-dark mr-1">Ikut</a>
-                            <?php elseif ($cek == false) : ?>
-                            <?php endif; ?>
-                          <?php elseif ($val2['status_kegiatan'] != CLASS_FINISHED) : ?>
-                            <button type="button" class="btn btn-light btn-block" data-toggle="modal" data-target="#editKegiatan<?= $val2['id_kegiatan']; ?>">Edit</button><br>
-                            <a href="<?= base_url('class/') ?><?= $val['id_workshop'] ?>/<?= $val2['id_kegiatan'] ?>" class="btn btn-dark mr-1 btn-block">Mulai</a>
-                            <div class="modal fade" id="editKegiatan<?= $val2['id_kegiatan']; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="padding-right: 90px;">
-                              <div class="modal-dialog" role="document">
-                                <!--Content-->
-                                <div class="modal-content form-elegant">
-                                  <!--Header-->
-                                  <div class="modal-header text-center">
-                                    <h3 class="modal-title w-100 dark-grey-text font-weight-bold my-3" id="myModalLabel"><strong>Edit Kegiatan</strong></h3>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                      <span aria-hidden="true">&times;</span>
-                                    </button>
-                                  </div>
-                                  <div class="modal-body mx-4">
-                                    <!--Body-->
-                                    <!--Body-->
-                                    <form enctype="multipart/form-data" action="<?= base_url() ?>workshops/edit_kegiatan/<?= $val['id_workshop'] ?>/<?= $val2['id_kegiatan'] ?>" method="POST">
-                                      <div class="form-group">
-                                        <label>Deskripsi Kegiatan</label>
-                                        <textarea class="form-control" name="deskripsi" required><?= $val2['deskripsi_kegiatan'] ?></textarea>
-                                      </div>
+                          <td class="text-center">
+                            <?php if ($val['pembuat_workshop'] != $this->session->userdata('id_user')) : ?>
+                              <?php if ($cek == true) : ?>
+                              <?php elseif ($peserta != null && $val2['status_kegiatan'] == CLASS_STARTED) : ?>
+                                <a href="<?= base_url('class/') ?><?= $val['id_workshop'] ?>/<?= $val2['id_kegiatan']; ?>" class="btn btn-dark mr-1">Ikut</a>
+                              <?php elseif ($cek == false) : ?>
+                              <?php endif; ?>
+                            <?php elseif ($val2['status_kegiatan'] != CLASS_FINISHED) : ?>
+                              <button type="button" class="btn btn-light btn-block" data-toggle="modal" data-target="#editKegiatan<?= $val2['id_kegiatan']; ?>">Edit</button><br>
+                              <a href="<?= base_url('class/') ?><?= $val['id_workshop'] ?>/<?= $val2['id_kegiatan'] ?>" class="btn btn-dark mr-1 btn-block">Mulai</a>
+                              <div class="modal fade" id="editKegiatan<?= $val2['id_kegiatan']; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="padding-right: 90px;">
+                                <div class="modal-dialog" role="document">
+                                  <!--Content-->
+                                  <div class="modal-content form-elegant">
+                                    <!--Header-->
+                                    <div class="modal-header text-center">
+                                      <h3 class="modal-title w-100 dark-grey-text font-weight-bold my-3" id="myModalLabel"><strong>Edit Kegiatan</strong></h3>
+                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                      </button>
+                                    </div>
+                                    <div class="modal-body mx-4">
+                                      <!--Body-->
+                                      <!--Body-->
+                                      <form enctype="multipart/form-data" action="<?= base_url() ?>workshops/edit_kegiatan/<?= $val['id_workshop'] ?>/<?= $val2['id_kegiatan'] ?>" method="POST">
+                                        <div class="form-group">
+                                          <label>Deskripsi Kegiatan</label>
+                                          <input type="hidden" name="tanggal" value=<?= $val2['tanggal_kegiatan'] ?>>
+                                          <textarea class="form-control" name="deskripsi" required><?= $val2['deskripsi_kegiatan'] ?></textarea>
+                                        </div>
 
-                                      <input type="hidden" name="tanggal" value="<?= $val2['tanggal_kegiatan'] ?>">
+                                        <input type="hidden" name="tanggal" value="<?= $val2['tanggal_kegiatan'] ?>">
 
-                                      <div class="text-center mb-3">
-                                        <button type="submit" class="btn btn-light blue-gradient btn-block btn-rounded z-depth-1a">Simpan</button>
-                                      </div>
-                                    </form>
+                                        <div class="text-center mb-3">
+                                          <button type="submit" class="btn btn-light blue-gradient btn-block btn-rounded z-depth-1a">Simpan</button>
+                                        </div>
+                                      </form>
+                                    </div>
                                   </div>
                                 </div>
                               </div>
-                            </div>
-                          <?php endif; ?>
-                        </td>
-                      </tr>
+                            <?php endif; ?>
+                          </td>
+                        </tr>
+                      <?php else : ?>
+                        <div class="alert alert-danger" role="alert">
+                          Tidak ada kegiatan dalam kelas ini.
+                        </div>
+                      <?php endif; ?>
                     <?php endforeach; ?>
                   </tbody>
                 </table>

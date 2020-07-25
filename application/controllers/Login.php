@@ -73,6 +73,9 @@ class Login extends CI_Controller
 						if ($redirect == "create_class") {
 							redirect('classes/new_class');
 						}
+						else if ($redirect == "create_workshop") {
+							redirect('workshops/new_workshop');
+						}
 					} else {
 						if (isset($_SESSION['url_login'])) {
 							if ($_SESSION['url_login'] == "open_class") {

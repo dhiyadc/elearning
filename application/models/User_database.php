@@ -5,7 +5,7 @@ class User_database extends CI_Model
     public function http_request_get($function)
     {
         $curl = curl_init();
-        $url = "http://classico.id:9090/$function";
+        $url = API_URL . $function;
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
         $result = curl_exec($curl);
@@ -17,7 +17,7 @@ class User_database extends CI_Model
     public function http_request_post($data, $function)
     {
         $curl = curl_init();
-        $url = "http://classico.id:9090/$function";
+        $url = API_URL . $function;
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_POST, TRUE);
         curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
@@ -31,9 +31,9 @@ class User_database extends CI_Model
     public function http_request_update($data, $function)
     {
         $curl = curl_init();
-        $url = "http://classico.id:9090/$function";
+        $url = API_URL . $function;
         curl_setopt($curl, CURLOPT_URL, $url);
-        curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "UPDATE");
+        curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "PUT");
         curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
         $result = curl_exec($curl);
@@ -45,7 +45,7 @@ class User_database extends CI_Model
     public function http_request_delete($function)
     {
         $curl = curl_init();
-        $url = "http://classico.id:9090/$function";
+        $url = API_URL . $function;
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "DELETE");
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
@@ -54,7 +54,7 @@ class User_database extends CI_Model
 
         return json_decode($result, TRUE);
     }
-
+    
     //Login Function
     public function login($data)
     {

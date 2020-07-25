@@ -5,7 +5,7 @@ class workshops_model extends CI_Model
     public function http_request_get($function)
     {
         $curl = curl_init();
-        $url = "http://classico.id:9090/$function";
+        $url = API_URL . $function;
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
         $result = curl_exec($curl);
@@ -17,7 +17,7 @@ class workshops_model extends CI_Model
     public function http_request_post($data, $function)
     {
         $curl = curl_init();
-        $url = "http://classico.id:9090/$function";
+        $url = API_URL . $function;
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_POST, TRUE);
         curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
@@ -31,9 +31,9 @@ class workshops_model extends CI_Model
     public function http_request_update($data, $function)
     {
         $curl = curl_init();
-        $url = "http://classico.id:9090/$function";
+        $url = API_URL . $function;
         curl_setopt($curl, CURLOPT_URL, $url);
-        curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "UPDATE");
+        curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "PUT");
         curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
         $result = curl_exec($curl);
@@ -45,7 +45,7 @@ class workshops_model extends CI_Model
     public function http_request_delete($function)
     {
         $curl = curl_init();
-        $url = "http://classico.id:9090/$function";
+        $url = API_URL . $function;
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "DELETE");
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
@@ -120,7 +120,7 @@ class workshops_model extends CI_Model
     public function getPesertaByUserIdClassId($id)
     {
         $id_user = $this->session->userdata('id_user');
-        return $this->db->http_request_get("workshop/peserta/userworkshop/$id?id_user=$id_user");
+        return $this->http_request_get("workshop/peserta/userworkshop/$id?id_user=$id_user");
     }
 
     public function cekPeserta($id)
@@ -132,11 +132,7 @@ class workshops_model extends CI_Model
         if ($data == null)
             return 'server_error';
         else {
-            if ($data['status'] == 200 && count($data['data']) == null || count($data['data']) == 0) {
-                return true;
-            } else {
-                return false;
-            }
+            return true;
         }
     }
 
@@ -225,7 +221,14 @@ class workshops_model extends CI_Model
 
             $deskripsi_kegiatan = $this->input->post('deskripsi_kegiatan');
             $tanggal_kegiatan = $this->input->post('tanggal_kegiatan');
-            $this->setKegiatan($id_workshop, $deskripsi_kegiatan, $tanggal_kegiatan);
+            $temp = $this->setKegiatan($id_workshop, $deskripsi_kegiatan, $tanggal_kegiatan);
+            if ($temp == null)
+                return 'server_error';
+            else {
+                if ($temp['status'] != 200)
+                    return 'update_error';
+            }
+            return "success";
         } else {
             return "fail";
         }
@@ -263,9 +266,13 @@ class workshops_model extends CI_Model
 
     public function updateKegiatan($id_kegiatan)
     {
+        $temp =  $this->input->post('tanggal');
+        $temp = explode("Z", $temp);
 
         $data = [
-            'deskripsi_kegiatan' => $this->input->post('deskripsi')
+            'deskripsi_kegiatan' => $this->input->post('deskripsi'),
+            'tanggal_kegiatan' => $temp[0]
+
 
         ];
 
@@ -298,7 +305,6 @@ class workshops_model extends CI_Model
 
             $this->load->library('upload', $config);
             if ($this->upload->do_upload('poster')) {
-
                 $data = $this->http_request_get("workshop/detail/$id");
                 if ($data == null)
                     return 'server_error';
@@ -329,8 +335,13 @@ class workshops_model extends CI_Model
             ];
         }
 
-        if ($this->http_request_update($data, "workshop/my_workshop/$id") == null)
+        $temp = $this->http_request_update($data, "workshop/my_workshop/$id");
+        if ($temp == null)
             return 'server_error';
+        if ($temp['status'] == 200)
+            return "success";
+        else
+            return $temp['message'];
     }
 
 
@@ -350,9 +361,9 @@ class workshops_model extends CI_Model
     {
 
         if ($keyword == null)
-        return $this->http_request_get("workshop/allworkshop/detail");
+            return $this->http_request_get("workshop/allworkshop/detail");
         else
-        return $this->http_request_get("workshop/allworkshop/detail?keyword=$keyword");
+            return $this->http_request_get("workshop/allworkshop/detail?keyword=$keyword");
     }
 
     public function getAllRandomClasses()
@@ -373,7 +384,7 @@ class workshops_model extends CI_Model
         if ($data == null)
             return 'server_error';
         else {
-            if ($data['status'] == 200 && count($data['data']) != null || count($data['data']) != 0) {
+            if ($data['status'] == 200) {
                 $selesai = true;
                 foreach ($data['data'] as $key => $value) {
                     if ($value['status_kegiatan'] == 1 || $value['status_kegiatan'] == 3) {
