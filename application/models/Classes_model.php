@@ -211,12 +211,16 @@ class Classes_model extends CI_Model
 
     public function getKegiatan($id)
     {
+
         return $this->http_request_get("classes/open_class/kegiatan/kelas/$id");
+
     }
 
     public function getKegiatanByIdKegiatan($activityId)
     {
+
         return $this->http_request_get("classes/open_class/kegiatan/$activityId");
+
     }
 
     public function getAllKegiatan()
@@ -758,10 +762,12 @@ class Classes_model extends CI_Model
 
     public function updateKegiatanStatus($activityId, $status)
     {
+
         $data = [
             'status_kegiatan' => $status
         ];
         return $this->http_request_update($data, "classes/kegiatan/status/$activityId");
+
     }
 
     public function joinClass($id)

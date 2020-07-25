@@ -267,6 +267,12 @@
     </header>
   </div>
 
+  <script>
+  $(document).ready(function(){
+    $("header").sticky({topSpacing:0});
+  });
+</script>
+
     <?php if ($this->session->flashdata('invalid')) { ?>
       <script src="<?php echo base_url(); ?>assets/js/jquery-3.3.1.min.js"></script>
       <script type="text/javascript">

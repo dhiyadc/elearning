@@ -7,9 +7,9 @@
 <!-- <link href="<?= base_url() ?>assets/css/dataTables/dataTables.bootstrap.css" rel="stylesheet">
 <link href="<?= base_url() ?>assets/css/dataTables/dataTables.responsive.css" rel="stylesheet"> -->
 
-<section class="user_dashboard">
 
-		<div class="col-lg-12" style="background-color: darkcyan;">
+
+		<div class="col-lg-12" style="background-color: darkcyan; padding-left: 0px; padding-right: 0px;">
 			<div class="card" style="border-radius: 0px; background-color: darkcyan;">
 				<div class="container my-5 pt-5 pb-3 px-4 z-depth-1">
 
@@ -44,7 +44,7 @@
 		</div>
 
 
-
+<section class="user_dashboard">
 
 
 	<div class="container my-5">
@@ -594,6 +594,36 @@
 													</div>
 												</td>
 											</tr>
+
+											<!-- tampilan jika belum ada kelas  -->
+
+											<!-- 
+
+											<div class="card-body table-responsive">
+								<table id="pageTable" class="table" style="margin-bottom: 75px;">
+									<thead>
+										<tr>
+											<th scope="col">Kelas</th>
+											<th scope="col" class="text-center"></th>
+											<th scope="col" class="text-center">Progress</th>
+											<th scope="col" class="text-center">Status</th>
+											<th scope="col" class="text-center">Tipe</th>
+											<th scope="col" class="text-center">Aksi</th>
+										</tr>
+									</thead>
+									<tbody id="pageSearch7">
+										<tr>
+											<td colspan="7">
+												<div class="alert alert-info my-5">
+													<p class="text-center mb-0">kamu belum mengikuti kelas apapun</p>
+												</div>
+											</td>
+										</tr>
+										
+									</tbody>
+								</table>
+							</div>
+											 -->
 											<div class="modal fade" id="tambahKegiatan<?= $ctClass ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="padding-right: 90px;">
 												<div class="modal-dialog" role="document">
 													<!--Content-->
@@ -1419,6 +1449,35 @@
 									</tbody>
 								</table>
 							</div>
+
+							<!-- tampilan belum ada kelas saya -->
+							<!-- 
+								<div class="card-body table-responsive">
+								<table id="pageTable" class="table" style="margin-bottom: 75px;">
+									<thead>
+										<tr>
+											<th scope="col">Kelas</th>
+											<th scope="col" class="text-center"></th>
+											<th scope="col" class="text-center">Progress</th>
+											<th scope="col" class="text-center">Status</th>
+											<th scope="col" class="text-center">Tipe</th>
+											<th scope="col" class="text-center">Aksi</th>
+										</tr>
+									</thead>
+									<tbody id="pageSearch7">
+										<tr>
+											<td colspan="7">
+												<div class="alert alert-info my-5">
+													<p class="text-center mb-0">kamu belum mempunyai kelas apapun</p>
+												</div>
+											</td>
+										</tr>
+										
+									</tbody>
+								</table>
+							</div>
+							 -->
+
 							<!-- <div class="card-footer white py-3 d-flex justify-content-center">
 								<nav>
 									<ul id="pagination3" class="pagination">
@@ -1546,6 +1605,22 @@
 				</div>
 			</div>
 
+			<!-- tampilan belum ada workshop saya -->
+								<!-- 
+
+									
+										<tr>
+											<td colspan="7">
+												<div class="alert alert-info my-5">
+													<p class="text-center mb-0">Kamu belum mempunyai workshop apapun</p>
+												</div>
+											</td>
+										</tr>
+										
+								
+							
+								 -->
+
 			<div class="tab-pane" id="tab7" role="tabpanel" aria-expanded="false">
 				<div class="row mt-5">
 					<div class="col">
@@ -1653,6 +1728,22 @@
 				</div>
 			</div>
 
+			<!-- tampilan belum ada workshop saya -->
+								<!-- 
+
+									
+										<tr>
+											<td colspan="7">
+												<div class="alert alert-info my-5">
+													<p class="text-center mb-0">Kamu belum mengikuti workshop apapun</p>
+												</div>
+											</td>
+										</tr>
+										
+								
+							
+								 -->
+
 
 			<div class="tab-pane" id="tab4" role="tabpanel" aria-expanded="false">
 				<div class="row mt-5">
@@ -1750,7 +1841,24 @@
 										<?php endforeach; ?>
 									</tbody>
 								</table>
+								
 							</div>
+
+							<!-- tampilan kalo belum ada tugas -->
+							<!-- 
+
+							
+									
+										<tr>
+											<td colspan="7">
+												<div class="alert alert-info my-5">
+													<p class="text-center mb-0">kamu belum mempunyai tugas untuk dikerjakan</p>
+												</div>
+											</td>
+										</tr>
+										
+								
+							 -->
 
 							<!-- <div class=" card-footer white py-3 d-flex justify-content-center">
 																					<ul id="pagination4" class="pagination">
@@ -1906,6 +2014,22 @@
 	</div>
 	</div>
 	</div>
+
+	<!-- tampilan belum ada materi saya -->
+								<!-- 
+
+									
+										<tr>
+											<td colspan="7">
+												<div class="alert alert-info my-5">
+													<p class="text-center mb-0">Kamu belum mempunyai materi apapun</p>
+												</div>
+											</td>
+										</tr>
+										
+								
+							
+								 -->
 
 
 
