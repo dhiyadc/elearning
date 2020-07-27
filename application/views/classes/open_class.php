@@ -7,6 +7,12 @@
 <?php
 $_SESSION['url_login'] = "open_class";
 $_SESSION['url_login_open_class'] = $this->uri->segment(3);
+foreach ($kelas as $val) {
+  if (base_url() . "class/" . $val['id_kelas']) {
+    $_SESSION['url_login'] = "class";
+    $_SESSION['url_login_class'] = $val['id_kelas'];
+  }
+}
 $this->session->set_userdata('workshop', null);
 ?>
 
@@ -235,7 +241,7 @@ $this->session->set_userdata('workshop', null);
                         <?php elseif ($cek == false) : ?>
                         <?php endif; ?>
                       <?php else : ?>
-                        <th scope="col" style="text-align: center ;">Aksi</th>
+                        <th scope="col" style="text-align: center;">Aksi</th>
                         <th scope="col" style="text-align: center;">Materi</th>
                       <?php endif; ?>
                       <?php endforeach?>
@@ -262,11 +268,11 @@ $this->session->set_userdata('workshop', null);
                             <?php endif; ?>
                           <?php endif; ?>
                         <?php endforeach; ?>
-                        <td>
+                        <td style="text-align: center ;">
                           <?php if ($val['pembuat_kelas'] != $this->session->userdata('id_user')) : ?>
                             <?php if ($cek == true) : ?>
                             <?php elseif ($peserta != null && $val2['status_kegiatan'] == CLASS_STARTED) : ?>
-                              <a href="<?= base_url('class/') ?><?= $val['id_kelas'] ?>/<?= $val2['id_kegiatan']; ?>" class="btn btn-dark mr-1">Ikut</a>
+                              <a href="<?= base_url('class/') ?><?= $val['id_kelas'] ?>/<?= $val2['id_kegiatan']; ?>" class="btn btn-dark mr-1 btn-block">Ikut</a>
                             <?php elseif ($cek == false) : ?>
                             <?php endif; ?>
                           <?php elseif ($val2['status_kegiatan'] != CLASS_FINISHED) : ?>
@@ -314,7 +320,7 @@ $this->session->set_userdata('workshop', null);
                     <?php if ($val2['id_kegiatan'] == $val4['id_kegiatan']) : ?>
 
                       <?php if ($notPembuatMateri < 1) : ?>
-                        <button class="btn btn-light btn-md px-3 my-0 ml-0" type="button" data-toggle="modal" data-target="#lihatMateri<?= $modalMateri ?>">Lihat Materi</button>
+                        <button class="btn btn-light btn-md px-3 my-0 ml-0 btn-block" type="button" data-toggle="modal" data-target="#lihatMateri<?= $modalMateri ?>">Lihat Materi</button>
                       <?php endif; ?>
                       <?php $notPembuatMateri++; ?>
                     <?php else : ?>

@@ -55,6 +55,9 @@ class Login extends CI_Controller {
 						if($_SESSION['url_login'] == "open_class"){
 							$class = $_SESSION['url_login_open_class'];
 							redirect('classes/open_class/'.$class);
+						} else if($_SESSION['url_login'] == "class"){
+							$class = $_SESSION['url_login_class'];
+							redirect('classes/open_class/'.$class);
 						} else if($_SESSION['url_login'] == "kelasview"){
 							redirect('classes');
 						} else if($_SESSION['url_login'] == "kelasfilter"){
