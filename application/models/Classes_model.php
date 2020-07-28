@@ -256,7 +256,7 @@ class Classes_model extends CI_Model
         if ($peserta == null)
             return 'server_error';
         else {
-            return $peserta['data'];
+            return $peserta;
         }
     }
 

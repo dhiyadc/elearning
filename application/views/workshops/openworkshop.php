@@ -230,7 +230,12 @@ $this->session->set_userdata('workshop', true);
                         $countkegiatan++;
                       }
                     }
-                    if ($countkegiatan != 0) : ?>
+                    ?>
+                    <?php if ($countkegiatan == 0) : ?>
+                      <div class="alert alert-danger" role="alert">
+                        Tidak ada kegiatan dalam Workshop ini.
+                      </div>
+                      <?php else : ?>
                       <tr>
                         <th scope="col">Deskripsi</th>
                         <th scope="col" class="text-center">Hari/Tanggal</th>
@@ -323,10 +328,6 @@ $this->session->set_userdata('workshop', true);
                             <?php endif; ?>
                           </td>
                         </tr>
-                      <?php else : ?>
-                        <div class="alert alert-danger" role="alert">
-                          Tidak ada kegiatan dalam kelas ini.
-                        </div>
                       <?php endif; ?>
                     <?php endforeach; ?>
                   </tbody>
