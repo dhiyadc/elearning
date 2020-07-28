@@ -150,7 +150,6 @@ $this->session->set_userdata('workshop', true);
                       
                       
                   <?php endif ?>
-<?php var_dump($kelas); ?>
                   <?php if (isset($this->session->userdata['logged_in'])) : ?>
                     <?php if ($val['pembuat_workshop'] != $this->session->userdata('id_user')) : ?>
                       <?php if ($val['batas_jumlah'] > count($peserta_kelas) || $val['batas_jumlah'] == 0) : ?>

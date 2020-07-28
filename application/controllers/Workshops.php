@@ -656,8 +656,6 @@ class Workshops extends CI_Controller
         $null = false;
         if (isset($this->session->userdata['logged_in'])) {
             $temp = $this->Workshops_model->joinClass($id_kelas);
-
-            var_dump($temp); die;
             if ($temp == null)
                 $null = true;
             else {

@@ -276,7 +276,7 @@ $this->session->set_userdata('workshop', null);
                           <td style="text-align: center ;">
                             <?php if ($val['pembuat_kelas'] != $this->session->userdata('id_user')) : ?>
                               <?php if ($cek['data'] == true) : ?>
-                              <?php elseif ($peserta != null && $val2['status_kegiatan'] == CLASS_STARTED) : ?>
+                              <?php elseif ($peserta != null && $val2['nama_status'] == CLASS_STARTED) : ?>
                                 <a href="<?= base_url('class/') ?><?= $val['id_kelas'] ?>/<?= $val2['id_kegiatan']; ?>" class="btn btn-dark mr-1 btn-block">Ikut</a>
                               <?php elseif ($cek['data'] == false) : ?>
                               <?php endif; ?>
