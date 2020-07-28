@@ -195,120 +195,121 @@ class Classes extends CI_Controller
             } else
                 $this->session->set_flashdata("errorAPI", $data['kegiatan']['message']);
         }
-        
+
+
         $data['tanggal'] = $this->Classes_model->getTanggalKegiatan($id_kelas);
         if ($data['tanggal'] == null)
-        $null = true;
+            $null = true;
         else {
             if ($data['tanggal']['status'] == 200 || $data['tanggal']['status'] == 202) {
                 $data['tanggal'] = $data['tanggal']['data'];
             } else
                 $this->session->set_flashdata("errorAPI", $data['tanggal']['message']);
-            }
-            
-            $data['kelas'] = $this->Classes_model->getClassById($id_kelas);
-            if ($data['kelas'] == null)
+        }
+
+        $data['kelas'] = $this->Classes_model->getClassById($id_kelas);
+        if ($data['kelas'] == null)
             $null = true;
         else {
             if ($data['kelas']['status'] == 200 || $data['kelas']['status'] == 202) {
                 $temp[] = $data['kelas']['data'];
                 $data['kelas'] = $temp;
             } else
-            $this->session->set_flashdata("errorAPI", $data['kelas']['message']);
+                $this->session->set_flashdata("errorAPI", $data['kelas']['message']);
         }
-        
+
         $data['pembuat'] = $this->Classes_model->getPembuat();
         if ($data['pembuat'] == null)
-        $null = true;
+            $null = true;
         else {
             if ($data['pembuat']['status'] == 200 || $data['pembuat']['status'] == 202) {
                 $data['pembuat'] = $data['pembuat']['data'];
             } else
-            $this->session->set_flashdata("errorAPI", $data['pembuat']['message']);
+                $this->session->set_flashdata("errorAPI", $data['pembuat']['message']);
         }
-        
+
         $data['peserta_kelas'] = $this->Classes_model->getPesertaByClassId($id_kelas);
         if ($data['peserta_kelas'] == null)
-        $null = true;
+            $null = true;
         else {
             if ($data['peserta_kelas']['status'] == 200 || $data['peserta_kelas']['status'] == 202) {
                 if ($data['peserta_kelas']['data'] == null) {
                     $temp = array();
                     $data['peserta_kelas'] = $temp;
                 } else
-                $data['peserta_kelas'] = $data['peserta_kelas']['data'];
+                    $data['peserta_kelas'] = $data['peserta_kelas']['data'];
             } else
-            $this->session->set_flashdata("errorAPI", $data['peserta_kelas']['message']);
+                $this->session->set_flashdata("errorAPI", $data['peserta_kelas']['message']);
         }
-        
+
         $data['peserta_seluruh_kelas'] = $this->Classes_model->getPeserta();
         if ($data['peserta_seluruh_kelas'] == null)
-        $null = true;
+            $null = true;
         else {
             if ($data['peserta_seluruh_kelas']['status'] == 200 || $data['peserta_seluruh_kelas']['status'] == 202) {
                 $data['peserta_seluruh_kelas'] = $data['peserta_seluruh_kelas']['data'];
             } else
-            $this->session->set_flashdata("errorAPI", $data['peserta_seluruh_kelas']['message']);
+                $this->session->set_flashdata("errorAPI", $data['peserta_seluruh_kelas']['message']);
         }
-        
+
         $data['kategori'] = $this->Classes_model->getKategori();
         if ($data['kategori'] == null)
-        $null = true;
+            $null = true;
         else {
             if ($data['kategori']['status'] == 200 || $data['kategori']['status'] == 202) {
                 $data['kategori'] = $data['kategori']['data'];
             } else
-            $this->session->set_flashdata("errorAPI", $data['kategori']['message']);
+                $this->session->set_flashdata("errorAPI", $data['kategori']['message']);
         }
-        
+
         $data['status'] = $this->Classes_model->getStatus();
         if ($data['status'] == null)
-        $null = true;
+            $null = true;
         else {
             if ($data['status']['status'] == 200 || $data['status']['status'] == 202) {
                 $data['status'] = $data['status']['data'];
             } else
-            $this->session->set_flashdata("errorAPI", $data['status']['message']);
+                $this->session->set_flashdata("errorAPI", $data['status']['message']);
         }
-        
+
         $data['harga'] = $this->Classes_model->getHarga($id_kelas);
         if ($data['harga'] == null)
-        $null = true;
+            $null = true;
         else {
             if ($data['harga']['status'] == 200 || $data['harga']['status'] == 202) {
                 $temp2 = $data['harga']['data'];
                 $data['harga'] = $temp2;
             } else
-            $this->session->set_flashdata("errorAPI", $data['harga']['message']);
+                $this->session->set_flashdata("errorAPI", $data['harga']['message']);
         }
-        
+
         $data['peserta'] = $this->Classes_model->getPesertaByUserIdClassId($id_kelas);
         if ($data['peserta'] == null)
-        $null = true;
+            $null = true;
         else {
             if ($data['peserta']['status'] == 200 || $data['peserta']['status'] == 202) {
                 $data['peserta'] = $data['peserta']['data'];
             } else
-            $this->session->set_flashdata("errorAPI", $data['peserta']['message']);
+                $this->session->set_flashdata("errorAPI", $data['peserta']['message']);
         }
-        
+
         $data['cek'] = $this->Classes_model->cekPeserta($id_kelas);
         if ($data['cek'] == 'server_error')
-        $null = true;
-        
+            $null = true;
+
         $data['materi'] = $this->Classes_model->getMateriAll();
         if ($data['materi'] == null)
-        $null = true;
+            $null = true;
         else {
             if ($data['materi']['status'] == 200 || $data['materi']['status'] == 202) {
                 $data['materi'] = $data['materi']['data'];
             } else
-            $this->session->set_flashdata("errorAPI", $data['materi']['message']);
+                $this->session->set_flashdata("errorAPI", $data['materi']['message']);
         }
 
         $data['materiKegiatan'] = $this->Classes_model->getMateribyKegiatan();
         if ($data['materiKegiatan'] == null)
-        $null = true;
+            $null = true;
         else {
             if ($data['materiKegiatan']['status'] == 200 || $data['materiKegiatan']['status'] == 202) {
                 $data['materiKegiatan'] = $data['materiKegiatan']['data'];
@@ -451,7 +452,6 @@ class Classes extends CI_Controller
                 } else
                     $this->session->set_flashdata("errorAPI", $data['kegiatan']['message']);
             }
-            var_dump($data['kegiatan']);
 
             $data['tanggal'] = $this->Classes_model->getTanggalKegiatan($id_kelas);
             if ($data['tanggal'] == null)
@@ -460,115 +460,115 @@ class Classes extends CI_Controller
                 if ($data['tanggal']['status'] == 200 || $data['tanggal']['status'] == 202) {
                     $data['tanggal'] = $data['tanggal']['data'];
                 } else
-                $this->session->set_flashdata("errorAPI", $data['tanggal']['message']);
+                    $this->session->set_flashdata("errorAPI", $data['tanggal']['message']);
             }
-            
+
             $data['kelas'] = $this->Classes_model->getClassById($id_kelas);
             if ($data['kelas'] == null)
-            $null = true;
+                $null = true;
             else {
                 if ($data['kelas']['status'] == 200 || $data['kelas']['status'] == 202) {
                     $tempkelas[] = $data['kelas']['data'];
                     $data['kelas'] = $tempkelas;
                 } else
-                $this->session->set_flashdata("errorAPI", $data['kelas']['message']);
+                    $this->session->set_flashdata("errorAPI", $data['kelas']['message']);
             }
-            
+
             $data['pembuat'] = $this->Classes_model->getPembuat();
             if ($data['pembuat'] == null)
-            $null = true;
+                $null = true;
             else {
                 if ($data['pembuat']['status'] == 200 || $data['pembuat']['status'] == 202) {
                     $data['pembuat'] = $data['pembuat']['data'];
                 } else
-                $this->session->set_flashdata("errorAPI", $data['pembuat']['message']);
+                    $this->session->set_flashdata("errorAPI", $data['pembuat']['message']);
             }
-            
+
             $data['peserta_kelas'] = $this->Classes_model->getPesertaByClassId($id_kelas);
             if ($data['peserta_kelas'] == null)
-            $null = true;
+                $null = true;
             else {
                 if ($data['peserta_kelas']['status'] == 200 || $data['peserta_kelas']['status'] == 202) {
                     $data['peserta_kelas'] = $data['peserta_kelas']['data'];
                 } else
-                $this->session->set_flashdata("errorAPI", $data['peserta_kelas']['message']);
+                    $this->session->set_flashdata("errorAPI", $data['peserta_kelas']['message']);
             }
-            
+
             $data['peserta_seluruh_kelas'] = $this->Classes_model->getPeserta();
             if ($data['peserta_seluruh_kelas'] == null)
-            $null = true;
+                $null = true;
             else {
                 if ($data['peserta_seluruh_kelas']['status'] == 200 || $data['peserta_seluruh_kelas']['status'] == 202) {
                     $data['peserta_seluruh_kelas'] = $data['peserta_seluruh_kelas']['data'];
                 } else
-                $this->session->set_flashdata("errorAPI", $data['peserta_seluruh_kelas']['message']);
+                    $this->session->set_flashdata("errorAPI", $data['peserta_seluruh_kelas']['message']);
             }
-            
+
             $data['kategori'] = $this->Classes_model->getKategori();
             if ($data['kategori'] == null)
-            $null = true;
+                $null = true;
             else {
                 if ($data['kategori']['status'] == 200 || $data['kategori']['status'] == 202) {
                     $data['kategori'] = $data['kategori']['data'];
                 } else
-                $this->session->set_flashdata("errorAPI", $data['kategori']['message']);
+                    $this->session->set_flashdata("errorAPI", $data['kategori']['message']);
             }
-            
+
             $data['status'] = $this->Classes_model->getStatus();
             if ($data['status'] == null)
-            $null = true;
+                $null = true;
             else {
                 if ($data['status']['status'] == 200 || $data['status']['status'] == 202) {
                     $data['status'] = $data['status']['data'];
                 } else
                     $this->session->set_flashdata("errorAPI", $data['status']['message']);
-                }
+            }
 
-                $data['harga'] = $this->Classes_model->getHarga($id_kelas);
-                if ($data['harga'] == null)
+            $data['harga'] = $this->Classes_model->getHarga($id_kelas);
+            if ($data['harga'] == null)
                 $null = true;
-                else {
-                    if ($data['harga']['status'] == 200 || $data['harga']['status'] == 202) {
-                        $data['harga'] = $data['harga']['data'];
-                    } else
+            else {
+                if ($data['harga']['status'] == 200 || $data['harga']['status'] == 202) {
+                    $data['harga'] = $data['harga']['data'];
+                } else
                     $this->session->set_flashdata("errorAPI", $data['harga']['message']);
-                }
-                
-                $data['peserta'] = $this->Classes_model->getPesertaByUserIdClassId($id_kelas);
-                if ($data['peserta'] == null)
+            }
+
+            $data['peserta'] = $this->Classes_model->getPesertaByUserIdClassId($id_kelas);
+            if ($data['peserta'] == null)
                 $null = true;
-                else {
-                    if ($data['peserta']['status'] == 200 || $data['peserta']['status'] == 202) {
-                        $data['peserta'] = $data['peserta']['data'];
-                    } else
+            else {
+                if ($data['peserta']['status'] == 200 || $data['peserta']['status'] == 202) {
+                    $data['peserta'] = $data['peserta']['data'];
+                } else
                     $this->session->set_flashdata("errorAPI", $data['peserta']['message']);
-                }
-                
-                $data['cek'] = $this->Classes_model->cekPeserta($id_kelas);
-                if ($data['cek'] == 'server_error')
+            }
+
+            $data['cek'] = $this->Classes_model->cekPeserta($id_kelas);
+            if ($data['cek'] == 'server_error')
                 $null = true;
-                
-                
-                
-                $data['materi'] = $this->Classes_model->getMateriByKegiatan($id_kelas);
-                if ($data['materi'] == null)
+
+
+
+            $data['materi'] = $this->Classes_model->getMateriByKegiatan($id_kelas);
+            if ($data['materi'] == null)
                 $null = true;
             else {
                 if ($data['materi']['status'] == 200 || $data['materi']['status'] == 202) {
                     $data['materi'] = $data['materi']['data'];
                 } else
-                $this->session->set_flashdata("errorAPI", $data['materi']['message']);
+                    $this->session->set_flashdata("errorAPI", $data['materi']['message']);
             }
-            
+
             $data['materiKegiatan'] = $this->Classes_model->getMateribyIdMateri($id_materi);
             if ($data['materiKegiatan'] == null)
-            $null = true;
+                $null = true;
             else {
                 if ($data['materiKegiatan']['status'] == 200 || $data['materiKegiatan']['status'] == 202) {
                     $tempmaterikegiatan[] = $data['materiKegiatan']['data'];
                     $data['materiKegiatan'] = $tempmaterikegiatan;
                 } else
-                $this->session->set_flashdata("errorAPI", $data['materiKegiatan']['message']);
+                    $this->session->set_flashdata("errorAPI", $data['materiKegiatan']['message']);
             }
 
             $data['materiLain'] = $this->Classes_model->getMateriLain($id_kegiatan, $id_materi);
@@ -578,12 +578,12 @@ class Classes extends CI_Controller
                 if ($data['materiLain']['status'] == 200 || $data['materiLain']['status'] == 202) {
                     $data['materiLain'] = $data['materiLain']['data'];
                 } else
-                $this->session->set_flashdata("errorAPI", $data['materiLain']['message']);
+                    $this->session->set_flashdata("errorAPI", $data['materiLain']['message']);
             }
-            
+
             $data['indexvideo'] = $index;
             $data['error_bagian'] = "materi";
-            
+
             if (isset($this->session->userdata['logged_in'])) {
 
                 $this->session->set_flashdata('buttonJoin', 'Anda telah mengikuti kelas ini');
@@ -608,7 +608,7 @@ class Classes extends CI_Controller
                             foreach ($notif['data'] as $value) {
                                 $cek = $this->Classes_model->getKelasKegiatan($value['id_kelas']);
                                 if ($cek == null)
-                                $null = true;
+                                    $null = true;
                                 else {
                                     if ($cek['status'] == 200 || $cek['status'] == 202) {
                                         if ($cek['data'] != null) {
@@ -625,18 +625,18 @@ class Classes extends CI_Controller
                         $this->session->set_flashdata("errorAPI", $notif['message']);
                     }
                 }
-                
+
                 $notif2 = $this->Workshops_model->getPesertaByUserId();
                 if ($notif2 == null)
                     $null = true;
-                    else {
-                        if ($notif2['status'] == 200 || $notif2['status'] == 202) {
-                            $datanotif2 = array();
-                            if ($notif2['data'] != null) {
-                                foreach ($notif2['data'] as $value) {
+                else {
+                    if ($notif2['status'] == 200 || $notif2['status'] == 202) {
+                        $datanotif2 = array();
+                        if ($notif2['data'] != null) {
+                            foreach ($notif2['data'] as $value) {
                                 $cek2 = $this->Workshops_model->getKelasKegiatan($value['id_workshop']);
                                 if ($cek2 == null)
-                                $null = true;
+                                    $null = true;
                                 else {
                                     if ($cek2['status'] == 200 || $cek2['status'] == 202) {
                                         if ($cek2['data'] != null) {
@@ -658,15 +658,15 @@ class Classes extends CI_Controller
                 else {
                     $this->load->view('partials/user/header', $header);
                     if ($data['materiKegiatan'] == null || $data['kegiatan'] == null || $data['kelas'] == null)
-                    $this->load->view('classes/error_class', $data);
+                        $this->load->view('classes/error_class', $data);
                     else
-                    $this->load->view('classes/video_kelas', $data);
+                        $this->load->view('classes/video_kelas', $data);
                     $this->load->view('partials/user/footer');
                     $this->session->set_userdata('workshop', null);
                 }
             } else {
                 if ($null)
-                $this->load->view("server_error");
+                    $this->load->view("server_error");
                 else {
                     $this->load->view('partials/common/header');
                     if ($data['materiKegiatan'] == null || $data['kegiatan'] == null || $data['kelas'] == null)
@@ -1105,7 +1105,8 @@ class Classes extends CI_Controller
             $null = true;
         else {
             if ($data['kelas']['status'] == 200 || $data['kelas']['status'] == 202) {
-                $data['kelas'] = $data['kelas']['data'];
+                $tempkelas[] = $data['kelas']['data'];
+                $data['kelas'] = $tempkelas;
             } else
                 $this->session->set_flashdata("errorAPI", $data['kelas']['message']);
         }
@@ -1115,7 +1116,7 @@ class Classes extends CI_Controller
             $null = true;
         else {
             if ($data['pembuat']['status'] == 200 || $data['pembuat']['status'] == 202) {
-                $data['pembuat'] = $data['pembuat']['data'];
+                $data['pembuat']['nama'] = $data['pembuat']['data'];
             } else
                 $this->session->set_flashdata("errorAPI", $data['pembuat']['message']);
         }
@@ -1690,21 +1691,22 @@ class Classes extends CI_Controller
                             if ($cek2 == null)
                                 $null = true;
                             else {
-                                if ($cek2['status'] == 200) {
-                                    $cek2 = $cek2['data'];
-                                } else
+                                if ($cek2['status'] == 200 || $cek2['status'] == 202) {
+                                    if ($cek2['data'] != null) {
+                                        $datanotif2[] = $cek2['data'];
+                                    }
+                                } else {
                                     $this->session->set_flashdata("errorAPI", $cek2['message']);
-
-                                if ($cek2 != null) {
-                                    $datanotif2[] = $cek2;
                                 }
                             }
                         }
                     }
                     $header['notif2'] = $datanotif2;
-                } else
+                } else {
                     $this->session->set_flashdata("errorAPI", $notif2['message']);
+                }
             }
+
 
             if (!$null) {
                 $datacek = array();
@@ -2269,7 +2271,7 @@ class Classes extends CI_Controller
         force_download('./assets/docs/' . $url_materi, NULL);
     }
 
-    public function hapus_materi($id_kelas, $url_materi, $redirect = null)
+    public function hapus_materi($id_kelas, $id_materi, $redirect = null)
     {
         $null = false;
         $userId = $this->session->userdata('id_user');
@@ -2294,7 +2296,7 @@ class Classes extends CI_Controller
             }
         }
 
-        $temp = $this->Classes_model->delMateri($url_materi);
+        $temp = $this->Classes_model->delMateri($id_materi);
         if ($temp == null)
             $null = true;
         else {

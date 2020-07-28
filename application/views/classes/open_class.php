@@ -77,6 +77,11 @@ $this->session->set_userdata('workshop', null);
                   <?php echo $this->session->flashdata("success"); ?>
                 </div>
               <?php } ?>
+              <?php if ($this->session->flashdata("errorAPI")) { ?>
+                <div class="alert alert-success" role="alert">
+                  <?php echo $this->session->flashdata("errorAPI"); ?>
+                </div>
+              <?php } ?>
               <?php if ($val['status_kelas'] == 2 && $val['pembuat_kelas'] != $this->session->userdata('id_user')) { ?>
                 <div class="alert alert-danger text-center" role="alert">
                   <?php echo $this->session->flashdata("kelasSelesai"); ?>
@@ -218,33 +223,41 @@ $this->session->set_userdata('workshop', null);
                 <h2>Jadwal Kegiatan Kelas</h2>
               </div>
 
+
               <div class="card-body table-responsive">
                 <table class="table">
-                  <thead>
-                    <tr>
-                      <th scope="col">Deskripsi</th>
-                      <th scope="col">Hari/Tanggal</th>
-                      <th scope="col">Waktu</th>
-                      <th scope="col" style="text-align: center;">Status</th>
-                      <?php foreach ($kelas as $val2) : ?>
-                        <?php if ($val2['pembuat_kelas'] != $this->session->userdata('id_user')) : ?>
-                          <?php if ($cek['data'] == true) : ?>
-                          <?php elseif ($peserta != null) : ?>
-                            <th scope="col" style="text-align: center;">Aksi</th>
+                  <?php if ($kegiatan == null) : ?>
+                    <div class="alert alert-danger" role="alert">
+                      Tidak ada kegiatan dalam Workshop ini.
+                    </div>
+                  <?php else :  ?>
+
+                    <thead>
+                      <tr>
+                        <th scope="col">Deskripsi</th>
+                        <th scope="col">Hari/Tanggal</th>
+                        <th scope="col">Waktu</th>
+                        <th scope="col" style="text-align: center;">Status</th>
+                        <?php foreach ($kelas as $val2) : ?>
+                          <?php if ($val2['pembuat_kelas'] != $this->session->userdata('id_user')) : ?>
+                            <?php if ($cek['data'] == true) : ?>
+                            <?php elseif ($peserta != null) : ?>
+                              <th scope="col" style="text-align: center;">Aksi</th>
+                              <th scope="col" style="text-align: center;">Materi</th>
+                            <?php elseif ($cek['data'] == false) : ?>
+                            <?php endif; ?>
+                          <?php else : ?>
+                            <th scope="col" style="text-align: center ;">Aksi</th>
                             <th scope="col" style="text-align: center;">Materi</th>
-                          <?php elseif ($cek['data'] == false) : ?>
                           <?php endif; ?>
-                        <?php else : ?>
-                          <th scope="col" style="text-align: center ;">Aksi</th>
-                          <th scope="col" style="text-align: center;">Materi</th>
-                        <?php endif; ?>
-                      <?php endforeach ?>
+                        <?php endforeach ?>
 
 
 
-                    </tr>
-                  </thead>
-                  <tbody>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    <?php endif; ?>
                     <?php $modalMateri = 0; ?>
                     <?php if ($kegiatan != null) : ?>
                       <?php foreach ($kegiatan as $val2) : ?>
@@ -327,37 +340,38 @@ $this->session->set_userdata('workshop', null);
             <?php else : ?>
               <td>
                 <?php $countMateri = 0;
-                          foreach ($materi as $count) {
-                            if ($count['id_kegiatan'] == $val2['id_kegiatan']) {
-                              $countMateri++;
+                          if ($materi != null) {
+                            foreach ($materi as $count) {
+                              if ($count['id_kegiatan'] == $val2['id_kegiatan']) {
+                                $countMateri++;
+                              }
                             }
-                          } ?>
+                          }
+                ?>
 
-                <?php $PembuatMateri = 0; ?>
-                <?php if ($materi != null) : ?>
-                  <?php foreach ($materi as $val4) : ?>
-                    <?php if ($val2['id_kegiatan'] == $val4['id_kegiatan']) : ?>
-                      <?php if ($PembuatMateri < 1) : ?>
-                        <?php if ($countMateri == 0) : ?>
-                          <button class="btn btn-light btn-md px-3 my-0 ml-0 btn-block" style="color: red;" disabled type="button" data-toggle="modal" data-target="#lihatMateri<?= $modalMateri ?>">Tidak ada Materi</button><br>
-                          <button class="btn btn-dark btn-md px-3 my-0 ml-0 btn-block" type="button" data-toggle="modal" data-target="#editMateri<?= $modalMateri ?>">Tambah Materi</button>
-                        <?php else : ?>
+                <?php if ($countMateri == 0) : ?>
+                  <button class="btn btn-light btn-md px-3 my-0 ml-0 btn-block" style="color: red;" disabled type="button" data-toggle="modal" data-target="#lihatMateri<?= $modalMateri ?>">Tidak ada Materi</button><br>
+                  <button class="btn btn-dark btn-md px-3 my-0 ml-0 btn-block" type="button" data-toggle="modal" data-target="#editMateri<?= $modalMateri ?>">Tambah Materi</button>
+                <?php else : ?>
+                  <?php $PembuatMateri = 0; ?>
+                  <?php if ($materi != null) : ?>
+                    <?php foreach ($materi as $val4) : ?>
+                      <?php if ($val2['id_kegiatan'] == $val4['id_kegiatan']) : ?>
+                        <?php if ($PembuatMateri < 1) : ?>
                           <button class="btn btn-light btn-md px-3 my-0 ml-0 btn-block" type="button" data-toggle="modal" data-target="#lihatMateri<?= $modalMateri ?>">Lihat Materi</button><br>
                           <button class="btn btn-dark btn-md px-3 my-0 ml-0 btn-block" type="button" data-toggle="modal" data-target="#editMateri<?= $modalMateri ?>">Tambah Materi</button>
                         <?php endif; ?>
+                        <?php $PembuatMateri++; ?>
+                      <?php else : ?>
                       <?php endif; ?>
-                      <?php $PembuatMateri++; ?>
-                    <?php else : ?>
-                    <?php endif; ?>
-                  <?php endforeach; ?>
-                <?php else : ?>
-                  <button class="btn btn-light btn-md px-3 my-0 ml-0 btn-block" style="color: red;" disabled type="button" data-toggle="modal" data-target="#lihatMateri<?= $modalMateri ?>">Tidak ada Materi</button><br>
-                  <button class="btn btn-dark btn-md px-3 my-0 ml-0 btn-block" type="button" data-toggle="modal" data-target="#editMateri<?= $modalMateri ?>">Tambah Materi</button>
-                <?php endif; ?>
+                    <?php endforeach; ?>
+                  <?php else : ?>
+                    <button class="btn btn-light btn-md px-3 my-0 ml-0 btn-block" style="color: red;" disabled type="button" data-toggle="modal" data-target="#lihatMateri<?= $modalMateri ?>">Tidak ada Materi</button><br>
+                    <button class="btn btn-dark btn-md px-3 my-0 ml-0 btn-block" type="button" data-toggle="modal" data-target="#editMateri<?= $modalMateri ?>">Tambah Materi</button>
+                  <?php endif; ?>
 
-                <?php if($countMateri == 0) : ?>
-                   <button class="btn btn-light btn-md px-3 my-0 ml-0 btn-block" style="color: red;" disabled type="button" data-toggle="modal" data-target="#lihatMateri<?= $modalMateri ?>">Tidak ada Materi</button><br>
-                      <button class="btn btn-dark btn-md px-3 my-0 ml-0 btn-block" type="button" data-toggle="modal" data-target="#editMateri<?= $modalMateri ?>">Tambah Materi</button>
+
+
                 <?php endif; ?>
 
 
@@ -449,12 +463,12 @@ $this->session->set_userdata('workshop', null);
                             <?php if ($val2['id_kegiatan'] == $val4['id_kegiatan']) : ?>
                               <?php if ($val4['id_kategori'] == 1) : ?>
                                 <div class="col-md-10 border-bottom pb-3 mt-3"><a href="<?= base_url(); ?>classes/download_materi/<?= $val4['url_materi'] ?>"><?= $val4['url_materi'] ?></a></div>
-                                <div class="col-md-2 ml-auto border-bottom"><button type="button" class="btn btn-danger"><a href="<?= base_url(); ?>classes/hapus_materi/<?= $val4['id_kelas'] ?>/<?= $val4['url_materi'] ?>">Hapus</a></button></div>
+                                <div class="col-md-2 ml-auto border-bottom"><button type="button" class="btn btn-danger"><a href="<?= base_url(); ?>classes/hapus_materi/<?= $val4['id_kelas'] ?>/<?= $val4['id_materi'] ?>">Hapus</a></button></div>
 
                               <?php else : ?>
                                 <?php $a++ ?>
                                 <div class="col-md-10 border-bottom pb-3 mt-3"><a href="<?= base_url(); ?>classes/video_class/<?= $val['id_kelas'] ?>/<?= $val2['id_kegiatan'] ?>/<?= $val4['id_materi'] ?>/<?= $a ?>">Video <?= $a ?> Kegiatan <?= $val2['deskripsi_kegiatan'] ?> <b>(<?= $val['judul_kelas'] ?>)</b></a></div>
-                                <div class="col-md-2 ml-auto border-bottom"><button type="button" class="btn btn-danger"><a href="<?= base_url(); ?>classes/hapus_materi/<?= $val4['id_kelas'] ?>/<?= $val4['url_materi'] ?>">Hapus</a></button></div>
+                                <div class="col-md-2 ml-auto border-bottom"><button type="button" class="btn btn-danger"><a href="<?= base_url(); ?>classes/hapus_materi/<?= $val4['id_kelas'] ?>/<?= $val4['id_materi'] ?>">Hapus</a></button></div>
 
                               <?php endif; ?>
 

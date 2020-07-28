@@ -82,9 +82,8 @@ class Profile_model extends CI_Model
         $config['remove_space'] = true;
         $id_user = $this->session->userdata('id_user');
         $data = $this->http_request_get("account/users/profile/$id_user");
-        foreach ($data['data'] as $data2) {
-            unlink("./assets/images/" . $data2['foto']);
-        }
+            unlink("./assets/images/" . $data['foto']);
+        
 
         $this->load->library('upload', $config);
         if ($this->upload->do_upload('foto')) {
@@ -105,9 +104,8 @@ class Profile_model extends CI_Model
             $this->load->library('upload', $config);
             if ($this->upload->do_upload('foto')) {
                 $data = $this->http_request_get("account/users/profile/$id_user");
-                foreach ($data['data'] as $data2) {
-                    unlink("./assets/images/" . $data2['foto']);
-                }
+                    unlink("./assets/images/" . $data['foto']);
+                
 
                 $file_name = $this->upload->data('file_name');
 
@@ -128,7 +126,7 @@ class Profile_model extends CI_Model
                 'deskripsi' => $this->input->post('deskripsi')
             ];
         }
-        $this->http_request_update($data, "user/account/profile/$id_user");
+        return $this->http_request_update($data, "user/account/profile/$id_user");
     }
 
     public function deleteAccount()
@@ -154,7 +152,7 @@ class Profile_model extends CI_Model
         $newPasswordHashed = hash('sha256', $newPassword);
 
         $data = [
-            'password' => $newPasswordHashed
+            'new_password' => $newPasswordHashed
         ];
 
         return $this->http_request_update($data, "users/change_password/$id_user");

@@ -242,6 +242,7 @@ class workshops_model extends CI_Model
         ];
 
         return $this->http_request_post($data, "workshop/join");
+        
     }
 
     public function getIdNewClass()

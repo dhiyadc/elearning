@@ -6,9 +6,9 @@
 <section class="user_dashboard">
 
 
-<div class="col-lg-12" style="background-color: darkcyan; padding-left: 0px; padding-right: 0px;" >
-    <div class="card" style="border-radius: 0px; background-color: darkcyan;"> 
-    <div class="container my-5 pt-5 pb-3 px-4 ">
+  <div class="col-lg-12" style="background-color: darkcyan; padding-left: 0px; padding-right: 0px;">
+    <div class="card" style="border-radius: 0px; background-color: darkcyan;">
+      <div class="container my-5 pt-5 pb-3 px-4 ">
 
 
 
@@ -55,8 +55,17 @@
           <a href="<?= base_url() ?>classes/open_class/<?= $val['id_kelas']; ?>" class="btn btn-danger" style="width: 200px">Kembali ke kelas</a>
         </div>
       <?php else : ?>
-        <div class="text-right">
-          <a href="<?= base_url() ?>classes/open_class/<?= $val['id_kelas']; ?>" class="btn btn-danger">Kembali ke kelas</a>
+        <div class="row">
+          <div class="col-md-10">
+            <?php if ($this->session->flashdata('errorAPI')) : ?>
+              <div class="alert alert-info" style="margin-top: 1px;" role="alert">
+                <?= $this->session->flashdata('errorAPI'); ?>
+              </div>
+            <?php endif; ?>
+          </div>
+          <div class="text-right">
+            <a href="<?= base_url() ?>classes/open_class/<?= $val['id_kelas']; ?>" class="btn btn-danger">Kembali ke kelas</a>
+          </div>
         </div>
       <?php endif; ?>
 
@@ -79,15 +88,132 @@
     <!-- Tab panes -------------- -->
     <div class="tab-content">
       <div class="tab-pane active" id="tab1" role="tabpanel" aria-expanded="true">
-
+            <?php
+            $counttugas = 0;
+            $countquiz = 0;
+            $counttugasakhir = 0;
+            if ($tugas['data'] != null) {
+              foreach ($tugas['data'] as $val2) {
+                if ($val2['kategori'] == "Tugas")
+                  $counttugas++;
+                elseif ($val2['kategori'] == "Kuis")
+                  $countquiz++;
+                elseif ($val2['kategori'] == "Tugas Akhir")
+                  $counttugasakhir++;
+              }
+            } ?>
+        
         <section class="projects no-padding-top">
           <div class="container">
+            <?php if ($counttugas == 0) : ?>
+              <div class="alert alert-danger mt-3" style="margin-top: 1px;" role="alert">
+                Tidak Ada Tugas. </div>
+            <?php endif ?>
+
 
             <?php foreach ($kelas as $val) : ?>
               <?php $i = 0; ?>
               <?php if ($tugas['data'] != null) : ?>
                 <?php foreach ($tugas['data'] as $val2) : ?>
                   <?php if ($val2['kategori'] == 'Tugas') : ?>
+                    <!-- Project-->
+                    <div class="project">
+
+                      <div class="row bg-white has-shadow">
+                        <div class="left-col col-lg-6 d-flex align-items-center justify-content-between">
+                          <div class="project-title d-flex align-items-center">
+                            <div class="image has-shadow"><img src="<?php echo base_url(); ?>assets/images/task.png" alt="..." class="img-fluid rounded-circle"></div>
+                            <div class="text">
+                              <?php if ($val['pembuat_kelas'] != $this->session->userdata('id_user')) : ?>
+                                <a href="<?= base_url() ?>classes/detail_tugaskuis/<?= $val['id_kelas']; ?>/<?= $val2['id_tugas']; ?>">
+                                  <h3 class="h4" style="font-size: 20px;"><?= $val2['judul_tugas']; ?></h3><small><?= $val['judul_kelas']; ?></small>
+                                </a>
+                              <?php else : ?>
+                                <a href="<?= base_url() ?>classes/detail_tugaskuisguru/<?= $val['id_kelas']; ?>/<?= $val2['id_tugas']; ?>">
+                                  <h3 class="h4" style="font-size: 20px;"><?= $val2['judul_tugas']; ?></h3><small><?= $val['judul_kelas']; ?></small>
+                                </a>
+                              <?php endif; ?>
+                            </div>
+                          </div>
+                          <?php if ($val['pembuat_kelas'] == $this->session->userdata('id_user')) : ?>
+                            <div class="project-date text-right">
+                              <span class="hidden-sm-down">
+                                <div class="time">
+                                  <div class="row mt-3">
+                                    <div class="col-sm-6">
+                                      <a href="<?= base_url() ?>classes/edit_assignment/<?= $val2['id_kelas']; ?>/<?= $val2['id_tugas']; ?>">Edit</a><br>
+                                    </div>
+                                    <div class="col-sm-6">
+                                      <a href="<?= base_url() ?>classes/del_assignment/<?= $val2['id_kelas']; ?>/<?= $val2['id_tugas']; ?>">Hapus</a>
+                                    </div>
+                                  </div>
+                                </div>
+                              </span>
+                            </div>
+                          <?php endif; ?>
+                        </div>
+                        <div class="right-col col-lg-6 d-flex align-items-center">
+
+
+                          <!-- <div class="comments"><i class="fa fa-comment-o"></i>20</div> -->
+                          <div class="project-progress">
+                            <div class="time">
+                              <?php if ($val['pembuat_kelas'] != $this->session->userdata('id_user')) : ?>
+                                <?php if ($cek[$i] == null) : ?>
+                                  <div class="nilai">Belum Kumpul</span></div>
+                                <?php else : ?>
+                                  <?php if ($submit != null) : ?>
+                                    <?php foreach ($submit as $val3) : ?>
+                                      <?php if ($val2['id_tugas'] == $val3['id_tugas'] && $val3['id_user'] == $this->session->userdata('id_user')) : ?>
+                                        <?php if ($val3['nilai_tugas'] == "Belum Dinilai") : ?>
+                                          <div class="nilai"><?= $val3['nilai_tugas']; ?></span></div>
+                                        <?php else : ?>
+                                          <div class="nilai"><?= $val3['nilai_tugas']; ?>/100</span></div>
+                                        <?php endif; ?>
+                                      <?php endif; ?>
+                                    <?php endforeach; ?>
+                                  <?php endif; ?>
+                                <?php endif; ?>
+                              <?php else : ?>
+                                <?php $x = 0;
+                                if ($submit != null) :
+                                  foreach ($submit as $val3) {
+                                    if ($val2['id_tugas'] == $val3['id_tugas']) {
+                                      $x++;
+                                    }
+                                  } ?>
+                                <?php endif ?>
+                                <div class="nilai"><?= $x; ?>/<?= count($peserta); ?> Siswa</span></div>
+                              <?php endif; ?>
+                            </div>
+                          </div>
+                          <div class="time"><i class="fa fa-clock-o"></i> <?= $val2['deadline']; ?> </div>
+                        </div>
+                      </div>
+                    </div>
+                  <?php endif; ?>
+                  <?php $i++; ?>
+                <?php endforeach; ?>
+              <?php endif; ?>
+            <?php endforeach; ?>
+        </section>
+
+      </div>
+
+      <div class="tab-pane" id="tab2" role="tabpanel" aria-expanded="false">
+
+        <section class="projects no-padding-top">
+          <div class="container">
+            <?php if ($countquiz == 0) : ?>
+              <div class="alert alert-danger mt-3" style="margin-top: 1px;" role="alert">
+                Tidak Ada Quiz. </div>
+            <?php endif ?>
+
+            <?php foreach ($kelas as $val) : ?>
+              <?php $i = 0; ?>
+              <?php if ($tugas['data'] != null) : ?>
+                <?php foreach ($tugas['data'] as $val2) : ?>
+                  <?php if ($val2['kategori'] == 'Kuis') : ?>
                     <!-- Project-->
                     <div class="project">
                       <div class="row bg-white has-shadow">
@@ -133,7 +259,6 @@
                                 <?php if ($cek[$i] == null) : ?>
                                   <div class="nilai">Belum Kumpul</span></div>
                                 <?php else : ?>
-                                  <?php if($submit != null) : ?>
                                   <?php foreach ($submit as $val3) : ?>
                                     <?php if ($val2['id_tugas'] == $val3['id_tugas'] && $val3['id_user'] == $this->session->userdata('id_user')) : ?>
                                       <?php if ($val3['nilai_tugas'] == "Belum Dinilai") : ?>
@@ -144,21 +269,18 @@
                                     <?php endif; ?>
                                   <?php endforeach; ?>
                                 <?php endif; ?>
-                                <?php endif; ?>
                               <?php else : ?>
                                 <?php $x = 0;
-                                if($submit != null) :
                                 foreach ($submit as $val3) {
                                   if ($val2['id_tugas'] == $val3['id_tugas']) {
                                     $x++;
                                   }
                                 } ?>
-                                <?php endif ?>
                                 <div class="nilai"><?= $x; ?>/<?= count($peserta); ?> Siswa</span></div>
                               <?php endif; ?>
                             </div>
                           </div>
-                          <div class="time"><i class="fa fa-clock-o"></i> <?= $val2['deadline']; ?> </div>
+                          <div class="time"><i class="fa fa-clock-o"></i> <?= $val2['deadline']; ?></div>
                         </div>
                       </div>
                     </div>
@@ -167,100 +289,6 @@
                 <?php endforeach; ?>
               <?php endif; ?>
             <?php endforeach; ?>
-        </section>
-
-      </div>
-
-      <div class="tab-pane" id="tab2" role="tabpanel" aria-expanded="false">
-
-        <section class="projects no-padding-top">
-          <div class="container">
-            <?php if ($this->session->flashdata('errorAPI')) : ?>
-              <div class="alert alert-danger mt-3" role="alert">
-                <?php echo $this->session->flashdata("errorAPI"); ?>
-              </div>
-            <?php endif ?>
-            <?php var_dump($tugas['data']); ?>
-            <?php foreach ($kelas as $val) : ?>
-              <?php $i = 0; ?>
-              <?php if ($tugas['data'] != null) : ?>
-              <?php foreach ($tugas['data'] as $val2) : ?>
-                <?php if ($val2['kategori'] == 'Kuis') : ?>
-                  <!-- Project-->
-                  <div class="project">
-                    <div class="row bg-white has-shadow">
-                      <div class="left-col col-lg-6 d-flex align-items-center justify-content-between">
-                        <div class="project-title d-flex align-items-center">
-                          <div class="image has-shadow"><img src="<?php echo base_url(); ?>assets/images/task.png" alt="..." class="img-fluid rounded-circle"></div>
-                          <div class="text">
-                            <?php if ($val['pembuat_kelas'] != $this->session->userdata('id_user')) : ?>
-                              <a href="<?= base_url() ?>classes/detail_tugaskuis/<?= $val['id_kelas']; ?>/<?= $val2['id_tugas']; ?>">
-                                <h3 class="h4" style="font-size: 20px;"><?= $val2['judul_tugas']; ?></h3><small><?= $val['judul_kelas']; ?></small>
-                              </a>
-                            <?php else : ?>
-                              <a href="<?= base_url() ?>classes/detail_tugaskuisguru/<?= $val['id_kelas']; ?>/<?= $val2['id_tugas']; ?>">
-                                <h3 class="h4" style="font-size: 20px;"><?= $val2['judul_tugas']; ?></h3><small><?= $val['judul_kelas']; ?></small>
-                              </a>
-                            <?php endif; ?>
-                          </div>
-                        </div>
-                        <?php if ($val['pembuat_kelas'] == $this->session->userdata('id_user')) : ?>
-                          <div class="project-date text-right">
-                            <span class="hidden-sm-down">
-                              <div class="time">
-                                <div class="row mt-3">
-                                  <div class="col-sm-6">
-                                    <a href="<?= base_url() ?>classes/edit_assignment/<?= $val2['id_kelas']; ?>/<?= $val2['id_tugas']; ?>">Edit</a><br>
-                                  </div>
-                                  <div class="col-sm-6">
-                                    <a href="<?= base_url() ?>classes/del_assignment/<?= $val2['id_kelas']; ?>/<?= $val2['id_tugas']; ?>">Hapus</a>
-                                  </div>
-                                </div>
-                              </div>
-                            </span>
-                          </div>
-                        <?php endif; ?>
-                      </div>
-                      <div class="right-col col-lg-6 d-flex align-items-center">
-
-
-                        <!-- <div class="comments"><i class="fa fa-comment-o"></i>20</div> -->
-                        <div class="project-progress">
-                          <div class="time">
-                            <?php if ($val['pembuat_kelas'] != $this->session->userdata('id_user')) : ?>
-                              <?php if ($cek[$i] == null) : ?>
-                                <div class="nilai">Belum Kumpul</span></div>
-                              <?php else : ?>
-                                <?php foreach ($submit as $val3) : ?>
-                                  <?php if ($val2['id_tugas'] == $val3['id_tugas'] && $val3['id_user'] == $this->session->userdata('id_user')) : ?>
-                                    <?php if ($val3['nilai_tugas'] == "Belum Dinilai") : ?>
-                                      <div class="nilai"><?= $val3['nilai_tugas']; ?></span></div>
-                                    <?php else : ?>
-                                      <div class="nilai"><?= $val3['nilai_tugas']; ?>/100</span></div>
-                                    <?php endif; ?>
-                                  <?php endif; ?>
-                                <?php endforeach; ?>
-                              <?php endif; ?>
-                            <?php else : ?>
-                              <?php $x = 0;
-                              foreach ($submit as $val3) {
-                                if ($val2['id_tugas'] == $val3['id_tugas']) {
-                                  $x++;
-                                }
-                              } ?>
-                              <div class="nilai"><?= $x; ?>/<?= count($peserta); ?> Siswa</span></div>
-                            <?php endif; ?>
-                          </div>
-                        </div>
-                        <div class="time"><i class="fa fa-clock-o"></i> <?= $val2['deadline']; ?></div>
-                      </div>
-                    </div>
-                  </div>
-                <?php endif; ?>
-                <?php $i++; ?>
-              <?php endforeach; ?>
-              <?php endif; ?>
-              <?php endforeach; ?>
 
         </section>
       </div>
@@ -270,89 +298,88 @@
 
         <section class="projects no-padding-top">
           <div class="container">
-            <?php if ($this->session->flashdata('errorAPI')) : ?>
-              <div class="alert alert-danger mt-3" role="alert">
-                <?php echo $this->session->flashdata("errorAPI"); ?>
-              </div>
+            <?php if ($counttugasakhir == 0) : ?>
+              <div class="alert alert-danger mt-3" style="margin-top: 1px;" role="alert">
+                Tidak Ada Tugas Akhir. </div>
             <?php endif ?>
             <?php foreach ($kelas as $val) : ?>
               <?php $i = 0; ?>
               <?php if ($tugas['data'] != null) : ?>
-              <?php foreach ($tugas['data'] as $val2) : ?>
-                <?php if ($val2['kategori'] == 'Tugas Akhir') : ?>
-                  <!-- Project-->
-                  <div class="project">
-                    <div class="row bg-white has-shadow">
-                      <div class="left-col col-lg-6 d-flex align-items-center justify-content-between">
-                        <div class="project-title d-flex align-items-center">
-                          <div class="image has-shadow"><img src="<?php echo base_url(); ?>assets/images/task.png" alt="..." class="img-fluid rounded-circle"></div>
-                          <div class="text">
-                            <?php if ($val['pembuat_kelas'] != $this->session->userdata('id_user')) : ?>
-                              <a href="<?= base_url() ?>classes/detail_tugaskuis/<?= $val['id_kelas']; ?>/<?= $val2['id_tugas']; ?>">
-                                <h3 class="h4" style="font-size: 20px;"><?= $val2['judul_tugas']; ?></h3><small><?= $val['judul_kelas']; ?></small>
-                              </a>
-                            <?php else : ?>
-                              <a href="<?= base_url() ?>classes/detail_tugaskuisguru/<?= $val['id_kelas']; ?>/<?= $val2['id_tugas']; ?>">
-                                <h3 class="h4" style="font-size: 20px;"><?= $val2['judul_tugas']; ?></h3><small><?= $val['judul_kelas']; ?></small>
-                              </a>
-                            <?php endif; ?>
+                <?php foreach ($tugas['data'] as $val2) : ?>
+                  <?php if ($val2['kategori'] == 'Tugas Akhir') : ?>
+                    <!-- Project-->
+                    <div class="project">
+                      <div class="row bg-white has-shadow">
+                        <div class="left-col col-lg-6 d-flex align-items-center justify-content-between">
+                          <div class="project-title d-flex align-items-center">
+                            <div class="image has-shadow"><img src="<?php echo base_url(); ?>assets/images/task.png" alt="..." class="img-fluid rounded-circle"></div>
+                            <div class="text">
+                              <?php if ($val['pembuat_kelas'] != $this->session->userdata('id_user')) : ?>
+                                <a href="<?= base_url() ?>classes/detail_tugaskuis/<?= $val['id_kelas']; ?>/<?= $val2['id_tugas']; ?>">
+                                  <h3 class="h4" style="font-size: 20px;"><?= $val2['judul_tugas']; ?></h3><small><?= $val['judul_kelas']; ?></small>
+                                </a>
+                              <?php else : ?>
+                                <a href="<?= base_url() ?>classes/detail_tugaskuisguru/<?= $val['id_kelas']; ?>/<?= $val2['id_tugas']; ?>">
+                                  <h3 class="h4" style="font-size: 20px;"><?= $val2['judul_tugas']; ?></h3><small><?= $val['judul_kelas']; ?></small>
+                                </a>
+                              <?php endif; ?>
+                            </div>
                           </div>
-                        </div>
-                        <?php if ($val['pembuat_kelas'] == $this->session->userdata('id_user')) : ?>
-                          <div class="project-date text-right">
-                            <span class="hidden-sm-down">
-                              <div class="time">
-                                <div class="row mt-3">
-                                  <div class="col-sm-6">
-                                    <a href="<?= base_url() ?>classes/edit_assignment/<?= $val2['id_kelas']; ?>/<?= $val2['id_tugas']; ?>">Edit</a><br>
-                                  </div>
-                                  <div class="col-sm-6">
-                                    <a href="<?= base_url() ?>classes/del_assignment/<?= $val2['id_kelas']; ?>/<?= $val2['id_tugas']; ?>">Hapus</a>
+                          <?php if ($val['pembuat_kelas'] == $this->session->userdata('id_user')) : ?>
+                            <div class="project-date text-right">
+                              <span class="hidden-sm-down">
+                                <div class="time">
+                                  <div class="row mt-3">
+                                    <div class="col-sm-6">
+                                      <a href="<?= base_url() ?>classes/edit_assignment/<?= $val2['id_kelas']; ?>/<?= $val2['id_tugas']; ?>">Edit</a><br>
+                                    </div>
+                                    <div class="col-sm-6">
+                                      <a href="<?= base_url() ?>classes/del_assignment/<?= $val2['id_kelas']; ?>/<?= $val2['id_tugas']; ?>">Hapus</a>
+                                    </div>
                                   </div>
                                 </div>
-                              </div>
-                            </span>
-                          </div>
-                        <?php endif; ?>
-                      </div>
-                      <div class="right-col col-lg-6 d-flex align-items-center">
-
-
-                        <!-- <div class="comments"><i class="fa fa-comment-o"></i>20</div> -->
-                        <div class="project-progress">
-                          <div class="time">
-                            <?php if ($val['pembuat_kelas'] != $this->session->userdata('id_user')) : ?>
-                              <?php if ($cek[$i] == null) : ?>
-                                <div class="nilai">Belum Kumpul</span></div>
-                              <?php else : ?>
-                                <?php foreach ($submit as $val3) : ?>
-                                  <?php if ($val2['id_tugas'] == $val3['id_tugas'] && $val3['id_user'] == $this->session->userdata('id_user')) : ?>
-                                    <?php if ($val3['nilai_tugas'] == "Belum Dinilai") : ?>
-                                      <div class="nilai"><?= $val3['nilai_tugas']; ?></span></div>
-                                    <?php else : ?>
-                                      <div class="nilai"><?= $val3['nilai_tugas']; ?>/100</span></div>
-                                    <?php endif; ?>
-                                  <?php endif; ?>
-                                <?php endforeach; ?>
-                              <?php endif; ?>
-                            <?php else : ?>
-                              <?php $x = 0;
-                              foreach ($submit as $val3) {
-                                if ($val2['id_tugas'] == $val3['id_tugas']) {
-                                  $x++;
-                                }
-                              } ?>
-                              <div class="nilai"><?= $x; ?>/<?= count($peserta); ?> Siswa</span></div>
-                            <?php endif; ?>
-                          </div>
+                              </span>
+                            </div>
+                          <?php endif; ?>
                         </div>
-                        <div class="time"><i class="fa fa-clock-o"></i> <?= $val2['deadline']; ?></div>
+                        <div class="right-col col-lg-6 d-flex align-items-center">
+
+
+                          <!-- <div class="comments"><i class="fa fa-comment-o"></i>20</div> -->
+                          <div class="project-progress">
+                            <div class="time">
+                              <?php if ($val['pembuat_kelas'] != $this->session->userdata('id_user')) : ?>
+                                <?php if ($cek[$i] == null) : ?>
+                                  <div class="nilai">Belum Kumpul</span></div>
+                                <?php else : ?>
+                                  <?php foreach ($submit as $val3) : ?>
+                                    <?php if ($val2['id_tugas'] == $val3['id_tugas'] && $val3['id_user'] == $this->session->userdata('id_user')) : ?>
+                                      <?php if ($val3['nilai_tugas'] == "Belum Dinilai") : ?>
+                                        <div class="nilai"><?= $val3['nilai_tugas']; ?></span></div>
+                                      <?php else : ?>
+                                        <div class="nilai"><?= $val3['nilai_tugas']; ?>/100</span></div>
+                                      <?php endif; ?>
+                                    <?php endif; ?>
+                                  <?php endforeach; ?>
+                                <?php endif; ?>
+                              <?php else : ?>
+                                <?php $x = 0;
+                                foreach ($submit as $val3) {
+                                  if ($val2['id_tugas'] == $val3['id_tugas']) {
+                                    $x++;
+                                  }
+                                } ?>
+                                <div class="nilai"><?= $x; ?>/<?= count($peserta); ?> Siswa</span></div>
+                              <?php endif; ?>
+                            </div>
+                          </div>
+                          <div class="time"><i class="fa fa-clock-o"></i> <?= $val2['deadline']; ?></div>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                <?php endif; ?>
-                <?php $i++; ?>
-              <?php endforeach; ?>
+                  <?php endif; ?>
+                  <?php $i++; ?>
+                <?php endforeach; ?>
               <?php endif ?>
             <?php endforeach; ?>
 
@@ -405,11 +432,10 @@
 
 
 
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 
 
   </div>
 </section>
-
