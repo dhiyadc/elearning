@@ -446,10 +446,12 @@ class Classes extends CI_Controller
                 $null = true;
             else {
                 if ($data['kegiatan']['status'] == 200 || $data['kegiatan']['status'] == 202) {
-                    $data['kegiatan'] = $data['kegiatan']['data'];
+                    $tempkegiatan[] = $data['kegiatan']['data'];
+                    $data['kegiatan'] = $tempkegiatan;
                 } else
                     $this->session->set_flashdata("errorAPI", $data['kegiatan']['message']);
             }
+            var_dump($data['kegiatan']);
 
             $data['tanggal'] = $this->Classes_model->getTanggalKegiatan($id_kelas);
             if ($data['tanggal'] == null)
@@ -466,7 +468,8 @@ class Classes extends CI_Controller
             $null = true;
             else {
                 if ($data['kelas']['status'] == 200 || $data['kelas']['status'] == 202) {
-                    $data['kelas'] = $data['kelas']['data'];
+                    $tempkelas[] = $data['kelas']['data'];
+                    $data['kelas'] = $tempkelas;
                 } else
                 $this->session->set_flashdata("errorAPI", $data['kelas']['message']);
             }
@@ -562,7 +565,8 @@ class Classes extends CI_Controller
             $null = true;
             else {
                 if ($data['materiKegiatan']['status'] == 200 || $data['materiKegiatan']['status'] == 202) {
-                    $data['materiKegiatan'] = $data['materiKegiatan']['data'];
+                    $tempmaterikegiatan[] = $data['materiKegiatan']['data'];
+                    $data['materiKegiatan'] = $tempmaterikegiatan;
                 } else
                 $this->session->set_flashdata("errorAPI", $data['materiKegiatan']['message']);
             }
@@ -653,19 +657,19 @@ class Classes extends CI_Controller
                     $this->load->view("server_error");
                 else {
                     $this->load->view('partials/user/header', $header);
-                    if (count($data['materiKegiatan']) == 0 || count($data['materiKegiatan']) == null)
-                        $this->load->view('classes/error_class', $data);
+                    if ($data['materiKegiatan'] == null || $data['kegiatan'] == null || $data['kelas'] == null)
+                    $this->load->view('classes/error_class', $data);
                     else
-                        $this->load->view('classes/video_kelas', $data);
+                    $this->load->view('classes/video_kelas', $data);
                     $this->load->view('partials/user/footer');
                     $this->session->set_userdata('workshop', null);
                 }
             } else {
                 if ($null)
-                    $this->load->view("server_error");
+                $this->load->view("server_error");
                 else {
                     $this->load->view('partials/common/header');
-                    if (count($data['materiKegiatan']) == 0 || count($data['materiKegiatan']) == null)
+                    if ($data['materiKegiatan'] == null || $data['kegiatan'] == null || $data['kelas'] == null)
                         $this->load->view('classes/error_class', $data);
                     else
                         $this->load->view('classes/video_kelas', $data);
