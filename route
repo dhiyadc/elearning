@@ -1,0 +1,165 @@
+package routes
+
+import (
+	"elearning/controllers"
+	"github.com/labstack/echo"
+	"net/http"
+)
+
+type Routing struct {
+	account controllers.Account
+	assignment controllers.Assignment
+	classes controllers.Class
+	login controllers.LoginController
+	workshop controllers.Workshop
+}
+
+type RoutingInterface interface {
+	Init() *echo.Echo
+}
+
+func (Routing Routing)Init() *echo.Echo  {
+	r := echo.New()
+
+	r.GET("/", func(ctx echo.Context) error {
+		return ctx.String(http.StatusOK, "Hello  i am echo")
+	})
+
+	r.POST("/home/login", Routing.login.CheckLogin) //d
+	r.POST("/home/register", Routing.login.Register) //d
+	//assignment
+	r.GET("/classes/my_class/assignment/:id_tugas", Routing.assignment.Fetch_all_assignment) ///xxx
+	r.POST("/classes/my_class/submit_assignment", Routing.assignment.CollectAssignment) //d
+	r.DELETE("/classes/my_class/assignment//:id_submit", Routing.assignment.Delete_jawaban)  //d
+	r.PUT("/classes/my_class/assignment/nilai/:id_submit", Routing.assignment.Updatenilai) //d
+	//assigment to table kuis
+	r.GET("/classes/my_class/assignment/deadline/:id_tugas", Routing.assignment.Get_deadline_tugas) //d
+	r.POST("/classes/my_class/assignment/kuis", Routing.assignment.CreateAssignment)//d
+	r.PUT("/classes/my_class/assignment/kuis/:id_tugas", Routing.assignment.Updateassignment) //d
+	r.DELETE("/classes/my_class/assignment/kuis/:id_tugas", Routing.assignment.Deleteassignment) //d
+
+	//classes
+	r.GET("/classes", Routing.classes.Get_all_classes) //d
+	r.GET("/classes/my_classes/:id_user", Routing.classes.Get_myclasses) //d
+	r.PUT("/classes/my_classes/update/:id_kelas", Routing.classes.Updateclass) //d
+	r.DELETE("/classes/my_classes/delete/:id_kelas", Routing.classes.Hapuskelas) //d
+	r.GET("/classes/new_class/:pembuat_kelas", Routing.classes.Get_id_Newclass) //d
+	r.GET("/classes/:id_kelas", Routing.classes.Get_class_byId) //d
+	r.POST("/classes/create_class", Routing.classes.Create_class)//d
+	r.POST("/classes/joinclass", Routing.classes.Joinclass) //d
+	r.DELETE("/classes/leaveclass/:id_kelas", Routing.classes.Leaveclass)//d
+
+	r.GET("/classes/open_class/kegiatan", Routing.classes.Get_all_kegiatan) //d
+	r.POST("/classes/open_class/kegiatan", Routing.classes.Setkegiatan) //d
+	r.PUT("/classes/open_class/kegiatan/:id_kegiatan", Routing.classes.Updatekegiatan) //d
+	r.POST("/classes/open_class/kegiatan/class", Routing.classes.Setkegiatanbyclass) //d
+	r.GET("/classes/open_class/kegiatan/kelas/:id_kelas", Routing.classes.Get_kegiatanidkelas) //d
+	r.GET("/classes/open_class/kegiatan/:id_kegiatan", Routing.classes.Get_kegiatan_byIdkegiatan) //d
+	r.GET("/classes/kegiatan/status", Routing.classes.Get_statuskegiatan) //d
+	r.PUT("/classes/kegiatan/status/:id_kegiatan", Routing.classes.Updatekegiatanstatus) //d
+	r.GET("/classes/kegiatan/tanggal/:id_kelas", Routing.classes.Get_tanggalkegiatan) //d
+	r.DELETE("/classes/open_class/kegiatan/:id_kegiatan", Routing.classes.Delete_kegiatan) //d
+
+
+	r.GET("/classes/open_class/materi", Routing.classes.Get_materiall) //d
+	r.POST("/classes/open_class/materi", Routing.classes.Setmateri) //d
+	r.GET("/classes/open_class/materi/:id_materi", Routing.classes.Get_materi_by_idmateri) //d
+	r.GET("/classes/open_class/materi/another/:id_kegiatan", Routing.classes.Get_materilain) //d
+	r.GET("/classes/open_class/materi/video", Routing.classes.Get_materivideo)  //d
+	r.DELETE("/classes/open_class/materi/:id_materi", Routing.classes.Delete_materi) //d
+	r.DELETE("/classes/open_class/materi/url/:url_materi", Routing.classes.Delete_materi_url) //d
+
+	r.GET("/classes/jenis_kelas", Routing.classes.Get_Jenis_kelas) //d
+	r.GET("/classes/kategori_kelas", Routing.classes.Get_Kategori) //d
+	r.GET("/classes/kategori_tugas", Routing.classes.Get_Kategoritugas) //d
+
+	r.GET("/classes/class_harga", Routing.classes.Get_all_harga) //d
+	r.GET("/classes/class_harga/:id_kelas", Routing.classes.Get_harga_byId) //d
+
+	r.GET("/classes/peserta", Routing.classes.Get_peserta) //d
+	r.GET("/classes/peserta/byclass/:id_kelas", Routing.classes.Get_pesertabyclass) //d
+	r.GET("/classes/peserta/class/:id_kelas", Routing.classes.Get_pesertabyClassid) //d
+	r.GET("/classes/peserta/user/:id_user", Routing.classes.Get_pesertabyUserid) //d
+	r.GET("/classes/peserta/userclass/:id_kelas", Routing.classes.Get_pesertabyuserclassid) //d
+	r.GET("/classes/peserta/detail/:id_user", Routing.classes.Get_pesertadetail_byuserid) //d
+
+	//account
+	r.GET("/classes/pembuat", Routing.account.Get_pembuat) //d
+	r.PUT("/user/account/profile/:id_user", Routing.account.Update_profile) //d
+	r.GET("/user/account/email/:id_user", Routing.account.Get_email_user) //d
+	r.GET("/user/account/name/:id_user", Routing.account.Get_myname) //d
+	r.GET("/user/account/:email", Routing.account.Get_firstaccount) //d
+	r.GET("/user/account/old_password/:id_user", Routing.account.Get_oldpassword) //d
+	r.GET("/user/id_user/:email", Routing.account.Get_idUser) //d
+	r.DELETE("/users/account/:id_user", Routing.account.Deleteaccount) //d
+
+
+	//Lupa password
+	r.GET("/users/lupapassword/:token", Routing.account.Get_id_byToken) //d
+	r.GET("/users/validtoken/:token", Routing.account.Get_validtoken) //d
+	r.POST("/users/lupapassword/token", Routing.account.Settoken) //d
+	r.PUT("/users/lupapassword/change_password/:id_user", Routing.account.Updatepasswordusers) //d
+	r.PUT("/users/change_password/:id_user", Routing.account.Updatepassword) //d
+
+	//workshop
+	r.POST("/workshop/create_workshop", Routing.workshop.Create_workshop) //d
+	r.PUT("/workshop/my_workshop/:id_workshop", Routing.workshop.Updateworkshop) //d
+	r.GET("/workshop/new_workshop/:pembuat_workshop", Routing.workshop.Get_idnewworkshop) //d
+	r.GET("/workshop/harga/all", Routing.workshop.Get_allhargaworkshop) //d
+	r.GET("/workshop/harga/:id_workshop", Routing.workshop.Get_hargaworkshop) //d
+	r.GET("/workshop/kategori", Routing.workshop.Get_workshopcategories) //d
+	r.GET("/workshop/peserta", Routing.workshop.Get_pesertaworkshop)  //d
+	r.GET("/workshop/peserta/:id_user", Routing.workshop.Get_pesertabyuseridworkshop) //dd nq
+	r.GET("/workshop/peserta/userworkshop/:id_user", Routing.workshop.Get_pesertabyuseridworkshopid) //d
+	r.GET("/workshop/peserta_workshop/:id_workshop", Routing.workshop.Get_pesertabyworkshopid) //d
+	r.POST("/workshop/kegiatan", Routing.workshop.Set_kegiatanworkshop) //d
+	r.PUT("/workshop/kegiatan/:id_kegiatan", Routing.workshop.Update_kegiatanworkshop) //d
+	r.PUT("/workshop/kegiatan/status/:id_kegiatan", Routing.workshop.Update_kegiatanworkshopstatus)  //d
+	r.POST("/workshop/join", Routing.workshop.Join_workshop) //d
+	r.DELETE("/workshop/leave/:id_workshop", Routing.workshop.Leave_workshop) //d
+	r.GET("/workshop/kegiatan/byidworkshop/:id_workshop", Routing.workshop.Get_kegiatanworkshop) //d
+	r.GET("/workshop/kegiatan/byidkegiatan/:id_kegiatan", Routing.workshop.Get_kegiatanworkshop_byidkegiatan)//d
+
+
+	///////////////////////////////////////////////
+	r.GET("/classes/my_class/assignment/by/kelas/:id_kelas", Routing.assignment.Get_tugasby_classid) //d
+	r.GET("/classes/my_class/assignment/by/tugas/:id_tugas", Routing.assignment.Get_tugasby_tugasid) //d
+
+	r.GET("/classes/all_class/detail", Routing.classes.Get_allclasses_detailview) //ddd
+	r.GET("/classes/all_class/owner", Routing.classes.Get_allclasses_owner) //null cant to string
+	r.GET("/classes/all_class/random", Routing.classes.Get_allrandom_classes) //ddd
+	r.GET("/classes/all_class/top", Routing.classes.Get_alltop_classes) //ddd
+	r.GET("/classes/by/kategori/:kategori", Routing.classes.Get_classesby_categories) //ddd
+	r.GET("/classes/by/sorting/:sorting", Routing.classes.Get_classesby_sorting) //ddd
+	r.GET("/classes/kegiatan/:id_kelas", Routing.classes.Get_kelaskegiatan)  //d
+	r.GET("/classes/assignment/submit", Routing.assignment.Get_submit) //d
+
+	r.GET("/classes/open_class/materi/by/idkelas/:id_kelas", Routing.classes.Get_materiby_classid)  //d
+	r.GET("/classes/open_class/materi/by/kegiatan", Routing.classes.Get_materiby_kegiatan) //d
+	r.PUT("/classes/my_class/status/:id_kelas", Routing.classes.Update_status) //d
+	r.GET("/classes/peserta/cek/:id_kelas", Routing.classes.Cek_peserta) //dc
+
+	r.GET("/account/users", Routing.account.Get_alluser) //d
+	r.GET("/account/users/detail", Routing.account.Get_allusers_detail) //d nqf
+	r.GET("/account/users/detail/by/:id_user", Routing.account.Get_userdetail) //d
+	r.GET("/account/users/profile/:id_user", Routing.account.Get_profile) //d
+	r.GET("/account/isowner/:email", Routing.account.Is_owner) //dc
+	r.GET("/account/isadmin/:email", Routing.account.Is_admin) //dc
+
+	r.GET("/workshop/allkegiatan", Routing.workshop.Get_allkegiatan_workshop) //d
+	r.GET("/workshop/randomworkshop", Routing.workshop.Get_allrandom_workshops) //ddd
+	r.GET("/workshop/topworkshop", Routing.workshop.Get_alltop_workshops)  //ddd
+	r.GET("/workshop/allworkshop", Routing.workshop.Get_all_workshops) //d
+	r.GET("/workshop/allworkshop/detail", Routing.workshop.Get_allworkshops_detail) //ddd
+	r.GET("/workshop/allworkshop/owner", Routing.workshop.Get_allworkshops_owner) //ddd
+	r.GET("/workshop/my_workshop/all/:id_user", Routing.workshop.Get_myworkshop) //d
+	r.GET("/workshop/tanggal_kegiatan/:id_workshop", Routing.workshop.Get_tanggalkegiatan_workshop) //d
+	r.GET("/workshop/detail/:id_workshop", Routing.workshop.Get_workshop_byid) //d
+	r.GET("/workshop/kegiatan/by_id/:id_workshop", Routing.workshop.Get_workshop_kegiatan) //d
+	r.GET("/workshop/bykategori/:kategori", Routing.workshop.Get_workshopsby_categories) //ddd
+	r.GET("/workshop/bysorting", Routing.workshop.Get_workshops_bysorting) //ddd
+	r.PUT("/workshop/my_workshop/status/:id_workshop", Routing.workshop.Update_status_workshop) //d
+	r.GET("/workshop/peserta/cek/:id_workshop", Routing.workshop.Cek_pesertaworkshop) //dc
+
+	return r
+}

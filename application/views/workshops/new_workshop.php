@@ -111,6 +111,17 @@
             </div>
         <?php } ?>
 
+        <?php if ($this->session->flashdata("update_error")) { ?>
+            <div class="alert alert-danger" role="alert">
+                <?php echo $this->session->flashdata("update_error"); ?>
+            </div>
+        <?php } ?>
+        <?php if ($this->session->flashdata("errorAPI")) { ?>
+            <div class="alert alert-info" role="alert">
+                <?php echo $this->session->flashdata("errorAPI"); ?>
+            </div>
+        <?php } ?>
+
 
         <div class="row">
             <div class="col-md-3 field-label-responsive mb-3">

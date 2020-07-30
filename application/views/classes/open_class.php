@@ -37,6 +37,7 @@ $this->session->set_userdata('workshop', null);
   </div>
 <?php endif ?>
 
+
 <section>
   <div class="intro-section single-cover" id="home-section">
 
@@ -49,8 +50,8 @@ $this->session->set_userdata('workshop', null);
                 <?php foreach ($kelas as $val) : ?>
                   <h1 data-aos="fade-up" data-aos-delay="0"><?= $val['judul_kelas']; ?></h1>
                   <?php foreach ($kategori as $val2) : ?>
-                    <?php if ($val['kategori_kelas'] == $val2['id_kategori']) : ?>
-                      <p data-aos="fade-up" data-aos-delay="100"> &bullet; <?= count($peserta_kelas); ?> Siswa <span class="text-white"># <?= $val2['nama_kategori']; ?></span></p>
+                    <?php if ($val['kategori_kelas'] == $val2['nama_kategori']) : ?>
+                      <p data-aos="fade-up" data-aos-delay="100"> &bullet; <?= count($peserta_kelas) ?> Siswa <span class="text-white"># <?= $val2['nama_kategori']; ?></span></p>
                     <?php endif; ?>
                   <?php endforeach; ?>
                 <?php endforeach; ?>
@@ -82,6 +83,11 @@ $this->session->set_userdata('workshop', null);
                   <?php echo $this->session->flashdata("success"); ?>
                 </div>
               <?php } ?>
+              <?php if ($this->session->flashdata("errorAPI")) { ?>
+                <div class="alert alert-success" role="alert">
+                  <?php echo $this->session->flashdata("errorAPI"); ?>
+                </div>
+              <?php } ?>
               <?php if ($val['status_kelas'] == 2 && $val['pembuat_kelas'] != $this->session->userdata('id_user')) { ?>
                 <div class="alert alert-danger text-center" role="alert">
                   <?php echo $this->session->flashdata("kelasSelesai"); ?>
@@ -109,14 +115,12 @@ $this->session->set_userdata('workshop', null);
                 <div role="tabpanel" class="tab-pane fade show active" id="profile" style="margin-top: 20px;">
 
                   <p class="mb-4">
-                    <?php foreach ($harga as $val2) : ?>
-                      <?php if ($val2['harga_kelas'] == '0' || $val2['harga_kelas'] == null) : ?>
-                        <p>Gratis</p>
-                      <?php else : ?>
-                        <?php $hasil_rupiah = "Rp." . number_format($val2['harga_kelas'], 2, ',', '.'); ?>
-                        <p><strong class="text-black mr-3">Harga: </strong><?= $hasil_rupiah; ?></p>
-                      <?php endif; ?>
-                    <?php endforeach; ?>
+                    <?php if ($harga['harga_kelas'] == '0' || $harga['harga_kelas'] == null) : ?>
+                      <p>Gratis</p>
+                    <?php else : ?>
+                      <?php $hasil_rupiah = "Rp." . number_format($harga['harga_kelas'], 2, ',', '.'); ?>
+                      <p><strong class="text-black mr-3">Harga: </strong><?= $hasil_rupiah; ?></p>
+                    <?php endif; ?>
                   </p>
                   <div class="row mb-4">
                     <div class="col-md-2">
@@ -138,10 +142,10 @@ $this->session->set_userdata('workshop', null);
                   <?php endforeach; ?>
 
                   <?php if (isset($this->session->userdata['logged_in'])) : ?>
-                    <?php if ($val['status_kelas'] != 2 && $val['pembuat_kelas'] != $this->session->userdata('id_user')) : ?>
+                    <?php if ($val['status_kelas'] != 'selesai' && $val['pembuat_kelas'] != $this->session->userdata('id_user')) : ?>
                       <?php if ($val['batas_jumlah'] > count($peserta_kelas) || $val['batas_jumlah'] == 0) : ?>
-                        <?php if ($cek == true) : ?>
-                          <?php if ($val['jenis_kelas'] == 1) : ?>
+                        <?php if ($cek['data'] == true) : ?>
+                          <?php if ($val['jenis_kelas'] == "Gratis") : ?>
                             <p class="mt-4"><a href="<?= base_url() ?>classes/join_class/<?= $val['id_kelas']; ?>" class="btn btn-dark mr-1">Gabung Kelas</a></p>
                           <?php else : ?>
                             <p class="mt-4"><a href="<?= base_url() ?>classes/pembayaran_kelas/<?= $val['id_kelas']; ?>" class="btn btn-dark mr-1">Gabung Kelas</a></p>
@@ -150,15 +154,15 @@ $this->session->set_userdata('workshop', null);
                           <div class="alert alert-dark" role="alert">
                             <center><?= $this->session->flashdata('buttonJoin') ?></center>
                           </div>
-                        <?php elseif ($cek == false) : ?>
-                          <?php if ($val['jenis_kelas'] == 1) : ?>
+                        <?php elseif ($cek['data'] == false) : ?>
+                          <?php if ($val['jenis_kelas'] == 'Gratis') : ?>
                             <p class="mt-4"><a href="<?= base_url() ?>classes/join_class/<?= $val['id_kelas']; ?>" class="btn btn-dark mr-1">Gabung Kelas</a></p>
                           <?php else : ?>
                             <p class="mt-4"><a href="<?= base_url() ?>classes/pembayaran_kelas/<?= $val['id_kelas']; ?>" class="btn btn-dark mr-1">Gabung Kelas</a></p>
                           <?php endif; ?>
                         <?php endif; ?>
                       <?php else : ?>
-                        <?php if ($cek == true) : ?>
+                        <?php if ($cek['data'] == true) : ?>
                           <div class="alert alert-danger" role="alert">
                             <center><?= $this->session->flashdata('batasPeserta') ?></center>
                           </div>
@@ -166,7 +170,7 @@ $this->session->set_userdata('workshop', null);
                           <div class="alert alert-dark" role="alert">
                             <center><?= $this->session->flashdata('buttonJoin') ?></center>
                           </div>
-                        <?php elseif ($cek == false) : ?>
+                        <?php elseif ($cek['data'] == false) : ?>
                           <div class="alert alert-danger" role="alert">
                             <center><?= $this->session->flashdata('batasPeserta') ?></center>
                           </div>
@@ -196,6 +200,7 @@ $this->session->set_userdata('workshop', null);
             <div class="mb-5 text-center border rounded course-instructor">
               <h3 class="mb-5 text-black text-uppercase h6 border-bottom pb-3">Mentor Kelas</h3>
               <div class="mb-4 text-center">
+
                 <?php foreach ($pembuat as $val2) : ?>
                   <?php if ($val2['id_user'] == $val['pembuat_kelas']) : ?>
                     <?php if ($val2['foto'] == null) : ?>
@@ -224,95 +229,106 @@ $this->session->set_userdata('workshop', null);
                 <h2>Jadwal Kegiatan Kelas</h2>
               </div>
 
+
               <div class="card-body table-responsive">
                 <table class="table">
-                  <thead>
-                    <tr>
-                      <th scope="col">Deskripsi</th>
-                      <th scope="col">Hari/Tanggal</th>
-                      <th scope="col">Waktu</th>
-                      <th scope="col" style="text-align: center;">Status</th>
-                      <?php foreach ($kelas as $val2) : ?>
-                      <?php if ($val2['pembuat_kelas'] != $this->session->userdata('id_user')) : ?>
-                        <?php if ($cek == true) : ?>
-                        <?php elseif ($peserta != null) : ?>
-                          <th scope="col" style="text-align: center;">Aksi</th>
-                          <th scope="col" style="text-align: center;">Materi</th>
-                        <?php elseif ($cek == false) : ?>
-                        <?php endif; ?>
-                      <?php else : ?>
-                        <th scope="col" style="text-align: center;">Aksi</th>
-                        <th scope="col" style="text-align: center;">Materi</th>
-                      <?php endif; ?>
-                      <?php endforeach?>
 
+                  <?php if ($kegiatan == null) : ?>
+                    <div class="alert alert-danger" role="alert">
+                      Tidak ada kegiatan dalam Workshop ini.
+                    </div>
+                  <?php else :  ?>
 
-
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <?php $modalMateri = 0; ?>
-                    <?php foreach ($kegiatan as $val2) : ?>
+                    <thead>
                       <tr>
-                        <td><?= $val2['deskripsi_kegiatan']; ?></td>
-                        <td><?= $val2['tanggal']; ?></td>
-                        <td><?= $val2['waktu']; ?></td>
-                        <?php foreach ($status as $val3) : ?>
-                          <?php if ($val3['id_status'] == $val2['status_kegiatan']) : ?>
-                            <?php if ($val3['nama_status'] == "Selesai") : ?>
-                              <td style="text-align: center ;"><span class="badge badge-success"><?= $val3['nama_status']; ?></span></td>
-                            <?php elseif ($val3['nama_status'] == "Belum Mulai") : ?>
-                              <td style="text-align: center ;"><span class="badge badge-danger"><?= $val3['nama_status']; ?></span></td>
-                            <?php else : ?>
-                              <td style="text-align: center ;"><span class="badge badge-warning"><?= $val3['nama_status']; ?></span></td>
+                        <th scope="col">Deskripsi</th>
+                        <th scope="col">Hari/Tanggal</th>
+                        <th scope="col">Waktu</th>
+                        <th scope="col" style="text-align: center;">Status</th>
+                        <?php foreach ($kelas as $val2) : ?>
+                          <?php if ($val2['pembuat_kelas'] != $this->session->userdata('id_user')) : ?>
+                            <?php if ($cek['data'] == true) : ?>
+                            <?php elseif ($peserta != null) : ?>
+                              <th scope="col" style="text-align: center;">Aksi</th>
+                              <th scope="col" style="text-align: center;">Materi</th>
+                            <?php elseif ($cek['data'] == false) : ?>
                             <?php endif; ?>
+                          <?php else : ?>
+                            <th scope="col" style="text-align: center ;">Aksi</th>
+                            <th scope="col" style="text-align: center;">Materi</th>
+                          <?php endif; ?>
+                        <?php endforeach ?>
+
+
+
+                      </tr>
+                    </thead>
+                    <tbody>
+                    <?php endif; ?>
+                    <?php $modalMateri = 0; ?>
+                    <?php if ($kegiatan != null) : ?>
+                      <?php foreach ($kegiatan as $val2) : ?>
+                        <tr>
+                          <td><?= $val2['deskripsi_kegiatan']; ?></td>
+                          <td><?= $val2['tanggal']; ?></td>
+                          <td><?= $val2['waktu']; ?></td>
+                          <?php if ($val2['nama_status'] == "Selesai") : ?>
+                            <td style="text-align: center ;"><span class="badge badge-success"><?= $val2['nama_status']; ?></span></td>
+                          <?php elseif ($val2['nama_status'] == "Belum Mulai") : ?>
+                            <td style="text-align: center ;"><span class="badge badge-danger"><?= $val2['nama_status']; ?></span></td>
+                          <?php else : ?>
+                            <td style="text-align: center ;"><span class="badge badge-warning"><?= $val2['nama_status']; ?></span></td>
                           <?php endif; ?>
                         <?php endforeach; ?>
-                        <td style="text-align: center ;">
-                          <?php if ($val['pembuat_kelas'] != $this->session->userdata('id_user')) : ?>
-                            <?php if ($cek == true) : ?>
-                            <?php elseif ($peserta != null && $val2['status_kegiatan'] == CLASS_STARTED) : ?>
-                              <a href="<?= base_url('class/') ?><?= $val['id_kelas'] ?>/<?= $val2['id_kegiatan']; ?>" class="btn btn-dark mr-1 btn-block">Ikut</a>
-                            <?php elseif ($cek == false) : ?>
-                            <?php endif; ?>
-                          <?php elseif ($val2['status_kegiatan'] != CLASS_FINISHED) : ?>
-                            <button type="button" class="btn btn-light btn-block" data-toggle="modal" data-target="#editKegiatan<?= $val2['id_kegiatan']; ?>">Edit Kegiatan</button><br>
-                            <a href="<?= base_url('class/') ?><?= $val['id_kelas'] ?>/<?= $val2['id_kegiatan']; ?>" class="btn btn-dark mr-1 btn-block">Mulai</a>
-                            <div class="modal fade" id="editKegiatan<?= $val2['id_kegiatan']; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="padding-right: 90px;">
-                              <div class="modal-dialog" role="document">
-                                <!--Content-->
-                                <div class="modal-content form-elegant">
-                                  <!--Header-->
-                                  <div class="modal-header text-center">
-                                    <h3 class="modal-title w-100 dark-grey-text font-weight-bold my-3" id="myModalLabel"><strong>Edit Kegiatan</strong></h3>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                      <span aria-hidden="true">&times;</span>
-                                    </button>
-                                  </div>
-                                  <!--Body-->
-                                  <div class="modal-body mx-4">
-                                    <!--Body-->
-                                    <form enctype="multipart/form-data" action="<?= base_url() ?>classes/edit_kegiatan/<?= $val['id_kelas'] ?>/<?= $val2['id_kegiatan'] ?>" method="POST">
-                                      <div class="form-group">
-                                        <label>Deskripsi Kegiatan</label>
-                                        <textarea class="form-control" name="deskripsi" required><?= $val2['deskripsi_kegiatan'] ?></textarea>
-                                      </div>
-                                  </div>
-                                  <input type="hidden" name="tanggal" value="<?= $val2['tanggal_kegiatan'] ?>">
 
-                                  <div class="text-center mb-3">
-                                    <button type="submit" class="btn btn-light blue-gradient btn-block btn-rounded z-depth-1a">Simpan</button>
+
+                          <td style="text-align: center ;">
+                            <?php if ($val['pembuat_kelas'] != $this->session->userdata('id_user')) : ?>
+                              <?php if ($cek['data'] == true) : ?>
+                              <?php elseif ($peserta != null && $val2['nama_status'] == CLASS_STARTED) : ?>
+                                <a href="<?= base_url('class/') ?><?= $val['id_kelas'] ?>/<?= $val2['id_kegiatan']; ?>" class="btn btn-dark mr-1 btn-block">Ikut</a>
+                              <?php elseif ($cek['data'] == false) : ?>
+                              <?php endif; ?>
+                            <?php elseif ($val2['nama_status'] != CLASS_FINISHED) : ?>
+                              <button type="button" class="btn btn-light btn-block" data-toggle="modal" data-target="#editKegiatan<?= $val2['id_kegiatan']; ?>">Edit Kegiatan</button><br>
+                              <a href="<?= base_url('class/') ?><?= $val['id_kelas'] ?>/<?= $val2['id_kegiatan']; ?>" class="btn btn-dark mr-1 btn-block">Mulai</a>
+                              <div class="modal fade" id="editKegiatan<?= $val2['id_kegiatan']; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="padding-right: 90px;">
+                                <div class="modal-dialog" role="document">
+                                  <!--Content-->
+                                  <div class="modal-content form-elegant">
+                                    <!--Header-->
+                                    <div class="modal-header text-center">
+                                      <h3 class="modal-title w-100 dark-grey-text font-weight-bold my-3" id="myModalLabel"><strong>Edit Kegiatan</strong></h3>
+                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                      </button>
+                                    </div>
+                                    <!--Body-->
+                                    <div class="modal-body mx-4">
+                                      <!--Body-->
+                                      <form enctype="multipart/form-data" action="<?= base_url() ?>classes/edit_kegiatan/<?= $val['id_kelas'] ?>/<?= $val2['id_kegiatan'] ?>" method="POST">
+                                        <div class="form-group">
+                                          <label>Deskripsi Kegiatan</label>
+                                          <textarea class="form-control" name="deskripsi" required><?= $val2['deskripsi_kegiatan'] ?></textarea>
+                                        </div>
+                                    </div>
+                                    <input type="hidden" name="tanggal" value="<?= $val2['tanggal_kegiatan'] ?>">
+
+
+                                    <div class="text-center mb-3">
+                                      <button type="submit" class="btn btn-light blue-gradient btn-block btn-rounded z-depth-1a">Simpan</button>
+                                    </div>
+                                    </form>
                                   </div>
-                                  </form>
                                 </div>
                               </div>
-                            </div>
+
               </div>
             <?php endif; ?>
             </td>
 
             <?php if ($val['pembuat_kelas'] != $this->session->userdata('id_user')) : ?>
-              <?php if ($cek == true) : ?>
+              <?php if ($cek['data'] == true) : ?>
               <?php elseif ($peserta != null) : ?>
                 <td class="text-center">
                   <?php $notPembuatMateri = 0; ?>
@@ -328,61 +344,83 @@ $this->session->set_userdata('workshop', null);
                   <?php endforeach; ?>
 
                 </td>
-              <?php elseif ($cek == false) : ?>
+              <?php elseif ($cek['data'] == false) : ?>
               <?php endif; ?>
             <?php else : ?>
               <td>
-                <?php $PembuatMateri = 0; ?>
-                <?php foreach ($materi as $val4) : ?>
-                  <?php if ($val2['id_kegiatan'] == $val4['id_kegiatan']) : ?>
+                <?php $countMateri = 0;
+                          if ($materi != null) {
+                            foreach ($materi as $count) {
+                              if ($count['id_kegiatan'] == $val2['id_kegiatan']) {
+                                $countMateri++;
+                              }
+                            }
+                          }
+                ?>
 
-                    <?php if ($PembuatMateri < 1) : ?>
-                      <button class="btn btn-light btn-md px-3 my-0 ml-0 btn-block" type="button" data-toggle="modal" data-target="#lihatMateri<?= $modalMateri ?>">Lihat Materi</button><br>
-                      <button class="btn btn-dark btn-md px-3 my-0 ml-0 btn-block" type="button" data-toggle="modal" data-target="#editMateri<?= $modalMateri ?>">Edit Materi</button>
-                    <?php endif; ?>
-                    <?php $PembuatMateri++; ?>
+                <?php if ($countMateri == 0) : ?>
+                  <button class="btn btn-light btn-md px-3 my-0 ml-0 btn-block" style="color: red;" disabled type="button" data-toggle="modal" data-target="#lihatMateri<?= $modalMateri ?>">Tidak ada Materi</button><br>
+                  <button class="btn btn-dark btn-md px-3 my-0 ml-0 btn-block" type="button" data-toggle="modal" data-target="#editMateri<?= $modalMateri ?>">Tambah Materi</button>
+                <?php else : ?>
+                  <?php $PembuatMateri = 0; ?>
+                  <?php if ($materi != null) : ?>
+                    <?php foreach ($materi as $val4) : ?>
+                      <?php if ($val2['id_kegiatan'] == $val4['id_kegiatan']) : ?>
+                        <?php if ($PembuatMateri < 1) : ?>
+                          <button class="btn btn-light btn-md px-3 my-0 ml-0 btn-block" type="button" data-toggle="modal" data-target="#lihatMateri<?= $modalMateri ?>">Lihat Materi</button><br>
+                          <button class="btn btn-dark btn-md px-3 my-0 ml-0 btn-block" type="button" data-toggle="modal" data-target="#editMateri<?= $modalMateri ?>">Tambah Materi</button>
+                        <?php endif; ?>
+                        <?php $PembuatMateri++; ?>
+                      <?php else : ?>
+                      <?php endif; ?>
+                    <?php endforeach; ?>
                   <?php else : ?>
+                    <button class="btn btn-light btn-md px-3 my-0 ml-0 btn-block" style="color: red;" disabled type="button" data-toggle="modal" data-target="#lihatMateri<?= $modalMateri ?>">Tidak ada Materi</button><br>
+                    <button class="btn btn-dark btn-md px-3 my-0 ml-0 btn-block" type="button" data-toggle="modal" data-target="#editMateri<?= $modalMateri ?>">Tambah Materi</button>
                   <?php endif; ?>
-                <?php endforeach; ?>
+
+
+
+                <?php endif; ?>
 
 
               </td>
             <?php endif; ?>
-                            <div class="modal fade" id="editMateri<?= $modalMateri ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="padding-right: 90px;">
-                              <div class="modal-dialog" role="document">
-                                <!--Content-->
-                                <div class="modal-content form-elegant">
-                                  <!--Header-->
-                                  <div class="modal-header text-center">
-                                    <h3 class="modal-title w-100 dark-grey-text font-weight-bold my-3" id="myModalLabel"><strong>Edit Materi</strong></h3>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                      <span aria-hidden="true">&times;</span>
-                                    </button>
-                                  </div>
-                                  <!--Body-->
-                                  <div class="modal-body mx-4">
-                                    <!--Body-->
-                                    <form enctype="multipart/form-data" action="<?= base_url() ?>classes/edit_kegiatan/<?= $val['id_kelas'] ?>/<?= $val2['id_kegiatan'] ?>" method="POST">
-                                      <div class="form-group">
-                                        <label for="materiForm">Video (Opsional)</label>
-                                        <div id="kegiatan_field">
-                                          <textarea class="form-control" name="video" placeholder="Tambahkan link Youtube Embed. Jika Banyak, pisahkan dengan koma ( , )" style="margin-bottom: 5px;"></textarea>
-                                        </div>
-                                      </div>
-                                      <label for="materiForm">Tambah Materi</label>
-                                      <input type="file" name="materi[]" accept=".doc, .docx, .ppt, .pptx, .pdf" class="form-control-file" id="materiForm" multiple>
+            <div class="modal fade" id="editMateri<?= $modalMateri ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="padding-right: 90px;">
+              <div class="modal-dialog" role="document">
+                <!--Content-->
+                <div class="modal-content form-elegant">
+                  <!--Header-->
+                  <div class="modal-header text-center">
+                    <h3 class="modal-title w-100 dark-grey-text font-weight-bold my-3" id="myModalLabel"><strong>Edit Materi</strong></h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <!--Body-->
+                  <div class="modal-body mx-4">
+                    <!--Body-->
+                    <form enctype="multipart/form-data" action="<?= base_url() ?>classes/edit_kegiatan/<?= $val['id_kelas'] ?>/<?= $val2['id_kegiatan'] ?>" method="POST">
+                      <div class="form-group">
+                        <label for="materiForm">Video (Opsional)</label>
+                        <div id="kegiatan_field">
+                          <textarea class="form-control" name="video" placeholder="Tambahkan link Youtube Embed. Jika Banyak, pisahkan dengan koma ( , )" style="margin-bottom: 5px;"></textarea>
+                        </div>
+                      </div>
+                      <label for="materiForm">Tambah Materi</label>
+                      <input type="file" name="materi[]" accept=".doc, .docx, .ppt, .pptx, .pdf" class="form-control-file" id="materiForm" multiple>
 
-                                  </div>
-                                  <input type="hidden" name="deskripsi" value="<?= $val2['deskripsi_kegiatan'] ?>">
-                                  <input type="hidden" name="tanggal" value="<?= $val2['tanggal_kegiatan'] ?>">
+                  </div>
+                  <input type="hidden" name="deskripsi" value="<?= $val2['deskripsi_kegiatan'] ?>">
+                  <input type="hidden" name="tanggal" value="<?= $val2['tanggal_kegiatan'] ?>">
 
-                                  <div class="text-center mb-3">
-                                    <button type="submit" class="btn btn-light blue-gradient btn-block btn-rounded z-depth-1a">Simpan</button>
-                                  </div>
-                                  </form>
-                                </div>
-                              </div>
-                            </div>
+                  <div class="text-center mb-3">
+                    <button type="submit" class="btn btn-light blue-gradient btn-block btn-rounded z-depth-1a">Simpan</button>
+                  </div>
+                  </form>
+                </div>
+              </div>
+            </div>
 
 
             <div class="modal fade" id="lihatMateri<?= $modalMateri ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="padding-right: 90px;">
@@ -401,14 +439,14 @@ $this->session->set_userdata('workshop', null);
                   <div class="modal-body mx-4">
                     <!--Body-->
                     <?php if ($val['pembuat_kelas'] != $this->session->userdata('id_user')) : ?>
-                      <?php if ($cek == true) : ?>
+                      <?php if ($cek['data'] == true) : ?>
                       <?php elseif ($peserta != null) : ?>
 
                         <div class="container-fluid">
                           <div class="row">
 
                             <div class="col-md-12 border-bottom pb-3 mt-3"><b>Nama File</b></div>
-                              <?php $a = 0; ?>
+                            <?php $a = 0; ?>
                             <?php foreach ($materi as $val4) : ?>
                               <?php if ($val2['id_kegiatan'] == $val4['id_kegiatan']) : ?>
                                 <?php if ($val4['kategori_materi'] == 1) : ?>
@@ -423,7 +461,7 @@ $this->session->set_userdata('workshop', null);
                           </div>
                         </div>
 
-                      <?php elseif ($cek == false) : ?>
+                      <?php elseif ($cek['data'] == false) : ?>
                       <?php endif; ?>
                     <?php else : ?>
                       <div class="container-fluid">
@@ -432,14 +470,14 @@ $this->session->set_userdata('workshop', null);
                           <div class="col-md-12 border-bottom pb-3 mt-3"><b>Nama File</b></div>
                           <?php foreach ($materi as $val4) : ?>
                             <?php if ($val2['id_kegiatan'] == $val4['id_kegiatan']) : ?>
-                              <?php if ($val4['kategori_materi'] == 1) : ?>
+                              <?php if ($val4['id_kategori'] == 1) : ?>
                                 <div class="col-md-10 border-bottom pb-3 mt-3"><a href="<?= base_url(); ?>classes/download_materi/<?= $val4['url_materi'] ?>"><?= $val4['url_materi'] ?></a></div>
-                                <div class="col-md-2 ml-auto border-bottom"><button type="button" class="btn btn-danger"><a href="<?= base_url(); ?>classes/hapus_materi/<?= $val4['id_kelas'] ?>/<?= $val4['url_materi'] ?>">Hapus</a></button></div>
+                                <div class="col-md-2 ml-auto border-bottom"><button type="button" class="btn btn-danger"><a href="<?= base_url(); ?>classes/hapus_materi/<?= $val4['id_kelas'] ?>/<?= $val4['id_materi'] ?>">Hapus</a></button></div>
 
                               <?php else : ?>
                                 <?php $a++ ?>
                                 <div class="col-md-10 border-bottom pb-3 mt-3"><a href="<?= base_url(); ?>classes/video_class/<?= $val['id_kelas'] ?>/<?= $val2['id_kegiatan'] ?>/<?= $val4['id_materi'] ?>/<?= $a ?>">Video <?= $a ?> Kegiatan <?= $val2['deskripsi_kegiatan'] ?> <b>(<?= $val['judul_kelas'] ?>)</b></a></div>
-                                <div class="col-md-2 ml-auto border-bottom"><button type="button" class="btn btn-danger"><a href="<?= base_url(); ?>classes/hapus_materi/<?= $val4['id_kelas'] ?>/<?= $val4['url_materi'] ?>">Hapus</a></button></div>
+                                <div class="col-md-2 ml-auto border-bottom"><button type="button" class="btn btn-danger"><a href="<?= base_url(); ?>classes/hapus_materi/<?= $val4['id_kelas'] ?>/<?= $val4['id_materi'] ?>">Hapus</a></button></div>
 
                               <?php endif; ?>
 
@@ -454,73 +492,74 @@ $this->session->set_userdata('workshop', null);
                 </div>
               </div>
             </div>
-            
+
             </tr>
-            <?php endforeach; ?>
-          </tbody>
-          </table>
+          <?php endforeach; ?>
+        <?php endif; ?>
+        </tbody>
+        </table>
             </div>
             <?php foreach ($kelas as $val) : ?>
-            <?php if ($val['pembuat_kelas'] == $this->session->userdata('id_user')) : ?>
-              <div class="card-footer white py-3 d-flex justify-content-between">
-                <button class="btn btn-light btn-md px-3 my-0 ml-0" type="button" data-toggle="modal" data-target="#tambahKegiatan">Tambah Jadwal Kegiatan</button>
-              </div>
-              <!-- Modal -->
-              <div class="modal fade" id="tambahKegiatan" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="padding-right: 90px;">
-                <div class="modal-dialog" role="document">
-                  <!--Content-->
-                  <div class="modal-content form-elegant">
-                    <!--Header-->
-                    <div class="modal-header text-center">
-                      <h3 class="modal-title w-100 dark-grey-text font-weight-bold my-3" id="myModalLabel"><strong>Atur Kegiatan</strong></h3>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                    
-                    
-                    
-                    <!--Body-->
-                    <div class="modal-body mx-4">
+              <?php if ($val['pembuat_kelas'] == $this->session->userdata('id_user')) : ?>
+                <div class="card-footer white py-3 d-flex justify-content-between">
+                  <button class="btn btn-light btn-md px-3 my-0 ml-0" type="button" data-toggle="modal" data-target="#tambahKegiatan">Tambah Jadwal Kegiatan</button>
+                </div>
+                <!-- Modal -->
+                <div class="modal fade" id="tambahKegiatan" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="padding-right: 90px;">
+                  <div class="modal-dialog" role="document">
+                    <!--Content-->
+                    <div class="modal-content form-elegant">
+                      <!--Header-->
+                      <div class="modal-header text-center">
+                        <h3 class="modal-title w-100 dark-grey-text font-weight-bold my-3" id="myModalLabel"><strong>Atur Kegiatan</strong></h3>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+
+
+
                       <!--Body-->
-                      <form enctype="multipart/form-data" action="<?= base_url() ?>classes/set_kegiatan/<?= $val['id_kelas'] ?>" method="POST">
-                        <div class="form-group">
-                          <label>Deskripsi Kegiatan</label>
-                          <textarea class="form-control" name="deskripsi" required></textarea>
-                        </div>
-                        <div class="form-group">
-                          <label>Jadwal Kegiatan</label>
-                          <div class="input-group date form_datetime " data-date-format="yyyy/mm/dd hh:ii" data-link-field="dtp_input1">
-                          <input class="form-control" id="inputdatetimepicker" size="16" type="text" name="tanggal" readonly required>
-                            <span class="input-group-addon" style="width:40px;"><span class="glyphicon glyphicon-remove"></span></span>
-                            <span class="input-group-addon" style="width:40px;"><span class="glyphicon glyphicon-th"></span></span>
+                      <div class="modal-body mx-4">
+                        <!--Body-->
+                        <form enctype="multipart/form-data" action="<?= base_url() ?>classes/set_kegiatan/<?= $val['id_kelas'] ?>" method="POST">
+                          <div class="form-group">
+                            <label>Deskripsi Kegiatan</label>
+                            <textarea class="form-control" name="deskripsi" required></textarea>
                           </div>
-                        </div>
-                        <input type="hidden" id="dtp_input1" />
-                        <div class="form-group">
-                          <label for="materiForm">Video (Opsional)</label>
-                          <div id="kegiatan_field">
-                            <textarea class="form-control" name="video" placeholder="Tambahkan link Youtube Embed. Jika Banyak, pisahkan dengan koma ( , )" style="margin-bottom: 5px;"></textarea>
+                          <div class="form-group">
+                            <label>Jadwal Kegiatan</label>
+                            <div class="input-group date form_datetime " data-date-format="yyyy/mm/dd hh:ii" data-link-field="dtp_input1">
+                              <input class="form-control" id="inputdatetimepicker" size="16" type="text" name="tanggal" readonly required>
+                              <span class="input-group-addon" style="width:40px;"><span class="glyphicon glyphicon-remove"></span></span>
+                              <span class="input-group-addon" style="width:40px;"><span class="glyphicon glyphicon-th"></span></span>
+                            </div>
                           </div>
-                        </div>
-                        <div class="form-group">
-                          <label for="materiForm">Materi (Opsional)</label>
-                          <input type="file" name="materi[]" accept=".doc, .docx, .ppt, .pptx, .pdf" class="form-control-file" id="materiForm" multiple>
-                        </div>
-                        <div class="text-center mb-3">
-                          <button type="submit" class="btn btn-light blue-gradient btn-block btn-rounded z-depth-1a">Simpan</button>
-                        </div>
-                      </form>
+                          <input type="hidden" id="dtp_input1" />
+                          <div class="form-group">
+                            <label for="materiForm">Video (Opsional)</label>
+                            <div id="kegiatan_field">
+                              <textarea class="form-control" name="video" placeholder="Tambahkan link Youtube Embed. Jika Banyak, pisahkan dengan koma ( , )" style="margin-bottom: 5px;"></textarea>
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <label for="materiForm">Materi (Opsional)</label>
+                            <input type="file" name="materi[]" accept=".doc, .docx, .ppt, .pptx, .pdf" class="form-control-file" id="materiForm" multiple>
+                          </div>
+                          <div class="text-center mb-3">
+                            <button type="submit" class="btn btn-light blue-gradient btn-block btn-rounded z-depth-1a">Simpan</button>
+                          </div>
+                        </form>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            <?php endif; ?>
+              <?php endif; ?>
             <?php endforeach; ?>
           </div>
         </div>
-      </div>
-    </section>
+    </div>
+</section>
 </div>
 </div>
 
@@ -559,7 +598,7 @@ $this->session->set_userdata('workshop', null);
               </div>
               <h3><a href="<?= base_url() ?>classes/open_class/<?= $val['id_kelas'] ?>"><?= $val['judul_kelas'] ?></a></h3>
               <?php $temp = strip_tags($val['deskripsi_kelas']); ?>
-										<p><?php echo substr($temp, 0, 100);  ?></p>
+              <p><?php echo substr($temp, 0, 100);  ?></p>
             </div>
             <div class="d-flex border-top stats">
               <div class="py-3 px-4"><span class="icon-users"></span> <?= $val['peserta'] ?> peserta</div>

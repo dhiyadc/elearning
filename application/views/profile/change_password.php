@@ -66,6 +66,11 @@
             <?= $this->session->flashdata('pass'); ?>
         </div>
         <?php } ?>
+        <?php if($this->session->flashdata('errorAPI')){ ?>
+        <div class="alert alert-info" role="alert">
+            <?= $this->session->flashdata('errorAPI'); ?>
+        </div>
+        <?php } ?>
 
         <?php if($this->session->flashdata('same_pass')){ ?>
         <div class="alert alert-warning" role="alert">

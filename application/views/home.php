@@ -62,6 +62,7 @@ $_SESSION['url_login'] = "home";
 
         <!-- FOR FIXED IMAGE 
           style="object-fit: cover; height: 300px" -->
+          <?php if($class !=null) : ?>
         <?php foreach ($class as $val) : ?>
           <div class="course bg-white h-100 align-self-stretch">
             <figure class="m-0">
@@ -90,6 +91,7 @@ $_SESSION['url_login'] = "home";
           </div>
 
         <?php endforeach; ?>
+        <?php endif ?>
 
         <!--  -->
         <!-- <div class="course bg-white h-100 align-self-stretch">
@@ -281,6 +283,7 @@ $_SESSION['url_login'] = "home";
 
         <!-- FOR FIXED IMAGE 
           style="object-fit: cover; height: 300px" -->
+          <?php if($class2 != null) : ?>
         <?php foreach ($class2 as $val) : ?>
           <div class="course bg-white h-100 align-self-stretch">
             <figure class="m-0">
@@ -307,6 +310,7 @@ $_SESSION['url_login'] = "home";
             </div>
           </div>
         <?php endforeach; ?>
+        <?php endif ?>
         <!--  -->
         <!-- <div class="course bg-white h-100 align-self-stretch">
               <figure class="m-0">

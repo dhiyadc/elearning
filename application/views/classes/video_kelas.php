@@ -38,17 +38,12 @@ $this->session->set_userdata('workshop', null);
                     <div class="col-12">
                         <div class="row justify-content-center align-items-center text-center">
                             <div class="col-lg-6">
+                                
                                 <?php foreach ($kelas as $val) : ?>
-                                    <?php foreach ($materiKegiatan as $val2) : ?>
                                         <?php foreach ($kegiatan as $val3) : ?>
                                             <h1 data-aos="fade-up" data-aos-delay="0">Video <?= $indexvideo ?> Kegiatan <?= $val3['deskripsi_kegiatan'] ?> <b>(<?= $val['judul_kelas'] ?>)</b> </h1>
                                         <?php endforeach; ?>
-                                    <?php endforeach ?>
-                                    <?php foreach ($kategori as $val2) : ?>
-                                        <?php if ($val['kategori_kelas'] == $val2['id_kategori']) : ?>
-                                            <p data-aos="fade-up" data-aos-delay="100"> &bullet; <?= count($peserta_kelas); ?> Siswa <span class="text-white"># <?= $val2['nama_kategori']; ?></span></p>
-                                        <?php endif; ?>
-                                    <?php endforeach; ?>
+                                            <p data-aos="fade-up" data-aos-delay="100"> &bullet; <?= count($peserta_kelas); ?> Siswa <span class="text-white"># <?= $val['kategori_kelas']; ?></span></p>
                                 <?php endforeach; ?>
                             </div>
 
@@ -91,9 +86,11 @@ $this->session->set_userdata('workshop', null);
                                 <div role="tabpanel" class="tab-pane fade show active" id="profile" style="margin-top: 20px;">
                                     <div class="row mb-4">
                                         <div class="col">
+                                            <?php if($materiKegiatan!=null) : ?>
                                             <?php foreach ($materiKegiatan as $val2) : ?>
                                                 <center><iframe src="<?= $val2['url_materi'] ?>" frameborder="0" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="width: 630px; height:420px; border-radius: 12px; "></iframe></center>
                                             <?php endforeach ?>
+                                            <?php endif;?>
                                         </div>
                                     </div>
 
@@ -123,7 +120,7 @@ $this->session->set_userdata('workshop', null);
                             <div class="mb-2 text-center">
 
                                 <?php
-                                if(count($materiLain) > 0) :
+                                if ($materiLain != null) :
                                 foreach ($kegiatan as $val2) : ?>
                                     <?php $a = 0; ?>
                                     <?php foreach ($materiLain as $val3) : ?>

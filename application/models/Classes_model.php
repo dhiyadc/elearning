@@ -2,302 +2,237 @@
 
 class Classes_model extends CI_Model
 {
+
+    public function http_request_get($function)
+    {
+        $curl = curl_init();
+        $url = API_URL . $function;
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
+        $result = curl_exec($curl);
+        curl_close($curl);
+
+        return json_decode($result, TRUE);
+    }
+
+    public function http_request_post($data, $function)
+    {
+        $curl = curl_init();
+        $url = API_URL . $function;
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_POST, TRUE);
+        curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
+        $result = curl_exec($curl);
+        curl_close($curl);
+
+        return json_decode($result, TRUE);
+    }
+
+    public function http_request_update($data, $function)
+    {
+        $curl = curl_init();
+        $url = API_URL . $function;
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "PUT");
+        curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
+        $result = curl_exec($curl);
+        curl_close($curl);
+
+        return json_decode($result, TRUE);
+    }
+
+    public function http_request_delete($function)
+    {
+        $curl = curl_init();
+        $url = API_URL . $function;
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "DELETE");
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
+        $result = curl_exec($curl);
+        curl_close($curl);
+
+        return json_decode($result, TRUE);
+    }
+
     public function getAllClasses()
     {
-        return $this->db->get('kelas')->result_array();
+        return $this->http_request_get("classes");
     }
 
     public function getAllHarga()
     {
-        return $this->db->get('harga_kelas')->result_array();
+        return $this->http_request_get("classes/class_harga");
     }
 
     public function getAllClassesDetail($keyword = null)
     {
-        if ($keyword) {
-            $sql = "SELECT kelas.id_kelas, kelas.status_kelas, kelas.judul_kelas, kelas.poster_kelas, kelas.deskripsi_kelas, kategori_kelas.nama_kategori, jenis_kelas.nama_jenis, harga_kelas.harga_kelas, COUNT(peserta.id_kelas) as 'peserta', status_kegiatan.nama_status
-            FROM kelas
-            LEFT JOIN kategori_kelas
-                    ON kategori_kelas.id_kategori = kelas.kategori_kelas 
-            LEFT JOIN jenis_kelas
-                    ON jenis_kelas.id_jenis = kelas.jenis_kelas
-            LEFT JOIN harga_kelas
-                    ON harga_kelas.id_kelas = kelas.id_kelas
-            LEFT JOIN peserta
-                    ON peserta.id_kelas = kelas.id_kelas
-            LEFT JOIN status_kegiatan
-                ON status_kegiatan.id_status = kelas.status_kelas
-                WHERE kelas.judul_kelas LIKE '%$keyword%' AND kelas.tipe_kelas = 1 AND kelas.status_kelas = 1
-            GROUP BY kelas.id_kelas";
-            $query = $this->db->query($sql);
-            return $query->result_array();
-        } else {
-            $sql = "SELECT kelas.id_kelas, kelas.judul_kelas, kelas.poster_kelas, kelas.deskripsi_kelas, kategori_kelas.nama_kategori, jenis_kelas.nama_jenis, harga_kelas.harga_kelas, COUNT(peserta.id_kelas) as 'peserta', status_kegiatan.nama_status
-            FROM kelas
-            LEFT JOIN kategori_kelas
-                    ON kategori_kelas.id_kategori = kelas.kategori_kelas 
-            LEFT JOIN jenis_kelas
-                    ON jenis_kelas.id_jenis = kelas.jenis_kelas
-            LEFT JOIN harga_kelas
-                    ON harga_kelas.id_kelas = kelas.id_kelas
-            LEFT JOIN peserta
-                    ON peserta.id_kelas = kelas.id_kelas
-            LEFT JOIN status_kegiatan
-                ON status_kegiatan.id_status = kelas.status_kelas
-            WHERE kelas.tipe_kelas = 1 AND kelas.status_kelas = 1
-            GROUP BY kelas.id_kelas";
-            $query = $this->db->query($sql);
-            return $query->result_array();
-        }
+        if ($keyword != null)
+            return $this->http_request_get("classes/all_class/detail?keyword=$keyword");
+        else
+            return $this->http_request_get("classes/all_class/detail");
     }
 
     public function getAllRandomClasses()
     {
-        $sql = "SELECT kelas.id_kelas, kelas.judul_kelas, kelas.poster_kelas, kelas.deskripsi_kelas, kategori_kelas.nama_kategori, jenis_kelas.nama_jenis, harga_kelas.harga_kelas, COUNT(peserta.id_kelas) as 'peserta', status_kegiatan.nama_status, kelas.tipe_kelas
-        FROM kelas
-        LEFT JOIN kategori_kelas
-                ON kategori_kelas.id_kategori = kelas.kategori_kelas 
-        LEFT JOIN jenis_kelas
-                ON jenis_kelas.id_jenis = kelas.jenis_kelas
-        LEFT JOIN harga_kelas
-                ON harga_kelas.id_kelas = kelas.id_kelas
-        LEFT JOIN peserta
-                ON peserta.id_kelas = kelas.id_kelas
-        LEFT JOIN status_kegiatan
-            ON status_kegiatan.id_status = kelas.status_kelas
-        WHERE kelas.tipe_kelas = 1 AND kelas.status_kelas = 1
-        GROUP BY kelas.id_kelas
-        ORDER BY Rand()";
-        $query = $this->db->query($sql);
-        return $query->result_array();
+        return $this->http_request_get("classes/all_class/random");
     }
 
     public function getAllTopClasses()
     {
-
-        $sql = "SELECT kelas.id_kelas, kelas.judul_kelas, kelas.poster_kelas, kelas.deskripsi_kelas, kategori_kelas.nama_kategori, jenis_kelas.nama_jenis, harga_kelas.harga_kelas, COUNT(peserta.id_kelas) as 'peserta', status_kegiatan.nama_status
-            FROM kelas
-            LEFT JOIN kategori_kelas
-                    ON kategori_kelas.id_kategori = kelas.kategori_kelas 
-            LEFT JOIN jenis_kelas
-                    ON jenis_kelas.id_jenis = kelas.jenis_kelas
-            LEFT JOIN harga_kelas
-                    ON harga_kelas.id_kelas = kelas.id_kelas
-            LEFT JOIN peserta
-                    ON peserta.id_kelas = kelas.id_kelas
-            LEFT JOIN status_kegiatan
-                ON status_kegiatan.id_status = kelas.status_kelas
-            WHERE kelas.tipe_kelas = 1 AND kelas.status_kelas = 1
-            GROUP BY kelas.id_kelas
-            ORDER BY COUNT(peserta.id_kelas) DESC
-            LIMIT 10";
-        $query = $this->db->query($sql);
-        return $query->result_array();
+        return $this->http_request_get("classes/all_class/top");
     }
 
     public function getClassesbyCategories($kategori)
     {
-        $sql = "SELECT kelas.id_kelas, kelas.judul_kelas, kelas.poster_kelas, kelas.deskripsi_kelas, kategori_kelas.nama_kategori, jenis_kelas.nama_jenis, harga_kelas.harga_kelas, COUNT(peserta.id_kelas) as 'peserta', status_kegiatan.nama_status
-        FROM kelas
-        LEFT JOIN kategori_kelas
-                 ON kategori_kelas.id_kategori = kelas.kategori_kelas 
-        LEFT JOIN jenis_kelas
-                 ON jenis_kelas.id_jenis = kelas.jenis_kelas
-        LEFT JOIN harga_kelas
-                 ON harga_kelas.id_kelas = kelas.id_kelas
-        LEFT JOIN peserta
-                 ON peserta.id_kelas = kelas.id_kelas
-        LEFT JOIN status_kegiatan
-            ON status_kegiatan.id_status = kelas.status_kelas
-        WHERE kategori_kelas.nama_kategori = '$kategori' AND kelas.tipe_kelas = 1 AND kelas.status_kelas = 1
-        GROUP BY kelas.id_kelas";
-        $query = $this->db->query($sql);
-        return $query->result_array();
+        $dataparam = [
+            'kategori' => $kategori
+        ];
+        return $this->http_request_get("classes/by/kategori/$kategori");
     }
 
     public function getClassesbySorting($sorting)
     {
-        if ($sorting == "terbaru") {
-            $sql = "SELECT kelas.id_kelas, kelas.judul_kelas, kelas.poster_kelas, kelas.deskripsi_kelas, kategori_kelas.nama_kategori, jenis_kelas.nama_jenis, harga_kelas.harga_kelas, COUNT(peserta.id_kelas) as 'peserta', status_kegiatan.nama_status
-        FROM kelas
-        LEFT JOIN kategori_kelas
-                 ON kategori_kelas.id_kategori = kelas.kategori_kelas 
-        LEFT JOIN jenis_kelas
-                 ON jenis_kelas.id_jenis = kelas.jenis_kelas
-        LEFT JOIN harga_kelas
-                 ON harga_kelas.id_kelas = kelas.id_kelas
-        LEFT JOIN peserta
-                 ON peserta.id_kelas = kelas.id_kelas
-        LEFT JOIN status_kegiatan
-            ON status_kegiatan.id_status = kelas.status_kelas
-        WHERE kelas.tipe_kelas = 1 AND kelas.status_kelas = 1
-        GROUP BY kelas.id_kelas
-        ORDER BY kelas.id_kelas DESC";
-            $query = $this->db->query($sql);
-            return $query->result_array();
-        } else if ($sorting == "terbaik") {
-            $sql = "SELECT kelas.id_kelas, kelas.judul_kelas, kelas.poster_kelas, kelas.deskripsi_kelas, kategori_kelas.nama_kategori, jenis_kelas.nama_jenis, harga_kelas.harga_kelas, COUNT(peserta.id_kelas) as 'peserta', status_kegiatan.nama_status
-            FROM kelas
-            LEFT JOIN kategori_kelas
-                    ON kategori_kelas.id_kategori = kelas.kategori_kelas 
-            LEFT JOIN jenis_kelas
-                    ON jenis_kelas.id_jenis = kelas.jenis_kelas
-            LEFT JOIN harga_kelas
-                    ON harga_kelas.id_kelas = kelas.id_kelas
-            LEFT JOIN peserta
-                    ON peserta.id_kelas = kelas.id_kelas
-            LEFT JOIN status_kegiatan
-                ON status_kegiatan.id_status = kelas.status_kelas
-            WHERE kelas.tipe_kelas = 1 AND kelas.status_kelas = 1
-            GROUP BY kelas.id_kelas
-            ORDER BY COUNT(peserta.id_kelas) DESC
-            LIMIT 12";
-            $query = $this->db->query($sql);
-            return $query->result_array();
-        }
+        $dataparam = [
+            'sorting' => $sorting
+        ];
+        return $this->http_request_get("classes/by/sorting/$sorting");
     }
 
     public function getMyClasses()
     {
-        $this->db->where('pembuat_kelas', $this->session->userdata('id_user'));
-        return $this->db->get('kelas')->result_array();
+        $id_user =  $this->session->userdata('id_user');
+        return $this->http_request_get("classes/my_classes/$id_user");
     }
 
     public function getClassById($id)
     {
-        $this->db->where('id_kelas', $id);
-        return $this->db->get('kelas')->result_array();
+        $dataparam = [
+            'id_kelas' => $id
+        ];
+        return $this->http_request_get("classes/$id");
     }
 
     public function getPesertabyClass($id)
     {
-        $this->db->where('id_user', $this->session->userdata('id_user'));
-        $this->db->where('id_kelas', $id);
-        return $this->db->get('peserta')->result_array();
+        $id_user = $this->session->userdata('id_user');
+        return $this->http_request_get("classes/peserta/byclass/$id?id_user=$id_user");
     }
 
     public function getPembuat()
     {
-        return $this->db->get('detail_user')->result_array();
+        return $this->http_request_get("classes/pembuat");
     }
 
     public function getMyName()
     {
-        $this->db->select('nama');
-        $this->db->where('id_user', $this->session->userdata('id_user'));
-        return $this->db->get('detail_user')->result_array()[0];
+        $id_user = $this->session->userdata('id_user');
+        return $this->http_request_get("user/account/name/$id_user");
     }
 
     public function getKategori()
     {
-        return $this->db->get('kategori_kelas')->result_array();
+        return $this->http_request_get("classes/kategori_kelas");
     }
 
     public function getJenis()
     {
-        return $this->db->get('jenis_kelas')->result_array();
+        return $this->http_request_get("classes/jenis_kelas");
     }
 
     public function getStatus()
     {
-        return $this->db->get('status_kegiatan')->result_array();
+        return $this->http_request_get("classes/kegiatan/status");
     }
 
     public function getUserDetail($userId)
     {
-        $this->db->select('*')
-            ->from('user')
-            ->join('detail_user', 'user.id_user = detail_user.id_user')
-            ->where('user.id_user', $userId);
-        return $this->db->get()->result_array();
+        $dataparam = [
+            'id_user' => $userId
+        ];
+        return $this->http_request_get("account/users/detail/by/$userId");
     }
 
     public function getPesertaByUserIdClassId($id)
     {
-        $this->db->where('id_user', $this->session->userdata('id_user'));
-        $this->db->where('id_kelas', $id);
-        return $this->db->get('peserta')->result_array();
+        $id_user = $this->session->userdata('id_user');
+        return $this->http_request_get("classes/peserta/userclass/$id?id_user=$id_user");
     }
 
     public function getPesertaByClassId($id)
     {
-        $this->db->where('id_kelas', $id);
-        return $this->db->get('peserta')->result_array();
+        return $this->http_request_get("classes/peserta/class/$id");
     }
 
     public function getPesertaByUserId()
     {
-        $this->db->select('id_kelas');
-        $this->db->where('id_user', $this->session->userdata('id_user'));
-        return $this->db->get('peserta')->result_array();
+        $id_user = $this->session->userdata('id_user');
+        return $this->http_request_get("classes/peserta/user/$id_user");
     }
 
     public function getPeserta()
     {
-        return $this->db->get('peserta')->result_array();
+        return $this->http_request_get("classes/peserta");
     }
 
     public function getHarga($id)
     {
-        $this->db->where('id_kelas', $id);
-        return $this->db->get('harga_kelas')->result_array();
+        $dataparam = [
+            'id_kelas' => $id
+        ];
+        return $this->http_request_get("classes/class_harga/$id");
     }
 
     public function getMateriByClassId($id)
     {
-        $sql = "SELECT kelas.id_kelas, kelas.judul_kelas, materi.*, jadwal_kegiatan.deskripsi_kegiatan, jadwal_kegiatan.id_kegiatan
-                FROM materi, kelas, jadwal_kegiatan
-                WHERE kelas.id_kelas = '$id' AND materi.id_kelas = kelas.id_kelas AND materi.id_kegiatan = jadwal_kegiatan.id_kegiatan AND kelas.id_kelas = jadwal_kegiatan.id_kelas";
-        return $this->db->query($sql)->result_array();
+        $dataparam = [
+            'id_kelas' => $id
+        ];
+        return $this->http_request_get("classes/open_class/materi/by/idkelas/$id");
     }
 
     public function getKelasKegiatan($id)
     {
-        $sql = "SELECT detail_user.nama, jadwal_kegiatan.id_kegiatan, jadwal_kegiatan.status_kegiatan, kelas.id_kelas, kelas.judul_kelas, kelas.poster_kelas, DATE_FORMAT(jadwal_kegiatan.tanggal_kegiatan, '%W, %d %M %Y (%H:%i)') as tanggal
-                FROM jadwal_kegiatan, kelas, detail_user
-                WHERE kelas.id_kelas = '$id' AND jadwal_kegiatan.id_kelas = kelas.id_kelas AND jadwal_kegiatan.status_kegiatan = 1 AND kelas.pembuat_kelas = detail_user.id_user";
-        return $this->db->query($sql)->result_array();
+        $dataparam = [
+            'id_kelas' => $id
+        ];
+        return $this->http_request_get("classes/kegiatan/$id");
     }
 
     public function getIdNewClass()
     {
-        $this->db->select('id_kelas');
-        $this->db->where('pembuat_kelas', $this->session->userdata('id_user'));
-        $this->db->order_by('id_kelas', 'DESC');
-        $this->db->limit('1');
-        return $this->db->get('kelas')->result_array()[0];
+        $id_user = $this->session->userdata('id_user');
+        $dataparam = [
+            'id_user' => $id_user
+        ];
+        return $this->http_request_get("classes/new_class/$id_user");
     }
 
     public function getKegiatan($id)
     {
-        $sql = "SELECT *, DATE_FORMAT(tanggal_kegiatan, '%W, %d %M %Y') as tanggal, DATE_FORMAT(tanggal_kegiatan, '%H:%i') as waktu
-                FROM jadwal_kegiatan
-                WHERE id_kelas = '$id'
-                ORDER BY tanggal_kegiatan";
-        return $this->db->query($sql)->result_array();
+
+        return $this->http_request_get("classes/open_class/kegiatan/kelas/$id");
     }
 
     public function getKegiatanByIdKegiatan($activityId)
     {
-        $this->db->select("*, DATE_FORMAT(tanggal_kegiatan, '%W, %d %M %Y') as tanggal, DATE_FORMAT(tanggal_kegiatan, '%H:%i') as waktu")
-            ->from('jadwal_kegiatan')
-            ->where('id_kegiatan', $activityId)
-            ->order_by('tanggal_kegiatan');
 
-        return $this->db->get()->result_array();
+        return $this->http_request_get("classes/open_class/kegiatan/$activityId");
     }
 
     public function getAllKegiatan()
     {
-        return $this->db->get('jadwal_kegiatan')->result_array();
+        return $this->http_request_get("classes/open_class/kegiatan");
     }
 
     public function getTanggalKegiatan($id)
     {
-        $data = $this->db->get_where('jadwal_kegiatan', ['id_kelas' => $id])->result_array();
-        if ($data != null) {
+        $data = $this->http_request_get("classes/kegiatan/tanggal/$id");
+        return $data;
+        if ($data['status'] == 200 && count($data['data']) != null || count($data['data']) != 0) {
             $selesai = true;
-            foreach ($data as $key => $value) {
+            foreach ($data['data'] as $key => $value) {
                 if ($value['status_kegiatan'] == 1 || $value['status_kegiatan'] == 3) {
                     $selesai = false;
                     break;
@@ -312,10 +247,14 @@ class Classes_model extends CI_Model
 
     public function cekPeserta($id)
     {
-        if ($this->db->get_where('peserta', ['id_kelas' => $id])->row_array() == null) {
-            return true;
-        } else {
-            return false;
+        $dataparam = [
+            'id_kelas' => $id
+        ];
+        $peserta = $this->http_request_get("classes/peserta/cek/$id");
+        if ($peserta == null)
+            return 'server_error';
+        else {
+            return $peserta;
         }
     }
 
@@ -344,7 +283,13 @@ class Classes_model extends CI_Model
             $file_name = $this->upload->data('file_name');
             $uniqid = uniqid();
 
+            if (!empty($this->input->post('harga')))
+                $harga_str = preg_replace("/[^0-9]/", "", $this->input->post('harga'));
+            else
+                $harga_str = 0;
+
             if ($this->input->post('batas') == 0) {
+
                 $data = [
                     'id_kelas' => $uniqid,
                     'pembuat_kelas' => $this->session->userdata('id_user'),
@@ -356,7 +301,8 @@ class Classes_model extends CI_Model
                     'jenis_kelas' => 1,
                     'status_kelas' => 1,
                     'batas_jumlah' => 0,
-                    'tipe_kelas' => $this->input->post('tipe')
+                    'tipe_kelas' => $this->input->post('tipe'),
+                    'harga_kelas' => $harga_str
                 ];
             } else {
                 $data = [
@@ -370,31 +316,29 @@ class Classes_model extends CI_Model
                     'jenis_kelas' => 1,
                     'status_kelas' => 1,
                     'batas_jumlah' => $this->input->post('jumlah_peserta'),
-                    'tipe_kelas' => $this->input->post('tipe')
-                ];
-            }
-
-            $this->db->insert('kelas', $data);
-
-            if (!empty($this->input->post('harga'))) {
-                $harga_str = preg_replace("/[^0-9]/", "", $this->input->post('harga'));
-                $data = [
-                    'id_kelas' => $uniqid,
+                    'tipe_kelas' => $this->input->post('tipe'),
                     'harga_kelas' => $harga_str
                 ];
-            } else {
-                $data = [
-                    'id_kelas' => $uniqid,
-                    'harga_kelas' => '0'
-                ];
             }
-            $this->db->insert('harga_kelas', $data);
+
+            if ($this->http_request_post($data, "classes/create_class") == null)
+                return 'server_error';
+
+
 
             if (!empty($this->input->post('addmore'))) {
-                $this->setKegiatan($uniqid);
+                $temp = $this->setKegiatan($uniqid);
+                if ($temp == 'server_error')
+                    return 'server_error';
+                else if ($temp == 'success')
+                    return 'success';
+                else
+                    return $temp;
             }
+
+            return 'success';
         } else {
-            return $this->upload->display_errors();
+            return "error";
         }
     }
 
@@ -404,17 +348,12 @@ class Classes_model extends CI_Model
             $data = [
                 'status_kelas' => 2
             ];
-
-            $this->db->where('id_kelas', $id);
-            $this->db->update('kelas', $data);
         } else if ($selesai == false) {
             $data = [
                 'status_kelas' => 1
             ];
-
-            $this->db->where('id_kelas', $id);
-            $this->db->update('kelas', $data);
         }
+        $this->http_request_update($data, "classes/my_class/status/$id");
     }
 
     private function updateImage($id)
@@ -424,8 +363,11 @@ class Classes_model extends CI_Model
         $config['max_size'] = '3000';
         $config['remove_space'] = true;
 
-        $data = $this->db->get_where('kelas', ['id_kelas' => $id])->row();
-        unlink("images/" . $data->poster_kelas);
+
+        $data = $this->http_request_get("classes/$id");
+        foreach ($data['data'] as $data2) {
+            unlink("images/" . $data2['poster_kelas']);
+        }
 
         $this->load->library('upload', $config);
         if ($this->upload->do_upload('poster')) {
@@ -433,8 +375,9 @@ class Classes_model extends CI_Model
         }
     }
 
-    public function getMateriLain($id_kegiatan, $id_materi){
-        return $this->db->query("SELECT * FROM materi WHERE id_kegiatan='$id_kegiatan' AND id_materi!='$id_materi'")->result_array();
+    public function getMateriLain($id_kegiatan, $id_materi)
+    {
+        return $this->http_request_get("classes/open_class/materi/another/$id_kegiatan?id_materi=$id_materi");
     }
 
     public function updateClass($id)
@@ -447,9 +390,14 @@ class Classes_model extends CI_Model
 
             $this->load->library('upload', $config);
             if ($this->upload->do_upload('poster')) {
-                $data = $this->db->get_where('kelas', ['id_kelas' => $id])->row();
-                unlink("assets/images/" . $data->poster_kelas);
-
+                $data = $this->http_request_get("classes/$id");
+                if ($data == null)
+                    return 'server_error';
+                else {
+                    if ($data['status'] == 200 && $data != null) {
+                        unlink("assets/images/" . $data['poster_kelas']);
+                    }
+                }
                 $file_name = $this->upload->data('file_name');
                 $data = [
                     'judul_kelas' => $this->input->post('judul'),
@@ -458,7 +406,7 @@ class Classes_model extends CI_Model
                     'poster_kelas' => $file_name
                 ];
             } else {
-                return $this->upload->display_errors();
+                return "error";
             }
         } else {
             $data = [
@@ -468,16 +416,20 @@ class Classes_model extends CI_Model
                 'poster_kelas' => $this->input->post('old_image')
             ];
         }
-
-        $this->db->where('id_kelas', $id);
-        $this->db->update('kelas', $data);
+        $temp = $this->http_request_update($data, "classes/my_classes/update/$id");
+        if ($temp == null)
+            return 'sever_error';
+        else {
+            if ($temp['status'] != 200)
+                return $temp;
+        }
     }
 
     public function setKegiatanByClass($id)
     {
         $data = [];
         $id_kegiatan_uniq = uniqid();
-
+        $fileArr[] = "";
         if (!empty($_FILES['materi']['name'][0])) {
             $data = [
                 'id_kegiatan' => $id_kegiatan_uniq,
@@ -487,7 +439,9 @@ class Classes_model extends CI_Model
                 'status_kegiatan' => 3
             ];
 
-            $this->db->insert('jadwal_kegiatan', $data);
+            if ($this->http_request_post($data, "classes/open_class/kegiatan/class") == null)
+                return 'server_error';
+
             $id_keg = $data['id_kegiatan'];
 
             $video = $this->input->post('video');
@@ -504,7 +458,8 @@ class Classes_model extends CI_Model
                         'kategori_materi' => 2
                     ];
                     $materi_id[] = $data['id_materi'];
-                    $this->db->insert('materi', $data);
+                    if ($this->http_request_post($data, "classes/open_class/materi") == null)
+                        return 'server_error';
                 }
             }
         }
@@ -526,7 +481,7 @@ class Classes_model extends CI_Model
                 if ($this->upload->do_upload('file')) {
                     $file_name = $this->upload->data('file_name');
                     // $data['totalFiles'][] = $file_name;
-                    $fileArr[] = $file_name;
+                    $fileArr = $file_name;
 
 
                     $data = [
@@ -537,24 +492,22 @@ class Classes_model extends CI_Model
                         'kategori_materi' => 1
                     ];
                     $materi_id[] = $data['id_materi'];
-                    $this->db->insert('materi', $data);
+                    if ($this->http_request_post($data, "classes/open_class/materi") == null)
+                        return 'server_error';
                 } else {
-                    $this->db->where('id_kegiatan', $id_keg);
-                    $this->db->delete('jadwal_kegiatan');
-
+                    if ($this->http_request_delete("classes/open_class/kegiatan/$id_keg") == null)
+                        return 'server_error';
                     $countFile = count($fileArr);
                     for ($j = 0; $j < $countFile; $j++) {
-                        $this->db->where('id_materi', $materi_id[$j]);
-                        $this->db->delete('materi');
+                        if ($this->http_request_delete("classes/open_class/materi/$materi_id[$j]") == null)
+                            return 'server_error';
                         unlink("assets/docs/" . $fileArr[$j]);
                     }
-
-                    return $this->upload->display_errors();
+                    return "error";
 
                     //return $_FILES['materi']['name'][$i];
                 }
             } else {
-
                 $data = [
                     'id_kegiatan' => $id_kegiatan_uniq,
                     'id_kelas' => $id,
@@ -563,13 +516,14 @@ class Classes_model extends CI_Model
                     'status_kegiatan' => 3
                 ];
 
-                $this->db->insert('jadwal_kegiatan', $data);
+                if ($this->http_request_post($data, "classes/open_class/kegiatan/class") == null)
+                    return 'server_error';
 
                 $video = $this->input->post('video');
                 if ($video != 0 || $video != null) {
-       
+
                     $str_arr = explode(",", $video);
-                   $countvideo = count($str_arr);
+                    $countvideo = count($str_arr);
                     for ($j = 0; $j < $countvideo; $j++) {
                         $data = [
                             'id_materi' => uniqid(),
@@ -579,7 +533,8 @@ class Classes_model extends CI_Model
                             'kategori_materi' => 2
                         ];
                         $materi_id[] = $data['id_materi'];
-                        $this->db->insert('materi', $data);
+                        if ($this->http_request_post($data, "classes/open_class/materi") == null)
+                            return 'server_error';
                     }
                 }
             }
@@ -588,12 +543,14 @@ class Classes_model extends CI_Model
         return "success";
     }
 
-    public function getMateriVideo(){
-        return $this->db->query("SELECT * FROM materi WHERE kategori_materi = 2 ")->result_array();
+    public function getMateriVideo()
+    {
+        return $this->http_request_get("classes/open_class/materi/video");
     }
 
     public function setKegiatan($id)
     {
+        $deskripsi = "";
         if (!empty($this->input->post('addmore'))) {
             foreach ($this->input->post('addmore') as $key => $value) {
                 $i = $key++;
@@ -610,7 +567,15 @@ class Classes_model extends CI_Model
                         'status_kegiatan' => 3
                     ];
 
-                    $this->db->insert('jadwal_kegiatan', $data);
+                    $temp = $this->http_request_post($data, "classes/open_class/kegiatan");
+                    if ($temp == null)
+                        return 'server_error';
+                    else {
+                        if ($temp['status'] == 200)
+                            return 'success';
+                        else
+                            return $temp['message'];
+                    }
                 }
 
                 // if(!empty($this->input->post('addmorefile'))){
@@ -682,7 +647,10 @@ class Classes_model extends CI_Model
 
     public function updateKegiatan($id_kelas, $id_kegiatan)
     {
+        $success = true;
         $data = [];
+        $fileArr = [];
+
 
         if (!empty($_FILES['materi']['name'][0])) {
             $data = [
@@ -690,8 +658,16 @@ class Classes_model extends CI_Model
                 'tanggal_kegiatan' => $this->input->post('tanggal')
             ];
 
-            $this->db->where('id_kegiatan', $id_kegiatan);
-            $this->db->update('jadwal_kegiatan', $data);
+            $updatekegiatanmateri = $this->http_request_update($data, "classes/open_class/kegiatan/$id_kegiatan");
+            if ($updatekegiatanmateri == null)
+                return 'server_error';
+            else {
+                if ($updatekegiatanmateri['status'] != 200) {
+                    $success = false;
+                    return $updatekegiatanmateri['message'];
+                }
+            }
+
 
             $video = $this->input->post('video');
             if ($video != 0 || $video != null) {
@@ -707,12 +683,24 @@ class Classes_model extends CI_Model
                         'kategori_materi' => 2
                     ];
                     $materi_id[] = $data['id_materi'];
-                    $this->db->insert('materi', $data);
+
+                    $updatevideomateri = $this->http_request_post($data, "classes/open_class/materi");
+                    if ($updatevideomateri == null)
+                        return 'server_error';
+                    else {
+                        if ($updatevideomateri['status'] != 200) {
+                            $success = false;
+                            return $updatevideomateri['message'];
+                        }
+                    }
                 }
             }
         }
 
-        $count = count($_FILES['materi']['name']);
+        if (!empty($_FILES['materi']['name']))
+            $count = count($_FILES['materi']['name']);
+        else
+            $count = 0;
         for ($i = 0; $i < $count; $i++) {
             if (!empty($_FILES['materi']['name'][$i])) {
                 $_FILES['file']['name'] = $_FILES['materi']['name'][$i];
@@ -729,7 +717,7 @@ class Classes_model extends CI_Model
                 if ($this->upload->do_upload('file')) {
                     $file_name = $this->upload->data('file_name');
                     // $data['totalFiles'][] = $file_name;
-                    $fileArr[] = $file_name;
+                    $fileArr = $file_name;
 
 
                     $data = [
@@ -740,17 +728,29 @@ class Classes_model extends CI_Model
                         'kategori_materi' => 1
                     ];
                     $materi_id[] = $data['id_materi'];
-                    $this->db->insert('materi', $data);
+
+                    $updatemateri = $this->http_request_post($data, "classes/open_class/materi");
+                    if ($updatemateri == null)
+                        return 'server_error';
+                    else {
+                        if ($updatemateri['status'] != 200) {
+                            $success = false;
+                            return $updatemateri['message'];
+                        }
+                    }
+
+                    if ($success)
+                        return 'success';
                 } else {
 
                     $countFile = count($fileArr);
                     for ($j = 0; $j < $countFile; $j++) {
-                        $this->db->where('id_materi', $materi_id[$j]);
-                        $this->db->delete('materi');
+                        if ($this->http_request_delete("classes/open_class/materi/$materi_id[$j]") == null)
+                            return 'server_error';
                         unlink("assets/docs/" . $fileArr[$j]);
                     }
 
-                    return $this->upload->display_errors();
+                    return "error";
 
                     //return $_FILES['materi']['name'][$i];
                 }
@@ -760,43 +760,57 @@ class Classes_model extends CI_Model
                     'deskripsi_kegiatan' => $this->input->post('deskripsi'),
                     'tanggal_kegiatan' => $this->input->post('tanggal')
                 ];
-                
 
-                $this->db->where('id_kegiatan', $id_kegiatan);
-                $this->db->update('jadwal_kegiatan', $data);
-                
-                $video = $this->input->post('video');
-            if ($video != 0 || $video != null) {
-
-                $str_arr = explode(",", $video);
-                $countvideo = count($str_arr);
-                for ($j = 0; $j < $countvideo; $j++) {
-                    $data = [
-                        'id_materi' => uniqid(),
-                        'url_materi' => $str_arr[$j],
-                        'id_kelas' => $id_kelas,
-                        'id_kegiatan' => $id_kegiatan,
-                        'kategori_materi' => 2
-                    ];
-                    $materi_id[] = $data['id_materi'];
-                    $this->db->insert('materi', $data);
+                $updatekegiatantanpamateri = $this->http_request_update($data, "classes/open_class/kegiatan/$id_kegiatan");
+                if ($updatekegiatantanpamateri == null)
+                    return 'server_error';
+                else {
+                    if ($updatekegiatantanpamateri['status'] != 200) {
+                        $success = false;
+                        return $updatekegiatantanpamateri['message'];
+                    }
                 }
-            }
+
+                $video = $this->input->post('video');
+                if ($video != 0 || $video != null) {
+
+                    $str_arr = explode(",", $video);
+                    $countvideo = count($str_arr);
+                    for ($j = 0; $j < $countvideo; $j++) {
+                        $data = [
+                            'id_materi' => uniqid(),
+                            'url_materi' => $str_arr[$j],
+                            'id_kelas' => $id_kelas,
+                            'id_kegiatan' => $id_kegiatan,
+                            'kategori_materi' => 2
+                        ];
+                        $materi_id[] = $data['id_materi'];
+
+
+                        $updatevideotanpamateri = $this->http_request_post($data, "classes/open_class/materi");
+                        if ($updatevideotanpamateri == null)
+                            return 'server_error';
+                        else {
+                            if ($updatevideotanpamateri['status'] != 200) {
+                                $success = false;
+                                return $updatevideotanpamateri['message'];
+                            }
+                        }
+                    }
+                }
+                if ($success)
+                    return 'success';
             }
         }
-        return "success";
     }
 
     public function updateKegiatanStatus($activityId, $status)
     {
-        $tanggal = $this->getKegiatanByIdKegiatan($activityId)[0]['tanggal_kegiatan'];
-        $data = [
-            'status_kegiatan' => $status,
-            'tanggal_kegiatan' => $tanggal
-        ];
 
-        $this->db->where('id_kegiatan', $activityId);
-        return $this->db->update('jadwal_kegiatan', $data);
+        $data = [
+            'status_kegiatan' => $status
+        ];
+        return $this->http_request_update($data, "classes/kegiatan/status/$activityId");
     }
 
     public function joinClass($id)
@@ -806,98 +820,81 @@ class Classes_model extends CI_Model
             'id_user' => $this->session->userdata('id_user')
         ];
 
-        $this->db->insert('peserta', $data);
+        return $this->http_request_post($data, "classes/joinclass");
     }
 
     public function leaveClass($id)
     {
-        $this->db->where('id_user', $this->session->userdata('id_user'));
-        $this->db->where('id_kelas', $id);
-        $this->db->delete('peserta');
+        $id_user = $this->session->userdata('id_user');
+        return $this->http_request_delete("classes/leaveclass/$id?id_user=$id_user");
     }
 
     public function getMateri($id_kelas)
     {
-        $sql = "SELECT * FROM materi WHERE id_kelas = '$id_kelas'";
-        return $this->db->query($sql)->result_array();
+        return $this->http_request_get("classes/open_class/materi/by/idkelas/$id_kelas");
     }
     public function getMateriAll()
     {
-        $sql = "SELECT * FROM materi";
-        return $this->db->query($sql)->result_array();
+        return $this->http_request_get("classes/open_class/materi");
     }
 
     public function getMateribyKegiatan()
     {
-        $sql = "SELECT materi.id_materi, jadwal_kegiatan.id_kegiatan
-        FROM materi 
-        LEFT JOIN jadwal_kegiatan
-            ON materi.id_kegiatan = jadwal_kegiatan.id_kegiatan";
-
-        return $this->db->query($sql)->result_array();
+        return $this->http_request_get("classes/open_class/materi/by/kegiatan");
     }
+
     public function getMateribyIdMateri($id_materi)
     {
-        $sql = "SELECT *
-        FROM materi 
-        WHERE id_materi = '$id_materi'";
-
-        return $this->db->query($sql)->result_array();
+        return $this->http_request_get("classes/open_class/materi/$id_materi");
     }
 
-    public function delMateri($url_materi)
+    public function delMateri($id_materi)
     {
-        unlink("assets/docs/" . $url_materi);
-
-        $sql = "DELETE FROM materi WHERE url_materi = '$url_materi'";
-
-        return $this->db->query($sql);
+        $data = $this->getMateribyIdMateri($id_materi);
+        if ($data['kategori_materi'] == 'file')
+            unlink("assets/docs/" . $data['url_materi']);
+        return $this->http_request_delete("classes/open_class/materi/$id_materi");
     }
 
 
     public function getKategoriTugas()
     {
-        return $this->db->get('kategori_tugas')->result_array();
+        return $this->http_request_get("classes/kategori_tugas");
     }
 
     public function getDeadlineTugas($id)
     {
-        $this->db->select('batas_pengiriman_tugas');
-        return $this->db->get_where('tugas_kuis', ['id_tugas' => $id])->result_array()[0];
+        $dataparam = [
+            'id_tugas' => $id
+        ];
+        return $this->http_request_get("classes/my_class/assignment/deadline/$id");
     }
 
     public function getTugasByClassId($id)
     {
-        $sql = "SELECT tugas_kuis.*, kategori_tugas.kategori_tugas as kategori, DATE_FORMAT(tugas_kuis.batas_pengiriman_tugas, '%W, %d %M %Y (%H:%i)') as deadline
-                FROM tugas_kuis, kategori_tugas
-                WHERE tugas_kuis.id_kelas = '$id' AND tugas_kuis.kategori_tugas = kategori_tugas.id";
-
-        $query = $this->db->query($sql);
-        return $query->result_array();
+        $dataparam = [
+            'id_kelas' => $id
+        ];
+        return $this->http_request_get("classes/my_class/assignment/by/kelas/$id");
     }
 
     public function getTugasByTugasId($id)
     {
-        $sql = "SELECT tugas_kuis.*, kategori_tugas.kategori_tugas as kategori, DATE_FORMAT(tugas_kuis.batas_pengiriman_tugas, '%W, %d %M %Y (%H:%i)') as deadline
-                FROM tugas_kuis, kategori_tugas
-                WHERE tugas_kuis.id_tugas = '$id' AND tugas_kuis.kategori_tugas = kategori_tugas.id";
-
-        $query = $this->db->query($sql);
-        return $query->result_array();
+        $dataparam = [
+            'id_tugas' => $id
+        ];
+        return $this->http_request_get("classes/my_class/assignment/by/tugas/$id");
     }
 
     public function getSubmit()
     {
-        $sql = "SELECT submit_assignment.*, detail_user.nama, status_tugas.status_tugas as status, submit_assignment.tanggal_submit, DATE_FORMAT(submit_assignment.tanggal_submit, '%W, %d %M %Y (%H:%i)') as tanggal
-                FROM submit_assignment, detail_user, status_tugas
-                WHERE status_tugas.id = submit_assignment.status_tugas AND submit_assignment.id_user = detail_user.id_user";
-
-        $query = $this->db->query($sql);
-        return $query->result_array();
+        return $this->http_request_get("classes/assignment/submit");
     }
 
     public function createAssignment($id)
     {
+        $id_tugas = uniqid();
+        $deadline = $this->input->post('deadline');
         if (!empty($_FILES['url_tugas']['name'])) {
             $config['upload_path'] = './assets/docs/';
             $config['allowed_types'] = 'pdf|doc|docx';
@@ -907,24 +904,24 @@ class Classes_model extends CI_Model
             $this->load->library('upload', $config);
             if ($this->upload->do_upload('url_tugas')) {
                 $filename = $this->upload->data('file_name');
-
                 $data = [
-                    'id_tugas' => uniqid(),
+                    'id_tugas' => $id_tugas,
                     'judul_tugas' => $this->input->post('judul'),
                     'deskripsi_tugas' => $this->input->post('deskripsi'),
                     'url_tugas' => $filename,
                     'id_kelas' => $id,
                     'kategori_tugas' => $this->input->post('kategori'),
-                    'batas_pengiriman_tugas' => $this->input->post('deadline')
+                    'batas_pengiriman_tugas' => $this->input->post('deadline'),
                 ];
 
-                $this->db->insert('tugas_kuis', $data);
+                if ($this->http_request_post($data, "classes/my_class/assignment/kuis") == null)
+                    return 'server_error';
             } else {
-                return $this->upload->display_errors();
+                return 'error';
             }
         } else {
             $data = [
-                'id_tugas' => uniqid(),
+                'id_tugas' => $id_tugas,
                 'judul_tugas' => $this->input->post('judul'),
                 'deskripsi_tugas' => $this->input->post('deskripsi'),
                 'url_tugas' => null,
@@ -933,7 +930,8 @@ class Classes_model extends CI_Model
                 'batas_pengiriman_tugas' => $this->input->post('deadline')
             ];
 
-            $this->db->insert('tugas_kuis', $data);
+            if ($this->http_request_post($data, "classes/my_class/assignment/kuis") == null)
+                return 'server_error';
         }
     }
 
@@ -943,11 +941,13 @@ class Classes_model extends CI_Model
         $config['allowed_types'] = 'pdf|doc|docx';
         $config['max_size'] = '25000';
         $config['remove_space'] = true;
+        $id_user = $this->session->userdata('id_user');
 
         $this->load->library('upload', $config);
         if ($this->upload->do_upload('assignment')) {
             $filename = $this->upload->data('file_name');
             $timezone = time() + (60 * 60 * 7);
+
 
             if (gmdate('Y-m-d H:i:s', $timezone) > $deadline) {
                 $data = [
@@ -957,10 +957,10 @@ class Classes_model extends CI_Model
                     'status_tugas' => 2,
                     'id_user' => $this->session->userdata('id_user'),
                     'subjek_tugas' => $this->input->post('subjek'),
-                    'tanggal_submit' => gmdate('Y-m-d H:i:s', $timezone)
+                    'tanggal_submit' => gmdate('Y-m-d H:i:s', $timezone),
+                    'id_user' => $id_user,
+                    'id_tugas' => $id_tugas
                 ];
-
-                $this->db->insert('submit_assignment', $data);
             } else {
                 $data = [
                     'id_tugas' => $id_tugas,
@@ -969,13 +969,23 @@ class Classes_model extends CI_Model
                     'status_tugas' => 1,
                     'id_user' => $this->session->userdata('id_user'),
                     'subjek_tugas' => $this->input->post('subjek'),
-                    'tanggal_submit' => gmdate('Y-m-d H:i:s', $timezone)
+                    'tanggal_submit' => gmdate('Y-m-d H:i:s', $timezone),
+                    'id_user' => $id_user,
+                    'id_tugas' => $id_tugas
                 ];
+            }
 
-                $this->db->insert('submit_assignment', $data);
+            $kumpul = $this->http_request_post($data, "classes/my_class/submit_assignment");
+            if ($kumpul == null)
+                return 'server_error';
+            else {
+                if ($kumpul['status'] == 200)
+                    return "success";
+                else
+                    return $kumpul['message'];
             }
         } else {
-            return $this->upload->display_errors();
+            return "error";
         }
     }
 
@@ -991,19 +1001,15 @@ class Classes_model extends CI_Model
             if ($this->upload->do_upload('url_tugas')) {
                 $filename = $this->upload->data('file_name');
 
-                    $data = [
-                        'judul_tugas' => $this->input->post('judul'),
-                        'deskripsi_tugas' => $this->input->post('deskripsi'),
-                        'url_tugas' => $filename,
-                        'kategori_tugas' => $this->input->post('kategori'),
-                        'batas_pengiriman_tugas' => $this->input->post('deadline')
-                    ];
-            
-                    $this->db->where('id_tugas',$id);
-                    $this->db->update('tugas_kuis',$data);
-            }
-            else {
-                return $this->upload->display_errors();
+                $data = [
+                    'judul_tugas' => $this->input->post('judul'),
+                    'deskripsi_tugas' => $this->input->post('deskripsi'),
+                    'url_tugas' => $filename,
+                    'kategori_tugas' => $this->input->post('kategori'),
+                    'batas_pengiriman_tugas' => $this->input->post('deadline')
+                ];
+            } else {
+                return "error";
             }
         } else {
             $data = [
@@ -1014,15 +1020,22 @@ class Classes_model extends CI_Model
                 'batas_pengiriman_tugas' => $this->input->post('deadline')
             ];
 
-            $this->db->where('id_tugas', $id);
-            $this->db->update('tugas_kuis', $data);
         }
+        $updateAssignment = $this->http_request_update($data, "classes/my_class/assignment/kuis/$id");
+        if($updateAssignment == null)
+            return 'server_error';
+            else{
+                if($updateAssignment['status'] == 200)
+                return 'success';
+                else
+                return $updateAssignment['message'];
+            }
     }
 
     public function deleteAssignment($id)
     {
-        $this->db->where('id_tugas', $id);
-        $this->db->delete('tugas_kuis');
+        $data = ['id_tugas' => $id];
+        return $this->http_request_delete("classes/my_class/assignment/kuis/$id");
     }
 
     public function updateNilai($id)
@@ -1032,23 +1045,29 @@ class Classes_model extends CI_Model
             'tanggal_submit' => $this->input->post('tanggal_submit')
         ];
 
-        $this->db->where('id_submit', $id);
-        $this->db->update('submit_assignment', $data);
+        return $this->http_request_update($data, "classes/my_class/assignment/nilai/$id");
     }
 
     public function deleteJawaban($id)
     {
-        $data = $this->db->get_where('submit_assignment', ['id_submit' => $id])->row();
-        $deldata = $this->db->delete('submit_assignment', ['id_submit' => $id]);
-        if ($deldata) {
-            unlink("assets/docs/" . $data->url_file);
+        //$data = ['id_submit => $id'];
+        $deldata = $this->http_request_delete("classes/my_class/assignment/$id");
+        if ($deldata == null)
+            return 'server_error';
+        else {
+            if ($deldata['status'] == 200) {
+                foreach ($deldata['data'] as $data2) {
+                    unlink("assets/docs/" . $data2['url_file']);
+                }
+                return 'success';
+            } else
+                return $deldata['message'];
         }
     }
 
     public function cekTugas($id)
     {
-        $this->db->where('id_tugas', $id);
-        $this->db->where('id_user', $this->session->userdata('id_user'));
-        return $this->db->get('submit_assignment')->result_array();
+        $id_user = $this->session->userdata('id_user');
+        return $this->http_request_get("classes/my_class/assignment/$id?id_user=$id_user");
     }
 }

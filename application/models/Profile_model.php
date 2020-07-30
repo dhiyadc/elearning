@@ -1,16 +1,67 @@
 <?php
 
-class Profile_model extends CI_Model {
-    public function getProfile()
+class Profile_model extends CI_Model
+{
+    public function http_request_get($function)
     {
-        $id = $this->session->userdata('id_user');
-        $sql = "SELECT user.*,detail_user.*
-                FROM user,detail_user
-                WHERE user.id_user = '$id' AND detail_user.id_user = '$id'";
-        return $this->db->query($sql)->result_array();
+        $curl = curl_init();
+        $url = API_URL . $function;
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
+        $result = curl_exec($curl);
+        curl_close($curl);
+
+        return json_decode($result, TRUE);
+    }
+
+    public function http_request_post($data, $function)
+    {
+        $curl = curl_init();
+        $url = API_URL . $function;
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_POST, TRUE);
+        curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
+        $result = curl_exec($curl);
+        curl_close($curl);
+
+        return json_decode($result, TRUE);
+    }
+
+    public function http_request_update($data, $function)
+    {
+        $curl = curl_init();
+        $url = API_URL . $function;
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "PUT");
+        curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
+        $result = curl_exec($curl);
+        curl_close($curl);
+
+        return json_decode($result, TRUE);
+    }
+
+    public function http_request_delete($function)
+    {
+        $curl = curl_init();
+        $url = API_URL . $function;
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "DELETE");
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
+        $result = curl_exec($curl);
+        curl_close($curl);
+
+        return json_decode($result, TRUE);
     }
     
-    private function insertImage() 
+    public function getProfile()
+    {
+        $id_user = $this->session->userdata('id_user');
+        return $this->http_request_get("account/users/profile/$id_user");
+    }
+
+    private function insertImage()
     {
         $config['upload_path'] = './assets/images/';
         $config['allowed_types'] = 'jpg|png|jpeg';
@@ -23,15 +74,16 @@ class Profile_model extends CI_Model {
         }
     }
 
-    private function updateImage() 
+    private function updateImage()
     {
         $config['upload_path'] = './assets/images/';
         $config['allowed_types'] = 'jpg|png|jpeg';
         $config['max_size'] = '3000';
         $config['remove_space'] = true;
-
-        $data = $this->db->get_where('detail_user',['id_user' => $this->session->userdata('id_user')])->row();
-        unlink("./assets/images/".$data->foto);
+        $id_user = $this->session->userdata('id_user');
+        $data = $this->http_request_get("account/users/profile/$id_user");
+            unlink("./assets/images/" . $data['foto']);
+        
 
         $this->load->library('upload', $config);
         if ($this->upload->do_upload('foto')) {
@@ -41,18 +93,19 @@ class Profile_model extends CI_Model {
 
     public function editProfile()
     {
-        if(!empty($_FILES['foto']['name'])) {
+        $id_user =  $this->session->userdata('id_user');
+        if (!empty($_FILES['foto']['name'])) {
             $config['upload_path'] = './assets/images/';
             $config['allowed_types'] = 'jpg|png|jpeg';
             $config['max_size'] = '3000';
             $config['remove_space'] = true;
 
-            
 
             $this->load->library('upload', $config);
             if ($this->upload->do_upload('foto')) {
-                $data = $this->db->get_where('detail_user',['id_user' => $this->session->userdata('id_user')])->row();
-                unlink("./assets/images/".$data->foto);
+                $data = $this->http_request_get("account/users/profile/$id_user");
+                    unlink("./assets/images/" . $data['foto']);
+                
 
                 $file_name = $this->upload->data('file_name');
 
@@ -65,8 +118,7 @@ class Profile_model extends CI_Model {
             } else {
                 return "fail";
             }
-        }
-        else {
+        } else {
             $data = [
                 'nama' => $this->input->post('nama'),
                 'no_telepon' => $this->input->post('no_telp'),
@@ -74,36 +126,35 @@ class Profile_model extends CI_Model {
                 'deskripsi' => $this->input->post('deskripsi')
             ];
         }
-
-        $this->db->where('id_user',$this->session->userdata('id_user'));
-        $this->db->update('detail_user',$data);   
+        return $this->http_request_update($data, "user/account/profile/$id_user");
     }
 
     public function deleteAccount()
     {
-        $data = $this->db->get_where('user',['id_user' => $this->session->userdata('id_user')])->row();
-        $deldata = $this->db->delete('user',['id_user'=>$this->session->userdata('id_user')]);
-        if($deldata){
-            unlink("./aseets/images/".$data->foto);
+        $id_user = $this->session->userdata('id_user');
+        return $deldata = $this->http_request_delete("users/account/$id_user");
+        if ($deldata['status'] == 200) {
+            foreach ($deldata['data'] as $data2) {
+                unlink("./assets/images/" . $data2['foto']);
+            }
         }
     }
 
     public function getOldPassword()
     {
         $id_user = $_SESSION['id_user'];
-        $sql = "SELECT * FROM user
-        WHERE id_user='$id_user'";
-        $query = $this->db->query($sql);
-        return $query->result_array()[0];
+        return $this->http_request_get("user/account/old_password/$id_user");
     }
 
     public function updatePassword($newPassword)
     {
         $id_user = $_SESSION['id_user'];
-    $newPasswordHashed = hash('sha256', $newPassword);
-    $sql = "UPDATE user SET password = '$newPasswordHashed'
-    WHERE id_user='$id_user'";
-    return $this->db->query($sql);
-    }
+        $newPasswordHashed = hash('sha256', $newPassword);
 
+        $data = [
+            'new_password' => $newPasswordHashed
+        ];
+
+        return $this->http_request_update($data, "users/change_password/$id_user");
+    }
 }
