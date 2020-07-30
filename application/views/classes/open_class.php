@@ -7,6 +7,12 @@
 <?php
 $_SESSION['url_login'] = "open_class";
 $_SESSION['url_login_open_class'] = $this->uri->segment(3);
+foreach ($kelas as $val) {
+  if (base_url() . "class/" . $val['id_kelas']) {
+    $_SESSION['url_login'] = "class";
+    $_SESSION['url_login_class'] = $val['id_kelas'];
+  }
+}
 $this->session->set_userdata('workshop', null);
 ?>
 
@@ -226,6 +232,7 @@ $this->session->set_userdata('workshop', null);
 
               <div class="card-body table-responsive">
                 <table class="table">
+
                   <?php if ($kegiatan == null) : ?>
                     <div class="alert alert-danger" role="alert">
                       Tidak ada kegiatan dalam Workshop ini.
@@ -272,6 +279,8 @@ $this->session->set_userdata('workshop', null);
                           <?php else : ?>
                             <td style="text-align: center ;"><span class="badge badge-warning"><?= $val2['nama_status']; ?></span></td>
                           <?php endif; ?>
+                        <?php endforeach; ?>
+
 
                           <td style="text-align: center ;">
                             <?php if ($val['pembuat_kelas'] != $this->session->userdata('id_user')) : ?>
@@ -327,7 +336,7 @@ $this->session->set_userdata('workshop', null);
                     <?php if ($val2['id_kegiatan'] == $val4['id_kegiatan']) : ?>
 
                       <?php if ($notPembuatMateri < 1) : ?>
-                        <button class="btn btn-light btn-md px-3 my-0 ml-0" type="button" data-toggle="modal" data-target="#lihatMateri<?= $modalMateri ?>">Lihat Materi</button>
+                        <button class="btn btn-light btn-md px-3 my-0 ml-0 btn-block" type="button" data-toggle="modal" data-target="#lihatMateri<?= $modalMateri ?>">Lihat Materi</button>
                       <?php endif; ?>
                       <?php $notPembuatMateri++; ?>
                     <?php else : ?>

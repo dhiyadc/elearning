@@ -69,6 +69,7 @@ class Login extends CI_Controller
 					$this->session->set_userdata('id_user', $id_user);
 					$this->session->set_userdata('email', $email);
 
+
 					if ($redirect) {
 						if ($redirect == "create_class") {
 							redirect('classes/new_class');
@@ -87,9 +88,6 @@ class Login extends CI_Controller
 								redirect('classes');
 							} else if ($_SESSION['url_login'] == "home") {
 								redirect('home');
-							} else {
-								redirect('home');
-							}
 						} else {
 							redirect('home');
 						}
