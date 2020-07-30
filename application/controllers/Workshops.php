@@ -1083,9 +1083,10 @@ class Workshops extends CI_Controller
         if ($data['kelas'] == null)
             $null = true;
         else {
-            if ($data['kelas']['status'] == 200 || $data['kelas']['status'] == 202)
-                $data['kelas'] = $data['kelas']['data'];
-            else
+            if ($data['kelas']['status'] == 200 || $data['kelas']['status'] == 202) {
+                $tempkelas[] = $data['kelas']['data'];
+                $data['kelas'] = $tempkelas;
+            } else
                 $this->session->set_flashdata("errorAPI", $data['kelas']['message']);
         }
 
@@ -1094,7 +1095,7 @@ class Workshops extends CI_Controller
             $null = true;
         else {
             if ($data['pembuat']['status'] == 200 || $data['pembuat']['status'] == 202)
-                $data['pembuat'] = $data['pembuat']['data'];
+                $data['pembuat']['nama'] = $data['pembuat']['data'];
             else
                 $this->session->set_flashdata("errorAPI", $data['pembuat']['message']);
         }
@@ -1200,8 +1201,9 @@ class Workshops extends CI_Controller
                 redirect("home");
             }
         }
+
         $updateClass = $this->Workshops_model->updateClass($id_kelas);
-        if ($updateClass = 'server_error')
+        if ($updateClass == 'server_error')
             $null = true;
         else {
             if ($updateClass == 'success')

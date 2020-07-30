@@ -49,7 +49,11 @@
 
 	<div class="container my-5">
 
-
+		<?php if ($this->session->flashdata("errorAPI")) : ?>
+			<div class="alert alert-info" role="alert">
+				<?= $this->session->flashdata("errorAPI"); ?>
+			</div>
+		<?php endif; ?>
 
 		<!-- Nav tabs -------------- -->
 		<ul style="list-style: outside none none;" class="nav nav-tabs" role="tablist">
@@ -543,81 +547,13 @@
 
 																												<td>
 																													<?php if ($val5['nama_status'] != 'Selesai') : ?>
-																																<button class="btn btn-light btn-md px-3 my-0 ml-0 btn-block " href="" data-toggle="modal" data-target="#editKegiatan<?= $val5['id_kegiatan']; ?>">Edit</button>
-																																<button class="btn btn-dark btn-md px-3 my-0 ml-0 btn-block" href="<?= base_url('class/') ?><?= $val['id_kelas'] ?>/<?= $val5['id_kegiatan']; ?>">Mulai</button>
-																														<div class="modal fade" id="editMateri<?= $modalMateri ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="padding-right: 90px;">
-																															<div class="modal-dialog" role="document">
-																																<!--Content-->
-																																<div class="modal-content form-elegant">
-																																	<!--Header-->
-																																	<div class="modal-header text-center">
-																																		<h3 class="modal-title w-100 dark-grey-text font-weight-bold my-3" id="myModalLabel"><strong>Tambah Materi</strong></h3>
-																																		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-																																			<span aria-hidden="true">&times;</span>
-																																		</button>
-																																	</div>
-																																	<!--Body-->
-																																	<div class="modal-body mx-4">
-																																		<!--Body-->
 
-																																		<form enctype="multipart/form-data" action="<?= base_url() ?>classes/edit_kegiatan/<?= $val['id_kelas'] ?>/<?= $val2['id_kegiatan'] ?>/akademik" method="POST">
-																																			<div class="form-group">
-																																				<label for="materiForm">Video (Opsional)</label>
-																																				<div id="kegiatan_field">
-																																					<textarea class="form-control" name="video" placeholder="Tambahkan link Youtube Embed. Jika Banyak, pisahkan dengan koma ( , )" style="margin-bottom: 5px;"></textarea>
-																																				</div>
-																																			</div>
-																																			<label for="materiForm">Tambah Materi</label>
-																																			<input type="file" name="materi[]" accept=".doc, .docx, .ppt, .pptx, .pdf" class="form-control-file" id="materiForm" multiple>
+																														<button class="btn btn-light btn-md px-3 my-0 ml-0 btn-block " href="" data-toggle="modal" data-target="#editKegiatan<?= $val5['id_kegiatan']; ?>">Edit</button>
+																														<button class="btn btn-dark btn-md px-3 my-0 ml-0 btn-block" href="<?= base_url('class/') ?><?= $val['id_kelas'] ?>/<?= $val5['id_kegiatan']; ?>">Mulai</button>
 
-																																	</div>
-																																	<input type="hidden" name="deskripsi" value="<?= $val2['deskripsi_kegiatan'] ?>">
-																																	<input type="hidden" name="tanggal" value="<?= $val2['tanggal_kegiatan'] ?>">
 
-																																	<div class="text-center mb-3">
-																																		<button type="submit" class="btn btn-light blue-gradient btn-block btn-rounded z-depth-1a">Simpan</button>
-																																	</div>
-																																	</form>
-																																</div>
-																															</div>
-																														</div>
 
-																														<div class="modal fade" id="editMateri<?= $modalMateri ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="padding-right: 90px;">
-																															<div class="modal-dialog" role="document">
-																																<!--Content-->
-																																<div class="modal-content form-elegant">
-																																	<!--Header-->
-																																	<div class="modal-header text-center">
-																																		<h3 class="modal-title w-100 dark-grey-text font-weight-bold my-3" id="myModalLabel"><strong>Tambah Materi</strong></h3>
-																																		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-																																			<span aria-hidden="true">&times;</span>
-																																		</button>
-																																	</div>
-																																	<!--Body-->
-																																	<div class="modal-body mx-4">
-																																		<!--Body-->
 
-																																		<form enctype="multipart/form-data" action="<?= base_url() ?>classes/edit_kegiatan/<?= $val['id_kelas'] ?>/<?= $val2['id_kegiatan'] ?>/akademik" method="POST">
-																																			<div class="form-group">
-																																				<label for="materiForm">Video (Opsional)</label>
-																																				<div id="kegiatan_field">
-																																					<textarea class="form-control" name="video" placeholder="Tambahkan link Youtube Embed. Jika Banyak, pisahkan dengan koma ( , )" style="margin-bottom: 5px;"></textarea>
-																																				</div>
-																																			</div>
-																																			<label for="materiForm">Tambah Materi</label>
-																																			<input type="file" name="materi[]" accept=".doc, .docx, .ppt, .pptx, .pdf" class="form-control-file" id="materiForm" multiple>
-
-																																	</div>
-																																	<input type="hidden" name="deskripsi" value="<?= $val2['deskripsi_kegiatan'] ?>">
-																																	<input type="hidden" name="tanggal" value="<?= $val2['tanggal_kegiatan'] ?>">
-
-																																	<div class="text-center mb-3">
-																																		<button type="submit" class="btn btn-light blue-gradient btn-block btn-rounded z-depth-1a">Simpan</button>
-																																	</div>
-																																	</form>
-																																</div>
-																															</div>
-																														</div>
 
 																														<div class="modal fade" id="editKegiatan<?= $val5['id_kegiatan']; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="padding-right: 90px;">
 																															<div class="modal-dialog" role="document">
@@ -674,8 +610,8 @@
 																													} ?>
 
 																													<?php if ($countMateri == 0) : ?>
-																														<button class="btn btn-light btn-md px-3 my-0 ml-0 btn-block " style="color: red;" disabled type="button" data-toggle="modal" data-target="#lihatMateri<?= $modalMateri ?>">Tidak ada Materi</button><br>
-																														<button class="btn btn-dark btn-md px-3 my-0 ml-0 btn-block" type="button" data-toggle="modal" data-target="#editMateri<?= $modalMateri ?>">Tambah Materi</button>
+																														<button class="btn btn-light btn-md px-3 my-0 ml-0 btn-block " style="color: red;" disabled type="button">Tidak ada Materi</button><br>
+																														<button class="btn btn-dark btn-md px-3 my-0 ml-0 btn-block" type="button" data-toggle="modal" data-target="#editMateri<?= $val5['id_kegiatan']; ?>">Tambah Materi</button>
 																													<?php else : ?>
 																														<?php $PembuatMateri = 0; ?>
 																														<?php if ($materi2 != null) : ?>
@@ -683,8 +619,8 @@
 																																<?php if ($val5['id_kegiatan'] == $val40['id_kegiatan']) : ?>
 
 																																	<?php if ($PembuatMateri < 1) : ?>
-																																				<button class="btn btn-light btn-md px-3 my-0 ml-0 btn-block" type="button" data-toggle="modal" data-target="#lihatMateri<?= $val5['id_kegiatan']; ?>">Lihat Materi</button>
-																																				<button class="btn btn-dark btn-md px-3 my-0 ml-0 btn-block" type="button" data-toggle="modal" data-target="#editMateri<?= $modalMateri ?>">Tambah Materi</button>
+																																		<button class="btn btn-light btn-md px-3 my-0 ml-0 btn-block" type="button" data-toggle="modal" data-target="#lihatMateri<?= $val5['id_kegiatan']; ?>">Lihat Materi</button>
+																																		<button class="btn btn-dark btn-md px-3 my-0 ml-0 btn-block" type="button" data-toggle="modal" data-target="#editMateri<?= $val5['id_kegiatan']; ?>">Tambah Materi</button>
 																																	<?php endif; ?>
 																																	<?php $PembuatMateri++; ?>
 																																<?php else : ?>
@@ -694,6 +630,43 @@
 																													<?php endif; ?>
 																												</td>
 																											</tr>
+
+																											<div class="modal fade" id="editMateri<?= $val5['id_kegiatan'] ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="padding-right: 90px;">
+																												<div class="modal-dialog" role="document">
+																													<!--Content-->
+																													<div class="modal-content form-elegant">
+																														<!--Header-->
+																														<div class="modal-header text-center">
+																															<h3 class="modal-title w-100 dark-grey-text font-weight-bold my-3" id="myModalLabel"><strong>Tambah Materi</strong></h3>
+																															<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+																																<span aria-hidden="true">&times;</span>
+																															</button>
+																														</div>
+																														<!--Body-->
+																														<div class="modal-body mx-4">
+																															<!--Body-->
+
+																															<form enctype="multipart/form-data" action="<?= base_url() ?>classes/edit_kegiatan/<?= $val['id_kelas'] ?>/<?= $val2['id_kegiatan'] ?>/akademik" method="POST">
+																																<div class="form-group">
+																																	<label for="materiForm">Video (Opsional)</label>
+																																	<div id="kegiatan_field">
+																																		<textarea class="form-control" name="video" placeholder="Tambahkan link Youtube Embed. Jika Banyak, pisahkan dengan koma ( , )" style="margin-bottom: 5px;"></textarea>
+																																	</div>
+																																</div>
+																																<label for="materiForm">Tambah Materi</label>
+																																<input type="file" name="materi[]" accept=".doc, .docx, .ppt, .pptx, .pdf" class="form-control-file" id="materiForm" multiple>
+
+																														</div>
+																														<input type="hidden" name="deskripsi" value="<?= $val2['deskripsi_kegiatan'] ?>">
+																														<input type="hidden" name="tanggal" value="<?= $val2['tanggal_kegiatan'] ?>">
+
+																														<div class="text-center mb-3">
+																															<button type="submit" class="btn btn-light blue-gradient btn-block btn-rounded z-depth-1a">Simpan</button>
+																														</div>
+																														</form>
+																													</div>
+																												</div>
+																											</div>
 
 																											<div class="modal fade" id="lihatMateri<?= $val5['id_kegiatan']; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="padding-right: 60px; padding-left: 17px;">
 
@@ -876,6 +849,18 @@
 			</div>
 
 			<div class="tab-pane" id="tab3" role="tabpanel" aria-expanded="false">
+				<?php $countkelas = 0;
+				if ($seluruh_kelas != null) {
+					foreach ($seluruh_kelas as $val) {
+						if ($peserta != null) {
+							foreach ($peserta as $val2) {
+								if ($val2['id_kelas'] == $val['id_kelas'] && $val2['id_user'] == $this->session->userdata('id_user')) {
+									$countkelas++;
+								}
+							}
+						}
+					}
+				} ?>
 				<div class="row mt-5">
 					<div class="col">
 						<?php if ($notif != null) : ?>
@@ -903,796 +888,839 @@
 									<div class="col">
 										<h2>Kelas Diikuti</h2>
 									</div>
-									<div class="align-self-end">
-										<!-- <form action="<?= base_url(); ?>Classes/search_kelas_saya" method="post"> -->
-										<div class="input-group mb-3">
+									<?php if ($countkelas != 0) : ?>
+										<div class="align-self-end">
+											<!-- <form action="<?= base_url(); ?>Classes/search_kelas_saya" method="post"> -->
+											<div class="input-group mb-3">
 
-											<input id="inputSearch3" class="form-control form-control-sm mr-0 w-0" id="searchTable" type="text" name="keyword" placeholder="Cari..." aria-label="Search">
+												<input id="inputSearch3" class="form-control form-control-sm mr-0 w-0" id="searchTable" type="text" name="keyword" placeholder="Cari..." aria-label="Search">
 
-											<!-- <div class="input-group-append">
+												<!-- <div class="input-group-append">
 													<button class="btn" type="submit"><i class="fa fa-search" aria-hidden="true" onclick=""></i></button>
 												</div> -->
+											</div>
+											</form>
 										</div>
-										</form>
-									</div>
+									<?php endif ?>
 								</div>
 							</div>
 
 							<div class="card-body table-responsive">
 								<table id="pageTable3" class="table">
-									<thead>
-										<tr>
-											<th scope="col">Kelas</th>
-											<th scope="col" class="text-center">Progress</th>
-											<th scope="col" class="text-center">Status</th>
-											<th scope="col" class="text-center">Tipe</th>
-											<th scope="col" class="text-center">Aksi</th>
+									<?php if ($countkelas == 0) : ?>
+										<div class="row">
+											<div class="col-md-10">
+												<div class="alert alert-danger" role="alert">
+													Belum ada kelas yang diikuti.
+												</div>
+											</div>
+											<div class="col">
+												<a href="<?= base_url() ?>classes"><button class=" btn btn-primary btn-md px-3 my-0 ml-0 btn-block" type="button">Gabung Kelas</button></a><br>
+											</div>
+										</div>
+									<?php else : ?>
+										<thead>
+											<tr>
+												<th scope="col">Kelas</th>
+												<th scope="col" class="text-center">Progress</th>
+												<th scope="col" class="text-center">Status</th>
+												<th scope="col" class="text-center">Tipe</th>
+												<th scope="col" class="text-center">Aksi</th>
 
-										</tr>
-									</thead>
-									<tbody id="pageSearch3">
-										<?php foreach ($seluruh_kelas as $val) : ?>
-											<?php foreach ($peserta as $val2) : ?>
-												<?php if ($val2['id_kelas'] == $val['id_kelas'] && $val2['id_user'] == $this->session->userdata('id_user')) : ?>
-													<tr>
-														<?php if ($val['tipe_kelas'] == "Private") : ?>
-															<th scope="row" style="width: 300px; padding-top: 25px;"><a class="text-primary"><?= $val['judul_kelas']; ?> <i class="fa fa-lock"></a></th>
-														<?php else : ?>
-															<th scope="row" style="width: 300px; padding-top: 25px;"><a class="text-primary"><?= $val['judul_kelas']; ?></a></th>
+											</tr>
+										</thead>
+										<tbody id="pageSearch3">
+											<?php foreach ($seluruh_kelas as $val) : ?>
+												<?php foreach ($peserta as $val2) : ?>
+													<?php if ($val2['id_kelas'] == $val['id_kelas'] && $val2['id_user'] == $this->session->userdata('id_user')) : ?>
+														<tr>
+															<?php if ($val['tipe_kelas'] == "Private") : ?>
+																<th scope="row" style="width: 300px; padding-top: 25px;"><a class="text-primary"><?= $val['judul_kelas']; ?> <i class="fa fa-lock"></a></th>
+															<?php else : ?>
+																<th scope="row" style="width: 300px; padding-top: 25px;"><a class="text-primary"><?= $val['judul_kelas']; ?></a></th>
 
-														<?php endif; ?>
-														<td style="padding-top: 25px;" class="text-center">
-															<?php $total = 0;
-															$selesai = 0;
-															if ($kegiatan != null) {
-																foreach ($kegiatan as $val3) {
-																	if ($val2['id_kelas'] == $val3['id_kelas']) {
-																		$total++;
-																		if ($val3['status_kegiatan'] == "Selesai") {
-																			$selesai++;
+															<?php endif; ?>
+															<td style="padding-top: 25px;" class="text-center">
+																<?php $total = 0;
+																$selesai = 0;
+																if ($kegiatan != null) {
+																	foreach ($kegiatan as $val3) {
+																		if ($val2['id_kelas'] == $val3['id_kelas']) {
+																			$total++;
+																			if ($val3['status_kegiatan'] == "Selesai") {
+																				$selesai++;
+																			}
 																		}
 																	}
-																}
-																if ($total == 0) {
-																	$proses = 0;
-																} else {
-																	$proses = ($selesai / $total) * 100;
-																}
-															} ?>
-															<div class="progress md-progress">
-																<div class="progress-bar bg-info" role="progressbar" style="width: <?= $proses; ?>%" aria-valuenow="<?= round($proses); ?>" aria-valuemin="0" aria-valuemax="100"><?= $proses; ?>%</div>
-															</div>
-														</td>
-														<td style="padding-top:25px;" class="text-center">
-															<?php $countKegiatan = 0;
-															$selesai = false;
-															$selesai1 = 0;
-															$selesai2 = 0;
-															$sedang_berlangsung = false;
-															if ($kegiatan != null) {
-																foreach ($kegiatan as $val2) {
-																	if ($val['id_kelas'] == $val2['id_kelas']) {
-																		$selesai1++;
+																	if ($total == 0) {
+																		$proses = 0;
+																	} else {
+																		$proses = ($selesai / $total) * 100;
 																	}
-																}
-																foreach ($kegiatan as $val2) {
-																	if ($val['id_kelas'] == $val2['id_kelas']) {
-																		if ($val2['status_kegiatan'] == "Selesai")
-																			$selesai2++;
-																		else if ($val2['status_kegiatan'] == "Sedang Berlangsung")
-																			$sedang_berlangsung = true;
-																		$countKegiatan++;
+																} ?>
+																<div class="progress md-progress">
+																	<div class="progress-bar bg-info" role="progressbar" style="width: <?= $proses; ?>%" aria-valuenow="<?= round($proses); ?>" aria-valuemin="0" aria-valuemax="100"><?= $proses; ?>%</div>
+																</div>
+															</td>
+															<td style="padding-top: 30px;" class="text-center">
+																<?php $countKegiatan = 0;
+																$selesai = false;
+																$sedang_berlangsung = false;
+																$selesai1 = 0;
+																$selesai2 = 0;
+																if ($kegiatan != null) {
+																	foreach ($kegiatan as $val3) {
+																		if ($val['id_kelas'] == $val2['id_kelas']) {
+																			if ($val['id_kelas'] == $val3['id_kelas']) {
+																				$selesai1++;
+																			}
+																		}
 																	}
-																}
-																if ($selesai2 == $selesai1 && $selesai1 != 0)
-																	$selesai = true;
-															} ?>
-															<?php foreach ($status as $val3) : ?>
-																<?php if ($val['status_kelas'] == $val3['id_status']) : ?>
-																	<?php if ($val3['nama_status'] == "Selesai") : ?>
-																		<span class="badge badge-success"><?= $val3['nama_status'] ?></span>
-																	<?php else : ?>
-																		<span class="badge badge-warning"><?= $val3['nama_status'] ?></span>
-																	<?php endif; ?>
-																<?php endif; ?>
-															<?php endforeach; ?>
-														</td>
-														<td style="padding-top:25px;" class="text-center">
-															<?php if ($val['tipe_kelas'] == "Public") : ?>
-																<span class="badge badge-light">Public</span>
-															<?php else : ?>
-																<span class="badge badge-dark">Private</span>
-															<?php endif; ?>
-														</td>
-														<td class="text-center">
-															<div class="buttonclass">
-																<div class="btn-group">
-																	<a class="btn btn-outline-dark" href="<?= base_url() ?>classes/open_class/<?= $val['id_kelas'] ?>" style="padding-right: 20px; padding-left: 20px; padding-top: 12px; padding-bottom: 12px;">Detail</a>
-																	<button type="button" style="padding-right: 20px; padding-left: 20px; padding-top: 12px; padding-bottom: 12px;" class="btn btn-outline-dark dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-																		<span class="sr-only">Toggle Dropdown</span>
-																	</button>
-																	<div class="dropdown-menu">
-																		<a class="dropdown-item btn" data-toggle="collapse" data-target="#collapseTwo<?= $val['id_kelas'] ?>" aria-expanded="false" aria-controls="collapseTwo" style="padding-right: 20px; padding-left: 20px; padding-top: 12px; padding-bottom: 12px;">Lihat Tugas</a>
-																		<a class="dropdown-item btn" data-toggle="collapse" data-target="#collapseJadwal<?= $val['id_kelas'] ?>" aria-expanded="false" aria-controls="collapseJadwal" style="padding-right: 20px; padding-left: 20px; padding-top: 12px; padding-bottom: 12px;">Lihat Kegiatan</a>
-																		<a class="dropdown-item btn" data-toggle='modal' data-target='#konfirmasi_hapus' data-href="<?= base_url() ?>classes/leave_class/<?= $val['id_kelas'] ?>" style="padding-right: 20px; padding-left: 20px; padding-top: 12px; padding-bottom: 12px;">Tinggalkan</a>
-																	</div>
-																</div>
-															</div>
-														</td>
-													</tr>
 
+																	foreach ($kegiatan as $val3) {
+																		if ($val['id_kelas'] == $val2['id_kelas'] && $val['id_kelas'] == $val3['id_kelas']) {
+																			if ($val3['status_kegiatan'] == "Selesai")
+																				$selesai2++;
+																			else if ($val3['status_kegiatan'] == "Sedang Berlangsung")
+																				$sedang_berlangsung = true;
+																			$countKegiatan++;
+																		}
+																	}
+																	if ($selesai2 == $selesai1 && $selesai1 != 0)
+																		$selesai = true;
+																} ?>
+																<?php
+																$counttkeg = 0;
+																if ($kegiatan != null) : ?>
+																	<?php foreach ($kegiatan as $val3) : ?>
+																		<?php if ($val['id_kelas'] == $val2['id_kelas']) : ?>
+																			<?php if ($val['id_kelas'] == $val3['id_kelas']) : ?>
 
-													<tr class="p">
-														<td colspan="6" class="hiddenRow" style="border-top: 0px; padding: 0px;">
-															<div id="collapseTwo<?= $val['id_kelas'] ?>" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-																<div class="card-body" style="margin-top: -20px;">
-																	<!--  -->
-																	<div class="container my-5">
-																		<ul style="list-style: outside none none;" class="nav nav-tabs" role="tablist">
-																			<li class="nav-item">
-																				<a class="nav-link active" data-toggle="tab" href="#tabtugas<?= $val['id_kelas'] ?>" role="tab" aria-expanded="false">Tugas</a>
-																			</li>
-																			<li class="nav-item">
-																				<a class="nav-link" data-toggle="tab" href="#tabkuis<?= $val['id_kelas'] ?>" role="tab" aria-expanded="false">Quiz</a>
-																			</li>
-																			<li class="nav-item">
-																				<a class="nav-link" data-toggle="tab" href="#tabakhir<?= $val['id_kelas'] ?>" role="tab" aria-expanded="false">Tugas Akhir</a>
-																			</li>
-
-
-
-																		</ul>
-
-																		<!-- Tab panes -------------- -->
-																		<div class="tab-content">
-																			<div class="tab-pane active" id="tabtugas<?= $val['id_kelas'] ?>" role="tabpanel" aria-expanded="true">
-
-																				<section class="projects no-padding-top">
-																					<div class="container">
-																						<!-- Project-->
-																						<div class="project">
-																							<div class="row bg-white has-shadow">
-																								<div class="left-col col-lg-6 d-flex align-items-center justify-content-between">
-																									<div class="project-title d-flex align-items-center">
-																										<div class="image has-shadow"><img src="<?php echo base_url(); ?>assets/images/task.png" alt="..." class="img-fluid rounded-circle"></div>
-																										<div class="text">
-																											<?php foreach ($pembuat as $val4) : ?>
-																												<?php if ($val['pembuat_kelas'] == $val4['id_user']) : ?>
-																													<h3 class="h4" style="font-size: 20px;">Kelas <?= $val['judul_kelas'] ?></h3><small>oleh <?= $val4['nama']; ?></small>
-																												<?php endif; ?>
-																											<?php endforeach; ?>
-																										</div>
-																									</div>
-																								</div>
-																								<div class="right-col col-lg-3 d-flex align-items-center">
-																									<?php $countTugas = 0;
-																									foreach ($tugas as $val4) {
-																										foreach ($val4 as $val5) {
-																											if ($val['id_kelas'] == $val5['id_kelas']) {
-																												if ($val5['kategori_tugas'] == 1) {
-																													$countTugas++;
-																												}
-																											}
-																										}
-																									} ?>
-																									<div class="time"><i class="fa fa-tasks" aria-hidden="true"></i><?= $countTugas; ?> Tugas</div>
-																								</div>
-
-																								<div class="right-col col-lg-3 d-flex align-items-center">
-																									<div class="time"><i class="fa fa-clock-o"></i><a href="" data-toggle="collapse" data-target="#collapseJadwal<?= $val['id_kelas'] ?>" aria-expanded="false" aria-controls="collapseJadwal">Jadwal Kegiatan</a></div>
-																								</div>
-
-																								<div class="row d-flex ">
-																									<div class="col-12 col-md-12 mb-2 mt-2">
-																										<div class="card  h-100 border-light ">
-																											<div class="card-body d-flex-row" style="width: 900px;">
-																												<div class="row mb-0" style="padding: 0px;">
-																													<?php $l = 0; ?>
-																													<?php foreach ($tugas as $val4) : ?>
-																														<?php foreach ($val4 as $val5) : ?>
-																															<?php if ($val['id_kelas'] == $val5['id_kelas']) : ?>
-																																<?php if ($val5['kategori_tugas'] == 1) : ?>
-																																	<div class="project" style=" width:850px;">
-																																		<div class="row bg-white has-shadow">
-																																			<div class="left-col col-lg-5 d-flex align-items-center justify-content-between">
-																																				<div class="project-title d-flex align-items-center">
-																																					<div class="text">
-																																						<h3 class="h4" style="font-size: 20px;"><a href="<?= base_url() ?>classes/detail_tugaskuis/<?= $val['id_kelas'] ?>/<?= $val5['id_tugas'] ?>"><?= $val5['judul_tugas'] ?></a></h3>
-																																					</div>
-																																				</div>
-																																			</div>
-																																			<div class="right-col col-lg-7 d-flex align-items-center">
-																																				<?php if ($cek[$l] == true) : ?>
-																																					<div class="project-date text-right" style="word-wrap: initial; margin-top: 10px;">
-																																						<span class="hidden-sm-down">
-																																							<div class="time">
-																																								<div class="row mt-0">
-																																									<div class="col-sm-4">
-																																										<a href="" data-toggle="modal" data-target="#detailTugas<?= $val5['id_tugas']; ?>">Serahkan Jawaban</a>
-																																									</div>
-																																								</div>
-																																							</div>
-																																						</span>
-																																					</div>
-																																					<div class="project-progress" style="width: 100px;">
-																																						<div class="time">
-																																							<div class="nilai" style="color: red;"><b>Belum Kumpul</b></span></div>
-																																						</div>
-																																					</div>
-																																				<?php else : ?>
-																																					<?php foreach ($submit as $val6) : ?>
-																																						<?php if ($val5['id_tugas'] == $val6['id_tugas'] && $val6['id_user'] == $this->session->userdata('id_user')) : ?>
-																																							<div class="project-date text-right" style="word-wrap: initial; margin-top: 10px;">
-																																								<span class="hidden-sm-down">
-																																									<div class="time">
-																																										<div class="row mt-0">
-																																											<div class="col-sm-4">
-																																												<?php if ($val6['nilai_tugas'] == "Belum Dinilai") : ?>
-																																													<a href="" data-toggle="modal" data-target="#detailTugas<?= $val5['id_tugas']; ?>">Serahkan Jawaban</a>
-																																												<?php endif; ?>
-																																											</div>
-																																										</div>
-																																									</div>
-																																								</span>
-																																							</div>
-																																							<div class="project-progress" style="width: 100px;">
-																																								<div class="time">
-																																									<?php if ($val6['nilai_tugas'] == "Belum Dinilai") : ?>
-																																										<div class="nilai">Belum Dinilai</span></div>
-																																									<?php else : ?>
-																																										<div class="nilai"><?= $val6['nilai_tugas']; ?>/100</span></div>
-																																									<?php endif; ?>
-																																								</div>
-																																							</div>
-																																						<?php endif; ?>
-																																					<?php endforeach; ?>
-																																				<?php endif; ?>
-																																				<div class="time"><i class="fa fa-clock-o"></i><?= $val5['deadline'] ?></div>
-																																			</div>
-																																		</div>
-																																	</div>
-																																<?php endif; ?>
-																															<?php endif; ?>
-																															<?php $l++; ?>
-																														<?php endforeach; ?>
-																													<?php endforeach; ?>
-
-
-																												</div>
-																												<!--  -->
-																											</div>
-																										</div>
-
-																									</div>
-																								</div>
-																							</div>
-
-																						</div>
-																					</div>
-																				</section>
-
-																			</div>
-																			<div class="tab-pane" id="tabkuis<?= $val['id_kelas'] ?>" role="tabpanel" aria-expanded="true">
-
-																				<section class="projects no-padding-top">
-																					<div class="container">
-																						<!-- Project-->
-
-																						<div class="project">
-																							<div class="row bg-white has-shadow">
-																								<div class="left-col col-lg-6 d-flex align-items-center justify-content-between">
-																									<div class="project-title d-flex align-items-center">
-																										<div class="image has-shadow"><img src="<?php echo base_url(); ?>assets/images/task.png" alt="..." class="img-fluid rounded-circle"></div>
-																										<div class="text">
-																											<?php foreach ($pembuat as $val4) : ?>
-																												<?php if ($val['pembuat_kelas'] == $val4['id_user']) : ?>
-																													<h3 class="h4" style="font-size: 20px;">Kelas <?= $val['judul_kelas'] ?></h3><small>oleh <?= $val4['nama']; ?></small>
-																												<?php endif; ?>
-																											<?php endforeach; ?>
-																										</div>
-																									</div>
-																								</div>
-																								<div class="right-col col-lg-3 d-flex align-items-center">
-
-																									<?php $countKuis = 0;
-																									foreach ($tugas as $val4) {
-																										foreach ($val4 as $val5) {
-																											if ($val['id_kelas'] == $val5['id_kelas']) {
-																												if ($val5['kategori_tugas'] == "Kuis") {
-																													$countKuis++;
-																												}
-																											}
-																										}
-																									} ?>
-																									<div class="time"><i class="fa fa-tasks" aria-hidden="true"></i><?= $countKuis; ?> Quiz</div>
-																								</div>
-
-																								<div class="right-col col-lg-3 d-flex align-items-center">
-																									<div class="time"><i class="fa fa-clock-o"></i><a href="" data-toggle="collapse" data-target="#collapseJadwal<?= $val['id_kelas'] ?>" aria-expanded="false" aria-controls="collapseJadwal">Jadwal Kegiatan</a></div>
-																								</div>
-
-
-
-																								<div class="row d-flex ">
-																									<div class="col-12 col-md-12 mb-2 mt-2">
-																										<div class="card  h-100 border-light ">
-																											<div class="card-body d-flex-row" style="width: 900px;">
-																												<div class="row mb-0" style="padding: 0px;">
-																													<?php $l = 0; ?>
-																													<?php foreach ($tugas as $val4) : ?>
-																														<?php foreach ($val4 as $val5) : ?>
-																															<?php if ($val['id_kelas'] == $val5['id_kelas']) : ?>
-																																<?php if ($val5['kategori_tugas'] == 2) : ?>
-																																	<div class="project" style=" width:850px;">
-																																		<div class="row bg-white has-shadow">
-																																			<div class="left-col col-lg-5 d-flex align-items-center justify-content-between">
-																																				<div class="project-title d-flex align-items-center">
-																																					<div class="text">
-																																						<h3 class="h4" style="font-size: 20px;"><a href="<?= base_url() ?>classes/detail_tugaskuis/<?= $val['id_kelas'] ?>/<?= $val5['id_tugas'] ?>"><?= $val5['judul_tugas'] ?></a></h3>
-																																					</div>
-																																				</div>
-																																			</div>
-																																			<div class="right-col col-lg-7 d-flex align-items-center">
-																																				<?php if ($cek[$l] == true) : ?>
-																																					<div class="project-date text-right" style="word-wrap: initial; margin-top: 10px;">
-																																						<span class="hidden-sm-down">
-																																							<div class="time">
-																																								<div class="row mt-0">
-																																									<div class="col-sm-4">
-																																										<a href="" data-toggle="modal" data-target="#detailTugas<?= $val5['id_tugas']; ?>">Serahkan Jawaban</a>
-																																									</div>
-																																								</div>
-																																							</div>
-																																						</span>
-																																					</div>
-																																					<div class="project-progress" style="width: 100px;">
-																																						<div class="time">
-																																							<div class="nilai" style="color: red;"><b>Belum Kumpul</b></span></div>
-																																						</div>
-																																					</div>
-																																				<?php else : ?>
-																																					<?php foreach ($submit as $val6) : ?>
-																																						<?php if ($val5['id_tugas'] == $val6['id_tugas'] && $val6['id_user'] == $this->session->userdata('id_user')) : ?>
-																																							<div class="project-date text-right" style="word-wrap: initial; margin-top: 10px;">
-																																								<span class="hidden-sm-down">
-																																									<div class="time">
-																																										<div class="row mt-0">
-																																											<div class="col-sm-4">
-																																												<?php if ($val6['nilai_tugas'] == "Belum Dinilai") : ?>
-																																													<a href="" data-toggle="modal" data-target="#detailTugas<?= $val5['id_tugas']; ?>">Serahkan Jawaban</a>
-																																												<?php endif; ?>
-																																											</div>
-																																										</div>
-																																									</div>
-																																								</span>
-																																							</div>
-																																							<div class="project-progress" style="width: 100px;">
-																																								<div class="time">
-																																									<?php if ($val6['nilai_tugas'] == "Belum Dinilai") : ?>
-																																										<div class="nilai">Belum Dinilai</span></div>
-																																									<?php else : ?>
-																																										<div class="nilai"><?= $val6['nilai_tugas']; ?>/100</span></div>
-																																									<?php endif; ?>
-																																								</div>
-																																							</div>
-																																						<?php endif; ?>
-																																					<?php endforeach; ?>
-																																				<?php endif; ?>
-																																				<div class="time"><i class="fa fa-clock-o"></i><?= $val5['deadline'] ?></div>
-																																			</div>
-																																		</div>
-																																	</div>
-																																<?php endif; ?>
-																															<?php endif; ?>
-																															<?php $l++; ?>
-																														<?php endforeach; ?>
-																													<?php endforeach; ?>
-
-																												</div>
-																												<!--  -->
-																											</div>
-																										</div>
-																									</div>
-																								</div>
-																							</div>
-
-																						</div>
-
-																					</div>
-																				</section>
-
-																			</div>
-
-																			<div class="tab-pane" id="tabakhir<?= $val['id_kelas'] ?>" role="tabpanel" aria-expanded="true">
-
-																				<section class="projects no-padding-top">
-																					<div class="container">
-																						<!-- Project-->
-
-																						<div class="project">
-																							<div class="row bg-white has-shadow">
-																								<div class="left-col col-lg-6 d-flex align-items-center justify-content-between">
-																									<div class="project-title d-flex align-items-center">
-																										<div class="image has-shadow"><img src="<?php echo base_url(); ?>assets/images/task.png" alt="..." class="img-fluid rounded-circle"></div>
-																										<div class="text">
-																											<?php foreach ($pembuat as $val4) : ?>
-																												<?php if ($val['pembuat_kelas'] == $val4['id_user']) : ?>
-																													<h3 class="h4" style="font-size: 20px;">Kelas <?= $val['judul_kelas'] ?></h3><small>oleh <?= $val4['nama']; ?></small>
-																												<?php endif; ?>
-																											<?php endforeach; ?>
-																										</div>
-																									</div>
-																								</div>
-																								<div class="right-col col-lg-3 d-flex align-items-center">
-
-																									<?php $countTugasAkhir = 0;
-																									foreach ($tugas as $val4) {
-																										foreach ($val4 as $val5) {
-																											if ($val['id_kelas'] == $val5['id_kelas']) {
-																												if ($val5['kategori_tugas'] == 3) {
-																													$countAkhir++;
-																												}
-																											}
-																										}
-																									} ?>
-																									<div class="time"><i class="fa fa-tasks" aria-hidden="true"></i><?= $countTugasAkhir; ?> Tugas Akhir</div>
-																								</div>
-
-																								<div class="right-col col-lg-3 d-flex align-items-center">
-																									<div class="time"><i class="fa fa-clock-o"></i><a href="" data-toggle="collapse" data-target="#collapseJadwal<?= $val['id_kelas'] ?>" aria-expanded="false" aria-controls="collapseJadwal">Jadwal Kegiatan</a></div>
-																								</div>
-
-
-
-																								<div class="row d-flex ">
-																									<div class="col-12 col-md-12 mb-2 mt-2">
-																										<div class="card  h-100 border-light ">
-																											<div class="card-body d-flex-row" style="width: 900px;">
-																												<div class="row mb-0" style="padding: 0px;">
-																													<?php $l = 0; ?>
-																													<?php foreach ($tugas as $val4) : ?>
-																														<?php foreach ($val4 as $val5) : ?>
-																															<?php if ($val['id_kelas'] == $val5['id_kelas']) : ?>
-																																<?php if ($val5['kategori_tugas'] == 3) : ?>
-																																	<div class="project" style=" width:850px;">
-																																		<div class="row bg-white has-shadow">
-																																			<div class="left-col col-lg-5 d-flex align-items-center justify-content-between">
-																																				<div class="project-title d-flex align-items-center">
-																																					<div class="text">
-																																						<h3 class="h4" style="font-size: 20px;"><a href="<?= base_url() ?>classes/detail_tugaskuis/<?= $val['id_kelas'] ?>/<?= $val5['id_tugas'] ?>"><?= $val5['judul_tugas'] ?></a></h3>
-																																					</div>
-																																				</div>
-																																			</div>
-																																			<div class="right-col col-lg-7 d-flex align-items-center">
-																																				<?php if ($cek[$l] == true) : ?>
-																																					<div class="project-date text-right" style="word-wrap: initial; margin-top: 10px;">
-																																						<span class="hidden-sm-down">
-																																							<div class="time">
-																																								<div class="row mt-0">
-																																									<div class="col-sm-4">
-																																										<a href="" data-toggle="modal" data-target="#detailTugas<?= $val5['id_tugas']; ?>">Serahkan Jawaban</a>
-																																									</div>
-																																								</div>
-																																							</div>
-																																						</span>
-																																					</div>
-																																					<div class="project-progress" style="width: 100px;">
-																																						<div class="time">
-																																							<div class="nilai" style="color: red;"><b>Belum Kumpul</b></span></div>
-																																						</div>
-																																					</div>
-																																				<?php else : ?>
-																																					<?php foreach ($submit as $val6) : ?>
-																																						<?php if ($val5['id_tugas'] == $val6['id_tugas'] && $val6['id_user'] == $this->session->userdata('id_user')) : ?>
-																																							<div class="project-date text-right" style="word-wrap: initial; margin-top: 10px;">
-																																								<span class="hidden-sm-down">
-																																									<div class="time">
-																																										<div class="row mt-0">
-																																											<?php if ($val6['nilai_tugas'] == "Belum Dinilai") : ?>
-																																												<a href="" data-toggle="modal" data-target="#detailTugas<?= $val5['id_tugas']; ?>">Serahkan Jawaban</a>
-																																											<?php endif; ?>
-																																										</div>
-																																									</div>
-																																								</span>
-																																							</div>
-																																							<div class="project-progress" style="width: 100px;">
-																																								<div class="time">
-																																									<?php if ($val6['nilai_tugas'] == "Belum Dinilai") : ?>
-																																										<div class="nilai">Belum Dinilai</span></div>
-																																									<?php else : ?>
-																																										<div class="nilai"><?= $val6['nilai_tugas']; ?>/100</span></div>
-																																									<?php endif; ?>
-																																								</div>
-																																							</div>
-																																						<?php endif; ?>
-																																					<?php endforeach; ?>
-																																				<?php endif; ?>
-																																				<div class="time"><i class="fa fa-clock-o"></i><?= $val5['deadline'] ?></div>
-																																			</div>
-																																		</div>
-																																	</div>
-																																<?php endif; ?>
-																															<?php endif; ?>
-																															<?php $l++; ?>
-																														<?php endforeach; ?>
-																													<?php endforeach; ?>
-
-																												</div>
-																												<!--  -->
-																											</div>
-																										</div>
-																									</div>
-																								</div>
-																							</div>
-
-																						</div>
-
-																					</div>
-																				</section>
-																			</div>
-																		</div>
-																	</div>
-
-																	<!--  -->
-																</div>
-															</div>
-														</td>
-													</tr>
-													<?php foreach ($tugas as $val4) : ?>
-														<?php $l = 0; ?>
-														<?php foreach ($val4 as $val5) : ?>
-															<?php if ($val['id_kelas'] == $val5['id_kelas']) : ?>
-																<div class="modal fade" id="detailTugas<?= $val5['id_tugas']; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="padding-right: 90px;">
-																	<div class="modal-dialog modal-dialog-scrollable" role="document">
-																		<!--Content-->
-																		<div class="modal-content form-elegant">
-																			<!--Header-->
-																			<div class="modal-header text-center">
-																				<h3 class="modal-title w-100 dark-grey-text font-weight-bold my-3" id="myModalLabel"><strong>Kumpul Jawaban</strong></h3>
-																				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-																					<span aria-hidden="true">&times;</span>
-																				</button>
-																			</div>
-																			<!--Body-->
-																			<div class="modal-body mx-4">
-																				<!--Body-->
-																				<?php if ($this->session->flashdata('failedInputFile')) : ?>
-																					<div class="alert alert-danger"> <?= $this->session->flashdata('failedInputFile') ?> </div>
-																				<?php endif; ?>
-																				<!-- <p><strong><b>Kumpul Tugas Anda</b></strong></p> -->
-																				<?php if ($cek[$l] == true) : ?>
-																					<form enctype="multipart/form-data" action="<?= base_url() ?>classes/collect_assignment/<?= $val['id_kelas'] ?>/<?= $val5['id_tugas'] ?>/akademik" method="POST">
-																						<div class="form-group">
-																							<label>Subjek</label>
-																							<input type="text" class="form-control" name="subjek" required>
-																						</div>
-																						<div class="form-group">
-																							<label>File (hanya pdf/doc/docx)</label>
-																							<input type="file" class="form-control" name="assignment" accept=".pdf, .doc, .docx" required>
-																						</div>
-																						<!--Body-->
-																						<div class="modal-body mx-4">
-																							<!--Body-->
-																							<?php if ($this->session->flashdata('failedInputFile')) : ?>
-																								<div class="alert alert-danger"> <?= $this->session->flashdata('failedInputFile') ?> </div>
-																							<?php endif; ?>
-																							<!-- <p><strong><b>Kumpul Tugas Anda</b></strong></p> -->
-																							<?php if ($cek[$l] == true) : ?>
-																								<form enctype="multipart/form-data" action="<?= base_url() ?>classes/collect_assignment/<?= $val['id_kelas'] ?>/<?= $val5['id_tugas'] ?>" method="POST">
-																									<div class="form-group">
-																										<label>Subjek</label>
-																										<input type="text" class="form-control" name="subjek" required>
-																									</div>
-																									<div class="form-group">
-																										<label>File (hanya pdf/doc/docx)</label>
-																										<input type="file" class="form-control" name="assignment" accept=".pdf, .doc, .docx" required>
-																									</div>
-																									<div class="text-center mb-3">
-																										<input type="submit" class="btn btn-light blue-gradient btn-block btn-rounded z-depth-1a" value="Serahkan Jawaban">
-																									</div>
-																								</form>
-																							<?php else : ?>
-																								<?php foreach ($submit as $val6) : ?>
-																									<?php if ($val5['id_tugas'] == $val6['id_tugas'] && $val6['id_user'] == $this->session->userdata('id_user')) : ?>
-																										<p>Jawaban</p>
-																										<p><a href="<?= base_url() ?>classes/download_assignment/<?= $val6['url_file']; ?>"><?= $val6['url_file']; ?></a></p>
-																										<div class="text-center mb-3">
-																											<a href="<?= base_url() ?>classes/hapus_jawaban/<?= $val['id_kelas']; ?>/<?= $val5['id_tugas']; ?>/<?= $val6['id_submit']; ?>" class="btn btn-danger blue-gradient btn-block btn-rounded z-depth-1a">Hapus Jawaban</a>
-																										</div>
-																									<?php endif; ?>
-																								<?php endforeach; ?>
-																							<?php endif; ?>
-																						</div>
-																					</form>
-																				<?php else : ?>
-																					<?php foreach ($submit as $val6) : ?>
-																						<?php if ($val5['id_tugas'] == $val6['id_tugas'] && $val6['id_user'] == $this->session->userdata('id_user')) : ?>
-																							<p>Jawaban</p>
-																							<p><a href="<?= base_url() ?>classes/download_assignment/<?= $val6['url_file']; ?>"><?= $val6['url_file']; ?></a></p>
-																							<div class="text-center mb-3">
-																								<a href="<?= base_url() ?>classes/hapus_jawaban/<?= $val['id_kelas']; ?>/<?= $val5['id_tugas']; ?>/<?= $val6['id_submit']; ?>/akademik" class="btn btn-danger blue-gradient btn-block btn-rounded z-depth-1a">Hapus Jawaban</a>
-																							</div>
+																				<?php if ($counttkeg < 1) : ?>
+																					<?php if ($countKegiatan != 0) : ?>
+																						<?php if ($selesai) : ?>
+																							<span class="badge badge-success"><?= $val3['status_kegiatan'] ?></span>
+																						<?php elseif ($sedang_berlangsung) : ?>
+																							<span class="badge badge-warning">Sedang Berlangsung</span>
+																						<?php else : ?>
+																							<span class="badge badge-danger">Belum Mulai</span>
 																						<?php endif; ?>
-																					<?php endforeach; ?>
+																					<?php endif; ?>
 																				<?php endif; ?>
-																			</div>
-																		</div>
-																	</div>
+																				<?php $counttkeg++; ?>
+																			<?php endif; ?>
+																		<?php endif; ?>
+																	<?php endforeach; ?>
 																<?php endif; ?>
-																<?php $l++; ?>
-															<?php endforeach; ?>
-														<?php endforeach; ?>
 
+																<?php if ($countKegiatan == 0) :
+																	$statustemp = 3;
+																	foreach ($status as $temp) {
+																		if ($temp['id_status'] == $statustemp) {
+																			$statustemp = $temp['nama_status'];
+																		}
+																	} ?>
+																	<span class="badge badge-danger"><?= $statustemp ?></span>
+																<?php endif; ?>
+															</td>
 
-														<!-- Jadwal -->
-														<tr class="p">
-															<td colspan="6" class="hiddenRow" style="padding: 0px; border-top: 0px;">
-																<div id="collapseJadwal<?= $val['id_kelas'] ?>" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
-																	<div class="card-body" style="padding-top: 0px;">
-																		<div class="row" style="margin-bottom: -20px;">
-																			<div class="col">
-																				<div class="card card-list">
-																					<div class="card-body">
-																						<h2>Jadwal Kegiatan Kelas</h2>
-																					</div>
-																					<div class="card-body">
-																						<table class="table">
-
-																							<?php $countkegiatan = 0;
-																							foreach ($kegiatan_diikuti as $val4) {
-																								foreach ($val4 as $val5) {
-																									if ($val['id_kelas'] == $val5['id_kelas']) {
-																										$countkegiatan++;
-																									}
-																								}
-																							} ?>
-
-																							<?php if ($countkegiatan == 0) : ?>
-																								<div class="alert alert-danger" role="alert">
-																									Tidak Ada Kegiatan untuk Kelas ini. </div>
-																							<?php else : ?> <thead>
-																									<tr>
-																										<th scope="col">Deskripsi</th>
-																										<th scope="col" class="text-center">Hari/Tanggal</th>
-																										<th scope="col" class="text-center">Waktu</th>
-																										<th scope="col" class="text-center">Status</th>
-																										<th scope="col" class="text-center">Materi</th>
-																									</tr>
-																								</thead>
-																								<tbody>
-																									<?php foreach ($kegiatan_diikuti as $val4) : ?>
-																										<?php foreach ($val4 as $val5) : ?>
-																											<?php if ($val['id_kelas'] == $val5['id_kelas']) : ?>
-																												<tr>
-																													<td style="padding-top: 25px;"><?= $val5['deskripsi_kegiatan']; ?></td>
-																													<td style="padding-top: 25px;" class="text-center"><?= $val5['tanggal']; ?></td>
-																													<td style="padding-top: 25px;" class="text-center"><?= $val5['waktu']; ?></td>
-																													<td style="text-align: center ; padding-top: 25px;">
-																														<?php if ($val5['nama_status'] == "Sedang Berlangsung") : ?>
-																															<span class="badge badge-warning" style="padding: 6px;">Sedang Berlangsung</span>
-																														<?php elseif ($val5['nama_status'] == "Selesai") : ?>
-																															<span class="badge badge-success" style="padding: 6px;">Selesai</span>
-																														<?php else : ?>
-																															<span class="badge badge-danger" style="padding: 6px;">Belum Mulai</span>
-																														<?php endif; ?>
-																													</td>
-																													<td class="text-center">
-																														<?php
-																														$countMateri = 0;
-																														if ($materi2 != null) {
-																															foreach ($materi2 as $count) {
-																																if ($count['id_kegiatan'] == $val5['id_kegiatan']) {
-																																	$countMateri++;
-																																}
-																															}
-																														} ?>
-
-																														<?php if ($countMateri == 0) : ?>
-																															<button class="btn btn-light btn-md px-3 my-0 ml-0" style="color: red;" disabled type="button">Tidak Ada Materi</button>
-																														<?php else : ?>
-																															<?php $PembuatMateri = 0; ?>
-																															<?php if ($materi2 != null) : ?>
-																																<?php foreach ($materi2 as $val40) : ?>
-																																	<?php if ($val5['id_kegiatan'] == $val40['id_kegiatan']) : ?>
-
-																																		<?php if ($PembuatMateri < 1) : ?>
-																																			<?php if ($countMateri == 0) : ?>
-																																				<button class="btn btn-light btn-md px-3 my-0 ml-0" style="color: red;" disabled type="button">Tidak Ada Materi</button>
-																																			<?php else : ?>
-																																				<button class="btn btn-light btn-md px-3 my-0 ml-0" type="button" data-toggle="modal" data-target="#lihatMateri<?= $val5['id_kegiatan']; ?>">Lihat Materi</button>
-																																			<?php endif; ?>
-																																		<?php endif; ?>
-																																		<?php $PembuatMateri++; ?>
-																																	<?php else : ?>
-																																	<?php endif; ?>
-																																<?php endforeach; ?>
-																															<?php else : ?>
-																																<button class="btn btn-light btn-md px-3 my-0 ml-0" style="color: red;" disabled type="button">Tidak Ada Materi</button>
-																															<?php endif; ?>
-
-
-																														<?php endif; ?>
-																													</td>
-																												</tr>
-
-																												<div class="modal fade" id="lihatMateri<?= $val5['id_kegiatan']; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="padding-right: 60px; padding-left: 17px;">
-
-																													<div class="modal-dialog modal-lg" role="document">
-																														<!--Content-->
-																														<div class="modal-content form-elegant">
-																															<!--Header-->
-																															<div class="modal-header text-center">
-																																<h3 class="modal-title w-100 dark-grey-text font-weight-bold my-3" id="myModalLabel">
-																																	<strong>Materi <?= $val['judul_kelas']; ?></strong></h3>
-																																<?php $id_kelass = $val['id_kelas']; ?>
-																																<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-																																	<span aria-hidden="true">&times;</span>
-																																</button>
-																															</div>
-																															<!--Body-->
-																															<div class="modal-body mx-4">
-																																<!--Body-->
-																																<div class="container-fluid">
-																																	<div class="row">
-																																		<div class="col-xl-6 border-bottom  mt-3" style="width: 110px;"><b>Kegiatan</b></div>
-																																		<div class="col-xl-6 border-bottom  mt-3" style="width: 110px;"><b>Nama File</b></div>
-																																	</div>
-																																	<div class="row">
-																																		<?php foreach ($kegiatan as $val12) : ?>
-																																			<?php if ($val12['id_kelas'] == $val['id_kelas'] && $val12['id_kegiatan'] == $val5['id_kegiatan']) : ?>
-																																				<?php $a = 0; ?>
-
-																																				<?php foreach ($materi2 as $val13) : ?>
-																																					<?php if (
-																																						$val5['id_kegiatan'] ==
-																																						$val13['id_kegiatan']
-																																					) : ?>
-
-																																						<div class="col-xl-6 border-bottom pb-3 mt-3" style="width: 120px;">
-																																							<?= $val12['deskripsi_kegiatan']; ?></div>
-																																						<?php if ($val13['kategori_materi'] == 1) : ?>
-																																							<div class="col-xl-6 border-bottom pb-3 mt-3" style="width: 120px;"><a href="<?= base_url(); ?>classes/download_materi/<?= $val13['url_materi']; ?>"><i class="fa fa-file"></i> <?= wordwrap($val13['url_materi'], 26, '<br>', true); ?></a>
-																																							</div>
-
-																																						<?php else : ?>
-																																							<?php $a++ ?>
-																																							<?php $strvid = "Video " . $a . " Kegiatan " . $val12['deskripsi_kegiatan'] . " <b>(" . $val['judul_kelas'] . ")</b>"; ?>
-																																							<div class="col-xl-6 border-bottom pb-3 mt-3" style="width: 120px;"> <a href="<?= base_url(); ?>classes/video_class/<?= $val['id_kelas'] ?>/<?= $val12['id_kegiatan'] ?>/<?= $val13['id_materi'] ?>/<?= $a ?>"><i class="fa fa-video-camera"></i> <?= wordwrap($strvid, 26, '<br>', true); ?> </a>
-																																							</div>
-																																						<?php endif; ?>
-																																					<?php endif; ?>
-																																				<?php endforeach; ?>
-																																			<?php endif ?>
-																																		<?php endforeach; ?>
-																																	</div>
-																																</div>
-																															</div>
-																														</div>
-																													</div>
-																												</div>
-
-																											<?php endif; ?>
-																										<?php endforeach; ?>
-																									<?php endforeach; ?>
-																								</tbody>
-																							<?php endif; ?>
-																						</table>
-																					</div>
-																				</div>
-																			</div>
+															<td style="padding-top:25px;" class="text-center">
+																<?php if ($val['tipe_kelas'] == "Public") : ?>
+																	<span class="badge badge-light">Public</span>
+																<?php else : ?>
+																	<span class="badge badge-dark">Private</span>
+																<?php endif; ?>
+															</td>
+															<td class="text-center">
+																<div class="buttonclass">
+																	<div class="btn-group">
+																		<a class="btn btn-outline-dark" href="<?= base_url() ?>classes/open_class/<?= $val['id_kelas'] ?>" style="padding-right: 20px; padding-left: 20px; padding-top: 12px; padding-bottom: 12px;">Detail</a>
+																		<button type="button" style="padding-right: 20px; padding-left: 20px; padding-top: 12px; padding-bottom: 12px;" class="btn btn-outline-dark dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+																			<span class="sr-only">Toggle Dropdown</span>
+																		</button>
+																		<div class="dropdown-menu">
+																			<a class="dropdown-item btn" data-toggle="collapse" data-target="#collapseTwo<?= $val['id_kelas'] ?>" aria-expanded="false" aria-controls="collapseTwo" style="padding-right: 20px; padding-left: 20px; padding-top: 12px; padding-bottom: 12px;">Lihat Tugas</a>
+																			<a class="dropdown-item btn" data-toggle="collapse" data-target="#collapseJadwal<?= $val['id_kelas'] ?>" aria-expanded="false" aria-controls="collapseJadwal" style="padding-right: 20px; padding-left: 20px; padding-top: 12px; padding-bottom: 12px;">Lihat Kegiatan</a>
+																			<a class="dropdown-item btn" data-toggle='modal' data-target='#konfirmasi_hapus' data-href="<?= base_url() ?>classes/leave_class/<?= $val['id_kelas'] ?>" style="padding-right: 20px; padding-left: 20px; padding-top: 12px; padding-bottom: 12px;">Tinggalkan</a>
 																		</div>
-
 																	</div>
 																</div>
 															</td>
 														</tr>
 
-														<!--  -->
-													<?php endif; ?>
-												<?php endforeach; ?>
-											<?php endforeach; ?>
-									</tbody>
 
+														<tr class="p">
+															<td colspan="6" class="hiddenRow" style="border-top: 0px; padding: 0px;">
+																<div id="collapseTwo<?= $val['id_kelas'] ?>" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+																	<div class="card-body" style="margin-top: -20px;">
+																		<!--  -->
+																		<div class="container my-5">
+																			<ul style="list-style: outside none none;" class="nav nav-tabs" role="tablist">
+																				<li class="nav-item">
+																					<a class="nav-link active" data-toggle="tab" href="#tabtugas<?= $val['id_kelas'] ?>" role="tab" aria-expanded="false">Tugas</a>
+																				</li>
+																				<li class="nav-item">
+																					<a class="nav-link" data-toggle="tab" href="#tabkuis<?= $val['id_kelas'] ?>" role="tab" aria-expanded="false">Quiz</a>
+																				</li>
+																				<li class="nav-item">
+																					<a class="nav-link" data-toggle="tab" href="#tabakhir<?= $val['id_kelas'] ?>" role="tab" aria-expanded="false">Tugas Akhir</a>
+																				</li>
+
+
+
+																			</ul>
+																			<?php
+																			$counttugas = 0;
+																			$countquiz = 0;
+																			$counttugasakhir = 0;
+
+																			if (count($tugas) != 0) {
+																				foreach ($tugas as $tugg) {
+																					foreach ($tugg as $tug) {
+																						if ($tug['kategori'] == "Tugas")
+																							$counttugas++;
+																						elseif ($tug['kategori'] == "Kuis")
+																							$countquiz++;
+																						elseif ($tug['kategori'] == "Tugas Akhir")
+																							$counttugasakhir++;
+																					}
+																				}
+																			} ?>
+																			<!-- Tab panes -------------- -->
+																			<div class="tab-content">
+																				<div class="tab-pane active" id="tabtugas<?= $val['id_kelas'] ?>" role="tabpanel" aria-expanded="true">
+
+																					<section class="projects no-padding-top">
+																						<div class="container">
+																							<?php if ($counttugas == 0) : ?>
+																								<div class="alert alert-danger mt-3" style="margin-top: 1px;" role="alert">
+																									Tidak Ada Tugas. </div>
+																							<?php endif ?>
+																							<!-- Project-->
+																							<div class="project">
+																								<div class="row bg-white has-shadow">
+																									<div class="left-col col-lg-6 d-flex align-items-center justify-content-between">
+																										<div class="project-title d-flex align-items-center">
+																											<div class="image has-shadow"><img src="<?php echo base_url(); ?>assets/images/task.png" alt="..." class="img-fluid rounded-circle"></div>
+																											<div class="text">
+																												<?php foreach ($pembuat as $val4) : ?>
+																													<?php if ($val['pembuat_kelas'] == $val4['id_user']) : ?>
+																														<h3 class="h4" style="font-size: 20px;">Kelas <?= $val['judul_kelas'] ?></h3><small>oleh <?= $val4['nama']; ?></small>
+																													<?php endif; ?>
+																												<?php endforeach; ?>
+																											</div>
+																										</div>
+																									</div>
+																									<div class="right-col col-lg-3 d-flex align-items-center">
+
+																										<div class="time"><i class="fa fa-tasks" aria-hidden="true"></i><?= $counttugas; ?> Tugas</div>
+																									</div>
+
+																									<div class="right-col col-lg-3 d-flex align-items-center">
+																										<div class="time"><i class="fa fa-clock-o"></i><a href="" data-toggle="collapse" data-target="#collapseJadwal<?= $val['id_kelas'] ?>" aria-expanded="false" aria-controls="collapseJadwal">Jadwal Kegiatan</a></div>
+																									</div>
+
+																									<div class="row d-flex ">
+																										<div class="col-12 col-md-12 mb-2 mt-2">
+																											<div class="card  h-100 border-light ">
+																												<div class="card-body d-flex-row" style="width: 900px;">
+																													<div class="row mb-0" style="padding: 0px;">
+																														<?php $l = 0; ?>
+																														<?php foreach ($tugas as $val4) : ?>
+																															<?php foreach ($val4 as $val5) : ?>
+																																<?php if ($val['id_kelas'] == $val5['id_kelas']) : ?>
+																																	<?php if ($val5['kategori_tugas'] == 1) : ?>
+																																		<div class="project" style=" width:850px;">
+																																			<div class="row bg-white has-shadow">
+																																				<div class="left-col col-lg-5 d-flex align-items-center justify-content-between">
+																																					<div class="project-title d-flex align-items-center">
+																																						<div class="text">
+																																							<h3 class="h4" style="font-size: 20px;"><a href="<?= base_url() ?>classes/detail_tugaskuis/<?= $val['id_kelas'] ?>/<?= $val5['id_tugas'] ?>"><?= $val5['judul_tugas'] ?></a></h3>
+																																						</div>
+																																					</div>
+																																				</div>
+																																				<div class="right-col col-lg-7 d-flex align-items-center">
+																																					<?php if ($cek[$l] == true) : ?>
+																																						<div class="project-date text-right" style="word-wrap: initial; margin-top: 10px;">
+																																							<span class="hidden-sm-down">
+																																								<div class="time">
+																																									<div class="row mt-0">
+																																										<div class="col-sm-4">
+																																											<a href="" data-toggle="modal" data-target="#detailTugas<?= $val5['id_tugas']; ?>">Serahkan Jawaban</a>
+																																										</div>
+																																									</div>
+																																								</div>
+																																							</span>
+																																						</div>
+																																						<div class="project-progress" style="width: 100px;">
+																																							<div class="time">
+																																								<div class="nilai" style="color: red;"><b>Belum Kumpul</b></span></div>
+																																							</div>
+																																						</div>
+																																					<?php else : ?>
+																																						<?php foreach ($submit as $val6) : ?>
+																																							<?php if ($val5['id_tugas'] == $val6['id_tugas'] && $val6['id_user'] == $this->session->userdata('id_user')) : ?>
+																																								<div class="project-date text-right" style="word-wrap: initial; margin-top: 10px;">
+																																									<span class="hidden-sm-down">
+																																										<div class="time">
+																																											<div class="row mt-0">
+																																												<div class="col-sm-4">
+																																													<?php if ($val6['nilai_tugas'] == "Belum Dinilai") : ?>
+																																														<a href="" data-toggle="modal" data-target="#detailTugas<?= $val5['id_tugas']; ?>">Serahkan Jawaban</a>
+																																													<?php endif; ?>
+																																												</div>
+																																											</div>
+																																										</div>
+																																									</span>
+																																								</div>
+																																								<div class="project-progress" style="width: 100px;">
+																																									<div class="time">
+																																										<?php if ($val6['nilai_tugas'] == "Belum Dinilai") : ?>
+																																											<div class="nilai">Belum Dinilai</span></div>
+																																										<?php else : ?>
+																																											<div class="nilai"><?= $val6['nilai_tugas']; ?>/100</span></div>
+																																										<?php endif; ?>
+																																									</div>
+																																								</div>
+																																							<?php endif; ?>
+																																						<?php endforeach; ?>
+																																					<?php endif; ?>
+																																					<div class="time"><i class="fa fa-clock-o"></i><?= $val5['deadline'] ?></div>
+																																				</div>
+																																			</div>
+																																		</div>
+																																	<?php endif; ?>
+																																<?php endif; ?>
+																																<?php $l++; ?>
+																															<?php endforeach; ?>
+																														<?php endforeach; ?>
+
+
+																													</div>
+																													<!--  -->
+																												</div>
+																											</div>
+
+																										</div>
+																									</div>
+																								</div>
+
+																							</div>
+																						</div>
+																					</section>
+
+																				</div>
+																				<div class="tab-pane" id="tabkuis<?= $val['id_kelas'] ?>" role="tabpanel" aria-expanded="true">
+
+																					<section class="projects no-padding-top">
+																						<div class="container">
+																							<?php if ($countquiz == 0) : ?>
+																								<div class="alert alert-danger mt-3" style="margin-top: 1px;" role="alert">
+																									Tidak Ada Quiz. </div>
+																							<?php endif ?>
+																							<!-- Project-->
+
+																							<div class="project">
+																								<div class="row bg-white has-shadow">
+																									<div class="left-col col-lg-6 d-flex align-items-center justify-content-between">
+																										<div class="project-title d-flex align-items-center">
+																											<div class="image has-shadow"><img src="<?php echo base_url(); ?>assets/images/task.png" alt="..." class="img-fluid rounded-circle"></div>
+																											<div class="text">
+																												<?php foreach ($pembuat as $val4) : ?>
+																													<?php if ($val['pembuat_kelas'] == $val4['id_user']) : ?>
+																														<h3 class="h4" style="font-size: 20px;">Kelas <?= $val['judul_kelas'] ?></h3><small>oleh <?= $val4['nama']; ?></small>
+																													<?php endif; ?>
+																												<?php endforeach; ?>
+																											</div>
+																										</div>
+																									</div>
+																									<div class="right-col col-lg-3 d-flex align-items-center">
+
+
+																										<div class="time"><i class="fa fa-tasks" aria-hidden="true"></i><?= $countquiz; ?> Quiz</div>
+																									</div>
+
+																									<div class="right-col col-lg-3 d-flex align-items-center">
+																										<div class="time"><i class="fa fa-clock-o"></i><a href="" data-toggle="collapse" data-target="#collapseJadwal<?= $val['id_kelas'] ?>" aria-expanded="false" aria-controls="collapseJadwal">Jadwal Kegiatan</a></div>
+																									</div>
+
+
+
+																									<div class="row d-flex ">
+																										<div class="col-12 col-md-12 mb-2 mt-2">
+																											<div class="card  h-100 border-light ">
+																												<div class="card-body d-flex-row" style="width: 900px;">
+																													<div class="row mb-0" style="padding: 0px;">
+																														<?php $l = 0; ?>
+																														<?php foreach ($tugas as $val4) : ?>
+																															<?php foreach ($val4 as $val5) : ?>
+																																<?php if ($val['id_kelas'] == $val5['id_kelas']) : ?>
+																																	<?php if ($val5['kategori_tugas'] == 2) : ?>
+																																		<div class="project" style=" width:850px;">
+																																			<div class="row bg-white has-shadow">
+																																				<div class="left-col col-lg-5 d-flex align-items-center justify-content-between">
+																																					<div class="project-title d-flex align-items-center">
+																																						<div class="text">
+																																							<h3 class="h4" style="font-size: 20px;"><a href="<?= base_url() ?>classes/detail_tugaskuis/<?= $val['id_kelas'] ?>/<?= $val5['id_tugas'] ?>"><?= $val5['judul_tugas'] ?></a></h3>
+																																						</div>
+																																					</div>
+																																				</div>
+																																				<div class="right-col col-lg-7 d-flex align-items-center">
+																																					<?php if ($cek[$l] == true) : ?>
+																																						<div class="project-date text-right" style="word-wrap: initial; margin-top: 10px;">
+																																							<span class="hidden-sm-down">
+																																								<div class="time">
+																																									<div class="row mt-0">
+																																										<div class="col-sm-4">
+																																											<a href="" data-toggle="modal" data-target="#detailTugas<?= $val5['id_tugas']; ?>">Serahkan Jawaban</a>
+																																										</div>
+																																									</div>
+																																								</div>
+																																							</span>
+																																						</div>
+																																						<div class="project-progress" style="width: 100px;">
+																																							<div class="time">
+																																								<div class="nilai" style="color: red;"><b>Belum Kumpul</b></span></div>
+																																							</div>
+																																						</div>
+																																					<?php else : ?>
+																																						<?php foreach ($submit as $val6) : ?>
+																																							<?php if ($val5['id_tugas'] == $val6['id_tugas'] && $val6['id_user'] == $this->session->userdata('id_user')) : ?>
+																																								<div class="project-date text-right" style="word-wrap: initial; margin-top: 10px;">
+																																									<span class="hidden-sm-down">
+																																										<div class="time">
+																																											<div class="row mt-0">
+																																												<div class="col-sm-4">
+																																													<?php if ($val6['nilai_tugas'] == "Belum Dinilai") : ?>
+																																														<a href="" data-toggle="modal" data-target="#detailTugas<?= $val5['id_tugas']; ?>">Serahkan Jawaban</a>
+																																													<?php endif; ?>
+																																												</div>
+																																											</div>
+																																										</div>
+																																									</span>
+																																								</div>
+																																								<div class="project-progress" style="width: 100px;">
+																																									<div class="time">
+																																										<?php if ($val6['nilai_tugas'] == "Belum Dinilai") : ?>
+																																											<div class="nilai">Belum Dinilai</span></div>
+																																										<?php else : ?>
+																																											<div class="nilai"><?= $val6['nilai_tugas']; ?>/100</span></div>
+																																										<?php endif; ?>
+																																									</div>
+																																								</div>
+																																							<?php endif; ?>
+																																						<?php endforeach; ?>
+																																					<?php endif; ?>
+																																					<div class="time"><i class="fa fa-clock-o"></i><?= $val5['deadline'] ?></div>
+																																				</div>
+																																			</div>
+																																		</div>
+																																	<?php endif; ?>
+																																<?php endif; ?>
+																																<?php $l++; ?>
+																															<?php endforeach; ?>
+																														<?php endforeach; ?>
+
+																													</div>
+																													<!--  -->
+																												</div>
+																											</div>
+																										</div>
+																									</div>
+																								</div>
+
+																							</div>
+
+																						</div>
+																					</section>
+
+																				</div>
+
+																				<div class="tab-pane" id="tabakhir<?= $val['id_kelas'] ?>" role="tabpanel" aria-expanded="true">
+
+																					<section class="projects no-padding-top">
+																						<div class="container">
+																							<?php if ($counttugasakhir == 0) : ?>
+																								<div class="alert alert-danger mt-3" style="margin-top: 1px;" role="alert">
+																									Tidak Ada Tugas. </div>
+																							<?php endif ?>
+																							<!-- Project-->
+
+																							<div class="project">
+																								<div class="row bg-white has-shadow">
+																									<div class="left-col col-lg-6 d-flex align-items-center justify-content-between">
+																										<div class="project-title d-flex align-items-center">
+																											<div class="image has-shadow"><img src="<?php echo base_url(); ?>assets/images/task.png" alt="..." class="img-fluid rounded-circle"></div>
+																											<div class="text">
+																												<?php foreach ($pembuat as $val4) : ?>
+																													<?php if ($val['pembuat_kelas'] == $val4['id_user']) : ?>
+																														<h3 class="h4" style="font-size: 20px;">Kelas <?= $val['judul_kelas'] ?></h3><small>oleh <?= $val4['nama']; ?></small>
+																													<?php endif; ?>
+																												<?php endforeach; ?>
+																											</div>
+																										</div>
+																									</div>
+																									<div class="right-col col-lg-3 d-flex align-items-center">
+
+
+																										<div class="time"><i class="fa fa-tasks" aria-hidden="true"></i><?= $counttugasakhir; ?> Tugas Akhir</div>
+																									</div>
+
+																									<div class="right-col col-lg-3 d-flex align-items-center">
+																										<div class="time"><i class="fa fa-clock-o"></i><a href="" data-toggle="collapse" data-target="#collapseJadwal<?= $val['id_kelas'] ?>" aria-expanded="false" aria-controls="collapseJadwal">Jadwal Kegiatan</a></div>
+																									</div>
+
+
+
+																									<div class="row d-flex ">
+																										<div class="col-12 col-md-12 mb-2 mt-2">
+																											<div class="card  h-100 border-light ">
+																												<div class="card-body d-flex-row" style="width: 900px;">
+																													<div class="row mb-0" style="padding: 0px;">
+																														<?php $l = 0; ?>
+																														<?php foreach ($tugas as $val4) : ?>
+																															<?php foreach ($val4 as $val5) : ?>
+																																<?php if ($val['id_kelas'] == $val5['id_kelas']) : ?>
+																																	<?php if ($val5['kategori_tugas'] == 3) : ?>
+																																		<div class="project" style=" width:850px;">
+																																			<div class="row bg-white has-shadow">
+																																				<div class="left-col col-lg-5 d-flex align-items-center justify-content-between">
+																																					<div class="project-title d-flex align-items-center">
+																																						<div class="text">
+																																							<h3 class="h4" style="font-size: 20px;"><a href="<?= base_url() ?>classes/detail_tugaskuis/<?= $val['id_kelas'] ?>/<?= $val5['id_tugas'] ?>"><?= $val5['judul_tugas'] ?></a></h3>
+																																						</div>
+																																					</div>
+																																				</div>
+																																				<div class="right-col col-lg-7 d-flex align-items-center">
+																																					<?php if ($cek[$l] == true) : ?>
+																																						<div class="project-date text-right" style="word-wrap: initial; margin-top: 10px;">
+																																							<span class="hidden-sm-down">
+																																								<div class="time">
+																																									<div class="row mt-0">
+																																										<div class="col-sm-4">
+																																											<a href="" data-toggle="modal" data-target="#detailTugas<?= $val5['id_tugas']; ?>">Serahkan Jawaban</a>
+																																										</div>
+																																									</div>
+																																								</div>
+																																							</span>
+																																						</div>
+																																						<div class="project-progress" style="width: 100px;">
+																																							<div class="time">
+																																								<div class="nilai" style="color: red;"><b>Belum Kumpul</b></span></div>
+																																							</div>
+																																						</div>
+																																					<?php else : ?>
+																																						<?php foreach ($submit as $val6) : ?>
+																																							<?php if ($val5['id_tugas'] == $val6['id_tugas'] && $val6['id_user'] == $this->session->userdata('id_user')) : ?>
+																																								<div class="project-date text-right" style="word-wrap: initial; margin-top: 10px;">
+																																									<span class="hidden-sm-down">
+																																										<div class="time">
+																																											<div class="row mt-0">
+																																												<?php if ($val6['nilai_tugas'] == "Belum Dinilai") : ?>
+																																													<a href="" data-toggle="modal" data-target="#detailTugas<?= $val5['id_tugas']; ?>">Serahkan Jawaban</a>
+																																												<?php endif; ?>
+																																											</div>
+																																										</div>
+																																									</span>
+																																								</div>
+																																								<div class="project-progress" style="width: 100px;">
+																																									<div class="time">
+																																										<?php if ($val6['nilai_tugas'] == "Belum Dinilai") : ?>
+																																											<div class="nilai">Belum Dinilai</span></div>
+																																										<?php else : ?>
+																																											<div class="nilai"><?= $val6['nilai_tugas']; ?>/100</span></div>
+																																										<?php endif; ?>
+																																									</div>
+																																								</div>
+																																							<?php endif; ?>
+																																						<?php endforeach; ?>
+																																					<?php endif; ?>
+																																					<div class="time"><i class="fa fa-clock-o"></i><?= $val5['deadline'] ?></div>
+																																				</div>
+																																			</div>
+																																		</div>
+																																	<?php endif; ?>
+																																<?php endif; ?>
+																																<?php $l++; ?>
+																															<?php endforeach; ?>
+																														<?php endforeach; ?>
+
+																													</div>
+																													<!--  -->
+																												</div>
+																											</div>
+																										</div>
+																									</div>
+																								</div>
+
+																							</div>
+
+																						</div>
+																					</section>
+																				</div>
+																			</div>
+																		</div>
+
+																		<!--  -->
+																	</div>
+																</div>
+															</td>
+														</tr>
+														<?php foreach ($tugas as $val4) : ?>
+															<?php $l = 0; ?>
+															<?php foreach ($val4 as $val5) : ?>
+																<?php if ($val['id_kelas'] == $val5['id_kelas']) : ?>
+																	<div class="modal fade" id="detailTugas<?= $val5['id_tugas']; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="padding-right: 90px;">
+																		<div class="modal-dialog modal-dialog-scrollable" role="document">
+																			<!--Content-->
+																			<div class="modal-content form-elegant">
+																				<!--Header-->
+																				<div class="modal-header text-center">
+																					<h3 class="modal-title w-100 dark-grey-text font-weight-bold my-3" id="myModalLabel"><strong>Kumpul Jawaban</strong></h3>
+																					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+																						<span aria-hidden="true">&times;</span>
+																					</button>
+																				</div>
+																				<!--Body-->
+																				<div class="modal-body mx-4">
+																					<!--Body-->
+																					<?php if ($this->session->flashdata('failedInputFile')) : ?>
+																						<div class="alert alert-danger"> <?= $this->session->flashdata('failedInputFile') ?> </div>
+																					<?php endif; ?>
+																					<!-- <p><strong><b>Kumpul Tugas Anda</b></strong></p> -->
+																					<?php if ($cek[$l] == true) : ?>
+																						<form enctype="multipart/form-data" action="<?= base_url() ?>classes/collect_assignment/<?= $val['id_kelas'] ?>/<?= $val5['id_tugas'] ?>/akademik" method="POST">
+																							<div class="form-group">
+																								<label>Subjek</label>
+																								<input type="text" class="form-control" name="subjek" required>
+																							</div>
+																							<div class="form-group">
+																								<label>File (hanya pdf/doc/docx)</label>
+																								<input type="file" class="form-control" name="assignment" accept=".pdf, .doc, .docx" required>
+																							</div>
+																							<!--Body-->
+																							<div class="modal-body mx-4">
+																								<!--Body-->
+																								<?php if ($this->session->flashdata('failedInputFile')) : ?>
+																									<div class="alert alert-danger"> <?= $this->session->flashdata('failedInputFile') ?> </div>
+																								<?php endif; ?>
+																								<!-- <p><strong><b>Kumpul Tugas Anda</b></strong></p> -->
+																								<?php if ($cek[$l] == true) : ?>
+																									<form enctype="multipart/form-data" action="<?= base_url() ?>classes/collect_assignment/<?= $val['id_kelas'] ?>/<?= $val5['id_tugas'] ?>" method="POST">
+																										<div class="form-group">
+																											<label>Subjek</label>
+																											<input type="text" class="form-control" name="subjek" required>
+																										</div>
+																										<div class="form-group">
+																											<label>File (hanya pdf/doc/docx)</label>
+																											<input type="file" class="form-control" name="assignment" accept=".pdf, .doc, .docx" required>
+																										</div>
+																										<div class="text-center mb-3">
+																											<input type="submit" class="btn btn-light blue-gradient btn-block btn-rounded z-depth-1a" value="Serahkan Jawaban">
+																										</div>
+																									</form>
+																								<?php else : ?>
+																									<?php foreach ($submit as $val6) : ?>
+																										<?php if ($val5['id_tugas'] == $val6['id_tugas'] && $val6['id_user'] == $this->session->userdata('id_user')) : ?>
+																											<p>Jawaban</p>
+																											<p><a href="<?= base_url() ?>classes/download_assignment/<?= $val6['url_file']; ?>"><?= $val6['url_file']; ?></a></p>
+																											<div class="text-center mb-3">
+																												<a href="<?= base_url() ?>classes/hapus_jawaban/<?= $val['id_kelas']; ?>/<?= $val5['id_tugas']; ?>/<?= $val6['id_submit']; ?>" class="btn btn-danger blue-gradient btn-block btn-rounded z-depth-1a">Hapus Jawaban</a>
+																											</div>
+																										<?php endif; ?>
+																									<?php endforeach; ?>
+																								<?php endif; ?>
+																							</div>
+																						</form>
+																					<?php else : ?>
+																						<?php foreach ($submit as $val6) : ?>
+																							<?php if ($val5['id_tugas'] == $val6['id_tugas'] && $val6['id_user'] == $this->session->userdata('id_user')) : ?>
+																								<p>Jawaban</p>
+																								<p><a href="<?= base_url() ?>classes/download_assignment/<?= $val6['url_file']; ?>"><?= $val6['url_file']; ?></a></p>
+																								<div class="text-center mb-3">
+																									<a href="<?= base_url() ?>classes/hapus_jawaban/<?= $val['id_kelas']; ?>/<?= $val5['id_tugas']; ?>/<?= $val6['id_submit']; ?>/akademik" class="btn btn-danger blue-gradient btn-block btn-rounded z-depth-1a">Hapus Jawaban</a>
+																								</div>
+																							<?php endif; ?>
+																						<?php endforeach; ?>
+																					<?php endif; ?>
+																				</div>
+																			</div>
+																		</div>
+																	<?php endif; ?>
+																	<?php $l++; ?>
+																<?php endforeach; ?>
+															<?php endforeach; ?>
+
+
+															<!-- Jadwal -->
+															<tr class="p">
+																<td colspan="6" class="hiddenRow" style="padding: 0px; border-top: 0px;">
+																	<div id="collapseJadwal<?= $val['id_kelas'] ?>" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+																		<div class="card-body" style="padding-top: 0px;">
+																			<div class="row" style="margin-bottom: -20px;">
+																				<div class="col">
+																					<div class="card card-list">
+																						<div class="card-body">
+																							<h2>Jadwal Kegiatan Kelas</h2>
+																						</div>
+																						<div class="card-body">
+																							<table class="table">
+
+																								<?php $countkegiatan = 0;
+																								foreach ($kegiatan_diikuti as $val4) {
+																									foreach ($val4 as $val5) {
+																										if ($val['id_kelas'] == $val5['id_kelas']) {
+																											$countkegiatan++;
+																										}
+																									}
+																								} ?>
+
+																								<?php if ($countkegiatan == 0) : ?>
+																									<div class="alert alert-danger" role="alert">
+																										Tidak Ada Kegiatan untuk Kelas ini. </div>
+																								<?php else : ?> <thead>
+																										<tr>
+																											<th scope="col">Deskripsi</th>
+																											<th scope="col" class="text-center">Hari/Tanggal</th>
+																											<th scope="col" class="text-center">Waktu</th>
+																											<th scope="col" class="text-center">Status</th>
+																											<th scope="col" class="text-center">Materi</th>
+																										</tr>
+																									</thead>
+																									<tbody>
+																										<?php foreach ($kegiatan_diikuti as $val4) : ?>
+																											<?php foreach ($val4 as $val5) : ?>
+																												<?php if ($val['id_kelas'] == $val5['id_kelas']) : ?>
+																													<tr>
+																														<td style="padding-top: 25px;"><?= $val5['deskripsi_kegiatan']; ?></td>
+																														<td style="padding-top: 25px;" class="text-center"><?= $val5['tanggal']; ?></td>
+																														<td style="padding-top: 25px;" class="text-center"><?= $val5['waktu']; ?></td>
+																														<td style="text-align: center ; padding-top: 25px;">
+																															<?php if ($val5['nama_status'] == "Sedang Berlangsung") : ?>
+																																<span class="badge badge-warning" style="padding: 6px;">Sedang Berlangsung</span>
+																															<?php elseif ($val5['nama_status'] == "Selesai") : ?>
+																																<span class="badge badge-success" style="padding: 6px;">Selesai</span>
+																															<?php else : ?>
+																																<span class="badge badge-danger" style="padding: 6px;">Belum Mulai</span>
+																															<?php endif; ?>
+																														</td>
+																														<td class="text-center">
+																															<?php
+																															$countMateri = 0;
+																															if ($materi2 != null) {
+																																foreach ($materi2 as $count) {
+																																	if ($count['id_kegiatan'] == $val5['id_kegiatan']) {
+																																		$countMateri++;
+																																	}
+																																}
+																															} ?>
+
+																															<?php if ($countMateri == 0) : ?>
+																																<button class="btn btn-light btn-md px-3 my-0 ml-0" style="color: red;" disabled type="button">Tidak Ada Materi</button>
+																															<?php else : ?>
+																																<?php $PembuatMateri = 0; ?>
+																																<?php if ($materi2 != null) : ?>
+																																	<?php foreach ($materi2 as $val40) : ?>
+																																		<?php if ($val5['id_kegiatan'] == $val40['id_kegiatan']) : ?>
+
+																																			<?php if ($PembuatMateri < 1) : ?>
+																																				<?php if ($countMateri == 0) : ?>
+																																					<button class="btn btn-light btn-md px-3 my-0 ml-0" style="color: red;" disabled type="button">Tidak Ada Materi</button>
+																																				<?php else : ?>
+																																					<button class="btn btn-light btn-md px-3 my-0 ml-0" type="button" data-toggle="modal" data-target="#lihatMateri<?= $val5['id_kegiatan']; ?>">Lihat Materi</button>
+																																				<?php endif; ?>
+																																			<?php endif; ?>
+																																			<?php $PembuatMateri++; ?>
+																																		<?php else : ?>
+																																		<?php endif; ?>
+																																	<?php endforeach; ?>
+																																<?php else : ?>
+																																	<button class="btn btn-light btn-md px-3 my-0 ml-0" style="color: red;" disabled type="button">Tidak Ada Materi</button>
+																																<?php endif; ?>
+
+
+																															<?php endif; ?>
+																														</td>
+																													</tr>
+
+																													<div class="modal fade" id="lihatMateri<?= $val5['id_kegiatan']; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="padding-right: 60px; padding-left: 17px;">
+
+																														<div class="modal-dialog modal-lg" role="document">
+																															<!--Content-->
+																															<div class="modal-content form-elegant">
+																																<!--Header-->
+																																<div class="modal-header text-center">
+																																	<h3 class="modal-title w-100 dark-grey-text font-weight-bold my-3" id="myModalLabel">
+																																		<strong>Materi <?= $val['judul_kelas']; ?></strong></h3>
+																																	<?php $id_kelass = $val['id_kelas']; ?>
+																																	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+																																		<span aria-hidden="true">&times;</span>
+																																	</button>
+																																</div>
+																																<!--Body-->
+																																<div class="modal-body mx-4">
+																																	<!--Body-->
+																																	<div class="container-fluid">
+																																		<div class="row">
+																																			<div class="col-xl-6 border-bottom  mt-3" style="width: 110px;"><b>Kegiatan</b></div>
+																																			<div class="col-xl-6 border-bottom  mt-3" style="width: 110px;"><b>Nama File</b></div>
+																																		</div>
+																																		<div class="row">
+																																			<?php foreach ($kegiatan as $val12) : ?>
+																																				<?php if ($val12['id_kelas'] == $val['id_kelas'] && $val12['id_kegiatan'] == $val5['id_kegiatan']) : ?>
+																																					<?php $a = 0; ?>
+
+																																					<?php foreach ($materi2 as $val13) : ?>
+																																						<?php if (
+																																							$val5['id_kegiatan'] ==
+																																							$val13['id_kegiatan']
+																																						) : ?>
+
+																																							<div class="col-xl-6 border-bottom pb-3 mt-3" style="width: 120px;">
+																																								<?= $val12['deskripsi_kegiatan']; ?></div>
+																																							<?php if ($val13['kategori_materi'] == 1) : ?>
+																																								<div class="col-xl-6 border-bottom pb-3 mt-3" style="width: 120px;"><a href="<?= base_url(); ?>classes/download_materi/<?= $val13['url_materi']; ?>"><i class="fa fa-file"></i> <?= wordwrap($val13['url_materi'], 26, '<br>', true); ?></a>
+																																								</div>
+
+																																							<?php else : ?>
+																																								<?php $a++ ?>
+																																								<?php $strvid = "Video " . $a . " Kegiatan " . $val12['deskripsi_kegiatan'] . " <b>(" . $val['judul_kelas'] . ")</b>"; ?>
+																																								<div class="col-xl-6 border-bottom pb-3 mt-3" style="width: 120px;"> <a href="<?= base_url(); ?>classes/video_class/<?= $val['id_kelas'] ?>/<?= $val12['id_kegiatan'] ?>/<?= $val13['id_materi'] ?>/<?= $a ?>"><i class="fa fa-video-camera"></i> <?= wordwrap($strvid, 26, '<br>', true); ?> </a>
+																																								</div>
+																																							<?php endif; ?>
+																																						<?php endif; ?>
+																																					<?php endforeach; ?>
+																																				<?php endif ?>
+																																			<?php endforeach; ?>
+																																		</div>
+																																	</div>
+																																</div>
+																															</div>
+																														</div>
+																													</div>
+
+																												<?php endif; ?>
+																											<?php endforeach; ?>
+																										<?php endforeach; ?>
+																									</tbody>
+																								<?php endif; ?>
+																							</table>
+																						</div>
+																					</div>
+																				</div>
+																			</div>
+
+																		</div>
+																	</div>
+																</td>
+															</tr>
+
+															<!--  -->
+														<?php endif; ?>
+													<?php endforeach; ?>
+												<?php endforeach; ?>
+										</tbody>
+									<?php endif ?>
 								</table>
 							</div>
 
@@ -1746,99 +1774,130 @@
 									<div class="col">
 										<h2>Workshop Saya</h2>
 									</div>
-									<div class="align-self-end">
-										<!-- <form action="<?= base_url(); ?>Classes/search_kelas_saya" method="post"> -->
-										<div class="input-group mb-3">
+									<?php if (count($kelas2) != 0) : ?>
+										<div class="align-self-end">
+											<!-- <form action="<?= base_url(); ?>Classes/search_kelas_saya" method="post"> -->
+											<div class="input-group mb-3">
 
-											<input id="inputSearch4" class="form-control form-control-sm mr-0 w-0" id="searchTable" type="text" name="keyword" placeholder="Cari..." aria-label="Search">
+												<input id="inputSearch4" class="form-control form-control-sm mr-0 w-0" id="searchTable" type="text" name="keyword" placeholder="Cari..." aria-label="Search">
 
-											<!-- <div class="input-group-append">
+												<!-- <div class="input-group-append">
 													<button class="btn" type="submit"><i class="fa fa-search" aria-hidden="true" onclick=""></i></button>
 												</div> -->
+											</div>
+											</form>
 										</div>
-										</form>
-									</div>
+									<?php endif ?>
 								</div>
 							</div>
 
 							<div class="card-body table-responsive">
 								<table id="pageTable6" class="table">
-									<thead>
-										<tr>
+									<?php if (count($kelas2) == 0) : ?>
+										<div class="row">
+											<div class="col-md-10">
+												<div class="alert alert-danger" role="alert">
+													Belum ada workshop yang anda buat.
+												</div>
+											</div>
+											<div class="col">
+												<a href="<?= base_url() ?>workshops/new_workshop"><button class=" btn btn-primary btn-md px-3 my-0 ml-0 btn-block" type="button">Buat Workshop</button></a><br>
 
-											<th scope="col">Workshop</th>
-											<th scope="col" class="text-center"></th>
-											<th scope="col" class="text-center">Tanggal</th>
-											<th scope="col" class="text-center">Status</th>
-											<th scope="col" class="text-center">Tipe</th>
-											<th scope="col" class="text-center">Aksi</th>
-										</tr>
-									</thead>
-									<tbody id="pageSearch4">
-										<?php $ctWorkshop = 0; ?>
-										<?php foreach ($kelas2 as $val) : ?>
-											<?php $ctWorkshop++; ?>
+											</div>
+										</div>
+									<?php else : ?>
+										<thead>
 											<tr>
-												<th scope="row" style="width: 300px; padding-top: 30px; "><a href="<?= base_url() ?>Workshops/open_workshop/<?= $val['id_workshop'] ?>" class="text-primary"><?= $val['judul_workshop']; ?></a></th>
+
+												<th scope="col">Workshop</th>
+												<th scope="col" class="text-center"></th>
+												<th scope="col" class="text-center">Tanggal</th>
+												<th scope="col" class="text-center">Status</th>
+												<th scope="col" class="text-center">Tipe</th>
+												<th scope="col" class="text-center">Aksi</th>
+											</tr>
+										</thead>
+										<tbody id="pageSearch4">
+											<?php $ctWorkshop = 0; ?>
+											<?php if ($kelas2 != null) : ?>
+												<?php foreach ($kelas2 as $val) : ?>
+													<?php $ctWorkshop++; ?>
+													<tr>
+														<th scope="row" style="width: 300px; padding-top: 30px; "><a href="<?= base_url() ?>Workshops/open_workshop/<?= $val['id_workshop'] ?>" class="text-primary"><?= $val['judul_workshop']; ?></a></th>
 
 
-												<td style="padding-top: 30px;">
-													<span><a id="btnCopy" href="" onclick="return false" data-toggle="tooltip" data-original-title="Click to copy" data-clipboard-text="Hey, saya sudah membuat workshop baru silahkan cek disini: <?= base_url(); ?>Workshops/open_workshop/<?= $val['id_workshop'] ?>"><i class="fa fa-share-alt" aria-hidden="true"></i></a></span>
-												</td>
+														<td style="padding-top: 30px;">
+															<span><a id="btnCopy" href="" onclick="return false" data-toggle="tooltip" data-original-title="Click to copy" data-clipboard-text="Hey, <?= $nama[0] ?> sudah membuat workshop baru silahkan cek disini: <?= base_url(); ?>Workshops/open_workshop/<?= $val['id_workshop'] ?>"><i class="fa fa-share-alt" aria-hidden="true"></i></a></span>
+														</td>
 
-												<td style="padding-top: 30px;">
-													<?php
-													foreach ($kegiatan2 as $val2) {
-														if ($val['id_workshop'] == $val2['id_workshop']) {
-															$dt = new DateTime($val2['tanggal_kegiatan']);
-															echo "<center><h6>" . $dt->format('d M Y (H:i)') . "</h6></center>";
-														}
-													}
-													?>
+														<td style="padding-top: 30px;">
+															<?php
+															$countkeg = 0;
+															if ($kegiatan2 != null) {
+																foreach ($kegiatan2 as $val2) {
+																	if ($val['id_workshop'] == $val2['id_workshop']) {
+																		$countkeg++;
+																	}
+																}
+															}
 
-												</td>
+															if ($countkeg != 0) {
+																$dt = new DateTime($val2['tanggal_kegiatan']);
+																echo "<center><h6>" . $dt->format('d M Y (H:i)') . "</h6></center>";
+															} else {
+																echo "<center><h6><small>Belum Ada Tanggal Kegiatan</small></h6></center>";
+															}
+															?>
 
-												<?php foreach ($kegiatan2 as $val2) :
-													if ($val['id_workshop'] == $val2['id_workshop']) : ?>
-														<?php if ($val2['status_kegiatan'] == 2) : ?>
-															<td style="text-align: center; padding-top: 30px;"><span class="badge badge-success">Selesai</span></td>
-														<?php elseif ($val2['status_kegiatan'] == 1) : ?>
-															<td style="text-align: center; padding-top: 30px;"><span class="badge badge-danger">Sedang Berlangsung</span></td>
+
+														</td>
+														<?php if ($countkeg != 0) : ?>
+															<?php if ($kegiatan2 != null) : ?>
+																<?php foreach ($kegiatan2 as $val2) :
+																	if ($val['id_workshop'] == $val2['id_workshop']) : ?>
+																		<?php if ($val2['status_kegiatan'] == "Selesai") : ?>
+																			<td style="text-align: center; padding-top: 30px;"><span class="badge badge-success">Selesai</span></td>
+																		<?php elseif ($val2['status_kegiatan'] == "Sedang Berlangsung") : ?>
+																			<td style="text-align: center; padding-top: 30px;"><span class="badge badge-danger">Sedang Berlangsung</span></td>
+																		<?php else : ?>
+																			<td style="text-align: center; padding-top: 30px;"><span class="badge badge-warning">Belum Mulai</span></td>
+																		<?php endif; ?>
+																	<?php endif; ?>
+																<?php endforeach; ?>
+															<?php endif; ?>
 														<?php else : ?>
 															<td style="text-align: center; padding-top: 30px;"><span class="badge badge-warning">Belum Mulai</span></td>
 														<?php endif; ?>
-													<?php endif; ?>
-												<?php endforeach; ?>
 
 
 
-												<td style="padding-top: 30px;" class="text-center">
-													<?php if ($val['tipe_workshop'] == 1) : ?>
-														<span class="badge badge-light">Public</span>
-													<?php else : ?>
-														<span class="badge badge-dark">Private</span>
-													<?php endif; ?>
-												</td>
+														<td style="padding-top: 30px;" class="text-center">
+															<?php if ($val['tipe_workshop'] == "Public") : ?>
+																<span class="badge badge-light">Public</span>
+															<?php else : ?>
+																<span class="badge badge-dark">Private</span>
+															<?php endif; ?>
+														</td>
 
-												<td style="padding-top: 20px;" class="text-center">
-													<div class="buttonclass">
-														<div class="btn-group">
-															<a class="btn btn-outline-dark" href="<?= base_url() ?>Workshops/open_workshop/<?= $val['id_workshop'] ?>" style="padding-right: 20px; padding-left: 20px; padding-top: 12px; padding-bottom: 12px;">Detail</a>
-															<button type="button" style="padding-right: 20px; padding-left: 20px; padding-top: 12px; padding-bottom: 12px;" class="btn btn-outline-dark dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-																<span class="sr-only">Toggle Dropdown</span>
-															</button>
-															<div class="dropdown-menu">
-																<a class="dropdown-item btn" href="<?= base_url() ?>Workshops/lihat_kegiatan/<?= $val['id_workshop'] ?>">Lihat
-																	Kegiatan</a>
-																<a class="dropdown-item btn" href="<?= base_url() ?>Workshops/update_workshop/<?= $val['id_workshop'] ?>">Edit
-																	Workshop</a>
+														<td style="padding-top: 20px;" class="text-center">
+															<div class="buttonclass">
+																<div class="btn-group">
+																	<a class="btn btn-outline-dark" href="<?= base_url() ?>Workshops/open_workshop/<?= $val['id_workshop'] ?>" style="padding-right: 20px; padding-left: 20px; padding-top: 12px; padding-bottom: 12px;">Detail</a>
+																	<button type="button" style="padding-right: 20px; padding-left: 20px; padding-top: 12px; padding-bottom: 12px;" class="btn btn-outline-dark dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+																		<span class="sr-only">Toggle Dropdown</span>
+																	</button>
+																	<div class="dropdown-menu">
+																		<a class="dropdown-item btn" href="<?= base_url() ?>Workshops/update_workshop/<?= $val['id_workshop'] ?>">Edit
+																			Workshop</a>
+																	</div>
+																</div>
 															</div>
-														</div>
-													</div>
-												</td>
-											</tr>
-										<?php endforeach; ?>
-									</tbody>
+														</td>
+													</tr>
+												<?php endforeach; ?>
+											<?php endif ?>
+										<?php endif ?>
+										</tbody>
 								</table>
 							</div>
 							<!-- <div class="card-footer white py-3 d-flex justify-content-center">
@@ -1868,6 +1927,18 @@
 								 -->
 
 			<div class="tab-pane" id="tab7" role="tabpanel" aria-expanded="false">
+				<?php $countkelas = 0;
+				if ($seluruh_kelas2 != null) {
+					foreach ($seluruh_kelas2 as $val) {
+						if ($peserta2 != null) {
+							foreach ($peserta2 as $val2) {
+								if ($val2['id_workshop'] == $val['id_workshop'] && $val2['id_user'] == $this->session->userdata('id_user')) {
+									$countkelas++;
+								}
+							}
+						}
+					}
+				} ?>
 				<div class="row mt-5">
 					<div class="col">
 						<?php if ($notif2 != null) : ?>
@@ -1895,78 +1966,125 @@
 									<div class="col">
 										<h2>Workshop Diikuti</h2>
 									</div>
-									<div class="align-self-end">
-										<!-- <form action="<?= base_url(); ?>Classes/search_kelas_saya" method="post"> -->
-										<div class="input-group mb-3">
+									<?php if ($countkelas != 0) : ?>
+										<div class="align-self-end">
+											<!-- <form action="<?= base_url(); ?>Classes/search_kelas_saya" method="post"> -->
+											<div class="input-group mb-3">
 
-											<input id="inputSearch6" class="form-control form-control-sm mr-0 w-0" id="searchTable" type="text" name="keyword" placeholder="Cari..." aria-label="Search">
+												<input id="inputSearch6" class="form-control form-control-sm mr-0 w-0" id="searchTable" type="text" name="keyword" placeholder="Cari..." aria-label="Search">
 
-											<!-- <div class="input-group-append">
+												<!-- <div class="input-group-append">
 													<button class="btn" type="submit"><i class="fa fa-search" aria-hidden="true" onclick=""></i></button>
 												</div> -->
+											</div>
+											</form>
 										</div>
-										</form>
-									</div>
+									<?php endif ?>
 								</div>
 							</div>
 
 							<div class="card-body table-responsive">
 								<table id="pageTable8" class="table">
-									<thead>
-										<tr>
-											<th scope="col">Workshop</th>
-											<th scope="col" class="text-center"></th>
-											<th scope="col" class="text-center">Tanggal</th>
-											<th scope="col" class="text-center">Status</th>
-											<!-- <th scope="col">Materi</th> -->
-											<th scope="col" class="text-center">Aksi</th>
-
-										</tr>
-									</thead>
-									<tbody id="pageSearch6">
-										<?php foreach ($seluruh_kelas2 as $val) : ?>
-											<?php foreach ($peserta2 as $val2) : ?>
-												<?php if ($val2['id_workshop'] == $val['id_workshop'] && $val2['id_user'] == $this->session->userdata('id_user')) : ?>
-													<tr>
-														<?php if ($val['tipe_workshop'] == 2) : ?>
-															<th scope="row" style="width: 300px; padding-top: 30px;"><a href="<?= base_url() ?>Workshops/open_workshop/<?= $val['id_workshop'] ?>" class="text-primary"><?= $val['judul_workshop']; ?> <i class="fa fa-lock"></a></th>
-														<?php else : ?>
-															<th scope="row" style="width: 300px; padding-top: 30px;"><a href="<?= base_url() ?>Workshops/open_workshop/<?= $val['id_workshop'] ?>" class="text-primary"><?= $val['judul_workshop']; ?></a></th>
-														<?php endif; ?>
-														<td></td>
-														<td style="padding-top: 30px;">
-															<?php
-															foreach ($kegiatan2 as $val2) {
-																if ($val['id_workshop'] == $val2['id_workshop']) {
-																	$dt = new DateTime($val2['tanggal_kegiatan']);
-																	echo "<center><h6>" . $dt->format('d M Y (H:i)') . "</h6></center>";
-																}
-															}
-															?>
-															<?php foreach ($kegiatan2 as $val2) :
-																if ($val['id_workshop'] == $val2['id_workshop']) : ?>
-																	<?php if ($val2['status_kegiatan'] == 2) : ?>
-														<td style="text-align: center; padding-top: 30px;"><span class="badge badge-success">Selesai</span></td>
-													<?php elseif ($val2['status_kegiatan'] == 1) : ?>
-														<td style="text-align: center; padding-top: 30px;"><span class="badge badge-danger">Sedang Berlangsung</span></td>
-													<?php else : ?>
-														<td style="text-align: center; padding-top: 30px;"><span class="badge badge-warning">Belum Mulai</span></td>
-													<?php endif; ?>
-												<?php endif; ?>
-											<?php endforeach; ?>
-
-											<td>
-												<div class="buttonclass text-center">
-													<a href="<?= base_url() ?>Workshops/open_workshop/<?= $val['id_workshop'] ?>"><i class="btn btn-primary">Lihat</i></a>
-													<a data-toggle='modal' data-target='#konfirmasi_hapus2' data-href="<?= base_url() ?>workshops/leave_workshop/<?= $val['id_workshop'] ?>"><i class="btn btn-danger">Tinggalkan</i></a>
+									<?php if ($countkelas == 0) : ?>
+										<div class="row">
+											<div class="col-md-9">
+												<div class="alert alert-danger" role="alert">
+													Belum ada workshop yang diikuti.
 												</div>
-											</td>
-													</tr>
+											</div>
+											<div class="col">
+												<a href="<?= base_url() ?>classes"><button class=" btn btn-primary btn-md px-3 my-0 ml-0 btn-block" type="button">Gabung Workshop</button></a>
+											</div>
 
-												<?php endif; ?>
+										</div>
+									<?php else : ?>
+
+
+
+
+										<thead>
+											<tr>
+												<th scope="col">Workshop</th>
+												<th scope="col" class="text-center"></th>
+												<th scope="col" class="text-center">Tanggal</th>
+												<th scope="col" class="text-center">Status</th>
+												<!-- <th scope="col">Materi</th> -->
+												<th scope="col" class="text-center">Aksi</th>
+
+											</tr>
+										</thead>
+										<tbody id="pageSearch6">
+
+											<?php foreach ($seluruh_kelas2 as $val) : ?>
+												<?php foreach ($peserta2 as $val2) : ?>
+													<?php if ($val2['id_workshop'] == $val['id_workshop'] && $val2['id_user'] == $this->session->userdata('id_user')) : ?>
+														<tr>
+															<?php if ($val['tipe_workshop'] == "Private") : ?>
+																<th scope="row" style="width: 300px; padding-top: 30px;"><a href="<?= base_url() ?>Workshops/open_workshop/<?= $val['id_workshop'] ?>" class="text-primary"><?= $val['judul_workshop']; ?> <i class="fa fa-lock"></a></th>
+															<?php else : ?>
+																<th scope="row" style="width: 300px; padding-top: 30px;"><a href="<?= base_url() ?>Workshops/open_workshop/<?= $val['id_workshop'] ?>" class="text-primary"><?= $val['judul_workshop']; ?></a></th>
+															<?php endif; ?>
+															<td></td>
+															<td style="padding-top: 30px;">
+																<?php
+																$countkeg = 0;
+																if ($kegiatan2 != null) {
+																	foreach ($kegiatan2 as $val3) {
+																		if ($val['id_workshop'] == $val3['id_workshop']) {
+																			$countkeg++;
+																		}
+																	}
+																}
+
+																if ($countkeg != 0) {
+																	$dt = new DateTime($val3['tanggal_kegiatan']);
+																	echo "<center><h6>" . $dt->format('d M Y (H:i)') . "</h6></center>";
+																} else {
+																	echo "<center><h6><small>Belum Ada Tanggal Kegiatan</small></h6></center>";
+																}
+																?>
+
+
+																<?php $countkeg = 0;
+																if ($kegiatan != null) {
+																	foreach ($kegiatan2 as $val3) {
+																		if ($val['id_workshop'] == $val3['id_workshop']) {
+																			$countkeg++;
+																		}
+																	}
+																} ?>
+
+																<?php if ($kegiatan != null) : ?>
+																	<?php if ($countkeg != 0) : ?>
+																		<?php foreach ($kegiatan2 as $val3) :
+																			if ($val['id_workshop'] == $val3['id_workshop']) : ?>
+																				<?php if ($val2['status_kegiatan'] == "Selesai") : ?>
+															<td style="text-align: center; padding-top: 30px;"><span class="badge badge-success">Selesai</span></td>
+														<?php elseif ($val2['status_kegiatan'] == "Sedang Berlangsung") : ?>
+															<td style="text-align: center; padding-top: 30px;"><span class="badge badge-danger">Sedang Berlangsung</span></td>
+														<?php else : ?>
+															<td style="text-align: center; padding-top: 30px;"><span class="badge badge-warning">Belum Mulai</span></td>
+														<?php endif; ?>
+													<?php endif; ?>
+												<?php endforeach; ?>
+											<?php else : ?>
+												<td style="text-align: center; padding-top: 30px;"><span class="badge badge-warning">Belum Mulai</span></td>
+											<?php endif; ?>
+										<?php endif; ?>
+
+										<td>
+											<div class="buttonclass text-center">
+												<a href="<?= base_url() ?>Workshops/open_workshop/<?= $val['id_workshop'] ?>"><i class="btn btn-primary">Lihat</i></a>
+												<a data-toggle='modal' data-target='#konfirmasi_hapus2' data-href="<?= base_url() ?>workshops/leave_workshop/<?= $val['id_workshop'] ?>"><i class="btn btn-danger">Tinggalkan</i></a>
+											</div>
+										</td>
+														</tr>
+
+													<?php endif; ?>
+												<?php endforeach; ?>
 											<?php endforeach; ?>
-										<?php endforeach; ?>
-									</tbody>
+										</tbody>
+									<?php endif; ?>
 								</table>
 							</div>
 						</div>

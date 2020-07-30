@@ -151,7 +151,7 @@ class Classes_model extends CI_Model
         $dataparam = [
             'id_user' => $userId
         ];
-        return $this->$this->http_request_get("account/users/detail/by/$userId");
+        return $this->http_request_get("account/users/detail/by/$userId");
     }
 
     public function getPesertaByUserIdClassId($id)
@@ -395,8 +395,7 @@ class Classes_model extends CI_Model
                     return 'server_error';
                 else {
                     if ($data['status'] == 200 && $data != null) {
-                            unlink("assets/images/" . $data['poster_kelas']);
-                        
+                        unlink("assets/images/" . $data['poster_kelas']);
                     }
                 }
                 $file_name = $this->upload->data('file_name');
@@ -648,16 +647,26 @@ class Classes_model extends CI_Model
 
     public function updateKegiatan($id_kelas, $id_kegiatan)
     {
+        $success = true;
         $data = [];
         $fileArr = [];
+
+
         if (!empty($_FILES['materi']['name'][0])) {
             $data = [
                 'deskripsi_kegiatan' => $this->input->post('deskripsi'),
                 'tanggal_kegiatan' => $this->input->post('tanggal')
             ];
 
-            if ($this->http_request_update($data, "classes/open_class/kegiatan/$id_kegiatan") == null)
+            $updatekegiatanmateri = $this->http_request_update($data, "classes/open_class/kegiatan/$id_kegiatan");
+            if ($updatekegiatanmateri == null)
                 return 'server_error';
+            else {
+                if ($updatekegiatanmateri['status'] != 200) {
+                    $success = false;
+                    return $updatekegiatanmateri['message'];
+                }
+            }
 
 
             $video = $this->input->post('video');
@@ -674,13 +683,24 @@ class Classes_model extends CI_Model
                         'kategori_materi' => 2
                     ];
                     $materi_id[] = $data['id_materi'];
-                    if ($this->http_request_post($data, "classes/open_class/materi") == null)
+
+                    $updatevideomateri = $this->http_request_post($data, "classes/open_class/materi");
+                    if ($updatevideomateri == null)
                         return 'server_error';
+                    else {
+                        if ($updatevideomateri['status'] != 200) {
+                            $success = false;
+                            return $updatevideomateri['message'];
+                        }
+                    }
                 }
             }
         }
 
-        $count = count($_FILES['materi']['name']);
+        if (!empty($_FILES['materi']['name']))
+            $count = count($_FILES['materi']['name']);
+        else
+            $count = 0;
         for ($i = 0; $i < $count; $i++) {
             if (!empty($_FILES['materi']['name'][$i])) {
                 $_FILES['file']['name'] = $_FILES['materi']['name'][$i];
@@ -708,8 +728,19 @@ class Classes_model extends CI_Model
                         'kategori_materi' => 1
                     ];
                     $materi_id[] = $data['id_materi'];
-                    if ($this->http_request_post($data, "classes/open_class/materi") == null)
+
+                    $updatemateri = $this->http_request_post($data, "classes/open_class/materi");
+                    if ($updatemateri == null)
                         return 'server_error';
+                    else {
+                        if ($updatemateri['status'] != 200) {
+                            $success = false;
+                            return $updatemateri['message'];
+                        }
+                    }
+
+                    if ($success)
+                        return 'success';
                 } else {
 
                     $countFile = count($fileArr);
@@ -730,9 +761,15 @@ class Classes_model extends CI_Model
                     'tanggal_kegiatan' => $this->input->post('tanggal')
                 ];
 
-
-                if ($this->http_request_update($data, "classes/open_class/kegiatan/$id_kegiatan") == null)
+                $updatekegiatantanpamateri = $this->http_request_update($data, "classes/open_class/kegiatan/$id_kegiatan");
+                if ($updatekegiatantanpamateri == null)
                     return 'server_error';
+                else {
+                    if ($updatekegiatantanpamateri['status'] != 200) {
+                        $success = false;
+                        return $updatekegiatantanpamateri['message'];
+                    }
+                }
 
                 $video = $this->input->post('video');
                 if ($video != 0 || $video != null) {
@@ -748,13 +785,23 @@ class Classes_model extends CI_Model
                             'kategori_materi' => 2
                         ];
                         $materi_id[] = $data['id_materi'];
-                        if ($this->http_request_post($data, "classes/open_class/materi") == null)
+
+
+                        $updatevideotanpamateri = $this->http_request_post($data, "classes/open_class/materi");
+                        if ($updatevideotanpamateri == null)
                             return 'server_error';
+                        else {
+                            if ($updatevideotanpamateri['status'] != 200) {
+                                $success = false;
+                                return $updatevideotanpamateri['message'];
+                            }
+                        }
                     }
                 }
+                if ($success)
+                    return 'success';
             }
         }
-        return "success";
     }
 
     public function updateKegiatanStatus($activityId, $status)
@@ -901,6 +948,7 @@ class Classes_model extends CI_Model
             $filename = $this->upload->data('file_name');
             $timezone = time() + (60 * 60 * 7);
 
+
             if (gmdate('Y-m-d H:i:s', $timezone) > $deadline) {
                 $data = [
                     'id_tugas' => $id_tugas,
@@ -913,9 +961,7 @@ class Classes_model extends CI_Model
                     'id_user' => $id_user,
                     'id_tugas' => $id_tugas
                 ];
-
-                if ($this->http_request_post($data, "classes/my_class/submit_assignment") == null)
-                    return 'server_error';
+            } else {
                 $data = [
                     'id_tugas' => $id_tugas,
                     'url_file' => $filename,
@@ -927,9 +973,16 @@ class Classes_model extends CI_Model
                     'id_user' => $id_user,
                     'id_tugas' => $id_tugas
                 ];
+            }
 
-                if ($this->http_request_post($data, "classes/my_class/submit_assignment") == null)
-                    return 'server_error';
+            $kumpul = $this->http_request_post($data, "classes/my_class/submit_assignment");
+            if ($kumpul == null)
+                return 'server_error';
+            else {
+                if ($kumpul['status'] == 200)
+                    return "success";
+                else
+                    return $kumpul['message'];
             }
         } else {
             return "error";
@@ -955,9 +1008,6 @@ class Classes_model extends CI_Model
                     'kategori_tugas' => $this->input->post('kategori'),
                     'batas_pengiriman_tugas' => $this->input->post('deadline')
                 ];
-
-                if ($this->http_request_update($data, "classes/my_class/assignment/kuis/$id") == null)
-                    return 'server_error';
             } else {
                 return "error";
             }
@@ -970,9 +1020,16 @@ class Classes_model extends CI_Model
                 'batas_pengiriman_tugas' => $this->input->post('deadline')
             ];
 
-            if ($this->http_request_update($data, "classes/my_class/assignment/kuis/$id") == null)
-                return 'server_error';
         }
+        $updateAssignment = $this->http_request_update($data, "classes/my_class/assignment/kuis/$id");
+        if($updateAssignment == null)
+            return 'server_error';
+            else{
+                if($updateAssignment['status'] == 200)
+                return 'success';
+                else
+                return $updateAssignment['message'];
+            }
     }
 
     public function deleteAssignment($id)

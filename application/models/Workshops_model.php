@@ -242,7 +242,6 @@ class workshops_model extends CI_Model
         ];
 
         return $this->http_request_post($data, "workshop/join");
-        
     }
 
     public function getIdNewClass()
@@ -311,9 +310,7 @@ class workshops_model extends CI_Model
                     return 'server_error';
                 else {
                     if ($data['status'] == 200) {
-                        foreach ($data['data'] as $data2) {
-                            unlink("assets/images/" . $data2['poster_workshop']);
-                        }
+                        unlink("assets/images/" . $data['data']['poster_workshop']);
                     }
                 }
 
@@ -339,10 +336,12 @@ class workshops_model extends CI_Model
         $temp = $this->http_request_update($data, "workshop/my_workshop/$id");
         if ($temp == null)
             return 'server_error';
-        if ($temp['status'] == 200)
-            return "success";
-        else
-            return $temp['message'];
+        else {
+            if ($temp['status'] == 200)
+                return "success";
+            else
+                return $temp['message'];
+        }
     }
 
 

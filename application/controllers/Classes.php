@@ -1302,6 +1302,8 @@ class Classes extends CI_Controller
         }
 
         $kegiatan = $this->Classes_model->updateKegiatan($id_kelas, $id_kegiatan);
+        var_dump($kegiatan);
+        die;
         if ($kegiatan == 'server_error')
             $null = true;
         else {
@@ -1472,7 +1474,11 @@ class Classes extends CI_Controller
                 $null = true;
             else {
                 if ($data['kelas2']['status'] == 200 || $data['kelas2']['status'] == 202) {
-                    $data['kelas2'] = $data['kelas2']['data'];
+                    if ($data['kelas2']['data'] == null) {
+                        $temp = array();
+                        $data['kelas2'] = $temp;
+                    } else
+                        $data['kelas2'] = $data['kelas2']['data'];
                 } else
                     $this->session->set_flashdata("errorAPI", $data['kelas2']['message']);
             }
@@ -1563,6 +1569,7 @@ class Classes extends CI_Controller
             else {
                 if ($header['nama']['status'] == 200 || $header['nama']['status'] == 202) {
                     $header['nama'] = explode(" ", $header['nama']['data']);
+                    $data['nama'] = $header['nama'];
                 } else
                     $this->session->set_flashdata("errorAPI", $header['nama']['message']);
             }
@@ -1593,6 +1600,7 @@ class Classes extends CI_Controller
                             }
 
                             $tugas = $this->Classes_model->getTugasByClassId($value['id_kelas']);
+
                             if ($tugas == null)
                                 $null = true;
                             else {
@@ -1657,7 +1665,6 @@ class Classes extends CI_Controller
                     $data['materi'] = $datamateri;
                 }
             }
-
             if (!$null) {
                 if ($data['kelas'] != null) {
                     foreach ($data['kelas'] as $value) {
@@ -2625,14 +2632,17 @@ class Classes extends CI_Controller
                 $this->session->set_flashdata("errorAPI", $deadline['message']);
         }
 
-        $status = $this->Classes_model->collectAssignment($id_tugas, $deadline["batas_pengiriman_tugas"]);
+        $status = $this->Classes_model->collectAssignment($id_tugas, $deadline);
         if ($status == 'server_error')
             $null = true;
         else {
             if ($status == "error") {
-                $this->session->set_flashdata("failedInputFile", "$status (Maz Size: 25 MB) (.pdf, .doc, .docx only)");
+                $this->session->set_flashdata("failedInputFile", "File (Maz Size: 25 MB) (.pdf, .doc, .docx only)");
                 redirect('classes/detail_tugaskuis/' . $id_kelas . '/' . $id_tugas);
-            }
+            } else if ($status == 'success')
+                $this->session->set_flashdata("success_kumpul", "Jawaban Berhasil dikumpulkan.");
+            else
+                $this->session->set_flashdata("errorAPI", $status);
         }
         if ($redirect == "akademik") {
             if ($null)
@@ -3285,9 +3295,10 @@ class Classes extends CI_Controller
                 if ($data['kelas'] == null)
                     $null = true;
                 else {
-                    if ($data['kelas']['status'] == 200 || $data['kelas']['status'] == 202)
-                        $data['kelas'] = $data['kelas']['data'];
-                    else
+                    if ($data['kelas']['status'] == 200 || $data['kelas']['status'] == 202) {
+                        $tempkelas[] = $data['kelas']['data'];
+                        $data['kelas'] = $tempkelas;
+                    } else
                         $this->session->set_flashdata("errorAPI", $data['kelas']['message']);
                 }
 
@@ -3396,20 +3407,24 @@ class Classes extends CI_Controller
                 if ($data['tugas'] == null)
                     $null = true;
                 else {
-                    if ($data['tugas']['status'] == 200 || $data['tugas']['status'] == 202)
-                        $data['tugas'] = $data['tugas']['data'];
-                    else
+                    if ($data['tugas']['status'] == 200 || $data['tugas']['status'] == 202) {
+
+                        $temptugas2[] = $data['tugas']['data'];
+                        $data['tugas'] = $temptugas2;
+                    } else
                         $this->session->set_flashdata("errorAPI", $data['tugas']['message']);
                 }
 
-                $data['cek'] = $this->Classes_model->cekTugas($data['tugas']['id_tugas']);
-                if ($data['cek'] == null)
-                    $null = true;
-                else {
-                    if ($data['cek']['status'] == 200 || $data['cek']['status'] == 202)
-                        $data['cek'] = $data['cek']['data'];
-                    else
-                        $this->session->set_flashdata("errorAPI", $data['cek']['message']);
+                foreach ($data['tugas'] as $val) {
+                    $data['cek'] = $this->Classes_model->cekTugas($val['id_tugas']);
+                    if ($data['cek'] == null)
+                        $null = true;
+                    else {
+                        if ($data['cek']['status'] == 200 || $data['cek']['status'] == 202)
+                            $data['cek'] = $data['cek']['data'];
+                        else
+                            $this->session->set_flashdata("errorAPI", $data['cek']['message']);
+                    }
                 }
 
                 $data['submit'] = $this->Classes_model->getSubmit();
@@ -3426,20 +3441,24 @@ class Classes extends CI_Controller
                 if ($data['kelas'] == null)
                     $null = true;
                 else {
-                    if ($data['kelas']['status'] == 200 || $data['kelas']['status'] == 202)
-                        $data['kelas'] = $data['kelas']['data'];
-                    else
+                    if ($data['kelas']['status'] == 200 || $data['kelas']['status'] == 202) {
+                        $tempkelas2[] = $data['kelas']['data'];
+                        $data['kelas'] = $tempkelas2;
+                    } else
                         $this->session->set_flashdata("errorAPI", $data['kelas']['message']);
                 }
 
-                $data['user'] = $this->Classes_model->getUserDetail($data['kelas']['pembuat_kelas']);
-                if ($data['user'] == null)
-                    $null = true;
-                else {
-                    if ($data['user']['status'] == 200 || $data['user']['status'] == 202)
-                        $data['user'] = $data['user']['data'];
-                    else
-                        $this->session->set_flashdata("errorAPI", $data['user']['message']);
+                foreach ($data['kelas'] as $val) {
+                    $data['user'] = $this->Classes_model->getUserDetail($val['pembuat_kelas']);
+                    if ($data['user'] == null)
+                        $null = true;
+                    else {
+                        if ($data['user']['status'] == 200 || $data['user']['status'] == 202) {
+                            $tempuser2[] = $data['user']['data'];
+                            $data['user'] = $tempuser2;
+                        } else
+                            $this->session->set_flashdata("errorAPI", $data['user']['message']);
+                    }
                 }
 
                 $header['nama'] = $this->Classes_model->getMyName();
